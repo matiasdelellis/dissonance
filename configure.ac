@@ -1,8 +1,5 @@
-<<<<<<< HEAD:configure.ac
-AC_INIT([consonance], [0.4.1], [m.sujith@gmail.com])
-=======
-AC_INIT([consonance], [0.5.1], [m.sujith@gmail.com])
->>>>>>> 3a5bc5d838fc330bb861e670a8ebbbf34ac6dad8:configure.ac
+AC_INIT([dissonance], [0.5.9], [m.sujith@gmail.com])
+
 AM_INIT_AUTOMAKE([-Wall -Werror foreign])
 AC_PREREQ(2.61)
 AC_CONFIG_SRCDIR([src/consonance.c])
