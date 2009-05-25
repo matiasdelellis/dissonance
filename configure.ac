@@ -86,14 +86,14 @@ PKG_CHECK_MODULES([vorbisfile],
                   [AC_MSG_ERROR(vorbisfile-1.1.3 is required)])
 
 PKG_CHECK_MODULES([libcurl],
-                  [libcurl >= 7.18.2],
+                  [libcurl >= 7.18],
 		  [],
-                  [AC_MSG_ERROR(curl-2.18.2 is required)])
+                  [AC_MSG_ERROR(curl-7.18 is required)])
 
 PKG_CHECK_MODULES([libcdio],
                   [libcdio >= 0.78],
 		  [],
-                  [AC_MSG_ERROR(libcdio-0.80 is required)])
+                  [AC_MSG_ERROR(libcdio-0.78 is required)])
 
 PKG_CHECK_MODULES([libcdio_paranoia],
                   [libcdio_paranoia >= 0.80],
