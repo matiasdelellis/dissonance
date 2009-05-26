@@ -96,17 +96,17 @@ PKG_CHECK_MODULES([libcdio],
                   [AC_MSG_ERROR(libcdio-0.78 is required)])
 
 PKG_CHECK_MODULES([libcdio_paranoia],
-                  [libcdio_paranoia >= 0.80],
+                  [libcdio_paranoia >= 0.78],
 		  [],
-                  [AC_MSG_ERROR(libcdio_paranoia-0.80 is required)])
+                  [AC_MSG_ERROR(libcdio_paranoia-0.78 is required)])
 
 PKG_CHECK_MODULES([libcddb],
-                  [libcddb >= 1.3.0],
+                  [libcddb >= 1.2.1],
 		  [],
                   [AC_MSG_ERROR(libcddb-1.3.0 is required)])
 
 PKG_CHECK_MODULES([libmodplug],
-                  [libmodplug >= 0.8.0],
+                  [libmodplug >= 0.7.0],
 		  [],
                   [AC_MSG_ERROR(libmodplug-0.8.0 is required)])
 
