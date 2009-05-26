@@ -1723,16 +1723,21 @@ GtkWidget* create_panel(struct con_win *cwin)
 
 GtkWidget* create_playing_box(struct con_win *cwin)
 {
-	GtkWidget *now_playing_label,*track_length_label,*track_time_label;
+	GtkWidget *now_playing_label, *track_length_label, *track_time_label;
 	GtkWidget *track_progress_bar, *track_progress_align;
-	GtkWidget *new_vbox,*new_hbox; 
+	GtkWidget *new_vbox,*new_hbox, *hbox;
+	GtkWidget *bookmark_image;
 
 	now_playing_label = gtk_label_new(NULL);
 	gtk_label_set_ellipsize (GTK_LABEL(now_playing_label), PANGO_ELLIPSIZE_END);
 	gtk_label_set_markup(GTK_LABEL(now_playing_label),"<b>No se reproduce nada</b>");
-	gtk_misc_set_alignment (GTK_MISC(now_playing_label),0,1);
+	gtk_misc_set_alignment (GTK_MISC(now_playing_label), 0 , 1);
+
+	bookmark_image = gtk_image_new_from_pixbuf (gdk_pixbuf_new_from_file_at_size(SHAREDIR "/data/bookmark_unstarred.png",
+											20, 20, NULL));
 
 	new_vbox = gtk_vbox_new(FALSE, 1);
+	hbox = gtk_hbox_new(FALSE, 1);
 	new_hbox = gtk_hbox_new(FALSE, 1);
 
 	/* Setup track progress */
@@ -1761,6 +1766,13 @@ GtkWidget* create_playing_box(struct con_win *cwin)
 	cwin->track_time_label =	track_time_label;
 	cwin->track_length_label = 	track_length_label;
 
+	gtk_box_pack_start(GTK_BOX(hbox),
+			   GTK_WIDGET(now_playing_label),
+			   TRUE, TRUE, 0);
+	gtk_box_pack_start(GTK_BOX(hbox),
+ 			   bookmark_image,
+ 			   FALSE, FALSE, 0);
+
 	gtk_box_pack_start(GTK_BOX(new_hbox),
 			   GTK_WIDGET(track_time_label),
 			   FALSE, FALSE, 3);
@@ -1772,7 +1784,7 @@ GtkWidget* create_playing_box(struct con_win *cwin)
 			   FALSE, FALSE, 3);
 
 	gtk_box_pack_start(GTK_BOX(new_vbox),
-			   GTK_WIDGET(now_playing_label),
+			   GTK_WIDGET(hbox),
 			   TRUE, TRUE, 0);
 	gtk_box_pack_start(GTK_BOX(new_vbox),
 			   GTK_WIDGET(new_hbox),
