@@ -153,13 +153,13 @@ GtkActionEntry main_aentries[] = {
 	 "<Control>O", "Open a media file", G_CALLBACK(open_file_action)},
 	{"Play Audio CD", GTK_STOCK_CDROM, "_Play Audio CD",
 	 NULL, "Play a Audio CD", G_CALLBACK(play_audio_cd_action)},
-	{"Prev", GTK_STOCK_MEDIA_PREVIOUS, "Pista Anterior",
+	{"Prev", GTK_STOCK_MEDIA_PREVIOUS, "Prev Track",
 	 NULL, "Reproducir Pista Anterior", G_CALLBACK(prev_action)},
-	{"Play_Pause", GTK_STOCK_MEDIA_PLAY, "Reproducir/Pausa",
+	{"Play_Pause", GTK_STOCK_MEDIA_PLAY, "Play/Pause",
 	 NULL, "About Consonance", G_CALLBACK(play_pause_action)},
-	{"Stop", GTK_STOCK_MEDIA_STOP, "Parar",
+	{"Stop", GTK_STOCK_MEDIA_STOP, "Stop",
 	 NULL, "About Consonance", G_CALLBACK(stop_action)},
-	{"Next", GTK_STOCK_MEDIA_NEXT, "Pista Siguiente",
+	{"Next", GTK_STOCK_MEDIA_NEXT, "Next Track",
 	 NULL, "About Consonance", G_CALLBACK(next_action)},
 	{"Quit", GTK_STOCK_QUIT, "_Quit",
 	 "<Control>Q", "Quit consonance", G_CALLBACK(quit_action)},
@@ -201,19 +201,19 @@ GtkActionEntry main_aentries[] = {
 	{"About", GTK_STOCK_ABOUT, "About",
 	 NULL, "About Consonance", G_CALLBACK(about_action)},
 	{"Home", GTK_STOCK_HOME, "Homepage",
-	 NULL, "Pagina del Consonance", G_CALLBACK(about_action)},
+	 NULL, "Home of Consonance", G_CALLBACK(home_action)},
 	{"Community", GTK_STOCK_INFO, "Community",
-	 NULL, "Foro de Consonance", G_CALLBACK(about_action)},
+	 NULL, "Forum or Consonance", G_CALLBACK(community_action)},
 	{"Wiki", GTK_STOCK_YES, "Wiki",
-	 NULL, "Wiki de Consonance", G_CALLBACK(about_action)},
+	 NULL, "Wiki of Consonance", G_CALLBACK(wiki_action)},
 };
 
 GtkToggleActionEntry toggles_entries[] = {
-	{"Shuffle", NULL, "_Aleatorio",
-	 NULL, "Orden aleatorio", G_CALLBACK(shuffle_action),
+	{"Shuffle", NULL, "_Shuffle",
+	 NULL, "Shuffle Songs", G_CALLBACK(shuffle_action),
 	 FALSE},
-	{"Repeat", NULL, "_Repetir",
-	 NULL, "Repetir canciones", G_CALLBACK(repeat_action), 
+	{"Repeat", NULL, "_Repeat",
+	 NULL, "Repeat Songs", G_CALLBACK(repeat_action), 
 	 FALSE}
 };
 
@@ -666,7 +666,7 @@ static GtkWidget* create_playlist_tree(struct con_win *cwin)
 	/* Create the tree view */
 
 	playlist_tree = gtk_tree_view_new_with_model(GTK_TREE_MODEL(store));
-/*	gtk_tree_view_set_headers_visible(GTK_TREE_VIEW(playlist_tree), FALSE);*/
+	gtk_tree_view_set_headers_visible(GTK_TREE_VIEW(playlist_tree), FALSE);
 	gtk_tree_view_set_show_expanders(GTK_TREE_VIEW(playlist_tree), TRUE);
 
 	/* Selection mode is multiple */
@@ -690,7 +690,7 @@ static GtkWidget* create_playlist_tree(struct con_win *cwin)
 					    NULL);
 	g_object_set(G_OBJECT(renderer), "ellipsize", PANGO_ELLIPSIZE_END, NULL);
 
-	gtk_tree_view_column_set_title(column, "Artist / Album / Track");
+	/*gtk_tree_view_column_set_title(column, "Artist / Album / Track");*/
 
 	gtk_tree_view_append_column(GTK_TREE_VIEW(playlist_tree), column);
 
@@ -757,7 +757,7 @@ static GtkWidget * create_toggles_buttons(struct con_win *cwin)
 	gtk_button_set_relief( GTK_BUTTON( w ), GTK_RELIEF_NONE );
 	gtk_toggle_button_set_active( GTK_TOGGLE_BUTTON(w),TRUE);
 		
-	l = gtk_label_new_with_mnemonic( "Coleccion" );
+	l = gtk_label_new_with_mnemonic( "Library" );
 	gtk_label_set_angle(GTK_LABEL(l), 90);
 	gtk_container_add(GTK_CONTAINER(w),GTK_WIDGET(l));
 
@@ -775,7 +775,7 @@ static GtkWidget * create_toggles_buttons(struct con_win *cwin)
 	gtk_button_set_relief( GTK_BUTTON( w ), GTK_RELIEF_NONE );
 	gtk_toggle_button_set_active( GTK_TOGGLE_BUTTON(w),FALSE);
 
-	l = gtk_label_new_with_mnemonic( "Archivos" );
+	l = gtk_label_new_with_mnemonic( "Files" );
 	gtk_label_set_angle(GTK_LABEL(l), 90);
 	gtk_container_add(GTK_CONTAINER(w),GTK_WIDGET(l));
 	gtk_box_pack_start( GTK_BOX( vbox_btns ), w, FALSE, FALSE, 0 );
