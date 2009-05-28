@@ -97,7 +97,7 @@ void show_osd(struct con_win *cwin)
 		body = g_markup_printf_escaped ("by %s", 
 						cwin->cstate->curr_mobj->tags->artist);
 	else if(g_utf8_strlen(cwin->cstate->curr_mobj->tags->album, -1))
-		body = g_markup_printf_escaped ("the %s", 
+		body = g_markup_printf_escaped ("in %s", 
 						cwin->cstate->curr_mobj->tags->album);
 	else	body = g_markup_printf_escaped ("Unknown Tags");
 
