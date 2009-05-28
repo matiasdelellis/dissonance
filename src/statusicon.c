@@ -166,9 +166,13 @@ systray_volume_scroll (GtkWidget *widget, GdkEventScroll *event, struct con_win 
 	{
 		case GDK_SCROLL_UP:
 			cwin->cmixer->inc_volume(cwin);
+			gtk_scale_button_set_value(GTK_SCALE_BUTTON(cwin->vol_button),
+						SCALE_UP_VOL(cwin->cmixer->curr_vol));
 			break;
 		case GDK_SCROLL_DOWN:
 			cwin->cmixer->dec_volume(cwin);
+			gtk_scale_button_set_value(GTK_SCALE_BUTTON(cwin->vol_button),
+						SCALE_UP_VOL(cwin->cmixer->curr_vol));
 			break;
 		default:
 			return;
