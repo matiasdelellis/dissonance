@@ -91,7 +91,7 @@ void show_osd(struct con_win *cwin)
 
 	if(g_utf8_strlen(cwin->cstate->curr_mobj->tags->artist, -1)
 	 && g_utf8_strlen(cwin->cstate->curr_mobj->tags->album, -1))
-		body = g_markup_printf_escaped ("by %s the %s", 
+		body = g_markup_printf_escaped ("by %s in %s", 
 						cwin->cstate->curr_mobj->tags->artist, 
 						cwin->cstate->curr_mobj->tags->album);
 	else if(g_utf8_strlen(cwin->cstate->curr_mobj->tags->artist, -1))
