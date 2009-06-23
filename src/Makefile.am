@@ -42,7 +42,7 @@ pragha_SOURCES =pragha.c \
 		sexy-icon-entry.h \
 		sexy-marshal.c \
 		sexy-marshal.h \
-		consonance.h \
+		pragha.h \
 		md5.h \
 		wav.h \
 		oggvorbis.h \
