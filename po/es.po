@@ -377,7 +377,7 @@ msgstr "Información de la Pista"
 #: src/librarytree.c:233
 #, c-format
 msgid "Unknown Artist"
-msgstr "Arista desconocido"
+msgstr "Artista desconocido"
 
 #: src/librarytree.c:180
 #: src/librarytree.c:235
