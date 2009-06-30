@@ -196,7 +196,7 @@ gint init_options(struct con_win *cwin, int argc, char **argv)
 gint init_config(struct con_win *cwin)
 {
 	GError *error = NULL;
-	gint *col_widths, *win_size;
+	gint *col_widths, *win_size, album_art_size;
 	gchar *conrc, *condir, **libs, **columns, **nodes, *last_rescan_time;
 	gchar *u_file;
 	const gchar *home;
@@ -556,6 +556,19 @@ gint init_config(struct con_win *cwin)
 			g_error_free(error);
 			error = NULL;
 			album_art_pattern_f = TRUE;
+		}
+
+		/* Retrieve Album art Size */
+
+		cwin->cpref->album_art_size =
+			g_key_file_get_integer(cwin->cpref->configrc_keyfile,
+					       GROUP_GENERAL,
+					       KEY_ALBUM_ART_SIZE,
+					       &error);
+		if (error) {
+			g_error_free(error);
+			error = NULL;
+			cwin->cpref->album_art_size = ALBUM_ART_SIZE;
 		}
 
 		/* Retrieve OSD option */

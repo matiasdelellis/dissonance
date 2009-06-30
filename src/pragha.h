@@ -159,6 +159,7 @@
 #define KEY_LIBRARY_VIEW_ORDER     "library_view_order"
 #define KEY_LIBRARY_LAST_SCANNED   "library_last_scanned"
 #define KEY_WINDOW_SIZE            "window_size"
+#define KEY_ALBUM_ART_SIZE         "album_art_size"
 #define KEY_AUDIO_SINK             "audio_sink"
 #define KEY_AUDIO_ALSA_DEVICE      "audio_alsa_device"
 #define KEY_AUDIO_OSS_DEVICE       "audio_oss_device"
@@ -384,6 +385,7 @@ struct con_pref {
 	gchar *audio_alsa_device;
 	gchar *audio_oss_device;
 	gchar *audio_cd_device;
+	gint *album_art_size;
 	gint window_width;
 	gint window_height;
 	GTimeVal last_rescan_time;
@@ -409,6 +411,8 @@ struct con_pref {
 	GtkWidget *save_playlist_w;
 	GtkWidget *album_art_pattern_w;
 	GtkWidget *album_art_pattern_label_w;
+	GtkWidget *album_art_size_w;
+	GtkWidget *album_art_size_label_w;
 	GtkWidget *soft_mixer;
 	GtkWidget *use_cddb_w;
 	GtkWidget *audio_sink_combo;
@@ -685,6 +689,7 @@ void vol_button_handler(GtkScaleButton *button, gdouble value,
 void play_button_toggle_state(struct con_win *cwin);
 void album_art_toggle_state(struct con_win *cwin);
 void resize_album_art_frame(struct con_win *cwin);
+void preview_resize_album_art_frame(struct con_win *cwin);
 void toggled_cb(GtkToggleButton *toggle, struct con_win *cwin);
 
 /* File tree functions */

@@ -42,8 +42,8 @@ static GdkPixbuf* get_image_from_dir(gchar *path, struct con_win *cwin)
 		    is_image_file(ab_file)) {
 			CDEBUG(DBG_INFO, "Image file: %s", ab_file);
 			image = gdk_pixbuf_new_from_file_at_scale(ab_file,
-								  ALBUM_ART_SIZE,
-								  ALBUM_ART_SIZE,
+								  cwin->cpref->album_art_size,
+								  cwin->cpref->album_art_size,
 								  FALSE,
 								  &error);
 			if (!image) {
@@ -106,8 +106,8 @@ static GdkPixbuf* get_pref_image_dir(gchar *path, struct con_win *cwin)
 			if (is_image_file(ab_file)) {
 				CDEBUG(DBG_INFO, "Image file: %s", ab_file);
 				image = gdk_pixbuf_new_from_file_at_scale(ab_file,
-							  ALBUM_ART_SIZE,
-							  ALBUM_ART_SIZE,
+							  cwin->cpref->album_art_size,
+							  cwin->cpref->album_art_size,
 							  FALSE,
 							  &error);
 				if (!image) {
@@ -264,8 +264,8 @@ void update_album_art(struct musicobject *mobj, struct con_win *cwin)
 			}
 			else
 				cwin->album_art = gtk_image_new_from_pixbuf( gdk_pixbuf_new_from_file_at_size (SHAREDIR"/data/cover.png",
-								       ALBUM_ART_SIZE,
-								       ALBUM_ART_SIZE,
+								       cwin->cpref->album_art_size,
+								       cwin->cpref->album_art_size,
 								       &error));
 
 			gtk_container_add(GTK_CONTAINER(cwin->album_art_frame),
@@ -287,8 +287,8 @@ void unset_album_art(struct con_win *cwin)
 		cwin->album_art = NULL;
 	}
 	cwin->album_art = gtk_image_new_from_pixbuf( gdk_pixbuf_new_from_file_at_size (SHAREDIR"/data/cover.png",
-				       ALBUM_ART_SIZE,
-				       ALBUM_ART_SIZE,
+				       cwin->cpref->album_art_size,
+				       cwin->cpref->album_art_size,
 				       &error));
 	gtk_container_add(GTK_CONTAINER(cwin->album_art_frame),
 			  GTK_WIDGET(cwin->album_art));
@@ -493,6 +493,14 @@ void resize_album_art_frame(struct con_win *cwin)
 {
 	if (cwin->album_art_frame)
 		gtk_widget_set_size_request(GTK_WIDGET(cwin->album_art_frame),
-					    ALBUM_ART_SIZE,
-					    ALBUM_ART_SIZE);
+					    cwin->cpref->album_art_size,
+					    cwin->cpref->album_art_size);
+}
+
+void preview_resize_album_art_frame(struct con_win *cwin)
+{
+	if (cwin->album_art_frame)
+		gtk_widget_set_size_request(GTK_WIDGET(cwin->album_art_frame),
+					    gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(cwin->cpref->album_art_size_w)),
+					    gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(cwin->cpref->album_art_size_w)));
 }
