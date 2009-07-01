@@ -477,7 +477,7 @@ void album_art_toggle_state(struct con_win *cwin)
 	if (cwin->cpref->show_album_art) {
 		if (!cwin->album_art_frame) {
 			cwin->album_art_frame = gtk_frame_new(NULL);
-			gtk_frame_set_shadow_type (GTK_FRAME(cwin->album_art_frame), GTK_SHADOW_IN);
+			gtk_frame_set_shadow_type (GTK_FRAME(cwin->album_art_frame), GTK_SHADOW_NONE);
 			gtk_box_pack_end(GTK_BOX(cwin->hbox_panel),
 					   GTK_WIDGET(cwin->album_art_frame),
 					   FALSE, FALSE, 0);
