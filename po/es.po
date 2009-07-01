@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Español\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-06-23 11:51-0300\n"
+"POT-Creation-Date: 2009-07-01 13:13-0300\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Matias <mati86_dl@yahoo.com.ar>\n"
 "Language-Team: Español\n"
@@ -259,7 +259,7 @@ msgid "Enqueue (Non-Recursive)"
 msgstr "Encolar (No Recursivo)"
 
 #: src/gui.c:792
-#: src/pref.c:1116
+#: src/pref.c:1131
 msgid "Library"
 msgstr "Coleccion"
 
@@ -331,21 +331,21 @@ msgid "Filename"
 msgstr "Nombre del archivo"
 
 #: src/gui.c:1769
-#: src/panel.c:193
+#: src/panel.c:194
 msgid "<b>Not playing</b>"
 msgstr "<b>No se reproduce nada</b>"
 
-#: src/panel.c:162
+#: src/panel.c:163
 #, c-format
 msgid "%s <small><span weight=\"light\">by</span></small> %s <small><span weight=\"light\">in</span></small> %s"
 msgstr "%s <small><span weight=\"light\">por</span></small> %s <small><span weight=\"light\">en</span></small> %s"
 
-#: src/panel.c:167
+#: src/panel.c:168
 #, c-format
 msgid "%s <small><span weight=\"light\">by</span></small> %s"
 msgstr "%s <small><span weight=\"light\">por</span></small> %s"
 
-#: src/panel.c:171
+#: src/panel.c:172
 #, c-format
 msgid "%s <small><span weight=\"light\">in</span></small> %s"
 msgstr "%s <small><span weight=\"light\">en</span></small> %s"
@@ -391,27 +391,27 @@ msgstr "Álbum desconocido"
 msgid "Unknown Genre"
 msgstr "Genero desconocido"
 
-#: src/statusicon.c:94
+#: src/statusicon.c:92
 #, c-format
 msgid "by %s in %s"
 msgstr "por %s en %s"
 
-#: src/statusicon.c:98
+#: src/statusicon.c:96
 #, c-format
 msgid "by %s"
 msgstr "por %s"
 
-#: src/statusicon.c:101
+#: src/statusicon.c:99
 #, c-format
 msgid "in %s"
 msgstr "en %s"
 
-#: src/statusicon.c:103
+#: src/statusicon.c:101
 #, c-format
 msgid "Unknown Tags"
 msgstr "Desconocidos"
 
-#: src/statusicon.c:140
+#: src/statusicon.c:138
 #, c-format
 msgid "%s by %s"
 msgstr "%s por %s"
@@ -428,95 +428,99 @@ msgid "Album art pattern"
 msgstr "Patrón del arte de portada"
 
 #. Create a folder chooser dialog
-#: src/pref.c:250
+#: src/pref.c:248
 msgid "Select a folder to add to library"
 msgstr "Seleccione una carpeta para agregar a la colección"
 
 #. The main preferences dialog
-#: src/pref.c:1101
+#: src/pref.c:1116
 msgid "Preferences"
 msgstr "Preferencias"
 
 #. Labels
-#: src/pref.c:1114
+#: src/pref.c:1129
 msgid "General"
 msgstr "General"
 
-#: src/pref.c:1115
+#: src/pref.c:1130
 msgid "Audio"
 msgstr "Audio"
 
-#: src/pref.c:1117
+#: src/pref.c:1132
 msgid "Last.fm"
 msgstr "Last.fm"
 
 #. Hidden files
-#: src/pref.c:1143
+#: src/pref.c:1158
 msgid "Show Hidden Files in File View"
 msgstr "Mostrar archivos ocultos en la vista de archivos"
 
 #. Album art
-#: src/pref.c:1148
+#: src/pref.c:1163
 msgid "Show Album art in Panel"
 msgstr "Mostrar portada del álbum"
 
-#: src/pref.c:1154
+#: src/pref.c:1166
+msgid "Size of Album art"
+msgstr "Tamaño de la portada del álbum"
+
+#: src/pref.c:1184
 msgid "Album art file pattern"
 msgstr "Patrón del archivo del arte de portada"
 
 #. Notification
-#: src/pref.c:1170
+#: src/pref.c:1213
 msgid "Show OSD for track change"
 msgstr "Mostrar notificaciones para el cambio de temas"
 
 #. Save current playlist
-#: src/pref.c:1174
+#: src/pref.c:1217
 msgid "Save/Restore current playlist"
 msgstr "Guardar y restaurar lista de reproduccion"
 
 #. Software mixer
-#: src/pref.c:1207
+#: src/pref.c:1250
 msgid "Use software mixer"
 msgstr "Usar mezclador por software"
 
-#: src/pref.c:1208
-#: src/pref.c:1218
-#: src/pref.c:1247
+#: src/pref.c:1251
+#: src/pref.c:1261
+#: src/pref.c:1290
 msgid "Restart Required"
 msgstr "Requiere Reiniciar"
 
 #. CDDB
-#: src/pref.c:1212
+#: src/pref.c:1255
 msgid "Connect to CDDB server"
 msgstr "Conectar con el servidor CDDB"
 
-#: src/pref.c:1227
+#: src/pref.c:1270
 msgid "Audio sink"
 msgstr "Mezclador de audio"
 
-#: src/pref.c:1244
+#: src/pref.c:1287
 msgid "Audio Device"
 msgstr "Dispositivo de audio"
 
 #. Audio CD device
-#: src/pref.c:1262
+#: src/pref.c:1305
 msgid "Audio CD Device"
 msgstr "Dispositivo CD de audio"
 
-#: src/pref.c:1315
+#: src/pref.c:1358
 msgid "Folder"
 msgstr "Carpetas"
 
 #. Last.fm
-#: src/pref.c:1362
+#: src/pref.c:1405
 msgid "Last.fm Support"
 msgstr "Configurar el soporte de Last.fm"
 
-#: src/pref.c:1365
+#: src/pref.c:1408
 msgid "Username"
 msgstr "Usuario"
 
-#: src/pref.c:1366
+#: src/pref.c:1409
 msgid "Password"
 msgstr "Contraseña"
 
