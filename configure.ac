@@ -20,7 +20,7 @@ AC_PROG_INSTALL()
 AC_PROG_LIBTOOL()
 
 dnl Check for i18n support
-XDT_I18N([cs es pt])
+XDT_I18N([cs es ja pt])
 
 dnl Check for required packages
 XDT_CHECK_PACKAGE([ALSA], [alsa], [1.0.15])
