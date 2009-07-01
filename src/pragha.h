@@ -363,7 +363,7 @@ struct pixbuf {
 
 	GdkPixbuf *pixbuf_pause;	/* Play button image */
 	GdkPixbuf *pixbuf_play;		/* Pause button image */
-
+	GdkPixbuf *pixbuf_album_art;
 };
 
 struct lastfm_pref {
@@ -385,7 +385,7 @@ struct con_pref {
 	gchar *audio_alsa_device;
 	gchar *audio_oss_device;
 	gchar *audio_cd_device;
-	gint *album_art_size;
+	int album_art_size;
 	gint window_width;
 	gint window_height;
 	GTimeVal last_rescan_time;
@@ -689,7 +689,7 @@ void vol_button_handler(GtkScaleButton *button, gdouble value,
 void play_button_toggle_state(struct con_win *cwin);
 void album_art_toggle_state(struct con_win *cwin);
 void resize_album_art_frame(struct con_win *cwin);
-void preview_resize_album_art_frame(struct con_win *cwin);
+void preview_resize_album_art_frame(GtkSpinButton *spinbutton, struct con_win *cwin);
 void toggled_cb(GtkToggleButton *toggle, struct con_win *cwin);
 
 /* File tree functions */

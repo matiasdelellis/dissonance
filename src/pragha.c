@@ -49,6 +49,10 @@ static void common_cleanup(struct con_win *cwin)
 		g_object_unref(cwin->pixbuf->pixbuf_track);
 	if (cwin->pixbuf->pixbuf_genre)
 		g_object_unref(cwin->pixbuf->pixbuf_genre);
+
+	if (cwin->pixbuf->pixbuf_album_art)
+		g_object_unref(cwin->pixbuf->pixbuf_album_art);
+
 	g_slice_free(struct pixbuf, cwin->pixbuf);
 
 	if (cwin->album_art)

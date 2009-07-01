@@ -70,7 +70,6 @@ static void pref_dialog_cb(GtkDialog *dialog, gint response_id,
 				g_free(cwin->cpref->album_art_pattern);
 				cwin->cpref->album_art_pattern = g_strdup(album_art_pattern);
 			}
-			cwin->cpref->album_art_size=gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(cwin->cpref->album_art_size_w));
 		}
 
 		/* Hidden files */
@@ -91,6 +90,7 @@ static void pref_dialog_cb(GtkDialog *dialog, gint response_id,
 		else
 			cwin->cpref->show_album_art = FALSE;
 
+		cwin->cpref->album_art_size = gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(cwin->cpref->album_art_size_w));
 		album_art_toggle_state(cwin);
 
 		/* OSD */
@@ -602,7 +602,7 @@ static void update_preferences(struct con_win *cwin)
 	}
 
 	if (cwin->cpref->album_art_size) {
-		gtk_spin_button_set_value (GTK_SPIN_BUTTON(cwin->cpref->album_art_size_w), (gint) cwin->cpref->album_art_size);
+		gtk_spin_button_set_value (GTK_SPIN_BUTTON(cwin->cpref->album_art_size_w),  (int)cwin->cpref->album_art_size);
 	}
 
 
@@ -738,7 +738,7 @@ void save_preferences(struct con_win *cwin)
 	g_key_file_set_integer(cwin->cpref->configrc_keyfile,
 			       GROUP_GENERAL,
 			       KEY_ALBUM_ART_SIZE,
-			       cwin->cpref->album_art_size);
+			       (int)cwin->cpref->album_art_size);
 
 	/* OSD option */
 
@@ -1489,8 +1489,6 @@ void preferences_dialog(struct con_win *cwin)
 
 	g_signal_connect(G_OBJECT(album_art), "toggled",
 			 G_CALLBACK(toggle_album_art), cwin);
-	g_signal_connect(G_OBJECT(album_art_size), "change-value",
-			 G_CALLBACK(preview_resize_album_art_frame), cwin);
 	g_signal_connect(G_OBJECT(lastfm_check), "toggled",
 			 G_CALLBACK(toggle_lastfm), cwin);
 	g_signal_connect(G_OBJECT(dialog), "response",
@@ -1503,6 +1501,10 @@ void preferences_dialog(struct con_win *cwin)
 			 G_CALLBACK(change_audio_sink), cwin);
 
 	update_preferences(cwin);
+
+	g_signal_connect(G_OBJECT(album_art_size), "value-changed",
+			 G_CALLBACK(preview_resize_album_art_frame), cwin);
+
 	gtk_widget_show_all(dialog);
 	toggle_lastfm(GTK_TOGGLE_BUTTON(cwin->cpref->lw.lastfm_w), cwin);
 	toggle_album_art(GTK_TOGGLE_BUTTON(cwin->cpref->album_art), cwin);

@@ -48,8 +48,6 @@ void toogle_main_window(struct con_win *cwin, gboolean        present)
 GtkWindow * window = GTK_WINDOW( cwin->mainwindow );
 static int  x = 0, y = 0;
 
-	g_warning("(%s): Unable to show OSD notification", __func__);
-
 	if (present) {
 	        gtk_window_get_position( window, &x, &y );
 		gtk_widget_hide(GTK_WIDGET(window));

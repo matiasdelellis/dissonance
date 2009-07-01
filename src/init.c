@@ -196,7 +196,7 @@ gint init_options(struct con_win *cwin, int argc, char **argv)
 gint init_config(struct con_win *cwin)
 {
 	GError *error = NULL;
-	gint *col_widths, *win_size, album_art_size;
+	gint *col_widths, *win_size;
 	gchar *conrc, *condir, **libs, **columns, **nodes, *last_rescan_time;
 	gchar *u_file;
 	const gchar *home;
@@ -560,7 +560,7 @@ gint init_config(struct con_win *cwin)
 
 		/* Retrieve Album art Size */
 
-		cwin->cpref->album_art_size =
+		cwin->cpref->album_art_size = (int)
 			g_key_file_get_integer(cwin->cpref->configrc_keyfile,
 					       GROUP_GENERAL,
 					       KEY_ALBUM_ART_SIZE,
@@ -1160,7 +1160,8 @@ void init_gui(gint argc, gchar **argv, struct con_win *cwin)
 
 	/* Set initial size of album art frame */
 
-	resize_album_art_frame(cwin);
+	if (cwin->album_art_frame)
+		resize_album_art_frame(cwin);
 
 	gtk_init_add(_init_gui_state, cwin);
 }
