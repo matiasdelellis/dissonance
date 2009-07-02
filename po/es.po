@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Español\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-07-01 13:13-0300\n"
+"POT-Creation-Date: 2009-07-02 12:51-0300\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Matias <mati86_dl@yahoo.com.ar>\n"
 "Language-Team: Español\n"
@@ -30,7 +30,7 @@ msgid "_Help"
 msgstr "Ay_uda"
 
 #: src/gui.c:157
-#: src/gui.c:319
+#: src/gui.c:304
 msgid "_Open File"
 msgstr "_Abrir Archivo"
 
@@ -39,32 +39,33 @@ msgid "Open a media file"
 msgstr "Abrir un archivo multimedia"
 
 #: src/gui.c:159
-#: src/gui.c:321
+#: src/gui.c:306
 msgid "_Play Audio CD"
 msgstr "Reproducir CD de Audio"
 
 #: src/gui.c:161
-#: src/gui.c:323
+#: src/gui.c:308
 msgid "Prev Track"
 msgstr "Pista Anterior"
 
 #: src/gui.c:163
-#: src/gui.c:325
+#: src/gui.c:310
 msgid "Play/Pause"
 msgstr "Reproducir / Pausa"
 
 #: src/gui.c:165
-#: src/gui.c:327
+#: src/gui.c:312
 msgid "Stop"
 msgstr "Parar"
 
 #: src/gui.c:167
-#: src/gui.c:329
+#: src/gui.c:314
+#: src/gui.c:1715
 msgid "Next Track"
 msgstr "Pista Siguiente"
 
 #: src/gui.c:169
-#: src/gui.c:331
+#: src/gui.c:316
 msgid "_Quit"
 msgstr "_Salir"
 
@@ -165,7 +166,7 @@ msgid "Genre / Artist / Album / Track"
 msgstr "Genero / Artista / Álbum / Pista"
 
 #: src/gui.c:206
-#: src/gui.c:317
+#: src/gui.c:302
 msgid "About"
 msgstr "Acerca de..."
 
@@ -258,94 +259,107 @@ msgstr "Encolar (Recursivo)"
 msgid "Enqueue (Non-Recursive)"
 msgstr "Encolar (No Recursivo)"
 
-#: src/gui.c:792
+#: src/gui.c:777
 #: src/pref.c:1131
 msgid "Library"
 msgstr "Coleccion"
 
-#: src/gui.c:810
+#: src/gui.c:795
 msgid "Files"
 msgstr "Archivos"
 
-#: src/gui.c:821
+#: src/gui.c:806
 msgid "Pragha Music Manager"
 msgstr "Pragha"
 
 #. Create the checkmenu items
-#: src/gui.c:959
-#: src/gui.c:1075
+#: src/gui.c:944
+#: src/gui.c:1060
 msgid "Track"
 msgstr "Pista"
 
-#: src/gui.c:960
-#: src/gui.c:1076
+#: src/gui.c:945
+#: src/gui.c:1061
 #: src/current_playlist.c:1042
 #: src/tags.c:407
 msgid "Title"
 msgstr "Titulo"
 
-#: src/gui.c:961
-#: src/gui.c:1077
+#: src/gui.c:946
+#: src/gui.c:1062
 #: src/current_playlist.c:1043
 #: src/tags.c:408
 msgid "Artist"
 msgstr "Artista"
 
-#: src/gui.c:962
-#: src/gui.c:1078
+#: src/gui.c:947
+#: src/gui.c:1063
 #: src/current_playlist.c:1044
 #: src/tags.c:409
 msgid "Album"
 msgstr "Álbum"
 
-#: src/gui.c:963
-#: src/gui.c:1079
+#: src/gui.c:948
+#: src/gui.c:1064
 #: src/current_playlist.c:1045
 #: src/tags.c:410
 msgid "Genre"
 msgstr "Genero"
 
-#: src/gui.c:964
-#: src/gui.c:1080
+#: src/gui.c:949
+#: src/gui.c:1065
 #: src/current_playlist.c:1048
 msgid "Bitrate"
 msgstr "Tasa de bits"
 
-#: src/gui.c:965
-#: src/gui.c:1081
+#: src/gui.c:950
+#: src/gui.c:1066
 #: src/current_playlist.c:1046
 #: src/tags.c:411
 msgid "Year"
 msgstr "Año"
 
-#: src/gui.c:966
-#: src/gui.c:1082
+#: src/gui.c:951
+#: src/gui.c:1067
 #: src/current_playlist.c:1047
 msgid "Length"
 msgstr "Duración"
 
-#: src/gui.c:967
-#: src/gui.c:1083
+#: src/gui.c:952
+#: src/gui.c:1068
 #: src/current_playlist.c:1051
 msgid "Filename"
 msgstr "Nombre del archivo"
 
-#: src/gui.c:1769
-#: src/panel.c:194
+#. Tooltips
+#: src/gui.c:1713
+msgid "Play / Pause Track"
+msgstr "Reproducir o pausar la reproducción"
+
+#: src/gui.c:1714
+msgid "Previous Track"
+msgstr "Pista Anterior"
+
+#: src/gui.c:1716
+msgid "Stop playback"
+msgstr "Parar reproducción"
+
+#: src/gui.c:1755
+#: src/panel.c:193
 msgid "<b>Not playing</b>"
 msgstr "<b>No se reproduce nada</b>"
 
-#: src/panel.c:163
+#: src/panel.c:162
 #, c-format
 msgid "%s <small><span weight=\"light\">by</span></small> %s <small><span weight=\"light\">in</span></small> %s"
 msgstr "%s <small><span weight=\"light\">por</span></small> %s <small><span weight=\"light\">en</span></small> %s"
 
-#: src/panel.c:168
+#: src/panel.c:167
 #, c-format
 msgid "%s <small><span weight=\"light\">by</span></small> %s"
 msgstr "%s <small><span weight=\"light\">por</span></small> %s"
 
-#: src/panel.c:172
+#: src/panel.c:171
 #, c-format
 msgid "%s <small><span weight=\"light\">in</span></small> %s"
 msgstr "%s <small><span weight=\"light\">en</span></small> %s"
@@ -422,6 +436,9 @@ msgid ""
 "A maximum of six patterns are allowed.\n"
 "Wildcards are not accepted as of now ( patches welcome :-) )."
 msgstr ""
+"Los patrones deben escribirse de la forma:<Nombre_del_Archivo>;<Nombre_del_Archivo>;....\n"
+"Se permiten como máximo seis patrones.\n"
+"Los comodines no se aceptan por ahora  ( Patches Bienvenidos :-) )."
 
 #: src/pref.c:35
 msgid "Album art pattern"
@@ -524,21 +541,51 @@ msgstr "Usuario"
 msgid "Password"
 msgstr "Contraseña"
 
-#: src/menu.c:566
+#. Create a file chooser dialog
+#: src/menu.c:146
+msgid "Select a file to play"
+msgstr "Seleccione un archivo para reproducir"
+
+#: src/menu.c:160
+msgid "Supported media"
+msgstr "Archivos soportados"
+
+#: src/menu.c:188
+msgid "All files"
+msgstr "Todos los archivos"
+
+#: src/menu.c:375
+#: src/menu.c:484
+msgid "Library scan complete"
+msgstr "Se completo la exploración de la colección"
+
+#: src/menu.c:567
 msgid "Total Tracks:"
 msgstr "Pistas"
 
-#: src/menu.c:568
+#: src/menu.c:569
 msgid "Total Artists:"
 msgstr "Artistas"
 
-#: src/menu.c:570
+#: src/menu.c:571
 msgid "Total Albums:"
 msgstr "Álbumes"
 
-#: src/menu.c:572
+#: src/menu.c:573
 msgid "Statistics"
 msgstr "Estadisticas"
+
+#: src/utils.c:265
+msgid "days"
+msgstr "dias"
+
+#: src/utils.c:265
+msgid "day"
+msgstr "dia"
+
+#: src/playlist.c:457
+msgid "Export playlist to file"
+msgstr "Exportar lista de reproducción como archivo"
 
 #~ msgid "Lenguaje"
 #~ msgstr "Español"

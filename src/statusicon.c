@@ -73,7 +73,7 @@ void show_osd(struct con_win *cwin)
 
 	/* Check if OSD is enabled in preferences */
 
-	if (!cwin->cpref->show_osd || gtk_window_is_active(cwin->mainwindow))
+	if (!cwin->cpref->show_osd || gtk_window_is_active(GTK_WINDOW (cwin->mainwindow)))
 		return;
 
 	if( g_utf8_strlen(cwin->cstate->curr_mobj->tags->title, -1))

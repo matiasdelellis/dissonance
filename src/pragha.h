@@ -363,7 +363,6 @@ struct pixbuf {
 
 	GdkPixbuf *pixbuf_pause;	/* Play button image */
 	GdkPixbuf *pixbuf_play;		/* Pause button image */
-	GdkPixbuf *pixbuf_album_art;
 };
 
 struct lastfm_pref {
@@ -678,8 +677,6 @@ void track_progress_change_cb(GtkWidget *widget,
 			      struct con_win *cwin);
 void update_album_art(struct musicobject *mobj, struct con_win *cwin);
 void unset_album_art(struct con_win *cwin);
-void shuffle_button_handler(GtkToggleButton *button, struct con_win *cwin);
-void repeat_button_handler(GtkToggleButton *button, struct con_win *cwin);
 void play_button_handler(GtkButton *button, struct con_win *cwin);
 void stop_button_handler(GtkButton *button, struct con_win *cwin);
 void prev_button_handler(GtkButton *button, struct con_win *cwin);
@@ -689,7 +686,6 @@ void vol_button_handler(GtkScaleButton *button, gdouble value,
 void play_button_toggle_state(struct con_win *cwin);
 void album_art_toggle_state(struct con_win *cwin);
 void resize_album_art_frame(struct con_win *cwin);
-void preview_resize_album_art_frame(GtkSpinButton *spinbutton, struct con_win *cwin);
 void toggled_cb(GtkToggleButton *toggle, struct con_win *cwin);
 
 /* File tree functions */

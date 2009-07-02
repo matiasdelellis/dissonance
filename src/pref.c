@@ -52,7 +52,6 @@ static void pref_dialog_cb(GtkDialog *dialog, gint response_id,
 
 	switch(response_id) {
 	case GTK_RESPONSE_CANCEL:
-		resize_album_art_frame(cwin);
 		break;
 	case GTK_RESPONSE_OK:
 		/* Validate album art pattern, if invalid bail out immediately */
@@ -91,6 +90,7 @@ static void pref_dialog_cb(GtkDialog *dialog, gint response_id,
 			cwin->cpref->show_album_art = FALSE;
 
 		cwin->cpref->album_art_size = gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(cwin->cpref->album_art_size_w));
+
 		album_art_toggle_state(cwin);
 
 		/* OSD */
@@ -1162,7 +1162,7 @@ void preferences_dialog(struct con_win *cwin)
 
 	album_art = gtk_check_button_new_with_label(_("Show Album art in Panel"));
 
-	album_art_size = gtk_spin_button_new_with_range (ALBUM_ART_SIZE, 128, 1);
+	album_art_size = gtk_spin_button_new_with_range (ALBUM_ART_SIZE, 128, 2);
 	album_art_size_label = gtk_label_new(_("Size of Album art"));
 
 	hbox_album_art_size = gtk_hbox_new(FALSE, 2);
@@ -1501,9 +1501,6 @@ void preferences_dialog(struct con_win *cwin)
 			 G_CALLBACK(change_audio_sink), cwin);
 
 	update_preferences(cwin);
-
-	g_signal_connect(G_OBJECT(album_art_size), "value-changed",
-			 G_CALLBACK(preview_resize_album_art_frame), cwin);
 
 	gtk_widget_show_all(dialog);
 	toggle_lastfm(GTK_TOGGLE_BUTTON(cwin->cpref->lw.lastfm_w), cwin);
