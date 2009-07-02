@@ -1609,7 +1609,7 @@ GtkWidget* create_paned_region(struct con_win *cwin)
 
 GtkWidget* create_panel(struct con_win *cwin)
 {
-	GtkWidget *controls_align;
+	GtkWidget *controls_align, *vol_button_align;
 	GtkWidget *playing;
 	GtkWidget *vbox_order;
 	GtkWidget *hbox_panel, *hbox_controls;
@@ -1717,8 +1717,11 @@ GtkWidget* create_panel(struct con_win *cwin)
 
 	/* Pack panel widgets into hbox_panel */
 
+	vol_button_align = gtk_alignment_new(0, 0.5, 0, 0);
+	gtk_container_add(GTK_CONTAINER(vol_button_align), vol_button);
+
  	gtk_box_pack_end(GTK_BOX(hbox_panel),
-			   GTK_WIDGET(vol_button),
+			   GTK_WIDGET(vol_button_align),
 			   FALSE, FALSE, 0);
  	gtk_box_pack_end(GTK_BOX(hbox_panel),
 		   GTK_WIDGET(playing),

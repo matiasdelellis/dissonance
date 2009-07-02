@@ -91,7 +91,7 @@ static GtkWidget* lib_progress_bar(struct con_win *cwin, int update)
 
 	library_dialog =
 		gtk_dialog_new_with_buttons((update) ?
-					    "Update Library" : "Rescan Library",
+					    _("Update Library") : _("Rescan Library"),
 					    GTK_WINDOW(cwin->mainwindow),
 					    GTK_DIALOG_MODAL,
 					    GTK_STOCK_CANCEL,
