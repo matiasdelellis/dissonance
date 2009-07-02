@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Español\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-07-02 12:51-0300\n"
+"POT-Creation-Date: 2009-07-02 13:53-0300\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Matias <mati86_dl@yahoo.com.ar>\n"
 "Language-Team: Español\n"
@@ -368,6 +368,22 @@ msgstr "%s <small><span weight=\"light\">en</span></small> %s"
 #, c-format
 msgid "%i Tracks - %s"
 msgstr "%i Pistas - %s"
+
+#: src/current_playlist.c:519
+msgid "Save as a new playlist"
+msgstr "Guardar como nueva lista de reproducción"
+
+#: src/current_playlist.c:521
+msgid "Append to an existing playlist"
+msgstr "Agregar a una lista de reproducción existente"
+
+#: src/current_playlist.c:533
+msgid "Save playlist"
+msgstr "Guardar lista de reproducción"
+
+#: src/current_playlist.c:598
+msgid "<b>con_playlist</b> is a reserved playlist name"
+msgstr "<b>con_playlist</b> es un nombre reservado"
 
 #. Create labels
 #: src/current_playlist.c:1041

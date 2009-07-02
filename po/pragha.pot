@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-07-02 12:51-0300\n"
+"POT-Creation-Date: 2009-07-02 13:53-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -310,6 +310,22 @@ msgstr ""
 #: src/current_playlist.c:56
 #, c-format
 msgid "%i Tracks - %s"
+msgstr ""
+
+#: src/current_playlist.c:519
+msgid "Save as a new playlist"
+msgstr ""
+
+#: src/current_playlist.c:521
+msgid "Append to an existing playlist"
+msgstr ""
+
+#: src/current_playlist.c:533
+msgid "Save playlist"
+msgstr ""
+
+#: src/current_playlist.c:598
+msgid "<b>con_playlist</b> is a reserved playlist name"
 msgstr ""
 
 #. Create labels

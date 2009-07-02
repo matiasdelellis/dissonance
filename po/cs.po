@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pragha\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-07-02 12:51-0300\n"
+"POT-Creation-Date: 2009-07-02 13:53-0300\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Matias <mati86_dl@yahoo.com.ar>\n"
 "Language-Team: \n"
@@ -311,6 +311,24 @@ msgstr "%s <small><span weight=\"light\">v</span></small> %s"
 #, c-format
 msgid "%i Tracks - %s"
 msgstr "%i Stopy - %s"
+
+#: src/current_playlist.c:519
+#, fuzzy
+msgid "Save as a new playlist"
+msgstr "Uložit vybrané jako playlist"
+
+#: src/current_playlist.c:521
+msgid "Append to an existing playlist"
+msgstr ""
+
+#: src/current_playlist.c:533
+#, fuzzy
+msgid "Save playlist"
+msgstr "Uložit celý playlist"
+
+#: src/current_playlist.c:598
+msgid "<b>con_playlist</b> is a reserved playlist name"
+msgstr ""
 
 #. Create labels
 #: src/current_playlist.c:1041 src/tags.c:406
