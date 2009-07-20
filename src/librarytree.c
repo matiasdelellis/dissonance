@@ -1222,7 +1222,6 @@ void init_library_view(struct con_win *cwin)
 	gchar *query;
 	struct db_result result;
 	GtkTreeModel *model, *filter_model;
-	GtkTreeModel *new_model;
 
 	const gchar *order_str[] = {
 		"LOCATION.name ASC",
@@ -1296,9 +1295,6 @@ void init_library_view(struct con_win *cwin)
 				  result.resultp[i],
 				  model,
 				  cwin);
-
-		/*if (cnt++ % 50)
-			continue;*/
 
 		while(gtk_events_pending()) {
 			if (gtk_main_iteration_do(FALSE)) {
