@@ -1222,6 +1222,8 @@ void init_library_view(struct con_win *cwin)
 	gchar *query;
 	struct db_result result;
 	GtkTreeModel *model, *filter_model;
+	GtkTreeModel *new_model;
+
 	const gchar *order_str[] = {
 		"LOCATION.name ASC",
 		"ARTIST.name ASC, TRACK.title ASC",
@@ -1268,7 +1270,9 @@ void init_library_view(struct con_win *cwin)
 
 	filter_model = gtk_tree_view_get_model(GTK_TREE_VIEW(cwin->library_tree));
 	model = gtk_tree_model_filter_get_model(GTK_TREE_MODEL_FILTER(filter_model));
-	gtk_tree_store_clear(GTK_TREE_STORE(model));
+
+	g_object_ref(filter_model); 
+	gtk_tree_view_set_model(GTK_TREE_VIEW(cwin->library_tree), NULL);
 
 	/* Query and insert entries */
 
@@ -1293,8 +1297,8 @@ void init_library_view(struct con_win *cwin)
 				  model,
 				  cwin);
 
-		if (cnt++ % 50)
-			continue;
+		/*if (cnt++ % 50)
+			continue;*/
 
 		while(gtk_events_pending()) {
 			if (gtk_main_iteration_do(FALSE)) {
@@ -1304,6 +1308,9 @@ void init_library_view(struct con_win *cwin)
 		}
 	}
 	sqlite3_free_table(result.resultp);
+
+	gtk_tree_view_set_model(GTK_TREE_VIEW(cwin->library_tree), filter_model);
+	g_object_unref(filter_model);
 
 	/* Refresh tag completion entries too */
 
