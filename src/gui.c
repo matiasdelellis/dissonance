@@ -1487,7 +1487,15 @@ GtkUIManager* create_menu(struct con_win *cwin)
 	action = gtk_action_group_get_action (main_actions, "Stop");
 
 	action = gtk_action_group_get_action (main_actions, "Shuffle");
+
+	g_signal_handlers_block_by_func (G_OBJECT (action),
+		 			 G_CALLBACK (shuffle_action),
+		 			 cwin);
 	gtk_toggle_action_set_active (GTK_TOGGLE_ACTION(action), cwin->cpref->shuffle);
+	g_signal_handlers_unblock_by_func (G_OBJECT (action),
+		 			   G_CALLBACK (shuffle_action),
+		 			   cwin);
+
 
 	action = gtk_action_group_get_action (main_actions, "Repeat");
 	gtk_toggle_action_set_active (GTK_TOGGLE_ACTION(action), cwin->cpref->repeat);
