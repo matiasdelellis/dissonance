@@ -149,9 +149,6 @@ void __update_current_song_info(struct con_win *cwin, gint length)
 		return;
 	}
 
-	cur_pos = convert_length_str(length);
-	tot_length = convert_length_str(cwin->cstate->curr_mobj->tags->length);
-
 	if( g_utf8_strlen(cwin->cstate->curr_mobj->tags->title, -1))
 		str = g_strdup(cwin->cstate->curr_mobj->tags->title);
 	else
@@ -176,10 +173,18 @@ void __update_current_song_info(struct con_win *cwin, gint length)
 
 	gtk_label_set_markup(GTK_LABEL(cwin->now_playing_label), (const gchar*)str);
 
+	cur_pos = convert_length_str(length);
 	str = g_markup_printf_escaped ("<small>%s</small>", cur_pos);
 	gtk_label_set_markup (GTK_LABEL(cwin->track_time_label), (const gchar*)str);
-	
-	str = g_markup_printf_escaped ("<small>%s</small>", tot_length);
+
+	if(!cwin->cpref->timer_remaining_mode){
+		tot_length = convert_length_str(cwin->cstate->curr_mobj->tags->length);
+		str = g_markup_printf_escaped ("<small>%s</small>", tot_length);
+	}
+	else{
+		tot_length = convert_length_str(cwin->cstate->curr_mobj->tags->length - length);
+		str = g_markup_printf_escaped ("<small>- %s</small>", tot_length);
+	}
 	gtk_label_set_markup (GTK_LABEL(cwin->track_length_label), (const gchar*)str);
 
 	g_free(str);
@@ -207,6 +212,16 @@ void __update_track_progress_bar(struct con_win *cwin, gint length)
 void unset_track_progress_bar(struct con_win *cwin)
 {
 	gtk_progress_bar_set_fraction(GTK_PROGRESS_BAR(cwin->track_progress_bar), 0);
+}
+
+void timer_remaining_mode_change(GtkWidget *w, GdkEventButton* event, struct con_win *cwin)
+{
+	if(cwin->cpref->timer_remaining_mode)
+		cwin->cpref->timer_remaining_mode = FALSE;
+	else
+		cwin->cpref->timer_remaining_mode = TRUE;
+	if(cwin->cstate->state != ST_STOPPED)
+		__update_current_song_info(cwin, cwin->cstate->newsec);
 }
 
 void track_progress_change_cb(GtkWidget *widget,

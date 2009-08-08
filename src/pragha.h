@@ -679,6 +679,7 @@ void unset_current_song_info(struct con_win *cwin);
 gboolean update_track_progress_bar(gpointer data);
 void __update_track_progress_bar(struct con_win *cwin, gint length);
 void unset_track_progress_bar(struct con_win *cwin);
+void timer_remaining_mode_change(GtkWidget *w, GdkEventButton* event, struct con_win *cwin);
 void track_progress_change_cb(GtkWidget *widget,
 			      GdkEventButton *event,
 			      struct con_win *cwin);
