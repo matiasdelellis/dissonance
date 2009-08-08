@@ -1218,7 +1218,7 @@ exit:
 
 void init_library_view(struct con_win *cwin)
 {
-	gint i = 0, cnt = 0;
+	gint i = 0;
 	gchar *query;
 	struct db_result result;
 	GtkTreeModel *model, *filter_model;
