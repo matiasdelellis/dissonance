@@ -731,17 +731,22 @@ static gboolean filter_tree_func(GtkTreeModel *model,
 	return FALSE;
 }
 
-gboolean simple_library_search_keyrelease_handler(GtkWidget *entry,
+gboolean simple_library_search_keyrelease_handler(GtkEntry *entry,
 						  struct con_win *cwin)
 {
 
 	gchar *text = NULL;
 	gchar *u_str = NULL;
+	gboolean has_text;
 	GtkTreeModel *filter_model;
 
-	text = gtk_editable_get_chars( GTK_EDITABLE(entry), 0, -1 );
+	has_text = gtk_entry_get_text_length (GTK_ENTRY(entry)) > 0;
 
-	if (g_utf8_strlen (text, -1)){
+	if(has_text){
+		text = gtk_editable_get_chars( GTK_EDITABLE(entry), 0, -1 );
+		gtk_entry_set_icon_sensitive (GTK_ENTRY(entry),
+                                GTK_ENTRY_ICON_SECONDARY,
+                                has_text);
 		u_str = g_utf8_strdown(text, -1);
 		cwin->cstate->filter_entry = u_str;
 		gtk_tree_view_set_model(GTK_TREE_VIEW(cwin->library_tree), NULL);
@@ -760,13 +765,13 @@ gboolean simple_library_search_keyrelease_handler(GtkWidget *entry,
 			cwin);
 		g_free(u_str);
 	}
-	else clear_library_search(cwin);
+	else{
+		clear_library_search(cwin);
+		gtk_entry_set_icon_sensitive (GTK_ENTRY(entry),
+					GTK_ENTRY_ICON_SECONDARY,
+					has_text);
+	}
 	return FALSE;
-}
-
-void cancel_simple_library_search_handler(GtkButton *button, struct con_win *cwin)
-{
-	clear_library_search(cwin);
 }
 
 void clear_library_search(struct con_win *cwin)

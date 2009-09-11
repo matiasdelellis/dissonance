@@ -54,7 +54,6 @@
 #include "oggvorbis.h"
 #include "cdda.h"
 #include "mod.h"
-#include "sexy-icon-entry.h"
 
 #define MIN_WINDOW_WIDTH           640
 #define MIN_WINDOW_HEIGHT          480
@@ -767,9 +766,8 @@ void dnd_library_tree_get(GtkWidget *widget,
 			  guint time,
 			  struct con_win *cwin);
 void simple_library_search_keyrelease(struct con_win *cwin);
-gboolean simple_library_search_keyrelease_handler(GtkWidget *entry,
+gboolean simple_library_search_keyrelease_handler(GtkEntry *entry,
 						  struct con_win *cwin);
-void cancel_simple_library_search_handler(GtkButton *button, struct con_win *cwin);
 void clear_library_search(struct con_win *cwin);
 void folder_file_library_tree(GtkAction *action, struct con_win *cwin);
 void artist_library_tree(GtkAction *action, struct con_win *cwin);

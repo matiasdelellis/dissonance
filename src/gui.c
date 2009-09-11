@@ -1027,7 +1027,6 @@ static GtkUIManager* create_cp_context_menu(GtkWidget *current_playlist,
 {
 	GtkUIManager *context_menu = NULL;
 	GtkActionGroup *context_actions;
-	GtkWidget *edit_tags;
 	GError *error = NULL;
 
 	context_actions = gtk_action_group_new("CP Context Actions");
@@ -1845,27 +1844,35 @@ GtkWidget* create_status_bar(struct con_win *cwin)
 	return status_bar;
 }
 
+static void
+icon_pressed_cb (GtkEntry       *entry,
+		gint            position,
+		GdkEventButton *event,
+		gpointer        data)
+{
+	if (position == GTK_ENTRY_ICON_SECONDARY)
+		gtk_entry_set_text (entry, "");
+}
+
 /* Search (simple) */
 
 GtkWidget* create_search_bar(struct con_win *cwin)
 {
 	GtkWidget *search_entry;
-	GtkWidget *image;
 
-	search_entry = sexy_icon_entry_new( );
-	sexy_icon_entry_add_clear_button( SEXY_ICON_ENTRY( search_entry ) );
-	image = gtk_image_new_from_stock( GTK_STOCK_FIND, GTK_ICON_SIZE_MENU );
-	sexy_icon_entry_set_icon( SEXY_ICON_ENTRY(
-				search_entry ), SEXY_ICON_ENTRY_PRIMARY,
-				GTK_IMAGE( image ) );
-	sexy_icon_entry_set_icon_highlight( SEXY_ICON_ENTRY(
-				search_entry ), SEXY_ICON_ENTRY_PRIMARY,
-				TRUE );
+	search_entry = gtk_entry_new ();
+
+	gtk_entry_set_icon_from_stock (GTK_ENTRY(search_entry), GTK_ENTRY_ICON_PRIMARY, GTK_STOCK_FIND);
+	gtk_entry_set_icon_from_stock (GTK_ENTRY(search_entry), GTK_ENTRY_ICON_SECONDARY, GTK_STOCK_CLEAR);
 
 	cwin->search_entry = search_entry;
 
 	/* Signal handlers */
 
+	g_signal_connect (G_OBJECT(cwin->search_entry),
+			"icon-press",
+			G_CALLBACK (icon_pressed_cb),
+			cwin);
 	g_signal_connect(G_OBJECT(cwin->search_entry),
 			 "changed",
 			 G_CALLBACK(simple_library_search_keyrelease_handler),
