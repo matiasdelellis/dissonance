@@ -1136,7 +1136,7 @@ void init_gui(gint argc, gchar **argv, struct con_win *cwin)
 
 	/* Systray */
 
-	create_systray_icon(cwin);
+	create_status_icon(cwin);
 	init_pixbuf(cwin);
 
 	/* Main Vbox */

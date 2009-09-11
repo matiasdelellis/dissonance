@@ -61,7 +61,7 @@ gchar *main_menu_xml = "<ui>							\
 		</menu>								\
 		<menu action=\"HelpMenu\">					\
 			<menuitem action=\"Home\"/>				\
-			<menuitem action=\"Community\"/>		\
+			<menuitem action=\"Community\"/>			\
 			<menuitem action=\"Wiki\"/>				\
 			<separator/>							\
 			<menuitem action=\"About\"/>				\
@@ -69,19 +69,23 @@ gchar *main_menu_xml = "<ui>							\
 	</menubar>								\
 </ui>";
 
-gchar *cp_context_menu_xml = "<ui>		    		\
-	<popup>					    		\
-	<menuitem action=\"Remove\"/>		    		\
-	<menuitem action=\"Crop\"/>		    		\
-	<menuitem action=\"Edit tags\"/>			\
-	<menuitem action=\"Properties\"/>	    		\
-	<separator/>				    		\
-	<menuitem action=\"Save Selected as Playlist\"/>	\
-	<menuitem action=\"Save Complete Playlist\"/>		\
-	<menuitem action=\"Clear Playlist\"/>	    		\
-	<separator/>				    		\
-	<menuitem action=\"Clear Sort\"/>	    		\
-	</popup>				    		\
+gchar *cp_context_menu_xml = "<ui>		    				\
+	<popup>					    				\
+	<menuitem action=\"Remove\"/>		    				\
+	<menuitem action=\"Crop\"/>		    				\
+	<menuitem action=\"Edit tags\"/>					\
+	<menuitem action=\"Edit tag <Title> in the selected tracks\"/>		\
+	<menuitem action=\"Edit tag <Artist> in the selected tracks\"/>	\
+	<menuitem action=\"Edit tag <Album> in the selected tracks\"/>		\
+	<menuitem action=\"Edit tag <Genre> in the selected tracks\"/>		\
+	<menuitem action=\"Properties\"/>	    				\
+	<separator/>				    				\
+	<menuitem action=\"Save Selected as Playlist\"/>			\
+	<menuitem action=\"Save Complete Playlist\"/>				\
+	<menuitem action=\"Clear Playlist\"/>	    				\
+	<separator/>				    				\
+	<menuitem action=\"Clear Sort\"/>	    				\
+	</popup>				    				\
 	</ui>";
 
 gchar *playlist_tree_context_menu_xml = "<ui>	\
@@ -228,7 +232,15 @@ GtkActionEntry cp_context_aentries[] = {
 	{"Crop", GTK_STOCK_CUT, N_("Crop"),
 	 "<Control>C", "Crop the playlist", G_CALLBACK(crop_current_playlist)},
 	{"Edit tags", GTK_STOCK_EDIT, N_("Edit tags"),
-	 "<Control>E", "Edit tags for this track", G_CALLBACK(edit_tags_current_playlist)},
+	 "<Control>E", "Edit tag for this track", G_CALLBACK(edit_tags_current_playlist)},
+	{"Edit tag <Title> in the selected tracks", GTK_STOCK_EDIT, N_("Edit tag <Title> in the selected tracks"),
+	 "<Control>E", "Edit tag <Title> in the selected tracks", G_CALLBACK(edit_tags_current_playlist)},
+	{"Edit tag <Artist> in the selected tracks", GTK_STOCK_EDIT, N_("Edit tag <Artist> in the selected tracks"),
+	 "<Control>E", "Edit tag for this track", G_CALLBACK(edit_tags_current_playlist)},
+	{"Edit tag <Album> in the selected tracks", GTK_STOCK_EDIT, N_("Edit tag <Album> in the selected tracks"),
+	 "<Control>E", "Edit tag for this track", G_CALLBACK(edit_tags_current_playlist)},
+	{"Edit tag <Genre> in the selected tracks", GTK_STOCK_EDIT, N_("Edit tag <Genre> in the selected tracks"),
+	 "<Control>E", "Edit tag for this track", G_CALLBACK(edit_tags_current_playlist)},
 	{"Properties", GTK_STOCK_PROPERTIES, N_("Properties"),
 	 NULL, "Track Properties", G_CALLBACK(track_properties_current_playlist)},
 	{"Save Selected as Playlist", GTK_STOCK_SAVE, N_("Save Selected as Playlist"),
@@ -1015,6 +1027,7 @@ static GtkUIManager* create_cp_context_menu(GtkWidget *current_playlist,
 {
 	GtkUIManager *context_menu = NULL;
 	GtkActionGroup *context_actions;
+	GtkWidget *edit_tags;
 	GError *error = NULL;
 
 	context_actions = gtk_action_group_new("CP Context Actions");
@@ -1908,48 +1921,29 @@ GtkWidget* create_search_current_bar(struct con_win *cwin)
 	gtk_widget_set_sensitive (hbox_bar, FALSE);
 	return hbox_bar;
 }
-
-void
-create_systray_icon (struct con_win *cwin)
+/*gtk_widget_set_colormap(GTK_WIDGET(icon), gdk_screen_get_rgb_colormap(gdk_screen_get_default()));*/
+void create_status_icon(struct con_win *cwin)
 {
-	GdkPixbuf	*status_icon;
-	GtkWidget	*systray_icon;
+	GtkStatusIcon *status_icon;
 	GtkUIManager *systray_menu;
-	EggTrayIcon	*icon = NULL;
 
-	#if GTK_CHECK_VERSION(2, 10, 0)
-		GtkTooltips *tooltips = gtk_tooltips_new ();
-	#endif
+	if (cwin->pixbuf->pixbuf_app)
+		status_icon = gtk_status_icon_new_from_pixbuf(cwin->pixbuf->pixbuf_app);
+	else
+		status_icon = gtk_status_icon_new_from_stock(GTK_STOCK_NEW);
+ 
+	gtk_status_icon_set_tooltip(GTK_STATUS_ICON(status_icon), PACKAGE_STRING);
 
-	/* create the tray icon */
-	icon = egg_tray_icon_new ("pragha");
-	status_icon = gdk_pixbuf_new_from_file_at_size(SHAREDIR "/data/pragha.png", 22, 22, NULL);
-
-	#if GTK_CHECK_VERSION(2, 10, 0)
-		gtk_tooltips_set_tip (tooltips,GTK_WIDGET(icon) , PACKAGE_STRING, NULL);
-	#else
-		gtk_widget_set_tooltip_text (GTK_WIDGET(icon), PACKAGE_STRING);
-	#endif
-
-	systray_icon = gtk_image_new_from_pixbuf (status_icon);
-	gtk_container_add (GTK_CONTAINER (icon), systray_icon);
-	g_object_unref (status_icon);
-
-	g_signal_connect (icon, "button-press-event", G_CALLBACK (systray_icon_clicked), cwin);
-	g_signal_connect (icon, "scroll_event", G_CALLBACK(systray_volume_scroll), cwin);
-
-	gtk_widget_set_colormap(GTK_WIDGET(icon), gdk_screen_get_rgb_colormap(gdk_screen_get_default()));
-
-	gtk_widget_show (GTK_WIDGET(systray_icon));
-	gtk_widget_show (GTK_WIDGET(icon));
-
+	g_signal_connect (status_icon, "button-press-event", G_CALLBACK (status_icon_clicked), cwin);
+	g_signal_connect (status_icon, "scroll_event", G_CALLBACK(systray_volume_scroll), cwin);
+ 
 	/* Systray right click menu */
 
 	systray_menu = create_systray_menu(cwin);
 
 	/* Store reference */
 
-	cwin->status_icon = icon;
+	cwin->status_icon = status_icon;
 	cwin->systray_menu = systray_menu;
 }
 
@@ -1977,12 +1971,12 @@ gboolean dialog_audio_init(gpointer data)
 
 gboolean exit_gui(GtkWidget *widget, GdkEvent *event, struct con_win *cwin)
 {
-	if (!egg_tray_icon_have_manager (EGG_TRAY_ICON (cwin->status_icon))) {
+	if(!gtk_status_icon_is_embedded(GTK_STATUS_ICON(cwin->status_icon))) {
 		g_warning("(%s): No embedded status_icon.", __func__);
 		gtk_window_iconify (GTK_WINDOW (cwin->mainwindow));
-		return TRUE;
 	}
-	gtk_widget_hide(GTK_WIDGET(cwin->mainwindow));
+	else	gtk_widget_hide(GTK_WIDGET(cwin->mainwindow));
+
 	return TRUE;
 }
 

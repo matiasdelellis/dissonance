@@ -36,8 +36,6 @@ pragha_SOURCES =pragha.c \
 		playlist.c \
 		md5.c \
 		lastfm.c \
-		eggtrayicon.c \
-		eggtrayicon.h \
 		sexy-icon-entry.c \
 		sexy-icon-entry.h \
 		sexy-marshal.c \

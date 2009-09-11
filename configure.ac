@@ -1,7 +1,7 @@
 dnl Version information
 m4_define([pragha_version_major], [0])
 m4_define([pragha_version_minor], [6])
-m4_define([pragha_version_micro], [3.1])
+m4_define([pragha_version_micro], [4SVN])
 m4_define([pragha_version], [pragha_version_major().pragha_version_minor().pragha_version_micro()])
 
 dnl Initialize autoconf
@@ -28,7 +28,7 @@ XDT_CHECK_PACKAGE([AO], [ao], [0.8.8])
 XDT_CHECK_PACKAGE([FLAC], [flac], [1.2.1])
 XDT_CHECK_PACKAGE([GTHREAD], [gthread-2.0], [2.14.0])
 XDT_CHECK_PACKAGE([GIO], [gio-2.0], [2.16.3])
-XDT_CHECK_PACKAGE([GTK], [gtk+-2.0], [2.10.14])
+XDT_CHECK_PACKAGE([GTK], [gtk+-2.0], [2.16.0])
 XDT_CHECK_PACKAGE([TAGLIB], [taglib], [1.4])
 XDT_CHECK_PACKAGE([MAD], [mad], [0.15])
 XDT_CHECK_PACKAGE([SQLITE3], [sqlite3], [3.4])

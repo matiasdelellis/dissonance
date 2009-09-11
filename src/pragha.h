@@ -54,7 +54,6 @@
 #include "oggvorbis.h"
 #include "cdda.h"
 #include "mod.h"
-#include "eggtrayicon.h"
 #include "sexy-icon-entry.h"
 
 #define MIN_WINDOW_WIDTH           640
@@ -584,6 +583,7 @@ struct con_win {
 	GtkWidget *header_context_menu;
 	GtkTreeStore *library_store;
 	GOptionContext *cmd_context;
+	GtkStatusIcon *status_icon;
 	GtkEntryCompletion *completion[3];
 	GtkUIManager *cp_context_menu;
 	GtkUIManager *playlist_tree_context_menu;
@@ -593,7 +593,6 @@ struct con_win {
 	GtkUIManager *file_tree_file_context_menu;
 	GtkUIManager *systray_menu;
 	DBusConnection *con_dbus;
-	EggTrayIcon *status_icon;
 };
 extern gulong switch_cb_id;
 extern gint debug_level;
@@ -981,10 +980,10 @@ gint open_audio_device(gint samplerate, gint channels,
 /* Systray functions */
 
 void show_osd(struct con_win *cwin);
-gboolean systray_icon_clicked (GtkWidget *widget, GdkEventButton *event, struct con_win *cwin);
+gboolean status_icon_clicked (GtkWidget *widget, GdkEventButton *event, struct con_win *cwin);
 void status_icon_tooltip_update(struct con_win *cwin);
 void unset_status_icon_tooltip(struct con_win *cwin);
-void create_systray_icon (struct con_win *cwin);
+void create_status_icon (struct con_win *cwin);
 void systray_display_popup_menu (struct con_win *cwin);
 void systray_play(GtkAction *action, struct con_win *cwin);
 void systray_stop(GtkAction *action, struct con_win *cwin);
