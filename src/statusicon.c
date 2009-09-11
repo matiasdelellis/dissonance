@@ -41,23 +41,23 @@ status_icon_clicked (GtkWidget *widget, GdkEventButton *event, struct con_win *c
 	return TRUE;
 }
 
-void toogle_main_window(struct con_win *cwin, gboolean        present)
+void toogle_main_window(struct con_win *cwin, gboolean present)
 {
 GtkWindow * window = GTK_WINDOW( cwin->mainwindow );
 static int  x = 0, y = 0;
 
 	if (present) {
-	        gtk_window_get_position( window, &x, &y );
+		gtk_window_get_position( window, &x, &y );
 		gtk_widget_hide(GTK_WIDGET(window));
 	}
 	else{
-	        gtk_window_set_skip_taskbar_hint( window , FALSE );
-	        if( x != 0 && y != 0 )
-	            gtk_window_move( window , x, y );
-	        gtk_widget_show( GTK_WIDGET( window ) );
-        	gtk_window_deiconify( window );
+		gtk_window_set_skip_taskbar_hint( window , FALSE );
+		if( x != 0 && y != 0 )
+			gtk_window_move( window , x, y );
+		gtk_widget_show( GTK_WIDGET( window ) );
+		gtk_window_deiconify( window );
 		gtk_window_present( window );
-		}
+	}
 }
 
 /* For want of a better place, this is here ... */
@@ -140,19 +140,16 @@ gboolean status_get_tooltip_cb (GtkWidget        *widget,
 	gchar *markup_text;
 
 	if (cwin->cstate->state == ST_STOPPED)
-		gtk_tooltip_set_markup  (tooltip, _("<b>Not playing</b>"));
+		markup_text = g_strdup_printf("%s", _("<b>Not playing</b>"));
 	else {
-		markup_text = g_strdup_printf(_("%s by %s"),
-			cwin->cstate->curr_mobj->tags->title,
-			cwin->cstate->curr_mobj->tags->artist);
-
-		/*g_markup_printf_escaped("<b>%s</b>\n %s",
-					get_data (data->weatherdata, DNAM),
-					translate_desc (get_data (data->weatherdata, TRANS)));*/
-
-		gtk_tooltip_set_markup (tooltip, markup_text);
-		g_free(markup_text);
+		markup_text = g_strdup_printf("<b>%s</b>: %s\n<b>%s</b>: %s\n<b>%s</b>: %s\n<b>%s</b>: %s",
+			_("Title"), cwin->cstate->curr_mobj->tags->title,
+			_("Artist"), cwin->cstate->curr_mobj->tags->artist,
+			_("Album"), cwin->cstate->curr_mobj->tags->album,
+			_("Length"), convert_length_str(cwin->cstate->curr_mobj->tags->length));
 	}
+	gtk_tooltip_set_markup (tooltip, markup_text);
+	g_free(markup_text);
 
 	gtk_tooltip_set_icon (tooltip, gtk_image_get_pixbuf(GTK_IMAGE(cwin->album_art)));
 
