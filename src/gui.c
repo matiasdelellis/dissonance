@@ -1408,7 +1408,7 @@ static void init_dnd(struct con_win *cwin)
 			 cwin);
 }
 
-static GtkUIManager* create_systray_menu(struct con_win *cwin)
+GtkUIManager* create_systray_menu(struct con_win *cwin)
 {
 	GtkUIManager *menu = NULL;
 	GtkActionGroup *actions;
@@ -1911,11 +1911,14 @@ void create_status_icon(struct con_win *cwin)
 	else
 		status_icon = gtk_status_icon_new_from_stock(GTK_STOCK_NEW);
  
-	gtk_status_icon_set_tooltip(GTK_STATUS_ICON(status_icon), PACKAGE_STRING);
-
 	g_signal_connect (status_icon, "button-press-event", G_CALLBACK (status_icon_clicked), cwin);
 	g_signal_connect (status_icon, "scroll_event", G_CALLBACK(systray_volume_scroll), cwin);
  
+	g_object_set (G_OBJECT(status_icon), "has-tooltip", TRUE, NULL);
+	g_signal_connect(G_OBJECT(status_icon), "query-tooltip", 
+			G_CALLBACK(status_get_tooltip_cb),
+			cwin);
+
 	/* Systray right click menu */
 
 	systray_menu = create_systray_menu(cwin);

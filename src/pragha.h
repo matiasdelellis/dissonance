@@ -979,8 +979,7 @@ gint open_audio_device(gint samplerate, gint channels,
 
 void show_osd(struct con_win *cwin);
 gboolean status_icon_clicked (GtkWidget *widget, GdkEventButton *event, struct con_win *cwin);
-void status_icon_tooltip_update(struct con_win *cwin);
-void unset_status_icon_tooltip(struct con_win *cwin);
+gboolean status_get_tooltip_cb (GtkWidget *widget, gint x, gint y, gboolean keyboard_mode,GtkTooltip *tooltip, struct con_win *cwin);
 void create_status_icon (struct con_win *cwin);
 void systray_display_popup_menu (struct con_win *cwin);
 void systray_play(GtkAction *action, struct con_win *cwin);
@@ -1092,7 +1091,7 @@ void init_gui(gint argc, gchar **argv, struct con_win *cwin);
 void exit_pragha(GtkWidget *widget, struct con_win *cwin);
 
 void toogle_main_window(struct con_win *cwin, gboolean        present);
-void	systray_volume_scroll (GtkWidget *widget, GdkEventScroll *event, struct con_win *cwin);
-static GtkUIManager* create_systray_menu(struct con_win *cwin);
+void systray_volume_scroll (GtkWidget *widget, GdkEventScroll *event, struct con_win *cwin);
+GtkUIManager* create_systray_menu(struct con_win *cwin);
 
 #endif /* PRAGHA_H */

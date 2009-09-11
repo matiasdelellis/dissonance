@@ -641,10 +641,6 @@ void update_current_state(GThread *thread, GtkTreePath *path,
 		gtk_tree_view_scroll_to_cell(GTK_TREE_VIEW(cwin->current_playlist),
 					     path, NULL, FALSE, 0, 0);
 
-	/* Update status icon tooltip */
-
-	status_icon_tooltip_update(cwin);
-
 	/* Update track progress bar */
 
 	__update_current_song_info(cwin, 0);

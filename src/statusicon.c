@@ -130,19 +130,33 @@ void show_osd(struct con_win *cwin)
 	g_object_unref(G_OBJECT(osd));
 }
 
-void status_icon_tooltip_update(struct con_win *cwin)
+gboolean status_get_tooltip_cb (GtkWidget        *widget,
+					gint              x,
+					gint              y,
+					gboolean          keyboard_mode,
+					GtkTooltip       *tooltip,
+					struct con_win *cwin) 
 {
-gchar *tooltip;
-	tooltip = g_strdup_printf(_("%s by %s"),
+	gchar *markup_text;
+
+	if (cwin->cstate->state == ST_STOPPED)
+		gtk_tooltip_set_markup  (tooltip, _("<b>Not playing</b>"));
+	else {
+		markup_text = g_strdup_printf(_("%s by %s"),
 			cwin->cstate->curr_mobj->tags->title,
 			cwin->cstate->curr_mobj->tags->artist);
-	gtk_status_icon_set_tooltip(GTK_STATUS_ICON(cwin->status_icon), tooltip);
-g_free(tooltip);
-}
 
-void unset_status_icon_tooltip(struct con_win *cwin)
-{
-	gtk_status_icon_set_tooltip(GTK_STATUS_ICON(cwin->status_icon), PACKAGE_STRING);
+		/*g_markup_printf_escaped("<b>%s</b>\n %s",
+					get_data (data->weatherdata, DNAM),
+					translate_desc (get_data (data->weatherdata, TRANS)));*/
+
+		gtk_tooltip_set_markup (tooltip, markup_text);
+		g_free(markup_text);
+	}
+
+	gtk_tooltip_set_icon (tooltip, gtk_image_get_pixbuf(GTK_IMAGE(cwin->album_art)));
+
+	return TRUE;
 }
 
 void
