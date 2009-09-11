@@ -47,17 +47,6 @@ gchar *main_menu_xml = "<ui>							\
 			<menuitem action=\"Update Library\"/>			\
 			<menuitem action=\"Add All\"/>				\
 			<menuitem action=\"Statistics\"/>			\
-			<menu action=\"Library View Menu\">			\
-				<menuitem action=\"folder_file\"/>		\
-				<menuitem action=\"artist\"/>		\
-				<menuitem action=\"album\"/>		\
-				<menuitem action=\"genre\"/>		\
-				<menuitem action=\"artist_album\"/>	\
-				<menuitem action=\"genre_artist\"/>	\
-				<menuitem action=\"genre_album\"/>	\
-				<menuitem action=\"genre_artist_album\"/>	\
-				<menuitem action=\"folder_file\"/>		\
-			</menu>							\
 		</menu>								\
 		<menu action=\"HelpMenu\">					\
 			<menuitem action=\"Home\"/>				\
@@ -190,23 +179,6 @@ GtkActionEntry main_aentries[] = {
 	 NULL, "Add All", G_CALLBACK(add_all_action)},
 	{"Statistics", GTK_STOCK_INFO, N_("_Statistics"),
 	 NULL, "Statistics", G_CALLBACK(statistics_action)},
-	{"Library View Menu", GTK_STOCK_GO_FORWARD, N_("_Library View")},
-	{"folder_file", GTK_STOCK_REFRESH, N_("Folder / File"),
-	 NULL, "Folder/File", G_CALLBACK(folder_file_library_tree)},
-	{"artist", GTK_STOCK_REFRESH, N_("Artist"),
-	 NULL, "Artist", G_CALLBACK(artist_library_tree)},
-	{"album", GTK_STOCK_REFRESH, N_("Album"),
-	 NULL, "Album", G_CALLBACK(album_library_tree)},
-	{"genre", GTK_STOCK_REFRESH, N_("Genre"),
-	 NULL, "Genre", G_CALLBACK(genre_library_tree)},
-	{"artist_album", GTK_STOCK_REFRESH, N_("Artist / Album"),
-	 NULL, "Artist / Album", G_CALLBACK(artist_album_library_tree)},
-	{"genre_album", GTK_STOCK_REFRESH, N_("Genre / Album"),
-	 NULL, "Genre / Album", G_CALLBACK(genre_album_library_tree)},
-	{"genre_artist", GTK_STOCK_REFRESH, N_("Genre / Artist"),
-	 NULL, "Genre / Artist", G_CALLBACK(genre_artist_library_tree)},
-	{"genre_artist_album", GTK_STOCK_REFRESH, N_("Genre / Artist / Album"),
-	 NULL, "Genre / Artist / Album", G_CALLBACK(genre_artist_album_library_tree)},
 	{"About", GTK_STOCK_ABOUT, N_("About"),
 	 NULL, "About pragha", G_CALLBACK(about_action)},
 	{"Home", GTK_STOCK_HOME, N_("Homepage"),
