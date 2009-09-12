@@ -585,15 +585,15 @@ void about_widget(struct con_win *cwin)
 		NULL};
 
 	gtk_show_about_dialog(GTK_WINDOW(cwin->mainwindow),
-			      "logo", cwin->pixbuf->pixbuf_app,
-			      "authors", authors,
-			      "comments", "A lightweight GTK+ music manager",
-			      "copyright", "(C) 2007-2009 Sujith",
-			      "license", license,
-			      "name", PACKAGE_NAME,
-			      "version", PACKAGE_VERSION,
-			      NULL);
-
+				"logo", cwin->pixbuf->pixbuf_app,
+				"authors", authors,
+				"translator-credits", _("translator-credits"),
+				"comments", "A lightweight GTK+ music manager",
+				"copyright", "(C) 2007-2009 Sujith",
+				"license", license,
+				"name", PACKAGE_NAME,
+				"version", PACKAGE_VERSION,
+				NULL);
 }
 
 void home_action(GtkAction *action, struct con_win *cwin)
