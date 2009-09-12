@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Español\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-09-11 21:44-0300\n"
+"POT-Creation-Date: 2009-09-11 22:03-0300\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Matias <mati86_dl@yahoo.com.ar>\n"
 "Language-Team: Español\n"
@@ -144,20 +144,20 @@ msgid "Edit tags"
 msgstr "Editar información de la Pista"
 
 #: src/gui.c:208
-msgid "Edit tag <Title> in the selected tracks"
-msgstr ""
+msgid "Edit tag <Title> in the tracks"
+msgstr "Editar etiqueta <Titulo> en las pistas"
 
 #: src/gui.c:210
-msgid "Edit tag <Artist> in the selected tracks"
-msgstr ""
+msgid "Edit tag <Artist> in the tracks"
+msgstr "Editar etiqueta <Artista> en las pistas"
 
 #: src/gui.c:212
-msgid "Edit tag <Album> in the selected tracks"
-msgstr ""
+msgid "Edit tag <Album> in the tracks"
+msgstr "Editar etiqueta <Álbum> en las pistas"
 
 #: src/gui.c:214
-msgid "Edit tag <Genre> in the selected tracks"
-msgstr ""
+msgid "Edit tag <Genre> in the tracks"
+msgstr "Editar etiqueta <Genero> en las pistas"
 
 #: src/gui.c:216
 msgid "Properties"

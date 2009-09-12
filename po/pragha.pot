@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-09-11 21:44-0300\n"
+"POT-Creation-Date: 2009-09-11 22:03-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -137,19 +137,19 @@ msgid "Edit tags"
 msgstr ""
 
 #: src/gui.c:208
-msgid "Edit tag <Title> in the selected tracks"
+msgid "Edit tag <Title> in the tracks"
 msgstr ""
 
 #: src/gui.c:210
-msgid "Edit tag <Artist> in the selected tracks"
+msgid "Edit tag <Artist> in the tracks"
 msgstr ""
 
 #: src/gui.c:212
-msgid "Edit tag <Album> in the selected tracks"
+msgid "Edit tag <Album> in the tracks"
 msgstr ""
 
 #: src/gui.c:214
-msgid "Edit tag <Genre> in the selected tracks"
+msgid "Edit tag <Genre> in the tracks"
 msgstr ""
 
 #: src/gui.c:216

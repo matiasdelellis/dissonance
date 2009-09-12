@@ -32,7 +32,7 @@ GOptionEntry cmd_entries[] = {
 	{"stop", 's', G_OPTION_FLAG_NO_ARG, G_OPTION_ARG_CALLBACK,
 	 cmd_stop, "Stop", NULL},
 	{"pause", 't', G_OPTION_FLAG_NO_ARG, G_OPTION_ARG_CALLBACK,
-	 cmd_pause, "Pause/Resume", NULL},
+	 cmd_pause, "Play/Pause/Resume", NULL},
 	{"prev", 'r', G_OPTION_FLAG_NO_ARG, G_OPTION_ARG_CALLBACK,
 	 cmd_prev, "Prev", NULL},
 	{"next", 'n', G_OPTION_FLAG_NO_ARG, G_OPTION_ARG_CALLBACK,
