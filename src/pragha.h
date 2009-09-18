@@ -669,8 +669,7 @@ void wiki_action(GtkAction *action, struct con_win *cwin);
 void about_action(GtkAction *action, struct con_win *cwin);
 
 /* Panel actions */
-void selection_current_track_handler(GtkButton *button, struct con_win *cwin);
-void selection_current_track(struct con_win *cwin);
+void selection_current_track(GtkButton *button, struct con_win *cwin);
 gboolean update_current_song_info(gpointer data);
 void __update_current_song_info(struct con_win *cwin, gint length);
 void unset_current_song_info(struct con_win *cwin);

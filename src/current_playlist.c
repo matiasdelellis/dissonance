@@ -881,43 +881,32 @@ GtkTreePath* current_playlist_get_actual(struct con_win *cwin)
 		path = gtk_tree_row_reference_get_path(cwin->cstate->curr_rand_ref);
 	else if (!cwin->cpref->shuffle && cwin->cstate->curr_seq_ref)
 		path = gtk_tree_row_reference_get_path(cwin->cstate->curr_seq_ref);
+
 	return path;
 }
 
-gchar* get_ref_current_track(struct con_win *cwin)
-{
-	gchar *ref_char = NULL;
-	GtkTreePath *path = NULL;
-
-	path = current_playlist_get_actual(cwin);
-	ref_char = gtk_tree_path_to_string (path);
-
-	gtk_tree_path_free(path);
-
-	return ref_char;
-}
-
-void selection_current_track_handler(GtkButton *button, struct con_win *cwin)
-{
-	selection_current_track(cwin);
-}
-
-void selection_current_track (struct con_win *cwin)
+void selection_current_track(GtkButton *button, struct con_win *cwin)
 {
 	GtkTreePath *path=NULL;
 	GtkTreeSelection *selection;
 
-	selection = gtk_tree_view_get_selection(GTK_TREE_VIEW(cwin->current_playlist));
-
 	path = current_playlist_get_actual(cwin);
 
-	if (!path) return;
+	if (path) {
+		selection = gtk_tree_view_get_selection(GTK_TREE_VIEW(cwin->current_playlist));
 
-	gtk_tree_selection_unselect_all(selection);
-	gtk_tree_selection_select_path(selection, path);
-	gtk_tree_view_scroll_to_cell(GTK_TREE_VIEW(cwin->current_playlist),
-				     path, NULL, TRUE, 0.5, 0);
-	gtk_tree_path_free(path);
+		gtk_tree_selection_unselect_all(selection);
+		gtk_tree_selection_select_path(GTK_TREE_SELECTION (selection), path);
+
+		if (cwin->cpref->shuffle)
+			gtk_tree_view_scroll_to_cell(GTK_TREE_VIEW(cwin->current_playlist),
+						path, NULL, TRUE, 0.5, 0);
+		else
+			gtk_tree_view_scroll_to_cell(GTK_TREE_VIEW(cwin->current_playlist),
+						path, NULL, FALSE, 0, 0);
+
+		gtk_tree_path_free(path);
+	}
 }
 
 /* Remove selected rows from current playlist */
@@ -1986,7 +1975,9 @@ void init_current_playlist_view(struct con_win *cwin)
 	gchar *ref = NULL;
 	GError *error = NULL;
 	GtkTreePath *path=NULL;
+ 	GtkTreeSelection *selection;
 	GtkTreeModel *model;
+
 	add_playlist_current_playlist(SAVE_PLAYLIST_STATE, cwin);
 
 	ref = g_key_file_get_string(cwin->cpref->configrc_keyfile,
@@ -1998,18 +1989,25 @@ void init_current_playlist_view(struct con_win *cwin)
 		error = NULL;
 		return;
 	}
-
 	model = gtk_tree_view_get_model(GTK_TREE_VIEW(cwin->current_playlist));
 	path = gtk_tree_path_new_from_string(ref);
 
-	if (cwin->cpref->shuffle)
-		cwin->cstate->curr_rand_ref = gtk_tree_row_reference_new (model, path);
-	else	cwin->cstate->curr_seq_ref = gtk_tree_row_reference_new (model, path);
+	if (path) {
+		selection = gtk_tree_view_get_selection(GTK_TREE_VIEW(cwin->current_playlist));
 
+		gtk_tree_selection_unselect_all(selection);
+		gtk_tree_selection_select_path(GTK_TREE_SELECTION (selection), path);
+
+		if (cwin->cpref->shuffle)
+			gtk_tree_view_scroll_to_cell(GTK_TREE_VIEW(cwin->current_playlist),
+						path, NULL, TRUE, 0.5, 0);
+		else
+			gtk_tree_view_scroll_to_cell(GTK_TREE_VIEW(cwin->current_playlist),
+						path, NULL, FALSE, 0, 0);
+
+		gtk_tree_path_free(path);
+	}
 	g_free(ref);
-	gtk_tree_path_free(path);
-
-	selection_current_track(cwin);
 }
 
 /* Initialize columns of current playlist */

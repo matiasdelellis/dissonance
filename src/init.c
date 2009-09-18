@@ -571,7 +571,7 @@ gint init_config(struct con_win *cwin)
 			cwin->cpref->album_art_size = ALBUM_ART_SIZE;
 		}
 
-	/* Mode remaining time option */
+		/* Mode remaining time option */
 
 		cwin->cpref->timer_remaining_mode =
 			g_key_file_get_boolean(cwin->cpref->configrc_keyfile,
