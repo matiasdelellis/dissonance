@@ -648,7 +648,7 @@ gint init_config(struct con_win *cwin)
 		cwin->cpref->software_mixer =
 			g_key_file_get_boolean(cwin->cpref->configrc_keyfile,
 					       GROUP_AUDIO,
-					       KEY_SOFWARE_MIXER,
+					       KEY_SOFTWARE_MIXER,
 					       &error);
 		if (error) {
 			g_error_free(error);

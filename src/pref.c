@@ -825,8 +825,15 @@ void save_preferences(struct con_win *cwin)
 
 	g_key_file_set_boolean(cwin->cpref->configrc_keyfile,
 			       GROUP_AUDIO,
-			       KEY_SOFWARE_MIXER,
+			       KEY_SOFTWARE_MIXER,
 			       cwin->cpref->software_mixer);
+
+	if(cwin->cpref->software_mixer){
+		g_key_file_set_integer(cwin->cpref->configrc_keyfile,
+				       GROUP_AUDIO,
+				       KEY_SOFTWARE_VOLUME,
+				       cwin->cmixer->curr_vol);
+	}
 
 	/* CDDB server option */
 

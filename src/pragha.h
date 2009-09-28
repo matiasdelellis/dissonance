@@ -167,7 +167,8 @@
 #define KEY_AUDIO_SINK             "audio_sink"
 #define KEY_AUDIO_ALSA_DEVICE      "audio_alsa_device"
 #define KEY_AUDIO_OSS_DEVICE       "audio_oss_device"
-#define KEY_SOFWARE_MIXER          "software_mixer"
+#define KEY_SOFTWARE_MIXER         "software_mixer"
+#define KEY_SOFTWARE_VOLUME	   "software_volume"
 #define KEY_AUDIO_CD_DEVICE        "audio_cd_device"
 #define KEY_USE_CDDB               "use_cddb"
 
