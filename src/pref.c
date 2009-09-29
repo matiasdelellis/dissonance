@@ -914,15 +914,18 @@ void save_preferences(struct con_win *cwin)
 	/* Reference to current play */
 
 	path = current_playlist_get_actual(cwin);
-	ref_char = gtk_tree_path_to_string (path);
-	gtk_tree_path_free(path);
 
-	if(cwin->cstate->tracks_curr_playlist){
-		g_key_file_set_string(cwin->cpref->configrc_keyfile,
-				      GROUP_PLAYLIST,
-				      KEY_CURRENT_REF,
-				      ref_char);
-		g_free (ref_char);
+	if(path){
+		ref_char = gtk_tree_path_to_string (path);
+		gtk_tree_path_free(path);
+
+		if(cwin->cstate->tracks_curr_playlist){
+			g_key_file_set_string(cwin->cpref->configrc_keyfile,
+					      GROUP_PLAYLIST,
+					      KEY_CURRENT_REF,
+					      ref_char);
+			g_free (ref_char);
+		}
 	}
 
 	/* List of columns visible in current playlist */
