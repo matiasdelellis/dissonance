@@ -926,10 +926,15 @@ void save_preferences(struct con_win *cwin)
 		g_free (ref_char);
 	}
 	else{
-		g_key_file_set_string(cwin->cpref->configrc_keyfile,
-					GROUP_PLAYLIST,
-					KEY_CURRENT_REF,
-					"0");
+		if (g_key_file_has_key(cwin->cpref->configrc_keyfile,
+				       GROUP_PLAYLIST,
+				       KEY_CURRENT_REF,
+				       &error)){
+			g_key_file_remove_key(cwin->cpref->configrc_keyfile,
+					      GROUP_PLAYLIST,
+					      KEY_CURRENT_REF,
+					      &error);
+		}
 	}
 
 	/* List of columns visible in current playlist */

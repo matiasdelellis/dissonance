@@ -1990,24 +1990,23 @@ void init_current_playlist_view(struct con_win *cwin)
 		return;
 	}
 
-	if (strcmp (ref, "0")){
-		model = gtk_tree_view_get_model(GTK_TREE_VIEW(cwin->current_playlist));
-		path = gtk_tree_path_new_from_string(ref);
+	model = gtk_tree_view_get_model(GTK_TREE_VIEW(cwin->current_playlist));
+	path = gtk_tree_path_new_from_string(ref);
 
-		selection = gtk_tree_view_get_selection(GTK_TREE_VIEW(cwin->current_playlist));
+	selection = gtk_tree_view_get_selection(GTK_TREE_VIEW(cwin->current_playlist));
 
-		gtk_tree_selection_unselect_all(selection);
-		gtk_tree_selection_select_path(GTK_TREE_SELECTION (selection), path);
+	gtk_tree_selection_unselect_all(selection);
+	gtk_tree_selection_select_path(GTK_TREE_SELECTION (selection), path);
 
-		if (cwin->cpref->shuffle)
-			gtk_tree_view_scroll_to_cell(GTK_TREE_VIEW(cwin->current_playlist),
-						path, NULL, TRUE, 0.5, 0);
-		else
-			gtk_tree_view_scroll_to_cell(GTK_TREE_VIEW(cwin->current_playlist),
-						path, NULL, FALSE, 0, 0);
+	if (cwin->cpref->shuffle)
+		gtk_tree_view_scroll_to_cell(GTK_TREE_VIEW(cwin->current_playlist),
+					path, NULL, TRUE, 0.5, 0);
+	else
+		gtk_tree_view_scroll_to_cell(GTK_TREE_VIEW(cwin->current_playlist),
+					path, NULL, FALSE, 0, 0);
 
-		gtk_tree_path_free(path);
-	}
+	gtk_tree_path_free(path);
+
 	g_free(ref);
 }
 
