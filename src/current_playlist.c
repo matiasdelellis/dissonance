@@ -103,7 +103,7 @@ static gboolean is_current_rand_ref(GtkTreeRowReference *ref, struct con_win *cw
 
 /* Print title of track ref */
 
-static void print_track_ref(GtkTreeRowReference *ref, struct con_win *cwin)
+/*static void print_track_ref(GtkTreeRowReference *ref, struct con_win *cwin)
 {
 	GtkTreeModel *model;
 	GtkTreeIter iter;
@@ -120,11 +120,11 @@ static void print_track_ref(GtkTreeRowReference *ref, struct con_win *cwin)
 		g_print("Track title from ref : %s at %p\n", mobj->tags->title, ref);
 
 	gtk_tree_path_free(path);
-}
+}*/
 
 /* Print title of all nodes in cstate->rand_track_refs */
 
-static void print_all_rand_track_refs(struct con_win *cwin)
+/*static void print_all_rand_track_refs(struct con_win *cwin)
 {
 	GList *list;
 
@@ -135,7 +135,7 @@ static void print_all_rand_track_refs(struct con_win *cwin)
 			list = list->next;
 		}
 	}
-}
+}*/
 
 /* Delete the ref corresponding to the given path */
 
@@ -1989,10 +1989,11 @@ void init_current_playlist_view(struct con_win *cwin)
 		error = NULL;
 		return;
 	}
-	model = gtk_tree_view_get_model(GTK_TREE_VIEW(cwin->current_playlist));
-	path = gtk_tree_path_new_from_string(ref);
 
-	if (path) {
+	if (strcmp (ref, "0")){
+		model = gtk_tree_view_get_model(GTK_TREE_VIEW(cwin->current_playlist));
+		path = gtk_tree_path_new_from_string(ref);
+
 		selection = gtk_tree_view_get_selection(GTK_TREE_VIEW(cwin->current_playlist));
 
 		gtk_tree_selection_unselect_all(selection);
