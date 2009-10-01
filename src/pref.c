@@ -1135,6 +1135,36 @@ void save_preferences(struct con_win *cwin)
 	g_free(data);
 }
 
+/* Based in Midori Web Browser. Copyright (C) 2007 Christian Dywan */
+gpointer sokoke_xfce_header_new(struct con_win *cwin)
+{
+	GtkWidget* entry = gtk_entry_new();
+	gchar* markup;
+
+	GtkWidget* xfce_heading = gtk_event_box_new();
+
+	gtk_widget_modify_bg(xfce_heading,
+				GTK_STATE_NORMAL,
+				&entry->style->base[GTK_STATE_NORMAL]);
+	GtkWidget* hbox = gtk_hbox_new(FALSE, 12);
+
+	gtk_container_set_border_width(GTK_CONTAINER(hbox), 6);
+	GtkWidget* image = gtk_image_new_from_icon_name("gtk-preferences",
+							GTK_ICON_SIZE_DIALOG);
+	gtk_box_pack_start(GTK_BOX(hbox), image, FALSE, FALSE, 0);
+	GtkWidget* label = gtk_label_new(NULL);
+	gtk_widget_modify_fg(label,
+				GTK_STATE_NORMAL,
+				&entry->style->text[GTK_STATE_NORMAL]);
+        markup = g_strdup_printf("<span size='large' weight='bold'>%s</span>", _("Preferences"));
+	gtk_label_set_markup(GTK_LABEL(label), markup);
+	gtk_box_pack_start(GTK_BOX(hbox), label, FALSE, FALSE, 0);
+	gtk_container_add(GTK_CONTAINER(xfce_heading), hbox);
+	g_free(markup);
+
+	return xfce_heading;
+}
+
 void preferences_dialog(struct con_win *cwin)
 {
 	GtkWidget *dialog, *vbox_all, *pref_notebook, *hbox_library;
@@ -1150,9 +1180,11 @@ void preferences_dialog(struct con_win *cwin)
 	GtkWidget *hbox_album_art_pattern, *hbox_audio_cd_device;
 	GtkWidget *audio_device_combo, *audio_device_label, *hbox_audio_device;
 	GtkWidget *album_art_size, *album_art_size_label, *hbox_album_art_size, *vbox_album_art;
+	GtkWidget *header, *alignment;
 	GtkListStore *library_store;
 	GtkCellRenderer *renderer;
 	GtkTreeViewColumn *column;
+
 
 	/* The main preferences dialog */
 
@@ -1187,15 +1219,29 @@ void preferences_dialog(struct con_win *cwin)
 
 	gtk_container_set_border_width (GTK_CONTAINER(pref_notebook), 4);
 
-
-	gtk_notebook_append_page(GTK_NOTEBOOK(pref_notebook), general_vbox,
+	alignment = gtk_alignment_new(0.5, 0.5, 1, 1);
+	gtk_notebook_append_page(GTK_NOTEBOOK(pref_notebook), alignment,
 				 label_general);
-	gtk_notebook_append_page(GTK_NOTEBOOK(pref_notebook), audio_vbox,
+	gtk_alignment_set_padding(GTK_ALIGNMENT(alignment), 6, 6, 12, 6);
+	gtk_container_add(GTK_CONTAINER(alignment), general_vbox);
+
+	alignment = gtk_alignment_new(0.5, 0.5, 1, 1);
+	gtk_notebook_append_page(GTK_NOTEBOOK(pref_notebook), alignment,
 				 label_audio);
-	gtk_notebook_append_page(GTK_NOTEBOOK(pref_notebook), library_vbox,
+	gtk_alignment_set_padding(GTK_ALIGNMENT(alignment), 6, 6, 12, 6);
+	gtk_container_add(GTK_CONTAINER(alignment), audio_vbox);
+
+	alignment = gtk_alignment_new(0.5, 0.5, 1, 1);
+	gtk_notebook_append_page(GTK_NOTEBOOK(pref_notebook), alignment,
 				 label_library);
-	gtk_notebook_append_page(GTK_NOTEBOOK(pref_notebook), lastfm_vbox,
+	gtk_alignment_set_padding(GTK_ALIGNMENT(alignment), 6, 6, 12, 6);
+	gtk_container_add(GTK_CONTAINER(alignment), library_vbox);
+
+	alignment = gtk_alignment_new(0.5, 0.5, 1, 1);
+	gtk_notebook_append_page(GTK_NOTEBOOK(pref_notebook), alignment,
 				 label_lastfm);
+	gtk_alignment_set_padding(GTK_ALIGNMENT(alignment), 6, 6, 12, 6);
+	gtk_container_add(GTK_CONTAINER(alignment), lastfm_vbox);
 
 	/* Hidden files */
 
@@ -1267,7 +1313,7 @@ void preferences_dialog(struct con_win *cwin)
 			   hidden_files,
 			   FALSE,
 			   FALSE,
-			   20);
+			   0);
 	gtk_box_pack_start(GTK_BOX(general_vbox),
 			   osd,
 			   FALSE,
@@ -1393,7 +1439,7 @@ void preferences_dialog(struct con_win *cwin)
 
  	/* Library List */
 
-	hbox_library = gtk_hbox_new(FALSE, 0);
+	hbox_library = gtk_hbox_new(FALSE, 6);
 
 	library_store = gtk_list_store_new(1, G_TYPE_STRING);
 	library_view = gtk_tree_view_new_with_model(GTK_TREE_MODEL(library_store));
@@ -1424,12 +1470,12 @@ void preferences_dialog(struct con_win *cwin)
 			   library_add,
 			   FALSE,
 			   FALSE,
-			   4);
+			   0);
 	gtk_box_pack_start(GTK_BOX(library_bbox),
 			   library_remove,
 			   FALSE,
 			   FALSE,
-			   4);
+			   0);
 
 	gtk_container_add(GTK_CONTAINER(library_bbox_align), library_bbox);
 
@@ -1437,12 +1483,12 @@ void preferences_dialog(struct con_win *cwin)
 			   library_view_scroll,
 			   TRUE,
 			   TRUE,
-			   4);
+			   0);
 	gtk_box_pack_start(GTK_BOX(hbox_library),
 			   library_bbox_align,
 			   FALSE,
 			   FALSE,
-			   4);
+			   0);
 	
 	/* Pack all library items */
 
@@ -1450,7 +1496,7 @@ void preferences_dialog(struct con_win *cwin)
 			   hbox_library,
 			   TRUE,
 			   TRUE,
-			   4);
+			   2);
 
 	/* Last.fm */
 
@@ -1512,7 +1558,11 @@ void preferences_dialog(struct con_win *cwin)
 			   FALSE,
 			   FALSE,
 			   0);
-	gtk_container_add(GTK_CONTAINER(GTK_DIALOG(dialog)->vbox), vbox_all);
+
+	header = sokoke_xfce_header_new (cwin);
+
+	gtk_box_pack_start (GTK_BOX (GTK_DIALOG (dialog)->vbox), header, FALSE, FALSE, 0);
+	gtk_box_pack_start (GTK_BOX (GTK_DIALOG (dialog)->vbox), vbox_all, TRUE, TRUE, 0);
 
 	/* Store references */
 
