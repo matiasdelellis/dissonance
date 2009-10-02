@@ -1837,18 +1837,18 @@ GtkWidget* create_search_bar(struct con_win *cwin)
 	gtk_entry_set_icon_from_stock (GTK_ENTRY(search_entry), GTK_ENTRY_ICON_PRIMARY, GTK_STOCK_FIND);
 	gtk_entry_set_icon_from_stock (GTK_ENTRY(search_entry), GTK_ENTRY_ICON_SECONDARY, GTK_STOCK_CLEAR);
 
-	cwin->search_entry = search_entry;
-
 	/* Signal handlers */
 
-	g_signal_connect (G_OBJECT(cwin->search_entry),
+	g_signal_connect (G_OBJECT(search_entry),
 			"icon-press",
 			G_CALLBACK (icon_pressed_cb),
 			cwin);
-	g_signal_connect(G_OBJECT(cwin->search_entry),
+	g_signal_connect(G_OBJECT(search_entry),
 			 "changed",
 			 G_CALLBACK(simple_library_search_keyrelease_handler),
 			 cwin);
+
+	cwin->search_entry = search_entry;
 
 	return search_entry;
 
@@ -1900,7 +1900,7 @@ GtkWidget* create_search_current_bar(struct con_win *cwin)
 	gtk_widget_set_sensitive (hbox_bar, FALSE);
 	return hbox_bar;
 }
-/*gtk_widget_set_colormap(GTK_WIDGET(icon), gdk_screen_get_rgb_colormap(gdk_screen_get_default()));*/
+
 void create_status_icon(struct con_win *cwin)
 {
 	GtkStatusIcon *status_icon;

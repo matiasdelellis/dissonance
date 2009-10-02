@@ -731,7 +731,7 @@ static gboolean filter_tree_func(GtkTreeModel *model,
 	return FALSE;
 }
 
-void do_refilter(struct con_win *cwin )
+gboolean do_refilter(struct con_win *cwin )
 {
 	GtkTreeModel *filter_model;
 
@@ -751,6 +751,8 @@ void do_refilter(struct con_win *cwin )
 	gtk_tree_view_map_expanded_rows(GTK_TREE_VIEW(cwin->library_tree),
 		filter_tree_expand_func,
 		cwin);
+
+	return FALSE;
 }
 
 gboolean simple_library_search_keyrelease_handler(GtkEntry *entry,
@@ -1278,7 +1280,7 @@ void init_library_view(struct con_win *cwin)
 	}
 
 	gtk_widget_set_sensitive(GTK_WIDGET(cwin->combo_order), FALSE);
-	gtk_widget_set_sensitive(GTK_WIDGET(cwin->search_entry), FALSE);
+	gtk_editable_set_editable (GTK_EDITABLE(cwin->search_entry), FALSE);
 
 	filter_model = gtk_tree_view_get_model(GTK_TREE_VIEW(cwin->library_tree));
 	model = gtk_tree_model_filter_get_model(GTK_TREE_MODEL_FILTER(filter_model));
@@ -1327,7 +1329,7 @@ void init_library_view(struct con_win *cwin)
 	refresh_tag_completion_entries(cwin);
 
 	gtk_widget_set_sensitive(GTK_WIDGET(cwin->combo_order), TRUE);
-	gtk_widget_set_sensitive(GTK_WIDGET(cwin->search_entry), TRUE);
+	gtk_editable_set_editable (GTK_EDITABLE(cwin->search_entry), TRUE);
 
 	cwin->cstate->view_change = FALSE;
 }

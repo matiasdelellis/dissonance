@@ -273,7 +273,7 @@ void collapse_all_action(GtkAction *action, struct con_win *cwin)
 
 void search_library_action(GtkAction *action, struct con_win *cwin)
 {
-	gtk_widget_grab_focus(cwin->search_entry);
+	gtk_widget_grab_focus(GTK_WIDGET(cwin->search_entry));
 }
 
 /* Handler for 'Search Playlist' option in the Edit menu */
