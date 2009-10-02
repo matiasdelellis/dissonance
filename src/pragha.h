@@ -809,6 +809,7 @@ gint add_new_playlist_db(const gchar *playlist, struct con_win *cwin);
 gchar** get_playlist_names_db(struct con_win *cwin);
 void delete_playlist_db(gchar *playlist, struct con_win *cwin);
 void flush_playlist_db(gint playlist_id, struct con_win *cwin);
+void flush_stale_entries_db(struct con_win *cwin);
 void flush_db(struct con_win *cwin);
 void rescan_db(gchar *dir_name, gint no_files, GtkWidget *pbar,
 	       gint call_recur, struct con_win *cwin);

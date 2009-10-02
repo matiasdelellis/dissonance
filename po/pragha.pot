@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-09-11 22:03-0300\n"
+"POT-Creation-Date: 2009-10-02 11:49-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -204,44 +204,44 @@ msgstr ""
 msgid "Enqueue (Non-Recursive)"
 msgstr ""
 
-#: src/gui.c:267 src/librarytree.c:805 src/librarytree.c:1245
+#: src/gui.c:267 src/librarytree.c:813 src/librarytree.c:1253
 msgid "Folder / File"
 msgstr ""
 
-#: src/gui.c:269 src/gui.c:930 src/gui.c:1046 src/current_playlist.c:1057
-#: src/librarytree.c:822 src/librarytree.c:1248 src/statusicon.c:147
+#: src/gui.c:269 src/gui.c:930 src/gui.c:1046 src/current_playlist.c:1046
+#: src/librarytree.c:830 src/librarytree.c:1256 src/statusicon.c:147
 #: src/tags.c:408
 msgid "Artist"
 msgstr ""
 
-#: src/gui.c:271 src/gui.c:931 src/gui.c:1047 src/current_playlist.c:1058
-#: src/librarytree.c:839 src/librarytree.c:1251 src/statusicon.c:148
+#: src/gui.c:271 src/gui.c:931 src/gui.c:1047 src/current_playlist.c:1047
+#: src/librarytree.c:847 src/librarytree.c:1259 src/statusicon.c:148
 #: src/tags.c:409
 msgid "Album"
 msgstr ""
 
-#: src/gui.c:273 src/gui.c:932 src/gui.c:1048 src/current_playlist.c:1059
-#: src/librarytree.c:856 src/librarytree.c:1254 src/tags.c:410
+#: src/gui.c:273 src/gui.c:932 src/gui.c:1048 src/current_playlist.c:1048
+#: src/librarytree.c:864 src/librarytree.c:1262 src/tags.c:410
 msgid "Genre"
 msgstr ""
 
-#: src/gui.c:275 src/librarytree.c:875 src/librarytree.c:1257
+#: src/gui.c:275 src/librarytree.c:883 src/librarytree.c:1265
 msgid "Artist / Album"
 msgstr ""
 
-#: src/gui.c:277 src/librarytree.c:894 src/librarytree.c:1263
+#: src/gui.c:277 src/librarytree.c:902 src/librarytree.c:1271
 msgid "Genre / Album"
 msgstr ""
 
-#: src/gui.c:279 src/librarytree.c:913 src/librarytree.c:1260
+#: src/gui.c:279 src/librarytree.c:921 src/librarytree.c:1268
 msgid "Genre / Artist"
 msgstr ""
 
-#: src/gui.c:281 src/librarytree.c:934 src/librarytree.c:1266
+#: src/gui.c:281 src/librarytree.c:942 src/librarytree.c:1274
 msgid "Genre / Artist / Album"
 msgstr ""
 
-#: src/gui.c:761 src/pref.c:1148
+#: src/gui.c:761 src/pref.c:1206
 msgid "Library"
 msgstr ""
 
@@ -258,25 +258,25 @@ msgstr ""
 msgid "Track"
 msgstr ""
 
-#: src/gui.c:929 src/gui.c:1045 src/current_playlist.c:1056
+#: src/gui.c:929 src/gui.c:1045 src/current_playlist.c:1045
 #: src/statusicon.c:146 src/tags.c:407
 msgid "Title"
 msgstr ""
 
-#: src/gui.c:933 src/gui.c:1049 src/current_playlist.c:1062
+#: src/gui.c:933 src/gui.c:1049 src/current_playlist.c:1051
 msgid "Bitrate"
 msgstr ""
 
-#: src/gui.c:934 src/gui.c:1050 src/current_playlist.c:1060 src/tags.c:411
+#: src/gui.c:934 src/gui.c:1050 src/current_playlist.c:1049 src/tags.c:411
 msgid "Year"
 msgstr ""
 
-#: src/gui.c:935 src/gui.c:1051 src/current_playlist.c:1061
+#: src/gui.c:935 src/gui.c:1051 src/current_playlist.c:1050
 #: src/statusicon.c:149
 msgid "Length"
 msgstr ""
 
-#: src/gui.c:936 src/gui.c:1052 src/current_playlist.c:1065
+#: src/gui.c:936 src/gui.c:1052 src/current_playlist.c:1054
 msgid "Filename"
 msgstr ""
 
@@ -336,19 +336,19 @@ msgid "<b>con_playlist</b> is a reserved playlist name"
 msgstr ""
 
 #. Create labels
-#: src/current_playlist.c:1055 src/tags.c:406
+#: src/current_playlist.c:1044 src/tags.c:406
 msgid "Track No"
 msgstr ""
 
-#: src/current_playlist.c:1063
+#: src/current_playlist.c:1052
 msgid "Channels"
 msgstr ""
 
-#: src/current_playlist.c:1064
+#: src/current_playlist.c:1053
 msgid "Samplerate"
 msgstr ""
 
-#: src/current_playlist.c:1114
+#: src/current_playlist.c:1103
 msgid "Track Information"
 msgstr ""
 
@@ -404,92 +404,92 @@ msgid "Select a folder to add to library"
 msgstr ""
 
 #. The main preferences dialog
-#: src/pref.c:1133
+#: src/pref.c:1159 src/pref.c:1191
 msgid "Preferences"
 msgstr ""
 
 #. Labels
-#: src/pref.c:1146
+#: src/pref.c:1204
 msgid "General"
 msgstr ""
 
-#: src/pref.c:1147
+#: src/pref.c:1205
 msgid "Audio"
 msgstr ""
 
-#: src/pref.c:1149
+#: src/pref.c:1207
 msgid "Last.fm"
 msgstr ""
 
 #. Hidden files
-#: src/pref.c:1175
+#: src/pref.c:1248
 msgid "Show Hidden Files in File View"
 msgstr ""
 
 #. Album art
-#: src/pref.c:1180
+#: src/pref.c:1253
 msgid "Show Album art in Panel"
 msgstr ""
 
-#: src/pref.c:1183
+#: src/pref.c:1256
 msgid "Size of Album art"
 msgstr ""
 
-#: src/pref.c:1201
+#: src/pref.c:1274
 msgid "Album art file pattern"
 msgstr ""
 
 #. Notification
-#: src/pref.c:1230
+#: src/pref.c:1303
 msgid "Show OSD for track change"
 msgstr ""
 
 #. Save current playlist
-#: src/pref.c:1234
+#: src/pref.c:1307
 msgid "Save/Restore current playlist"
 msgstr ""
 
 #. Software mixer
-#: src/pref.c:1267
+#: src/pref.c:1340
 msgid "Use software mixer"
 msgstr ""
 
-#: src/pref.c:1268 src/pref.c:1278 src/pref.c:1307
+#: src/pref.c:1341 src/pref.c:1351 src/pref.c:1380
 msgid "Restart Required"
 msgstr ""
 
 #. CDDB
-#: src/pref.c:1272
+#: src/pref.c:1345
 msgid "Connect to CDDB server"
 msgstr ""
 
-#: src/pref.c:1287
+#: src/pref.c:1360
 msgid "Audio sink"
 msgstr ""
 
-#: src/pref.c:1304
+#: src/pref.c:1377
 msgid "Audio Device"
 msgstr ""
 
 #. Audio CD device
-#: src/pref.c:1322
+#: src/pref.c:1395
 msgid "Audio CD Device"
 msgstr ""
 
-#: src/pref.c:1375
+#: src/pref.c:1448
 msgid "Folder"
 msgstr ""
 
 #. Last.fm
-#: src/pref.c:1422
+#: src/pref.c:1503
 msgid "Last.fm Support"
 msgstr ""
 
-#: src/pref.c:1425
+#: src/pref.c:1506
 msgid "Username"
 msgstr ""
 
-#: src/pref.c:1426
+#: src/pref.c:1507
 msgid "Password"
 msgstr ""
 

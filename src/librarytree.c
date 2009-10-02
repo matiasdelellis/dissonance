@@ -731,11 +731,8 @@ static gboolean filter_tree_func(GtkTreeModel *model,
 	return FALSE;
 }
 
-gboolean
-do_refilter(struct con_win *cwin )
+void do_refilter(struct con_win *cwin )
 {
-	gchar *text = NULL;
-	gchar *u_str = NULL;
 	GtkTreeModel *filter_model;
 
 	cwin->cstate->timeout_id = 0;
@@ -754,9 +751,6 @@ do_refilter(struct con_win *cwin )
 	gtk_tree_view_map_expanded_rows(GTK_TREE_VIEW(cwin->library_tree),
 		filter_tree_expand_func,
 		cwin);
-	g_free(u_str);
-
-	return( FALSE );
 }
 
 gboolean simple_library_search_keyrelease_handler(GtkEntry *entry,
@@ -766,7 +760,6 @@ gboolean simple_library_search_keyrelease_handler(GtkEntry *entry,
 	gchar *text = NULL;
 	gchar *u_str = NULL;
 	gboolean has_text;
-	GtkTreeModel *filter_model;
 
 	has_text = gtk_entry_get_text_length (GTK_ENTRY(entry)) > 0;
 
