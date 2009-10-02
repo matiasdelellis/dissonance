@@ -492,6 +492,7 @@ struct con_state {
 	gint unplayed_tracks;
 	gint newsec;
 	gint lastfm_hard_failure;
+	gint timeout_id;
 	gdouble seek_fraction;
 	gchar *file_tree_pwd;
 	gchar *filter_entry;
