@@ -1614,7 +1614,6 @@ gboolean current_playlist_right_click_cb(GtkWidget *widget,
 	GtkWidget *popup_menu, *track_prop;
 	gboolean ret = FALSE;
 	GtkTreeSelection *selection;
-	GtkTreeViewColumn *col;
 	gint n_select = 0;
 
 	switch(event->button) {
@@ -1633,26 +1632,6 @@ gboolean current_playlist_right_click_cb(GtkWidget *widget,
 			gtk_widget_hide(GTK_WIDGET(track_prop));
 		else
 			gtk_widget_show(GTK_WIDGET(track_prop));
-
-		/* 'Edit tag < > in the selected tracks' menuitem is shown according to clicked column */
-
-		gtk_tree_view_get_path_at_pos(GTK_TREE_VIEW(widget), (gint) event->x,(gint) event->y, NULL, &col, NULL, NULL);
-
-		track_prop = gtk_ui_manager_get_widget(cwin->cp_context_menu, "/popup/Edit tag <Title> in the tracks");
-		if(strcmp( P_TITLE_STR, gtk_tree_view_column_get_title(col) ) == 0) gtk_widget_show(GTK_WIDGET(track_prop));
-		else gtk_widget_hide(GTK_WIDGET(track_prop));
-
-		track_prop = gtk_ui_manager_get_widget(cwin->cp_context_menu, "/popup/Edit tag <Artist> in the tracks");
-		if(strcmp( P_ARTIST_STR, gtk_tree_view_column_get_title(col) ) == 0) gtk_widget_show(GTK_WIDGET(track_prop));
-		else gtk_widget_hide(GTK_WIDGET(track_prop));
-
-		track_prop = gtk_ui_manager_get_widget(cwin->cp_context_menu, "/popup/Edit tag <Album> in the tracks");
-		if(strcmp( P_ALBUM_STR, gtk_tree_view_column_get_title(col) ) == 0) gtk_widget_show(GTK_WIDGET(track_prop));
-		else gtk_widget_hide(GTK_WIDGET(track_prop));
-
-		track_prop = gtk_ui_manager_get_widget(cwin->cp_context_menu, "/popup/Edit tag <Genre> in the tracks");
-		if(strcmp( P_GENRE_STR, gtk_tree_view_column_get_title(col) ) == 0) gtk_widget_show(GTK_WIDGET(track_prop));
-		else gtk_widget_hide(GTK_WIDGET(track_prop));
 
 		popup_menu = gtk_ui_manager_get_widget(cwin->cp_context_menu,
 						       "/popup");

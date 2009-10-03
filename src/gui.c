@@ -63,10 +63,6 @@ gchar *cp_context_menu_xml = "<ui>		    				\
 	<menuitem action=\"Remove\"/>		    				\
 	<menuitem action=\"Crop\"/>		    				\
 	<menuitem action=\"Edit tags\"/>					\
-	<menuitem action=\"Edit tag <Title> in the tracks\"/>		\
-	<menuitem action=\"Edit tag <Artist> in the tracks\"/>	\
-	<menuitem action=\"Edit tag <Album> in the tracks\"/>		\
-	<menuitem action=\"Edit tag <Genre> in the tracks\"/>		\
 	<menuitem action=\"Properties\"/>	    				\
 	<separator/>				    				\
 	<menuitem action=\"Save Selected as Playlist\"/>			\
@@ -204,14 +200,6 @@ GtkActionEntry cp_context_aentries[] = {
 	{"Crop", GTK_STOCK_CUT, N_("Crop"),
 	 "<Control>C", "Crop the playlist", G_CALLBACK(crop_current_playlist)},
 	{"Edit tags", GTK_STOCK_EDIT, N_("Edit tags"),
-	 "<Control>E", "Edit tag for this track", G_CALLBACK(edit_tags_current_playlist)},
-	{"Edit tag <Title> in the tracks", GTK_STOCK_EDIT, N_("Edit tag <Title> in the tracks"),
-	 "<Control>E", "Edit tag <Title> in the tracks", G_CALLBACK(edit_tags_current_playlist)},
-	{"Edit tag <Artist> in the tracks", GTK_STOCK_EDIT, N_("Edit tag <Artist> in the tracks"),
-	 "<Control>E", "Edit tag for this track", G_CALLBACK(edit_tags_current_playlist)},
-	{"Edit tag <Album> in the tracks", GTK_STOCK_EDIT, N_("Edit tag <Album> in the tracks"),
-	 "<Control>E", "Edit tag for this track", G_CALLBACK(edit_tags_current_playlist)},
-	{"Edit tag <Genre> in the tracks", GTK_STOCK_EDIT, N_("Edit tag <Genre> in the tracks"),
 	 "<Control>E", "Edit tag for this track", G_CALLBACK(edit_tags_current_playlist)},
 	{"Properties", GTK_STOCK_PROPERTIES, N_("Properties"),
 	 NULL, "Track Properties", G_CALLBACK(track_properties_current_playlist)},
