@@ -1,4 +1,7 @@
 r92 | mati86dl@gmail.com | 2009-10-02
+	Pragha 0.7.0 "Great Like House".
+
+r92 | mati86dl@gmail.com | 2009-10-02
 	Prepare to Pragha 0.7.0 "Great Like House".
 	Use gtk_show_uri to lauch Browser.
 	Remove useless "Edit tag <Title> in the selected tracks" menu item in playlist.
