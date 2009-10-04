@@ -596,6 +596,17 @@ void about_widget(struct con_win *cwin)
 				NULL);
 }
 
+void lyric_action(GtkAction *action, struct con_win *cwin)
+{
+	if (cwin->cstate->state != ST_STOPPED){
+		gchar *uri = g_markup_printf_escaped("http://www.lyricsplugin.com/winamp03/plugin/?artist=%s&title=%s",
+							cwin->cstate->curr_mobj->tags->artist,
+							cwin->cstate->curr_mobj->tags->title);
+	open_url(cwin, uri);
+	g_free(uri);
+	}
+}
+
 void home_action(GtkAction *action, struct con_win *cwin)
 {
 	const gchar *uri = "http://pragha.wikispaces.com/";

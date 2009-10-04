@@ -43,6 +43,8 @@ gchar *main_menu_xml = "<ui>							\
 			<menuitem action=\"Preferences\"/>			\
 		</menu>								\
 		<menu action=\"ToolsMenu\">					\
+			<menuitem action=\"Search Lyric\"/>			\
+			<separator/>				\
 			<menuitem action=\"Rescan Library\"/>			\
 			<menuitem action=\"Update Library\"/>			\
 			<menuitem action=\"Add All\"/>				\
@@ -167,6 +169,8 @@ GtkActionEntry main_aentries[] = {
 	 "<Control><Shift>F", "Search Playlist", G_CALLBACK(search_playlist_action)},
 	{"Preferences", GTK_STOCK_PREFERENCES, N_("_Preferences"),
 	 "<Control>P", "Set preferences", G_CALLBACK(pref_action)},
+	{"Search Lyric", GTK_STOCK_JUSTIFY_FILL, N_("Search _Lyric"),
+	 NULL, "Search Lyric", G_CALLBACK(lyric_action)},
 	{"Rescan Library", GTK_STOCK_EXECUTE, N_("_Rescan Library"),
 	 NULL, "Rescan Library", G_CALLBACK(rescan_library_action)},
 	{"Update Library", GTK_STOCK_EXECUTE, N_("_Update Library"),
