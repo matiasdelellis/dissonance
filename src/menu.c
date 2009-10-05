@@ -311,6 +311,25 @@ void pref_action(GtkAction *action, struct con_win *cwin)
 	preferences_dialog(cwin);
 }
 
+/* Handler for the 'Full screen' item in the Edit menu */
+
+void
+fullscreen_action (GtkAction *action, struct con_win *cwin)
+{
+	cwin->cpref->fullscreen = gtk_toggle_action_get_active(GTK_TOGGLE_ACTION(action));
+
+	if(gdk_window_get_state(GTK_WIDGET(cwin->mainwindow)->window) & GDK_WINDOW_STATE_FULLSCREEN)
+		gtk_window_unfullscreen(GTK_WINDOW(cwin->mainwindow));
+	else
+		gtk_window_fullscreen(GTK_WINDOW(cwin->mainwindow));
+}
+
+void
+jump_to_playing_song_action (GtkAction *action, struct con_win *cwin)
+{
+	jump_to_playing_song(cwin);
+}
+
 /* Handler for the 'Rescan Library' item in the Tools menu */
 
 void rescan_library_action(GtkAction *action, struct con_win *cwin)

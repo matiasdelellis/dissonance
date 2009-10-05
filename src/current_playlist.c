@@ -888,7 +888,12 @@ GtkTreePath* current_playlist_get_actual(struct con_win *cwin)
 	return path;
 }
 
-void selection_current_track(GtkButton *button, struct con_win *cwin)
+void jump_to_playing_song_handler(GtkButton *button, struct con_win *cwin)
+{
+	jump_to_playing_song(cwin);
+}
+
+void jump_to_playing_song(struct con_win *cwin)
 {
 	GtkTreePath *path=NULL;
 	GtkTreeSelection *selection;

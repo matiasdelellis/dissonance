@@ -148,6 +148,7 @@
 #define KEY_TIMER_REMAINING_MODE   "timer_remaining_mode"
 #define KEY_SHOW_OSD               "show_osd"
 #define KEY_TIMER_MODE		   "timer_mode"
+#define KEY_FULLSCREEN		   "fullscreen"
 
 #define KEY_SAVE_PLAYLIST          "save_playlist"
 #define KEY_CURRENT_REF		   "current_ref"
@@ -404,6 +405,7 @@ struct con_pref {
 	gboolean save_playlist;
 	gboolean software_mixer;
 	gboolean use_cddb;
+	gboolean fullscreen;
 	GSList *library_dir;
 	GSList *playlist_columns;
 	GSList *playlist_column_widths;
@@ -661,6 +663,8 @@ void search_playlist_action(GtkAction *action, struct con_win *cwin);
 void shuffle_action(GtkToggleAction *action, struct con_win *cwin);
 void repeat_action(GtkToggleAction *action, struct con_win *cwin);
 void pref_action(GtkAction *action, struct con_win *cwin);
+void fullscreen_action (GtkAction *action, struct con_win *cwin);
+void jump_to_playing_song_action (GtkAction *action, struct con_win *cwin);
 void rescan_library_action(GtkAction *action, struct con_win *cwin);
 void update_library_action(GtkAction *action, struct con_win *cwin);
 void add_all_action(GtkAction *action, struct con_win *cwin);
@@ -672,7 +676,6 @@ void wiki_action(GtkAction *action, struct con_win *cwin);
 void about_action(GtkAction *action, struct con_win *cwin);
 
 /* Panel actions */
-void selection_current_track(GtkButton *button, struct con_win *cwin);
 gboolean update_current_song_info(gpointer data);
 void __update_current_song_info(struct con_win *cwin, gint length);
 void unset_current_song_info(struct con_win *cwin);
@@ -689,6 +692,7 @@ void play_button_handler(GtkButton *button, struct con_win *cwin);
 void stop_button_handler(GtkButton *button, struct con_win *cwin);
 void prev_button_handler(GtkButton *button, struct con_win *cwin);
 void next_button_handler(GtkButton *button, struct con_win *cwin);
+void jump_to_playing_song_handler(GtkButton *button, struct con_win *cwin);
 void vol_button_handler(GtkScaleButton *button, gdouble value,
 			struct con_win *cwin);
 void play_button_toggle_state(struct con_win *cwin);
@@ -887,6 +891,7 @@ void play_track(struct con_win *cwin);
 void pause_resume_track(struct con_win *cwin);
 void play_pause_resume(struct con_win *cwin);
 void shuffle_button(struct con_win *cwin);
+void jump_to_playing_song(struct con_win *cwin);
 void current_playlist_row_activated_cb(GtkTreeView *current_playlist,
 				       GtkTreePath *path,
 				       GtkTreeViewColumn *column,

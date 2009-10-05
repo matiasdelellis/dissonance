@@ -213,6 +213,7 @@ gint init_config(struct con_win *cwin)
 		album_f,
 		album_art_pattern_f,
 		osd_f,
+		fullscreen_f,
 		save_playlist_f,
 		lastfm_f,
 		software_mixer_f,
@@ -229,7 +230,7 @@ gint init_config(struct con_win *cwin)
 	CDEBUG(DBG_INFO, "Initializing configuration");
 
 	libs_f = lib_add_f = lib_delete_f = columns_f = nodes_f = cur_lib_view_f = FALSE;
-	file_tree_pwd_f = hidden_f = album_f = osd_f = lastfm_f = FALSE;
+	file_tree_pwd_f = hidden_f = album_f = osd_f = fullscreen_f = lastfm_f = FALSE;
 	software_mixer_f = save_playlist_f = album_art_pattern_f = use_cddb_f = FALSE;
 	shuffle_f = repeat_f = window_size_f = all_f = FALSE;
 	audio_sink_f = audio_alsa_device_f = audio_oss_device_f = FALSE;
@@ -302,6 +303,19 @@ gint init_config(struct con_win *cwin)
 			g_error_free(error);
 			error = NULL;
 			window_size_f = TRUE;
+		}
+
+		/* Retrieve Fullscreen option */
+
+		cwin->cpref->fullscreen =
+			g_key_file_get_boolean(cwin->cpref->configrc_keyfile,
+					       GROUP_GENERAL,
+					       KEY_FULLSCREEN,
+					       &error);
+		if (error) {
+			g_error_free(error);
+			error = NULL;
+			fullscreen_f = FALSE;
 		}
 
 		/* Retrieve list of libraries */
@@ -801,6 +815,8 @@ gint init_config(struct con_win *cwin)
 		cwin->cpref->show_album_art = TRUE;
 	if (all_f || osd_f)
 		cwin->cpref->show_osd = FALSE;
+	if (all_f || fullscreen_f)
+		cwin->cpref->fullscreen = FALSE;
 	if (all_f || save_playlist_f)
 		cwin->cpref->save_playlist = TRUE;
 	if (all_f || lastfm_f)

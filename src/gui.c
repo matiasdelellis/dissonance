@@ -21,40 +21,52 @@
 gchar *main_menu_xml = "<ui>							\
 	<menubar name=\"Menubar\">						\
 		<menu action=\"FileMenu\">					\
-			<menuitem action=\"Open File\"/>			\
-			<menuitem action=\"Play Audio CD\"/>			\
-			<separator/>				\
-			<menuitem action=\"Prev\"/>		\
-			<menuitem action=\"Play_Pause\"/>	\
-			<menuitem action=\"Stop\"/>		\
-			<menuitem action=\"Next\"/>		\
+			<menuitem action=\"Add files\"/>			\
+			<menuitem action=\"Play audio CD\"/>			\
+			<separator/>						\
+			<menuitem action=\"Prev\"/>				\
+			<menuitem action=\"Play_pause\"/>			\
+			<menuitem action=\"Stop\"/>				\
+			<menuitem action=\"Next\"/>				\
+			<separator/>						\
+			<menuitem action=\"Properties\"/>			\
 			<separator/>						\
 			<menuitem action=\"Quit\"/>				\
 		</menu>								\
 		<menu action=\"EditMenu\">					\
-			<menuitem action=\"Expand All\"/>			\
-			<menuitem action=\"Collapse All\"/>			\
-			<menuitem action=\"Search Library\"/>			\
-			<menuitem action=\"Search Playlist\"/>			\
+			<menuitem action=\"Add all the library\"/>	    	\
+			<menuitem action=\"Clear playlist\"/>			\
+			<menuitem action=\"Save playlist\"/>			\
 			<separator/>						\
-			<menuitem action=\"Shuffle\"/>		\
-			<menuitem action=\"Repeat\"/>		\
-			<separator/>				\
+			<menuitem action=\"Shuffle\"/>				\
+			<menuitem action=\"Repeat\"/>				\
+			<separator/>						\
 			<menuitem action=\"Preferences\"/>			\
 		</menu>								\
+		<menu action=\"ViewMenu\">					\
+			<menuitem action=\"Fullscreen\"/>			\
+			<separator/>						\
+			<menu action=\"Lateral panel\">				\
+				<menuitem action=\"Library\"/>			\
+				<menuitem action=\"Files\"/>			\
+			</menu>							\
+			<menuitem action=\"Status bar\"/>			\
+			<separator/>						\
+			<menuitem action=\"Jump to playing song\"/>		\
+		</menu>								\
 		<menu action=\"ToolsMenu\">					\
-			<menuitem action=\"Search Lyric\"/>			\
-			<separator/>				\
-			<menuitem action=\"Rescan Library\"/>			\
-			<menuitem action=\"Update Library\"/>			\
-			<menuitem action=\"Add All\"/>				\
+			<menuitem action=\"Search lyric\"/>			\
+			<separator/>						\
+			<menuitem action=\"Rescan library\"/>			\
+			<menuitem action=\"Update library\"/>			\
+			<separator/>						\
 			<menuitem action=\"Statistics\"/>			\
 		</menu>								\
 		<menu action=\"HelpMenu\">					\
 			<menuitem action=\"Home\"/>				\
 			<menuitem action=\"Community\"/>			\
 			<menuitem action=\"Wiki\"/>				\
-			<separator/>							\
+			<separator/>						\
 			<menuitem action=\"About\"/>				\
 		</menu>								\
 	</menubar>								\
@@ -67,11 +79,11 @@ gchar *cp_context_menu_xml = "<ui>		    				\
 	<menuitem action=\"Edit tags\"/>					\
 	<menuitem action=\"Properties\"/>	    				\
 	<separator/>				    				\
-	<menuitem action=\"Save Selected as Playlist\"/>			\
-	<menuitem action=\"Save Complete Playlist\"/>				\
-	<menuitem action=\"Clear Playlist\"/>	    				\
+	<menuitem action=\"Save selected as playlist\"/>			\
+	<menuitem action=\"Save complete playlist\"/>				\
+	<menuitem action=\"Clear playlist\"/>	    				\
 	<separator/>				    				\
-	<menuitem action=\"Clear Sort\"/>	    				\
+	<menuitem action=\"Clear sort\"/>	    				\
 	</popup>				    				\
 	</ui>";
 
@@ -89,7 +101,7 @@ gchar *library_tree_context_menu_xml = "<ui>		\
 	<menuitem action=\"Play\"/>			\
 	<menuitem action=\"Enqueue\"/>			\
 	<menuitem action=\"Edit\"/>			\
-	<menuitem action=\"Delete (From Library)\"/>	\
+	<menuitem action=\"Delete (From library)\"/>	\
 	<menuitem action=\"Delete (From HDD)\"/>	\
 	</popup>					\
 	</ui>";
@@ -128,8 +140,8 @@ gchar *systray_menu_xml = "<ui>				\
 	<popup>						\
 		<menuitem action=\"About\"/>		\
 		<separator/>				\
-		<menuitem action=\"Open File\"/>	\
-		<menuitem action=\"Play Audio CD\"/>	\
+		<menuitem action=\"Add files\"/>	\
+		<menuitem action=\"Play audio CD\"/>	\
 		<separator/>				\
 		<menuitem action=\"Prev\"/>		\
 		<menuitem action=\"Play_Pause\"/>	\
@@ -143,40 +155,42 @@ gchar *systray_menu_xml = "<ui>				\
 GtkActionEntry main_aentries[] = {
 	{"FileMenu", NULL, N_("_File")},
 	{"EditMenu", NULL, N_("_Edit")},
+	{"ViewMenu", NULL, N_("_View")},
 	{"ToolsMenu", NULL, N_("_Tools")},
 	{"HelpMenu", NULL, N_("_Help")},
-	{"Open File", GTK_STOCK_OPEN, N_("_Open File"),
-	 "<Control>O", N_("Open a media file"), G_CALLBACK(open_file_action)},
-	{"Play Audio CD", GTK_STOCK_CDROM, N_("_Play Audio CD"),
-	 NULL, "Play a Audio CD", G_CALLBACK(play_audio_cd_action)},
-	{"Prev", GTK_STOCK_MEDIA_PREVIOUS, N_("Prev Track"),
-	 NULL, "Prev Track", G_CALLBACK(prev_action)},
-	{"Play_Pause", GTK_STOCK_MEDIA_PLAY, N_("Play/Pause"),
-	 NULL, "Play/Pause", G_CALLBACK(play_pause_action)},
+	{"Add files", GTK_STOCK_OPEN, N_("_Add files"),
+	 NULL, N_("Open a media file"), G_CALLBACK(open_file_action)},
+	{"Play audio CD", GTK_STOCK_CDROM, N_("_Play audio CD"),
+	 NULL, "Play a audio CD", G_CALLBACK(play_audio_cd_action)},
+	{"Prev", GTK_STOCK_MEDIA_PREVIOUS, N_("Prev track"),
+	 NULL, "Prev track", G_CALLBACK(prev_action)},
+	{"Play_pause", GTK_STOCK_MEDIA_PLAY, N_("Play / Pause"),
+	 NULL, "Play / Pause", G_CALLBACK(play_pause_action)},
 	{"Stop", GTK_STOCK_MEDIA_STOP, N_("Stop"),
 	 NULL, "Stop", G_CALLBACK(stop_action)},
-	{"Next", GTK_STOCK_MEDIA_NEXT, N_("Next Track"),
-	 NULL, "Next Track", G_CALLBACK(next_action)},
+	{"Next", GTK_STOCK_MEDIA_NEXT, N_("Next track"),
+	 NULL, "Next track", G_CALLBACK(next_action)},
+	{"Properties", GTK_STOCK_PROPERTIES, N_("_Properties"),
+	 NULL, "Properties", G_CALLBACK(quit_action)},
 	{"Quit", GTK_STOCK_QUIT, N_("_Quit"),
 	 "<Control>Q", "Quit pragha", G_CALLBACK(quit_action)},
-	{"Expand All", GTK_STOCK_GOTO_LAST, N_("_Expand All in Library"),
-	 NULL, "Expand All in Library", G_CALLBACK(expand_all_action)},
-	{"Collapse All", GTK_STOCK_GOTO_FIRST, N_("_Collapse All in Library"),
-	 NULL, "Collapse All in Library", G_CALLBACK(collapse_all_action)},
-	{"Search Library", GTK_STOCK_FIND, N_("Search Library"),
-	 NULL, "Search Library", G_CALLBACK(search_library_action)},
-	{"Search Playlist", GTK_STOCK_FIND, N_("Search Playlist"),
-	 "<Control><Shift>F", "Search Playlist", G_CALLBACK(search_playlist_action)},
+	{"Add all the library", GTK_STOCK_SELECT_ALL, N_("_Add all the library"),
+	 NULL, "Add all the library", G_CALLBACK(add_all_action)},
+	{"Clear playlist", GTK_STOCK_CLEAR, N_("Clear playlist"),
+	 "<Control>L", "Clear the playlist", G_CALLBACK(clear_current_playlist)},
+	{"Save playlist", GTK_STOCK_SAVE, N_("Save playlist"),
+	 NULL, "Save playlist", G_CALLBACK(save_current_playlist)},
 	{"Preferences", GTK_STOCK_PREFERENCES, N_("_Preferences"),
 	 "<Control>P", "Set preferences", G_CALLBACK(pref_action)},
-	{"Search Lyric", GTK_STOCK_JUSTIFY_FILL, N_("Search _Lyric"),
-	 NULL, "Search Lyric", G_CALLBACK(lyric_action)},
-	{"Rescan Library", GTK_STOCK_EXECUTE, N_("_Rescan Library"),
-	 NULL, "Rescan Library", G_CALLBACK(rescan_library_action)},
-	{"Update Library", GTK_STOCK_EXECUTE, N_("_Update Library"),
-	 NULL, "Update Library", G_CALLBACK(update_library_action)},
-	{"Add All", GTK_STOCK_SELECT_ALL, N_("_Add All to Current Playlist"),
-	 NULL, "Add All", G_CALLBACK(add_all_action)},
+	{"Lateral panel", NULL, N_("Lateral _panel")},
+	{"Jump to playing song", GTK_STOCK_JUMP_TO, N_("Jump to playing song"),
+	 NULL, "Jump to playing song", G_CALLBACK(jump_to_playing_song_action)},
+	{"Search lyric", GTK_STOCK_JUSTIFY_FILL, N_("Search _lyric"),
+	 NULL, "Search lyric", G_CALLBACK(lyric_action)},
+	{"Rescan library", GTK_STOCK_EXECUTE, N_("_Rescan library"),
+	 NULL, "Rescan library", G_CALLBACK(rescan_library_action)},
+	{"Update library", GTK_STOCK_EXECUTE, N_("_Update library"),
+	 NULL, "Update library", G_CALLBACK(update_library_action)},
 	{"Statistics", GTK_STOCK_INFO, N_("_Statistics"),
 	 NULL, "Statistics", G_CALLBACK(statistics_action)},
 	{"About", GTK_STOCK_ABOUT, N_("About"),
@@ -195,7 +209,20 @@ GtkToggleActionEntry toggles_entries[] = {
 	 FALSE},
 	{"Repeat", NULL, N_("_Repeat"),
 	 NULL, "Repeat Songs", G_CALLBACK(repeat_action), 
-	 FALSE}
+	 FALSE},
+	{"Fullscreen", NULL, N_("_Fullscreen"),
+	 "F11", "Switch between full screen and windowed mode", G_CALLBACK(fullscreen_action),
+	FALSE},
+	{"Library", NULL, N_("Library"),
+	 NULL, "Library", G_CALLBACK(lyric_action),
+	TRUE},
+	{"Files", NULL, N_("Files"),
+	 NULL, "Files", G_CALLBACK(lyric_action),
+	FALSE},
+	{"Status bar", NULL, N_("Status bar"),
+	 NULL, "Status bar", G_CALLBACK(lyric_action),
+	TRUE}
+
 };
 
 GtkActionEntry cp_context_aentries[] = {
@@ -207,14 +234,14 @@ GtkActionEntry cp_context_aentries[] = {
 	 "<Control>E", "Edit tag for this track", G_CALLBACK(edit_tags_current_playlist)},
 	{"Properties", GTK_STOCK_PROPERTIES, N_("Properties"),
 	 NULL, "Track Properties", G_CALLBACK(track_properties_current_playlist)},
-	{"Save Selected as Playlist", GTK_STOCK_SAVE, N_("Save Selected as Playlist"),
+	{"Save selected as playlist", GTK_STOCK_SAVE, N_("Save selected as playlist"),
 	 NULL, "Save selected tracks as playlist", G_CALLBACK(save_selected_playlist)},
-	{"Save Complete Playlist", GTK_STOCK_SAVE, N_("Save Complete Playlist"),
+	{"Save complete playlist", GTK_STOCK_SAVE, N_("Save complete playlist"),
 	 NULL, "Save the complete playlist", G_CALLBACK(save_current_playlist)},
-	{"Clear Playlist", GTK_STOCK_CLEAR, N_("Clear Playlist"),
+	{"Clear playlist", GTK_STOCK_CLEAR, N_("Clear playlist"),
 	 "<Control>L", "Clear the playlist", G_CALLBACK(clear_current_playlist)},
-	{"Clear Sort", GTK_STOCK_REFRESH, N_("Clear Sort"),
-	 "<Control>S", "Clear Sort", G_CALLBACK(clear_sort_current_playlist)}
+	{"Clear sort", GTK_STOCK_REFRESH, N_("Clear sort"),
+	 "<Control>S", "Clear sort", G_CALLBACK(clear_sort_current_playlist)}
 };
 
 GtkActionEntry playlist_tree_context_aentries[] = {
@@ -235,8 +262,8 @@ GtkActionEntry library_tree_context_aentries[] = {
 	 NULL, "Enqueue", G_CALLBACK(library_tree_enqueue)},
 	{"Edit", GTK_STOCK_EDIT, N_("Edit tags"),
 	 NULL, "Edit tags", G_CALLBACK(library_tree_edit_tags)},
-	{"Delete (From Library)", GTK_STOCK_REMOVE, N_("Delete from Library"),
-	 NULL, "Delete from Library", G_CALLBACK(library_tree_delete_db)},
+	{"Delete (From library)", GTK_STOCK_REMOVE, N_("Delete from library"),
+	 NULL, "Delete from library", G_CALLBACK(library_tree_delete_db)},
 	{"Delete (From HDD)", GTK_STOCK_REMOVE, N_("Delete from HDD"),
 	 NULL, "Delete from HDD", G_CALLBACK(library_tree_delete_hdd)}
 };
@@ -277,14 +304,14 @@ GtkActionEntry library_page_context_aentries[] = {
 GtkActionEntry systray_menu_aentries[] = {
 	{"About", GTK_STOCK_ABOUT, N_("About"),
 	 NULL, NULL, G_CALLBACK(about_action)},
-	{"Open File", GTK_STOCK_OPEN, N_("_Open File"),
+	{"Add files", GTK_STOCK_OPEN, N_("_Add files"),
 	 NULL, NULL, G_CALLBACK(open_file_action)},
-	{"Play Audio CD", GTK_STOCK_CDROM, N_("_Play Audio CD"),
-	 NULL, "Play a Audio CD", G_CALLBACK(play_audio_cd_action)},
+	{"Play audio CD", GTK_STOCK_CDROM, N_("_Play audio CD"),
+	 NULL, "Play a audio CD", G_CALLBACK(play_audio_cd_action)},
 	{"Prev", GTK_STOCK_MEDIA_PREVIOUS, N_("Prev Track"),
 	 NULL, "Prev Track", G_CALLBACK(prev_action)},
-	{"Play_Pause", GTK_STOCK_MEDIA_PLAY, N_("Play/Pause"),
-	 NULL, "Play/Pause", G_CALLBACK(play_pause_action)},
+	{"Play_Pause", GTK_STOCK_MEDIA_PLAY, N_("Play / Pause"),
+	 NULL, "Play / Pause", G_CALLBACK(play_pause_action)},
 	{"Stop", GTK_STOCK_MEDIA_STOP, N_("Stop"),
 	 NULL, "Stop", G_CALLBACK(stop_action)},
 	{"Next", GTK_STOCK_MEDIA_NEXT, N_("Next Track"),
@@ -1466,6 +1493,9 @@ GtkUIManager* create_menu(struct con_win *cwin)
 	action = gtk_action_group_get_action (main_actions, "Repeat");
 	gtk_toggle_action_set_active (GTK_TOGGLE_ACTION(action), cwin->cpref->repeat);
 
+	action = gtk_action_group_get_action (main_actions, "Fullscreen");
+	gtk_toggle_action_set_active (GTK_TOGGLE_ACTION(action), cwin->cpref->fullscreen);
+
 	return main_menu;
 }
 
@@ -1503,7 +1533,7 @@ GtkWidget *create_playlist_pane(struct con_win *cwin)
 	gtk_box_pack_start(GTK_BOX(htools), to_now_btn, FALSE, FALSE,0);
 
 	g_signal_connect(G_OBJECT(to_now_btn), "clicked",
-			 G_CALLBACK(selection_current_track), cwin);
+			 G_CALLBACK(jump_to_playing_song_handler), cwin);
 
 	gtk_box_pack_start(GTK_BOX(htools), vsep, FALSE, FALSE,0);
 
