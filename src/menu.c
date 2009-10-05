@@ -318,7 +318,7 @@ fullscreen_action (GtkAction *action, struct con_win *cwin)
 {
 	cwin->cpref->fullscreen = gtk_toggle_action_get_active(GTK_TOGGLE_ACTION(action));
 
-	if(gdk_window_get_state(GTK_WIDGET(cwin->mainwindow)->window) & GDK_WINDOW_STATE_FULLSCREEN)
+	if(!cwin->cpref->fullscreen)
 		gtk_window_unfullscreen(GTK_WINDOW(cwin->mainwindow));
 	else
 		gtk_window_fullscreen(GTK_WINDOW(cwin->mainwindow));
