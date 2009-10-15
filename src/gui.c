@@ -34,7 +34,7 @@ gchar *main_menu_xml = "<ui>							\
 			<menuitem action=\"Quit\"/>				\
 		</menu>								\
 		<menu action=\"EditMenu\">					\
-			<menuitem action=\"Add all the library\"/>	    	\
+			<menuitem action=\"Add the library\"/>	    		\
 			<menuitem action=\"Clear playlist\"/>			\
 			<menuitem action=\"Save playlist\"/>			\
 			<separator/>						\
@@ -121,20 +121,23 @@ gchar *file_tree_file_context_menu_xml = "<ui>		\
 	</popup>					\
 	</ui>";
 
-gchar *library_page_context_menu_xml = "<ui>		\
-	<popup>						\
-	<menuitem action=\"folder_file\"/>		\
-	<separator/>					\
-	<menuitem action=\"artist\"/>		\
-	<menuitem action=\"album\"/>		\
-	<menuitem action=\"genre\"/>		\
-	<separator/>					\
-	<menuitem action=\"artist_album\"/>	\
-	<menuitem action=\"genre_artist\"/>	\
-	<menuitem action=\"genre_album\"/>	\
-	<separator/>					\
-	<menuitem action=\"genre_artist_album\"/>	\
-	</popup>					\
+gchar *library_page_context_menu_xml = "<ui>			\
+	<popup>							\
+	<menuitem action=\"Expand library\"/>			\
+	<menuitem action=\"Collapse library\"/>			\
+	<separator/>						\
+	<menuitem action=\"folder_file\"/>			\
+	<separator/>						\
+	<menuitem action=\"artist\"/>				\
+	<menuitem action=\"album\"/>				\
+	<menuitem action=\"genre\"/>				\
+	<separator/>						\
+	<menuitem action=\"artist_album\"/>			\
+	<menuitem action=\"genre_artist\"/>			\
+	<menuitem action=\"genre_album\"/>			\
+	<separator/>						\
+	<menuitem action=\"genre_artist_album\"/>		\
+	</popup>						\
 	</ui>";
 
 gchar *systray_menu_xml = "<ui>				\
@@ -175,7 +178,7 @@ GtkActionEntry main_aentries[] = {
 	 NULL, "Properties", G_CALLBACK(track_properties_current_playing_action)},
 	{"Quit", GTK_STOCK_QUIT, N_("_Quit"),
 	 "<Control>Q", "Quit pragha", G_CALLBACK(quit_action)},
-	{"Add all the library", GTK_STOCK_SELECT_ALL, N_("_Add all the library"),
+	{"Add the library", GTK_STOCK_SELECT_ALL, N_("_Add the library"),
 	 NULL, "Add all the library", G_CALLBACK(add_all_action)},
 	{"Clear playlist", GTK_STOCK_CLEAR, N_("Clear playlist"),
 	 "<Control>L", "Clear the playlist", G_CALLBACK(clear_current_playlist)},
@@ -286,6 +289,10 @@ GtkActionEntry file_tree_file_context_aentries[] = {
 };
 
 GtkActionEntry library_page_context_aentries[] = {
+	{"Expand library", GTK_STOCK_ADD, N_("_Expand library"),
+	 NULL, "Expand the library", G_CALLBACK(expand_all_action)},
+	{"Collapse library", GTK_STOCK_REMOVE, N_("_Collapse library"),
+	 NULL, "Collapse the library", G_CALLBACK(collapse_all_action)},
 	{"folder_file", GTK_STOCK_REFRESH, N_("Folder / File"),
 	 NULL, "Folder / File", G_CALLBACK(folder_file_library_tree)},
 	{"artist", GTK_STOCK_REFRESH, N_("Artist"),
