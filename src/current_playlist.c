@@ -1037,7 +1037,12 @@ void crop_current_playlist(GtkAction *action, struct con_win *cwin)
 /* Show track properties dialog
    This function is a fscking eyesore. */
 
-void track_properties_current_playlist(GtkAction *action, struct con_win *cwin)
+void track_properties_current_playlist_action(GtkAction *action, struct con_win *cwin)
+{
+	track_properties_current_playlist(cwin);
+}
+
+void track_properties_current_playlist(struct con_win *cwin)
 {
 	GError *error = NULL;
 	GtkTreeModel *model;
@@ -1094,13 +1099,13 @@ void track_properties_current_playlist(GtkAction *action, struct con_win *cwin)
 
 			gchar *tr_info[11] = {tno,
 			      (mobj->tags->title && strlen(mobj->tags->title)) ?
-			      mobj->tags->title : "-na-",
+			      mobj->tags->title : _("Unknown Tags"),
 			      (mobj->tags->artist && strlen(mobj->tags->artist)) ?
-			      mobj->tags->artist : "-na-",
+			      mobj->tags->artist : _("Unknown Tags"),
 			      (mobj->tags->album && strlen(mobj->tags->album)) ?
-			      mobj->tags->album : "-na-",
+			      mobj->tags->album : _("Unknown Tags"),
 			      (mobj->tags->genre && strlen(mobj->tags->genre)) ?
-			      mobj->tags->genre : "-na-",
+			      mobj->tags->genre : _("Unknown Tags"),
 			      year,
 			      length,
 			      bitrate,
@@ -1171,6 +1176,134 @@ void track_properties_current_playlist(GtkAction *action, struct con_win *cwin)
 		g_list_free(list);
 	}
 }
+
+/* Show track properties dialog
+   This function is a fscking eyesore. */
+void track_properties_current_playing_action(GtkAction *action, struct con_win *cwin)
+{
+	track_properties_current_playing(cwin);
+}
+void track_properties_current_playing(struct con_win *cwin)
+{
+	GError *error = NULL;
+	GtkWidget *dialog;
+	GtkWidget *t_hbox, *align, *tag_box, *info_box, *tag_label, *info_label;
+	gint i=0;
+	gchar tags[11][20] = {N_("Track No"),
+			      N_("Title"),
+			      N_("Artist"),
+			      N_("Album"),
+			      N_("Genre"),
+			      N_("Year"),
+			      N_("Length"),
+			      N_("Bitrate"),
+			      N_("Channels"),
+			      N_("Samplerate"),
+			      N_("Filename")};
+
+	if (cwin->cstate->curr_mobj) {
+		gchar *tno = g_strdup_printf("%d", cwin->cstate->curr_mobj->tags->track_no);
+		gchar *year = g_strdup_printf("%d", cwin->cstate->curr_mobj->tags->year);
+		gchar *length = convert_length_str(cwin->cstate->curr_mobj->tags->length);
+		gchar *bitrate = g_strdup_printf("%d", cwin->cstate->curr_mobj->tags->bitrate);
+		gchar *channels = g_strdup_printf("%d", cwin->cstate->curr_mobj->tags->channels);
+		gchar *samplerate = g_strdup_printf("%d", cwin->cstate->curr_mobj->tags->samplerate);
+		gchar *u_file;
+
+		if (cwin->cstate->curr_mobj->file_type == FILE_CDDA) {
+			u_file = g_strdup(cwin->cstate->curr_mobj->file);
+		}
+		else {
+			u_file = g_filename_to_utf8(cwin->cstate->curr_mobj->file, -1,
+						    NULL, NULL, &error);
+			if (!u_file) {
+				g_warning("Unable to convert file"
+					  " to UTF-8: %s",
+					  cwin->cstate->curr_mobj->file);
+				g_error_free(error);
+				error = NULL;
+			}
+		}
+		gchar *tr_info[11] = {tno,
+				     (cwin->cstate->curr_mobj->tags->title && strlen(cwin->cstate->curr_mobj->tags->title)) ?
+				     cwin->cstate->curr_mobj->tags->title : _("Unknown Tags"),
+				     (cwin->cstate->curr_mobj->tags->artist && strlen(cwin->cstate->curr_mobj->tags->artist)) ?
+				     cwin->cstate->curr_mobj->tags->artist : _("Unknown Tags"),
+				     (cwin->cstate->curr_mobj->tags->album && strlen(cwin->cstate->curr_mobj->tags->album)) ?
+				     cwin->cstate->curr_mobj->tags->album : _("Unknown Tags"),
+				     (cwin->cstate->curr_mobj->tags->genre && strlen(cwin->cstate->curr_mobj->tags->genre)) ?
+				     cwin->cstate->curr_mobj->tags->genre : _("Unknown Tags"),
+				     year,
+				     length,
+				     bitrate,
+				     channels,
+				     samplerate,
+				     u_file};
+		dialog = gtk_dialog_new_with_buttons(_("Track Information"),
+					     GTK_WINDOW(cwin->mainwindow),
+					     GTK_DIALOG_MODAL |
+					     GTK_DIALOG_DESTROY_WITH_PARENT,
+					     GTK_STOCK_OK,
+					     GTK_RESPONSE_ACCEPT,
+					     NULL);
+
+		tag_box = gtk_vbox_new(FALSE, 0);
+		info_box = gtk_vbox_new(FALSE, 0);
+		t_hbox = gtk_hbox_new(FALSE, 0);
+
+		for (i=0; i<11; i++) {
+			align = gtk_alignment_new(0, 0, 0, 0);
+			tag_label = gtk_label_new(tags[i]);
+			gtk_label_set_selectable(GTK_LABEL(tag_label), TRUE);
+			gtk_container_add(GTK_CONTAINER(align), tag_label);
+			gtk_box_pack_start(GTK_BOX(tag_box),
+					   GTK_WIDGET(align),
+					   FALSE,
+					   FALSE,
+					   0);
+			align = gtk_alignment_new(0, 0, 0, 0);
+			info_label = gtk_label_new(tr_info[i]);
+			gtk_label_set_selectable(GTK_LABEL(info_label), TRUE);
+			gtk_container_add(GTK_CONTAINER(align), info_label);
+				gtk_box_pack_start(GTK_BOX(info_box),
+					   GTK_WIDGET(align),
+					   FALSE,
+					   FALSE,
+					   0);
+		}
+
+		gtk_box_pack_start(GTK_BOX(t_hbox),
+				   GTK_WIDGET(tag_box),
+				   FALSE,
+				   FALSE,
+				   10);
+		gtk_box_pack_start(GTK_BOX(t_hbox),
+				   GTK_WIDGET(info_box),
+				   FALSE,
+				   FALSE,
+				   10);
+
+		gtk_container_add(GTK_CONTAINER(GTK_DIALOG(dialog)->vbox),
+				  GTK_WIDGET(t_hbox));
+
+		gtk_widget_show_all(dialog);
+
+		gtk_dialog_run(GTK_DIALOG(dialog));
+
+		gtk_widget_destroy(dialog);
+
+		g_free(tno);
+		g_free(year);
+		g_free(length);
+		g_free(bitrate);
+		g_free(channels);
+		g_free(samplerate);
+		g_free(u_file);
+	}
+	else
+		track_properties_current_playlist(cwin);
+}
+
 
 /* Clear all rows from current playlist */
 

@@ -50,6 +50,7 @@ gchar *main_menu_xml = "<ui>							\
 				<menuitem action=\"Library\"/>			\
 				<menuitem action=\"Files\"/>			\
 			</menu>							\
+			<menuitem action=\"Menu bar\"/>				\
 			<menuitem action=\"Status bar\"/>			\
 			<separator/>						\
 			<menuitem action=\"Jump to playing song\"/>		\
@@ -171,7 +172,7 @@ GtkActionEntry main_aentries[] = {
 	{"Next", GTK_STOCK_MEDIA_NEXT, N_("Next track"),
 	 NULL, "Next track", G_CALLBACK(next_action)},
 	{"Properties", GTK_STOCK_PROPERTIES, N_("_Properties"),
-	 NULL, "Properties", G_CALLBACK(quit_action)},
+	 NULL, "Properties", G_CALLBACK(track_properties_current_playing_action)},
 	{"Quit", GTK_STOCK_QUIT, N_("_Quit"),
 	 "<Control>Q", "Quit pragha", G_CALLBACK(quit_action)},
 	{"Add all the library", GTK_STOCK_SELECT_ALL, N_("_Add all the library"),
@@ -219,10 +220,12 @@ GtkToggleActionEntry toggles_entries[] = {
 	{"Files", NULL, N_("Files"),
 	 NULL, "Files", G_CALLBACK(lyric_action),
 	FALSE},
+	{"Menu bar", NULL, N_("Menu bar"),
+	 "<Control>M", "Menu bar", G_CALLBACK(menu_bar_action),
+	TRUE},
 	{"Status bar", NULL, N_("Status bar"),
 	 NULL, "Status bar", G_CALLBACK(lyric_action),
 	TRUE}
-
 };
 
 GtkActionEntry cp_context_aentries[] = {
@@ -233,7 +236,7 @@ GtkActionEntry cp_context_aentries[] = {
 	{"Edit tags", GTK_STOCK_EDIT, N_("Edit tags"),
 	 "<Control>E", "Edit tag for this track", G_CALLBACK(edit_tags_current_playlist)},
 	{"Properties", GTK_STOCK_PROPERTIES, N_("Properties"),
-	 NULL, "Track Properties", G_CALLBACK(track_properties_current_playlist)},
+	 NULL, "Track Properties", G_CALLBACK(track_properties_current_playlist_action)},
 	{"Save selected as playlist", GTK_STOCK_SAVE, N_("Save selected as playlist"),
 	 NULL, "Save selected tracks as playlist", G_CALLBACK(save_selected_playlist)},
 	{"Save complete playlist", GTK_STOCK_SAVE, N_("Save complete playlist"),
@@ -1487,6 +1490,8 @@ GtkUIManager* create_menu(struct con_win *cwin)
 				   gtk_ui_manager_get_accel_group(main_menu));
 	gtk_ui_manager_insert_action_group(main_menu, main_actions, 0);
 
+	cwin->bar_context_menu = main_menu;
+
 	action = gtk_action_group_get_action (main_actions, "Shuffle");
 	gtk_toggle_action_set_active (GTK_TOGGLE_ACTION(action), cwin->cpref->shuffle);
 
@@ -1495,6 +1500,9 @@ GtkUIManager* create_menu(struct con_win *cwin)
 
 	action = gtk_action_group_get_action (main_actions, "Fullscreen");
 	gtk_toggle_action_set_active (GTK_TOGGLE_ACTION(action), cwin->cpref->fullscreen);
+
+	action = gtk_action_group_get_action (main_actions, "Menu bar");
+	gtk_toggle_action_set_active (GTK_TOGGLE_ACTION(action), cwin->cpref->menubar);
 
 	return main_menu;
 }

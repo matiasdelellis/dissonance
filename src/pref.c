@@ -867,6 +867,13 @@ void save_preferences(struct con_win *cwin)
 		g_free(window_size);
 		}
 
+	/* View menu bar option */
+
+	g_key_file_set_boolean(cwin->cpref->configrc_keyfile,
+			       GROUP_GENERAL,
+			       KEY_MENUBAR,
+			       cwin->cpref->menubar);
+
 	/* List of libraries */
 
 	if (cwin->cpref->library_dir) {

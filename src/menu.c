@@ -325,6 +325,21 @@ fullscreen_action (GtkAction *action, struct con_win *cwin)
 }
 
 void
+menu_bar_action (GtkAction *action, struct con_win *cwin)
+{
+	GtkWidget *menu_bar;
+
+	cwin->cpref->menubar = gtk_toggle_action_get_active(GTK_TOGGLE_ACTION(action));
+
+	menu_bar = gtk_ui_manager_get_widget(cwin->bar_context_menu, "/Menubar");
+
+	if(cwin->cpref->menubar)
+		gtk_widget_show(GTK_WIDGET(menu_bar));
+	else
+		gtk_widget_hide(GTK_WIDGET(menu_bar));
+}
+
+void
 jump_to_playing_song_action (GtkAction *action, struct con_win *cwin)
 {
 	jump_to_playing_song(cwin);

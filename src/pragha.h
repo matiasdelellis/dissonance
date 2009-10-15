@@ -149,6 +149,7 @@
 #define KEY_SHOW_OSD               "show_osd"
 #define KEY_TIMER_MODE		   "timer_mode"
 #define KEY_FULLSCREEN		   "fullscreen"
+#define KEY_MENUBAR		   "menubar"
 
 #define KEY_SAVE_PLAYLIST          "save_playlist"
 #define KEY_CURRENT_REF		   "current_ref"
@@ -406,6 +407,7 @@ struct con_pref {
 	gboolean software_mixer;
 	gboolean use_cddb;
 	gboolean fullscreen;
+	gboolean menubar;
 	GSList *library_dir;
 	GSList *playlist_columns;
 	GSList *playlist_column_widths;
@@ -588,6 +590,7 @@ struct con_win {
 	GOptionContext *cmd_context;
 	GtkStatusIcon *status_icon;
 	GtkEntryCompletion *completion[3];
+	GtkUIManager *bar_context_menu;
 	GtkUIManager *cp_context_menu;
 	GtkUIManager *playlist_tree_context_menu;
 	GtkUIManager *library_tree_context_menu;
@@ -664,6 +667,7 @@ void shuffle_action(GtkToggleAction *action, struct con_win *cwin);
 void repeat_action(GtkToggleAction *action, struct con_win *cwin);
 void pref_action(GtkAction *action, struct con_win *cwin);
 void fullscreen_action (GtkAction *action, struct con_win *cwin);
+void menu_bar_action (GtkAction *action, struct con_win *cwin);
 void jump_to_playing_song_action (GtkAction *action, struct con_win *cwin);
 void rescan_library_action(GtkAction *action, struct con_win *cwin);
 void update_library_action(GtkAction *action, struct con_win *cwin);
@@ -878,7 +882,10 @@ gchar* get_ref_current_track(struct con_win *cwin);
 void init_current_playlist_columns(struct con_win *cwin);
 void remove_current_playlist(GtkAction *action, struct con_win *cwin);
 void crop_current_playlist(GtkAction *action, struct con_win *cwin);
-void track_properties_current_playlist(GtkAction *action, struct con_win *cwin);
+void track_properties_current_playlist_action(GtkAction *action, struct con_win *cwin);
+void track_properties_current_playlist(struct con_win *cwin);
+void track_properties_current_playing_action(GtkAction *action, struct con_win *cwin);
+void track_properties_current_playing(struct con_win *cwin);
 void clear_current_playlist(GtkAction *action, struct con_win *cwin);
 void append_current_playlist(struct musicobject *mobj, struct con_win *cwin);
 void clear_sort_current_playlist(GtkAction *action, struct con_win *cwin);
