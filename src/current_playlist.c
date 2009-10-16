@@ -1179,10 +1179,12 @@ void track_properties_current_playlist(struct con_win *cwin)
 
 /* Show track properties dialog
    This function is a fscking eyesore. */
+
 void track_properties_current_playing_action(GtkAction *action, struct con_win *cwin)
 {
 	track_properties_current_playing(cwin);
 }
+
 void track_properties_current_playing(struct con_win *cwin)
 {
 	GError *error = NULL;
@@ -1356,9 +1358,14 @@ void append_current_playlist(struct musicobject *mobj, struct con_win *cwin)
 	}
 
 	ch_length = convert_length_str(mobj->tags->length);
-	ch_track_no = g_strdup_printf("%d", mobj->tags->track_no);
 	ch_year = g_strdup_printf("%d", mobj->tags->year);
 	ch_bitrate = g_strdup_printf("%d", mobj->tags->bitrate);
+
+	if(mobj->tags->track_no)
+		ch_track_no = g_strdup_printf("%d", mobj->tags->track_no);
+	else
+		ch_track_no = NULL;
+
 	if (mobj->file_type != FILE_CDDA)
 		ch_filename = g_path_get_basename(mobj->file);
 	else
@@ -1369,7 +1376,7 @@ void append_current_playlist(struct musicobject *mobj, struct con_win *cwin)
 			   P_MOBJ_PTR, mobj,
 			   P_PLAY_PIXBUF, pixbuf,
 			   P_TRACK_NO, ch_track_no,
-			   P_TITLE, mobj->tags->title,
+			   P_TITLE, (mobj->tags->title && strlen(mobj->tags->title)) ? mobj->tags->title : g_path_get_basename(mobj->file),
 			   P_ARTIST, mobj->tags->artist,
 			   P_ALBUM, mobj->tags->album,
 			   P_GENRE, mobj->tags->genre,
