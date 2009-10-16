@@ -1474,7 +1474,6 @@ GtkUIManager* create_menu(struct con_win *cwin)
 {
 	GtkUIManager *main_menu = NULL;
 	GtkActionGroup *main_actions;
-	GtkAction *action = NULL;
 	GError *error = NULL;
 
 	main_actions = gtk_action_group_new("Main Actions");
@@ -1519,6 +1518,7 @@ GtkWidget *create_playlist_pane(struct con_win *cwin)
 	save_btn = gtk_button_new();
  	gtk_button_set_image(GTK_BUTTON(save_btn), gtk_image_new_from_stock(GTK_STOCK_SAVE, GTK_ICON_SIZE_MENU));
 	gtk_button_set_relief(GTK_BUTTON(save_btn),GTK_RELIEF_NONE);
+	gtk_widget_set_tooltip_text(GTK_WIDGET(save_btn), _("Save complete playlist"));
 	gtk_box_pack_start(GTK_BOX(htools), save_btn, FALSE, FALSE, 0);
 
 	g_signal_connect(G_OBJECT(save_btn), "clicked",
@@ -1527,6 +1527,7 @@ GtkWidget *create_playlist_pane(struct con_win *cwin)
 	purge_btn = gtk_button_new();
  	gtk_button_set_image(GTK_BUTTON(purge_btn), gtk_image_new_from_stock(GTK_STOCK_DELETE, GTK_ICON_SIZE_MENU));
 	gtk_button_set_relief(GTK_BUTTON(purge_btn),GTK_RELIEF_NONE);
+	gtk_widget_set_tooltip_text(GTK_WIDGET(purge_btn), _("Clear playlist"));
 	gtk_box_pack_start(GTK_BOX(htools), purge_btn, FALSE, FALSE,0);
 
 	g_signal_connect(G_OBJECT(purge_btn), "clicked",
@@ -1535,6 +1536,7 @@ GtkWidget *create_playlist_pane(struct con_win *cwin)
 	to_now_btn = gtk_button_new();
  	gtk_button_set_image(GTK_BUTTON(to_now_btn), gtk_image_new_from_stock(GTK_STOCK_JUMP_TO, GTK_ICON_SIZE_MENU));
 	gtk_button_set_relief(GTK_BUTTON(to_now_btn),GTK_RELIEF_NONE);
+	gtk_widget_set_tooltip_text(GTK_WIDGET(to_now_btn), _("Jump to playing song"));
 	gtk_box_pack_start(GTK_BOX(htools), to_now_btn, FALSE, FALSE,0);
 
 	g_signal_connect(G_OBJECT(to_now_btn), "clicked",
@@ -2020,6 +2022,9 @@ GtkWidget * create_combo_order(struct con_win *cwin)
 			 "button-press-event",
 			 G_CALLBACK(library_page_right_click_cb),
 			 cwin);
+
+	gtk_widget_set_tooltip_text(GTK_WIDGET(button), _("Options of the library"));
+
 	cwin->combo_order = button;
 	cwin->combo_order_label = label_order;
 
