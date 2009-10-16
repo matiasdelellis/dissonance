@@ -349,6 +349,7 @@ struct tags {
 	gchar *artist;
 	gchar *album;
 	gchar *genre;
+	gchar *comment;
 	guint year;
 	guint track_no;
 	gint length;
@@ -667,6 +668,8 @@ void shuffle_action(GtkToggleAction *action, struct con_win *cwin);
 void repeat_action(GtkToggleAction *action, struct con_win *cwin);
 void pref_action(GtkAction *action, struct con_win *cwin);
 void fullscreen_action (GtkAction *action, struct con_win *cwin);
+void library_pane_action (GtkAction *action, struct con_win *cwin);
+void files_pane_action (GtkAction *action, struct con_win *cwin);
 void menu_bar_action (GtkAction *action, struct con_win *cwin);
 void jump_to_playing_song_action (GtkAction *action, struct con_win *cwin);
 void rescan_library_action(GtkAction *action, struct con_win *cwin);

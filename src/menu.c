@@ -325,6 +325,24 @@ fullscreen_action (GtkAction *action, struct con_win *cwin)
 }
 
 void
+library_pane_action (GtkAction *action, struct con_win *cwin)
+{
+	gboolean ret;
+	ret = gtk_toggle_action_get_active(GTK_TOGGLE_ACTION(action));
+
+	gtk_toggle_button_set_active( GTK_TOGGLE_BUTTON(cwin->toggle_lib), ret);
+}
+
+void
+files_pane_action (GtkAction *action, struct con_win *cwin)
+{
+	gboolean ret;
+	ret = gtk_toggle_action_get_active(GTK_TOGGLE_ACTION(action));
+
+	gtk_toggle_button_set_active( GTK_TOGGLE_BUTTON(cwin->toggle_file), ret);
+}
+
+void
 menu_bar_action (GtkAction *action, struct con_win *cwin)
 {
 	GtkWidget *menu_bar;
