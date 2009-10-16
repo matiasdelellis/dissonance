@@ -90,8 +90,9 @@ gchar *cp_context_menu_xml = "<ui>		    				\
 
 gchar *playlist_tree_context_menu_xml = "<ui>	\
 	<popup>					\
-	<menuitem action=\"Play\"/>		\
-	<menuitem action=\"Enqueue\"/>		\
+	<menuitem action=\"Add to playlist\"/>	\
+	<menuitem action=\"Replace playlist\"/>	\
+	<separator/>				\
 	<menuitem action=\"Delete\"/>		\
 	<menuitem action=\"Export\"/>		\
 	</popup>				\
@@ -99,25 +100,26 @@ gchar *playlist_tree_context_menu_xml = "<ui>	\
 
 gchar *library_tree_context_menu_xml = "<ui>		\
 	<popup>						\
-	<menuitem action=\"Play\"/>			\
-	<menuitem action=\"Enqueue\"/>			\
+	<menuitem action=\"Add to playlist\"/>		\
+	<menuitem action=\"Replace playlist\"/>		\
+	<separator/>					\
 	<menuitem action=\"Edit\"/>			\
 	<menuitem action=\"Delete (From library)\"/>	\
 	<menuitem action=\"Delete (From HDD)\"/>	\
 	</popup>					\
 	</ui>";
 
-gchar *file_tree_dir_context_menu_xml = "<ui>		\
-	<popup>						\
-	<menuitem action=\"REnqueue\"/>			\
-	<menuitem action=\"NEnqueue\"/>			\
-	</popup>					\
+gchar *file_tree_dir_context_menu_xml = "<ui>			\
+	<popup>							\
+	<menuitem action=\"Add to playlist (Recursive)\"/>	\
+	<menuitem action=\"Add to playlist (Non recursive)\"/>	\
+	</popup>						\
 	</ui>";
 
 gchar *file_tree_file_context_menu_xml = "<ui>		\
 	<popup>						\
-	<menuitem action=\"Play\"/>			\
-	<menuitem action=\"Enqueue\"/>			\
+	<menuitem action=\"Add to playlist\"/>		\
+	<menuitem action=\"Replace playlist\"/>		\
 	</popup>					\
 	</ui>";
 
@@ -251,10 +253,10 @@ GtkActionEntry cp_context_aentries[] = {
 };
 
 GtkActionEntry playlist_tree_context_aentries[] = {
-	{"Play", GTK_STOCK_MEDIA_PLAY, N_("Play"),
-	 NULL, "Play", G_CALLBACK(playlist_tree_play)},
-	{"Enqueue", GTK_STOCK_COPY, N_("Enqueue"),
-	 NULL, "Enqueue", G_CALLBACK(playlist_tree_enqueue)},
+	{"Add to playlist", GTK_STOCK_COPY, N_("_Add to playlist"),
+	 NULL, "Add to playlist", G_CALLBACK(playlist_tree_add_to_playlist)},
+	{"Replace playlist", GTK_STOCK_MEDIA_PLAY, N_("_Replace playlist"),
+	 NULL, "Replace playlist", G_CALLBACK(playlist_tree_replace_playlist)},
 	{"Delete", GTK_STOCK_REMOVE, N_("Delete"),
 	 NULL, "Delete", G_CALLBACK(playlist_tree_delete)},
 	{"Export", GTK_STOCK_SAVE, N_("Export"),
@@ -262,10 +264,10 @@ GtkActionEntry playlist_tree_context_aentries[] = {
 };
 
 GtkActionEntry library_tree_context_aentries[] = {
-	{"Play", GTK_STOCK_MEDIA_PLAY, N_("Play"),
-	 NULL, "Play", G_CALLBACK(library_tree_play)},
-	{"Enqueue", GTK_STOCK_COPY, N_("Enqueue"),
-	 NULL, "Enqueue", G_CALLBACK(library_tree_enqueue)},
+	{"Add to playlist", GTK_STOCK_COPY, N_("_Add to playlist"),
+	 NULL, "Add to playlist", G_CALLBACK(library_tree_add_to_playlist)},
+	{"Replace playlist", GTK_STOCK_MEDIA_PLAY, N_("_Replace playlist"),
+	 NULL, "Replace playlist", G_CALLBACK(library_tree_replace_playlist)},
 	{"Edit", GTK_STOCK_EDIT, N_("Edit tags"),
 	 NULL, "Edit tags", G_CALLBACK(library_tree_edit_tags)},
 	{"Delete (From library)", GTK_STOCK_REMOVE, N_("Delete from library"),
@@ -275,17 +277,17 @@ GtkActionEntry library_tree_context_aentries[] = {
 };
 
 GtkActionEntry file_tree_dir_context_aentries[] = {
-	{"REnqueue", GTK_STOCK_COPY, N_("Enqueue (Recursive)"),
-	 NULL, "Enqueue (Recursive)", G_CALLBACK(file_tree_enqueue_recur)},
-	{"NEnqueue", GTK_STOCK_COPY, N_("Enqueue (Non-Recursive)"),
-	 NULL, "Enqueue (Non Recursive)", G_CALLBACK(file_tree_enqueue_non_recur)}
+	{"Add to playlist (Recursive)", GTK_STOCK_COPY, N_("Add to playlist (Recursive)"),
+	 NULL, "Add to playlist (Recursive)", G_CALLBACK(file_tree_add_to_playlist_recur)},
+	{"Add to playlist (Non recursive)", GTK_STOCK_COPY, N_("Add to playlist (Non recursive)"),
+	 NULL, "Add to playlist (Non recursive)", G_CALLBACK(file_tree_add_to_playlist_non_recur)}
 };
 
 GtkActionEntry file_tree_file_context_aentries[] = {
-	{"Play", GTK_STOCK_MEDIA_PLAY, N_("Play"),
-	 NULL, "Play", G_CALLBACK(file_tree_play)},
-	{"Enqueue", GTK_STOCK_COPY, N_("Enqueue"),
-	 NULL, "Enqueue", G_CALLBACK(file_tree_enqueue)}
+	{"Add to playlist", GTK_STOCK_COPY, N_("_Add to playlist"),
+	 NULL, "Add to playlist", G_CALLBACK(file_tree_add_to_playlist)},
+	{"Replace playlist", GTK_STOCK_MEDIA_PLAY, N_("_Replace playlist"),
+	 NULL, "Replace playlist", G_CALLBACK(file_tree_replace_playlist)}
 };
 
 GtkActionEntry library_page_context_aentries[] = {

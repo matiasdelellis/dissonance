@@ -720,10 +720,10 @@ void file_tree_row_activated_cb(GtkTreeView *file_tree,
 gboolean file_tree_right_click_cb(GtkWidget *widget,
 				  GdkEventButton *event,
 				  struct con_win *cwin);
-void file_tree_play(GtkAction *action, struct con_win *cwin);
-void file_tree_enqueue(GtkAction *action, struct con_win *cwin);
-void file_tree_enqueue_recur(GtkAction *action, struct con_win *cwin);
-void file_tree_enqueue_non_recur(GtkAction *action, struct con_win *cwin);
+void file_tree_replace_playlist(GtkAction *action, struct con_win *cwin);
+void file_tree_add_to_playlist(GtkAction *action, struct con_win *cwin);
+void file_tree_add_to_playlist_recur(GtkAction *action, struct con_win *cwin);
+void file_tree_add_to_playlist_non_recur(GtkAction *action, struct con_win *cwin);
 void dnd_file_tree_get(GtkWidget *widget,
 		       GdkDragContext *context,
 		       GtkSelectionData *data,
@@ -790,8 +790,8 @@ void artist_album_library_tree(GtkAction *action, struct con_win *cwin);
 void genre_album_library_tree(GtkAction *action, struct con_win *cwin);
 void genre_artist_library_tree(GtkAction *action, struct con_win *cwin);
 void genre_artist_album_library_tree(GtkAction *action, struct con_win *cwin);
-void library_tree_play(GtkAction *action, struct con_win *cwin);
-void library_tree_enqueue(GtkAction *action, struct con_win *cwin);
+void library_tree_replace_playlist(GtkAction *action, struct con_win *cwin);
+void library_tree_add_to_playlist(GtkAction *action, struct con_win *cwin);
 void library_tree_edit_tags(GtkAction *action, struct con_win *cwin);
 void library_tree_delete_db(GtkAction *action, struct con_win *cwin);
 void library_tree_delete_hdd(GtkAction *action, struct con_win *cwin);
@@ -844,8 +844,8 @@ void playlist_tree_row_activated_cb(GtkTreeView *playlist_tree,
 gboolean playlist_tree_right_click_cb(GtkWidget *widget,
 				      GdkEventButton *event,
 				      struct con_win *cwin);
-void playlist_tree_play(GtkAction *action, struct con_win *cwin);
-void playlist_tree_enqueue(GtkAction *action, struct con_win *cwin);
+void playlist_tree_replace_playlist(GtkAction *action, struct con_win *cwin);
+void playlist_tree_add_to_playlist(GtkAction *action, struct con_win *cwin);
 void playlist_tree_delete(GtkAction *action, struct con_win *cwin);
 void playlist_tree_export(GtkAction *action, struct con_win *cwi);
 void open_m3u_playlist(gchar *file, struct con_win *cwin);
