@@ -78,7 +78,6 @@ static gboolean get_info_taglib(gchar *file, struct tags *tags)
 	tags->artist = g_strdup(taglib_tag_artist(tag));
 	tags->album = g_strdup(taglib_tag_album(tag));
 	tags->genre = g_strdup(taglib_tag_genre(tag));
-	tags->comment = g_strdup(taglib_tag_comment(tag));
 	tags->track_no = taglib_tag_track(tag);
 	tags->year = taglib_tag_year(tag);
 	tags->bitrate = taglib_audioproperties_bitrate(audio_prop);

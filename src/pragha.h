@@ -350,7 +350,6 @@ struct tags {
 	gchar *artist;
 	gchar *album;
 	gchar *genre;
-	gchar *comment;
 	guint year;
 	guint track_no;
 	gint length;

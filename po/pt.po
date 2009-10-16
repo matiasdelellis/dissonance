@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pragha\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-16 19:08-0300\n"
+"POT-Creation-Date: 2009-10-16 20:42-0300\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Matias <mati86_dl@yahoo.com.ar>\n"
 "Language-Team: Lyceuhns <mail@lyceuhns.net>\n"
@@ -242,19 +242,19 @@ msgstr "Pasta / Arquivo"
 
 #: src/gui.c:313 src/gui.c:974 src/gui.c:1090 src/current_playlist.c:1059
 #: src/current_playlist.c:1196 src/librarytree.c:832 src/librarytree.c:1256
-#: src/statusicon.c:147 src/tags.c:409
+#: src/statusicon.c:147 src/tags.c:408
 msgid "Artist"
 msgstr "Artista"
 
 #: src/gui.c:315 src/gui.c:975 src/gui.c:1091 src/current_playlist.c:1060
 #: src/current_playlist.c:1197 src/librarytree.c:849 src/librarytree.c:1259
-#: src/statusicon.c:148 src/tags.c:410
+#: src/statusicon.c:148 src/tags.c:409
 msgid "Album"
 msgstr "Álbum"
 
 #: src/gui.c:317 src/gui.c:976 src/gui.c:1092 src/current_playlist.c:1061
 #: src/current_playlist.c:1198 src/librarytree.c:866 src/librarytree.c:1262
-#: src/tags.c:411
+#: src/tags.c:410
 msgid "Genre"
 msgstr "Gênero"
 
@@ -292,7 +292,7 @@ msgid "Track"
 msgstr "Faixa"
 
 #: src/gui.c:973 src/gui.c:1089 src/current_playlist.c:1058
-#: src/current_playlist.c:1195 src/statusicon.c:146 src/tags.c:408
+#: src/current_playlist.c:1195 src/statusicon.c:146 src/tags.c:407
 msgid "Title"
 msgstr "Título"
 
@@ -302,7 +302,7 @@ msgid "Bitrate"
 msgstr "Bitrate"
 
 #: src/gui.c:978 src/gui.c:1094 src/current_playlist.c:1062
-#: src/current_playlist.c:1199 src/tags.c:412
+#: src/current_playlist.c:1199 src/tags.c:411
 msgid "Year"
 msgstr "Ano"
 
@@ -383,7 +383,7 @@ msgid "<b>con_playlist</b> is a reserved playlist name"
 msgstr ""
 
 #. Create labels
-#: src/current_playlist.c:1057 src/current_playlist.c:1194 src/tags.c:407
+#: src/current_playlist.c:1057 src/current_playlist.c:1194 src/tags.c:406
 msgid "Track No"
 msgstr "Faixa Nº"
 

@@ -1,10 +1,35 @@
-Overview of changes in Pragha 0.7.0 "Great Like House"
-======================================================
+=======================================
+Overview of changes in Pragha 0.7.1Pre1
+======================================
 
-Now depends on gtk >= 2.16. Thank to this:
-* Eliminate eggtrayicon and sexyentry.
-* Add new tooltip in statusicon with the album art of the reproduced song.
-* The executable, and the memory consumption one was reduced.
+Rework all menus.
+	Use more advisable names. "Add to playlist" instead "Equeque", "Replace playlist" instead "Play", etc.
+	Menus modified completely for one better organization
+	Now activate the panels from the menu bar. 
+	New properties of current song in menu bar.
+
+Others Changes:
+	Add option to search lyrics using http://www.lyricsplugin.com.
+	Add more tooltips.
+	A new icon
+
+Add Fest mode:
+	Add Fullscreen option.
+	Add Options to hide menu bar and status bar.
+
+Bugs fixed:
+	Show "track" (Before show "tracks") in statusbar when unique song in playlist.
+	No show track no in playlist, when is zero.
+	Show filename in playlist when unknown title tag.
+
+======================================================
+OTHERS REALESES:
+======================================================
+V0.7.0
+	Now depends on gtk >= 2.16. Thank to this:
+	* Eliminate eggtrayicon and sexyentry.
+	* Add new tooltip in statusicon with the album art of the reproduced song.
+	* The executable, and the memory consumption one was reduced.
 
 Others Changes:
 	Command "pragha -t", play pause and resume.
@@ -23,10 +48,6 @@ Bugs fixed:
 	Fix crash when click "go to current track".
 	Fix criticals warnings when run and compile pragha.
 	Fix pragha.desktop file.
-
-======================================================
-OTHERS REALESES:
-======================================================
 V0.6.3
 	Add remaining time mode to panel.
 	Pragha remeber and showed last played song.
