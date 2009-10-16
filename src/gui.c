@@ -35,7 +35,12 @@ gchar *main_menu_xml = "<ui>							\
 		</menu>								\
 		<menu action=\"EditMenu\">					\
 			<menuitem action=\"Add the library\"/>	    		\
-			<menuitem action=\"Clear playlist\"/>			\
+			<separator/>						\
+			<menuitem action=\"Remove\"/>		    		\
+			<menuitem action=\"Crop\"/>		    		\
+			<menuitem action=\"Clear playlist\"/>	    		\
+			<separator/>				    		\
+			<menuitem action=\"Save selection\"/>			\
 			<menuitem action=\"Save playlist\"/>			\
 			<separator/>						\
 			<menuitem action=\"Shuffle\"/>				\
@@ -77,14 +82,16 @@ gchar *cp_context_menu_xml = "<ui>		    				\
 	<popup>					    				\
 	<menuitem action=\"Remove\"/>		    				\
 	<menuitem action=\"Crop\"/>		    				\
-	<menuitem action=\"Edit tags\"/>					\
-	<menuitem action=\"Properties\"/>	    				\
-	<separator/>				    				\
-	<menuitem action=\"Save selected as playlist\"/>			\
-	<menuitem action=\"Save complete playlist\"/>				\
 	<menuitem action=\"Clear playlist\"/>	    				\
 	<separator/>				    				\
+	<menuitem action=\"Save selection\"/>					\
+	<menuitem action=\"Save playlist\"/>					\
+	<separator/>				    				\
 	<menuitem action=\"Clear sort\"/>	    				\
+	<separator/>				    				\
+	<menuitem action=\"Properties\"/>	    				\
+	<menuitem action=\"Edit tags\"/>					\
+	<separator/>				    				\
 	</popup>				    				\
 	</ui>";
 
@@ -182,10 +189,16 @@ GtkActionEntry main_aentries[] = {
 	 "<Control>Q", "Quit pragha", G_CALLBACK(quit_action)},
 	{"Add the library", GTK_STOCK_SELECT_ALL, N_("_Add the library"),
 	 NULL, "Add all the library", G_CALLBACK(add_all_action)},
+	{"Remove", GTK_STOCK_REMOVE, N_("Remove"),
+	 "Delete", "Delete this entry", G_CALLBACK(remove_current_playlist)},
+	{"Crop", GTK_STOCK_CUT, N_("Crop"),
+	 "<Control>C", "Crop the playlist", G_CALLBACK(crop_current_playlist)},
 	{"Clear playlist", GTK_STOCK_CLEAR, N_("Clear playlist"),
 	 "<Control>L", "Clear the playlist", G_CALLBACK(clear_current_playlist)},
+	{"Save selection", GTK_STOCK_SAVE, N_("Save selection"),
+	 NULL, "Save selected tracks as playlist", G_CALLBACK(save_selected_playlist)},
 	{"Save playlist", GTK_STOCK_SAVE, N_("Save playlist"),
-	 NULL, "Save playlist", G_CALLBACK(save_current_playlist)},
+	 NULL, "Save the complete playlist", G_CALLBACK(save_current_playlist)},
 	{"Preferences", GTK_STOCK_PREFERENCES, N_("_Preferences"),
 	 "<Control>P", "Set preferences", G_CALLBACK(pref_action)},
 	{"Lateral panel", NULL, N_("Lateral _panel")},
@@ -242,9 +255,9 @@ GtkActionEntry cp_context_aentries[] = {
 	 "<Control>E", "Edit tag for this track", G_CALLBACK(edit_tags_current_playlist)},
 	{"Properties", GTK_STOCK_PROPERTIES, N_("Properties"),
 	 NULL, "Track Properties", G_CALLBACK(track_properties_current_playlist_action)},
-	{"Save selected as playlist", GTK_STOCK_SAVE, N_("Save selected as playlist"),
+	{"Save selection", GTK_STOCK_SAVE, N_("Save selection"),
 	 NULL, "Save selected tracks as playlist", G_CALLBACK(save_selected_playlist)},
-	{"Save complete playlist", GTK_STOCK_SAVE, N_("Save complete playlist"),
+	{"Save playlist", GTK_STOCK_SAVE, N_("Save playlist"),
 	 NULL, "Save the complete playlist", G_CALLBACK(save_current_playlist)},
 	{"Clear playlist", GTK_STOCK_CLEAR, N_("Clear playlist"),
 	 "<Control>L", "Clear the playlist", G_CALLBACK(clear_current_playlist)},
