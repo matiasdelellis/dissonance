@@ -149,7 +149,8 @@
 #define KEY_SHOW_OSD               "show_osd"
 #define KEY_TIMER_MODE		   "timer_mode"
 #define KEY_FULLSCREEN		   "fullscreen"
-#define KEY_MENUBAR		   "menubar"
+#define KEY_MENU_BAR		   "menu_bar"
+#define KEY_STATUS_BAR		   "status_bar"
 
 #define KEY_SAVE_PLAYLIST          "save_playlist"
 #define KEY_CURRENT_REF		   "current_ref"
@@ -408,7 +409,8 @@ struct con_pref {
 	gboolean software_mixer;
 	gboolean use_cddb;
 	gboolean fullscreen;
-	gboolean menubar;
+	gboolean menu_bar;
+	gboolean status_bar;
 	GSList *library_dir;
 	GSList *playlist_columns;
 	GSList *playlist_column_widths;
@@ -671,6 +673,7 @@ void fullscreen_action (GtkAction *action, struct con_win *cwin);
 void library_pane_action (GtkAction *action, struct con_win *cwin);
 void files_pane_action (GtkAction *action, struct con_win *cwin);
 void menu_bar_action (GtkAction *action, struct con_win *cwin);
+void status_bar_action (GtkAction *action, struct con_win *cwin);
 void jump_to_playing_song_action (GtkAction *action, struct con_win *cwin);
 void rescan_library_action(GtkAction *action, struct con_win *cwin);
 void update_library_action(GtkAction *action, struct con_win *cwin);

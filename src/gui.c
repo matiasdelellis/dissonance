@@ -229,7 +229,7 @@ GtkToggleActionEntry toggles_entries[] = {
 	 "<Control>M", "Menu bar", G_CALLBACK(menu_bar_action),
 	TRUE},
 	{"Status bar", NULL, N_("Status bar"),
-	 NULL, "Status bar", G_CALLBACK(lyric_action),
+	 NULL, "Status bar", G_CALLBACK(status_bar_action),
 	TRUE}
 };
 
@@ -1500,18 +1500,6 @@ GtkUIManager* create_menu(struct con_win *cwin)
 	gtk_ui_manager_insert_action_group(main_menu, main_actions, 0);
 
 	cwin->bar_context_menu = main_menu;
-
-	action = gtk_action_group_get_action (main_actions, "Shuffle");
-	gtk_toggle_action_set_active (GTK_TOGGLE_ACTION(action), cwin->cpref->shuffle);
-
-	action = gtk_action_group_get_action (main_actions, "Repeat");
-	gtk_toggle_action_set_active (GTK_TOGGLE_ACTION(action), cwin->cpref->repeat);
-
-	action = gtk_action_group_get_action (main_actions, "Fullscreen");
-	gtk_toggle_action_set_active (GTK_TOGGLE_ACTION(action), cwin->cpref->fullscreen);
-
-	action = gtk_action_group_get_action (main_actions, "Menu bar");
-	gtk_toggle_action_set_active (GTK_TOGGLE_ACTION(action), cwin->cpref->menubar);
 
 	return main_menu;
 }

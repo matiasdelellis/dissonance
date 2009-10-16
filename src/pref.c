@@ -867,12 +867,19 @@ void save_preferences(struct con_win *cwin)
 		g_free(window_size);
 		}
 
-	/* View menu bar option */
+	/* Set menu bar option */
 
 	g_key_file_set_boolean(cwin->cpref->configrc_keyfile,
 			       GROUP_GENERAL,
-			       KEY_MENUBAR,
-			       cwin->cpref->menubar);
+			       KEY_MENU_BAR,
+			       cwin->cpref->menu_bar);
+
+	/* Set status bar option */
+
+	g_key_file_set_boolean(cwin->cpref->configrc_keyfile,
+			       GROUP_GENERAL,
+			       KEY_STATUS_BAR,
+			       cwin->cpref->status_bar);
 
 	/* List of libraries */
 
