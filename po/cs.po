@@ -21,9 +21,8 @@ msgid "_Edit"
 msgstr "_Upravit"
 
 #: src/gui.c:171
-#, fuzzy
 msgid "_View"
-msgstr "_Soubor"
+msgstr "_Zobrazení"
 
 #: src/gui.c:172
 msgid "_Tools"
@@ -34,51 +33,44 @@ msgid "_Help"
 msgstr "_Nápověda"
 
 #: src/gui.c:174 src/gui.c:332
-#, fuzzy
 msgid "_Add files"
-msgstr "Všechny soubory"
+msgstr "_Přidat soubory"
 
 #: src/gui.c:175
 msgid "Open a media file"
 msgstr "Otevřít soubor s médii"
 
 #: src/gui.c:176 src/gui.c:334
-#, fuzzy
 msgid "_Play audio CD"
-msgstr "_Přehrát Audio CD"
+msgstr "_Přehrát audio CD"
 
 #: src/gui.c:178
-#, fuzzy
 msgid "Prev track"
-msgstr "Předchozí"
+msgstr "Předchozí stopa"
 
 #: src/gui.c:180 src/gui.c:338
-#, fuzzy
 msgid "Play / Pause"
-msgstr "Přehrát/Pauza"
+msgstr "Hrát / Pauza"
 
 #: src/gui.c:182 src/gui.c:340
 msgid "Stop"
 msgstr "Zastavit"
 
 #: src/gui.c:184
-#, fuzzy
 msgid "Next track"
-msgstr "Další"
+msgstr "Další stopa"
 
 #: src/gui.c:186
-#, fuzzy
 msgid "_Properties"
-msgstr "Vlastnosti"
+msgstr "_Vlastnosti"
 
 #: src/gui.c:188 src/gui.c:344
 msgid "_Quit"
 msgstr "_Konec"
 
 #: src/gui.c:190
-#, fuzzy
 msgid "_Add the library"
-msgstr "_Aktualizovat knihovnu"
+msgstr "_Přidat knihovnu"
 
 #: src/gui.c:192 src/gui.c:250
 msgid "Remove"
@@ -89,14 +81,12 @@ msgid "Crop"
 msgstr "Ořezat"
 
 #: src/gui.c:196 src/gui.c:262 src/gui.c:1543
-#, fuzzy
 msgid "Clear playlist"
 msgstr "Vyčistit playlist"
 
 #: src/gui.c:198 src/gui.c:258
-#, fuzzy
 msgid "Save selection"
-msgstr "Uložit vybrané jako playlist"
+msgstr "Uložit vybrané"
 
 #: src/gui.c:200 src/gui.c:260 src/current_playlist.c:536
 msgid "Save playlist"
@@ -108,24 +98,21 @@ msgstr "_Možnosti"
 
 #: src/gui.c:204
 msgid "Lateral _panel"
-msgstr ""
+msgstr "Postranní _panel"
 
 #: src/gui.c:205 src/gui.c:1552
 msgid "Jump to playing song"
-msgstr ""
+msgstr "Skočit na hrající píseň"
 
 #: src/gui.c:207
-#, fuzzy
 msgid "Search _lyric"
-msgstr "Prohledat knihovnu"
+msgstr "Hledat _text"
 
 #: src/gui.c:209
-#, fuzzy
 msgid "_Rescan library"
-msgstr "_Projít knihovnu"
+msgstr "_Sestavit znova knihovnu"
 
 #: src/gui.c:211
-#, fuzzy
 msgid "_Update library"
 msgstr "_Aktualizovat knihovnu"
 
@@ -159,7 +146,7 @@ msgstr "_Opakovat"
 
 #: src/gui.c:232
 msgid "_Fullscreen"
-msgstr ""
+msgstr "_Fullscreen"
 
 #: src/gui.c:235 src/gui.c:805 src/pref.c:1230
 msgid "Library"
@@ -171,11 +158,11 @@ msgstr "Soubory"
 
 #: src/gui.c:241
 msgid "Menu bar"
-msgstr ""
+msgstr "Menu"
 
 #: src/gui.c:244
 msgid "Status bar"
-msgstr ""
+msgstr "Status"
 
 #: src/gui.c:254 src/gui.c:284
 msgid "Edit tags"
@@ -186,19 +173,16 @@ msgid "Properties"
 msgstr "Vlastnosti"
 
 #: src/gui.c:264
-#, fuzzy
 msgid "Clear sort"
 msgstr "Zrušit výběr"
 
 #: src/gui.c:269 src/gui.c:280 src/gui.c:300
-#, fuzzy
 msgid "_Add to playlist"
-msgstr "_Přidat vše na současný playlist"
+msgstr "_Přidat na playlist"
 
 #: src/gui.c:271 src/gui.c:282 src/gui.c:302
-#, fuzzy
 msgid "_Replace playlist"
-msgstr "Uložit playlist"
+msgstr "_Nahradit playlist"
 
 #: src/gui.c:273
 msgid "Delete"
@@ -209,7 +193,6 @@ msgid "Export"
 msgstr "Exportovat"
 
 #: src/gui.c:286
-#, fuzzy
 msgid "Delete from library"
 msgstr "Smazat z knihovny"
 
@@ -219,21 +202,19 @@ msgstr "Smazat z disku"
 
 #: src/gui.c:293
 msgid "Add to playlist (Recursive)"
-msgstr ""
+msgstr "Přidat do playlistu (rekurzivně)"
 
 #: src/gui.c:295
 msgid "Add to playlist (Non recursive)"
-msgstr ""
+msgstr "Přidat do playlistu"
 
 #: src/gui.c:307
-#, fuzzy
 msgid "_Expand library"
-msgstr "_Rozbalit vše v knihovně"
+msgstr "_Rozbalit"
 
 #: src/gui.c:309
-#, fuzzy
 msgid "_Collapse library"
-msgstr "_Zabalit vše v knihovně"
+msgstr "_Zabalit"
 
 #: src/gui.c:311 src/librarytree.c:815 src/librarytree.c:1253
 msgid "Folder / File"
@@ -316,7 +297,6 @@ msgid "Filename"
 msgstr "Jméno souboru"
 
 #: src/gui.c:1534
-#, fuzzy
 msgid "Save complete playlist"
 msgstr "Uložit celý playlist"
 
@@ -338,9 +318,8 @@ msgid "<b>Not playing</b>"
 msgstr "<b>Nepřehrává</b>"
 
 #: src/gui.c:2039
-#, fuzzy
 msgid "Options of the library"
-msgstr "_Aktualizovat knihovnu"
+msgstr "_Volby knihovny"
 
 #: src/panel.c:159
 #, c-format
@@ -362,9 +341,8 @@ msgid "%s <small><span weight=\"light\">in</span></small> %s"
 msgstr "%s <small><span weight=\"light\">v</span></small> %s"
 
 #: src/current_playlist.c:58
-#, fuzzy
 msgid "Tracks"
-msgstr "Stopa"
+msgstr "Stopy"
 
 #: src/current_playlist.c:522
 msgid "Save as a new playlist"
@@ -585,7 +563,7 @@ msgstr "Statistika"
 
 #: src/menu.c:661
 msgid "translator-credits"
-msgstr ""
+msgstr "přeložil"
 
 #: src/utils.c:265
 msgid "days"
@@ -597,7 +575,7 @@ msgstr "den"
 
 #: src/utils.c:473
 msgid "Unable to open the browser"
-msgstr ""
+msgstr "Nejde otevřít prohlížeč"
 
 #: src/playlist.c:453
 msgid "Export playlist to file"

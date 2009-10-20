@@ -63,6 +63,8 @@ gchar *main_menu_xml = "<ui>							\
 		<menu action=\"ToolsMenu\">					\
 			<menuitem action=\"Search lyric\"/>			\
 			<separator/>						\
+			<menuitem action=\"Search in playlist\"/>		\
+			<separator/>						\
 			<menuitem action=\"Rescan library\"/>			\
 			<menuitem action=\"Update library\"/>			\
 			<separator/>						\
@@ -160,6 +162,8 @@ gchar *systray_menu_xml = "<ui>				\
 		<menuitem action=\"Play_Pause\"/>	\
 		<menuitem action=\"Stop\"/>		\
 		<menuitem action=\"Next\"/>		\
+		<separator/>						\
+		<menuitem action=\"Properties\"/>			\
 		<separator/>				\
 		<menuitem action=\"Quit\"/>		\
 	</popup>					\
@@ -206,6 +210,8 @@ GtkActionEntry main_aentries[] = {
 	 NULL, "Jump to playing song", G_CALLBACK(jump_to_playing_song_action)},
 	{"Search lyric", GTK_STOCK_JUSTIFY_FILL, N_("Search _lyric"),
 	 NULL, "Search lyric", G_CALLBACK(lyric_action)},
+	{"Search in playlist", GTK_STOCK_FIND, N_("_Search in playlist"),
+	 "<Control><Shift>F", "Search in playlist", G_CALLBACK(search_playlist_action)},
 	{"Rescan library", GTK_STOCK_EXECUTE, N_("_Rescan library"),
 	 NULL, "Rescan library", G_CALLBACK(rescan_library_action)},
 	{"Update library", GTK_STOCK_EXECUTE, N_("_Update library"),
@@ -341,6 +347,8 @@ GtkActionEntry systray_menu_aentries[] = {
 	 NULL, "Stop", G_CALLBACK(stop_action)},
 	{"Next", GTK_STOCK_MEDIA_NEXT, N_("Next Track"),
 	 NULL, "Next Track", G_CALLBACK(next_action)},
+	{"Properties", GTK_STOCK_PROPERTIES, N_("_Properties"),
+	 NULL, "Properties", G_CALLBACK(track_properties_current_playing_action)},
 	{"Quit", GTK_STOCK_QUIT, N_("_Quit"),
 	 NULL, "Quit", G_CALLBACK(systray_quit)}
 };
