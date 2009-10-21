@@ -214,7 +214,6 @@ gint init_config(struct con_win *cwin)
 		album_art_pattern_f,
 		osd_f,
 		fullscreen_f,
-		menu_bar_f,
 		status_bar_f,
 		save_playlist_f,
 		lastfm_f,
@@ -232,7 +231,7 @@ gint init_config(struct con_win *cwin)
 	CDEBUG(DBG_INFO, "Initializing configuration");
 
 	libs_f = lib_add_f = lib_delete_f = columns_f = nodes_f = cur_lib_view_f = FALSE;
-	file_tree_pwd_f = hidden_f = album_f = osd_f = fullscreen_f = menu_bar_f = status_bar_f = lastfm_f = FALSE;
+	file_tree_pwd_f = hidden_f = album_f = osd_f = fullscreen_f = status_bar_f = lastfm_f = FALSE;
 	software_mixer_f = save_playlist_f = album_art_pattern_f = use_cddb_f = FALSE;
 	shuffle_f = repeat_f = window_size_f = all_f = FALSE;
 	audio_sink_f = audio_alsa_device_f = audio_oss_device_f = FALSE;
@@ -320,19 +319,6 @@ gint init_config(struct con_win *cwin)
 			fullscreen_f = FALSE;
 		}
 
-		/* Retrieve view menu bar option */
-
-		cwin->cpref->menu_bar =
-			g_key_file_get_boolean(cwin->cpref->configrc_keyfile,
-					       GROUP_GENERAL,
-					       KEY_MENU_BAR,
-					       &error);
-		if (error) {
-			g_error_free(error);
-			error = NULL;
-			menu_bar_f = FALSE;
-		}
-
 		/* Retrieve view status bar option */
 
 		cwin->cpref->status_bar =
@@ -343,7 +329,7 @@ gint init_config(struct con_win *cwin)
 		if (error) {
 			g_error_free(error);
 			error = NULL;
-			menu_bar_f = FALSE;
+			status_bar_f = FALSE;
 		}
 
 		/* Retrieve list of libraries */
@@ -845,8 +831,6 @@ gint init_config(struct con_win *cwin)
 		cwin->cpref->show_osd = FALSE;
 	if (all_f || fullscreen_f)
 		cwin->cpref->fullscreen = FALSE;
-	if (all_f || menu_bar_f)
-		cwin->cpref->menu_bar = FALSE;
 	if (all_f || status_bar_f)
 		cwin->cpref->status_bar = TRUE;
 	if (all_f || save_playlist_f)
@@ -1144,9 +1128,6 @@ void init_menu_actions(struct con_win *cwin)
 
 	action = gtk_ui_manager_get_action(cwin->bar_context_menu,"/Menubar/ViewMenu/Fullscreen");
 	gtk_toggle_action_set_active (GTK_TOGGLE_ACTION(action), cwin->cpref->fullscreen);
-
-	action = gtk_ui_manager_get_action(cwin->bar_context_menu,"/Menubar/ViewMenu/Menu bar");
-	gtk_toggle_action_set_active (GTK_TOGGLE_ACTION(action), cwin->cpref->menu_bar);
 
 	action = gtk_ui_manager_get_action(cwin->bar_context_menu,"/Menubar/ViewMenu/Status bar");
 	gtk_toggle_action_set_active (GTK_TOGGLE_ACTION(action), cwin->cpref->status_bar);

@@ -867,13 +867,6 @@ void save_preferences(struct con_win *cwin)
 		g_free(window_size);
 		}
 
-	/* Set menu bar option */
-
-	g_key_file_set_boolean(cwin->cpref->configrc_keyfile,
-			       GROUP_GENERAL,
-			       KEY_MENU_BAR,
-			       cwin->cpref->menu_bar);
-
 	/* Set status bar option */
 
 	g_key_file_set_boolean(cwin->cpref->configrc_keyfile,

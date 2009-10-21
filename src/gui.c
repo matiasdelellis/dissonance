@@ -55,7 +55,6 @@ gchar *main_menu_xml = "<ui>							\
 				<menuitem action=\"Library\"/>			\
 				<menuitem action=\"Files\"/>			\
 			</menu>							\
-			<menuitem action=\"Menu bar\"/>				\
 			<menuitem action=\"Status bar\"/>			\
 			<separator/>						\
 			<menuitem action=\"Jump to playing song\"/>		\
@@ -162,8 +161,8 @@ gchar *systray_menu_xml = "<ui>				\
 		<menuitem action=\"Play_Pause\"/>	\
 		<menuitem action=\"Stop\"/>		\
 		<menuitem action=\"Next\"/>		\
-		<separator/>						\
-		<menuitem action=\"Properties\"/>			\
+		<separator/>				\
+		<menuitem action=\"Properties\"/>	\
 		<separator/>				\
 		<menuitem action=\"Quit\"/>		\
 	</popup>					\
@@ -244,9 +243,6 @@ GtkToggleActionEntry toggles_entries[] = {
 	{"Files", NULL, N_("Files"),
 	 NULL, "Files", G_CALLBACK(files_pane_action),
 	FALSE},
-	{"Menu bar", NULL, N_("Menu bar"),
-	 "<Control>M", "Menu bar", G_CALLBACK(menu_bar_action),
-	TRUE},
 	{"Status bar", NULL, N_("Status bar"),
 	 NULL, "Status bar", G_CALLBACK(status_bar_action),
 	TRUE}

@@ -316,12 +316,20 @@ void pref_action(GtkAction *action, struct con_win *cwin)
 void
 fullscreen_action (GtkAction *action, struct con_win *cwin)
 {
+	GtkWidget *menu_bar;
+
+	menu_bar = gtk_ui_manager_get_widget(cwin->bar_context_menu, "/Menubar");
+
 	cwin->cpref->fullscreen = gtk_toggle_action_get_active(GTK_TOGGLE_ACTION(action));
 
-	if(!cwin->cpref->fullscreen)
+	if(!cwin->cpref->fullscreen){
 		gtk_window_unfullscreen(GTK_WINDOW(cwin->mainwindow));
-	else
+		gtk_widget_show(GTK_WIDGET(menu_bar));
+	}
+	else{
 		gtk_window_fullscreen(GTK_WINDOW(cwin->mainwindow));
+		gtk_widget_hide(GTK_WIDGET(menu_bar));
+	}
 }
 
 /* Handler for the 'Library panel' item in the Edit menu */
@@ -344,23 +352,6 @@ files_pane_action (GtkAction *action, struct con_win *cwin)
 	ret = gtk_toggle_action_get_active(GTK_TOGGLE_ACTION(action));
 
 	gtk_toggle_button_set_active( GTK_TOGGLE_BUTTON(cwin->toggle_file), ret);
-}
-
-/* Handler for the 'Menu bar' item in the Edit menu */
-
-void
-menu_bar_action (GtkAction *action, struct con_win *cwin)
-{
-	GtkWidget *menu_bar;
-
-	cwin->cpref->menu_bar = gtk_toggle_action_get_active(GTK_TOGGLE_ACTION(action));
-
-	menu_bar = gtk_ui_manager_get_widget(cwin->bar_context_menu, "/Menubar");
-
-	if(cwin->cpref->menu_bar)
-		gtk_widget_show(GTK_WIDGET(menu_bar));
-	else
-		gtk_widget_hide(GTK_WIDGET(menu_bar));
 }
 
 /* Handler for the 'Status bar' item in the Edit menu */
