@@ -1883,6 +1883,8 @@ GtkWidget* create_search_bar(struct con_win *cwin)
 	gtk_entry_set_icon_from_stock (GTK_ENTRY(search_entry), GTK_ENTRY_ICON_PRIMARY, GTK_STOCK_FIND);
 	gtk_entry_set_icon_from_stock (GTK_ENTRY(search_entry), GTK_ENTRY_ICON_SECONDARY, GTK_STOCK_CLEAR);
 
+	gtk_entry_set_icon_sensitive (GTK_ENTRY(search_entry), GTK_ENTRY_ICON_SECONDARY, FALSE);
+
 	/* Signal handlers */
 
 	g_signal_connect (G_OBJECT(search_entry),

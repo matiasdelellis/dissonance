@@ -173,7 +173,7 @@ systray_volume_scroll (GtkWidget *widget, GdkEventScroll *event, struct con_win 
 			return;
 	}
 	gtk_scale_button_set_value(GTK_SCALE_BUTTON(cwin->vol_button),
-								SCALE_UP_VOL(cwin->cmixer->curr_vol));
+						cwin->cmixer->curr_vol);
 	return;
 }
 
