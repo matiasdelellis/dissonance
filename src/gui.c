@@ -88,8 +88,6 @@ gchar *cp_context_menu_xml = "<ui>		    				\
 	<menuitem action=\"Save selection\"/>					\
 	<menuitem action=\"Save playlist\"/>					\
 	<separator/>				    				\
-	<menuitem action=\"Clear sort\"/>	    				\
-	<separator/>				    				\
 	<menuitem action=\"Properties\"/>	    				\
 	<menuitem action=\"Edit tags\"/>					\
 	<separator/>				    				\
@@ -190,25 +188,25 @@ GtkActionEntry main_aentries[] = {
 	 NULL, "Properties", G_CALLBACK(track_properties_current_playing_action)},
 	{"Quit", GTK_STOCK_QUIT, N_("_Quit"),
 	 "<Control>Q", "Quit pragha", G_CALLBACK(quit_action)},
-	{"Add the library", GTK_STOCK_SELECT_ALL, N_("_Add the library"),
+	{"Add the library", GTK_STOCK_ADD, N_("_Add the library"),
 	 NULL, "Add all the library", G_CALLBACK(add_all_action)},
 	{"Remove", GTK_STOCK_REMOVE, N_("Remove"),
 	 "Delete", "Delete this entry", G_CALLBACK(remove_current_playlist)},
-	{"Crop", GTK_STOCK_CUT, N_("Crop"),
+	{"Crop", GTK_STOCK_REMOVE, N_("Crop"),
 	 "<Control>C", "Crop the playlist", G_CALLBACK(crop_current_playlist)},
 	{"Clear playlist", GTK_STOCK_CLEAR, N_("Clear playlist"),
 	 "<Control>L", "Clear the playlist", G_CALLBACK(clear_current_playlist)},
 	{"Save selection", GTK_STOCK_SAVE, N_("Save selection"),
-	 NULL, "Save selected tracks as playlist", G_CALLBACK(save_selected_playlist)},
+	 "<Control><Shift>S", "Save selected tracks as playlist", G_CALLBACK(save_selected_playlist)},
 	{"Save playlist", GTK_STOCK_SAVE, N_("Save playlist"),
-	 NULL, "Save the complete playlist", G_CALLBACK(save_current_playlist)},
+	 "<Control>S", "Save the complete playlist", G_CALLBACK(save_current_playlist)},
 	{"Preferences", GTK_STOCK_PREFERENCES, N_("_Preferences"),
 	 "<Control>P", "Set preferences", G_CALLBACK(pref_action)},
 	{"Lateral panel", NULL, N_("Lateral _panel")},
 	{"Jump to playing song", GTK_STOCK_JUMP_TO, N_("Jump to playing song"),
-	 NULL, "Jump to playing song", G_CALLBACK(jump_to_playing_song_action)},
+	 "<Control>J", "Jump to playing song", G_CALLBACK(jump_to_playing_song_action)},
 	{"Search lyric", GTK_STOCK_JUSTIFY_FILL, N_("Search _lyric"),
-	 NULL, "Search lyric", G_CALLBACK(lyric_action)},
+	 "<Control>Y", "Search lyric", G_CALLBACK(lyric_action)},
 	{"Search in playlist", GTK_STOCK_FIND, N_("_Search in playlist"),
 	 "<Control><Shift>F", "Search in playlist", G_CALLBACK(search_playlist_action)},
 	{"Rescan library", GTK_STOCK_EXECUTE, N_("_Rescan library"),
@@ -229,10 +227,10 @@ GtkActionEntry main_aentries[] = {
 
 GtkToggleActionEntry toggles_entries[] = {
 	{"Shuffle", NULL, N_("_Shuffle"),
-	 NULL, "Shuffle Songs", G_CALLBACK(shuffle_action),
+	 "<Control>U", "Shuffle Songs", G_CALLBACK(shuffle_action),
 	 FALSE},
 	{"Repeat", NULL, N_("_Repeat"),
-	 NULL, "Repeat Songs", G_CALLBACK(repeat_action), 
+	 "<Control>R", "Repeat Songs", G_CALLBACK(repeat_action), 
 	 FALSE},
 	{"Fullscreen", NULL, N_("_Fullscreen"),
 	 "F11", "Switch between full screen and windowed mode", G_CALLBACK(fullscreen_action),
@@ -251,9 +249,9 @@ GtkToggleActionEntry toggles_entries[] = {
 GtkActionEntry cp_context_aentries[] = {
 	{"Remove", GTK_STOCK_REMOVE, N_("Remove"),
 	 "Delete", "Delete this entry", G_CALLBACK(remove_current_playlist)},
-	{"Crop", GTK_STOCK_CUT, N_("Crop"),
+	{"Crop", GTK_STOCK_REMOVE, N_("Crop"),
 	 "<Control>C", "Crop the playlist", G_CALLBACK(crop_current_playlist)},
-	{"Edit tags", GTK_STOCK_EDIT, N_("Edit tags"),
+	{"Edit tags", GTK_STOCK_INFO, N_("Edit tags"),
 	 "<Control>E", "Edit tag for this track", G_CALLBACK(edit_tags_current_playlist)},
 	{"Properties", GTK_STOCK_PROPERTIES, N_("Properties"),
 	 NULL, "Track Properties", G_CALLBACK(track_properties_current_playlist_action)},
@@ -262,15 +260,13 @@ GtkActionEntry cp_context_aentries[] = {
 	{"Save playlist", GTK_STOCK_SAVE, N_("Save playlist"),
 	 NULL, "Save the complete playlist", G_CALLBACK(save_current_playlist)},
 	{"Clear playlist", GTK_STOCK_CLEAR, N_("Clear playlist"),
-	 "<Control>L", "Clear the playlist", G_CALLBACK(clear_current_playlist)},
-	{"Clear sort", GTK_STOCK_REFRESH, N_("Clear sort"),
-	 "<Control>S", "Clear sort", G_CALLBACK(clear_sort_current_playlist)}
+	 "<Control>L", "Clear the playlist", G_CALLBACK(clear_current_playlist)}
 };
 
 GtkActionEntry playlist_tree_context_aentries[] = {
-	{"Add to playlist", GTK_STOCK_COPY, N_("_Add to playlist"),
+	{"Add to playlist", GTK_STOCK_ADD, N_("_Add to playlist"),
 	 NULL, "Add to playlist", G_CALLBACK(playlist_tree_add_to_playlist)},
-	{"Replace playlist", GTK_STOCK_MEDIA_PLAY, N_("_Replace playlist"),
+	{"Replace playlist", NULL, N_("_Replace playlist"),
 	 NULL, "Replace playlist", G_CALLBACK(playlist_tree_replace_playlist)},
 	{"Delete", GTK_STOCK_REMOVE, N_("Delete"),
 	 NULL, "Delete", G_CALLBACK(playlist_tree_delete)},
@@ -279,9 +275,9 @@ GtkActionEntry playlist_tree_context_aentries[] = {
 };
 
 GtkActionEntry library_tree_context_aentries[] = {
-	{"Add to playlist", GTK_STOCK_COPY, N_("_Add to playlist"),
+	{"Add to playlist", GTK_STOCK_ADD, N_("_Add to playlist"),
 	 NULL, "Add to playlist", G_CALLBACK(library_tree_add_to_playlist)},
-	{"Replace playlist", GTK_STOCK_MEDIA_PLAY, N_("_Replace playlist"),
+	{"Replace playlist", NULL, N_("_Replace playlist"),
 	 NULL, "Replace playlist", G_CALLBACK(library_tree_replace_playlist)},
 	{"Edit", GTK_STOCK_EDIT, N_("Edit tags"),
 	 NULL, "Edit tags", G_CALLBACK(library_tree_edit_tags)},
@@ -292,16 +288,16 @@ GtkActionEntry library_tree_context_aentries[] = {
 };
 
 GtkActionEntry file_tree_dir_context_aentries[] = {
-	{"Add to playlist (Recursive)", GTK_STOCK_COPY, N_("Add to playlist (Recursive)"),
+	{"Add to playlist (Recursive)", GTK_STOCK_ADD, N_("Add to playlist (Recursive)"),
 	 NULL, "Add to playlist (Recursive)", G_CALLBACK(file_tree_add_to_playlist_recur)},
-	{"Add to playlist (Non recursive)", GTK_STOCK_COPY, N_("Add to playlist (Non recursive)"),
+	{"Add to playlist (Non recursive)", GTK_STOCK_ADD, N_("Add to playlist (Non recursive)"),
 	 NULL, "Add to playlist (Non recursive)", G_CALLBACK(file_tree_add_to_playlist_non_recur)}
 };
 
 GtkActionEntry file_tree_file_context_aentries[] = {
-	{"Add to playlist", GTK_STOCK_COPY, N_("_Add to playlist"),
+	{"Add to playlist", GTK_STOCK_ADD, N_("_Add to playlist"),
 	 NULL, "Add to playlist", G_CALLBACK(file_tree_add_to_playlist)},
-	{"Replace playlist", GTK_STOCK_MEDIA_PLAY, N_("_Replace playlist"),
+	{"Replace playlist", NULL, N_("_Replace playlist"),
 	 NULL, "Replace playlist", G_CALLBACK(file_tree_replace_playlist)}
 };
 
@@ -967,7 +963,9 @@ static GtkWidget* create_header_context_menu(struct con_win *cwin)
 		*toggle_bitrate,
 		*toggle_year,
 		*toggle_length,
-		*toggle_filename;
+		*toggle_filename,
+		*separator,
+		*action_clear_sort;
 
 	menu = gtk_menu_new();
 
@@ -982,6 +980,11 @@ static GtkWidget* create_header_context_menu(struct con_win *cwin)
 	toggle_year = gtk_check_menu_item_new_with_label(_("Year"));
 	toggle_length = gtk_check_menu_item_new_with_label(_("Length"));
 	toggle_filename = gtk_check_menu_item_new_with_label(_("Filename"));
+	separator = gtk_separator_menu_item_new ();
+
+	action_clear_sort = gtk_image_menu_item_new_with_label(_("Clear sort"));
+        gtk_image_menu_item_set_image(GTK_IMAGE_MENU_ITEM(action_clear_sort),
+                gtk_image_new_from_stock(GTK_STOCK_REFRESH, GTK_ICON_SIZE_MENU));
 
 	/* Add the items to the menu */
 
@@ -994,6 +997,8 @@ static GtkWidget* create_header_context_menu(struct con_win *cwin)
 	gtk_menu_shell_append(GTK_MENU_SHELL(menu), toggle_year);
 	gtk_menu_shell_append(GTK_MENU_SHELL(menu), toggle_length);
 	gtk_menu_shell_append(GTK_MENU_SHELL(menu), toggle_filename);
+	gtk_menu_shell_append(GTK_MENU_SHELL(menu), separator);
+	gtk_menu_shell_append(GTK_MENU_SHELL(menu), action_clear_sort);
 
 	/* Initialize the state of the items */
 
@@ -1036,6 +1041,8 @@ static GtkWidget* create_header_context_menu(struct con_win *cwin)
 			 G_CALLBACK(playlist_length_column_change_cb), cwin);
 	g_signal_connect(G_OBJECT(toggle_filename), "toggled",
 			 G_CALLBACK(playlist_filename_column_change_cb), cwin);
+	g_signal_connect(G_OBJECT(action_clear_sort), "activate",
+			 G_CALLBACK(clear_sort_current_playlist_cb), cwin);
 
 	gtk_widget_show_all(menu);
 

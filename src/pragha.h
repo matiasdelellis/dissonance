@@ -950,6 +950,8 @@ void playlist_length_column_change_cb(GtkCheckMenuItem *item,
 				      struct con_win *cwin);
 void playlist_filename_column_change_cb(GtkCheckMenuItem *item,
 					struct con_win *cwin);
+void clear_sort_current_playlist_cb(GtkMenuItem *item,
+					struct con_win *cwin);
 gint compare_track_no(GtkTreeModel *model, GtkTreeIter *a,
 		      GtkTreeIter *b, gpointer data);
 gint compare_bitrate(GtkTreeModel *model, GtkTreeIter *a,

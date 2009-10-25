@@ -2385,6 +2385,19 @@ void playlist_filename_column_change_cb(GtkCheckMenuItem *item, struct con_win *
 	modify_current_playlist_columns(cwin, col_name, state);
 }
 
+/* Clear sort in the current playlist */
+
+void clear_sort_current_playlist_cb(GtkMenuItem *item, struct con_win *cwin)
+{
+	GtkTreeModel *model;
+
+	model = gtk_tree_view_get_model(GTK_TREE_VIEW(cwin->current_playlist));
+
+	gtk_tree_sortable_set_sort_column_id(GTK_TREE_SORTABLE(model),
+			     GTK_TREE_SORTABLE_UNSORTED_SORT_COLUMN_ID,
+			     GTK_SORT_ASCENDING);
+}
+
 /* Comparison function for track numbers */
 
 gint compare_track_no(GtkTreeModel *model, GtkTreeIter *a, GtkTreeIter *b, gpointer data)
