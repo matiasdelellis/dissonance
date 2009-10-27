@@ -196,10 +196,10 @@ GtkActionEntry main_aentries[] = {
 	 "<Control>C", "Crop the playlist", G_CALLBACK(crop_current_playlist)},
 	{"Clear playlist", GTK_STOCK_CLEAR, N_("Clear playlist"),
 	 "<Control>L", "Clear the playlist", G_CALLBACK(clear_current_playlist)},
-	{"Save selection", GTK_STOCK_SAVE, N_("Save selection"),
-	 "<Control><Shift>S", "Save selected tracks as playlist", G_CALLBACK(save_selected_playlist)},
+	{"Save selection", GTK_STOCK_SAVE_AS, N_("Save selection"),
+	 "<control><shift>s", "Save selected tracks as playlist", G_CALLBACK(save_selected_playlist)},
 	{"Save playlist", GTK_STOCK_SAVE, N_("Save playlist"),
-	 "<Control>S", "Save the complete playlist", G_CALLBACK(save_current_playlist)},
+	 "<control>s", "Save the complete playlist", G_CALLBACK(save_current_playlist)},
 	{"Preferences", GTK_STOCK_PREFERENCES, N_("_Preferences"),
 	 "<Control>P", "Set preferences", G_CALLBACK(pref_action)},
 	{"Lateral panel", NULL, N_("Lateral _panel")},
@@ -208,7 +208,7 @@ GtkActionEntry main_aentries[] = {
 	{"Search lyric", GTK_STOCK_JUSTIFY_FILL, N_("Search _lyric"),
 	 "<Control>Y", "Search lyric", G_CALLBACK(lyric_action)},
 	{"Search in playlist", GTK_STOCK_FIND, N_("_Search in playlist"),
-	 "<Control><Shift>F", "Search in playlist", G_CALLBACK(search_playlist_action)},
+	 "<Control>F", "Search in playlist", G_CALLBACK(search_playlist_action)},
 	{"Rescan library", GTK_STOCK_EXECUTE, N_("_Rescan library"),
 	 NULL, "Rescan library", G_CALLBACK(rescan_library_action)},
 	{"Update library", GTK_STOCK_EXECUTE, N_("_Update library"),
@@ -250,9 +250,9 @@ GtkActionEntry cp_context_aentries[] = {
 	{"Remove", GTK_STOCK_REMOVE, N_("Remove"),
 	 "Delete", "Delete this entry", G_CALLBACK(remove_current_playlist)},
 	{"Crop", GTK_STOCK_REMOVE, N_("Crop"),
-	 "<Control>C", "Crop the playlist", G_CALLBACK(crop_current_playlist)},
+	 NULL, "Crop the playlist", G_CALLBACK(crop_current_playlist)},
 	{"Edit tags", GTK_STOCK_INFO, N_("Edit tags"),
-	 "<Control>E", "Edit tag for this track", G_CALLBACK(edit_tags_current_playlist)},
+	 NULL, "Edit tag for this track", G_CALLBACK(edit_tags_current_playlist)},
 	{"Properties", GTK_STOCK_PROPERTIES, N_("Properties"),
 	 NULL, "Track Properties", G_CALLBACK(track_properties_current_playlist_action)},
 	{"Save selection", GTK_STOCK_SAVE, N_("Save selection"),
@@ -260,7 +260,7 @@ GtkActionEntry cp_context_aentries[] = {
 	{"Save playlist", GTK_STOCK_SAVE, N_("Save playlist"),
 	 NULL, "Save the complete playlist", G_CALLBACK(save_current_playlist)},
 	{"Clear playlist", GTK_STOCK_CLEAR, N_("Clear playlist"),
-	 "<Control>L", "Clear the playlist", G_CALLBACK(clear_current_playlist)}
+	 NULL, "Clear the playlist", G_CALLBACK(clear_current_playlist)}
 };
 
 GtkActionEntry playlist_tree_context_aentries[] = {
@@ -1549,7 +1549,7 @@ GtkWidget *create_playlist_pane(struct con_win *cwin)
 			 G_CALLBACK(save_current_playlist), cwin);
 
 	purge_btn = gtk_button_new();
- 	gtk_button_set_image(GTK_BUTTON(purge_btn), gtk_image_new_from_stock(GTK_STOCK_DELETE, GTK_ICON_SIZE_MENU));
+ 	gtk_button_set_image(GTK_BUTTON(purge_btn), gtk_image_new_from_stock(GTK_STOCK_CLEAR, GTK_ICON_SIZE_MENU));
 	gtk_button_set_relief(GTK_BUTTON(purge_btn),GTK_RELIEF_NONE);
 	gtk_widget_set_tooltip_text(GTK_WIDGET(purge_btn), _("Clear playlist"));
 	gtk_box_pack_start(GTK_BOX(htools), purge_btn, FALSE, FALSE,0);

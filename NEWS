@@ -1,23 +1,31 @@
-=======================================
-Overview of changes in Pragha 0.7.1Pre1
-======================================
+===================================
+Overview of changes in Pragha 0.7.1
+===================================
 
 Rework all menus.
-	Use more advisable names. "Add to playlist" instead "Equeque", "Replace playlist" instead "Play", etc.
-	Menus modified completely for one better organization
+	Use more advisable names: "Add to playlist" instead "Equeque", "Replace playlist" instead "Play", etc.
+	Use betters icon: GTK_STOCK_ADD instead GTK_STOCK_COPY when add music, NULL instead GTK_STOCK_PLAY when replace playlist, etc.
+	Add betters accelerators: <Control>R to repeat, <Control>Y to search lyrics, etc.
 	Now activate the panels from the menu bar. 
-	New properties of current song in menu bar.
+	New properties of current song in menu bar and status icon.
+	Clear Sort in Current playlist header_context_menu.
 
 Others Changes:
 	Add option to search lyrics using http://www.lyricsplugin.com.
 	Add more tooltips.
-	A new icon
-
-Add Fest mode:
 	Add Fullscreen option.
-	Add Options to hide menu bar and status bar.
+	Add Options to hide status bar.
+	A new icon of pragha.
+
+Updates Translations:
+	Rusian translation thanks to Evgen.
+	Czech translation thanks to alois.nespor.
+	Japanese translation thanks to Masato Hashimoto.
+	Spanish translation thanks to msdelos.
+	German translation thanks to PhotonX.
 
 Bugs fixed:
+	When create search entry, no sensitive claer icon.
 	Show "track" (Before show "tracks") in statusbar when unique song in playlist.
 	No show track no in playlist, when is zero.
 	Show filename in playlist when unknown title tag.
