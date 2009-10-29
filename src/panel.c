@@ -371,12 +371,14 @@ void play_pause_resume(struct con_win *cwin)
 		resume_playback(cwin);
 		break;
 	case ST_STOPPED:
-		path = current_playlist_get_selection(cwin);
+		if(cwin->cstate->queue_track_refs)
+			path = get_next_queue_track(cwin);
+		if (!path)
+			path = current_playlist_get_selection(cwin);
 		if (!path) {
 			play_first_current_playlist(cwin);
 			break;
 		}
-
 		if (cwin->cpref->shuffle) {
 			model = gtk_tree_view_get_model(GTK_TREE_VIEW(cwin->current_playlist));
 			ref = gtk_tree_row_reference_new(model, path);

@@ -81,6 +81,8 @@ gchar *main_menu_xml = "<ui>							\
 
 gchar *cp_context_menu_xml = "<ui>		    				\
 	<popup>					    				\
+	<menuitem action=\"Queue\"/>						\
+	<separator/>				    				\
 	<menuitem action=\"Remove\"/>		    				\
 	<menuitem action=\"Crop\"/>		    				\
 	<menuitem action=\"Clear playlist\"/>	    				\
@@ -247,6 +249,8 @@ GtkToggleActionEntry toggles_entries[] = {
 };
 
 GtkActionEntry cp_context_aentries[] = {
+	{"Queue", GTK_STOCK_ADD, N_("Add to queue list"),
+	 NULL, "Add to queue list", G_CALLBACK(queue_current_playlist)},
 	{"Remove", GTK_STOCK_REMOVE, N_("Remove"),
 	 "Delete", "Delete this entry", G_CALLBACK(remove_current_playlist)},
 	{"Crop", GTK_STOCK_REMOVE, N_("Crop"),
@@ -1108,23 +1112,28 @@ static void create_current_playlist_columns(GtkWidget *current_playlist,
 
 	play_pixbuf = gtk_image_new_from_icon_name ("stock_volume-max", GTK_ICON_SIZE_MENU);
 
-	/* Column : Pixbuf */
+	/* Column : Pixbuf and Queue Bubble*/
 
-	renderer = gtk_cell_renderer_pixbuf_new ();
 	column = gtk_tree_view_column_new ();
 
+	renderer = gtk_cell_renderer_pixbuf_new ();
 	gtk_tree_view_column_pack_start (column, renderer, FALSE);
 	gtk_tree_view_column_set_cell_data_func (column, renderer,
 						 (GtkTreeCellDataFunc)
 						 view_playing_cell_data_func,
 						 cwin,
 						 NULL);
-	gtk_tree_view_column_set_attributes (column, renderer,
-				             "pixbuf", P_PLAY_PIXBUF,
-					     NULL);
+	gtk_tree_view_column_add_attribute (column, renderer, "pixbuf", P_PLAY_PIXBUF);
+
+	renderer = gtk_cell_renderer_bubble_new ();
+	gtk_tree_view_column_pack_start (column, renderer, FALSE);
+	gtk_tree_view_column_add_attribute (column, renderer, "markup", P_QUEUE);
+	gtk_tree_view_column_add_attribute (column, renderer, "show-bubble", P_BUBBLE);
+
 	gtk_tree_view_column_set_widget(column, play_pixbuf);
 	gtk_widget_show (play_pixbuf);
 	gtk_tree_view_column_set_resizable(column, FALSE);
+
 	gtk_tree_view_append_column(GTK_TREE_VIEW(current_playlist), column);
 
 	/* Column : Track No */
@@ -1311,6 +1320,8 @@ static GtkWidget* create_current_playlist_view(struct con_win *cwin)
 	store = gtk_list_store_new(N_P_COLUMNS,
 				   G_TYPE_POINTER,	/* Pointer to musicobject */
 				   GDK_TYPE_PIXBUF,	/* Pixbuf */
+				   G_TYPE_STRING,	/* Queue No String */
+				   G_TYPE_BOOLEAN,	/* Show Bublle Queue */
 				   G_TYPE_STRING,	/* Tag : Track No */
 				   G_TYPE_STRING,	/* Tag : Title */
 				   G_TYPE_STRING,	/* Tag : Artist */

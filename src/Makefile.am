@@ -43,7 +43,9 @@ pragha_SOURCES =pragha.c \
 		mp3.h \
 		mod.h \
 		flac.h \
-		cdda.h
+		cdda.h \
+		gtkcellrendererbubble.c \
+		gtkcellrendererbubble.h
 
 pragha_CFLAGS =	$(GLIB_CFLAGS) 						\
 	$(GTHREAD_CFLAGS)						\

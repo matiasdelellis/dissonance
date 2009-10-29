@@ -54,6 +54,7 @@
 #include "oggvorbis.h"
 #include "cdda.h"
 #include "mod.h"
+#include "gtkcellrendererbubble.h"
 
 #define MIN_WINDOW_WIDTH           640
 #define MIN_WINDOW_HEIGHT          480
@@ -273,6 +274,8 @@ enum file_columns {
 enum curplaylist_columns {
 	P_MOBJ_PTR,
 	P_PLAY_PIXBUF,
+	P_QUEUE,
+	P_BUBBLE,
 	P_TRACK_NO,
 	P_TITLE,
 	P_ARTIST,
@@ -506,6 +509,7 @@ struct con_state {
 	GMutex *l_mutex;
 	GCond *c_cond;
 	GList *rand_track_refs;
+	GList *queue_track_refs;
 	GtkTreeRowReference *curr_rand_ref;
 	GtkTreeRowReference *curr_seq_ref;
 	cdrom_drive_t *cdda_drive;
@@ -880,8 +884,10 @@ GtkTreePath* current_playlist_get_selection(struct con_win *cwin);
 GtkTreePath* current_playlist_get_next(struct con_win *cwin);
 GtkTreePath* current_playlist_get_prev(struct con_win *cwin);
 GtkTreePath* current_playlist_get_actual(struct con_win *cwin);
+GtkTreePath* get_next_queue_track(struct con_win *cwin);
 gchar* get_ref_current_track(struct con_win *cwin);
 void init_current_playlist_columns(struct con_win *cwin);
+void queue_current_playlist(GtkAction *action, struct con_win *cwin);
 void remove_current_playlist(GtkAction *action, struct con_win *cwin);
 void crop_current_playlist(GtkAction *action, struct con_win *cwin);
 void track_properties_current_playlist_action(GtkAction *action, struct con_win *cwin);

@@ -1069,6 +1069,7 @@ void init_state(struct con_win *cwin)
 
 	cwin->cstate->rand = g_rand_new();
 	cwin->cstate->rand_track_refs = NULL;
+	cwin->cstate->queue_track_refs = NULL;
 	cwin->cstate->state = ST_STOPPED;
 }
 
