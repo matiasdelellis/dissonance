@@ -349,7 +349,7 @@ void play_pause_resume(struct con_win *cwin)
 {
 	struct musicobject *mobj = NULL;
 	GThread *thread;
-	GtkTreePath *path;
+	GtkTreePath *path=NULL;
 	GtkTreeModel *model;
 	GtkTreeRowReference *ref;
 

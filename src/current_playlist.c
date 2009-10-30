@@ -2322,7 +2322,7 @@ void playlist_track_column_change_cb(GtkCheckMenuItem *item, struct con_win *cwi
 
 	state = gtk_check_menu_item_get_active(item);
 	col = gtk_tree_view_get_column(GTK_TREE_VIEW(cwin->current_playlist),
-				       P_TRACK_NO - 1);
+				       P_TRACK_NO - 3);
 
 	if (!col) {
 		g_warning("Invalid column number");
@@ -2344,7 +2344,7 @@ void playlist_title_column_change_cb(GtkCheckMenuItem *item, struct con_win *cwi
 
 	state = gtk_check_menu_item_get_active(item);
 	col = gtk_tree_view_get_column(GTK_TREE_VIEW(cwin->current_playlist),
-				       P_TITLE - 1);
+				       P_TITLE - 3);
 
 	if (!col) {
 		g_warning("Invalid column number");
@@ -2366,7 +2366,7 @@ void playlist_artist_column_change_cb(GtkCheckMenuItem *item, struct con_win *cw
 
 	state = gtk_check_menu_item_get_active(item);
 	col = gtk_tree_view_get_column(GTK_TREE_VIEW(cwin->current_playlist),
-				       P_ARTIST - 1);
+				       P_ARTIST - 3);
 
 	if (!col) {
 		g_warning("Invalid column number");
@@ -2388,7 +2388,7 @@ void playlist_album_column_change_cb(GtkCheckMenuItem *item, struct con_win *cwi
 
 	state = gtk_check_menu_item_get_active(item);
 	col = gtk_tree_view_get_column(GTK_TREE_VIEW(cwin->current_playlist),
-				       P_ALBUM - 1);
+				       P_ALBUM - 3);
 
 	if (!col) {
 		g_warning("Invalid column number");
@@ -2410,7 +2410,7 @@ void playlist_genre_column_change_cb(GtkCheckMenuItem *item, struct con_win *cwi
 
 	state = gtk_check_menu_item_get_active(item);
 	col = gtk_tree_view_get_column(GTK_TREE_VIEW(cwin->current_playlist),
-				       P_GENRE - 1);
+				       P_GENRE - 3);
 
 	if (!col) {
 		g_warning("Invalid column number");
@@ -2432,7 +2432,7 @@ void playlist_bitrate_column_change_cb(GtkCheckMenuItem *item, struct con_win *c
 
 	state = gtk_check_menu_item_get_active(item);
 	col = gtk_tree_view_get_column(GTK_TREE_VIEW(cwin->current_playlist),
-				       P_BITRATE - 1);
+				       P_BITRATE - 3);
 
 	if (!col) {
 		g_warning("Invalid column number");
@@ -2454,7 +2454,7 @@ void playlist_year_column_change_cb(GtkCheckMenuItem *item, struct con_win *cwin
 
 	state = gtk_check_menu_item_get_active(item);
 	col = gtk_tree_view_get_column(GTK_TREE_VIEW(cwin->current_playlist),
-				       P_YEAR - 1);
+				       P_YEAR - 3);
 
 	if (!col) {
 		g_warning("Invalid column number");
@@ -2476,7 +2476,7 @@ void playlist_length_column_change_cb(GtkCheckMenuItem *item, struct con_win *cw
 
 	state = gtk_check_menu_item_get_active(item);
 	col = gtk_tree_view_get_column(GTK_TREE_VIEW(cwin->current_playlist),
-				       P_LENGTH - 1);
+				       P_LENGTH - 3);
 
 	if (!col) {
 		g_warning("Invalid column number");
@@ -2498,7 +2498,7 @@ void playlist_filename_column_change_cb(GtkCheckMenuItem *item, struct con_win *
 
 	state = gtk_check_menu_item_get_active(item);
 	col = gtk_tree_view_get_column(GTK_TREE_VIEW(cwin->current_playlist),
-				       P_FILENAME - 1);
+				       P_FILENAME - 3);
 
 	if (!col) {
 		g_warning("Invalid column number");
