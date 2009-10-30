@@ -82,6 +82,7 @@ gchar *main_menu_xml = "<ui>							\
 gchar *cp_context_menu_xml = "<ui>		    				\
 	<popup>					    				\
 	<menuitem action=\"Queue\"/>						\
+	<menuitem action=\"Enqueue\"/>						\
 	<separator/>				    				\
 	<menuitem action=\"Remove\"/>		    				\
 	<menuitem action=\"Crop\"/>		    				\
@@ -193,7 +194,7 @@ GtkActionEntry main_aentries[] = {
 	{"Add the library", GTK_STOCK_ADD, N_("_Add the library"),
 	 NULL, "Add all the library", G_CALLBACK(add_all_action)},
 	{"Remove", GTK_STOCK_REMOVE, N_("Remove"),
-	 "Delete", "Delete this entry", G_CALLBACK(remove_current_playlist)},
+	 NULL, "Delete this entry", G_CALLBACK(remove_current_playlist)},
 	{"Crop", GTK_STOCK_REMOVE, N_("Crop"),
 	 "<Control>C", "Crop the playlist", G_CALLBACK(crop_current_playlist)},
 	{"Clear playlist", GTK_STOCK_CLEAR, N_("Clear playlist"),
@@ -251,8 +252,10 @@ GtkToggleActionEntry toggles_entries[] = {
 GtkActionEntry cp_context_aentries[] = {
 	{"Queue", GTK_STOCK_ADD, N_("Add to queue list"),
 	 NULL, "Add to queue list", G_CALLBACK(queue_current_playlist)},
+	{"Enqueue", GTK_STOCK_REMOVE, N_("Remove to queue list"),
+	 NULL, "Remove to queue list", G_CALLBACK(enqueue_current_playlist)},
 	{"Remove", GTK_STOCK_REMOVE, N_("Remove"),
-	 "Delete", "Delete this entry", G_CALLBACK(remove_current_playlist)},
+	 NULL, "Delete this entry", G_CALLBACK(remove_current_playlist)},
 	{"Crop", GTK_STOCK_REMOVE, N_("Crop"),
 	 NULL, "Crop the playlist", G_CALLBACK(crop_current_playlist)},
 	{"Edit tags", GTK_STOCK_INFO, N_("Edit tags"),
@@ -1383,6 +1386,10 @@ static GtkWidget* create_current_playlist_view(struct con_win *cwin)
 
 	g_signal_connect(G_OBJECT(current_playlist), "row-activated",
 			 G_CALLBACK(current_playlist_row_activated_cb), cwin);
+
+	gtk_widget_add_events (GTK_WIDGET (current_playlist), GDK_KEY_PRESS_MASK);
+	g_signal_connect (G_OBJECT (current_playlist), "key_press_event",
+			  G_CALLBACK (current_playlist_key_press), cwin);
 
 	/* Create contextual menus */
 
