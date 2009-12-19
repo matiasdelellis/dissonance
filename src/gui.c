@@ -182,7 +182,7 @@ GtkActionEntry main_aentries[] = {
 	{"Prev", GTK_STOCK_MEDIA_PREVIOUS, N_("Prev track"),
 	 NULL, "Prev track", G_CALLBACK(prev_action)},
 	{"Play_pause", GTK_STOCK_MEDIA_PLAY, N_("Play / Pause"),
-	 NULL, "Play / Pause", G_CALLBACK(play_pause_action)},
+	 "<Control>space", "Play / Pause", G_CALLBACK(play_pause_action)},
 	{"Stop", GTK_STOCK_MEDIA_STOP, N_("Stop"),
 	 NULL, "Stop", G_CALLBACK(stop_action)},
 	{"Next", GTK_STOCK_MEDIA_NEXT, N_("Next track"),
