@@ -142,11 +142,12 @@ gboolean status_get_tooltip_cb (GtkWidget        *widget,
 	if (cwin->cstate->state == ST_STOPPED)
 		markup_text = g_strdup_printf("%s", _("<b>Not playing</b>"));
 	else {
-		markup_text = g_markup_printf_escaped("<b>%s</b>: %s\n<b>%s</b>: %s\n<b>%s</b>: %s\n<b>%s</b>: %s",
-			_("Title"), cwin->cstate->curr_mobj->tags->title,
-			_("Artist"), cwin->cstate->curr_mobj->tags->artist,
-			_("Album"), cwin->cstate->curr_mobj->tags->album,
-			_("Length"), convert_length_str(cwin->cstate->curr_mobj->tags->length));
+		markup_text = g_markup_printf_escaped("<b>%s</b>: %s\n<b>%s</b>: %s\n<b>%s</b>: %s\n<b>%s</b>: %s / %s",
+ 			_("Title"), cwin->cstate->curr_mobj->tags->title,
+ 			_("Artist"), cwin->cstate->curr_mobj->tags->artist,
+ 			_("Album"), cwin->cstate->curr_mobj->tags->album,
+			_("Duration"), convert_length_str(cwin->cstate->curr_mobj->tags->length),
+			gtk_label_get_text (GTK_LABEL(cwin->track_time_label)));
 	}
 	gtk_tooltip_set_markup (tooltip, markup_text);
 	g_free(markup_text);

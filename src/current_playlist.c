@@ -1205,6 +1205,7 @@ void crop_current_playlist(GtkAction *action, struct con_win *cwin)
 		gtk_tree_path_free(path);
 		gtk_tree_row_reference_free(ref);
 	}
+	gtk_tree_selection_unselect_all(selection);
 	g_list_free(to_delete);
 	update_status_bar(cwin);
 }

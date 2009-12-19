@@ -34,8 +34,6 @@ gchar *main_menu_xml = "<ui>							\
 			<menuitem action=\"Quit\"/>				\
 		</menu>								\
 		<menu action=\"EditMenu\">					\
-			<menuitem action=\"Add the library\"/>	    		\
-			<separator/>						\
 			<menuitem action=\"Remove\"/>		    		\
 			<menuitem action=\"Crop\"/>		    		\
 			<menuitem action=\"Clear playlist\"/>	    		\
@@ -60,6 +58,8 @@ gchar *main_menu_xml = "<ui>							\
 			<menuitem action=\"Jump to playing song\"/>		\
 		</menu>								\
 		<menu action=\"ToolsMenu\">					\
+			<menuitem action=\"Add the library\"/>	    		\
+			<separator/>						\
 			<menuitem action=\"Search lyric\"/>			\
 			<separator/>						\
 			<menuitem action=\"Search in playlist\"/>		\
@@ -250,10 +250,10 @@ GtkToggleActionEntry toggles_entries[] = {
 };
 
 GtkActionEntry cp_context_aentries[] = {
-	{"Queue", GTK_STOCK_ADD, N_("Add to queue list"),
-	 NULL, "Add to queue list", G_CALLBACK(queue_current_playlist)},
-	{"Enqueue", GTK_STOCK_REMOVE, N_("Remove to queue list"),
-	 NULL, "Remove to queue list", G_CALLBACK(enqueue_current_playlist)},
+	{"Queue", GTK_STOCK_ADD, N_("Add to playback queue"),
+	 NULL, "Add to playback queue", G_CALLBACK(queue_current_playlist)},
+	{"Enqueue", GTK_STOCK_REMOVE, N_("Remove to playback queue"),
+	 NULL, "Remove to playback queue", G_CALLBACK(enqueue_current_playlist)},
 	{"Remove", GTK_STOCK_REMOVE, N_("Remove"),
 	 NULL, "Delete this entry", G_CALLBACK(remove_current_playlist)},
 	{"Crop", GTK_STOCK_REMOVE, N_("Crop"),
@@ -1662,17 +1662,18 @@ GtkWidget* create_paned_region(struct con_win *cwin)
 
 GtkWidget* create_panel(struct con_win *cwin)
 {
-	GtkWidget *controls_align, *vol_button_align;
+	GtkWidget *left_controls_align, *right_controls_align;
 	GtkWidget *playing;
 	GtkWidget *vbox_order;
-	GtkWidget *hbox_panel, *hbox_controls;
-	GtkWidget *play_button, *stop_button, *prev_button, *next_button, *vol_button;
+	GtkWidget *hbox_panel, *left_controls, *right_controls;
+	GtkWidget *play_button, *stop_button, *prev_button, *next_button, *sep, *shuffle_button, *repeat_button, *vol_button;
 	GtkWidget *album_art_frame = NULL;
 	GtkObject *vol_adjust;
 
 	hbox_panel = gtk_hbox_new(FALSE, 5);
 	vbox_order = gtk_vbox_new(FALSE, 1);
-	hbox_controls = gtk_hbox_new(FALSE, 1);
+	left_controls = gtk_hbox_new(FALSE, 1);
+	right_controls = gtk_hbox_new(FALSE, 1);
 
 	playing = create_playing_box(cwin);
 
@@ -1688,7 +1689,7 @@ GtkWidget* create_panel(struct con_win *cwin)
 	g_object_ref(cwin->pixbuf->image_play);
 	g_object_ref(cwin->pixbuf->image_pause);
 
-	/* Setup control buttons */
+	/* Setup Left control buttons */
 
 	prev_button = gtk_button_new();
 	play_button = gtk_button_new();
@@ -1700,11 +1701,6 @@ GtkWidget* create_panel(struct con_win *cwin)
 	gtk_button_set_relief(GTK_BUTTON(next_button), GTK_RELIEF_NONE);
 	gtk_button_set_relief(GTK_BUTTON(play_button), GTK_RELIEF_NONE);
 
-	vol_button = gtk_volume_button_new();
-	vol_adjust = gtk_adjustment_new(0, 0, 100, 1, 5, 0);
-	gtk_scale_button_set_adjustment(GTK_SCALE_BUTTON(vol_button),
-					GTK_ADJUSTMENT(vol_adjust));
-
 	gtk_button_set_image(GTK_BUTTON(prev_button),
 			     gtk_image_new_from_stock(GTK_STOCK_MEDIA_PREVIOUS,
 						      GTK_ICON_SIZE_LARGE_TOOLBAR));
@@ -1714,24 +1710,62 @@ GtkWidget* create_panel(struct con_win *cwin)
 	gtk_button_set_image(GTK_BUTTON(next_button),
 			     gtk_image_new_from_stock(GTK_STOCK_MEDIA_NEXT,
 						      GTK_ICON_SIZE_LARGE_TOOLBAR));
+
 	gtk_button_set_image(GTK_BUTTON(play_button),
 			     cwin->pixbuf->image_play);
 
-	gtk_box_pack_start(GTK_BOX(hbox_controls),
+	gtk_box_pack_start(GTK_BOX(left_controls),
 			   GTK_WIDGET(prev_button),
 			   FALSE, FALSE, 0);
-	gtk_box_pack_start(GTK_BOX(hbox_controls),
+	gtk_box_pack_start(GTK_BOX(left_controls),
 			   GTK_WIDGET(play_button),
 			   FALSE, FALSE, 0);
-	gtk_box_pack_start(GTK_BOX(hbox_controls),
+	gtk_box_pack_start(GTK_BOX(left_controls),
 			   GTK_WIDGET(stop_button),
 			   FALSE, FALSE, 0);
-	gtk_box_pack_start(GTK_BOX(hbox_controls),
+	gtk_box_pack_start(GTK_BOX(left_controls),
 			   GTK_WIDGET(next_button),
 			   FALSE, FALSE, 0);
 
-	controls_align = gtk_alignment_new(0, 0.5, 0, 0);
-	gtk_container_add(GTK_CONTAINER(controls_align), hbox_controls);
+	left_controls_align = gtk_alignment_new(0, 0.5, 0, 0);
+	gtk_container_add(GTK_CONTAINER(left_controls_align), left_controls);
+
+	/* Setup Right control buttons */
+
+	sep = gtk_vseparator_new();
+
+	shuffle_button = gtk_toggle_button_new();
+	repeat_button = gtk_toggle_button_new();
+
+	gtk_button_set_relief(GTK_BUTTON(shuffle_button), GTK_RELIEF_NONE);
+	gtk_button_set_relief(GTK_BUTTON(repeat_button), GTK_RELIEF_NONE);
+	vol_button = gtk_volume_button_new();
+	vol_adjust = gtk_adjustment_new(0, 0, 100, 1, 5, 0);
+	gtk_scale_button_set_adjustment(GTK_SCALE_BUTTON(vol_button),
+					GTK_ADJUSTMENT(vol_adjust));
+
+	gtk_button_set_image(GTK_BUTTON(shuffle_button),
+			     gtk_image_new_from_icon_name ("media-playlist-shuffle",
+						      GTK_ICON_SIZE_LARGE_TOOLBAR));
+	gtk_button_set_image(GTK_BUTTON(repeat_button),
+			     gtk_image_new_from_icon_name ("media-playlist-repeat",
+						      GTK_ICON_SIZE_LARGE_TOOLBAR));
+
+ 	gtk_box_pack_end(GTK_BOX(right_controls),
+			   GTK_WIDGET(vol_button),
+			   FALSE, FALSE, 0);
+	gtk_box_pack_end(GTK_BOX(right_controls),
+			   GTK_WIDGET(sep),
+			   FALSE, FALSE, 0);
+	gtk_box_pack_end(GTK_BOX(right_controls),
+			   GTK_WIDGET(shuffle_button),
+			   FALSE, FALSE, 0);
+	gtk_box_pack_end(GTK_BOX(right_controls),
+			   GTK_WIDGET(repeat_button),
+			   FALSE, FALSE, 0);
+
+	right_controls_align = gtk_alignment_new(0, 0.5, 0, 0);
+	gtk_container_add(GTK_CONTAINER(right_controls_align), right_controls);
 
 	/* Signal handlers */
 
@@ -1743,6 +1777,11 @@ GtkWidget* create_panel(struct con_win *cwin)
 			 G_CALLBACK(stop_button_handler), cwin);
 	g_signal_connect(G_OBJECT(next_button), "clicked",
 			 G_CALLBACK(next_button_handler), cwin);
+
+	g_signal_connect(G_OBJECT(GTK_TOGGLE_BUTTON(shuffle_button)), "toggled",
+			 G_CALLBACK(shuffle_button_handler), cwin );
+	g_signal_connect(G_OBJECT(GTK_TOGGLE_BUTTON(repeat_button)), "toggled",
+			G_CALLBACK(repeat_button_handler), cwin );
 	g_signal_connect(G_OBJECT(vol_button), "value-changed",
 			 G_CALLBACK(vol_button_handler), cwin);
 
@@ -1753,12 +1792,13 @@ GtkWidget* create_panel(struct con_win *cwin)
 
 	/* References to widgets */
 
-	cwin->hbox_controls = controls_align;
 	cwin->hbox_panel = hbox_panel;
 	cwin->prev_button = prev_button;
 	cwin->play_button = play_button;
 	cwin->stop_button = stop_button;
 	cwin->next_button = next_button;
+	cwin->shuffle_button = shuffle_button;
+	cwin->repeat_button = repeat_button;
 	cwin->vol_button = vol_button;
 
 	/* Tooltips */
@@ -1770,17 +1810,13 @@ GtkWidget* create_panel(struct con_win *cwin)
 
 	/* Pack panel widgets into hbox_panel */
 
-	vol_button_align = gtk_alignment_new(0, 0.5, 0, 0);
-	gtk_container_add(GTK_CONTAINER(vol_button_align), vol_button);
-
- 	gtk_box_pack_end(GTK_BOX(hbox_panel),
-			   GTK_WIDGET(vol_button_align),
+	gtk_box_pack_end(GTK_BOX(hbox_panel),
+			   GTK_WIDGET(right_controls_align),
 			   FALSE, FALSE, 0);
+
  	gtk_box_pack_end(GTK_BOX(hbox_panel),
 		   GTK_WIDGET(playing),
 		   TRUE, TRUE, 0);
-
-	/* Setup album art */
 
 	if (cwin->cpref->show_album_art) {
 		album_art_frame = gtk_frame_new(NULL);
@@ -1793,7 +1829,7 @@ GtkWidget* create_panel(struct con_win *cwin)
 	}
 
 	gtk_box_pack_end(GTK_BOX(hbox_panel),
-			 GTK_WIDGET(controls_align),
+			 GTK_WIDGET(left_controls_align),
 			 FALSE, FALSE, 0);
 
 	return hbox_panel;

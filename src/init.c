@@ -1117,6 +1117,12 @@ void init_pixbuf(struct con_win *cwin)
 	g_object_ref(cwin->pixbuf->pixbuf_pause);
 }
 
+void init_toggle_buttons(struct con_win *cwin)
+{
+	gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON(cwin->shuffle_button), cwin->cpref->shuffle);
+	gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON(cwin->repeat_button), cwin->cpref->repeat);
+}
+
 void init_menu_actions(struct con_win *cwin)
 {
 	GtkAction *action = NULL;
@@ -1186,11 +1192,13 @@ void init_gui(gint argc, gchar **argv, struct con_win *cwin)
 	/* Systray */
 
 	create_status_icon(cwin);
+
 	init_pixbuf(cwin);
 
 	/* Main Vbox */
 
 	vbox = gtk_vbox_new(FALSE, 2);
+
 	gtk_container_add(GTK_CONTAINER(cwin->mainwindow), vbox);
 
 	/* Create hboxen */
@@ -1200,7 +1208,6 @@ void init_gui(gint argc, gchar **argv, struct con_win *cwin)
 	hbox_panel = create_panel(cwin);
 	status_bar = create_status_bar(cwin);
 	search_bar = create_search_bar(cwin);
-
 	menu_bar = gtk_ui_manager_get_widget(menu, "/Menubar");
 
 	/* Pack all hboxen into vbox */
@@ -1223,11 +1230,11 @@ void init_gui(gint argc, gchar **argv, struct con_win *cwin)
 	gtk_widget_show_all(cwin->mainwindow);
 
 	init_menu_actions(cwin);
+	init_toggle_buttons(cwin);
 
 	/* Set initial size of album art frame */
 
 	if (cwin->album_art_frame)
 		resize_album_art_frame(cwin);
-
 	gtk_init_add(_init_gui_state, cwin);
 }

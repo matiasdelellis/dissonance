@@ -563,16 +563,15 @@ struct con_win {
 	struct con_lastfm *clastfm;
 	GtkWidget *mainwindow;
 	GtkWidget *hbox_panel;
-	GtkWidget *hbox_controls;
 	GtkWidget *album_art_frame;
 	GtkWidget *album_art;
 	GtkWidget *track_progress_bar;
-	GtkWidget *shuffle_button;
-	GtkWidget *repeat_button;
 	GtkWidget *prev_button;
 	GtkWidget *play_button;
 	GtkWidget *stop_button;
 	GtkWidget *next_button;
+	GtkWidget *shuffle_button;
+	GtkWidget *repeat_button;
 	GtkWidget *vol_button;
 	GtkWidget *current_playlist;
 	GtkWidget *status_bar;
@@ -698,6 +697,8 @@ void track_progress_change_cb(GtkWidget *widget,
 			      struct con_win *cwin);
 void update_album_art(struct musicobject *mobj, struct con_win *cwin);
 void unset_album_art(struct con_win *cwin);
+void shuffle_button_handler(GtkToggleButton *button, struct con_win *cwin);
+void repeat_button_handler(GtkToggleButton *button, struct con_win *cwin);
 void play_button_handler(GtkButton *button, struct con_win *cwin);
 void stop_button_handler(GtkButton *button, struct con_win *cwin);
 void prev_button_handler(GtkButton *button, struct con_win *cwin);

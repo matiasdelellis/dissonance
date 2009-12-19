@@ -1265,6 +1265,10 @@ void preferences_dialog(struct con_win *cwin)
 	hidden_files = gtk_check_button_new_with_label(_("Show Hidden Files in "
 						       "File View"));
 
+	/* CDDB */
+
+	use_cddb = gtk_check_button_new_with_label(_("Connect to CDDB server"));
+
 	/* Album art */
 
 	album_art = gtk_check_button_new_with_label(_("Show Album art in Panel"));
@@ -1342,6 +1346,11 @@ void preferences_dialog(struct con_win *cwin)
 			   FALSE,
 			   0);
 	gtk_box_pack_start(GTK_BOX(general_vbox),
+			   use_cddb,
+			   FALSE,
+			   FALSE,
+			   0);
+	gtk_box_pack_start(GTK_BOX(general_vbox),
 			   album_art,
 			   FALSE,
 			   FALSE,
@@ -1356,10 +1365,6 @@ void preferences_dialog(struct con_win *cwin)
 
 	soft_mixer = gtk_check_button_new_with_label(_("Use software mixer"));
 	gtk_widget_set_tooltip_text(GTK_WIDGET(soft_mixer), _("Restart Required"));
-
-	/* CDDB */
-
-	use_cddb = gtk_check_button_new_with_label(_("Connect to CDDB server"));
 
 	/* Audio Sink */
 
@@ -1430,11 +1435,6 @@ void preferences_dialog(struct con_win *cwin)
 
 	gtk_box_pack_start(GTK_BOX(audio_vbox),
 			   soft_mixer,
-			   FALSE,
-			   FALSE,
-			   0);
-	gtk_box_pack_start(GTK_BOX(audio_vbox),
-			   use_cddb,
 			   FALSE,
 			   FALSE,
 			   0);
