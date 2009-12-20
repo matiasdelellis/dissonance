@@ -1807,6 +1807,8 @@ GtkWidget* create_panel(struct con_win *cwin)
 	gtk_widget_set_tooltip_text(GTK_WIDGET(prev_button), _("Previous Track"));
 	gtk_widget_set_tooltip_text(GTK_WIDGET(next_button), _("Next Track"));
 	gtk_widget_set_tooltip_text(GTK_WIDGET(stop_button), _("Stop playback"));
+	gtk_widget_set_tooltip_text(GTK_WIDGET(shuffle_button), _("Play songs in a random order"));
+	gtk_widget_set_tooltip_text(GTK_WIDGET(repeat_button), _("Repeat playback list at the end"));
 
 	/* Pack panel widgets into hbox_panel */
 

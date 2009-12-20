@@ -81,22 +81,13 @@ void show_osd(struct con_win *cwin)
 
 	length = convert_length_str(cwin->cstate->curr_mobj->tags->length);
 
-	etitle = g_markup_printf_escaped ("%s (%s)",
-			str,
-			length);
+	etitle = g_markup_printf_escaped (_("Pragha Music Manager"));
 
-	if(g_utf8_strlen(cwin->cstate->curr_mobj->tags->artist, -1)
-	 && g_utf8_strlen(cwin->cstate->curr_mobj->tags->album, -1))
-		body = g_markup_printf_escaped (_("by %s in %s"), 
-						cwin->cstate->curr_mobj->tags->artist, 
-						cwin->cstate->curr_mobj->tags->album);
-	else if(g_utf8_strlen(cwin->cstate->curr_mobj->tags->artist, -1))
-		body = g_markup_printf_escaped (_("by %s"), 
-						cwin->cstate->curr_mobj->tags->artist);
-	else if(g_utf8_strlen(cwin->cstate->curr_mobj->tags->album, -1))
-		body = g_markup_printf_escaped (_("in %s"), 
-						cwin->cstate->curr_mobj->tags->album);
-	else	body = g_markup_printf_escaped (_("Unknown Tags"));
+	body = g_markup_printf_escaped("<b>%s</b>: %s\n<b>%s</b>: %s\n<b>%s</b>: %s\n<b>%s</b>: %s",
+ 			_("Title"), cwin->cstate->curr_mobj->tags->title,
+ 			_("Artist"), cwin->cstate->curr_mobj->tags->artist,
+ 			_("Album"), cwin->cstate->curr_mobj->tags->album,
+			_("Lenght"), convert_length_str(cwin->cstate->curr_mobj->tags->length));
 
 	/* Create notification instance */
 
@@ -146,8 +137,8 @@ gboolean status_get_tooltip_cb (GtkWidget        *widget,
  			_("Title"), cwin->cstate->curr_mobj->tags->title,
  			_("Artist"), cwin->cstate->curr_mobj->tags->artist,
  			_("Album"), cwin->cstate->curr_mobj->tags->album,
-			_("Duration"), convert_length_str(cwin->cstate->curr_mobj->tags->length),
-			gtk_label_get_text (GTK_LABEL(cwin->track_time_label)));
+			_("Lenght"), gtk_label_get_text (GTK_LABEL(cwin->track_time_label)),
+			convert_length_str(cwin->cstate->curr_mobj->tags->length));
 	}
 	gtk_tooltip_set_markup (tooltip, markup_text);
 	g_free(markup_text);

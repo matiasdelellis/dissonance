@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Russian\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-12-19 17:33-0200\n"
+"POT-Creation-Date: 2009-12-20 09:54-0200\n"
 "PO-Revision-Date: 2009-10-21 17:13+0300\n"
 "Last-Translator: Evgen <drujebober@gmail.com>\n"
 "Language-Team: Russian\n"
@@ -234,13 +234,13 @@ msgstr "Директория / Файл"
 
 #: src/gui.c:318 src/gui.c:983 src/gui.c:1108 src/current_playlist.c:1235
 #: src/current_playlist.c:1372 src/librarytree.c:832 src/librarytree.c:1256
-#: src/statusicon.c:147 src/tags.c:408
+#: src/statusicon.c:88 src/statusicon.c:138 src/tags.c:408
 msgid "Artist"
 msgstr "Исполнитель"
 
 #: src/gui.c:320 src/gui.c:984 src/gui.c:1109 src/current_playlist.c:1236
 #: src/current_playlist.c:1373 src/librarytree.c:849 src/librarytree.c:1259
-#: src/statusicon.c:148 src/tags.c:409
+#: src/statusicon.c:89 src/statusicon.c:139 src/tags.c:409
 msgid "Album"
 msgstr "Альбом"
 
@@ -274,7 +274,8 @@ msgstr "Предыдущий трек"
 msgid "Next Track"
 msgstr "Следующий трек"
 
-#: src/gui.c:841
+#: src/gui.c:841 src/statusicon.c:84
+#, c-format
 msgid "Pragha Music Manager"
 msgstr ""
 
@@ -284,7 +285,8 @@ msgid "Track"
 msgstr "Трек"
 
 #: src/gui.c:982 src/gui.c:1107 src/current_playlist.c:1234
-#: src/current_playlist.c:1371 src/statusicon.c:146 src/tags.c:407
+#: src/current_playlist.c:1371 src/statusicon.c:87 src/statusicon.c:137
+#: src/tags.c:407
 msgid "Title"
 msgstr "Название"
 
@@ -329,11 +331,19 @@ msgstr "Предыдущий трек"
 msgid "Stop playback"
 msgstr "Остановить воспроизведение"
 
-#: src/gui.c:1848 src/panel.c:200 src/statusicon.c:143
+#: src/gui.c:1810
+msgid "Play songs in a random order"
+msgstr ""
+
+#: src/gui.c:1811
+msgid "Repeat playback list at the end"
+msgstr ""
+
+#: src/gui.c:1850 src/panel.c:200 src/statusicon.c:134
 msgid "<b>Not playing</b>"
 msgstr "<b>Не воспроизводится</b>"
 
-#: src/gui.c:2106
+#: src/gui.c:2108
 msgid "Options of the library"
 msgstr "Настройки коллекции"
 
@@ -388,8 +398,7 @@ msgstr "Рейтинг"
 #: src/current_playlist.c:1278 src/current_playlist.c:1280
 #: src/current_playlist.c:1282 src/current_playlist.c:1284
 #: src/current_playlist.c:1407 src/current_playlist.c:1409
-#: src/current_playlist.c:1411 src/current_playlist.c:1413 src/statusicon.c:99
-#, c-format
+#: src/current_playlist.c:1411 src/current_playlist.c:1413
 msgid "Unknown Tags"
 msgstr "Неизвестные теги"
 
@@ -412,24 +421,10 @@ msgstr "Неизвестный Альбом"
 msgid "Unknown Genre"
 msgstr "Неизвестный Жанр"
 
-#: src/statusicon.c:90
-#, c-format
-msgid "by %s in %s"
-msgstr "исполняет %s из %s"
-
-#: src/statusicon.c:94
-#, c-format
-msgid "by %s"
-msgstr "исполняет %s"
-
-#: src/statusicon.c:97
-#, c-format
-msgid "in %s"
-msgstr "из %s"
-
-#: src/statusicon.c:149
-msgid "Duration"
-msgstr ""
+#: src/statusicon.c:90 src/statusicon.c:140
+#, fuzzy
+msgid "Lenght"
+msgstr "Продолжительность"
 
 #: src/pref.c:21
 msgid ""
@@ -604,6 +599,15 @@ msgstr "Экспортировать плейлист в файл"
 #: src/playlist.c:833
 msgid "Playlists"
 msgstr "Плейлисты"
+
+#~ msgid "by %s in %s"
+#~ msgstr "исполняет %s из %s"
+
+#~ msgid "by %s"
+#~ msgstr "исполняет %s"
+
+#~ msgid "in %s"
+#~ msgstr "из %s"
 
 #~ msgid "Menu bar"
 #~ msgstr "Строка меню"
