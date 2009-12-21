@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: praga 0.7.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-12-20 09:54-0200\n"
+"POT-Creation-Date: 2009-12-20 21:25-0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: alois halel <alois.halel@gmail.com>\n"
 "Language-Team: \n"
@@ -294,7 +294,7 @@ msgid "Year"
 msgstr "Année"
 
 #: src/gui.c:988 src/gui.c:1113 src/current_playlist.c:1239
-#: src/current_playlist.c:1376
+#: src/current_playlist.c:1376 src/statusicon.c:90 src/statusicon.c:140
 msgid "Length"
 msgstr "Durée"
 
@@ -413,11 +413,6 @@ msgstr "Album Inconnu"
 #, c-format
 msgid "Unknown Genre"
 msgstr "Genre Inconnu"
-
-#: src/statusicon.c:90 src/statusicon.c:140
-#, fuzzy
-msgid "Lenght"
-msgstr "Durée"
 
 #: src/pref.c:21
 msgid ""
@@ -598,6 +593,10 @@ msgstr "Exporter la liste de lecture dans un fichier"
 #: src/playlist.c:833
 msgid "Playlists"
 msgstr "Listes de lecture"
+
+#, fuzzy
+#~ msgid "Lenght"
+#~ msgstr "Durée"
 
 #~ msgid "by %s in %s"
 #~ msgstr "par %s de %s"

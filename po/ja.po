@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: pragha 0.6.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-12-20 09:54-0200\n"
+"POT-Creation-Date: 2009-12-20 21:25-0200\n"
 "PO-Revision-Date: 2009-10-18 22:38+0900\n"
 "Last-Translator: Masato Hashimoto <cabezon.hashimoto@gmail.com>\n"
 "Language-Team: Japanese\n"
@@ -300,7 +300,7 @@ msgid "Year"
 msgstr "年"
 
 #: src/gui.c:988 src/gui.c:1113 src/current_playlist.c:1239
-#: src/current_playlist.c:1376
+#: src/current_playlist.c:1376 src/statusicon.c:90 src/statusicon.c:140
 msgid "Length"
 msgstr "時間"
 
@@ -419,11 +419,6 @@ msgstr "アルバム不明"
 #, c-format
 msgid "Unknown Genre"
 msgstr "ジャンル不明"
-
-#: src/statusicon.c:90 src/statusicon.c:140
-#, fuzzy
-msgid "Lenght"
-msgstr "時間"
 
 #: src/pref.c:21
 msgid ""
@@ -598,6 +593,10 @@ msgstr "プレイリストのファイルへのエクスポート"
 #: src/playlist.c:833
 msgid "Playlists"
 msgstr "プレイリスト"
+
+#, fuzzy
+#~ msgid "Lenght"
+#~ msgstr "時間"
 
 #~ msgid "by %s in %s"
 #~ msgstr "by %s in %s"

@@ -87,7 +87,7 @@ void show_osd(struct con_win *cwin)
  			_("Title"), cwin->cstate->curr_mobj->tags->title,
  			_("Artist"), cwin->cstate->curr_mobj->tags->artist,
  			_("Album"), cwin->cstate->curr_mobj->tags->album,
-			_("Lenght"), convert_length_str(cwin->cstate->curr_mobj->tags->length));
+			_("Length"), convert_length_str(cwin->cstate->curr_mobj->tags->length));
 
 	/* Create notification instance */
 
@@ -137,7 +137,7 @@ gboolean status_get_tooltip_cb (GtkWidget        *widget,
  			_("Title"), cwin->cstate->curr_mobj->tags->title,
  			_("Artist"), cwin->cstate->curr_mobj->tags->artist,
  			_("Album"), cwin->cstate->curr_mobj->tags->album,
-			_("Lenght"), gtk_label_get_text (GTK_LABEL(cwin->track_time_label)),
+			_("Length"), gtk_label_get_text (GTK_LABEL(cwin->track_time_label)),
 			convert_length_str(cwin->cstate->curr_mobj->tags->length));
 	}
 	gtk_tooltip_set_markup (tooltip, markup_text);

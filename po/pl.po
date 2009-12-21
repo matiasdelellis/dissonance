@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Polski\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-12-20 09:54-0200\n"
+"POT-Creation-Date: 2009-12-20 21:25-0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Matias <mati86_dl@yahoo.com.ar>\n"
 "Language-Team: Polski\n"
@@ -314,7 +314,7 @@ msgid "Year"
 msgstr "Rok"
 
 #: src/gui.c:988 src/gui.c:1113 src/current_playlist.c:1239
-#: src/current_playlist.c:1376
+#: src/current_playlist.c:1376 src/statusicon.c:90 src/statusicon.c:140
 msgid "Length"
 msgstr "Długość"
 
@@ -437,11 +437,6 @@ msgstr "Nieznany album"
 #, c-format
 msgid "Unknown Genre"
 msgstr "Nieznany gatunek"
-
-#: src/statusicon.c:90 src/statusicon.c:140
-#, fuzzy
-msgid "Lenght"
-msgstr "Długość"
 
 #: src/pref.c:21
 msgid ""
@@ -616,6 +611,10 @@ msgstr "Zapisz lisŧę do pliku"
 #: src/playlist.c:833
 msgid "Playlists"
 msgstr "Listy"
+
+#, fuzzy
+#~ msgid "Lenght"
+#~ msgstr "Długość"
 
 #~ msgid "by %s in %s"
 #~ msgstr "w wykonaniu %s z albumu %s"

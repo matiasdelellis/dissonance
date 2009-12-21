@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-12-20 09:54-0200\n"
+"POT-Creation-Date: 2009-12-20 21:25-0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -297,7 +297,7 @@ msgid "Year"
 msgstr ""
 
 #: src/gui.c:988 src/gui.c:1113 src/current_playlist.c:1239
-#: src/current_playlist.c:1376
+#: src/current_playlist.c:1376 src/statusicon.c:90 src/statusicon.c:140
 msgid "Length"
 msgstr ""
 
@@ -413,10 +413,6 @@ msgstr ""
 #: src/librarytree.c:182 src/librarytree.c:237
 #, c-format
 msgid "Unknown Genre"
-msgstr ""
-
-#: src/statusicon.c:90 src/statusicon.c:140
-msgid "Lenght"
 msgstr ""
 
 #: src/pref.c:21

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-12-20 09:54-0200\n"
+"POT-Creation-Date: 2009-12-20 21:25-0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Kim Ljosdal <kim357@web.de>\n"
 "Language-Team: \n"
@@ -313,7 +313,7 @@ msgid "Year"
 msgstr "År"
 
 #: src/gui.c:988 src/gui.c:1113 src/current_playlist.c:1239
-#: src/current_playlist.c:1376
+#: src/current_playlist.c:1376 src/statusicon.c:90 src/statusicon.c:140
 msgid "Length"
 msgstr "Lengde"
 
@@ -436,11 +436,6 @@ msgstr "Ukjent Album"
 #, c-format
 msgid "Unknown Genre"
 msgstr "Ukjent Genre"
-
-#: src/statusicon.c:90 src/statusicon.c:140
-#, fuzzy
-msgid "Lenght"
-msgstr "Lengde"
 
 #: src/pref.c:21
 msgid ""
@@ -615,6 +610,10 @@ msgstr "Eksporter spilleliste til fil"
 #: src/playlist.c:833
 msgid "Playlists"
 msgstr "Spillelister"
+
+#, fuzzy
+#~ msgid "Lenght"
+#~ msgstr "Lengde"
 
 #~ msgid "by %s in %s"
 #~ msgstr "av %s i %s"

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Español\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-12-20 09:54-0200\n"
+"POT-Creation-Date: 2009-12-20 21:25-0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Matias <mati86dl@gmail.com>\n"
 "Language-Team: Español\n"
@@ -294,7 +294,7 @@ msgid "Year"
 msgstr "Año"
 
 #: src/gui.c:988 src/gui.c:1113 src/current_playlist.c:1239
-#: src/current_playlist.c:1376
+#: src/current_playlist.c:1376 src/statusicon.c:90 src/statusicon.c:140
 msgid "Length"
 msgstr "Duración"
 
@@ -413,10 +413,6 @@ msgstr "Álbum desconocido"
 #, c-format
 msgid "Unknown Genre"
 msgstr "Genero desconocido"
-
-#: src/statusicon.c:90 src/statusicon.c:140
-msgid "Lenght"
-msgstr "Duración"
 
 #: src/pref.c:21
 msgid ""
@@ -601,6 +597,9 @@ msgstr "Exportar lista de reproducción como archivo"
 #: src/playlist.c:833
 msgid "Playlists"
 msgstr "Listas de reproducción"
+
+#~ msgid "Lenght"
+#~ msgstr "Duración"
 
 #~ msgid "by %s in %s"
 #~ msgstr "por %s en %s"

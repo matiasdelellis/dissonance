@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pragha svn rev. 60\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-12-20 09:54-0200\n"
+"POT-Creation-Date: 2009-12-20 21:25-0200\n"
 "PO-Revision-Date: 2009-10-17 13:52+0100\n"
 "Last-Translator: Michael Kogan <michael.kogan@gmx.net>\n"
 "Language-Team: Deutsch\n"
@@ -296,7 +296,7 @@ msgid "Year"
 msgstr "Jahr"
 
 #: src/gui.c:988 src/gui.c:1113 src/current_playlist.c:1239
-#: src/current_playlist.c:1376
+#: src/current_playlist.c:1376 src/statusicon.c:90 src/statusicon.c:140
 msgid "Length"
 msgstr "Länge"
 
@@ -415,11 +415,6 @@ msgstr "Unbekanntes Album"
 #, c-format
 msgid "Unknown Genre"
 msgstr "Unbekanntes Genre"
-
-#: src/statusicon.c:90 src/statusicon.c:140
-#, fuzzy
-msgid "Lenght"
-msgstr "Länge"
 
 #: src/pref.c:21
 msgid ""
@@ -594,6 +589,10 @@ msgstr "Wiedergabeliste in Datei speichern"
 #: src/playlist.c:833
 msgid "Playlists"
 msgstr "Wiedergabelisten"
+
+#, fuzzy
+#~ msgid "Lenght"
+#~ msgstr "Länge"
 
 #~ msgid "by %s in %s"
 #~ msgstr "von %s in %s"

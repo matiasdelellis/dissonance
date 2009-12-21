@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Russian\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-12-20 09:54-0200\n"
+"POT-Creation-Date: 2009-12-20 21:25-0200\n"
 "PO-Revision-Date: 2009-10-21 17:13+0300\n"
 "Last-Translator: Evgen <drujebober@gmail.com>\n"
 "Language-Team: Russian\n"
@@ -301,7 +301,7 @@ msgid "Year"
 msgstr "Год"
 
 #: src/gui.c:988 src/gui.c:1113 src/current_playlist.c:1239
-#: src/current_playlist.c:1376
+#: src/current_playlist.c:1376 src/statusicon.c:90 src/statusicon.c:140
 msgid "Length"
 msgstr "Продолжительность"
 
@@ -420,11 +420,6 @@ msgstr "Неизвестный Альбом"
 #, c-format
 msgid "Unknown Genre"
 msgstr "Неизвестный Жанр"
-
-#: src/statusicon.c:90 src/statusicon.c:140
-#, fuzzy
-msgid "Lenght"
-msgstr "Продолжительность"
 
 #: src/pref.c:21
 msgid ""
@@ -599,6 +594,10 @@ msgstr "Экспортировать плейлист в файл"
 #: src/playlist.c:833
 msgid "Playlists"
 msgstr "Плейлисты"
+
+#, fuzzy
+#~ msgid "Lenght"
+#~ msgstr "Продолжительность"
 
 #~ msgid "by %s in %s"
 #~ msgstr "исполняет %s из %s"

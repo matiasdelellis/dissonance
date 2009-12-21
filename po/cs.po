@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pragha\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-12-20 09:54-0200\n"
+"POT-Creation-Date: 2009-12-20 21:25-0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Alois Nešpor <alois.nespor@gmail.com>\n"
 "Language-Team: \n"
@@ -295,7 +295,7 @@ msgid "Year"
 msgstr "Rok"
 
 #: src/gui.c:988 src/gui.c:1113 src/current_playlist.c:1239
-#: src/current_playlist.c:1376
+#: src/current_playlist.c:1376 src/statusicon.c:90 src/statusicon.c:140
 msgid "Length"
 msgstr "Délka"
 
@@ -414,11 +414,6 @@ msgstr "Neznámé album"
 #, c-format
 msgid "Unknown Genre"
 msgstr "Neznámý zánr"
-
-#: src/statusicon.c:90 src/statusicon.c:140
-#, fuzzy
-msgid "Lenght"
-msgstr "Délka"
 
 #: src/pref.c:21
 msgid ""
@@ -593,6 +588,10 @@ msgstr "Exportovat playlist do souboru"
 #: src/playlist.c:833
 msgid "Playlists"
 msgstr "Playlisty"
+
+#, fuzzy
+#~ msgid "Lenght"
+#~ msgstr "Délka"
 
 #~ msgid "by %s in %s"
 #~ msgstr "od %s v %s"
