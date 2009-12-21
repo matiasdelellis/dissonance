@@ -122,6 +122,8 @@ gchar *file_tree_dir_context_menu_xml = "<ui>			\
 	<popup>							\
 	<menuitem action=\"Add to playlist (Recursive)\"/>	\
 	<menuitem action=\"Add to playlist (Non recursive)\"/>	\
+	<separator/>						\
+	<menuitem action=\"Show hidden files\"/>		\
 	</popup>						\
 	</ui>";
 
@@ -129,6 +131,8 @@ gchar *file_tree_file_context_menu_xml = "<ui>		\
 	<popup>						\
 	<menuitem action=\"Add to playlist\"/>		\
 	<menuitem action=\"Replace playlist\"/>		\
+	<separator/>					\
+	<menuitem action=\"Show hidden files\"/>	\
 	</popup>					\
 	</ui>";
 
@@ -246,7 +250,10 @@ GtkToggleActionEntry toggles_entries[] = {
 	FALSE},
 	{"Status bar", NULL, N_("Status bar"),
 	 NULL, "Status bar", G_CALLBACK(status_bar_action),
-	TRUE}
+	TRUE},
+	{"Show hidden files", NULL, N_("Show _hidden files"),
+	 "<Control>H", "Show hidden files", G_CALLBACK(file_tree_show_hidden_files),
+	 FALSE}
 };
 
 GtkActionEntry cp_context_aentries[] = {
@@ -538,11 +545,15 @@ static GtkUIManager* create_file_tree_dir_context_menu(GtkWidget *file_tree,
 		g_critical("Unable to create file tree dir context menu, err : %s",
 			   error->message);
 	}
-
+	
 	gtk_action_group_add_actions(context_actions,
 				     file_tree_dir_context_aentries,
 				     G_N_ELEMENTS(file_tree_dir_context_aentries),
 				     (gpointer)cwin);
+	gtk_action_group_add_toggle_actions (context_actions, 
+					toggles_entries, G_N_ELEMENTS(toggles_entries), 
+					cwin);
+					
 	gtk_window_add_accel_group(GTK_WINDOW(cwin->mainwindow),
 				   gtk_ui_manager_get_accel_group(context_menu));
 	gtk_ui_manager_insert_action_group(context_menu, context_actions, 0);
@@ -573,10 +584,15 @@ static GtkUIManager* create_file_tree_file_context_menu(GtkWidget *file_tree,
 				     file_tree_file_context_aentries,
 				     G_N_ELEMENTS(file_tree_file_context_aentries),
 				     (gpointer)cwin);
+	gtk_action_group_add_toggle_actions (context_actions, 
+					toggles_entries, G_N_ELEMENTS(toggles_entries), 
+					cwin);
+				     
 	gtk_window_add_accel_group(GTK_WINDOW(cwin->mainwindow),
 				   gtk_ui_manager_get_accel_group(context_menu));
 	gtk_ui_manager_insert_action_group(context_menu, context_actions, 0);
 
+	
 	return context_menu;
 }
 

@@ -293,7 +293,7 @@ void shuffle_action(GtkToggleAction *action, struct con_win *cwin)
 {
 	CDEBUG(DBG_INFO, "shuffle_action");
 
- 	cwin->cpref->shuffle = gtk_toggle_action_get_active(GTK_TOGGLE_ACTION(action));
+	cwin->cpref->shuffle = gtk_toggle_action_get_active(GTK_TOGGLE_ACTION(action));
 
 	g_signal_handlers_block_by_func (cwin->shuffle_button, shuffle_button_handler, cwin);
 

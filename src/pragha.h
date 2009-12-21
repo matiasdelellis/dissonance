@@ -417,7 +417,6 @@ struct con_pref {
 	GSList *library_tree_nodes;
 	GSList *lib_delete;
 	GSList *lib_add;
-	GtkWidget *hidden_files;
 	GtkWidget *album_art;
 	GtkWidget *osd;
 	GtkWidget *save_playlist_w;
@@ -728,6 +727,7 @@ void file_tree_replace_playlist(GtkAction *action, struct con_win *cwin);
 void file_tree_add_to_playlist(GtkAction *action, struct con_win *cwin);
 void file_tree_add_to_playlist_recur(GtkAction *action, struct con_win *cwin);
 void file_tree_add_to_playlist_non_recur(GtkAction *action, struct con_win *cwin);
+void file_tree_show_hidden_files(GtkToggleAction *action, struct con_win *cwin);
 void dnd_file_tree_get(GtkWidget *widget,
 		       GdkDragContext *context,
 		       GtkSelectionData *data,
