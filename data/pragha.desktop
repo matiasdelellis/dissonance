@@ -21,7 +21,7 @@ Comment[fr]=Gérer et écouter de la musique
 Comment[it]=Gestire e ascoltare musica
 Icon=pragha
 
-Categories=GTK;Audio;Player;
+Categories=GTK;AudioVideo;Player
 
 Exec=pragha %F
 TryExec=pragha

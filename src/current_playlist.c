@@ -896,6 +896,7 @@ GtkTreePath* current_playlist_get_next(struct con_win *cwin)
 	GList *last;
 	GtkTreeIter iter;
 	gboolean rand_unplayed = FALSE, seq_last = FALSE;
+	GtkTreeRowReference *ref;
 
 	/* Are we playing right now ? */
 
@@ -909,21 +910,23 @@ GtkTreePath* current_playlist_get_next(struct con_win *cwin)
 	if (!gtk_tree_model_get_iter_first(model, &iter))
 		return NULL;
 
-	if(cwin->cstate->queue_track_refs){
-		path = get_next_queue_track(cwin);
-	}
-
-	else{
-		switch (cwin->cpref->shuffle) {
+	switch (cwin->cpref->shuffle) {
 		case TRUE:
-			last = g_list_last(cwin->cstate->rand_track_refs);
-			if ((!cwin->cstate->curr_rand_ref) ||
-			    (last && (cwin->cstate->curr_rand_ref == last->data))) {
-				path = get_next_unplayed_random_track(cwin);
-				if (!path) rand_unplayed = TRUE;
+			if(cwin->cstate->queue_track_refs){
+				path = get_next_queue_track(cwin);
+				model = gtk_tree_view_get_model(GTK_TREE_VIEW(cwin->current_playlist));
+				ref = gtk_tree_row_reference_new(model, path);
+				reset_rand_track_refs(ref, cwin);
+				cwin->cstate->unplayed_tracks = cwin->cstate->tracks_curr_playlist;
 			}
-			else {
-				path = get_next_random_ref_track(cwin);
+			else{
+				last = g_list_last(cwin->cstate->rand_track_refs);
+				if ((!cwin->cstate->curr_rand_ref) || (last && (cwin->cstate->curr_rand_ref == last->data))){
+					path = get_next_unplayed_random_track(cwin);
+					if (!path)
+						rand_unplayed = TRUE;
+				}
+				else path = get_next_random_ref_track(cwin);
 			}
 			break;
 		case FALSE:
@@ -938,7 +941,7 @@ GtkTreePath* current_playlist_get_next(struct con_win *cwin)
 
 	if (seq_last && cwin->cpref->repeat)
 		path = current_playlist_nth_track(0, cwin);
-	}
+
 	return path;
 }
 

@@ -1166,9 +1166,8 @@ void init_gui(gint argc, gchar **argv, struct con_win *cwin)
 		gtk_widget_set_default_colormap(colormap);
 	}
 
-	cwin->pixbuf->pixbuf_app = gdk_pixbuf_new_from_file(SHAREDIR 
-							    "/data/pragha.png",
-							    &error);
+	cwin->pixbuf->pixbuf_app = gdk_pixbuf_new_from_file(PIXMAPDIR"/pragha.png",
+ 							    &error);
 	if (!cwin->pixbuf->pixbuf_app) {
 		g_warning("Unable to load app png : %s", error->message);
 		g_error_free(error);

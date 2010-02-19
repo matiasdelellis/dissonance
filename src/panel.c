@@ -280,7 +280,7 @@ void update_album_art(struct musicobject *mobj, struct con_win *cwin)
 				g_object_unref(G_OBJECT(album_art));
 			}
 			else
-				cwin->album_art = gtk_image_new_from_pixbuf(gdk_pixbuf_new_from_file_at_size (SHAREDIR"/data/cover.png",
+				cwin->album_art = gtk_image_new_from_pixbuf(gdk_pixbuf_new_from_file_at_size (PIXMAPDIR"/cover.png",
 								       cwin->cpref->album_art_size,
 								       cwin->cpref->album_art_size,
 								       &error));
@@ -304,7 +304,7 @@ void unset_album_art(struct con_win *cwin)
 		cwin->album_art = NULL;
 	}
 	if (cwin->cpref->show_album_art){
-	cwin->album_art = gtk_image_new_from_pixbuf( gdk_pixbuf_new_from_file_at_size (SHAREDIR"/data/cover.png",
+	cwin->album_art = gtk_image_new_from_pixbuf( gdk_pixbuf_new_from_file_at_size (PIXMAPDIR"/cover.png",
 						       cwin->cpref->album_art_size,
 						       cwin->cpref->album_art_size,
 						       &error));

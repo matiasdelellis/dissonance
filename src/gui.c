@@ -440,8 +440,8 @@ static GtkWidget* create_library_tree(struct con_win *cwin)
 
 	gtk_icon_size_lookup(GTK_ICON_SIZE_MENU, &width, &height);
 
-	cwin->pixbuf->pixbuf_artist = gdk_pixbuf_new_from_file_at_scale(SHAREDIR
-									"/data/artist.png",
+	cwin->pixbuf->pixbuf_artist = gdk_pixbuf_new_from_file_at_scale(PIXMAPDIR
+									"/artist.png",
 									width,
 									height,
 									TRUE,
@@ -451,8 +451,8 @@ static GtkWidget* create_library_tree(struct con_win *cwin)
 		g_error_free(error);
 		error = NULL;
 	}
-	cwin->pixbuf->pixbuf_album = gdk_pixbuf_new_from_file_at_scale(SHAREDIR
-								       "/data/album.png",
+	cwin->pixbuf->pixbuf_album = gdk_pixbuf_new_from_file_at_scale(PIXMAPDIR
+								       "/album.png",
 								       width,
 								       height,
 								       TRUE,
@@ -462,8 +462,8 @@ static GtkWidget* create_library_tree(struct con_win *cwin)
 		g_error_free(error);
 		error = NULL;
 	}
-	cwin->pixbuf->pixbuf_track = gdk_pixbuf_new_from_file_at_scale(SHAREDIR
-								       "/data/track.png",
+	cwin->pixbuf->pixbuf_track = gdk_pixbuf_new_from_file_at_scale(PIXMAPDIR
+								       "/track.png",
 								       width,
 								       height,
 								       TRUE,
@@ -473,8 +473,8 @@ static GtkWidget* create_library_tree(struct con_win *cwin)
 		g_error_free(error);
 		error = NULL;
 	}
-	cwin->pixbuf->pixbuf_genre = gdk_pixbuf_new_from_file_at_scale(SHAREDIR
-								       "/data/genre.png",
+	cwin->pixbuf->pixbuf_genre = gdk_pixbuf_new_from_file_at_scale(PIXMAPDIR
+								       "/genre.png",
 								       width,
 								       height,
 								       TRUE,
