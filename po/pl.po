@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Polski\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-12-21 10:02-0200\n"
+"POT-Creation-Date: 2010-02-23 21:27-0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Matias <mati86_dl@yahoo.com.ar>\n"
 "Language-Team: Polski\n"
@@ -250,20 +250,20 @@ msgstr "_Zwiń wszystko w kolekcji"
 msgid "Folder / File"
 msgstr "Folder / Plik"
 
-#: src/gui.c:325 src/gui.c:999 src/gui.c:1124 src/current_playlist.c:1235
-#: src/current_playlist.c:1372 src/librarytree.c:832 src/librarytree.c:1256
-#: src/statusicon.c:88 src/statusicon.c:138 src/tags.c:408
+#: src/gui.c:325 src/gui.c:999 src/gui.c:1124 src/current_playlist.c:1238
+#: src/current_playlist.c:1375 src/librarytree.c:832 src/librarytree.c:1256
+#: src/statusicon.c:85 src/statusicon.c:134 src/tags.c:408
 msgid "Artist"
 msgstr "Wykonawca"
 
-#: src/gui.c:327 src/gui.c:1000 src/gui.c:1125 src/current_playlist.c:1236
-#: src/current_playlist.c:1373 src/librarytree.c:849 src/librarytree.c:1259
-#: src/statusicon.c:89 src/statusicon.c:139 src/tags.c:409
+#: src/gui.c:327 src/gui.c:1000 src/gui.c:1125 src/current_playlist.c:1239
+#: src/current_playlist.c:1376 src/librarytree.c:849 src/librarytree.c:1259
+#: src/statusicon.c:86 src/statusicon.c:135 src/tags.c:409
 msgid "Album"
 msgstr "Album"
 
-#: src/gui.c:329 src/gui.c:1001 src/gui.c:1126 src/current_playlist.c:1237
-#: src/current_playlist.c:1374 src/librarytree.c:866 src/librarytree.c:1262
+#: src/gui.c:329 src/gui.c:1001 src/gui.c:1126 src/current_playlist.c:1240
+#: src/current_playlist.c:1377 src/librarytree.c:866 src/librarytree.c:1262
 #: src/tags.c:410
 msgid "Genre"
 msgstr "Gatunek"
@@ -292,8 +292,7 @@ msgstr "Poprzednia ścieżka"
 msgid "Next Track"
 msgstr "Następna ścieżka"
 
-#: src/gui.c:857 src/statusicon.c:84
-#, c-format
+#: src/gui.c:857
 msgid "Pragha Music Manager"
 msgstr "Pragha Music Manager"
 
@@ -302,29 +301,29 @@ msgstr "Pragha Music Manager"
 msgid "Track"
 msgstr "Ścieżka"
 
-#: src/gui.c:998 src/gui.c:1123 src/current_playlist.c:1234
-#: src/current_playlist.c:1371 src/statusicon.c:87 src/statusicon.c:137
+#: src/gui.c:998 src/gui.c:1123 src/current_playlist.c:1237
+#: src/current_playlist.c:1374 src/statusicon.c:84 src/statusicon.c:133
 #: src/tags.c:407
 msgid "Title"
 msgstr "Tytuł"
 
-#: src/gui.c:1002 src/gui.c:1127 src/current_playlist.c:1240
-#: src/current_playlist.c:1377
+#: src/gui.c:1002 src/gui.c:1127 src/current_playlist.c:1243
+#: src/current_playlist.c:1380
 msgid "Bitrate"
 msgstr "Przepływność"
 
-#: src/gui.c:1003 src/gui.c:1128 src/current_playlist.c:1238
-#: src/current_playlist.c:1375 src/tags.c:411
+#: src/gui.c:1003 src/gui.c:1128 src/current_playlist.c:1241
+#: src/current_playlist.c:1378 src/tags.c:411
 msgid "Year"
 msgstr "Rok"
 
-#: src/gui.c:1004 src/gui.c:1129 src/current_playlist.c:1239
-#: src/current_playlist.c:1376 src/statusicon.c:90 src/statusicon.c:140
+#: src/gui.c:1004 src/gui.c:1129 src/current_playlist.c:1242
+#: src/current_playlist.c:1379 src/statusicon.c:87 src/statusicon.c:136
 msgid "Length"
 msgstr "Długość"
 
-#: src/gui.c:1005 src/gui.c:1130 src/current_playlist.c:1243
-#: src/current_playlist.c:1380
+#: src/gui.c:1005 src/gui.c:1130 src/current_playlist.c:1246
+#: src/current_playlist.c:1383
 msgid "Filename"
 msgstr "Nazwa pliku"
 
@@ -359,7 +358,7 @@ msgstr ""
 msgid "Repeat playback list at the end"
 msgstr ""
 
-#: src/gui.c:1866 src/panel.c:200 src/statusicon.c:134
+#: src/gui.c:1866 src/panel.c:200 src/statusicon.c:130
 msgid "<b>Not playing</b>"
 msgstr "<b>Nie odtwarza</b>"
 
@@ -405,26 +404,26 @@ msgid "<b>con_playlist</b> is a reserved playlist name"
 msgstr "<b>con_playlist</b> jest zarezerwowaną nazwą listy"
 
 #. Create labels
-#: src/current_playlist.c:1233 src/current_playlist.c:1370 src/tags.c:406
+#: src/current_playlist.c:1236 src/current_playlist.c:1373 src/tags.c:406
 msgid "Track No"
 msgstr "Numer ścieżki"
 
-#: src/current_playlist.c:1241 src/current_playlist.c:1378
+#: src/current_playlist.c:1244 src/current_playlist.c:1381
 msgid "Channels"
 msgstr "Kanały"
 
-#: src/current_playlist.c:1242 src/current_playlist.c:1379
+#: src/current_playlist.c:1245 src/current_playlist.c:1382
 msgid "Samplerate"
 msgstr "Próbkowanie"
 
-#: src/current_playlist.c:1278 src/current_playlist.c:1280
-#: src/current_playlist.c:1282 src/current_playlist.c:1284
-#: src/current_playlist.c:1407 src/current_playlist.c:1409
-#: src/current_playlist.c:1411 src/current_playlist.c:1413
+#: src/current_playlist.c:1281 src/current_playlist.c:1283
+#: src/current_playlist.c:1285 src/current_playlist.c:1287
+#: src/current_playlist.c:1410 src/current_playlist.c:1412
+#: src/current_playlist.c:1414 src/current_playlist.c:1416
 msgid "Unknown Tags"
 msgstr "Nieznane tagi"
 
-#: src/current_playlist.c:1292 src/current_playlist.c:1420
+#: src/current_playlist.c:1295 src/current_playlist.c:1423
 msgid "Track Information"
 msgstr "Informacje o ścieżce"
 
@@ -547,48 +546,48 @@ msgstr "Nazwa użytkownika"
 msgid "Password"
 msgstr "Hasło"
 
-#: src/menu.c:94
+#: src/menu.c:131
 msgid "Update Library"
 msgstr "Aktualizowanie kolekcji"
 
-#: src/menu.c:94
+#: src/menu.c:131
 msgid "Rescan Library"
 msgstr "Ponowne skanowanie kolekcji"
 
 #. Create a file chooser dialog
-#: src/menu.c:146
+#: src/menu.c:183
 msgid "Select a file to play"
 msgstr "Wybierz plik do odtworzenia"
 
-#: src/menu.c:160
+#: src/menu.c:197
 msgid "Supported media"
 msgstr "Obsługiwane formaty"
 
-#: src/menu.c:188
+#: src/menu.c:225
 msgid "All files"
 msgstr "Wszystkie pliki"
 
-#: src/menu.c:451 src/menu.c:560
+#: src/menu.c:488 src/menu.c:597
 msgid "Library scan complete"
 msgstr "Skanowanie kolekcji zakończone"
 
-#: src/menu.c:643
+#: src/menu.c:680
 msgid "Total Tracks:"
 msgstr "Ścieżek:"
 
-#: src/menu.c:645
+#: src/menu.c:682
 msgid "Total Artists:"
 msgstr "Wykonawców:"
 
-#: src/menu.c:647
+#: src/menu.c:684
 msgid "Total Albums:"
 msgstr "Albumów:"
 
-#: src/menu.c:649
+#: src/menu.c:686
 msgid "Statistics"
 msgstr "Statystyki"
 
-#: src/menu.c:666
+#: src/menu.c:703
 msgid "translator-credits"
 msgstr "Krzysztof Komorowski <krzykom@gmail.com>"
 

@@ -64,19 +64,56 @@ static void rescan_dialog_response_cb(GtkDialog *dialog,
 
 static void handle_selected_file(gpointer data, gpointer udata)
 {
+	enum file_type type;
+	GtkRecentData recent_data;
+
 	struct musicobject *mobj;
 	struct con_win *cwin = (struct con_win*)udata;
 
 	if (!data)
 		return;
 
-	if (is_m3u_playlist(data)) {
+	if (is_m3u_playlist(data)){
 		open_m3u_playlist(data, cwin);
-	} else {
+		recent_data.mime_type = "audio/x-mpegurl";
+	}
+	else{
 		mobj = new_musicobject_from_file(data);
 		if (mobj)
 			append_current_playlist(mobj, cwin);
+
+		/* generate the recently-used data */
+
+		type = get_file_type(data);
+		switch(type) {
+		case FILE_WAV:
+			recent_data.mime_type = "audio/x-wav";
+			break;
+		case FILE_MP3:
+			recent_data.mime_type = "audio/mpeg";
+			break;
+		case FILE_FLAC:
+			recent_data.mime_type = "audio/x-flac";
+			break;
+		case FILE_OGGVORBIS:
+			recent_data.mime_type = "audio/x-vorbis+ogg";
+			break;
+		case FILE_MODPLUG:
+			recent_data.mime_type = "audio/x-mod";
+			break;
+		default:
+			break;
+		}
 	}
+
+	recent_data.display_name = NULL;
+	recent_data.description = NULL;
+	recent_data.app_name = "Pragha Music Manager";
+	recent_data.app_exec = "pragha %f";
+	recent_data.groups = NULL;
+	recent_data.is_private = FALSE;
+	
+	gtk_recent_manager_add_full(gtk_recent_manager_get_default(), g_filename_to_uri(data, NULL, NULL), &recent_data);
 
 	g_free(data);
 }
