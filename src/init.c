@@ -199,7 +199,7 @@ gint init_config(struct con_win *cwin)
 	gint *col_widths, *win_size;
 	gchar *conrc, *condir, **libs, **columns, **nodes, *last_rescan_time;
 	gchar *u_file;
-	const gchar *home;
+	const gchar *config_dir;
 	gboolean err = FALSE;
 	gboolean libs_f,
 		lib_add_f,
@@ -236,9 +236,9 @@ gint init_config(struct con_win *cwin)
 	shuffle_f = repeat_f = window_size_f = all_f = FALSE;
 	audio_sink_f = audio_alsa_device_f = audio_oss_device_f = FALSE;
 
-	home = g_get_home_dir();
-	condir = g_strdup_printf("%s%s", home, "/.config/pragha");
-	conrc = g_strdup_printf("%s%s", home, "/.config/pragha/config");
+	config_dir = g_get_user_config_dir();
+	condir = g_strdup_printf("%s%s", config_dir, "/pragha");
+	conrc = g_strdup_printf("%s%s", config_dir, "/pragha/config");
 
 	/* Does .config/pragha exist ? */
 
@@ -871,9 +871,9 @@ gint init_musicdbase(struct con_win *cwin)
 
 	CDEBUG(DBG_INFO, "Initializing music dbase");
 
-	home = g_get_home_dir();
+	home = g_get_user_config_dir();
 	cwin->cdbase->db_file = g_strdup_printf("%s%s", home,
-						"/.config/pragha/pragha.db");
+						"/pragha/pragha.db");
 
 	/* Create the database file */
 
