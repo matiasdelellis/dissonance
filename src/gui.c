@@ -451,28 +451,31 @@ static GtkWidget* create_library_tree(struct con_win *cwin)
 		g_error_free(error);
 		error = NULL;
 	}
-	cwin->pixbuf->pixbuf_album = gdk_pixbuf_new_from_file_at_scale(PIXMAPDIR
-								       "/album.png",
-								       width,
-								       height,
-								       TRUE,
-								       &error);
+
+	cwin->pixbuf->pixbuf_album = gtk_icon_theme_load_icon(gtk_icon_theme_get_default(),
+							      "media-optical",
+							      width,
+							      0,
+							      &error);
 	if (!cwin->pixbuf->pixbuf_album) {
 		g_warning("Unable to load album png : %s", error->message);
 		g_error_free(error);
 		error = NULL;
 	}
+
 	cwin->pixbuf->pixbuf_track = gdk_pixbuf_new_from_file_at_scale(PIXMAPDIR
 								       "/track.png",
 								       width,
 								       height,
 								       TRUE,
 								       &error);
+
 	if (!cwin->pixbuf->pixbuf_track) {
 		g_warning("Unable to load track png : %s", error->message);
 		g_error_free(error);
 		error = NULL;
 	}
+
 	cwin->pixbuf->pixbuf_genre = gdk_pixbuf_new_from_file_at_scale(PIXMAPDIR
 								       "/genre.png",
 								       width,
