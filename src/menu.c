@@ -73,6 +73,12 @@ static void handle_selected_file(gpointer data, gpointer udata)
 	if (!data)
 		return;
 
+	if (g_file_test(data, G_FILE_TEST_IS_DIR)){
+		__recur_add(data, cwin);
+		g_free(data);
+		return;
+	}
+
 	if (is_m3u_playlist(data)){
 		open_m3u_playlist(data, cwin);
 		recent_data.mime_type = "audio/x-mpegurl";
@@ -169,85 +175,140 @@ static GtkWidget* lib_progress_bar(struct con_win *cwin, int update)
 	return progress_bar;
 }
 
+/* Add Files a folders to play list based on Audacius code.*/
+/* /src/ui_fileopen.c */
+static void
+close_button_cb(GtkWidget *widget, gpointer data)
+{
+    gtk_widget_destroy(GTK_WIDGET(data));
+}
+
+static void
+add_button_cb(GtkWidget *widget, gpointer data)
+{
+	GtkWidget *window = g_object_get_data(data, "window");
+	GtkWidget *chooser = g_object_get_data(data, "chooser");
+	struct con_win *cwin = g_object_get_data(data, "cwin");
+
+	GSList *files;
+
+	files = gtk_file_chooser_get_filenames((GtkFileChooser *) chooser);
+	if (files) {
+		cwin->cstate->file_tree_pwd = gtk_file_chooser_get_current_folder ((GtkFileChooser *) chooser);
+		g_slist_foreach(files, handle_selected_file, cwin);
+		g_slist_free(files);
+	}
+
+	gtk_widget_destroy(window);
+}
+
+static gboolean
+open_file_on_keypress(GtkWidget *dialog,
+                        GdkEventKey *event,
+                        gpointer data)
+{
+    if (event->keyval == GDK_Escape) {
+        gtk_widget_destroy(dialog);
+        return TRUE;
+    }
+
+    return FALSE;
+}
+
 /* Handler for the 'Open' item in the File menu */
 
 void open_file_action(GtkAction *action, struct con_win *cwin)
 {
-	GtkWidget *dialog;
+	GtkWidget *window, *vbox, *chooser, *bbox, *close_button, *add_button;
+	gpointer storage;
+	gint i=0;
 	GtkFileFilter *media_filter, *all_filter;
-	gint resp, i=0;
-	GSList *files = NULL;
 
 	/* Create a file chooser dialog */
 
-	dialog = gtk_file_chooser_dialog_new(_("Select a file to play"),
-					     GTK_WINDOW(cwin->mainwindow),
-					     GTK_FILE_CHOOSER_ACTION_OPEN,
-					     GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
-					     GTK_STOCK_OPEN, GTK_RESPONSE_ACCEPT,
-					     NULL);
+	window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
+
+	gtk_window_set_type_hint (GTK_WINDOW (window), GDK_WINDOW_TYPE_HINT_DIALOG);
+	gtk_window_set_title(GTK_WINDOW(window), (_("Select a file to play")));
+	gtk_window_set_default_size(GTK_WINDOW(window), 700, 450);
+	gtk_window_set_position(GTK_WINDOW(window), GTK_WIN_POS_CENTER);
+	gtk_container_set_border_width(GTK_CONTAINER(window), 10);
+
+	vbox = gtk_vbox_new(FALSE, 0);
+
+	gtk_container_add(GTK_CONTAINER(window), vbox);
+
+	chooser = gtk_file_chooser_widget_new(GTK_FILE_CHOOSER_ACTION_OPEN);
 
 	/* Set various properties */
 
-	gtk_file_chooser_set_select_multiple(GTK_FILE_CHOOSER(dialog), TRUE);
+	gtk_file_chooser_set_select_multiple(GTK_FILE_CHOOSER(chooser), TRUE);
+
+	if (cwin->cstate->file_tree_pwd)
+		gtk_file_chooser_set_current_folder(GTK_FILE_CHOOSER(chooser),
+		cwin->cstate->file_tree_pwd);
+
+	bbox = gtk_hbutton_box_new();
+	gtk_button_box_set_layout(GTK_BUTTON_BOX(bbox), GTK_BUTTONBOX_END);
+	gtk_box_set_spacing(GTK_BOX(bbox), 6);
+
+	close_button = gtk_button_new_from_stock(GTK_STOCK_CANCEL);
+	add_button = gtk_button_new_from_stock(GTK_STOCK_ADD);
+	gtk_container_add(GTK_CONTAINER(bbox), close_button);
+	gtk_container_add(GTK_CONTAINER(bbox), add_button);
+
+	gtk_box_pack_end(GTK_BOX(vbox), bbox, FALSE, FALSE, 3);
+	gtk_box_pack_start(GTK_BOX(vbox), chooser, TRUE, TRUE, 3);
+
 
 	/* Create file filters  */
 
 	media_filter = gtk_file_filter_new();
 	gtk_file_filter_set_name(GTK_FILE_FILTER(media_filter), _("Supported media"));
 	
-	/* wav filter */
 	while (mime_wav[i])
 		gtk_file_filter_add_mime_type(GTK_FILE_FILTER(media_filter),
 					      mime_wav[i++]);
-
-	/* mp3 filter */
 	i = 0;
 	while (mime_mpeg[i])
 		gtk_file_filter_add_mime_type(GTK_FILE_FILTER(media_filter),
 					      mime_mpeg[i++]);
-
-	/* flac filter */
 	i = 0;
 	while (mime_flac[i])
 		gtk_file_filter_add_mime_type(GTK_FILE_FILTER(media_filter),
 					      mime_flac[i++]);
-
-	/* ogg filter */
 	i = 0;
 	while (mime_ogg[i])
 		gtk_file_filter_add_mime_type(GTK_FILE_FILTER(media_filter),
 					      mime_ogg[i++]);
-	/* m3u filter */
 	gtk_file_filter_add_pattern(GTK_FILE_FILTER(media_filter), "*.m3u");
 
 	all_filter = gtk_file_filter_new();
 	gtk_file_filter_set_name(GTK_FILE_FILTER(all_filter), _("All files"));
 	gtk_file_filter_add_pattern(GTK_FILE_FILTER(all_filter), "*.*");
 
-	gtk_file_chooser_add_filter(GTK_FILE_CHOOSER(dialog),
+	gtk_file_chooser_add_filter(GTK_FILE_CHOOSER(chooser),
 				    GTK_FILE_FILTER(media_filter));
-	gtk_file_chooser_add_filter(GTK_FILE_CHOOSER(dialog),
+	gtk_file_chooser_add_filter(GTK_FILE_CHOOSER(chooser),
 				    GTK_FILE_FILTER(all_filter));
-	gtk_file_chooser_set_filter(GTK_FILE_CHOOSER(dialog),
+	gtk_file_chooser_set_filter(GTK_FILE_CHOOSER(chooser),
 				    GTK_FILE_FILTER(media_filter));
 
-	/* Show it and get the file(s) list */
+	storage = g_object_new(G_TYPE_OBJECT, NULL);
+	g_object_set_data(storage, "window", window);
+	g_object_set_data(storage, "chooser", chooser);
+	g_object_set_data(storage, "cwin", cwin);
 
-	resp = gtk_dialog_run(GTK_DIALOG(dialog));
-	switch (resp) {
-	case GTK_RESPONSE_ACCEPT:
-		files = gtk_file_chooser_get_filenames(GTK_FILE_CHOOSER(dialog));
-		if (files) {
-			g_slist_foreach(files, handle_selected_file, cwin);
-			g_slist_free(files);
-		}
-		break;
-	default:
-		break;
-	}
+	g_signal_connect(add_button, "clicked",
+		G_CALLBACK(add_button_cb), storage);
+	g_signal_connect(close_button, "clicked",
+			G_CALLBACK(close_button_cb), window);
+	g_signal_connect(window, "destroy",
+			G_CALLBACK(gtk_widget_destroy), window);
+	g_signal_connect(window, "key_press_event",
+			G_CALLBACK(open_file_on_keypress), NULL);
 
-	gtk_widget_destroy(dialog);
+	gtk_widget_show_all(window);
 }
 
 /* Handler for the 'Play Audio CD' item in the pragha menu */
