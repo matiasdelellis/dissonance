@@ -1061,7 +1061,7 @@ void queue_current_playlist(GtkAction *action, struct con_win *cwin)
 	g_list_free (list);
 }
 
-/*Totem Code*/
+/* Based on Totem Code */
 int current_playlist_key_press (GtkWidget *win, GdkEventKey *event, struct con_win *cwin)
 {
 	/* Special case some shortcuts 
