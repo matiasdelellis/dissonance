@@ -1064,6 +1064,14 @@ void queue_current_playlist(GtkAction *action, struct con_win *cwin)
 /* Based on Totem Code */
 int current_playlist_key_press (GtkWidget *win, GdkEventKey *event, struct con_win *cwin)
 {
+	GtkTreeModel *model;
+	GtkTreeSelection *selection;
+	GtkTreeRowReference *ref;
+	GtkTreeIter iter;
+	GList *list;
+	gint n_select = 0;
+	gboolean is_queue = FALSE;
+
 	/* Special case some shortcuts 
 	if (event->state != 0) {
 		if ((event->state & GDK_CONTROL_MASK)
@@ -1085,6 +1093,28 @@ int current_playlist_key_press (GtkWidget *win, GdkEventKey *event, struct con_w
 		return FALSE;
 	if (event->keyval == GDK_Delete){
 		remove_current_playlist(NULL, cwin);
+		return TRUE;
+	}
+	else if(event->keyval == GDK_q || event->keyval == GDK_Q){
+		model = gtk_tree_view_get_model(GTK_TREE_VIEW(cwin->current_playlist));
+		selection = gtk_tree_view_get_selection(GTK_TREE_VIEW(cwin->current_playlist));
+		n_select = gtk_tree_selection_count_selected_rows(selection);
+
+		if(n_select==1){
+			list = gtk_tree_selection_get_selected_rows(selection, NULL);
+			if (gtk_tree_model_get_iter(model, &iter, list->data)){
+				gtk_tree_model_get(model, &iter, P_BUBBLE, &is_queue, -1);
+				if(is_queue)
+					delete_queue_track_refs(list->data, cwin);
+				else{
+					ref = gtk_tree_row_reference_new(model, list->data);
+					cwin->cstate->queue_track_refs = g_list_append(cwin->cstate->queue_track_refs, ref);
+				}
+				requeue_track_refs(cwin);
+			}
+			gtk_tree_path_free(list->data);
+			g_list_free (list);
+		}
 		return TRUE;
 	}
 	return FALSE;
