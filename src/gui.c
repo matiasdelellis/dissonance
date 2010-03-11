@@ -427,6 +427,18 @@ static GtkWidget* create_library_tree(struct con_win *cwin)
 		error = NULL;
 	}
 
+	cwin->pixbuf->pixbuf_track = gdk_pixbuf_new_from_file_at_scale(PIXMAPDIR
+								       "/track.png",
+								       width,
+								       height,
+								       TRUE,
+								       &error);
+	if (!cwin->pixbuf->pixbuf_track) {
+		g_warning("Unable to load track png : %s", error->message);
+		g_error_free(error);
+		error = NULL;
+	}
+
 	cwin->pixbuf->pixbuf_genre = gdk_pixbuf_new_from_file_at_scale(PIXMAPDIR
 								       "/genre.png",
 								       width,
