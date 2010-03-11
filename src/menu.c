@@ -194,7 +194,7 @@ add_button_cb(GtkWidget *widget, gpointer data)
 
 	files = gtk_file_chooser_get_filenames((GtkFileChooser *) chooser);
 	if (files) {
-		cwin->cstate->file_tree_pwd = gtk_file_chooser_get_current_folder ((GtkFileChooser *) chooser);
+		cwin->cstate->last_folder = gtk_file_chooser_get_current_folder ((GtkFileChooser *) chooser);
 		g_slist_foreach(files, handle_selected_file, cwin);
 		g_slist_free(files);
 	}
@@ -244,9 +244,9 @@ void open_file_action(GtkAction *action, struct con_win *cwin)
 
 	gtk_file_chooser_set_select_multiple(GTK_FILE_CHOOSER(chooser), TRUE);
 
-	if (cwin->cstate->file_tree_pwd)
+	if (cwin->cstate->last_folder)
 		gtk_file_chooser_set_current_folder(GTK_FILE_CHOOSER(chooser),
-		cwin->cstate->file_tree_pwd);
+		cwin->cstate->last_folder);
 
 	bbox = gtk_hbutton_box_new();
 	gtk_button_box_set_layout(GTK_BUTTON_BOX(bbox), GTK_BUTTONBOX_END);
@@ -458,12 +458,12 @@ library_pane_action (GtkAction *action, struct con_win *cwin)
 /* Handler for the 'File panel' item in the Edit menu */
 
 void
-files_pane_action (GtkAction *action, struct con_win *cwin)
+playlists_pane_action (GtkAction *action, struct con_win *cwin)
 {
 	gboolean ret;
 	ret = gtk_toggle_action_get_active(GTK_TOGGLE_ACTION(action));
 
-	gtk_toggle_button_set_active( GTK_TOGGLE_BUTTON(cwin->toggle_file), ret);
+	gtk_toggle_button_set_active( GTK_TOGGLE_BUTTON(cwin->toggle_playlists), ret);
 }
 
 /* Handler for the 'Status bar' item in the Edit menu */

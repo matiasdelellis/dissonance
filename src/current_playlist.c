@@ -2085,17 +2085,7 @@ gboolean dnd_current_playlist_drop(GtkWidget *widget,
 {
 	GdkAtom target;
 
-	if (gtk_drag_get_source_widget(context) == cwin->file_tree) {
-		CDEBUG(DBG_VERBOSE, "DnD: file_tree");
-		target = GDK_POINTER_TO_ATOM(g_list_nth_data(context->targets,
-							     TARGET_FILENAME));
-		gtk_drag_get_data(widget,
-				  context,
-				  target,
-				  time);
-		return TRUE;
-	}
-	else if (gtk_drag_get_source_widget(context) == cwin->library_tree) {
+	if (gtk_drag_get_source_widget(context) == cwin->library_tree) {
 		CDEBUG(DBG_VERBOSE, "DnD: library_tree");
 		target = GDK_POINTER_TO_ATOM(g_list_nth_data(context->targets,
 							     TARGET_LOCATION_ID));
@@ -2138,7 +2128,7 @@ void dnd_current_playlist_received(GtkWidget *widget,
 	GtkTreeViewDropPosition pos = 0;
 	GList *list = NULL, *l;
 	struct musicobject *mobj = NULL;
-	GArray *loc_arr, *file_arr, *playlist_arr;
+	GArray *loc_arr, *playlist_arr;
 	gint i = 0, elem = 0;
 	gchar *name = NULL;
 	gboolean ret;
@@ -2229,34 +2219,6 @@ void dnd_current_playlist_received(GtkWidget *widget,
 		} while (elem != 0);
 
 		g_array_free(loc_arr, TRUE);
-
-		break;
-	case TARGET_FILENAME:
-		file_arr = *(GArray **)data->data;
-		if (!file_arr)
-			g_warning("No selections to process in DnD");
-
-		CDEBUG(DBG_VERBOSE, "Target: FILENAME, "
-		       "selection: %p, file_arr: %p",
-		       data->data, file_arr);
-
-		while(1) {
-			name = g_array_index(file_arr, gchar*, i);
-			if (name) {
-				mobj = new_musicobject_from_file(name);
-				if (!mobj)
-					g_critical("Invalid Filename: %s",
-						   name);
-				else
-					append_current_playlist(mobj, cwin);
-				g_free(name);
-				i++;
-			}
-			else
-				break;
-		};
-
-		g_array_free(file_arr, TRUE);
 
 		break;
 	case TARGET_PLAYLIST:

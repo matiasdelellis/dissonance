@@ -810,19 +810,13 @@ void init_playlist_view(struct con_win *cwin)
 	gint i = 0;
 	gchar *query;
 	struct db_result result;
-	GtkTreeIter iter, r_iter;
-	GtkTreePath *r_path = NULL;
+	GtkTreeIter iter;
 	GtkTreeModel *model;
-	gboolean expanded = FALSE;
 
 	cwin->cstate->view_change = TRUE;
 
 	model = gtk_tree_view_get_model(GTK_TREE_VIEW(cwin->playlist_tree));
-	if (gtk_tree_model_get_iter_first(model, &r_iter)) {
-		r_path = gtk_tree_model_get_path(model, &r_iter);
-		expanded = gtk_tree_view_row_expanded(GTK_TREE_VIEW(cwin->playlist_tree),
-						      r_path);
-	}
+
 	gtk_tree_store_clear(GTK_TREE_STORE(model));
 
 	gtk_tree_store_append(GTK_TREE_STORE(model),
@@ -850,24 +844,15 @@ void init_playlist_view(struct con_win *cwin)
 
 		while(gtk_events_pending()) {
 			if (gtk_main_iteration_do(FALSE)) {
-				if (r_path)
-					gtk_tree_path_free(r_path);
 				sqlite3_free_table(result.resultp);
 				return;
 			}
 		}
 	}
 
-	if (r_path) {
-		if (expanded)
-			gtk_tree_view_expand_row(GTK_TREE_VIEW(cwin->playlist_tree),
-						 r_path, FALSE);
-		else
-			gtk_tree_view_collapse_row(GTK_TREE_VIEW(cwin->playlist_tree),
-						   r_path);
-
-		gtk_tree_path_free(r_path);
-	}
 	sqlite3_free_table(result.resultp);
+
+	gtk_tree_view_expand_all(GTK_TREE_VIEW(cwin->playlist_tree));
+
 	cwin->cstate->view_change = FALSE;
 }
