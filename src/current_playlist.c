@@ -626,10 +626,10 @@ static gchar* get_playlist_dialog(enum playlist_mgmt *choice,
 	dialog = gtk_dialog_new_with_buttons(_("Save playlist"),
 			     GTK_WINDOW(cwin->mainwindow),
 			     GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
-			     GTK_STOCK_OK,
-			     GTK_RESPONSE_ACCEPT,
 			     GTK_STOCK_CANCEL,
 			     GTK_RESPONSE_CANCEL,
+			     GTK_STOCK_OK,
+			     GTK_RESPONSE_ACCEPT,
 			     NULL);
 	gtk_box_pack_start(GTK_BOX(vbox1), radio_new, TRUE, TRUE, 2);
 	gtk_box_pack_start(GTK_BOX(vbox1), radio_add, TRUE, TRUE, 2);
