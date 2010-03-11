@@ -736,7 +736,8 @@ void genre_album_library_tree(GtkAction *action, struct con_win *cwin);
 void genre_artist_library_tree(GtkAction *action, struct con_win *cwin);
 void genre_artist_album_library_tree(GtkAction *action, struct con_win *cwin);
 void library_tree_replace_playlist(GtkAction *action, struct con_win *cwin);
-void library_tree_add_to_playlist(GtkAction *action, struct con_win *cwin);
+void library_tree_add_to_playlist(struct con_win *cwin);
+void library_tree_add_to_playlist_action(GtkAction *action, struct con_win *cwin);
 void library_tree_edit_tags(GtkAction *action, struct con_win *cwin);
 void library_tree_delete_db(GtkAction *action, struct con_win *cwin);
 void library_tree_delete_hdd(GtkAction *action, struct con_win *cwin);
@@ -790,7 +791,8 @@ gboolean playlist_tree_right_click_cb(GtkWidget *widget,
 				      GdkEventButton *event,
 				      struct con_win *cwin);
 void playlist_tree_replace_playlist(GtkAction *action, struct con_win *cwin);
-void playlist_tree_add_to_playlist(GtkAction *action, struct con_win *cwin);
+void playlist_tree_add_to_playlist(struct con_win *cwin);
+void playlist_tree_add_to_playlist_action(GtkAction *action, struct con_win *cwin);
 void playlist_tree_delete(GtkAction *action, struct con_win *cwin);
 void playlist_tree_export(GtkAction *action, struct con_win *cwi);
 void open_m3u_playlist(gchar *file, struct con_win *cwin);

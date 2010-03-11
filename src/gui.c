@@ -269,7 +269,7 @@ GtkActionEntry playlist_tree_context_aentries[] = {
 
 GtkActionEntry library_tree_context_aentries[] = {
 	{"Add to playlist", GTK_STOCK_ADD, N_("_Add to playlist"),
-	 NULL, "Add to playlist", G_CALLBACK(library_tree_add_to_playlist)},
+	 NULL, "Add to playlist", G_CALLBACK(library_tree_add_to_playlist_action)},
 	{"Replace playlist", NULL, N_("_Replace playlist"),
 	 NULL, "Replace playlist", G_CALLBACK(library_tree_replace_playlist)},
 	{"Edit", GTK_STOCK_EDIT, N_("Edit tags"),
