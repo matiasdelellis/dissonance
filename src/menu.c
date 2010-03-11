@@ -74,7 +74,10 @@ static void handle_selected_file(gpointer data, gpointer udata)
 		return;
 
 	if (g_file_test(data, G_FILE_TEST_IS_DIR)){
-		__recur_add(data, cwin);
+		if(cwin->cpref->add_recursively_files)
+			__recur_add(data, cwin);
+		else
+			__non_recur_add(data, TRUE, cwin);
 		g_free(data);
 		return;
 	}
@@ -188,7 +191,10 @@ add_button_cb(GtkWidget *widget, gpointer data)
 {
 	GtkWidget *window = g_object_get_data(data, "window");
 	GtkWidget *chooser = g_object_get_data(data, "chooser");
+	GtkWidget *toggle = g_object_get_data(data, "toggle-button");
 	struct con_win *cwin = g_object_get_data(data, "cwin");
+
+	cwin->cpref->add_recursively_files = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(toggle));
 
 	GSList *files;
 
@@ -219,7 +225,7 @@ open_file_on_keypress(GtkWidget *dialog,
 
 void open_file_action(GtkAction *action, struct con_win *cwin)
 {
-	GtkWidget *window, *vbox, *chooser, *bbox, *close_button, *add_button;
+	GtkWidget *window, *hbox, *vbox, *chooser, *bbox, *toggle, *close_button, *add_button;
 	gpointer storage;
 	gint i=0;
 	GtkFileFilter *media_filter, *all_filter;
@@ -248,6 +254,11 @@ void open_file_action(GtkAction *action, struct con_win *cwin)
 		gtk_file_chooser_set_current_folder(GTK_FILE_CHOOSER(chooser),
 		cwin->cstate->last_folder);
 
+	hbox = gtk_hbox_new(FALSE, 0);
+
+	toggle = gtk_check_button_new_with_label(_("Add recursively files"));
+	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(toggle),
+					cwin->cpref->add_recursively_files ? TRUE : FALSE);
 	bbox = gtk_hbutton_box_new();
 	gtk_button_box_set_layout(GTK_BUTTON_BOX(bbox), GTK_BUTTONBOX_END);
 	gtk_box_set_spacing(GTK_BOX(bbox), 6);
@@ -257,9 +268,11 @@ void open_file_action(GtkAction *action, struct con_win *cwin)
 	gtk_container_add(GTK_CONTAINER(bbox), close_button);
 	gtk_container_add(GTK_CONTAINER(bbox), add_button);
 
-	gtk_box_pack_end(GTK_BOX(vbox), bbox, FALSE, FALSE, 3);
-	gtk_box_pack_start(GTK_BOX(vbox), chooser, TRUE, TRUE, 3);
+	gtk_box_pack_start(GTK_BOX(hbox), toggle, TRUE, TRUE, 3);
+	gtk_box_pack_end(GTK_BOX(hbox), bbox, FALSE, FALSE, 3);
 
+	gtk_box_pack_end(GTK_BOX(vbox), hbox, FALSE, FALSE, 3);
+	gtk_box_pack_end(GTK_BOX(vbox), chooser, TRUE, TRUE, 3);
 
 	/* Create file filters  */
 
@@ -297,6 +310,7 @@ void open_file_action(GtkAction *action, struct con_win *cwin)
 	storage = g_object_new(G_TYPE_OBJECT, NULL);
 	g_object_set_data(storage, "window", window);
 	g_object_set_data(storage, "chooser", chooser);
+	g_object_set_data(storage, "toggle-button", toggle);
 	g_object_set_data(storage, "cwin", cwin);
 
 	g_signal_connect(add_button, "clicked",
