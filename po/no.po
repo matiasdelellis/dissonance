@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-03-10 21:35-0200\n"
+"POT-Creation-Date: 2010-03-12 11:05-0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Kim Ljosdal <kim357@web.de>\n"
 "Language-Team: \n"
@@ -88,7 +88,7 @@ msgstr "Fjern"
 msgid "Crop"
 msgstr "Trimme"
 
-#: src/gui.c:186 src/gui.c:255 src/gui.c:1350
+#: src/gui.c:186 src/gui.c:255 src/gui.c:1362
 #, fuzzy
 msgid "Clear playlist"
 msgstr "Tøm Spilleliste"
@@ -110,7 +110,7 @@ msgstr "_Innstillinger"
 msgid "Lateral _panel"
 msgstr ""
 
-#: src/gui.c:195 src/gui.c:1359
+#: src/gui.c:195 src/gui.c:1371
 msgid "Jump to playing song"
 msgstr ""
 
@@ -166,11 +166,11 @@ msgstr "_Gjenta"
 msgid "_Fullscreen"
 msgstr ""
 
-#: src/gui.c:227 src/gui.c:637 src/pref.c:1206
+#: src/gui.c:227 src/gui.c:649 src/pref.c:1206
 msgid "Library"
 msgstr "Samling"
 
-#: src/gui.c:230 src/gui.c:655 src/playlist.c:827
+#: src/gui.c:230 src/gui.c:667 src/playlist.c:851
 msgid "Playlists"
 msgstr "Spillelister"
 
@@ -232,41 +232,41 @@ msgstr "_Utvid Alt i Samling"
 msgid "_Collapse library"
 msgstr "_Kollaps Alt i Samling"
 
-#: src/gui.c:288 src/librarytree.c:815 src/librarytree.c:1253
+#: src/gui.c:288 src/librarytree.c:832 src/librarytree.c:1274
 msgid "Folder / File"
 msgstr "Mappe / Fil"
 
-#: src/gui.c:290 src/gui.c:774 src/gui.c:899 src/current_playlist.c:1268
-#: src/current_playlist.c:1405 src/librarytree.c:832 src/librarytree.c:1256
+#: src/gui.c:290 src/gui.c:786 src/gui.c:911 src/current_playlist.c:1268
+#: src/current_playlist.c:1405 src/librarytree.c:849 src/librarytree.c:1277
 #: src/statusicon.c:87 src/statusicon.c:136 src/tags.c:408
 msgid "Artist"
 msgstr "Artist"
 
-#: src/gui.c:292 src/gui.c:775 src/gui.c:900 src/current_playlist.c:1269
-#: src/current_playlist.c:1406 src/librarytree.c:849 src/librarytree.c:1259
+#: src/gui.c:292 src/gui.c:787 src/gui.c:912 src/current_playlist.c:1269
+#: src/current_playlist.c:1406 src/librarytree.c:866 src/librarytree.c:1280
 #: src/statusicon.c:88 src/statusicon.c:137 src/tags.c:409
 msgid "Album"
 msgstr "Album"
 
-#: src/gui.c:294 src/gui.c:776 src/gui.c:901 src/current_playlist.c:1270
-#: src/current_playlist.c:1407 src/librarytree.c:866 src/librarytree.c:1262
+#: src/gui.c:294 src/gui.c:788 src/gui.c:913 src/current_playlist.c:1270
+#: src/current_playlist.c:1407 src/librarytree.c:883 src/librarytree.c:1283
 #: src/tags.c:410
 msgid "Genre"
 msgstr "Genre"
 
-#: src/gui.c:296 src/librarytree.c:885 src/librarytree.c:1265
+#: src/gui.c:296 src/librarytree.c:902 src/librarytree.c:1286
 msgid "Artist / Album"
 msgstr "Artist / Album"
 
-#: src/gui.c:298 src/librarytree.c:904 src/librarytree.c:1271
+#: src/gui.c:298 src/librarytree.c:921 src/librarytree.c:1292
 msgid "Genre / Album"
 msgstr "Genre / Album"
 
-#: src/gui.c:300 src/librarytree.c:923 src/librarytree.c:1268
+#: src/gui.c:300 src/librarytree.c:940 src/librarytree.c:1289
 msgid "Genre / Artist"
 msgstr "Genre / Artist"
 
-#: src/gui.c:302 src/librarytree.c:944 src/librarytree.c:1274
+#: src/gui.c:302 src/librarytree.c:961 src/librarytree.c:1295
 msgid "Genre / Artist / Album"
 msgstr "Genre / Artist / Album"
 
@@ -274,81 +274,81 @@ msgstr "Genre / Artist / Album"
 msgid "Prev Track"
 msgstr "Forrige Spor"
 
-#: src/gui.c:319 src/gui.c:1586
+#: src/gui.c:319 src/gui.c:1598
 msgid "Next Track"
 msgstr "Neste Spor"
 
-#: src/gui.c:666
+#: src/gui.c:678
 msgid "Pragha Music Manager"
 msgstr "Pragha Musikk Manager"
 
 #. Create the checkmenu items
-#: src/gui.c:772 src/gui.c:897 src/current_playlist.c:58
+#: src/gui.c:784 src/gui.c:909 src/current_playlist.c:58
 msgid "Track"
 msgstr "Spor"
 
-#: src/gui.c:773 src/gui.c:898 src/current_playlist.c:1267
+#: src/gui.c:785 src/gui.c:910 src/current_playlist.c:1267
 #: src/current_playlist.c:1404 src/statusicon.c:86 src/statusicon.c:135
 #: src/tags.c:407
 msgid "Title"
 msgstr "Tittel"
 
-#: src/gui.c:777 src/gui.c:902 src/current_playlist.c:1273
+#: src/gui.c:789 src/gui.c:914 src/current_playlist.c:1273
 #: src/current_playlist.c:1410
 msgid "Bitrate"
 msgstr "Bithastighet"
 
-#: src/gui.c:778 src/gui.c:903 src/current_playlist.c:1271
+#: src/gui.c:790 src/gui.c:915 src/current_playlist.c:1271
 #: src/current_playlist.c:1408 src/tags.c:411
 msgid "Year"
 msgstr "År"
 
-#: src/gui.c:779 src/gui.c:904 src/current_playlist.c:1272
+#: src/gui.c:791 src/gui.c:916 src/current_playlist.c:1272
 #: src/current_playlist.c:1409 src/statusicon.c:89 src/statusicon.c:138
 msgid "Length"
 msgstr "Lengde"
 
-#: src/gui.c:780 src/gui.c:905 src/current_playlist.c:1276
+#: src/gui.c:792 src/gui.c:917 src/current_playlist.c:1276
 #: src/current_playlist.c:1413
 msgid "Filename"
 msgstr "Filnavn"
 
-#: src/gui.c:783
+#: src/gui.c:795
 #, fuzzy
 msgid "Clear sort"
 msgstr "Tøm Sortering"
 
-#: src/gui.c:1341
+#: src/gui.c:1353
 #, fuzzy
 msgid "Save complete playlist"
 msgstr "Lagre Hele Spilleliste"
 
 #. Tooltips
-#: src/gui.c:1584
+#: src/gui.c:1596
 msgid "Play / Pause Track"
 msgstr "Spill / Pause Spor"
 
-#: src/gui.c:1585
+#: src/gui.c:1597
 msgid "Previous Track"
 msgstr "Forrige Spor"
 
-#: src/gui.c:1587
+#: src/gui.c:1599
 msgid "Stop playback"
 msgstr "Stopp Spilling"
 
-#: src/gui.c:1588
+#: src/gui.c:1600
 msgid "Play songs in a random order"
 msgstr ""
 
-#: src/gui.c:1589
+#: src/gui.c:1601
 msgid "Repeat playback list at the end"
 msgstr ""
 
-#: src/gui.c:1628 src/panel.c:200 src/statusicon.c:132
+#: src/gui.c:1640 src/panel.c:200 src/statusicon.c:132
 msgid "<b>Not playing</b>"
 msgstr "<b>Spiller ikke</b>"
 
-#: src/gui.c:1886
+#: src/gui.c:1898
 #, fuzzy
 msgid "Options of the library"
 msgstr "_Oppdater Samling"
@@ -592,7 +592,7 @@ msgstr "dag"
 msgid "Unable to open the browser"
 msgstr ""
 
-#: src/playlist.c:453
+#: src/playlist.c:477
 msgid "Export playlist to file"
 msgstr "Eksporter spilleliste til fil"
 
