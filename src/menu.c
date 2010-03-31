@@ -508,6 +508,7 @@ void rescan_library_action(GtkAction *action, struct con_win *cwin)
 	gint no_files = 0, i, cnt = 0;
 	GSList *list;
 	gchar *lib;
+	gchar *query;
 
 	/* Check if Library is set */
 
@@ -544,12 +545,18 @@ void rescan_library_action(GtkAction *action, struct con_win *cwin)
 	cnt = g_slist_length(cwin->cpref->library_dir);
 	cwin->cstate->stop_scan = FALSE;
 
+	query = g_strdup_printf("BEGIN TRANSACTION");
+	exec_sqlite_query(query, cwin, NULL);
+
 	for (i=0; i<cnt; i++) {
 		lib = (gchar*)list->data;
 		no_files = dir_file_count(lib, 1);
 		rescan_db(lib, no_files, progress_bar, 1, cwin);
 		list = list->next;
 	}
+
+	query = g_strdup_printf("END TRANSACTION");
+	exec_sqlite_query(query, cwin, NULL);
 
 	init_library_view(cwin);
 	gtk_widget_destroy(library_dialog);
@@ -587,6 +594,7 @@ void update_library_action(GtkAction *action, struct con_win *cwin)
 	gint no_files = 0, i, cnt = 0;
 	GSList *list;
 	gchar *lib;
+	gchar *query;
 
 	/* Create the dialog */
 
@@ -597,6 +605,9 @@ void update_library_action(GtkAction *action, struct con_win *cwin)
 	cwin->cstate->stop_scan = FALSE;
 
 	/* Check if any library has been removed */
+
+	query = g_strdup_printf("BEGIN TRANSACTION");
+	exec_sqlite_query(query, cwin, NULL);
 
 	list = cwin->cpref->lib_delete;
 	cnt = g_slist_length(cwin->cpref->lib_delete);
@@ -647,6 +658,9 @@ void update_library_action(GtkAction *action, struct con_win *cwin)
 			goto exit;
 		list = list->next;
 	}
+
+	query = g_strdup_printf("END TRANSACTION");
+	exec_sqlite_query(query, cwin, NULL);
 
 	/* Save update time */
 
