@@ -1346,6 +1346,7 @@ void track_properties_current_playlist(struct con_win *cwin)
 				align = gtk_alignment_new(0, 0, 0, 0);
 				info_label = gtk_label_new(tr_info[i]);
 				gtk_label_set_selectable(GTK_LABEL(info_label), TRUE);
+				gtk_label_set_line_wrap(GTK_LABEL(info_label), TRUE);
 				gtk_container_add(GTK_CONTAINER(align), info_label);
 				gtk_box_pack_start(GTK_BOX(info_box),
 						   GTK_WIDGET(align),
@@ -1475,6 +1476,7 @@ void track_properties_current_playing(struct con_win *cwin)
 			align = gtk_alignment_new(0, 0, 0, 0);
 			info_label = gtk_label_new(tr_info[i]);
 			gtk_label_set_selectable(GTK_LABEL(info_label), TRUE);
+			gtk_label_set_line_wrap(GTK_LABEL(info_label), TRUE);
 			gtk_container_add(GTK_CONTAINER(align), info_label);
 				gtk_box_pack_start(GTK_BOX(info_box),
 					   GTK_WIDGET(align),

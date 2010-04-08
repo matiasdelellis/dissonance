@@ -50,6 +50,7 @@ static int  x = 0, y = 0;
 		if(gtk_window_is_active(GTK_WINDOW (cwin->mainwindow))){
 			gtk_window_get_position( window, &x, &y );
 			gtk_widget_hide(GTK_WIDGET(window));
+			cwin->cstate->iconified = TRUE;
 		}
 		else gtk_window_present( window );
 	}
@@ -57,9 +58,45 @@ static int  x = 0, y = 0;
 		gtk_window_set_skip_taskbar_hint( window , FALSE );
 		if( x != 0 && y != 0 )
 			gtk_window_move( window , x, y );
-		gtk_widget_show( GTK_WIDGET( window ) );
+		gtk_widget_show_all( GTK_WIDGET( window ) );
 		gtk_window_present( window );
+		cwin->cstate->iconified = FALSE;
 	}
+}
+
+static void
+notify_next_Callback (NotifyNotification *osd,
+                const char *action,
+                struct con_win *cwin)
+{
+	g_assert(action != NULL);
+	g_assert(strcmp(action, "empty") == 0);
+
+	play_next_track(cwin);
+
+	notify_notification_close (osd, NULL);
+}
+
+static gboolean
+can_support_actions( void )
+{
+	static gboolean supported;
+	static gboolean have_checked = FALSE;
+
+	if( !have_checked ){
+		GList * c;
+		GList * caps = notify_get_server_caps( );
+
+		have_checked = TRUE;
+
+		for( c=caps; c && !supported; c=c->next )
+			supported = !strcmp( "actions", (char*)c->data );
+
+		g_list_foreach( caps, (GFunc)g_free, NULL );
+		g_list_free( caps );
+	}
+
+	return supported;
 }
 
 /* For want of a better place, this is here ... */
@@ -94,6 +131,7 @@ void show_osd(struct con_win *cwin)
 					NULL,
 					NULL,
 					GTK_STATUS_ICON(cwin->status_icon));
+
 	notify_notification_set_timeout(osd, OSD_TIMEOUT);
 
 	/* Add album art if set */
@@ -104,6 +142,13 @@ void show_osd(struct con_win *cwin)
 				cwin->album_art)) == GTK_IMAGE_PIXBUF))
 		notify_notification_set_icon_from_pixbuf(osd,
 				 gtk_image_get_pixbuf(GTK_IMAGE(cwin->album_art)));
+
+	if(can_support_actions( )){
+                notify_notification_add_action(
+                    osd, "media-next", _("Next Track" ),
+                    NOTIFY_ACTION_CALLBACK(notify_next_Callback), cwin,
+                    NULL );
+	}
 
 	/* Show OSD */
 

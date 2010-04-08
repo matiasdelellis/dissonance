@@ -446,14 +446,16 @@ fullscreen_action (GtkAction *action, struct con_win *cwin)
 
 	menu_bar = gtk_ui_manager_get_widget(cwin->bar_context_menu, "/Menubar");
 
-	cwin->cpref->fullscreen = gtk_toggle_action_get_active(GTK_TOGGLE_ACTION(action));
+	cwin->cstate->fullscreen = gtk_toggle_action_get_active(GTK_TOGGLE_ACTION(action));
 
-	if(!cwin->cpref->fullscreen){
+	if(!cwin->cstate->fullscreen){
 		gtk_window_unfullscreen(GTK_WINDOW(cwin->mainwindow));
+		gtk_widget_hide(cwin->unfull_button);
 		gtk_widget_show(GTK_WIDGET(menu_bar));
 	}
 	else{
 		gtk_window_fullscreen(GTK_WINDOW(cwin->mainwindow));
+		gtk_widget_show(cwin->unfull_button);
 		gtk_widget_hide(GTK_WIDGET(menu_bar));
 	}
 }

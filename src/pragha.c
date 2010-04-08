@@ -21,7 +21,7 @@
 gint debug_level;
 
 /* FIXME: Cleanup track refs */
-static void common_cleanup(struct con_win *cwin)
+void common_cleanup(struct con_win *cwin)
 {
 	CDEBUG(DBG_INFO, "Cleaning up");
 

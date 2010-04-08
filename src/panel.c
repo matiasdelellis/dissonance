@@ -314,6 +314,19 @@ void unset_album_art(struct con_win *cwin)
 	}
 }
 
+/* Handler for the 'Leave fullscren' button item in Panel */
+
+void
+unfull_button_handler (GtkButton *button, struct con_win *cwin)
+{
+	GtkAction *action_fullscreen;
+
+	action_fullscreen = gtk_ui_manager_get_action(cwin->bar_context_menu, "/Menubar/ViewMenu/Fullscreen");
+
+	gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (action_fullscreen), FALSE);
+
+}
+
 /* Handler for the 'Shuffle' button item in Panel */
 
 void
