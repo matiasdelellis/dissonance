@@ -59,6 +59,13 @@ static int  x = 0, y = 0;
 		if( x != 0 && y != 0 )
 			gtk_window_move( window , x, y );
 		gtk_widget_show_all( GTK_WIDGET( window ) );
+
+		if(!cwin->cpref->show_album_art)
+			if (cwin->album_art_frame)
+				gtk_widget_hide(cwin->album_art_frame);
+		if(!cwin->cstate->fullscreen)
+			gtk_widget_hide(cwin->unfull_button);
+
 		gtk_window_present( window );
 		cwin->cstate->iconified = FALSE;
 	}
@@ -186,7 +193,8 @@ gboolean status_get_tooltip_cb (GtkWidget        *widget,
 	gtk_tooltip_set_markup (tooltip, markup_text);
 	g_free(markup_text);
 
-	gtk_tooltip_set_icon (tooltip, gtk_image_get_pixbuf(GTK_IMAGE(cwin->album_art)));
+	if (cwin->cpref->show_album_art && cwin->album_art)
+		gtk_tooltip_set_icon (tooltip, gtk_image_get_pixbuf(GTK_IMAGE(cwin->album_art)));
 
 	return TRUE;
 }
