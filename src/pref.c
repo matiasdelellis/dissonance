@@ -1,6 +1,6 @@
 /*************************************************************************/
 /* Copyright (C) 2007-2009 sujith <m.sujith@gmail.com>			 */
-/* Copyright (C) 2009 matias <mati86dl@gmail.com>			 */
+/* Copyright (C) 2009-2010 matias <mati86dl@gmail.com>			 */
 /* 									 */
 /* This program is free software: you can redistribute it and/or modify	 */
 /* it under the terms of the GNU General Public License as published by	 */
@@ -1392,7 +1392,7 @@ void preferences_dialog(struct con_win *cwin)
 	gtk_combo_box_append_text(GTK_COMBO_BOX(window_state_combo), _("Start fullscreen"));
 	gtk_combo_box_append_text(GTK_COMBO_BOX(window_state_combo), _("Start in system tray"));
 
-	start_label = gtk_label_new(_("When pragha start: "));
+	start_label = gtk_label_new(_("When pragha start"));
 
 	hbox_start = gtk_hbox_new(FALSE, 10);
 
@@ -1409,7 +1409,7 @@ void preferences_dialog(struct con_win *cwin)
 
 	/*General Check_buttons*/
 
-	close_to_tray = gtk_check_button_new_with_label(_("When you close the window, minimize to system tray"));
+	close_to_tray = gtk_check_button_new_with_label(_("Minimize pragha when close the window"));
 
 	save_playlist = gtk_check_button_new_with_label(_("Restore last playlist"));
 	osd = gtk_check_button_new_with_label(_("Show OSD for track change"));

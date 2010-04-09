@@ -1,6 +1,6 @@
 /*************************************************************************/
 /* Copyright (C) 2007-2009 sujith <m.sujith@gmail.com>			 */
-/* Copyright (C) 2009 matias <mati86dl@gmail.com>			 */
+/* Copyright (C) 2009-2010 matias <mati86dl@gmail.com>			 */
 /* 									 */
 /* This program is free software: you can redistribute it and/or modify	 */
 /* it under the terms of the GNU General Public License as published by	 */
@@ -76,12 +76,9 @@ notify_next_Callback (NotifyNotification *osd,
                 const char *action,
                 struct con_win *cwin)
 {
-	g_assert(action != NULL);
-	g_assert(strcmp(action, "empty") == 0);
-
 	play_next_track(cwin);
 
-	notify_notification_close (osd, NULL);
+//	notify_notification_close (osd, NULL);
 }
 
 static gboolean
