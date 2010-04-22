@@ -35,6 +35,7 @@
 #include <glib/gstdio.h>
 #include <gio/gio.h>
 #include <dbus/dbus.h>
+#include <dbus/dbus-glib.h>
 #include <dbus/dbus-glib-lowlevel.h>
 #include <libnotify/notify.h>
 #include <gtk/gtk.h>

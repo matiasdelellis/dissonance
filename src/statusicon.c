@@ -127,7 +127,7 @@ void show_osd(struct con_win *cwin)
  			_("Title"), str,
  			_("Artist"), cwin->cstate->curr_mobj->tags->artist,
  			_("Album"), cwin->cstate->curr_mobj->tags->album,
-			_("Length"), convert_length_str(cwin->cstate->curr_mobj->tags->length));
+			_("Length"), length);
 
 	/* Create notification instance */
 
