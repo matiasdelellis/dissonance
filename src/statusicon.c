@@ -65,6 +65,8 @@ static int  x = 0, y = 0;
 				gtk_widget_hide(cwin->album_art_frame);
 		if(!cwin->cstate->fullscreen)
 			gtk_widget_hide(cwin->unfull_button);
+		if(!gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(cwin->toggle_lib)) && !gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(cwin->toggle_playlists)))
+			gtk_widget_hide_all(GTK_WIDGET(cwin->browse_mode));
 
 		gtk_window_present( window );
 		cwin->cstate->iconified = FALSE;
