@@ -467,7 +467,7 @@ void library_tree_row_activated_cb(GtkTreeView *library_tree,
 						path))
 			gtk_tree_view_expand_row(GTK_TREE_VIEW(cwin->library_tree),
 						 path,
-						 FALSE);
+						 TRUE);
 		else
 			gtk_tree_view_collapse_row(GTK_TREE_VIEW(cwin->library_tree),
 						   path);
