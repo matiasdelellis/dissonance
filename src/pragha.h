@@ -105,8 +105,8 @@
 #define ALSA_DEFAULT_DEVICE "default"
 #define OSS_DEFAULT_DEVICE  "/dev/dsp"
 
-#define PROGRESS_BAR_TEXT           "Scanning"
-#define TRACK_PROGRESS_BAR_STOPPED  "Stopped"
+#define PROGRESS_BAR_TEXT           _("Scanning")
+#define TRACK_PROGRESS_BAR_STOPPED  _("Stopped")
 #define SAVE_PLAYLIST_STATE         "con_playlist"
 
 #define LASTFM_URL                 "http://post.audioscrobbler.com"

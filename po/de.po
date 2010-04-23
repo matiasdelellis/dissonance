@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pragha svn rev. 60\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-04-09 10:09-0300\n"
+"POT-Creation-Date: 2010-04-22 21:03-0300\n"
 "PO-Revision-Date: 2010-03-21 12:43+0100\n"
 "Last-Translator: Michael Kogan <michael.kogan@gmx.net>\n"
 "Language-Team: Deutsch\n"
@@ -173,7 +173,8 @@ msgstr "Zur Warteliste hinzufügen"
 msgid "Remove to playback queue"
 msgstr "Aus der Warteliste entfernen"
 
-#: src/gui.c:247 src/gui.c:275
+#. The main edit dialog
+#: src/gui.c:247 src/gui.c:275 src/tags.c:589
 msgid "Edit tags"
 msgstr "Tags bearbeiten"
 
@@ -219,19 +220,19 @@ msgstr "Ordner / Datei"
 
 #: src/gui.c:290 src/gui.c:786 src/gui.c:911 src/current_playlist.c:1268
 #: src/current_playlist.c:1406 src/librarytree.c:850 src/librarytree.c:1278
-#: src/statusicon.c:128 src/statusicon.c:185 src/tags.c:408
+#: src/statusicon.c:129 src/statusicon.c:185 src/tags.c:414
 msgid "Artist"
 msgstr "Interpret"
 
 #: src/gui.c:292 src/gui.c:787 src/gui.c:912 src/current_playlist.c:1269
 #: src/current_playlist.c:1407 src/librarytree.c:867 src/librarytree.c:1281
-#: src/statusicon.c:129 src/statusicon.c:186 src/tags.c:409
+#: src/statusicon.c:130 src/statusicon.c:186 src/tags.c:415
 msgid "Album"
 msgstr "Album"
 
 #: src/gui.c:294 src/gui.c:788 src/gui.c:913 src/current_playlist.c:1270
 #: src/current_playlist.c:1408 src/librarytree.c:884 src/librarytree.c:1284
-#: src/tags.c:410
+#: src/tags.c:416
 msgid "Genre"
 msgstr "Genre"
 
@@ -255,7 +256,7 @@ msgstr "Genre / Interpret / Album"
 msgid "Prev Track"
 msgstr "Vorheriger Titel"
 
-#: src/gui.c:319 src/gui.c:1613 src/statusicon.c:152
+#: src/gui.c:319 src/gui.c:1613 src/statusicon.c:153
 msgid "Next Track"
 msgstr "Nächster Titel"
 
@@ -268,9 +269,10 @@ msgstr "Pragha Music Manager"
 msgid "Track"
 msgstr "Spur"
 
+#. Create labels
 #: src/gui.c:785 src/gui.c:910 src/current_playlist.c:1267
-#: src/current_playlist.c:1405 src/statusicon.c:127 src/statusicon.c:184
-#: src/tags.c:407
+#: src/current_playlist.c:1405 src/statusicon.c:128 src/statusicon.c:184
+#: src/tags.c:413
 msgid "Title"
 msgstr "Titel"
 
@@ -280,12 +282,12 @@ msgid "Bitrate"
 msgstr "Bitrate"
 
 #: src/gui.c:790 src/gui.c:915 src/current_playlist.c:1271
-#: src/current_playlist.c:1409 src/tags.c:411
+#: src/current_playlist.c:1409 src/tags.c:418
 msgid "Year"
 msgstr "Jahr"
 
 #: src/gui.c:791 src/gui.c:916 src/current_playlist.c:1272
-#: src/current_playlist.c:1410 src/statusicon.c:130 src/statusicon.c:187
+#: src/current_playlist.c:1410 src/statusicon.c:131 src/statusicon.c:187
 msgid "Length"
 msgstr "Länge"
 
@@ -371,8 +373,7 @@ msgstr "An existierende Wiedergabeliste anhängen"
 msgid "<b>con_playlist</b> is a reserved playlist name"
 msgstr "<b>con_playlist</b> ist ein reservierter Wiedergabelistenname"
 
-#. Create labels
-#: src/current_playlist.c:1266 src/current_playlist.c:1404 src/tags.c:406
+#: src/current_playlist.c:1266 src/current_playlist.c:1404 src/tags.c:417
 msgid "Track No"
 msgstr "Titelnummer"
 

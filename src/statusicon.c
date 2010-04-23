@@ -78,9 +78,8 @@ notify_next_Callback (NotifyNotification *osd,
                 const char *action,
                 struct con_win *cwin)
 {
+	notify_notification_close (osd, NULL);
 	play_next_track(cwin);
-
-//	notify_notification_close (osd, NULL);
 }
 
 static gboolean
@@ -167,7 +166,6 @@ void show_osd(struct con_win *cwin)
 	g_free(summary);
 	g_free(length);
 	g_free(str);
-	g_object_unref(G_OBJECT(osd));
 }
 
 gboolean status_get_tooltip_cb (GtkWidget        *widget,
@@ -187,7 +185,7 @@ gboolean status_get_tooltip_cb (GtkWidget        *widget,
  			_("Artist"), cwin->cstate->curr_mobj->tags->artist,
  			_("Album"), cwin->cstate->curr_mobj->tags->album,
 			_("Length"), gtk_label_get_text (GTK_LABEL(cwin->track_time_label)),
-			convert_length_str(cwin->cstate->curr_mobj->tags->length));
+			gtk_label_get_text (GTK_LABEL(cwin->track_length_label)));
 	}
 	gtk_tooltip_set_markup (tooltip, markup_text);
 	g_free(markup_text);
