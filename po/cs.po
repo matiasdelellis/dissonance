@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pragha\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-04-22 21:03-0300\n"
+"POT-Creation-Date: 2010-05-05 11:44-0300\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Alois Nešpor <alois.nespor@gmail.com>\n"
 "Language-Team: \n"
@@ -106,12 +106,11 @@ msgstr "Skočit na hrající píseň"
 
 #: src/gui.c:197
 msgid "Search _lyric"
-msgstr "Hledat _text"
+msgstr "Najít _text písně"
 
 #: src/gui.c:199
-#, fuzzy
 msgid "_Search in playlist"
-msgstr "Prohledat playlist"
+msgstr "Hledat v playlistu"
 
 #: src/gui.c:201
 msgid "_Rescan library"
@@ -151,7 +150,7 @@ msgstr "_Opakovat"
 
 #: src/gui.c:224
 msgid "_Fullscreen"
-msgstr "_Fullscreen"
+msgstr "_Na celou obrazovku"
 
 #: src/gui.c:227 src/gui.c:649 src/pref.c:1292
 msgid "Library"
@@ -166,16 +165,15 @@ msgid "Status bar"
 msgstr "Status"
 
 #: src/gui.c:239
-#, fuzzy
 msgid "Add to playback queue"
-msgstr "Zastavit přehrávání"
+msgstr "Přidat k přehrávání fronty"
 
 #: src/gui.c:241
 msgid "Remove to playback queue"
-msgstr ""
+msgstr "Odebrat přehrávání fronty"
 
 #. The main edit dialog
-#: src/gui.c:247 src/gui.c:275 src/tags.c:589
+#: src/gui.c:247 src/gui.c:275 src/tags.c:605
 msgid "Edit tags"
 msgstr "Editovat tagy"
 
@@ -221,19 +219,19 @@ msgstr "Složka / Soubor"
 
 #: src/gui.c:290 src/gui.c:786 src/gui.c:911 src/current_playlist.c:1268
 #: src/current_playlist.c:1406 src/librarytree.c:850 src/librarytree.c:1278
-#: src/statusicon.c:129 src/statusicon.c:185 src/tags.c:414
+#: src/statusicon.c:129 src/statusicon.c:185 src/tags.c:426
 msgid "Artist"
 msgstr "Umělec"
 
 #: src/gui.c:292 src/gui.c:787 src/gui.c:912 src/current_playlist.c:1269
 #: src/current_playlist.c:1407 src/librarytree.c:867 src/librarytree.c:1281
-#: src/statusicon.c:130 src/statusicon.c:186 src/tags.c:415
+#: src/statusicon.c:130 src/statusicon.c:186 src/tags.c:427
 msgid "Album"
 msgstr "Album"
 
 #: src/gui.c:294 src/gui.c:788 src/gui.c:913 src/current_playlist.c:1270
 #: src/current_playlist.c:1408 src/librarytree.c:884 src/librarytree.c:1284
-#: src/tags.c:416
+#: src/tags.c:428
 msgid "Genre"
 msgstr "Žánr"
 
@@ -273,7 +271,7 @@ msgstr "Stopa"
 #. Create labels
 #: src/gui.c:785 src/gui.c:910 src/current_playlist.c:1267
 #: src/current_playlist.c:1405 src/statusicon.c:128 src/statusicon.c:184
-#: src/tags.c:413
+#: src/tags.c:425
 msgid "Title"
 msgstr "Titul"
 
@@ -283,7 +281,7 @@ msgid "Bitrate"
 msgstr "Bitráž"
 
 #: src/gui.c:790 src/gui.c:915 src/current_playlist.c:1271
-#: src/current_playlist.c:1409 src/tags.c:418
+#: src/current_playlist.c:1409 src/tags.c:430
 msgid "Year"
 msgstr "Rok"
 
@@ -319,17 +317,16 @@ msgid "Stop playback"
 msgstr "Zastavit přehrávání"
 
 #: src/gui.c:1616
-#, fuzzy
 msgid "Leave Fullscreen"
-msgstr "_Fullscreen"
+msgstr "Opustit 'Celou obrazovku'"
 
 #: src/gui.c:1617
 msgid "Play songs in a random order"
-msgstr ""
+msgstr "Přehrávat náhodně"
 
 #: src/gui.c:1618
 msgid "Repeat playback list at the end"
-msgstr ""
+msgstr "Opakovat playlist po přehrání poslední skladby"
 
 #: src/gui.c:1657 src/panel.c:200 src/statusicon.c:181
 msgid "<b>Not playing</b>"
@@ -374,7 +371,7 @@ msgstr "Připojit k existujícímu playlistu"
 msgid "<b>con_playlist</b> is a reserved playlist name"
 msgstr "<b>con_playlist</b> je rezervované jméno playlistu"
 
-#: src/current_playlist.c:1266 src/current_playlist.c:1404 src/tags.c:417
+#: src/current_playlist.c:1266 src/current_playlist.c:1404 src/tags.c:429
 msgid "Track No"
 msgstr "Stopa č."
 
@@ -428,16 +425,15 @@ msgstr "Vzor obalu"
 
 #: src/pref.c:61 src/pref.c:1391
 msgid "Start normal"
-msgstr ""
+msgstr "Sputit normálně"
 
 #: src/pref.c:66 src/pref.c:1392
-#, fuzzy
 msgid "Start fullscreen"
-msgstr "_Fullscreen"
+msgstr "Celá obrazovka"
 
 #: src/pref.c:71 src/pref.c:1393
 msgid "Start in system tray"
-msgstr ""
+msgstr "Spustit minimalizovaně v systémové liště"
 
 #. Create a folder chooser dialog
 #: src/pref.c:270
@@ -482,21 +478,20 @@ msgstr "Vzor souboru obalu"
 
 #: src/pref.c:1390
 msgid "Remember last window state"
-msgstr ""
+msgstr "Pamatovat si poslední pozici okna"
 
 #: src/pref.c:1395
 msgid "When pragha start"
-msgstr ""
+msgstr "Když Pragha startuje"
 
 #. General Check_buttons
 #: src/pref.c:1412
 msgid "Minimize pragha when close the window"
-msgstr ""
+msgstr "Minimalizovat při zavření okna"
 
 #: src/pref.c:1414
-#, fuzzy
 msgid "Restore last playlist"
-msgstr "Uložit/obnovit současný playlist"
+msgstr "Obnovit poslední playlist"
 
 #: src/pref.c:1415
 msgid "Show OSD for track change"
@@ -555,7 +550,7 @@ msgstr "Vybrat soubor k přehrání"
 
 #: src/menu.c:259
 msgid "Add recursively files"
-msgstr ""
+msgstr "Přidat soubory rekurzivně"
 
 #: src/menu.c:280
 msgid "Supported media"
