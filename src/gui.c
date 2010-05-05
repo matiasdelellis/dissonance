@@ -1412,7 +1412,6 @@ GtkWidget* create_main_region(struct con_win *cwin)
 			   0);
 
 	return hbox;
-
 }
 
 
@@ -1491,7 +1490,6 @@ GtkWidget* create_panel(struct con_win *cwin)
 	gtk_button_set_relief(GTK_BUTTON(stop_button), GTK_RELIEF_NONE);
 	gtk_button_set_relief(GTK_BUTTON(next_button), GTK_RELIEF_NONE);
 	gtk_button_set_relief(GTK_BUTTON(play_button), GTK_RELIEF_NONE);
-
 
 	gtk_button_set_image(GTK_BUTTON(prev_button),
 			     gtk_image_new_from_stock(GTK_STOCK_MEDIA_PREVIOUS,
@@ -1634,6 +1632,7 @@ GtkWidget* create_panel(struct con_win *cwin)
 				   GTK_WIDGET(album_art_frame),
 				   FALSE, FALSE, 0);
 		cwin->album_art_frame = album_art_frame;
+
 		unset_album_art(cwin);
 	}
 
