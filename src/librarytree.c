@@ -1042,86 +1042,112 @@ void library_tree_add_to_playlist(struct con_win *cwin)
 
 void library_tree_delete_db(GtkAction *action, struct con_win *cwin)
 {
+	GtkWidget *dialog;
 	GtkTreeModel *model, *filter_model;
 	GtkTreeSelection *selection;
 	GtkTreePath *path;
 	GList *list, *i;
 	gchar *query;
+	gint result;
 
 	filter_model = gtk_tree_view_get_model(GTK_TREE_VIEW(cwin->library_tree));
 	selection = gtk_tree_view_get_selection(GTK_TREE_VIEW(cwin->library_tree));
 	list = gtk_tree_selection_get_selected_rows(selection, &model);
 
 	if (list) {
+		dialog = gtk_message_dialog_new(GTK_WINDOW(cwin->mainwindow),
+					GTK_DIALOG_MODAL,
+					GTK_MESSAGE_QUESTION,
+					GTK_BUTTONS_YES_NO,
+					_("Are you sure you want to delete current file from library?\n\n"
+					"Warning: To recover we must rescan the entire library."));
 
-		/* Delete all the rows */
+		result = gtk_dialog_run(GTK_DIALOG(dialog));
+		gtk_widget_destroy(dialog);
 
-		query = g_strdup_printf("BEGIN;");
-		exec_sqlite_query(query, cwin, NULL);
+		if( result == GTK_RESPONSE_YES ){
+			/* Delete all the rows */
 
-		for (i=list; i != NULL; i = i->next) {
-			path = i->data;
-			delete_row_from_db(path, model, cwin);
-			gtk_tree_path_free(path);
+			query = g_strdup_printf("BEGIN;");
+			exec_sqlite_query(query, cwin, NULL);
 
-			/* Have to give control to GTK periodically ... */
-			/* If gtk_main_quit has been called, return -
-			   since main loop is no more. */
+			for (i=list; i != NULL; i = i->next) {
+				path = i->data;
+				delete_row_from_db(path, model, cwin);
+				gtk_tree_path_free(path);
 
-			while(gtk_events_pending())
-				if (gtk_main_iteration_do(FALSE))
-					return;
+				/* Have to give control to GTK periodically ... */
+				/* If gtk_main_quit has been called, return -
+				   since main loop is no more. */
+
+				while(gtk_events_pending())
+					if (gtk_main_iteration_do(FALSE))
+						return;
+			}
+			g_list_free(list);
+
+			query = g_strdup_printf("END;");
+			exec_sqlite_query(query, cwin, NULL);
+
+			flush_stale_entries_db(cwin);
+			init_library_view(cwin);
 		}
-		g_list_free(list);
-
-		query = g_strdup_printf("END;");
-		exec_sqlite_query(query, cwin, NULL);
 	}
-
-	flush_stale_entries_db(cwin);
-	init_library_view(cwin);
 }
 
 void library_tree_delete_hdd(GtkAction *action, struct con_win *cwin)
 {
+	GtkWidget *dialog;
 	GtkTreeModel *model, *filter_model;
 	GtkTreeSelection *selection;
 	GtkTreePath *path;
 	GList *list, *i;
 	gchar *query;
+	gint result;
 
 	filter_model = gtk_tree_view_get_model(GTK_TREE_VIEW(cwin->library_tree));
 	selection = gtk_tree_view_get_selection(GTK_TREE_VIEW(cwin->library_tree));
 	list = gtk_tree_selection_get_selected_rows(selection, &model);
 
 	if (list) {
+		dialog = gtk_message_dialog_new(GTK_WINDOW(cwin->mainwindow),
+						GTK_DIALOG_MODAL,
+						GTK_MESSAGE_QUESTION,
+						GTK_BUTTONS_YES_NO,
+						_("Are you sure you want to delete current file from HDD?\n\n"
+						"Warning: Once deleted, the file cannot be recovered."));
 
-		/* Delete all the rows */
+		result = gtk_dialog_run(GTK_DIALOG(dialog));
+		gtk_widget_destroy(dialog);
+		if( result == GTK_RESPONSE_YES ){
+			/* Delete all the rows */
 
-		query = g_strdup_printf("BEGIN;");
-		exec_sqlite_query(query, cwin, NULL);
+			query = g_strdup_printf("BEGIN;");
+			exec_sqlite_query(query, cwin, NULL);
 
-		for (i=list; i != NULL; i = i->next) {
-			path = i->data;
-			delete_row_from_hdd(path, model, cwin);
-			gtk_tree_path_free(path);
+			for (i=list; i != NULL; i = i->next) {
+				path = i->data;
+				delete_row_from_hdd(path, model, cwin);
+				gtk_tree_path_free(path);
 
-			/* Have to give control to GTK periodically ... */
-			/* If gtk_main_quit has been called, return -
-			   since main loop is no more. */
+				/* Have to give control to GTK periodically ... */
+				/* If gtk_main_quit has been called, return -
+				   since main loop is no more. */
 
-			while(gtk_events_pending())
-				if (gtk_main_iteration_do(FALSE))
-					return;
+				while(gtk_events_pending())
+					if (gtk_main_iteration_do(FALSE))
+						return;
+			}
+			g_list_free(list);
+
+			query = g_strdup_printf("END;");
+			exec_sqlite_query(query, cwin, NULL);
+
+			flush_stale_entries_db(cwin);
+			init_library_view(cwin);
 		}
-		g_list_free(list);
 
-		query = g_strdup_printf("END;");
-		exec_sqlite_query(query, cwin, NULL);
 	}
-
-	flush_stale_entries_db(cwin);
-	init_library_view(cwin);
 }
 
 /***************/
