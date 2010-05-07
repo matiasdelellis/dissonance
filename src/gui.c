@@ -1522,11 +1522,8 @@ GtkWidget* create_panel(struct con_win *cwin)
 
 	/* Setup Right control buttons */
 
-	unfull_button = gtk_button_new();
+	unfull_button = gtk_button_new_from_stock (GTK_STOCK_LEAVE_FULLSCREEN);
 	gtk_button_set_relief(GTK_BUTTON(unfull_button), GTK_RELIEF_NONE);
-	gtk_button_set_image(GTK_BUTTON(unfull_button),
-			     gtk_image_new_from_stock(GTK_STOCK_LEAVE_FULLSCREEN,
-						      GTK_ICON_SIZE_LARGE_TOOLBAR));
 
 	sep = gtk_vseparator_new();
 
