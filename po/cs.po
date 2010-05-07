@@ -2,9 +2,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pragha\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-05-05 11:44-0300\n"
+"POT-Creation-Date: 2010-05-07 17:26-0300\n"
 "PO-Revision-Date: \n"
-"Last-Translator: Alois Nešpor <alois.nespor@gmail.com>\n"
+"Last-Translator: Matias <mati86dl@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -213,41 +213,41 @@ msgstr "_Rozbalit"
 msgid "_Collapse library"
 msgstr "_Zabalit"
 
-#: src/gui.c:288 src/librarytree.c:833 src/librarytree.c:1275
+#: src/gui.c:288 src/librarytree.c:833 src/librarytree.c:1301
 msgid "Folder / File"
 msgstr "Složka / Soubor"
 
 #: src/gui.c:290 src/gui.c:786 src/gui.c:911 src/current_playlist.c:1268
-#: src/current_playlist.c:1406 src/librarytree.c:850 src/librarytree.c:1278
+#: src/current_playlist.c:1406 src/librarytree.c:850 src/librarytree.c:1304
 #: src/statusicon.c:129 src/statusicon.c:185 src/tags.c:426
 msgid "Artist"
 msgstr "Umělec"
 
 #: src/gui.c:292 src/gui.c:787 src/gui.c:912 src/current_playlist.c:1269
-#: src/current_playlist.c:1407 src/librarytree.c:867 src/librarytree.c:1281
+#: src/current_playlist.c:1407 src/librarytree.c:867 src/librarytree.c:1307
 #: src/statusicon.c:130 src/statusicon.c:186 src/tags.c:427
 msgid "Album"
 msgstr "Album"
 
 #: src/gui.c:294 src/gui.c:788 src/gui.c:913 src/current_playlist.c:1270
-#: src/current_playlist.c:1408 src/librarytree.c:884 src/librarytree.c:1284
+#: src/current_playlist.c:1408 src/librarytree.c:884 src/librarytree.c:1310
 #: src/tags.c:428
 msgid "Genre"
 msgstr "Žánr"
 
-#: src/gui.c:296 src/librarytree.c:903 src/librarytree.c:1287
+#: src/gui.c:296 src/librarytree.c:903 src/librarytree.c:1313
 msgid "Artist / Album"
 msgstr "Umělec / Album"
 
-#: src/gui.c:298 src/librarytree.c:922 src/librarytree.c:1293
+#: src/gui.c:298 src/librarytree.c:922 src/librarytree.c:1319
 msgid "Genre / Album"
 msgstr "Žánr / Album"
 
-#: src/gui.c:300 src/librarytree.c:941 src/librarytree.c:1290
+#: src/gui.c:300 src/librarytree.c:941 src/librarytree.c:1316
 msgid "Genre / Artist"
 msgstr "Žánr / Umělec"
 
-#: src/gui.c:302 src/librarytree.c:962 src/librarytree.c:1296
+#: src/gui.c:302 src/librarytree.c:962 src/librarytree.c:1322
 msgid "Genre / Artist / Album"
 msgstr "Žánr / Umělec / Album"
 
@@ -255,7 +255,7 @@ msgstr "Žánr / Umělec / Album"
 msgid "Prev Track"
 msgstr "Předchozí"
 
-#: src/gui.c:319 src/gui.c:1613 src/statusicon.c:153
+#: src/gui.c:319 src/gui.c:1608 src/statusicon.c:153
 msgid "Next Track"
 msgstr "Další"
 
@@ -304,35 +304,35 @@ msgid "Save complete playlist"
 msgstr "Uložit celý playlist"
 
 #. Tooltips
-#: src/gui.c:1611
+#: src/gui.c:1606
 msgid "Play / Pause Track"
 msgstr "Přehrát / Zastavit"
 
-#: src/gui.c:1612
+#: src/gui.c:1607
 msgid "Previous Track"
 msgstr "Předchozí"
 
-#: src/gui.c:1614
+#: src/gui.c:1609
 msgid "Stop playback"
 msgstr "Zastavit přehrávání"
 
-#: src/gui.c:1616
+#: src/gui.c:1611
 msgid "Leave Fullscreen"
 msgstr "Opustit 'Celou obrazovku'"
 
-#: src/gui.c:1617
+#: src/gui.c:1612
 msgid "Play songs in a random order"
 msgstr "Přehrávat náhodně"
 
-#: src/gui.c:1618
+#: src/gui.c:1613
 msgid "Repeat playback list at the end"
 msgstr "Opakovat playlist po přehrání poslední skladby"
 
-#: src/gui.c:1657 src/panel.c:200 src/statusicon.c:181
+#: src/gui.c:1653 src/panel.c:200 src/statusicon.c:181
 msgid "<b>Not playing</b>"
 msgstr "<b>Nepřehrává</b>"
 
-#: src/gui.c:1925
+#: src/gui.c:1921
 msgid "Options of the library"
 msgstr "_Volby knihovny"
 
@@ -409,6 +409,20 @@ msgstr "Neznámé album"
 msgid "Unknown Genre"
 msgstr "Neznámý zánr"
 
+#: src/librarytree.c:1062
+msgid ""
+"Are you sure you want to delete current file from library?\n"
+"\n"
+"Warning: To recover we must rescan the entire library."
+msgstr ""
+
+#: src/librarytree.c:1117
+msgid ""
+"Are you sure you want to delete current file from HDD?\n"
+"\n"
+"Warning: Once deleted, the file cannot be recovered."
+msgstr ""
+
 #: src/pref.c:21
 msgid ""
 "Patterns should be of the form:<filename>;<filename>;....\n"
@@ -481,7 +495,7 @@ msgid "Remember last window state"
 msgstr "Pamatovat si poslední pozici okna"
 
 #: src/pref.c:1395
-msgid "When pragha start"
+msgid "When Pragha start"
 msgstr "Když Pragha startuje"
 
 #. General Check_buttons
