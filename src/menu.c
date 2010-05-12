@@ -315,6 +315,8 @@ void open_file_action(GtkAction *action, struct con_win *cwin)
 
 	g_signal_connect(add_button, "clicked",
 		G_CALLBACK(add_button_cb), storage);
+	g_signal_connect(chooser, "file-activated",
+		G_CALLBACK(add_button_cb), storage);
 	g_signal_connect(close_button, "clicked",
 			G_CALLBACK(close_button_cb), window);
 	g_signal_connect(window, "destroy",
