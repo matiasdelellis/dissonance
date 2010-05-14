@@ -43,32 +43,30 @@ status_icon_clicked (GtkWidget *widget, GdkEventButton *event, struct con_win *c
 
 void toogle_main_window(struct con_win *cwin, gboolean present)
 {
-GtkWindow * window = GTK_WINDOW( cwin->mainwindow );
-static int  x = 0, y = 0;
+static gint  x = 0, y = 0;
 
 	if (present) {
-		if(gtk_window_is_active(GTK_WINDOW (cwin->mainwindow))){
-			gtk_window_get_position( window, &x, &y );
-			gtk_widget_hide(GTK_WIDGET(window));
+		if(gtk_window_is_active(GTK_WINDOW(cwin->mainwindow))){
+			gtk_window_get_position(GTK_WINDOW(cwin->mainwindow), &x, &y );
+			gtk_widget_hide(GTK_WIDGET(cwin->mainwindow));
 			cwin->cstate->iconified = TRUE;
 		}
-		else gtk_window_present( window );
+		else gtk_window_present(GTK_WINDOW(cwin->mainwindow));
 	}
 	else{
-		gtk_window_set_skip_taskbar_hint( window , FALSE );
 		if( x != 0 && y != 0 )
-			gtk_window_move( window , x, y );
-		gtk_widget_show_all( GTK_WIDGET( window ) );
+			gtk_window_move(GTK_WINDOW(cwin->mainwindow), x, y);
+		gtk_widget_show_all(cwin->mainwindow);
 
-		if(!cwin->cpref->show_album_art)
-			if (cwin->album_art_frame)
-				gtk_widget_hide(cwin->album_art_frame);
+		if(!cwin->cpref->show_album_art && cwin->album_art_frame)
+			gtk_widget_hide(cwin->album_art_frame);
 		if(!cwin->cstate->fullscreen)
 			gtk_widget_hide(cwin->unfull_button);
-		if(!gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(cwin->toggle_lib)) && !gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(cwin->toggle_playlists)))
-			gtk_widget_hide_all(GTK_WIDGET(cwin->browse_mode));
+		if(!gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(cwin->toggle_lib))
+			&& !gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(cwin->toggle_playlists)))
+				gtk_widget_hide_all(GTK_WIDGET(cwin->browse_mode));
 
-		gtk_window_present( window );
+		gtk_window_present(GTK_WINDOW(cwin->mainwindow));
 		cwin->cstate->iconified = FALSE;
 	}
 }

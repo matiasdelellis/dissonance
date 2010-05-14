@@ -141,7 +141,7 @@ static GdkPixbuf* get_pref_image_dir(gchar *path, struct con_win *cwin)
 
 void __update_current_song_info(struct con_win *cwin, gint length)
 {
-	gchar *str = NULL;
+	gchar *str = NULL, *str_title = NULL, *str_length = NULL, *str_cur_pos = NULL;
 	gchar *tot_length = NULL, *cur_pos = NULL;
 
 	if (!cwin->cstate->curr_mobj) {
@@ -150,47 +150,54 @@ void __update_current_song_info(struct con_win *cwin, gint length)
 	}
 
 	if( g_utf8_strlen(cwin->cstate->curr_mobj->tags->title, -1))
-		str = g_strdup(cwin->cstate->curr_mobj->tags->title);
+		str_title = g_strdup(cwin->cstate->curr_mobj->tags->title);
 	else
-		str = g_strdup(g_path_get_basename(cwin->cstate->curr_mobj->file));
+		str_title = g_strdup(g_path_get_basename(cwin->cstate->curr_mobj->file));
 
 	if(g_utf8_strlen(cwin->cstate->curr_mobj->tags->artist, -1)
 	 && g_utf8_strlen(cwin->cstate->curr_mobj->tags->album, -1))
 		str = g_markup_printf_escaped (_("%s <small><span weight=\"light\">by</span></small> %s <small><span weight=\"light\">in</span></small> %s"), 
-						str ,
+						str_title ,
 						cwin->cstate->curr_mobj->tags->artist, 
 						cwin->cstate->curr_mobj->tags->album);
 	else if(g_utf8_strlen(cwin->cstate->curr_mobj->tags->artist, -1))
 		str = g_markup_printf_escaped (_("%s <small><span weight=\"light\">by</span></small> %s"), 
-						str ,
+						str_title ,
 						cwin->cstate->curr_mobj->tags->artist);
 	else if(g_utf8_strlen(cwin->cstate->curr_mobj->tags->album, -1))
 		str = g_markup_printf_escaped (_("%s <small><span weight=\"light\">in</span></small> %s"), 
-						str ,
+						str_title ,
 						cwin->cstate->curr_mobj->tags->album);
 	else	str = g_markup_printf_escaped ("%s", 
-						str);
+						str_title);
 
 	gtk_label_set_markup(GTK_LABEL(cwin->now_playing_label), (const gchar*)str);
 
+
+
 	cur_pos = convert_length_str(length);
-	str = g_markup_printf_escaped ("<small>%s</small>", cur_pos);
-	gtk_label_set_markup (GTK_LABEL(cwin->track_time_label), (const gchar*)str);
+	str_cur_pos = g_markup_printf_escaped ("<small>%s</small>", cur_pos);
+	gtk_label_set_markup (GTK_LABEL(cwin->track_time_label), (const gchar*)str_cur_pos);
 
 	if(!cwin->cpref->timer_remaining_mode){
 		tot_length = convert_length_str(cwin->cstate->curr_mobj->tags->length);
-		str = g_markup_printf_escaped ("<small>%s</small>", tot_length);
+		str_length = g_markup_printf_escaped ("<small>%s</small>", tot_length);
 	}
 	else{
 		tot_length = convert_length_str(cwin->cstate->curr_mobj->tags->length - length);
-		str = g_markup_printf_escaped ("<small>- %s</small>", tot_length);
+		str_length = g_markup_printf_escaped ("<small>- %s</small>", tot_length);
 	}
-	gtk_label_set_markup (GTK_LABEL(cwin->track_length_label), (const gchar*)str);
+	gtk_label_set_markup (GTK_LABEL(cwin->track_length_label), (const gchar*)str_length);
 
 	gtk_tooltip_trigger_tooltip_query(gtk_widget_get_display (cwin->track_length_label));
 
 	g_free(str);
+	g_free(str_title);
+
+	g_free(str_length);
 	g_free(tot_length);
+
+	g_free(str_cur_pos);
 	g_free(cur_pos);
 }
 
@@ -253,37 +260,40 @@ void track_progress_change_cb(GtkWidget *widget,
 void update_album_art(struct musicobject *mobj, struct con_win *cwin)
 {
 	GError *error = NULL;
-	GdkPixbuf *album_art;
+	GdkPixbuf *scaled_album_art, *album_art, *scaled_frame, *frame;
 	gchar *dir;
 
 	if (cwin->cpref->show_album_art) {
-
-		/* Destroy previous album art image */
-
 		if (cwin->album_art) {
 			gtk_widget_destroy(cwin->album_art);
 			cwin->album_art = NULL;
 		}
-		if (mobj && mobj->file_type != FILE_CDDA) {
+
+		frame = gdk_pixbuf_new_from_file (PIXMAPDIR"/cover.png", &error);
+
+		if (mobj && mobj->file_type != FILE_CDDA){
 			dir = g_path_get_dirname(mobj->file);
-			if (cwin->cpref->album_art_pattern) {
+			if (cwin->cpref->album_art_pattern){
 				album_art = get_pref_image_dir(dir, cwin);
-				if (!album_art) {
+				if (!album_art)
 					album_art = get_image_from_dir(dir, cwin);
-				}
-			} else {
-				album_art = get_image_from_dir(dir, cwin);
 			}
+			else album_art = get_image_from_dir(dir, cwin);
 
 			if (album_art) {
-				cwin->album_art = gtk_image_new_from_pixbuf(album_art);
+				scaled_album_art = gdk_pixbuf_scale_simple (album_art, 112, 112, GDK_INTERP_BILINEAR);
+				gdk_pixbuf_copy_area(scaled_album_art, 0 ,0 ,112 ,112, frame, 12, 8);
+				g_object_unref(G_OBJECT(scaled_album_art));
 				g_object_unref(G_OBJECT(album_art));
 			}
-			else
-				cwin->album_art = gtk_image_new_from_pixbuf(gdk_pixbuf_new_from_file_at_size (PIXMAPDIR"/cover.png",
-								       cwin->cpref->album_art_size,
-								       cwin->cpref->album_art_size,
-								       &error));
+			scaled_frame = gdk_pixbuf_scale_simple (frame,
+								cwin->cpref->album_art_size,
+								cwin->cpref->album_art_size,
+								GDK_INTERP_BILINEAR);
+			cwin->album_art = gtk_image_new_from_pixbuf(scaled_frame);
+
+			g_object_unref(G_OBJECT(scaled_frame));
+			g_object_unref(G_OBJECT(frame));
 
 			gtk_container_add(GTK_CONTAINER(cwin->album_art_frame),
 					  GTK_WIDGET(cwin->album_art));
