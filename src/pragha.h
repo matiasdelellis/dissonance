@@ -661,7 +661,8 @@ void about_action(GtkAction *action, struct con_win *cwin);
 
 /* Panel actions */
 gboolean update_current_song_info(gpointer data);
-void __update_current_song_info(struct con_win *cwin, gint length);
+void __update_progress_song_info(struct con_win *cwin, gint length);
+void __update_current_song_info(struct con_win *cwin);
 void unset_current_song_info(struct con_win *cwin);
 gboolean update_track_progress_bar(gpointer data);
 void __update_track_progress_bar(struct con_win *cwin, gint length);
@@ -1014,7 +1015,6 @@ DBusHandlerResult dbus_filter_handler(DBusConnection *conn,
 void dbus_send_signal(const gchar *signal, struct con_win *cwin);
 
 /* Utilities */
-
 gboolean is_playable_file(const gchar *file);
 gboolean is_dir_and_accessible(gchar *dir, struct con_win *cwin);
 gint dir_file_count(gchar *dir_name, gint call_recur);

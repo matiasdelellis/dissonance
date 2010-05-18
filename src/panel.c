@@ -139,10 +139,41 @@ static GdkPixbuf* get_pref_image_dir(gchar *path, struct con_win *cwin)
 	return image;
 }
 
-void __update_current_song_info(struct con_win *cwin, gint length)
+void __update_progress_song_info(struct con_win *cwin, gint length)
 {
-	gchar *str = NULL, *str_title = NULL, *str_length = NULL, *str_cur_pos = NULL;
-	gchar *tot_length = NULL, *cur_pos = NULL;
+	gchar *tot_length = NULL, *cur_pos = NULL, *str_length = NULL, *str_cur_pos = NULL;
+
+	if (!cwin->cstate->curr_mobj) {
+		g_critical("Curr mobj is invalid");
+		return;
+	}
+
+	cur_pos = convert_length_str(length);
+	str_cur_pos = g_markup_printf_escaped ("<small>%s</small>", cur_pos);
+	gtk_label_set_markup (GTK_LABEL(cwin->track_time_label), (const gchar*)str_cur_pos);
+
+	if(!cwin->cpref->timer_remaining_mode){
+		tot_length = convert_length_str(cwin->cstate->curr_mobj->tags->length);
+		str_length = g_markup_printf_escaped ("<small>%s</small>", tot_length);
+	}
+	else{
+		tot_length = convert_length_str(cwin->cstate->curr_mobj->tags->length - length);
+		str_length = g_markup_printf_escaped ("<small>- %s</small>", tot_length);
+	}
+	gtk_label_set_markup (GTK_LABEL(cwin->track_length_label), (const gchar*)str_length);
+
+	gtk_tooltip_trigger_tooltip_query(gtk_widget_get_display (cwin->track_length_label));
+
+	g_free(cur_pos);
+	g_free(str_cur_pos);
+
+	g_free(tot_length);
+	g_free(str_length);
+}
+
+void __update_current_song_info(struct con_win *cwin)
+{
+	gchar *str = NULL, *str_title = NULL;
 
 	if (!cwin->cstate->curr_mobj) {
 		g_critical("Curr mobj is invalid");
@@ -173,32 +204,8 @@ void __update_current_song_info(struct con_win *cwin, gint length)
 
 	gtk_label_set_markup(GTK_LABEL(cwin->now_playing_label), (const gchar*)str);
 
-
-
-	cur_pos = convert_length_str(length);
-	str_cur_pos = g_markup_printf_escaped ("<small>%s</small>", cur_pos);
-	gtk_label_set_markup (GTK_LABEL(cwin->track_time_label), (const gchar*)str_cur_pos);
-
-	if(!cwin->cpref->timer_remaining_mode){
-		tot_length = convert_length_str(cwin->cstate->curr_mobj->tags->length);
-		str_length = g_markup_printf_escaped ("<small>%s</small>", tot_length);
-	}
-	else{
-		tot_length = convert_length_str(cwin->cstate->curr_mobj->tags->length - length);
-		str_length = g_markup_printf_escaped ("<small>- %s</small>", tot_length);
-	}
-	gtk_label_set_markup (GTK_LABEL(cwin->track_length_label), (const gchar*)str_length);
-
-	gtk_tooltip_trigger_tooltip_query(gtk_widget_get_display (cwin->track_length_label));
-
 	g_free(str);
 	g_free(str_title);
-
-	g_free(str_length);
-	g_free(tot_length);
-
-	g_free(str_cur_pos);
-	g_free(cur_pos);
 }
 
 void unset_current_song_info(struct con_win *cwin)
@@ -230,7 +237,7 @@ void timer_remaining_mode_change(GtkWidget *w, GdkEventButton* event, struct con
 	else
 		cwin->cpref->timer_remaining_mode = TRUE;
 	if(cwin->cstate->state != ST_STOPPED)
-		__update_current_song_info(cwin, cwin->cstate->newsec);
+		__update_progress_song_info(cwin, cwin->cstate->newsec);
 }
 
 void track_progress_change_cb(GtkWidget *widget,
