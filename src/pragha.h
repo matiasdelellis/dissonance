@@ -253,7 +253,6 @@ enum playlist_columns {
 
 enum curplaylist_columns {
 	P_MOBJ_PTR,
-	P_PLAY_PIXBUF,
 	P_QUEUE,
 	P_BUBBLE,
 	P_TRACK_NO,
@@ -342,9 +341,6 @@ struct pixbuf {
 	GdkPixbuf *pixbuf_app;
 	GtkWidget *image_pause;
 	GtkWidget *image_play;
-
-	GdkPixbuf *pixbuf_pause;	/* Play button image */
-	GdkPixbuf *pixbuf_play;		/* Pause button image */
 };
 
 struct lastfm_pref {
@@ -826,11 +822,6 @@ void init_playlist_view(struct con_win *cwin);
 
 /* Current playlist */
 
-void view_playing_cell_data_func (GtkTreeViewColumn *column,
-			      GtkCellRenderer *renderer,
-			      GtkTreeModel *tree_model,
-			      GtkTreeIter *iter,
-			      struct con_win *cwin);
 void update_current_state(GThread *thread,
 			  GtkTreePath *path,
 			  enum playlist_action action,

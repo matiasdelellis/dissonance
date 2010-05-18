@@ -1144,18 +1144,6 @@ void init_tag_completion(struct con_win *cwin)
 	g_object_unref(genre_tag_model);
 }
 
-void init_pixbuf(struct con_win *cwin)
-{
-	GtkIconTheme *icon_theme;
-	icon_theme = gtk_icon_theme_get_default ();
-
-	cwin->pixbuf->pixbuf_play = gtk_icon_theme_load_icon (icon_theme, "stock_media-play",16, 0,NULL);
-	cwin->pixbuf->pixbuf_pause = gtk_icon_theme_load_icon (icon_theme, "stock_media-pause", 16, 0, NULL);
-
-	g_object_ref(cwin->pixbuf->pixbuf_play);
-	g_object_ref(cwin->pixbuf->pixbuf_pause);
-}
-
 void init_toggle_buttons(struct con_win *cwin)
 {
 	gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON(cwin->shuffle_button), cwin->cpref->shuffle);
@@ -1230,8 +1218,6 @@ void init_gui(gint argc, gchar **argv, struct con_win *cwin)
 	/* Systray */
 
 	create_status_icon(cwin);
-
-	init_pixbuf(cwin);
 
 	/* Main Vbox */
 
