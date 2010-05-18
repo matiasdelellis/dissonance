@@ -102,6 +102,12 @@ can_support_actions( void )
 	return supported;
 }
 
+static void
+notify_closed_cb (NotifyNotification *osd)
+{
+	g_object_unref (G_OBJECT(osd));
+}
+
 /* For want of a better place, this is here ... */
 
 void show_osd(struct con_win *cwin)
@@ -139,12 +145,9 @@ void show_osd(struct con_win *cwin)
 
 	/* Add album art if set */
 
-	if (cwin->cpref->show_album_art &&
-	    cwin->album_art &&
-	    (gtk_image_get_storage_type(GTK_IMAGE(
-				cwin->album_art)) == GTK_IMAGE_PIXBUF))
-		notify_notification_set_icon_from_pixbuf(osd,
-				 gtk_image_get_pixbuf(GTK_IMAGE(cwin->album_art)));
+	if (cwin->cpref->show_album_art && cwin->album_art &&
+	    (gtk_image_get_storage_type(GTK_IMAGE(cwin->album_art)) == GTK_IMAGE_PIXBUF))
+			notify_notification_set_icon_from_pixbuf(osd, gtk_image_get_pixbuf(GTK_IMAGE(cwin->album_art)));
 
 	if(can_support_actions( )){
                 notify_notification_add_action(
@@ -152,7 +155,8 @@ void show_osd(struct con_win *cwin)
                     NOTIFY_ACTION_CALLBACK(notify_next_Callback), cwin,
                     NULL );
 	}
-
+	g_signal_connect (osd, "closed",
+			G_CALLBACK (notify_closed_cb), NULL);
 	/* Show OSD */
 
 	if (!notify_notification_show(osd, &error)) {
@@ -188,7 +192,8 @@ gboolean status_get_tooltip_cb (GtkWidget        *widget,
 	gtk_tooltip_set_markup (tooltip, markup_text);
 	g_free(markup_text);
 
-	if (cwin->cpref->show_album_art && cwin->album_art)
+	if (cwin->cpref->show_album_art && cwin->album_art &&
+	    (gtk_image_get_storage_type(GTK_IMAGE(cwin->album_art)) == GTK_IMAGE_PIXBUF))
 		gtk_tooltip_set_icon (tooltip, gtk_image_get_pixbuf(GTK_IMAGE(cwin->album_art)));
 
 	return TRUE;
