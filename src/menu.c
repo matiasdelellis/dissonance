@@ -324,6 +324,9 @@ void open_file_action(GtkAction *action, struct con_win *cwin)
 	g_signal_connect(window, "key_press_event",
 			G_CALLBACK(open_file_on_keypress), NULL);
 
+	gtk_window_set_transient_for(GTK_WINDOW (window), GTK_WINDOW(cwin->mainwindow));
+	gtk_window_set_destroy_with_parent (GTK_WINDOW (window), TRUE);
+
 	gtk_widget_show_all(window);
 }
 
