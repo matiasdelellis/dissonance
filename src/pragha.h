@@ -59,7 +59,7 @@
 
 #define MIN_WINDOW_WIDTH           640
 #define MIN_WINDOW_HEIGHT          480
-#define BROWSE_MODE_SIZE           90
+#define BROWSE_MODE_SIZE           200
 #define ALBUM_ART_SIZE             36
 #define PROGRESS_BAR_WIDTH         300
 #define COL_WIDTH_THRESH           30
@@ -550,7 +550,6 @@ struct con_win {
 	GtkWidget *current_playlist;
 	GtkWidget *status_bar;
 	GtkWidget *search_entry;
-	GtkWidget *search_current_entry;
 	GtkWidget *browse_mode;
 	GtkWidget *toggle_lib;
 	GtkWidget *toggle_playlists;
@@ -1033,7 +1032,6 @@ GtkWidget* create_playing_box(struct con_win *cwin);
 GtkWidget* create_paned_region(struct con_win *cwin);
 GtkWidget* create_status_bar(struct con_win *cwin);
 GtkWidget* create_search_bar(struct con_win *cwin);
-GtkWidget* create_search_current_bar (struct con_win *cwin);
 GtkWidget* create_combo_order(struct con_win *cwin);
 void create_status_icon(struct con_win *cwin);
 gboolean dialog_audio_init(gpointer data);

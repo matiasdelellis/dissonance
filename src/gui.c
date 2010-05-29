@@ -1317,60 +1317,6 @@ GtkUIManager* create_menu(struct con_win *cwin)
 	return main_menu;
 }
 
-GtkWidget *create_playlist_pane(struct con_win *cwin)
-{
-	GtkWidget *vbox, *htools;
-	GtkWidget *save_btn, *purge_btn, *to_now_btn, *filter_current;
-	GtkWidget *vsep;
-	GtkWidget *current_playlist;
-	
-	vbox = gtk_vbox_new(FALSE, 0);
-	htools = gtk_hbox_new(FALSE, 0);
-
-	vsep = gtk_vseparator_new();
-
-	save_btn = gtk_button_new();
- 	gtk_button_set_image(GTK_BUTTON(save_btn), gtk_image_new_from_stock(GTK_STOCK_SAVE, GTK_ICON_SIZE_MENU));
-	gtk_button_set_relief(GTK_BUTTON(save_btn),GTK_RELIEF_NONE);
-	gtk_widget_set_tooltip_text(GTK_WIDGET(save_btn), _("Save complete playlist"));
-	gtk_box_pack_start(GTK_BOX(htools), save_btn, FALSE, FALSE, 0);
-
-	g_signal_connect(G_OBJECT(save_btn), "clicked",
-			 G_CALLBACK(save_current_playlist), cwin);
-
-	purge_btn = gtk_button_new();
- 	gtk_button_set_image(GTK_BUTTON(purge_btn), gtk_image_new_from_stock(GTK_STOCK_CLEAR, GTK_ICON_SIZE_MENU));
-	gtk_button_set_relief(GTK_BUTTON(purge_btn),GTK_RELIEF_NONE);
-	gtk_widget_set_tooltip_text(GTK_WIDGET(purge_btn), _("Clear playlist"));
-	gtk_box_pack_start(GTK_BOX(htools), purge_btn, FALSE, FALSE,0);
-
-	g_signal_connect(G_OBJECT(purge_btn), "clicked",
-			 G_CALLBACK(clear_current_playlist), cwin);
-
-	to_now_btn = gtk_button_new();
- 	gtk_button_set_image(GTK_BUTTON(to_now_btn), gtk_image_new_from_stock(GTK_STOCK_JUMP_TO, GTK_ICON_SIZE_MENU));
-	gtk_button_set_relief(GTK_BUTTON(to_now_btn),GTK_RELIEF_NONE);
-	gtk_widget_set_tooltip_text(GTK_WIDGET(to_now_btn), _("Jump to playing song"));
-	gtk_box_pack_start(GTK_BOX(htools), to_now_btn, FALSE, FALSE,0);
-
-	g_signal_connect(G_OBJECT(to_now_btn), "clicked",
-			 G_CALLBACK(jump_to_playing_song_handler), cwin);
-
-	gtk_box_pack_start(GTK_BOX(htools), vsep, FALSE, FALSE,0);
-
-	filter_current = create_search_current_bar(cwin);
-
-	gtk_box_pack_start(GTK_BOX(htools), filter_current, TRUE, TRUE,0);
-
-	gtk_box_pack_start(GTK_BOX(vbox), htools, FALSE, FALSE, 2);
-
-	current_playlist = create_current_playlist_view(cwin);
-	gtk_box_pack_start(GTK_BOX(vbox), current_playlist, TRUE, TRUE, 0);
-
-	return vbox;
-
-}
-
 GtkWidget* create_main_region(struct con_win *cwin)
 {
 	GtkWidget *hbox;
@@ -1413,7 +1359,7 @@ GtkWidget* create_paned_region(struct con_win *cwin)
 
 	/* Right pane contains the current playlist */
 
-	current_playlist = create_playlist_pane(cwin);
+	current_playlist = create_current_playlist_view(cwin);
 
 	/* DnD */
 
@@ -1421,12 +1367,12 @@ GtkWidget* create_paned_region(struct con_win *cwin)
 
 	/* Set initial sizes */
 
-	gtk_widget_set_size_request(browse_mode, BROWSE_MODE_SIZE, -1);
+	gtk_widget_set_size_request(GTK_WIDGET(browse_mode), BROWSE_MODE_SIZE, -1);
 
 	/* Pack everything into the hpane */
 
-	gtk_paned_pack1 (GTK_PANED (hpane), browse_mode, FALSE, FALSE);
-	gtk_paned_pack2 (GTK_PANED (hpane), current_playlist, FALSE, FALSE);
+	gtk_paned_pack1 (GTK_PANED (hpane), browse_mode, FALSE, TRUE);
+	gtk_paned_pack2 (GTK_PANED (hpane), current_playlist, TRUE, FALSE);
 
 	return hpane;
 }
@@ -1748,53 +1694,6 @@ GtkWidget* create_search_bar(struct con_win *cwin)
 
 	return search_entry;
 
-}
-
-/* Search (simple) */
-
-GtkWidget* create_search_current_bar(struct con_win *cwin)
-{
-	GtkWidget *hbox_bar;
-	GtkWidget *search_current_entry, *cancel_button;
-	GtkWidget *icon_find, *label_find;
-
-	hbox_bar = gtk_hbox_new(FALSE, 0);
-	icon_find =  gtk_image_new_from_stock(GTK_STOCK_FIND, GTK_ICON_SIZE_MENU);
-	label_find = gtk_label_new("Find:");
-	search_current_entry = gtk_entry_new();
-	cancel_button = gtk_button_new();
-
-	gtk_button_set_image(GTK_BUTTON(cancel_button),
-			     gtk_image_new_from_stock(GTK_STOCK_CLEAR,
-						      GTK_ICON_SIZE_MENU));
-	gtk_button_set_relief(GTK_BUTTON(cancel_button),GTK_RELIEF_NONE);
-
-	gtk_box_pack_start(GTK_BOX(hbox_bar),
-			   cancel_button,
-			   FALSE,
-			   FALSE,
-			   2);
-	gtk_box_pack_start(GTK_BOX(hbox_bar),
-			   label_find,
-			   FALSE,
-			   FALSE,
-			   2);
-	gtk_box_pack_start(GTK_BOX(hbox_bar),
-			   search_current_entry,
-			   TRUE,
-			   TRUE,
-			   2);
-
-	gtk_box_pack_start(GTK_BOX(hbox_bar),
-			   icon_find,
-			   FALSE,
-			   FALSE,
-			   2);
-
-	cwin->search_current_entry = search_current_entry;
-
-	gtk_widget_set_sensitive (hbox_bar, FALSE);
-	return hbox_bar;
 }
 
 void create_status_icon(struct con_win *cwin)
