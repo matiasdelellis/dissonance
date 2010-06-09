@@ -278,7 +278,6 @@ gboolean playlist_tree_button_press_cb(GtkWidget *widget,
 				      struct con_win *cwin)
 {
 	GtkWidget *popup_menu;
-	GtkTreeModel *model;
 	GtkTreePath *path;
 	GtkTreeSelection *selection;
 	gboolean many_selected = FALSE;
@@ -299,8 +298,6 @@ gboolean playlist_tree_button_press_cb(GtkWidget *widget,
 			break;
 		case 2:
 			if (!gtk_tree_selection_path_is_selected(selection, path)){
-				model = gtk_tree_view_get_model(GTK_TREE_VIEW(cwin->playlist_tree));
-
 				gtk_tree_selection_unselect_all(selection);
 				gtk_tree_selection_select_path(selection, path);
 			}
@@ -330,6 +327,8 @@ gboolean playlist_tree_button_press_cb(GtkWidget *widget,
 		}
 	gtk_tree_path_free(path);
 	}
+	else gtk_tree_selection_unselect_all(selection);
+
 	return many_selected;
 }
 

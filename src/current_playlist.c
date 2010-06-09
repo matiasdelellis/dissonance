@@ -2014,6 +2014,8 @@ gboolean current_playlist_button_press_cb(GtkWidget *widget,
 		}
 	gtk_tree_path_free(path);
 	}
+	else gtk_tree_selection_unselect_all(selection);
+
 	return ret;
 }
 
