@@ -270,6 +270,18 @@ enum curplaylist_columns {
 
 /* DnD */
 
+gboolean tree_selection_func_true(GtkTreeSelection *selection,
+					       GtkTreeModel *model,
+					       GtkTreePath *path,
+					       gboolean path_currently_selected,
+					       gpointer data);
+
+gboolean tree_selection_func_false(GtkTreeSelection *selection,
+					       GtkTreeModel *model,
+					       GtkTreePath *path,
+					       gboolean path_currently_selected,
+					       gpointer data);
+
 enum dnd_target {
 	TARGET_LOCATION_ID,
 	TARGET_PLAYLIST
@@ -459,6 +471,7 @@ struct lastfm_track {
 struct con_state {
 	enum thread_cmd cmd;
 	enum player_state state;
+	gboolean dragging;
 	gboolean unique_instance;
 	gboolean audio_init;
 	gboolean stop_scan;
@@ -721,12 +734,21 @@ void library_tree_row_activated_cb(GtkTreeView *library_tree,
 				   GtkTreePath *path,
 				   GtkTreeViewColumn *column,
 				   struct con_win *cwin);
-gboolean library_tree_right_click_cb(GtkWidget *widget,
+gboolean library_tree_button_press_cb(GtkWidget *widget,
+				     GdkEventButton *event,
+				     struct con_win *cwin);
+gboolean library_tree_button_release_cb(GtkWidget *widget,
 				     GdkEventButton *event,
 				     struct con_win *cwin);
 gboolean library_page_right_click_cb(GtkWidget *widget,
 				     GdkEventButton *event,
 				     struct con_win *cwin);
+gboolean dnd_library_tree_begin(GtkWidget *widget,
+				    GdkDragContext *context,
+				    struct con_win *cwin);
+gboolean dnd_library_tree_begin(GtkWidget *widget,
+				    GdkDragContext *context,
+				    struct con_win *cwin);
 void dnd_library_tree_get(GtkWidget *widget,
 			  GdkDragContext *context,
 			  GtkSelectionData *data,
@@ -797,7 +819,10 @@ void playlist_tree_row_activated_cb(GtkTreeView *playlist_tree,
 				    GtkTreePath *path,
 				    GtkTreeViewColumn *column,
 				    struct con_win *cwin);
-gboolean playlist_tree_right_click_cb(GtkWidget *widget,
+gboolean playlist_tree_button_press_cb(GtkWidget *widget,
+				      GdkEventButton *event,
+				      struct con_win *cwin);
+gboolean playlist_tree_button_release_cb(GtkWidget *widget,
 				      GdkEventButton *event,
 				      struct con_win *cwin);
 void playlist_tree_replace_playlist(GtkAction *action, struct con_win *cwin);
@@ -806,6 +831,9 @@ void playlist_tree_add_to_playlist_action(GtkAction *action, struct con_win *cwi
 void playlist_tree_delete(GtkAction *action, struct con_win *cwin);
 void playlist_tree_export(GtkAction *action, struct con_win *cwi);
 void open_m3u_playlist(gchar *file, struct con_win *cwin);
+gboolean dnd_playlist_tree_begin(GtkWidget *widget,
+				    GdkDragContext *context,
+				    struct con_win *cwin);
 void dnd_playlist_tree_get(GtkWidget *widget,
 			   GdkDragContext *context,
 			   GtkSelectionData *data,
@@ -863,12 +891,18 @@ void current_playlist_row_activated_cb(GtkTreeView *current_playlist,
 				       GtkTreePath *path,
 				       GtkTreeViewColumn *column,
 				       struct con_win *cwin);
-gboolean current_playlist_right_click_cb(GtkWidget *widget,
+gboolean current_playlist_button_press_cb(GtkWidget *widget,
 					 GdkEventButton *event,
 					 struct con_win *cwin);
+gboolean current_playlist_button_release_cb(GtkWidget *widget,
+					    GdkEventButton *event,
+					    struct con_win *cwin);
 gboolean header_right_click_cb(GtkWidget *widget,
 			       GdkEventButton *event,
 			       struct con_win *cwin);
+gboolean dnd_current_playlist_begin(GtkWidget *widget,
+				    GdkDragContext *context,
+				    struct con_win *cwin);
 gboolean dnd_current_playlist_drop(GtkWidget *widget,
 				   GdkDragContext *context,
 				   gint x,

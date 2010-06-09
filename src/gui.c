@@ -479,10 +479,13 @@ static GtkWidget* create_library_tree(struct con_win *cwin)
 	cwin->library_tree_context_menu = create_library_tree_context_menu(library_tree,
 									   cwin);
 
-	/* Signal handler for right-clicking */
-
-	g_signal_connect(G_OBJECT(GTK_WIDGET(library_tree)), "button-press-event",
-			 G_CALLBACK(library_tree_right_click_cb), cwin);
+	/* Signal handler for right-clicking and selection */
+ 
+ 	g_signal_connect(G_OBJECT(GTK_WIDGET(library_tree)), "button-press-event",
+			 G_CALLBACK(library_tree_button_press_cb), cwin);
+ 
+	g_signal_connect(G_OBJECT(GTK_WIDGET(library_tree)), "button-release-event",
+			 G_CALLBACK(library_tree_button_release_cb), cwin);
 
 	g_object_unref(library_filter_tree);
 	
@@ -592,7 +595,9 @@ static GtkWidget* create_playlist_tree(struct con_win *cwin)
 			 G_CALLBACK(playlist_tree_row_activated_cb), cwin);
 
 	g_signal_connect(G_OBJECT(GTK_WIDGET(playlist_tree)), "button-press-event",
-			 G_CALLBACK(playlist_tree_right_click_cb), cwin);
+			 G_CALLBACK(playlist_tree_button_press_cb), cwin);
+	g_signal_connect(G_OBJECT(GTK_WIDGET(playlist_tree)), "button-release-event",
+			 G_CALLBACK(playlist_tree_button_release_cb), cwin);
 
 	g_object_unref(store);
 
@@ -1182,10 +1187,13 @@ static GtkWidget* create_current_playlist_view(struct con_win *cwin)
 	cwin->cp_context_menu = cp_context_menu;
 	cwin->header_context_menu = create_header_context_menu(cwin);
 
-	/* Signal handler for right-clicking */
+	/* Signal handler for right-clicking and selection */
 
 	g_signal_connect(G_OBJECT(GTK_WIDGET(current_playlist)), "button-press-event",
-			 G_CALLBACK(current_playlist_right_click_cb), cwin);
+			 G_CALLBACK(current_playlist_button_press_cb), cwin);
+
+	g_signal_connect(G_OBJECT(GTK_WIDGET(current_playlist)), "button-release-event",
+			 G_CALLBACK(current_playlist_button_release_cb), cwin);
 
 	/* Store the treeview in the scrollbar widget */
 
@@ -1202,6 +1210,32 @@ static GtkWidget* create_current_playlist_view(struct con_win *cwin)
 	return current_playlist_scroll;
 }
 
+/*****************/
+/* DnD functions */
+/*****************/
+/* These two functions are only callbacks that must be passed to
+gtk_tree_selection_set_select_function() to chose if GTK is allowed
+to change selection itself or if we handle it ourselves */
+
+gboolean tree_selection_func_true(GtkTreeSelection *selection,
+					       GtkTreeModel *model,
+					       GtkTreePath *path,
+					       gboolean path_currently_selected,
+					       gpointer data)
+{
+	return TRUE;
+}
+
+gboolean tree_selection_func_false(GtkTreeSelection *selection,
+					       GtkTreeModel *model,
+					       GtkTreePath *path,
+					       gboolean path_currently_selected,
+					       gpointer data)
+{
+	return FALSE;
+}
+
+
 static void init_dnd(struct con_win *cwin)
 {
 	/* Source: Library View */
@@ -1212,6 +1246,10 @@ static void init_dnd(struct con_win *cwin)
 					       G_N_ELEMENTS(tentries),
 					       GDK_ACTION_COPY);
 
+	g_signal_connect(G_OBJECT(GTK_WIDGET(cwin->library_tree)),
+			 "drag-begin",
+			 G_CALLBACK(dnd_library_tree_begin),
+			 cwin);
 	g_signal_connect(G_OBJECT(cwin->library_tree),
 			 "drag-data-get",
 			 G_CALLBACK(dnd_library_tree_get),
@@ -1225,6 +1263,10 @@ static void init_dnd(struct con_win *cwin)
 					       G_N_ELEMENTS(tentries),
 					       GDK_ACTION_COPY);
 
+	g_signal_connect(G_OBJECT(GTK_WIDGET(cwin->playlist_tree)),
+			 "drag-begin",
+			 G_CALLBACK(dnd_playlist_tree_begin),
+			 cwin);
 	g_signal_connect(G_OBJECT(cwin->playlist_tree),
 			 "drag-data-get",
 			 G_CALLBACK(dnd_playlist_tree_get),
@@ -1243,6 +1285,10 @@ static void init_dnd(struct con_win *cwin)
 					     G_N_ELEMENTS(tentries),
 					     GDK_ACTION_COPY | GDK_ACTION_MOVE);
 
+	g_signal_connect(G_OBJECT(GTK_WIDGET(cwin->current_playlist)),
+			 "drag-begin",
+			 G_CALLBACK(dnd_current_playlist_begin),
+			 cwin);
 	g_signal_connect(G_OBJECT(cwin->current_playlist),
 			 "drag-drop",
 			 G_CALLBACK(dnd_current_playlist_drop),

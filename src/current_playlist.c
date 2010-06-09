@@ -1923,9 +1923,9 @@ void current_playlist_row_activated_cb(GtkTreeView *current_playlist,
 	}
 }
 
-/* Handler for current playlist right click popup menu */
+/* Handler for current playlist click */
 
-gboolean current_playlist_right_click_cb(GtkWidget *widget,
+gboolean current_playlist_button_press_cb(GtkWidget *widget,
 					 GdkEventButton *event,
 					 struct con_win *cwin)
 {
@@ -1938,28 +1938,41 @@ gboolean current_playlist_right_click_cb(GtkWidget *widget,
 	GtkTreeIter iter;
 	gboolean is_queue = FALSE;
 
-	switch(event->button) {
-	case 3:
-		model = gtk_tree_view_get_model(GTK_TREE_VIEW(cwin->current_playlist));
-		selection = gtk_tree_view_get_selection(GTK_TREE_VIEW(cwin->current_playlist));
-		n_select = gtk_tree_selection_count_selected_rows(selection);
+	model = gtk_tree_view_get_model(GTK_TREE_VIEW(cwin->current_playlist));
+	selection = gtk_tree_view_get_selection(GTK_TREE_VIEW(cwin->current_playlist));
 
-		track_prop = gtk_ui_manager_get_widget(cwin->cp_context_menu,
-						       "/popup/Properties");
-		if (!track_prop)
-			g_critical("Unable to find prop widget");
+	if(gtk_tree_view_get_path_at_pos(GTK_TREE_VIEW(widget), (gint) event->x,(gint) event->y, &path, NULL, NULL, NULL)){
+		switch(event->button) {
+		case 1:
+			if (gtk_tree_selection_path_is_selected(selection, path)
+			    && !(event->state & GDK_CONTROL_MASK)
+			    && !(event->state & GDK_SHIFT_MASK)) {
+				gtk_tree_selection_set_select_function(selection, &tree_selection_func_false, cwin, NULL);
+			}
+			else {
+				gtk_tree_selection_set_select_function(selection, &tree_selection_func_true, cwin, NULL);
+			}
+			break;
+		case 3:
+			if (!(gtk_tree_selection_path_is_selected(selection, path))){
+				gtk_tree_selection_unselect_all(selection);
+				gtk_tree_selection_select_path(selection, path);
+			}
 
-		/* 'Properties' menuitem is shown only for a single selection */
+			/* 'Properties' menuitem is shown only for a single selection */
 
-		if (n_select != 1)
-			gtk_widget_hide(GTK_WIDGET(track_prop));
-		else
-			gtk_widget_show(GTK_WIDGET(track_prop));
+			track_prop = gtk_ui_manager_get_widget(cwin->cp_context_menu,
+							       "/popup/Properties");
+			if (!track_prop)
+				g_critical("Unable to find prop widget");
 
+			n_select = gtk_tree_selection_count_selected_rows(selection);
 
-		gtk_tree_view_get_path_at_pos(GTK_TREE_VIEW(widget), (gint) event->x,(gint) event->y, &path, NULL, NULL, NULL);
+			if (n_select != 1)
+				gtk_widget_set_sensitive (GTK_WIDGET(track_prop), FALSE);
+			else
+				gtk_widget_set_sensitive (GTK_WIDGET(track_prop), TRUE);
 
-		if(path){
 			if (gtk_tree_model_get_iter(model, &iter, path)){
 				gtk_tree_model_get(model, &iter, P_BUBBLE, &is_queue, -1);
 
@@ -1976,33 +1989,58 @@ gboolean current_playlist_right_click_cb(GtkWidget *widget,
 					gtk_widget_hide(GTK_WIDGET(track_prop));
 				}
 			}
-		gtk_tree_path_free(path);
-		}
-		else{
-			track_prop = gtk_ui_manager_get_widget(cwin->cp_context_menu, "/popup/Queue");
-			gtk_widget_hide(GTK_WIDGET(track_prop));
-			track_prop = gtk_ui_manager_get_widget(cwin->cp_context_menu, "/popup/Enqueue");
-			gtk_widget_hide(GTK_WIDGET(track_prop));
-		}
+			else{
+				track_prop = gtk_ui_manager_get_widget(cwin->cp_context_menu, "/popup/Queue");
+				gtk_widget_hide(GTK_WIDGET(track_prop));
+				track_prop = gtk_ui_manager_get_widget(cwin->cp_context_menu, "/popup/Enqueue");
+				gtk_widget_hide(GTK_WIDGET(track_prop));
+			}
 
-		popup_menu = gtk_ui_manager_get_widget(cwin->cp_context_menu,
-						       "/popup");
-		gtk_menu_popup(GTK_MENU(popup_menu), NULL, NULL, NULL, NULL,
-			       event->button, event->time);
+			popup_menu = gtk_ui_manager_get_widget(cwin->cp_context_menu,
+							       "/popup");
+			gtk_menu_popup(GTK_MENU(popup_menu), NULL, NULL, NULL, NULL,
+				       event->button, event->time);
 
-		/* If more than one track is selected, don't propagate event */
+			/* If more than one track is selected, don't propagate event */
 
-		if (n_select > 1)
-			ret = TRUE;
-		else
+			if (n_select > 1)
+				ret = TRUE;
+			else
+				ret = FALSE;
+			break;
+		default:
 			ret = FALSE;
-		break;
-	default:
-		ret = FALSE;
-		break;
+			break;
+		}
+	gtk_tree_path_free(path);
+	}
+	return ret;
+}
+
+gboolean current_playlist_button_release_cb(GtkWidget *widget,
+					    GdkEventButton *event,
+					    struct con_win *cwin)
+{
+	GtkTreeSelection *selection;
+	GtkTreePath *path;
+	
+	selection = gtk_tree_view_get_selection(GTK_TREE_VIEW(cwin->current_playlist));
+
+	if((event->state & GDK_CONTROL_MASK) || (event->state & GDK_SHIFT_MASK) || (cwin->cstate->dragging == TRUE) || (event->button!=1)){
+		gtk_tree_selection_set_select_function(selection, &tree_selection_func_true, cwin, NULL);
+		cwin->cstate->dragging = FALSE;
+		return FALSE;
 	}
 
-	return ret;
+	gtk_tree_view_get_path_at_pos(GTK_TREE_VIEW(widget), (gint) event->x,(gint) event->y, &path, NULL, NULL, NULL);
+
+	if (path){
+		gtk_tree_selection_set_select_function(selection, &tree_selection_func_true, cwin, NULL);
+		gtk_tree_selection_unselect_all(selection);
+		gtk_tree_selection_select_path(selection, path);
+		gtk_tree_path_free(path);
+	}
+	return FALSE;
 }
 
 /* Handler for column header right click popup menu */
@@ -2029,6 +2067,14 @@ gboolean header_right_click_cb(GtkWidget *widget,
 /*******/
 /* DnD */
 /*******/
+
+gboolean dnd_current_playlist_begin(GtkWidget *widget,
+				    GdkDragContext *context,
+				    struct con_win *cwin)
+{
+	cwin->cstate->dragging = TRUE;
+	return FALSE;
+}
 
 gboolean dnd_current_playlist_drop(GtkWidget *widget,
 				   GdkDragContext *context,

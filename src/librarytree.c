@@ -481,7 +481,7 @@ void library_tree_row_activated_cb(GtkTreeView *library_tree,
 	}
 }
 
-gboolean library_tree_right_click_cb(GtkWidget *widget,
+gboolean library_tree_button_press_cb(GtkWidget *widget,
 				     GdkEventButton *event,
 				     struct con_win *cwin)
 {
@@ -493,41 +493,81 @@ gboolean library_tree_right_click_cb(GtkWidget *widget,
 
 	selection = gtk_tree_view_get_selection(GTK_TREE_VIEW(cwin->library_tree));
 
-	switch(event->button) {
-	case 2:
-		if (gtk_tree_view_get_path_at_pos(GTK_TREE_VIEW(cwin->library_tree),
-						  event->x, event->y,
-						  &path, NULL, NULL, NULL)){
+	if (gtk_tree_view_get_path_at_pos(GTK_TREE_VIEW(widget), (gint) event->x,(gint) event->y, &path, NULL, NULL, NULL)){
+		switch(event->button) {
+		case 1:
+			if (gtk_tree_selection_path_is_selected(selection, path)
+			    && !(event->state & GDK_CONTROL_MASK)
+			    && !(event->state & GDK_SHIFT_MASK)) {
+				gtk_tree_selection_set_select_function(selection, &tree_selection_func_false, cwin, NULL);
+				}
+			else {
+					gtk_tree_selection_set_select_function(selection, &tree_selection_func_true, cwin, NULL);
+			}
+			break;
+		case 2:
 			if (!gtk_tree_selection_path_is_selected(selection, path)){
 				model = gtk_tree_view_get_model(GTK_TREE_VIEW(cwin->library_tree));
-
+	
 				gtk_tree_selection_unselect_all(selection);
 				gtk_tree_selection_select_path(selection, path);
 			}
 			library_tree_add_to_playlist(cwin);
-			gtk_tree_path_free(path);
-		}
-		else gtk_tree_selection_unselect_all(selection);
-
-		break;
-	case 3:
-		popup_menu = gtk_ui_manager_get_widget(cwin->library_tree_context_menu,
-						       "/popup");
-		gtk_menu_popup(GTK_MENU(popup_menu), NULL, NULL, NULL, NULL,
-			       event->button, event->time);
-
-		/* If more than one track is selected, don't propagate event */
-
-		if (gtk_tree_selection_count_selected_rows(selection) > 1)
-			many_selected = TRUE;
-		else
+			break;
+		case 3:
+			if (!(gtk_tree_selection_path_is_selected(selection, path))){
+				gtk_tree_selection_unselect_all(selection);
+				gtk_tree_selection_select_path(selection, path);
+			}
+	
+			popup_menu = gtk_ui_manager_get_widget(cwin->library_tree_context_menu,
+							       "/popup");
+	
+			gtk_menu_popup(GTK_MENU(popup_menu), NULL, NULL, NULL, NULL,
+				       event->button, event->time);
+	
+			/* If more than one track is selected, don't propagate event */
+	
+			if (gtk_tree_selection_count_selected_rows(selection) > 1)
+				many_selected = TRUE;
+			else
+				many_selected = FALSE;
+			break;
+		default:
 			many_selected = FALSE;
-		break;
-	default:
-		many_selected = FALSE;
-		break;
+			break;
+		}
+	gtk_tree_path_free(path);
 	}
 	return many_selected;
+}
+
+gboolean library_tree_button_release_cb(GtkWidget *widget,
+				     GdkEventButton *event,
+				     struct con_win *cwin)
+{
+	GtkTreeSelection *selection;
+	gint n_select = 0;
+	GtkTreePath *path;
+	
+	selection = gtk_tree_view_get_selection(GTK_TREE_VIEW(cwin->library_tree));
+
+	if((event->state & GDK_CONTROL_MASK) || (event->state & GDK_SHIFT_MASK) || (cwin->cstate->dragging == TRUE) || (event->button!=1)){
+		gtk_tree_selection_set_select_function(selection, &tree_selection_func_true, cwin, NULL);
+		cwin->cstate->dragging = FALSE;
+		return FALSE;
+	}
+
+	n_select = gtk_tree_selection_count_selected_rows(selection);
+	gtk_tree_view_get_path_at_pos(GTK_TREE_VIEW(widget), (gint) event->x,(gint) event->y, &path, NULL, NULL, NULL);
+
+	if (path){
+		gtk_tree_selection_set_select_function(selection, &tree_selection_func_true, cwin, NULL);
+		gtk_tree_selection_unselect_all(selection);
+		gtk_tree_selection_select_path(selection, path);
+		gtk_tree_path_free(path);
+	}
+	return FALSE;
 }
 
 gboolean library_page_right_click_cb(GtkWidget *widget,
@@ -570,6 +610,14 @@ gboolean library_page_right_click_cb(GtkWidget *widget,
 /*******/
 /* DnD */
 /*******/
+
+gboolean dnd_library_tree_begin(GtkWidget *widget,
+				    GdkDragContext *context,
+				    struct con_win *cwin)
+{
+	cwin->cstate->dragging = TRUE;
+	return FALSE;
+}
 
 /* Callback for DnD signal 'drag-data-get' */
 

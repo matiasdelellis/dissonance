@@ -1110,6 +1110,7 @@ void init_state(struct con_win *cwin)
 	cwin->cstate->rand_track_refs = NULL;
 	cwin->cstate->queue_track_refs = NULL;
 	cwin->cstate->state = ST_STOPPED;
+	cwin->cstate->dragging = FALSE;
 }
 
 void init_tag_completion(struct con_win *cwin)
