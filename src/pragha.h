@@ -284,7 +284,9 @@ gboolean tree_selection_func_false(GtkTreeSelection *selection,
 
 enum dnd_target {
 	TARGET_LOCATION_ID,
-	TARGET_PLAYLIST
+	TARGET_PLAYLIST,
+	TARGET_URI_LIST,
+	TARGET_PLAIN_TEXT
 };
 
 /* Library Views */
@@ -401,8 +403,9 @@ struct con_pref {
 	GSList *lib_add;
 	GtkWidget *window_state_combo;
 	GtkWidget *close_to_tray_w;
-	GtkWidget *album_art;
-	GtkWidget *osd;
+	GtkWidget *album_art_w;
+	GtkWidget *add_recurcively_w;
+	GtkWidget *osd_w;
 	GtkWidget *save_playlist_w;
 	GtkWidget *album_art_pattern_w;
 	GtkWidget *album_art_pattern_label_w;
@@ -593,6 +596,10 @@ extern const gchar *mime_wav[];
 extern const gchar *mime_flac[];
 extern const gchar *mime_ogg[];
 extern const gchar *mime_image[];
+
+/*Open file function*/
+
+void handle_selected_file(gpointer data, gpointer udata);
 
 /* Conversion routine from alsaplayer */
 

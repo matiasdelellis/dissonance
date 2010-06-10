@@ -2133,6 +2133,8 @@ void dnd_current_playlist_received(GtkWidget *widget,
 	GArray *loc_arr, *playlist_arr;
 	gint i = 0, elem = 0;
 	gchar *name = NULL;
+	gchar **uris = NULL;
+	gchar *filename = NULL;
 	gboolean ret;
 
 	/* Reorder within current playlist */
@@ -2245,6 +2247,20 @@ void dnd_current_playlist_received(GtkWidget *widget,
 
 		g_array_free(playlist_arr, TRUE);
 
+		break;
+	case TARGET_URI_LIST:
+		uris = gtk_selection_data_get_uris(data);
+		if(uris){
+			for(i = 0; uris[i] != NULL; i++) {
+				filename = g_filename_from_uri(uris[i], NULL, NULL);
+				handle_selected_file(filename, cwin);
+			}
+			g_strfreev(uris);
+		}
+		break;
+	case TARGET_PLAIN_TEXT:
+		filename = (gchar*)gtk_selection_data_get_text(data);
+		handle_selected_file(filename, cwin);
 		break;
 	default:
 		g_warning("Unknown DND type");
