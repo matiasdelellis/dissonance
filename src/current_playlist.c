@@ -1941,9 +1941,9 @@ gboolean current_playlist_button_press_cb(GtkWidget *widget,
 	model = gtk_tree_view_get_model(GTK_TREE_VIEW(cwin->current_playlist));
 	selection = gtk_tree_view_get_selection(GTK_TREE_VIEW(cwin->current_playlist));
 
-	if(gtk_tree_view_get_path_at_pos(GTK_TREE_VIEW(widget), (gint) event->x,(gint) event->y, &path, NULL, NULL, NULL)){
-		switch(event->button) {
-		case 1:
+	switch(event->button){
+	case 1:
+		if(gtk_tree_view_get_path_at_pos(GTK_TREE_VIEW(widget), (gint) event->x,(gint) event->y, &path, NULL, NULL, NULL)){
 			if (gtk_tree_selection_path_is_selected(selection, path)
 			    && !(event->state & GDK_CONTROL_MASK)
 			    && !(event->state & GDK_SHIFT_MASK)) {
@@ -1952,8 +1952,11 @@ gboolean current_playlist_button_press_cb(GtkWidget *widget,
 			else {
 				gtk_tree_selection_set_select_function(selection, &tree_selection_func_true, cwin, NULL);
 			}
-			break;
-		case 3:
+			gtk_tree_path_free(path);
+		}
+		break;
+	case 3:
+		if(gtk_tree_view_get_path_at_pos(GTK_TREE_VIEW(widget), (gint) event->x,(gint) event->y, &path, NULL, NULL, NULL)){
 			if (!(gtk_tree_selection_path_is_selected(selection, path))){
 				gtk_tree_selection_unselect_all(selection);
 				gtk_tree_selection_select_path(selection, path);
@@ -1979,27 +1982,33 @@ gboolean current_playlist_button_press_cb(GtkWidget *widget,
 				if(is_queue){
 					track_prop = gtk_ui_manager_get_widget(cwin->cp_context_menu, "/popup/Queue");
 					gtk_widget_hide(GTK_WIDGET(track_prop));
+
 					track_prop = gtk_ui_manager_get_widget(cwin->cp_context_menu, "/popup/Enqueue");
 					gtk_widget_show(GTK_WIDGET(track_prop));
+
+					track_prop = gtk_ui_manager_get_widget(cwin->cp_context_menu, "/popup/Edit tags");
+					gtk_widget_set_sensitive (GTK_WIDGET(track_prop), TRUE);
 				}
 				else{
 					track_prop = gtk_ui_manager_get_widget(cwin->cp_context_menu, "/popup/Queue");
+					gtk_widget_set_sensitive (GTK_WIDGET(track_prop), TRUE);
 					gtk_widget_show(GTK_WIDGET(track_prop));
+
 					track_prop = gtk_ui_manager_get_widget(cwin->cp_context_menu, "/popup/Enqueue");
 					gtk_widget_hide(GTK_WIDGET(track_prop));
+
+					track_prop = gtk_ui_manager_get_widget(cwin->cp_context_menu, "/popup/Edit tags");
+					gtk_widget_set_sensitive (GTK_WIDGET(track_prop), TRUE);
 				}
 			}
 			else{
 				track_prop = gtk_ui_manager_get_widget(cwin->cp_context_menu, "/popup/Queue");
-				gtk_widget_hide(GTK_WIDGET(track_prop));
+				gtk_widget_set_sensitive (GTK_WIDGET(track_prop), FALSE);
+				gtk_widget_show(GTK_WIDGET(track_prop));
+
 				track_prop = gtk_ui_manager_get_widget(cwin->cp_context_menu, "/popup/Enqueue");
 				gtk_widget_hide(GTK_WIDGET(track_prop));
 			}
-
-			popup_menu = gtk_ui_manager_get_widget(cwin->cp_context_menu,
-							       "/popup");
-			gtk_menu_popup(GTK_MENU(popup_menu), NULL, NULL, NULL, NULL,
-				       event->button, event->time);
 
 			/* If more than one track is selected, don't propagate event */
 
@@ -2007,14 +2016,35 @@ gboolean current_playlist_button_press_cb(GtkWidget *widget,
 				ret = TRUE;
 			else
 				ret = FALSE;
-			break;
-		default:
-			ret = FALSE;
-			break;
+
+			gtk_tree_path_free(path);
 		}
-	gtk_tree_path_free(path);
+		else{
+			track_prop = gtk_ui_manager_get_widget(cwin->cp_context_menu, "/popup/Queue");
+			gtk_widget_set_sensitive (GTK_WIDGET(track_prop), FALSE);
+			gtk_widget_show(GTK_WIDGET(track_prop));
+
+			track_prop = gtk_ui_manager_get_widget(cwin->cp_context_menu, "/popup/Enqueue");
+			gtk_widget_hide(GTK_WIDGET(track_prop));
+
+			track_prop = gtk_ui_manager_get_widget(cwin->cp_context_menu, "/popup/Properties");
+			gtk_widget_set_sensitive (GTK_WIDGET(track_prop), FALSE);
+
+			track_prop = gtk_ui_manager_get_widget(cwin->cp_context_menu, "/popup/Edit tags");
+			gtk_widget_set_sensitive (GTK_WIDGET(track_prop), FALSE);
+
+			gtk_tree_selection_unselect_all(selection);
+		}
+
+		popup_menu = gtk_ui_manager_get_widget(cwin->cp_context_menu,
+						       "/popup");
+		gtk_menu_popup(GTK_MENU(popup_menu), NULL, NULL, NULL, NULL,
+			       event->button, event->time);
+		break;
+	default:
+		ret = FALSE;
+		break;
 	}
-	else gtk_tree_selection_unselect_all(selection);
 
 	return ret;
 }
