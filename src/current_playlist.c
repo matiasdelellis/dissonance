@@ -2108,6 +2108,55 @@ gboolean dnd_current_playlist_begin(GtkWidget *widget,
 	return FALSE;
 }
 
+/* Callback for DnD signal 'drag-data-get' */
+
+void drag_current_playlist_get_data (GtkWidget *widget,
+				    GdkDragContext *context,
+				    GtkSelectionData *selection_data,
+				    guint target_type,
+				    guint time,
+				    struct con_win *cwin)
+{
+	g_assert (selection_data != NULL);
+
+	GtkTreeModel *model;
+	GtkTreeSelection *selection;
+	GList *list, *i;
+	GtkTreePath *path;
+	GtkTreeIter iter;
+	struct musicobject *mobj = NULL;
+	guint uri_i = 0;
+
+        switch (target_type){
+		case TARGET_URI_LIST:
+			CDEBUG(DBG_VERBOSE, "DnD: TARGET_URI_LIST");
+	model = gtk_tree_view_get_model(GTK_TREE_VIEW(cwin->current_playlist));
+	selection = gtk_tree_view_get_selection(GTK_TREE_VIEW( cwin->current_playlist));
+	list = gtk_tree_selection_get_selected_rows(selection, NULL);
+	gchar **uri_list = g_new(gchar* , gtk_tree_selection_count_selected_rows(selection) + 1);
+
+			for (i=list; i != NULL; i = i->next){
+				path = i->data;
+				gtk_tree_model_get_iter(model, &iter, path);
+				gtk_tree_model_get(model, &iter, P_MOBJ_PTR, &mobj, -1);
+
+				if (mobj && mobj->file_type != FILE_CDDA)
+					uri_list[uri_i++] = g_strdup(mobj->file);
+
+				gtk_tree_path_free(path);
+			}
+			uri_list[uri_i++] = NULL;
+
+			gtk_selection_data_set_uris(selection_data,  uri_list);
+			g_strfreev(uri_list);
+			g_list_free(list);
+			break;
+		default:
+			break;
+	}
+
+}
+
 gboolean dnd_current_playlist_drop(GtkWidget *widget,
 				   GdkDragContext *context,
 				   gint x,

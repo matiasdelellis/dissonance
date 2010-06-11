@@ -910,6 +910,12 @@ gboolean header_right_click_cb(GtkWidget *widget,
 gboolean dnd_current_playlist_begin(GtkWidget *widget,
 				    GdkDragContext *context,
 				    struct con_win *cwin);
+void drag_current_playlist_get_data (GtkWidget *widget,
+				    GdkDragContext *context,
+				    GtkSelectionData *selection_data,
+				    guint target_type,
+				    guint time,
+				    struct con_win *cwin);
 gboolean dnd_current_playlist_drop(GtkWidget *widget,
 				   GdkDragContext *context,
 				   gint x,

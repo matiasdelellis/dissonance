@@ -1237,7 +1237,6 @@ gboolean tree_selection_func_false(GtkTreeSelection *selection,
 	return FALSE;
 }
 
-
 static void init_dnd(struct con_win *cwin)
 {
 	/* Source: Library View */
@@ -1280,7 +1279,7 @@ static void init_dnd(struct con_win *cwin)
 					       GDK_BUTTON1_MASK,
 					       tentries,
 					       G_N_ELEMENTS(tentries),
-					       GDK_ACTION_MOVE);
+					       GDK_ACTION_COPY | GDK_ACTION_MOVE);
 
 	gtk_tree_view_enable_model_drag_dest(GTK_TREE_VIEW(cwin->current_playlist),
 					     tentries,
@@ -1290,6 +1289,10 @@ static void init_dnd(struct con_win *cwin)
 	g_signal_connect(G_OBJECT(GTK_WIDGET(cwin->current_playlist)),
 			 "drag-begin",
 			 G_CALLBACK(dnd_current_playlist_begin),
+			 cwin);
+	g_signal_connect (G_OBJECT(cwin->current_playlist),
+			 "drag-data-get",
+			 G_CALLBACK (drag_current_playlist_get_data),
 			 cwin);
 	g_signal_connect(G_OBJECT(cwin->current_playlist),
 			 "drag-drop",
