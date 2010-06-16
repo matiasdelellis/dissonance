@@ -2126,14 +2126,16 @@ void drag_current_playlist_get_data (GtkWidget *widget,
 	GtkTreeIter iter;
 	struct musicobject *mobj = NULL;
 	guint uri_i = 0;
+	gchar **uri_list;
 
         switch (target_type){
 		case TARGET_URI_LIST:
 			CDEBUG(DBG_VERBOSE, "DnD: TARGET_URI_LIST");
-	model = gtk_tree_view_get_model(GTK_TREE_VIEW(cwin->current_playlist));
-	selection = gtk_tree_view_get_selection(GTK_TREE_VIEW( cwin->current_playlist));
-	list = gtk_tree_selection_get_selected_rows(selection, NULL);
-	gchar **uri_list = g_new(gchar* , gtk_tree_selection_count_selected_rows(selection) + 1);
+
+			model = gtk_tree_view_get_model(GTK_TREE_VIEW(cwin->current_playlist));
+			selection = gtk_tree_view_get_selection(GTK_TREE_VIEW( cwin->current_playlist));
+			list = gtk_tree_selection_get_selected_rows(selection, NULL);
+			uri_list = g_new(gchar* , gtk_tree_selection_count_selected_rows(selection) + 1);
 
 			for (i=list; i != NULL; i = i->next){
 				path = i->data;
@@ -2141,7 +2143,7 @@ void drag_current_playlist_get_data (GtkWidget *widget,
 				gtk_tree_model_get(model, &iter, P_MOBJ_PTR, &mobj, -1);
 
 				if (mobj && mobj->file_type != FILE_CDDA)
-					uri_list[uri_i++] = g_strdup(mobj->file);
+					uri_list[uri_i++] = g_filename_to_uri(mobj->file, NULL, NULL);
 
 				gtk_tree_path_free(path);
 			}
