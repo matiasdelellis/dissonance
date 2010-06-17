@@ -1333,7 +1333,6 @@ void init_library_view(struct con_win *cwin)
 	gchar *query;
 	struct db_result result;
 	GtkTreeModel *model, *filter_model;
-	GtkWidget *library_widget;
 
 	const gchar *order_str[] = {
 		"LOCATION.name ASC",
@@ -1376,8 +1375,7 @@ void init_library_view(struct con_win *cwin)
 		break;
 	}
 
-	library_widget = gtk_notebook_get_nth_page(GTK_NOTEBOOK(cwin->browse_mode), 0);
-	gtk_widget_set_sensitive(GTK_WIDGET(library_widget), FALSE);
+	gtk_widget_set_sensitive(GTK_WIDGET(cwin->search_entry), FALSE);
 
 	filter_model = gtk_tree_view_get_model(GTK_TREE_VIEW(cwin->library_tree));
 	model = gtk_tree_model_filter_get_model(GTK_TREE_MODEL_FILTER(filter_model));
@@ -1425,9 +1423,8 @@ void init_library_view(struct con_win *cwin)
 
 	refresh_tag_completion_entries(cwin);
 
-	gtk_widget_set_sensitive(GTK_WIDGET(library_widget), TRUE);
+	gtk_widget_set_sensitive(GTK_WIDGET(cwin->search_entry), TRUE);
+	g_signal_emit_by_name (G_OBJECT (cwin->search_entry), "changed", cwin);
 
 	cwin->cstate->view_change = FALSE;
-
-	g_signal_emit_by_name (G_OBJECT (cwin->search_entry), "changed", cwin);
 }
