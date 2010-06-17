@@ -1428,4 +1428,6 @@ void init_library_view(struct con_win *cwin)
 	gtk_widget_set_sensitive(GTK_WIDGET(library_widget), TRUE);
 
 	cwin->cstate->view_change = FALSE;
+
+	g_signal_emit_by_name (G_OBJECT (cwin->search_entry), "changed", cwin);
 }

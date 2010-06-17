@@ -1171,7 +1171,7 @@ void init_menu_actions(struct con_win *cwin)
 void init_gui(gint argc, gchar **argv, struct con_win *cwin)
 {
 	GtkUIManager *menu;
-	GtkWidget *vbox, *hbox_panel, *hbox_main, *status_bar, *search_bar, *menu_bar;
+	GtkWidget *vbox, *hbox_panel, *hbox_main, *status_bar, *menu_bar;
 	GError *error = NULL;
 
 	CDEBUG(DBG_INFO, "Initializing gui");
@@ -1232,7 +1232,6 @@ void init_gui(gint argc, gchar **argv, struct con_win *cwin)
 	hbox_main = create_main_region(cwin);
 	hbox_panel = create_panel(cwin);
 	status_bar = create_status_bar(cwin);
-	search_bar = create_search_bar(cwin);
 	menu_bar = gtk_ui_manager_get_widget(menu, "/Menubar");
 
 	/* Pack all hboxen into vbox */
