@@ -166,13 +166,13 @@ GtkActionEntry main_aentries[] = {
 	{"Play audio CD", GTK_STOCK_CDROM, N_("_Play audio CD"),
 	 NULL, "Play a audio CD", G_CALLBACK(play_audio_cd_action)},
 	{"Prev", GTK_STOCK_MEDIA_PREVIOUS, N_("Prev track"),
-	 NULL, "Prev track", G_CALLBACK(prev_action)},
+	 "<Alt>Left", "Prev track", G_CALLBACK(prev_action)},
 	{"Play_pause", GTK_STOCK_MEDIA_PLAY, N_("Play / Pause"),
 	 "<Control>space", "Play / Pause", G_CALLBACK(play_pause_action)},
 	{"Stop", GTK_STOCK_MEDIA_STOP, N_("Stop"),
 	 NULL, "Stop", G_CALLBACK(stop_action)},
 	{"Next", GTK_STOCK_MEDIA_NEXT, N_("Next track"),
-	 NULL, "Next track", G_CALLBACK(next_action)},
+	 "<Alt>Right", "Next track", G_CALLBACK(next_action)},
 	{"Properties", GTK_STOCK_PROPERTIES, N_("_Properties"),
 	 NULL, "Properties", G_CALLBACK(track_properties_current_playing_action)},
 	{"Quit", GTK_STOCK_QUIT, N_("_Quit"),
@@ -1744,7 +1744,6 @@ GtkWidget* create_search_bar(struct con_win *cwin)
 	cwin->search_entry = search_entry;
 
 	return search_entry;
-
 }
 
 void create_status_icon(struct con_win *cwin)
