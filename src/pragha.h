@@ -59,7 +59,7 @@
 
 #define MIN_WINDOW_WIDTH           640
 #define MIN_WINDOW_HEIGHT          480
-#define BROWSE_MODE_SIZE           200
+#define DEFAULT_SIDEBAR_SIZE       200
 #define ALBUM_ART_SIZE             36
 #define PROGRESS_BAR_WIDTH         300
 #define COL_WIDTH_THRESH           30
@@ -137,41 +137,35 @@
 
 #define DBUS_METHOD_CURRENT_STATE "curent_state"
 
-#define GROUP_GENERAL "General"
-#define GROUP_LIBRARY "Library"
-#define GROUP_PLAYLIST "Playlist"
-#define GROUP_AUDIO   "Audio"
-
+#define GROUP_GENERAL  "General"
 #define KEY_INSTALLED_VERSION      "installed_version"
-#define KEY_LIBRARY_DIR            "library_dir"
-#define KEY_LIBRARY_DELETE         "library_delete"
-#define KEY_LIBRARY_ADD            "library_add"
 #define KEY_LAST_FOLDER            "last_folder"
 #define KEY_ADD_RECURSIVELY_FILES  "add_recursively_files"
-#define KEY_SHOW_ALBUM_ART         "show_album_art"
 #define KEY_ALBUM_ART_PATTERN      "album_art_pattern"
 #define KEY_TIMER_REMAINING_MODE   "timer_remaining_mode"
+#define KEY_CLOSE_TO_TRAY	   "close_to_tray"
 #define KEY_SHOW_OSD               "show_osd"
-#define KEY_STATUS_BAR		   "status_bar"
+#define KEY_LASTFM                 "lastfm"
+#define KEY_LASTFM_USER            "lastfm_user"
+#define KEY_LASTFM_PASS            "lastfm_pass"
 
-#define KEY_REMEMBER_STATE	   "remember_window_state"
-#define KEY_START_MODE		   "start_mode"
+#define GROUP_PLAYLIST "Playlist"
 #define KEY_SAVE_PLAYLIST          "save_playlist"
 #define KEY_CURRENT_REF		   "current_ref"
-#define KEY_CLOSE_TO_TRAY	   "close_to_tray"
 #define KEY_SHUFFLE                "shuffle"
 #define KEY_REPEAT                 "repeat"
 #define KEY_PLAYLIST_COLUMNS       "playlist_columns"
 #define KEY_PLAYLIST_COLUMN_WIDTHS "playlist_column_widths"
 
-#define KEY_LASTFM                 "lastfm"
-#define KEY_LASTFM_USER            "lastfm_user"
-#define KEY_LASTFM_PASS            "lastfm_pass"
+#define GROUP_LIBRARY  "Library"
+#define KEY_LIBRARY_DIR            "library_dir"
+#define KEY_LIBRARY_DELETE         "library_delete"
+#define KEY_LIBRARY_ADD            "library_add"
 #define KEY_LIBRARY_TREE_NODES     "library_tree_nodes"
 #define KEY_LIBRARY_VIEW_ORDER     "library_view_order"
 #define KEY_LIBRARY_LAST_SCANNED   "library_last_scanned"
-#define KEY_WINDOW_SIZE            "window_size"
-#define KEY_ALBUM_ART_SIZE         "album_art_size"
+
+#define GROUP_AUDIO    "Audio"
 #define KEY_AUDIO_SINK             "audio_sink"
 #define KEY_AUDIO_ALSA_DEVICE      "audio_alsa_device"
 #define KEY_AUDIO_OSS_DEVICE       "audio_oss_device"
@@ -179,6 +173,15 @@
 #define KEY_SOFTWARE_VOLUME	   "software_volume"
 #define KEY_AUDIO_CD_DEVICE        "audio_cd_device"
 #define KEY_USE_CDDB               "use_cddb"
+
+#define GROUP_WINDOW   "Window"
+#define KEY_REMEMBER_STATE	   "remember_window_state"
+#define KEY_START_MODE		   "start_mode"
+#define KEY_WINDOW_SIZE            "window_size"
+#define KEY_SIDEBAR_SIZE           "sidebar_size"
+#define KEY_SHOW_ALBUM_ART         "show_album_art"
+#define KEY_ALBUM_ART_SIZE         "album_art_size"
+#define KEY_STATUS_BAR		   "status_bar"
 
 #define TAG_TNO_CHANGED    1<<0
 #define TAG_TITLE_CHANGED  1<<1
@@ -380,6 +383,7 @@ struct con_pref {
 	gint album_art_size;
 	gint window_width;
 	gint window_height;
+	gint sidebar_size;
 	GTimeVal last_rescan_time;
 	GKeyFile *configrc_keyfile;
 	gchar *configrc_file;
@@ -482,7 +486,7 @@ struct con_state {
 	gboolean curr_mobj_clear;
 	gboolean advance_track;
 	gboolean fullscreen;
-	gboolean iconified; /*in_sytray*/
+	gboolean iconified;
 	gint seek_len;
 	gint tracks_curr_playlist;
 	gint unplayed_tracks;
@@ -567,6 +571,7 @@ struct con_win {
 	GtkWidget *status_bar;
 	GtkWidget *search_entry;
 	GtkWidget *browse_mode;
+	GtkWidget *paned;
 	GtkWidget *toggle_lib;
 	GtkWidget *toggle_playlists;
 	GtkWidget *combo_order;

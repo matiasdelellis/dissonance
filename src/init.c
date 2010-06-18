@@ -226,6 +226,7 @@ gint init_config(struct con_win *cwin)
 		shuffle_f,
 		repeat_f,
 		window_size_f,
+		sidebar_size_f,
 		audio_sink_f,
 		audio_alsa_device_f,
 		audio_oss_device_f,
@@ -237,7 +238,7 @@ gint init_config(struct con_win *cwin)
 	libs_f = lib_add_f = lib_delete_f = columns_f = nodes_f = cur_lib_view_f = FALSE;
 	last_folder_f = recursively_f = album_f = osd_f = remember_window_state_f = audio_sink_f = close_to_tray_f = status_bar_f = lastfm_f = FALSE;
 	software_mixer_f = save_playlist_f = album_art_pattern_f = album_art_size_f = timer_remaining_mode_f = use_cddb_f = FALSE;
-	shuffle_f = repeat_f = window_size_f = all_f = FALSE;
+	shuffle_f = repeat_f = window_size_f = sidebar_size_f = all_f = FALSE;
 	audio_sink_f = audio_alsa_device_f = audio_oss_device_f = FALSE;
 
 	config_dir = g_get_user_config_dir();
@@ -295,7 +296,7 @@ gint init_config(struct con_win *cwin)
 		/* Retrieve window size */
 
 		win_size = g_key_file_get_integer_list(cwin->cpref->configrc_keyfile,
-						       GROUP_GENERAL,
+						       GROUP_WINDOW,
 						       KEY_WINDOW_SIZE,
 						       &cnt,
 						       &error);
@@ -310,11 +311,23 @@ gint init_config(struct con_win *cwin)
 			window_size_f = TRUE;
 		}
 
+		/* Retrieve sidebar size */
+
+		cwin->cpref->sidebar_size = g_key_file_get_integer(cwin->cpref->configrc_keyfile,
+								   GROUP_WINDOW,
+								   KEY_SIDEBAR_SIZE,
+								   &error);
+		if (error) {
+			g_error_free(error);
+			error = NULL;
+			sidebar_size_f = TRUE;
+		}
+
 		/* Retrieve Remember last window state option */
 
 		cwin->cpref->remember_window_state =
 			g_key_file_get_boolean(cwin->cpref->configrc_keyfile,
-					       GROUP_GENERAL,
+					       GROUP_WINDOW,
 					       KEY_REMEMBER_STATE,
 					       &error);
 		if (error) {
@@ -327,7 +340,7 @@ gint init_config(struct con_win *cwin)
 
 		cwin->cpref->start_mode =
 			g_key_file_get_string(cwin->cpref->configrc_keyfile,
-					      GROUP_GENERAL,
+					      GROUP_WINDOW,
 					      KEY_START_MODE,
 					      &error);
 		if (!cwin->cpref->start_mode) {
@@ -354,7 +367,7 @@ gint init_config(struct con_win *cwin)
 
 		cwin->cpref->status_bar =
 			g_key_file_get_boolean(cwin->cpref->configrc_keyfile,
-					       GROUP_GENERAL,
+					       GROUP_WINDOW,
 					       KEY_STATUS_BAR,
 					       &error);
 		if (error) {
@@ -595,13 +608,25 @@ gint init_config(struct con_win *cwin)
 
 		cwin->cpref->show_album_art =
 			g_key_file_get_boolean(cwin->cpref->configrc_keyfile,
-					       GROUP_GENERAL,
+					       GROUP_WINDOW,
 					       KEY_SHOW_ALBUM_ART,
 					       &error);
 		if (error) {
 			g_error_free(error);
 			error = NULL;
 			album_f = TRUE;
+		}
+
+		/* Retrieve Album art Size */
+
+		cwin->cpref->album_art_size = g_key_file_get_integer(cwin->cpref->configrc_keyfile,
+					      GROUP_WINDOW,
+					      KEY_ALBUM_ART_SIZE,
+					      &error);
+		if (error) {
+			g_error_free(error);
+			error = NULL;
+			album_art_size_f = TRUE;
 		}
 
 		/* Retrieve album art pattern */
@@ -615,19 +640,6 @@ gint init_config(struct con_win *cwin)
 			g_error_free(error);
 			error = NULL;
 			album_art_pattern_f = TRUE;
-		}
-
-		/* Retrieve Album art Size */
-
-		cwin->cpref->album_art_size = (int)
-			g_key_file_get_integer(cwin->cpref->configrc_keyfile,
-					       GROUP_GENERAL,
-					       KEY_ALBUM_ART_SIZE,
-					       &error);
-		if (error) {
-			g_error_free(error);
-			error = NULL;
-			album_art_size_f = TRUE;
 		}
 
 		/* Mode remaining time option */
@@ -810,6 +822,8 @@ gint init_config(struct con_win *cwin)
 		cwin->cpref->window_width = MIN_WINDOW_WIDTH;
 		cwin->cpref->window_height = MIN_WINDOW_HEIGHT;
 	}
+	if (all_f || sidebar_size_f)
+		cwin->cpref->sidebar_size = DEFAULT_SIDEBAR_SIZE;
 	if (all_f || libs_f)
 		cwin->cpref->library_dir = NULL;
 	if (all_f || lib_add_f)
@@ -1203,6 +1217,7 @@ void init_gui(gint argc, gchar **argv, struct con_win *cwin)
 				    cwin->pixbuf->pixbuf_app);
 	}
 	gtk_window_set_title(GTK_WINDOW(cwin->mainwindow), _("Pragha Music Manager"));
+
 	g_signal_connect(G_OBJECT(cwin->mainwindow),
 			 "delete_event",
 			 G_CALLBACK(exit_gui), cwin);

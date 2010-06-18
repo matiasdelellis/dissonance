@@ -700,7 +700,7 @@ void save_preferences(struct con_win *cwin)
 	gchar *u_file = NULL;
 	gsize length;
 	gint cnt = 0, i = 0, *col_widths, *window_size;
-	gint win_width, win_height;
+	gint win_width, win_height, sidebar_size;
 	GError *error = NULL;
 	GSList *list;
 	GList *cols, *j;
@@ -760,7 +760,7 @@ void save_preferences(struct con_win *cwin)
 	/* Album art option */
 
 	g_key_file_set_boolean(cwin->cpref->configrc_keyfile,
-			       GROUP_GENERAL,
+			       GROUP_WINDOW,
 			       KEY_SHOW_ALBUM_ART,
 			       cwin->cpref->show_album_art);
 
@@ -790,7 +790,7 @@ void save_preferences(struct con_win *cwin)
 	/* Album art size */
 
 	g_key_file_set_integer(cwin->cpref->configrc_keyfile,
-			       GROUP_GENERAL,
+			       GROUP_WINDOW,
 			       KEY_ALBUM_ART_SIZE,
 			       (int)cwin->cpref->album_art_size);
 
@@ -905,17 +905,26 @@ void save_preferences(struct con_win *cwin)
 		window_size[1] = win_height;
 
 		g_key_file_set_integer_list(cwin->cpref->configrc_keyfile,
-					    GROUP_GENERAL,
+					    GROUP_WINDOW,
 					    KEY_WINDOW_SIZE,
 					    window_size,
 					    2);
 		g_free(window_size);
-		}
+	}
+
+	/* Set sidebar size*/
+
+	sidebar_size = gtk_paned_get_position(GTK_PANED(cwin->paned));
+
+	g_key_file_set_integer(cwin->cpref->configrc_keyfile,
+			       GROUP_WINDOW,
+			       KEY_SIDEBAR_SIZE,
+			       sidebar_size);
 
 	/* Set status bar option */
 
 	g_key_file_set_boolean(cwin->cpref->configrc_keyfile,
-			       GROUP_GENERAL,
+			       GROUP_WINDOW,
 			       KEY_STATUS_BAR,
 			       cwin->cpref->status_bar);
 
@@ -969,33 +978,33 @@ void save_preferences(struct con_win *cwin)
 	/* Save last window state */
 
 	g_key_file_set_boolean(cwin->cpref->configrc_keyfile,
-			       GROUP_GENERAL,
+			       GROUP_WINDOW,
 			       KEY_REMEMBER_STATE,
 			       cwin->cpref->remember_window_state);
 
 	if(cwin->cpref->remember_window_state){
 		if(cwin->cstate->fullscreen){
 			g_key_file_set_string(cwin->cpref->configrc_keyfile,
-					      GROUP_GENERAL,
+					      GROUP_WINDOW,
 					      KEY_START_MODE,
 					      FULLSCREEN_STATE);
 		}
 		else if(cwin->cstate->iconified){
 			g_key_file_set_string(cwin->cpref->configrc_keyfile,
-					      GROUP_GENERAL,
+					      GROUP_WINDOW,
 					      KEY_START_MODE,
 					      ICONIFIED_STATE);
 		}
 		else g_key_file_set_string(cwin->cpref->configrc_keyfile,
-					      GROUP_GENERAL,
+					      GROUP_WINDOW,
 					      KEY_START_MODE,
 					      NORMAL_STATE);
 	}
 	else{
-			g_key_file_set_string(cwin->cpref->configrc_keyfile,
-					      GROUP_GENERAL,
-					      KEY_START_MODE,
-					      cwin->cpref->start_mode);
+		g_key_file_set_string(cwin->cpref->configrc_keyfile,
+				      GROUP_WINDOW,
+				      KEY_START_MODE,
+				      cwin->cpref->start_mode);
 	}
 
 	/* Save playlist option */

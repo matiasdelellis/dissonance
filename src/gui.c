@@ -1418,12 +1418,14 @@ GtkWidget* create_paned_region(struct con_win *cwin)
 
 	/* Set initial sizes */
 
-	gtk_widget_set_size_request(GTK_WIDGET(browse_mode), BROWSE_MODE_SIZE, -1);
+	gtk_widget_set_size_request(GTK_WIDGET(browse_mode), cwin->cpref->sidebar_size, -1);
 
 	/* Pack everything into the hpane */
 
 	gtk_paned_pack1 (GTK_PANED (hpane), browse_mode, FALSE, TRUE);
 	gtk_paned_pack2 (GTK_PANED (hpane), current_playlist, TRUE, FALSE);
+
+	cwin->paned = hpane;
 
 	return hpane;
 }
