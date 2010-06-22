@@ -161,6 +161,8 @@ static void add_entry_library(gint location_id,
 	GtkTreeIter iter = {0}, p_iter = {0};
 	GtkTreePath *p_path = NULL;
 	enum node_type node_type = 0;
+	gchar *node_folder;
+	GError *error;
 
 	tot_levels = g_slist_length(cwin->cpref->library_tree_nodes);
 
@@ -172,8 +174,16 @@ static void add_entry_library(gint location_id,
 	/* Only root node can be of type NODE_FOLDER */
 
 	if (node_type == NODE_FOLDER) {
-		node_data = get_containing_folder(location);
-	} else {
+		node_folder = get_containing_folder(location);
+		node_data = g_filename_to_utf8(node_folder, -1, NULL, NULL, &error);
+		g_free(node_folder);
+		if (!node_data) {
+			g_warning("Unable to convert file '%s' to UTF-8: %s", 
+				node_folder, error->message);
+			g_error_free(error);
+		}		
+	}
+	else {
 		if (G_UNLIKELY(g_utf8_strlen(node_data, -1) == 0)) {
 			if(!g_strncasecmp("Artist",g_slist_nth_data(cwin->cpref->library_tree_nodes, node_level),4))
 					node_data = g_strdup_printf(_("Unknown Artist"));
@@ -222,9 +232,16 @@ static void add_entry_library(gint location_id,
 		node_type = choose_node_type(node_level, cwin);
 		node_pixbuf = choose_node_pixbuf(node_level, cwin);
 
-
-		if (node_type == NODE_BASENAME)
-			node_data = g_path_get_basename(location);
+		if (node_type == NODE_BASENAME) {
+			node_folder = g_path_get_basename (location);
+			node_data = g_filename_to_utf8(node_folder, -1, NULL, NULL, &error);
+			g_free(node_folder);
+			if (!node_data) {
+				g_warning("Unable to convert file '%s' to UTF-8: %s", 
+					node_folder, error->message);
+				g_error_free(error);
+			}
+		}
 		else {
 			if (G_UNLIKELY(g_utf8_strlen(node_data, -1) == 0)) {
 				if (node_type == NODE_TRACK)

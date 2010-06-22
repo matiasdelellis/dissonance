@@ -174,17 +174,28 @@ void __update_progress_song_info(struct con_win *cwin, gint length)
 void __update_current_song_info(struct con_win *cwin)
 {
 	gchar *str = NULL, *str_title = NULL;
+	gchar *basename;
+	GError *error;
 
 	if (!cwin->cstate->curr_mobj) {
 		g_critical("Curr mobj is invalid");
 		return;
 	}
 
-	if( g_utf8_strlen(cwin->cstate->curr_mobj->tags->title, -1))
+	if( g_utf8_strlen(cwin->cstate->curr_mobj->tags->title, -1)) {
 		str_title = g_strdup(cwin->cstate->curr_mobj->tags->title);
-	else
-		str_title = g_strdup(g_path_get_basename(cwin->cstate->curr_mobj->file));
-
+	}
+	else {
+		basename = g_path_get_basename(cwin->cstate->curr_mobj->file);
+		str_title = g_filename_to_utf8(basename, -1, NULL, NULL, &error);
+		g_free(basename);
+		
+		if (!str_title) {
+			g_warning("Unable to convert file '%s' to UTF-8: %s", 
+				cwin->cstate->curr_mobj->file, error->message);
+			g_error_free(error);
+		}	
+	}
 	if (cwin->cstate->curr_mobj->file_type == FILE_CDDA){
 		str = g_markup_printf_escaped ("%s", str_title);
 	}
