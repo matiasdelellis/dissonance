@@ -23,26 +23,14 @@
 /* General functions */
 /*********************/
 
-/* Returns file name in utf8 (glib) format in order to display it unless
- * file type is CDDA in which case file name is not changed */
-static gchar* get_display_file_name(struct musicobject *mobj)
+static gchar* get_display_name(struct musicobject *mobj)
 {
 	gchar *name = NULL;
-	gchar *basename = NULL;
-	GError *error = NULL;
-
+	
 	if (mobj->file_type == FILE_CDDA) {
 		name = g_strdup(mobj->file);
 	} else {
-		basename = g_path_get_basename(mobj->file);
-		name = g_filename_to_utf8(basename, -1, NULL, NULL, &error);
-		g_free(basename);
-
-		if (!name) {
-			g_warning("Unable to convert file '%s' to UTF-8: %s", 
-				mobj->file, error->message);
-			g_error_free(error);
-		}
+		name = get_display_filename(mobj->file, FALSE);
 	}
 	return name;
 }
@@ -1314,7 +1302,7 @@ void track_properties_current_playlist(struct con_win *cwin)
 			gchar *bitrate = g_strdup_printf("%d", mobj->tags->bitrate);
 			gchar *channels = g_strdup_printf("%d", mobj->tags->channels);
 			gchar *samplerate = g_strdup_printf("%d", mobj->tags->samplerate);
-			gchar *u_file = get_display_file_name(mobj);
+			gchar *u_file = get_display_name(mobj);;
 
 			gchar *tr_info[11] = {tno,
 			      (mobj->tags->title && strlen(mobj->tags->title)) ?
@@ -1429,7 +1417,7 @@ void track_properties_current_playing(struct con_win *cwin)
 		gchar *bitrate = g_strdup_printf("%d", cwin->cstate->curr_mobj->tags->bitrate);
 		gchar *channels = g_strdup_printf("%d", cwin->cstate->curr_mobj->tags->channels);
 		gchar *samplerate = g_strdup_printf("%d", cwin->cstate->curr_mobj->tags->samplerate);
-		gchar *u_file = get_display_file_name(cwin->cstate->curr_mobj);
+		gchar *u_file = get_display_name(cwin->cstate->curr_mobj);
 
 		gchar *tr_info[11] = {tno,
 				     (cwin->cstate->curr_mobj->tags->title && strlen(cwin->cstate->curr_mobj->tags->title)) ?
@@ -1566,7 +1554,7 @@ void append_current_playlist(struct musicobject *mobj, struct con_win *cwin)
 	ch_length = convert_length_str(mobj->tags->length);
 	ch_year = g_strdup_printf("%d", mobj->tags->year);
 	ch_bitrate = g_strdup_printf("%d", mobj->tags->bitrate);
-	ch_filename = get_display_file_name(mobj);
+	ch_filename = get_display_name(mobj);
 
 	if(mobj->tags->track_no)
 		ch_track_no = g_strdup_printf("%d", mobj->tags->track_no);

@@ -1066,7 +1066,7 @@ gboolean is_image_file(gchar *file);
 gchar* convert_length_str(gint length);
 gboolean is_present_str_list(const gchar *str, GSList *list);
 GSList* delete_from_str_list(const gchar *str, GSList *list);
-gchar* get_containing_folder(gchar *path);
+gchar* get_display_filename(const gchar *filename, gboolean get_folder);
 void free_str_list(GSList *list);
 gint compare_utf8_str(gchar *str1, gchar *str2);
 gboolean validate_album_art_pattern(const gchar *pattern);
