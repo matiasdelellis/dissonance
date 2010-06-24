@@ -1099,10 +1099,10 @@ gint init_keybinder(struct con_win *cwin)
 {
 	ol_keybinder_init ();
 
-	ol_keybinder_bind("XF86AudioPlay", keybind_play_handler, cwin);
-	ol_keybinder_bind("XF86AudioStop", keybind_stop_handler, cwin);
-	ol_keybinder_bind("XF86AudioPrev", keybind_prev_handler, cwin);
-	ol_keybinder_bind("XF86AudioNext", keybind_next_handler, cwin);
+	ol_keybinder_bind("XF86AudioPlay", (OlBindkeyHandler) keybind_play_handler, cwin);
+	ol_keybinder_bind("XF86AudioStop", (OlBindkeyHandler) keybind_stop_handler, cwin);
+	ol_keybinder_bind("XF86AudioPrev", (OlBindkeyHandler) keybind_prev_handler, cwin);
+	ol_keybinder_bind("XF86AudioNext", (OlBindkeyHandler) keybind_next_handler, cwin);
 
 	return 0;
 }
