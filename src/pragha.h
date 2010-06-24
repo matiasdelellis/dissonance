@@ -682,10 +682,11 @@ void wiki_action(GtkAction *action, struct con_win *cwin);
 void about_action(GtkAction *action, struct con_win *cwin);
 
 /* Global Hotkeys handlers */
-void keybind_prev_handler (const char *keystring, gpointer* data);
-void keybind_play_handler (const char *keystring, gpointer* data);
-void keybind_stop_handler (const char *keystring, gpointer* data);
-void keybind_next_handler (const char *keystring, gpointer* data);
+void keybind_prev_handler (const char *keystring, gpointer data);
+void keybind_play_handler (const char *keystring, gpointer data);
+void keybind_stop_handler (const char *keystring, gpointer data);
+void keybind_next_handler (const char *keystring, gpointer data);
+void keybind_media_handler (const char *keystring, gpointer data);
 
 /* Panel actions */
 gboolean update_current_song_info(gpointer data);

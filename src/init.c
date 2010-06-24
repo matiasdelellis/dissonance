@@ -1097,12 +1097,13 @@ gint init_notify(struct con_win *cwin)
 
 gint init_keybinder(struct con_win *cwin)
 {
-	ol_keybinder_init ();
+	keybinder_init ();
 
-	ol_keybinder_bind("XF86AudioPlay", (OlBindkeyHandler) keybind_play_handler, cwin);
-	ol_keybinder_bind("XF86AudioStop", (OlBindkeyHandler) keybind_stop_handler, cwin);
-	ol_keybinder_bind("XF86AudioPrev", (OlBindkeyHandler) keybind_prev_handler, cwin);
-	ol_keybinder_bind("XF86AudioNext", (OlBindkeyHandler) keybind_next_handler, cwin);
+	keybinder_bind("XF86AudioPlay", (KeybinderHandler) keybind_play_handler, cwin);
+	keybinder_bind("XF86AudioStop", (KeybinderHandler) keybind_stop_handler, cwin);
+	keybinder_bind("XF86AudioPrev", (KeybinderHandler) keybind_prev_handler, cwin);
+	keybinder_bind("XF86AudioNext", (KeybinderHandler) keybind_next_handler, cwin);
+	keybinder_bind("XF86AudioMedia", (KeybinderHandler) keybind_media_handler, cwin);
 
 	return 0;
 }

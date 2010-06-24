@@ -126,10 +126,11 @@ void common_cleanup(struct con_win *cwin)
 	if (notify_is_initted())
 		notify_uninit();
 
-	ol_keybinder_unbind("XF86AudioPlay", (OlBindkeyHandler) keybind_play_handler);
-	ol_keybinder_unbind("XF86AudioStop", (OlBindkeyHandler) keybind_stop_handler);
-	ol_keybinder_unbind("XF86AudioPrev", (OlBindkeyHandler) keybind_prev_handler);
-	ol_keybinder_unbind("XF86AudioNext", (OlBindkeyHandler) keybind_next_handler);
+	keybinder_unbind("XF86AudioPlay", (KeybinderHandler) keybind_play_handler);
+	keybinder_unbind("XF86AudioStop", (KeybinderHandler) keybind_stop_handler);
+	keybinder_unbind("XF86AudioPrev", (KeybinderHandler) keybind_prev_handler);
+	keybinder_unbind("XF86AudioNext", (KeybinderHandler) keybind_next_handler);
+	keybinder_unbind("XF86AudioMedia", (KeybinderHandler) keybind_media_handler);
 
 	g_option_context_free(cwin->cmd_context);
 

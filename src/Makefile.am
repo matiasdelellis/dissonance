@@ -46,9 +46,8 @@ pragha_SOURCES =pragha.c \
 		cdda.h \
 		gtkcellrendererbubble.c \
 		gtkcellrendererbubble.h \
-		eggaccelerators.c \
-		eggaccelerators.h \
-		keybinder.c
+		bind.c \
+		keybinder.h
 
 pragha_CFLAGS =	$(GLIB_CFLAGS) 						\
 	$(GTHREAD_CFLAGS)						\
