@@ -44,6 +44,7 @@ XDT_CHECK_PACKAGE([LIBCDIO], [libcdio], [0.78])
 XDT_CHECK_PACKAGE([LIBCDIO_PARANOIA], [libcdio_paranoia], [0.78])
 XDT_CHECK_PACKAGE([LIBCDDB], [libcddb], [1.2.1])
 XDT_CHECK_PACKAGE([LIBMODPLUG], [libmodplug], [0.7.0])
+XDT_CHECK_PACKAGE([LIBX11], [x11], 1.0.0)
 
 dnl ***********************************
 dnl *** Check for taglib_c ***
