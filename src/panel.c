@@ -416,10 +416,15 @@ void shuffle_button (struct con_win *cwin)
 	}
 }
 
+void keybind_play_handler (const char *keystring, gpointer* data)
+{
+	struct con_win *cwin = data;
+	play_pause_resume(cwin);
+}
+
 void play_button_handler(GtkButton *button, struct con_win *cwin)
 {
 	play_pause_resume(cwin);
-	gtk_widget_grab_focus(cwin->current_playlist);
 }
 
 void play_pause_resume(struct con_win *cwin)
@@ -477,16 +482,32 @@ void play_pause_resume(struct con_win *cwin)
 	}
 }
 
+void keybind_stop_handler (const char *keystring, gpointer* data)
+{
+	struct con_win *cwin = data;
+	stop_playback(cwin);
+}
+
 void stop_button_handler(GtkButton *button, struct con_win *cwin)
 {
 	stop_playback(cwin);
-	gtk_widget_grab_focus(cwin->current_playlist);
+}
+
+void keybind_prev_handler (const char *keystring, gpointer* data)
+{
+	struct con_win *cwin = data;
+	play_prev_track(cwin);
 }
 
 void prev_button_handler(GtkButton *button, struct con_win *cwin)
 {
 	play_prev_track(cwin);
-	gtk_widget_grab_focus(cwin->current_playlist);
+}
+
+void keybind_next_handler (const char *keystring, gpointer* data)
+{
+	struct con_win *cwin = data;
+	play_next_track(cwin);
 }
 
 void next_button_handler(GtkButton *button, struct con_win *cwin)

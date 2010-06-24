@@ -126,6 +126,11 @@ void common_cleanup(struct con_win *cwin)
 	if (notify_is_initted())
 		notify_uninit();
 
+	ol_keybinder_unbind("XF86AudioPlay", keybind_play_handler);
+	ol_keybinder_unbind("XF86AudioStop", keybind_stop_handler);
+	ol_keybinder_unbind("XF86AudioPrev", keybind_prev_handler);
+	ol_keybinder_unbind("XF86AudioNext", keybind_next_handler);
+
 	g_option_context_free(cwin->cmd_context);
 
 	g_slice_free(struct con_win, cwin);
@@ -211,6 +216,11 @@ gint main(gint argc, gchar *argv[])
 
 	if (init_notify(cwin) == -1) {
 		g_critical("Unable to initialize libnotify");
+		return -1;
+	}
+
+	if (init_keybinder(cwin) == -1) {
+		g_critical("Unable to initialize keybinder");
 		return -1;
 	}
 
