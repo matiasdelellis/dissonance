@@ -123,7 +123,7 @@ gchar *library_page_context_menu_xml = "<ui>			\
 	<menuitem action=\"Expand library\"/>			\
 	<menuitem action=\"Collapse library\"/>			\
 	<separator/>						\
-	<menuitem action=\"folder_file\"/>			\
+	<menuitem action=\"folders\"/>				\
 	<separator/>						\
 	<menuitem action=\"artist\"/>				\
 	<menuitem action=\"album\"/>				\
@@ -285,8 +285,8 @@ GtkActionEntry library_page_context_aentries[] = {
 	 NULL, "Expand the library", G_CALLBACK(expand_all_action)},
 	{"Collapse library", GTK_STOCK_REMOVE, N_("_Collapse library"),
 	 NULL, "Collapse the library", G_CALLBACK(collapse_all_action)},
-	{"folder_file", GTK_STOCK_REFRESH, N_("Folder / File"),
-	 NULL, "Folder / File", G_CALLBACK(folder_file_library_tree)},
+	{"folders", GTK_STOCK_REFRESH, N_("Folder structure"),
+	 NULL, "Folder structure", G_CALLBACK(folders_library_tree)},
 	{"artist", GTK_STOCK_REFRESH, N_("Artist"),
 	 NULL, "Artist", G_CALLBACK(artist_library_tree)},
 	{"album", GTK_STOCK_REFRESH, N_("Album"),

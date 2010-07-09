@@ -65,24 +65,33 @@ static void add_child_node_by_folder(GtkTreeModel *model, GtkTreeIter *iter,
 	GtkTreeIter l_iter;
 	gchar *data = NULL;
 	gint i = 0, pos = 0, l_node_type;
+       
+	if (node_type == NODE_FOLDER) {
+		/* Find position of the last directory that is a child of p_iter */
+		while (gtk_tree_model_iter_nth_child(model, &l_iter, p_iter, i++)) {
+			gtk_tree_model_get(model, &l_iter, L_NODE_TYPE, &l_node_type, -1);
+			gtk_tree_model_get(model, &l_iter, L_NODE_DATA, &data, -1);
 
-	/* Find position of the last file/subdirectory that is a child of p_iter */
-	while (gtk_tree_model_iter_nth_child(model, &l_iter, p_iter, i++)) {
-		gtk_tree_model_get(model, &l_iter, L_NODE_TYPE, &l_node_type, -1);
-		gtk_tree_model_get(model, &l_iter, L_NODE_DATA, &data, -1);
-
-		if (node_type == NODE_FOLDER) {
 			if ((l_node_type == NODE_FOLDER) && (g_ascii_strcasecmp(data, node_data) < 0))
 				pos++;
-		}
-		else {
+			g_free(data);
+        	}
+		/* Insert the new subdirectory after the last subdirectory by order */
+		gtk_tree_store_insert(GTK_TREE_STORE(model), iter, p_iter, pos);
+	}
+	else {
+		/* Find position of the last file that is a child of p_iter */
+		while (gtk_tree_model_iter_nth_child(model, &l_iter, p_iter, i++)) {
+			gtk_tree_model_get(model, &l_iter, L_NODE_TYPE, &l_node_type, -1);
+			gtk_tree_model_get(model, &l_iter, L_NODE_DATA, &data, -1);
+
 			if ((l_node_type == NODE_FOLDER) || (g_ascii_strcasecmp(data, node_data) < 0))
 				pos++;
+            		g_free(data);
 		}
-		g_free(data);
+		/* Insert the new file after the last file by order */
+		gtk_tree_store_insert(GTK_TREE_STORE(model), iter, p_iter, pos);
 	}
-	gtk_tree_store_insert(GTK_TREE_STORE(model), iter, p_iter, pos);
-
 	gtk_tree_store_set(GTK_TREE_STORE(model), iter,
 		L_PIXBUF, pixbuf,
 		L_NODE_DATA, node_data,
@@ -793,7 +802,7 @@ void clear_library_search(struct con_win *cwin)
 /* Library view order selection */
 /********************************/
 
-void folder_file_library_tree(GtkAction *action, struct con_win *cwin)
+void folders_library_tree(GtkAction *action, struct con_win *cwin)
 {
 	free_str_list(cwin->cpref->library_tree_nodes);
 	cwin->cpref->library_tree_nodes = NULL;
@@ -802,7 +811,7 @@ void folder_file_library_tree(GtkAction *action, struct con_win *cwin)
 							 g_strdup(P_FOLDER_STR));
 	cwin->cpref->library_tree_nodes = g_slist_append(cwin->cpref->library_tree_nodes,
 							 g_strdup(P_BASENAME_STR));
-	cwin->cpref->cur_library_view = FOLDER_FILE;
+	cwin->cpref->cur_library_view = FOLDERS;
 
 	init_library_view(cwin);
 }
@@ -1239,35 +1248,35 @@ void init_library_view(struct con_win *cwin)
 	cwin->cstate->view_change = TRUE;
 
 	switch(cwin->cpref->cur_library_view) {
-	case FOLDER_FILE:
-		gtk_label_set_text (GTK_LABEL(cwin->combo_order_label),_("Folder / File"));
+	case FOLDERS:
+		gtk_label_set_text (GTK_LABEL(cwin->combo_order_label), _("Folder structure"));
 		break;
 	case ARTIST:
-		gtk_label_set_text (GTK_LABEL(cwin->combo_order_label),_("Artist"));		
+		gtk_label_set_text (GTK_LABEL(cwin->combo_order_label), _("Artist"));		
 		order_str = g_strdup("ARTIST.name ASC, TRACK.title ASC");
 		break;
 	case ALBUM:
-		gtk_label_set_text (GTK_LABEL(cwin->combo_order_label),_("Album"));	
+		gtk_label_set_text (GTK_LABEL(cwin->combo_order_label), _("Album"));	
 		order_str = g_strdup("ALBUM.name ASC, TRACK.title ASC");
 		break;
 	case GENRE:
-		gtk_label_set_text (GTK_LABEL(cwin->combo_order_label),_("Genre"));
+		gtk_label_set_text (GTK_LABEL(cwin->combo_order_label), _("Genre"));
 		order_str = g_strdup("GENRE.name ASC, TRACK.title ASC");
 		break;
 	case ARTIST_ALBUM:
-		gtk_label_set_text (GTK_LABEL(cwin->combo_order_label),_("Artist / Album"));
+		gtk_label_set_text (GTK_LABEL(cwin->combo_order_label), _("Artist / Album"));
 		order_str = g_strdup("ARTIST.name ASC, ALBUM.name ASC, TRACK.track_no ASC");
 		break;
 	case GENRE_ARTIST:
-		gtk_label_set_text (GTK_LABEL(cwin->combo_order_label),_("Genre / Artist"));
+		gtk_label_set_text (GTK_LABEL(cwin->combo_order_label), _("Genre / Artist"));
 		order_str = g_strdup("GENRE.name ASC, ARTIST.name ASC, TRACK.title ASC");
 		break;
 	case GENRE_ALBUM:
-		gtk_label_set_text (GTK_LABEL(cwin->combo_order_label),_("Genre / Album"));
+		gtk_label_set_text (GTK_LABEL(cwin->combo_order_label), _("Genre / Album"));
 		order_str = g_strdup("GENRE.name ASC, ALBUM.name ASC, TRACK.track_no ASC");
 		break;
 	case GENRE_ARTIST_ALBUM:
-		gtk_label_set_text (GTK_LABEL(cwin->combo_order_label),_("Genre / Artist / Album"));
+		gtk_label_set_text (GTK_LABEL(cwin->combo_order_label), _("Genre / Artist / Album"));
 		order_str = g_strdup("GENRE.name ASC, ARTIST.name ASC, ALBUM.name ASC, TRACK.track_no ASC");
 		break;
 	default:
@@ -1284,7 +1293,7 @@ void init_library_view(struct con_win *cwin)
 	gtk_tree_store_clear(GTK_TREE_STORE(model));
 
 	/* Common query for all tag based library views */
-	if (cwin->cpref->cur_library_view != FOLDER_FILE) {
+	if (cwin->cpref->cur_library_view != FOLDERS) {
 		query = g_strdup_printf("SELECT TRACK.title, ALBUM.name, ARTIST.name,"
 			"GENRE.name, LOCATION.name, LOCATION.id "
 			"FROM TRACK, ALBUM, ARTIST, GENRE, LOCATION "
@@ -1307,7 +1316,7 @@ void init_library_view(struct con_win *cwin)
 			}
 		}	
 		
-	/* Query for folder/file view */
+	/* Query for folders view */
 	}
 	else {
 		query = g_strdup("SELECT name, id FROM LOCATION ORDER BY name ASC");

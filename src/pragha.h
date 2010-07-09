@@ -297,7 +297,7 @@ enum dnd_target {
 /* Library Views */
 
 enum library_view {
-	FOLDER_FILE,
+	FOLDERS,
 	ARTIST,
 	ALBUM,
 	GENRE,
@@ -778,7 +778,7 @@ void simple_library_search_keyrelease(struct con_win *cwin);
 gboolean simple_library_search_keyrelease_handler(GtkEntry *entry,
 						  struct con_win *cwin);
 void clear_library_search(struct con_win *cwin);
-void folder_file_library_tree(GtkAction *action, struct con_win *cwin);
+void folders_library_tree(GtkAction *action, struct con_win *cwin);
 void artist_library_tree(GtkAction *action, struct con_win *cwin);
 void album_library_tree(GtkAction *action, struct con_win *cwin);
 void genre_library_tree(GtkAction *action, struct con_win *cwin);
