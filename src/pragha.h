@@ -351,13 +351,12 @@ struct tags {
 };
 
 struct pixbuf {
-	GdkPixbuf *pixbuf_dir;
-	GdkPixbuf *pixbuf_file;
+	GdkPixbuf *pixbuf_app;
 	GdkPixbuf *pixbuf_artist;
 	GdkPixbuf *pixbuf_album;
 	GdkPixbuf *pixbuf_track;
 	GdkPixbuf *pixbuf_genre;
-	GdkPixbuf *pixbuf_app;
+	GdkPixbuf *pixbuf_dir;
 	GtkWidget *image_pause;
 	GtkWidget *image_play;
 };

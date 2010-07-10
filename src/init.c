@@ -1176,11 +1176,75 @@ void init_menu_actions(struct con_win *cwin)
 	gtk_toggle_action_set_active (GTK_TOGGLE_ACTION(action), cwin->cpref->status_bar);
 }
 
+void init_pixbufs(struct con_win *cwin)
+{
+	GtkIconTheme *icontheme = gtk_icon_theme_get_default();
+
+	cwin->pixbuf->pixbuf_app = gdk_pixbuf_new_from_file(PIXMAPDIR"/pragha.png", NULL);
+	if (!cwin->pixbuf->pixbuf_app)
+		g_warning("Unable to load pragha png");
+
+	cwin->pixbuf->pixbuf_artist = gdk_pixbuf_new_from_file_at_scale(PIXMAPDIR
+									"/artist.png",
+									16,
+									16,
+									TRUE,
+									NULL);
+	if (!cwin->pixbuf->pixbuf_artist)
+		g_warning("Unable to load artist png");
+
+	cwin->pixbuf->pixbuf_album = gtk_icon_theme_load_icon(icontheme,
+							      "media-optical",
+							      16,
+							      0,
+							      NULL);
+	if (!cwin->pixbuf->pixbuf_album)
+		cwin->pixbuf->pixbuf_album = gdk_pixbuf_new_from_file_at_scale(PIXMAPDIR
+										"/album.png",
+										16,
+										16,
+										TRUE,
+										NULL);
+	if (!cwin->pixbuf->pixbuf_album)
+		g_warning("Unable to load album png");
+
+	cwin->pixbuf->pixbuf_track = gtk_icon_theme_load_icon(icontheme,
+							     "gnome-mime-audio",
+							     16,
+							     0,
+							     NULL);
+	if (!cwin->pixbuf->pixbuf_track)
+		cwin->pixbuf->pixbuf_track = gdk_pixbuf_new_from_file_at_scale(PIXMAPDIR
+										"/track.png",
+										16,
+										16,
+										TRUE,
+										NULL);
+	if (!cwin->pixbuf->pixbuf_track)
+		g_warning("Unable to load track png");
+
+	cwin->pixbuf->pixbuf_genre = gdk_pixbuf_new_from_file_at_scale(PIXMAPDIR
+								       "/genre.png",
+								       16,
+								       16,
+								       TRUE,
+								       NULL);
+	if (!cwin->pixbuf->pixbuf_genre)
+		g_warning("Unable to load genre png");
+
+	cwin->pixbuf->pixbuf_dir = gtk_icon_theme_load_icon(icontheme,
+							    "gtk-directory",
+							    16,
+							    0,
+							    NULL);
+	if (!cwin->pixbuf->pixbuf_dir)
+		g_warning("Unable to load subdir png");
+}
+
 void init_gui(gint argc, gchar **argv, struct con_win *cwin)
 {
 	GtkUIManager *menu;
 	GtkWidget *vbox, *hbox_panel, *hbox_main, *status_bar, *menu_bar;
-	GError *error = NULL;
 
 	CDEBUG(DBG_INFO, "Initializing gui");
 
@@ -1188,6 +1252,8 @@ void init_gui(gint argc, gchar **argv, struct con_win *cwin)
 
         g_set_application_name(_("Pragha Music Manager"));
         g_setenv("PULSE_PROP_media.role", "music", TRUE);
+
+	init_pixbufs(cwin);
 
 	/* Main window */
 
@@ -1199,17 +1265,10 @@ void init_gui(gint argc, gchar **argv, struct con_win *cwin)
 		gtk_widget_set_default_colormap(colormap);
 	}
 
-	cwin->pixbuf->pixbuf_app = gdk_pixbuf_new_from_file(PIXMAPDIR"/pragha.png",
- 							    &error);
-	if (!cwin->pixbuf->pixbuf_app) {
-		g_warning("Unable to load app png : %s", error->message);
-		g_error_free(error);
-		error = NULL;
-	}
-	else{
+	if (cwin->pixbuf->pixbuf_app)
 		gtk_window_set_icon(GTK_WINDOW(cwin->mainwindow),
 				    cwin->pixbuf->pixbuf_app);
-	}
+
 	gtk_window_set_title(GTK_WINDOW(cwin->mainwindow), _("Pragha Music Manager"));
 
 	g_signal_connect(G_OBJECT(cwin->mainwindow),

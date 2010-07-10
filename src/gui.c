@@ -367,14 +367,12 @@ static GtkUIManager* create_library_tree_context_menu(GtkWidget *library_tree,
 
 static GtkWidget* create_library_tree(struct con_win *cwin)
 {
-	GError *error = NULL;
 	GtkWidget *library_tree;
 	GtkTreeModel *library_filter_tree;
 	GtkTreeStore *store;
 	GtkCellRenderer *renderer;
 	GtkTreeViewColumn *column;
 	GtkTreeSelection *selection;
-	gint width, height;
 
 	/* Create the tree store */
 
@@ -401,57 +399,6 @@ static GtkWidget* create_library_tree(struct con_win *cwin)
 
 	selection = gtk_tree_view_get_selection(GTK_TREE_VIEW(library_tree));
 	gtk_tree_selection_set_mode(selection, GTK_SELECTION_MULTIPLE);
-
-	/* Load pixbufs */
-
-	gtk_icon_size_lookup(GTK_ICON_SIZE_MENU, &width, &height);
-
-	cwin->pixbuf->pixbuf_artist = gdk_pixbuf_new_from_file_at_scale(PIXMAPDIR
-									"/artist.png",
-									width,
-									height,
-									TRUE,
-									&error);
-	if (!cwin->pixbuf->pixbuf_artist) {
-		g_warning("Unable to load artist png : %s", error->message);
-		g_error_free(error);
-		error = NULL;
-	}
-
-	cwin->pixbuf->pixbuf_album = gtk_icon_theme_load_icon(gtk_icon_theme_get_default(),
-							      "media-optical",
-							      width,
-							      0,
-							      &error);
-	if (!cwin->pixbuf->pixbuf_album) {
-		g_warning("Unable to load album png : %s", error->message);
-		g_error_free(error);
-		error = NULL;
-	}
-
-	cwin->pixbuf->pixbuf_track = gdk_pixbuf_new_from_file_at_scale(PIXMAPDIR
-								       "/track.png",
-								       width,
-								       height,
-								       TRUE,
-								       &error);
-	if (!cwin->pixbuf->pixbuf_track) {
-		g_warning("Unable to load track png : %s", error->message);
-		g_error_free(error);
-		error = NULL;
-	}
-
-	cwin->pixbuf->pixbuf_genre = gdk_pixbuf_new_from_file_at_scale(PIXMAPDIR
-								       "/genre.png",
-								       width,
-								       height,
-								       TRUE,
-								       &error);
-	if (!cwin->pixbuf->pixbuf_genre) {
-		g_warning("Unable to load genre png : %s", error->message);
-		g_error_free(error);
-		error = NULL;
-	}
 
 	/* Create column and cell renderers */
 
@@ -535,7 +482,6 @@ static GtkWidget* create_playlist_tree(struct con_win *cwin)
 	GtkCellRenderer *renderer;
 	GtkTreeViewColumn *column;
 	GtkTreeSelection *selection;
-	GError *error = NULL;
 
 	/* Create the tree store */
 
@@ -571,20 +517,6 @@ static GtkWidget* create_playlist_tree(struct con_win *cwin)
 	g_object_set(G_OBJECT(renderer), "ellipsize", PANGO_ELLIPSIZE_END, NULL);
 
 	gtk_tree_view_append_column(GTK_TREE_VIEW(playlist_tree), column);
-
-	/* Create pixbufs */
-
-	cwin->pixbuf->pixbuf_dir = gtk_icon_theme_load_icon(gtk_icon_theme_get_default(),
-							    "gtk-directory",
-							    16, 0, &error);
-	if( error != NULL )
-		g_warning("Unable to load gtk-directory icon, err : %s", error->message);
-
-	cwin->pixbuf->pixbuf_file = gtk_icon_theme_load_icon(gtk_icon_theme_get_default(),
-							     "gtk-file",
-							     16, 0, &error);
-	if( error != NULL )
-		g_warning("Unable to load gtk-file icon, err : %s", error->message);
 
 	/* Create right click popup menu */
 
