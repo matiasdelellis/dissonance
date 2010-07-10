@@ -15,6 +15,7 @@ imagedir = $(datadir)/pixmaps/pragha
 image_DATA = 		\
 	data/album.png	\
 	data/artist.png	\
+	data/track.png  \
 	data/cover.png  \
 	data/genre.png	\
 	data/pragha.png

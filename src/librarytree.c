@@ -71,13 +71,12 @@ static void add_child_node_by_folder(GtkTreeModel *model, GtkTreeIter *iter,
 		while (gtk_tree_model_iter_nth_child(model, &l_iter, p_iter, i++)) {
 			gtk_tree_model_get(model, &l_iter, L_NODE_TYPE, &l_node_type, -1);
 			gtk_tree_model_get(model, &l_iter, L_NODE_DATA, &data, -1);
-
-			if ((l_node_type == NODE_FOLDER) && (g_ascii_strcasecmp(data, node_data) < 0))
+			if (l_node_type != NODE_FOLDER)
+				break;
+			if (g_ascii_strcasecmp(data, node_data) < 0)
 				pos++;
 			g_free(data);
-        	}
-		/* Insert the new subdirectory after the last subdirectory by order */
-		gtk_tree_store_insert(GTK_TREE_STORE(model), iter, p_iter, pos);
+		}
 	}
 	else {
 		/* Find position of the last file that is a child of p_iter */
@@ -89,9 +88,10 @@ static void add_child_node_by_folder(GtkTreeModel *model, GtkTreeIter *iter,
 				pos++;
             		g_free(data);
 		}
-		/* Insert the new file after the last file by order */
-		gtk_tree_store_insert(GTK_TREE_STORE(model), iter, p_iter, pos);
 	}
+	/* Insert the new file after the last subdirectory/file by order */
+	gtk_tree_store_insert(GTK_TREE_STORE(model), iter, p_iter, pos);
+
 	gtk_tree_store_set(GTK_TREE_STORE(model), iter,
 		L_PIXBUF, pixbuf,
 		L_NODE_DATA, node_data,
@@ -110,7 +110,7 @@ static void add_subpath(const gchar *path, int location_id,
 			
 	if (!find_child_node(path, &search_iter, p_iter, model)) {
 		add_child_node_by_folder(model, &iter1, p_iter,
-			location_id ? cwin->pixbuf->pixbuf_file : cwin->pixbuf->pixbuf_dir,
+			location_id ? cwin->pixbuf->pixbuf_track : cwin->pixbuf->pixbuf_dir,
 			path, location_id ? NODE_BASENAME : NODE_FOLDER, location_id);
 		p_iter = location_id ? NULL : &iter1;
 	}
@@ -205,7 +205,7 @@ static void add_by_tag(gint location_id, gchar *location, gchar *genre,
 		else {
 			iter2 = search_iter;
 			p_iter = &iter2;
-		}			
+		}
 		/* Free node_data if needed */
 		if (need_gfree) {
 			need_gfree = FALSE;
@@ -1292,16 +1292,12 @@ void init_library_view(struct con_win *cwin)
 	gtk_tree_view_set_model(GTK_TREE_VIEW(cwin->library_tree), NULL);
 	gtk_tree_store_clear(GTK_TREE_STORE(model));
 
-	/* Common query for all tag based library views */
 	if (cwin->cpref->cur_library_view != FOLDERS) {
-		query = g_strdup_printf("SELECT TRACK.title, ALBUM.name, ARTIST.name,"
-			"GENRE.name, LOCATION.name, LOCATION.id "
-			"FROM TRACK, ALBUM, ARTIST, GENRE, LOCATION "
-			"WHERE ALBUM.id = TRACK.album AND "
-			"ARTIST.id = TRACK.artist AND "
-			"GENRE.id = TRACK.genre AND "
-			"LOCATION.id = TRACK.location "
-			"ORDER BY %s;", order_str);
+		/* Common query for all tag based library views */
+		query = g_strdup_printf("SELECT TRACK.title, ALBUM.name, ARTIST.name, GENRE.name, LOCATION.name, LOCATION.id "
+					"FROM TRACK, ALBUM, ARTIST, GENRE, LOCATION "
+					"WHERE ALBUM.id = TRACK.album AND ARTIST.id = TRACK.artist AND GENRE.id = TRACK.genre AND LOCATION.id = TRACK.location "
+					"ORDER BY %s;", order_str);
 		g_free(order_str);
 			
 		exec_sqlite_query(query, cwin, &result);
@@ -1315,10 +1311,9 @@ void init_library_view(struct con_win *cwin)
 				}
 			}
 		}	
-		
-	/* Query for folders view */
 	}
 	else {
+		/* Query for folders view */
 		query = g_strdup("SELECT name, id FROM LOCATION ORDER BY name ASC");
 		exec_sqlite_query(query, cwin, &result);
 		for_each_result_row(result, i) {
