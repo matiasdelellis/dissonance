@@ -727,6 +727,10 @@ void update_current_state(GThread *thread, GtkTreePath *path,
 	GtkTreeRowReference *rand_ref;
 	GtkTreeModel *model;
 	GtkTreeSelection *selection;
+	gint cx, cy;
+
+	GdkRectangle vrect;
+	GdkRectangle crect;
 
 	model = gtk_tree_view_get_model(GTK_TREE_VIEW(cwin->current_playlist));
 	selection = gtk_tree_view_get_selection(GTK_TREE_VIEW(cwin->current_playlist));
@@ -738,13 +742,29 @@ void update_current_state(GThread *thread, GtkTreePath *path,
 	/* Update view */
 
 	gtk_tree_selection_unselect_all(selection);
-	gtk_tree_selection_select_path(selection, path);
-	if ((action != PLAYLIST_CURR) && cwin->cpref->shuffle)
-		gtk_tree_view_scroll_to_cell(GTK_TREE_VIEW(cwin->current_playlist),
-					     path, NULL, TRUE, 0.5, 0);
-	else
-		gtk_tree_view_scroll_to_cell(GTK_TREE_VIEW(cwin->current_playlist),
-					     path, NULL, FALSE, 0, 0);
+	gtk_tree_selection_select_path(GTK_TREE_SELECTION (selection), path);
+
+	gtk_tree_view_get_visible_rect(GTK_TREE_VIEW(cwin->current_playlist), &vrect);
+	gtk_tree_view_get_cell_area(GTK_TREE_VIEW(cwin->current_playlist), path, NULL, &crect);
+
+	gtk_tree_view_convert_widget_to_tree_coords(GTK_TREE_VIEW(cwin->current_playlist), crect.x, crect.y, &cx, &cy);
+
+	if (cwin->cpref->shuffle) {
+		if ((cy < vrect.y) || (cy + crect.height > vrect.y + vrect.height)) {
+			gtk_tree_view_scroll_to_cell(GTK_TREE_VIEW(cwin->current_playlist),
+						     path, NULL, TRUE, 0.5, 0.0);
+		}
+	}
+	else {
+		if (cy < vrect.y) {
+			gtk_tree_view_scroll_to_cell(GTK_TREE_VIEW(cwin->current_playlist),
+						     path, NULL, TRUE, 0.0, 0.0);
+		}
+		else if (cy + crect.height > vrect.y + vrect.height) {
+			gtk_tree_view_scroll_to_cell(GTK_TREE_VIEW(cwin->current_playlist),
+						     path, NULL, TRUE, 1.0, 0.0);
+		}
+	}
 
 	/* Update current song info */
 
@@ -1007,6 +1027,10 @@ void jump_to_playing_song(struct con_win *cwin)
 {
 	GtkTreePath *path=NULL;
 	GtkTreeSelection *selection;
+	gint cx, cy;
+
+	GdkRectangle vrect;
+	GdkRectangle crect;
 
 	path = current_playlist_get_actual(cwin);
 
@@ -1016,12 +1040,15 @@ void jump_to_playing_song(struct con_win *cwin)
 		gtk_tree_selection_unselect_all(selection);
 		gtk_tree_selection_select_path(GTK_TREE_SELECTION (selection), path);
 
-		if (cwin->cpref->shuffle)
+		gtk_tree_view_get_visible_rect(GTK_TREE_VIEW(cwin->current_playlist), &vrect);
+		gtk_tree_view_get_cell_area(GTK_TREE_VIEW(cwin->current_playlist), path, NULL, &crect);
+
+		gtk_tree_view_convert_widget_to_tree_coords(GTK_TREE_VIEW(cwin->current_playlist), crect.x, crect.y, &cx, &cy);
+
+		if ((cy < vrect.y) || (cy + crect.height > vrect.y + vrect.height)) {
 			gtk_tree_view_scroll_to_cell(GTK_TREE_VIEW(cwin->current_playlist),
-						path, NULL, TRUE, 0.5, 0);
-		else
-			gtk_tree_view_scroll_to_cell(GTK_TREE_VIEW(cwin->current_playlist),
-						path, NULL, FALSE, 0, 0);
+						     path, NULL, TRUE, 0.5, 0.0);
+		}
 
 		gtk_tree_path_free(path);
 	}
@@ -2392,6 +2419,10 @@ void init_current_playlist_view(struct con_win *cwin)
 	GError *error = NULL;
 	GtkTreePath *path=NULL;
  	GtkTreeSelection *selection;
+	gint cx, cy;
+
+	GdkRectangle vrect;
+	GdkRectangle crect;
 
 	add_playlist_current_playlist(SAVE_PLAYLIST_STATE, cwin);
 
@@ -2412,12 +2443,15 @@ void init_current_playlist_view(struct con_win *cwin)
 	gtk_tree_selection_unselect_all(selection);
 	gtk_tree_selection_select_path(GTK_TREE_SELECTION (selection), path);
 
-	if (cwin->cpref->shuffle)
+	gtk_tree_view_get_visible_rect(GTK_TREE_VIEW(cwin->current_playlist), &vrect);
+	gtk_tree_view_get_cell_area(GTK_TREE_VIEW(cwin->current_playlist), path, NULL, &crect);
+
+	gtk_tree_view_convert_widget_to_tree_coords(GTK_TREE_VIEW(cwin->current_playlist), crect.x, crect.y, &cx, &cy);
+
+	if ((cy < vrect.y) || (cy + crect.height > vrect.y + vrect.height)) {
 		gtk_tree_view_scroll_to_cell(GTK_TREE_VIEW(cwin->current_playlist),
-					path, NULL, TRUE, 0.5, 0);
-	else
-		gtk_tree_view_scroll_to_cell(GTK_TREE_VIEW(cwin->current_playlist),
-					path, NULL, FALSE, 0, 0);
+					     path, NULL, TRUE, 0.5, 0.0);
+	}
 
 	gtk_tree_path_free(path);
 
