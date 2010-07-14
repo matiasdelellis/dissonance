@@ -134,13 +134,18 @@ static void add_folder_file(const gchar *path, int location_id,
 		if (g_str_has_prefix(path, prefix)) {
 			fullpath = get_display_filename(path, TRUE);
 			filename = get_display_filename(path, FALSE);
-			/* Point after library directory prefix */
-			filepath = fullpath + strlen(prefix) + 1;
+
+			if (!cwin->cpref->fuse_folders)
+				add_subpath(prefix, 0, cwin, model);
 			break;
 		}
 	}
-	/* Add all subdirectories to the tree */
+
+	/* Point after library directory prefix */
+	filepath = fullpath + strlen(prefix) + 1;
 	subpath = strtok(filepath, "/");
+
+	/* Add all subdirectories to the tree */
 	while (subpath) {
 		add_subpath(subpath, 0, cwin, model);
 		subpath = strtok(NULL, "/");
@@ -1249,7 +1254,7 @@ void init_library_view(struct con_win *cwin)
 
 	switch(cwin->cpref->cur_library_view) {
 	case FOLDERS:
-		gtk_label_set_text (GTK_LABEL(cwin->combo_order_label), _("Folder structure"));
+		gtk_label_set_text (GTK_LABEL(cwin->combo_order_label), _("Folders structure"));
 		break;
 	case ARTIST:
 		gtk_label_set_text (GTK_LABEL(cwin->combo_order_label), _("Artist"));		

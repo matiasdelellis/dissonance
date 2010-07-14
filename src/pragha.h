@@ -166,6 +166,8 @@
 #define KEY_LIBRARY_TREE_NODES     "library_tree_nodes"
 #define KEY_LIBRARY_VIEW_ORDER     "library_view_order"
 #define KEY_LIBRARY_LAST_SCANNED   "library_last_scanned"
+#define KEY_FUSE_FOLDERS	   "library_fuse_folders"
+
 
 #define GROUP_AUDIO    "Audio"
 #define KEY_AUDIO_SINK             "audio_sink"
@@ -400,6 +402,7 @@ struct con_pref {
 	gboolean close_to_tray;
 	gboolean remember_window_state;
 	gboolean status_bar;
+	gboolean fuse_folders;
 	GSList *library_dir;
 	GSList *playlist_columns;
 	GSList *playlist_column_widths;
@@ -420,6 +423,7 @@ struct con_pref {
 	GtkWidget *use_cddb_w;
 	GtkWidget *audio_sink_combo;
 	GtkWidget *library_view;
+	GtkWidget *fuse_folders_w;
 	GtkWidget *audio_cd_device_w;
 	GtkWidget *audio_device_w;
 	struct lastfm_pref lw;

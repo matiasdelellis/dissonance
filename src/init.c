@@ -205,7 +205,7 @@ gint init_config(struct con_win *cwin)
 
 	gboolean last_folder_f, recursively_f, album_art_pattern_f, timer_remaining_mode_f, close_to_tray_f, osd_f, lastfm_f;
 	gboolean save_playlist_f, shuffle_f,repeat_f, columns_f, col_widths_f;
-	gboolean libs_f, lib_add_f, lib_delete_f, nodes_f, cur_lib_view_f;
+	gboolean libs_f, lib_add_f, lib_delete_f, nodes_f, cur_lib_view_f, fuse_folders_f;
 	gboolean audio_sink_f, audio_alsa_device_f, audio_oss_device_f, software_mixer_f, use_cddb_f;
 	gboolean remember_window_state_f, start_mode_f, window_size_f, sidebar_size_f, album_f, album_art_size_f, status_bar_f;	
 	gboolean all_f;
@@ -214,7 +214,7 @@ gint init_config(struct con_win *cwin)
 
 	last_folder_f = recursively_f = album_art_pattern_f = timer_remaining_mode_f = close_to_tray_f = osd_f = lastfm_f = FALSE;
 	save_playlist_f = shuffle_f = repeat_f = columns_f = col_widths_f = FALSE;
-	libs_f = lib_add_f = lib_delete_f = nodes_f = cur_lib_view_f = FALSE;
+	libs_f = lib_add_f = lib_delete_f = nodes_f = cur_lib_view_f = fuse_folders_f = FALSE;
 	audio_sink_f = audio_alsa_device_f = audio_oss_device_f = software_mixer_f = use_cddb_f = FALSE;
 	remember_window_state_f = start_mode_f = window_size_f = sidebar_size_f = album_f = album_art_size_f = status_bar_f = FALSE;
 	all_f = FALSE;
@@ -545,6 +545,20 @@ gint init_config(struct con_win *cwin)
 			lib_delete_f = TRUE;
 		}
 
+
+		/* Retrieve fuse folders option */
+
+		cwin->cpref->fuse_folders = 
+			g_key_file_get_boolean(cwin->cpref->configrc_keyfile,
+					       GROUP_LIBRARY,
+					       KEY_FUSE_FOLDERS,
+					       &error);
+		if (error) {
+			g_error_free(error);
+			error = NULL;
+			fuse_folders_f = TRUE;
+		}
+
 		/* Retrieve add recursively files option */
 
 		cwin->cpref->add_recursively_files =
@@ -835,6 +849,8 @@ gint init_config(struct con_win *cwin)
 			g_slist_append(cwin->cpref->library_tree_nodes,
 				       g_strdup(P_TITLE_STR));
 	}
+	if (all_f || fuse_folders_f)
+		cwin->cpref->fuse_folders = FALSE;
 	if (all_f || col_widths_f) {
 		for (i=0; i<4; i++) {
 			cwin->cpref->playlist_column_widths =
