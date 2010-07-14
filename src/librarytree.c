@@ -45,7 +45,7 @@ static void add_child_node_by_tag(GtkTreeModel *model, GtkTreeIter *iter,
 	GtkTreeIter *p_iter, GdkPixbuf *pixbuf, const gchar *node_data, 
 	int node_type, int location_id)
 {
-	gtk_tree_store_append(GTK_TREE_STORE(model), iter, p_iter);
+	gtk_tree_store_prepend(GTK_TREE_STORE(model), iter, p_iter);
 
 	gtk_tree_store_set(GTK_TREE_STORE(model), iter,
 		L_PIXBUF, pixbuf,
@@ -1258,31 +1258,31 @@ void init_library_view(struct con_win *cwin)
 		break;
 	case ARTIST:
 		gtk_label_set_text (GTK_LABEL(cwin->combo_order_label), _("Artist"));		
-		order_str = g_strdup("ARTIST.name ASC, TRACK.title ASC");
+		order_str = g_strdup("ARTIST.name DESC, TRACK.title DESC");
 		break;
 	case ALBUM:
 		gtk_label_set_text (GTK_LABEL(cwin->combo_order_label), _("Album"));	
-		order_str = g_strdup("ALBUM.name ASC, TRACK.title ASC");
+		order_str = g_strdup("ALBUM.name DESC, TRACK.title DESC");
 		break;
 	case GENRE:
 		gtk_label_set_text (GTK_LABEL(cwin->combo_order_label), _("Genre"));
-		order_str = g_strdup("GENRE.name ASC, TRACK.title ASC");
+		order_str = g_strdup("GENRE.name DESC, TRACK.title DESC");
 		break;
 	case ARTIST_ALBUM:
 		gtk_label_set_text (GTK_LABEL(cwin->combo_order_label), _("Artist / Album"));
-		order_str = g_strdup("ARTIST.name ASC, ALBUM.name ASC, TRACK.track_no ASC");
+		order_str = g_strdup("ARTIST.name DESC, ALBUM.name DESC, TRACK.track_no DESC");
 		break;
 	case GENRE_ARTIST:
 		gtk_label_set_text (GTK_LABEL(cwin->combo_order_label), _("Genre / Artist"));
-		order_str = g_strdup("GENRE.name ASC, ARTIST.name ASC, TRACK.title ASC");
+		order_str = g_strdup("GENRE.name DESC, ARTIST.name DESC, TRACK.title DESC");
 		break;
 	case GENRE_ALBUM:
 		gtk_label_set_text (GTK_LABEL(cwin->combo_order_label), _("Genre / Album"));
-		order_str = g_strdup("GENRE.name ASC, ALBUM.name ASC, TRACK.track_no ASC");
+		order_str = g_strdup("GENRE.name DESC, ALBUM.name DESC, TRACK.track_no DESC");
 		break;
 	case GENRE_ARTIST_ALBUM:
 		gtk_label_set_text (GTK_LABEL(cwin->combo_order_label), _("Genre / Artist / Album"));
-		order_str = g_strdup("GENRE.name ASC, ARTIST.name ASC, ALBUM.name ASC, TRACK.track_no ASC");
+		order_str = g_strdup("GENRE.name DESC, ARTIST.name DESC, ALBUM.name DESC, TRACK.track_no DESC");
 		break;
 	default:
 		break;
@@ -1319,7 +1319,7 @@ void init_library_view(struct con_win *cwin)
 	}
 	else {
 		/* Query for folders view */
-		query = g_strdup("SELECT name, id FROM LOCATION ORDER BY name ASC");
+		query = g_strdup("SELECT name, id FROM LOCATION ORDER BY name DESC");
 		exec_sqlite_query(query, cwin, &result);
 		for_each_result_row(result, i) {
 			add_folder_file(result.resultp[i], atoi(result.resultp[i+1]), cwin, model);
