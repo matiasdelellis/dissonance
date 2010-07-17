@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pragha svn rev. 60\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-07-14 13:24-0300\n"
+"POT-Creation-Date: 2010-07-17 10:26-0300\n"
 "PO-Revision-Date: 2010-07-14 13:21-0300\n"
 "Last-Translator: Matias <mati86dl@gmail.com>\n"
 "Language-Team: Deutsch\n"
@@ -221,13 +221,13 @@ msgstr ""
 
 #: src/gui.c:290 src/gui.c:725 src/gui.c:849 src/current_playlist.c:1307
 #: src/current_playlist.c:1430 src/librarytree.c:1260 src/statusicon.c:135
-#: src/statusicon.c:189 src/tags.c:426
+#: src/statusicon.c:193 src/tags.c:426
 msgid "Artist"
 msgstr "Interpret"
 
 #: src/gui.c:292 src/gui.c:726 src/gui.c:850 src/current_playlist.c:1308
 #: src/current_playlist.c:1431 src/librarytree.c:1264 src/statusicon.c:136
-#: src/statusicon.c:190 src/tags.c:427
+#: src/statusicon.c:194 src/tags.c:427
 msgid "Album"
 msgstr "Album"
 
@@ -256,12 +256,13 @@ msgstr "Genre / Interpret / Album"
 msgid "Prev Track"
 msgstr "Vorheriger Titel"
 
-#: src/gui.c:319 src/gui.c:1521 src/statusicon.c:156
+#: src/gui.c:319 src/gui.c:1521 src/statusicon.c:160
 msgid "Next Track"
 msgstr "Nächster Titel"
 
 #: src/gui.c:617
-msgid "Pragha Music Manager"
+#, fuzzy
+msgid "Pragha Music Player"
 msgstr "Pragha Music Manager"
 
 #. Create the checkmenu items
@@ -271,7 +272,7 @@ msgstr "Spur"
 
 #. Create labels
 #: src/gui.c:724 src/gui.c:848 src/current_playlist.c:1306
-#: src/current_playlist.c:1429 src/statusicon.c:134 src/statusicon.c:188
+#: src/current_playlist.c:1429 src/statusicon.c:134 src/statusicon.c:192
 #: src/tags.c:425
 msgid "Title"
 msgstr "Titel"
@@ -287,7 +288,7 @@ msgid "Year"
 msgstr "Jahr"
 
 #: src/gui.c:730 src/gui.c:854 src/current_playlist.c:1311
-#: src/current_playlist.c:1434 src/statusicon.c:137 src/statusicon.c:191
+#: src/current_playlist.c:1434 src/statusicon.c:137 src/statusicon.c:195
 msgid "Length"
 msgstr "Länge"
 
@@ -325,7 +326,7 @@ msgstr "In einer zufälligen Reihenfolge wiedergeben"
 msgid "Repeat playback list at the end"
 msgstr "Wiedergabe wiederholen"
 
-#: src/gui.c:1566 src/panel.c:218 src/statusicon.c:185
+#: src/gui.c:1566 src/panel.c:218 src/statusicon.c:189
 msgid "<b>Not playing</b>"
 msgstr "<b>Keine Wiedergabe</b>"
 

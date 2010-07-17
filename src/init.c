@@ -1266,8 +1266,8 @@ void init_gui(gint argc, gchar **argv, struct con_win *cwin)
 
 	gtk_init(&argc, &argv);
 
-        g_set_application_name(_("Pragha Music Manager"));
-        g_setenv("PULSE_PROP_media.role", "music", TRUE);
+	g_set_application_name(_("Pragha Music Player"));
+	g_setenv("PULSE_PROP_media.role", "audio", TRUE);
 
 	init_pixbufs(cwin);
 
@@ -1285,7 +1285,7 @@ void init_gui(gint argc, gchar **argv, struct con_win *cwin)
 		gtk_window_set_icon(GTK_WINDOW(cwin->mainwindow),
 				    cwin->pixbuf->pixbuf_app);
 
-	gtk_window_set_title(GTK_WINDOW(cwin->mainwindow), _("Pragha Music Manager"));
+	gtk_window_set_title(GTK_WINDOW(cwin->mainwindow), _("Pragha Music Player"));
 
 	g_signal_connect(G_OBJECT(cwin->mainwindow),
 			 "delete_event",

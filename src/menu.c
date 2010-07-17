@@ -117,7 +117,7 @@ void handle_selected_file(gpointer data, gpointer udata)
 
 	recent_data.display_name = NULL;
 	recent_data.description = NULL;
-	recent_data.app_name = "Pragha Music Manager";
+	recent_data.app_name = "Pragha Music Player";
 	recent_data.app_exec = "pragha %f";
 	recent_data.groups = NULL;
 	recent_data.is_private = FALSE;
@@ -800,7 +800,7 @@ void about_widget(struct con_win *cwin)
 				"logo", cwin->pixbuf->pixbuf_app,
 				"authors", authors,
 				"translator-credits", _("translator-credits"),
-				"comments", "A lightweight GTK+ music manager",
+				"comments", "A lightweight GTK+ music player",
 				"copyright", "(C) 2007-2009 Sujith\n(C) 2009-2010 Matias",
 				"license", license,
 				"name", PACKAGE_NAME,

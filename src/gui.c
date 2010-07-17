@@ -209,7 +209,7 @@ GtkActionEntry main_aentries[] = {
 	{"Home", GTK_STOCK_HOME, N_("Homepage"),
 	 NULL, "Homepage", G_CALLBACK(home_action)},
 	{"Community", GTK_STOCK_INFO, N_("Community"),
-	 NULL, "Forum or pragha", G_CALLBACK(community_action)},
+	 NULL, "Forum of pragha", G_CALLBACK(community_action)},
 	{"Wiki", GTK_STOCK_YES, N_("Wiki"),
 	 NULL, "Wiki of pragha", G_CALLBACK(wiki_action)},
 };
@@ -614,7 +614,7 @@ static GtkWidget * create_toggles_buttons(struct con_win *cwin)
 	g_signal_connect(G_OBJECT(GTK_TOGGLE_BUTTON(cwin->toggle_playlists)), "button-press-event",
 			G_CALLBACK(library_page_right_click_cb), cwin);
 
-	l = gtk_label_new_with_mnemonic(_("Pragha Music Manager"));
+	l = gtk_label_new_with_mnemonic(_("Pragha Music Player"));
 	gtk_label_set_angle(GTK_LABEL(l), 90);
 	gtk_misc_set_alignment (GTK_MISC(l),0.5,1);
 
