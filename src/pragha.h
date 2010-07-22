@@ -505,7 +505,7 @@ struct con_state {
 	GMutex *l_mutex;
 	GCond *c_cond;
 	GList *rand_track_refs;
-	GList *queue_track_refs;
+	GSList *queue_track_refs;
 	GtkTreeRowReference *curr_rand_ref;
 	GtkTreeRowReference *curr_seq_ref;
 	cdrom_drive_t *cdda_drive;
@@ -898,6 +898,7 @@ void track_properties_current_playlist(struct con_win *cwin);
 void track_properties_current_playing_action(GtkAction *action, struct con_win *cwin);
 void track_properties_current_playing(struct con_win *cwin);
 void clear_current_playlist(GtkAction *action, struct con_win *cwin);
+void insert_current_playlist(struct musicobject *mobj, gboolean drop_after, GtkTreeIter *pos, struct con_win *cwin);
 void append_current_playlist(struct musicobject *mobj, struct con_win *cwin);
 void clear_sort_current_playlist(GtkAction *action, struct con_win *cwin);
 void save_selected_playlist(GtkAction *action, struct con_win *cwin);
