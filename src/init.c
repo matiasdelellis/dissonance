@@ -545,7 +545,6 @@ gint init_config(struct con_win *cwin)
 			lib_delete_f = TRUE;
 		}
 
-
 		/* Retrieve fuse folders option */
 
 		cwin->cpref->fuse_folders = 

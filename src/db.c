@@ -46,11 +46,10 @@ static void add_new_track_db(gint location_id,
 				"length, "
 				"channels, "
 				"file_type, "
-				"compilation, "
 				"title) "
 				"VALUES "
-				"('%d', '%d', '%d', '%d', '%d', '%d', '%d', "
-				"'%d', '%d', %d, '%d', '%s', '%s')",
+				"('%d', '%d', '%d', '%d', '%d', '%d', "
+				"'%d', '%d', '%d', %d, '%d', '%s')",
 				location_id,
 				track_no,
 				artist_id,
@@ -62,7 +61,6 @@ static void add_new_track_db(gint location_id,
 				length,
 				channels,
 				file_type,
-				"FALSE",
 				title);
 	exec_sqlite_query(query, cwin, NULL);
 }
@@ -588,47 +586,71 @@ void flush_stale_entries_db(struct con_win *cwin)
 	exec_sqlite_query(query, cwin, NULL);
 }
 
+gboolean fraction_update(GtkWidget *pbar)
+{
+	static gdouble fraction = 0.0;
+	gint files_scanned = 0;
+	gint no_files;
+	gchar* message;
+
+	no_files = GPOINTER_TO_INT(g_object_get_data(G_OBJECT(pbar), "no_files"));
+	files_scanned = GPOINTER_TO_INT(g_object_get_data(G_OBJECT(pbar), "files_scanned"));
+
+	if(files_scanned > 0)
+		fraction = (gdouble)files_scanned / (gdouble)no_files;
+
+	message = g_strdup_printf (_("%d files added of %d"), files_scanned, no_files);
+
+	gtk_progress_bar_set_fraction(GTK_PROGRESS_BAR(pbar), fraction);
+	gtk_progress_bar_set_text(GTK_PROGRESS_BAR(pbar), message);
+
+	g_free (message);
+
+	return TRUE;
+}
+
 void rescan_db(gchar *dir_name, gint no_files, GtkWidget *pbar,
 	       gint call_recur, struct con_win *cwin)
 {
 	static gint files_scanned = 0;
-	static gdouble fraction = 0.0;
+	gint progress_timeout = 0;
 	GDir *dir;
 	const gchar *next_file = NULL;
-	gchar *ab_file, txt[64];
+	gchar *ab_file;
 	GError *error = NULL;
 
 	/* Reinitialize static variables if called from rescan_library_action */
 
-	if (call_recur) {
+	if (call_recur)
 		files_scanned = 0;
-		fraction = 0.0;
-	}
 
-	if (cwin->cstate->stop_scan) return;
+	if (cwin->cstate->stop_scan)
+		goto exit;
 
 	dir = g_dir_open(dir_name, 0, &error);
 	if (!dir) {
 		g_critical("Unable to open library : %s", dir_name);
-		return;
+		goto exit;
+	}
+
+	if(progress_timeout == 0) {
+		g_object_set_data(G_OBJECT(pbar), "no_files", GINT_TO_POINTER(no_files));
+		progress_timeout = g_timeout_add(250, (GSourceFunc)fraction_update, pbar);
 	}
 
 	next_file = g_dir_read_name(dir);
 	while (next_file) {
-		if (cwin->cstate->stop_scan) return;
+		if (cwin->cstate->stop_scan)
+			goto exit;
 		ab_file = g_strconcat(dir_name, "/", next_file, NULL);
 		if (g_file_test(ab_file, G_FILE_TEST_IS_DIR))
 			rescan_db(ab_file, no_files, pbar, 0, cwin);
 		else {
 			files_scanned++;
-			fraction = (gdouble)files_scanned / (gdouble)no_files;
-			g_sprintf(txt, "%d / %d", files_scanned, no_files);
-			gtk_progress_bar_set_fraction(GTK_PROGRESS_BAR(pbar),
-						      fraction);
-			gtk_progress_bar_set_text(GTK_PROGRESS_BAR(pbar), txt);
+			g_object_set_data(G_OBJECT(pbar), "files_scanned", GINT_TO_POINTER(files_scanned));
+
 			add_entry_db(ab_file, cwin);
 		}
-
 		/* Have to give control to GTK periodically ... */
 
 		while(gtk_events_pending())
@@ -638,47 +660,53 @@ void rescan_db(gchar *dir_name, gint no_files, GtkWidget *pbar,
 		next_file = g_dir_read_name(dir);
 	}
 	g_dir_close(dir);
+exit:
+	if(progress_timeout != 0) {
+		g_source_remove(progress_timeout);
+		progress_timeout = 0;
+	}
 }
 
 void update_db(gchar *dir_name, gint no_files, GtkWidget *pbar,
 	       gint call_recur, struct con_win *cwin)
 {
 	static gint files_scanned = 0;
-	static gdouble fraction = 0.0;
+	gint progress_timeout = 0;
 	GDir *dir;
 	const gchar *next_file = NULL;
-	gchar *ab_file = NULL, *s_ab_file = NULL, txt[64];
+	gchar *ab_file = NULL, *s_ab_file = NULL;
 	GError *error = NULL;
 	struct stat sbuf;
 
 	/* Reinitialize static variables if called from rescan_library_action */
 
-	if (call_recur) {
+	if (call_recur)
 		files_scanned = 0;
-		fraction = 0.0;
-	}
 
-	if (cwin->cstate->stop_scan) return;
+	if (cwin->cstate->stop_scan)
+		goto exit;
 
 	dir = g_dir_open(dir_name, 0, &error);
 	if (!dir) {
 		g_critical("Unable to open library : %s", dir_name);
-		return;
+		goto exit;
+	}
+
+	if(progress_timeout == 0) {
+		g_object_set_data(G_OBJECT(pbar), "no_files", GINT_TO_POINTER(no_files));
+		progress_timeout = g_timeout_add(250, (GSourceFunc)fraction_update, pbar);
 	}
 
 	next_file = g_dir_read_name(dir);
 	while (next_file) {
-		if (cwin->cstate->stop_scan) return;
+		if (cwin->cstate->stop_scan)
+			goto exit;
 		ab_file = g_strconcat(dir_name, "/", next_file, NULL);
 		if (g_file_test(ab_file, G_FILE_TEST_IS_DIR))
 			update_db(ab_file, no_files, pbar, 0, cwin);
 		else {
 			files_scanned++;
-			fraction = (gdouble)files_scanned / (gdouble)no_files;
-			g_sprintf(txt, "%d / %d", files_scanned, no_files);
-			gtk_progress_bar_set_fraction(GTK_PROGRESS_BAR(pbar),
-						      fraction);
-			gtk_progress_bar_set_text(GTK_PROGRESS_BAR(pbar), txt);
+			g_object_set_data(G_OBJECT(pbar), "files_scanned", GINT_TO_POINTER(files_scanned));
 			s_ab_file = sanitize_string_sqlite3(ab_file);
 			if (!find_location_db(s_ab_file, cwin)) {
 				add_entry_db(ab_file,cwin);
@@ -703,6 +731,11 @@ void update_db(gchar *dir_name, gint no_files, GtkWidget *pbar,
 		next_file = g_dir_read_name(dir);
 	}
 	g_dir_close(dir);
+exit:
+	if(progress_timeout != 0) {
+		g_source_remove(progress_timeout);
+		progress_timeout = 0;
+	}
 }
 
 /* Delete all tracks falling under the given directory.
@@ -748,7 +781,7 @@ gint init_dbase_schema(struct con_win *cwin)
 	/* Create 'TRACKS' table */
 
 	query = g_strdup_printf("CREATE TABLE IF NOT EXISTS TRACK "
-				"(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s);",
+				"(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s);",
 				"location INT PRIMARY KEY",
 				"track_no INT",
 				"artist INT",
@@ -760,7 +793,6 @@ gint init_dbase_schema(struct con_win *cwin)
 				"channels INT",
 				"samplerate INT",
 				"file_type INT",
-				"compilation BLOB",
 				"title VARCHAR(255)");
 	if (!exec_sqlite_query(query, cwin, NULL))
 		return -1;

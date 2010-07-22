@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pragha 0.7.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-07-17 10:26-0300\n"
+"POT-Creation-Date: 2010-07-22 00:49-0300\n"
 "PO-Revision-Date: 2010-07-14 13:23-0300\n"
 "Last-Translator: Matias <mati86dl@gmail.com>\n"
 "Language-Team: Lyceuhns <mail@lyceuhns.net>\n"
@@ -625,6 +625,11 @@ msgstr "Não foi possível abrir o navegador"
 #: src/playlist.c:513
 msgid "Export playlist to file"
 msgstr "Exportar lista de reprodução para arquivo"
+
+#: src/db.c:602
+#, c-format
+msgid "%d files added of %d"
+msgstr ""
 
 #~ msgid "Folder / File"
 #~ msgstr "Pasta / Arquivo"

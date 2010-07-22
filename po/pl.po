@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Polski (polish)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-07-17 10:26-0300\n"
+"POT-Creation-Date: 2010-07-22 00:49-0300\n"
 "PO-Revision-Date: 2010-05-20 18:41+0100\n"
 "Last-Translator: Sid <translations@sidowo.uni.cc>\n"
 "Language-Team: Polski (polish) <translations@sidowo.uni.cc>\n"
@@ -638,6 +638,11 @@ msgstr "Nie można otworzyć przeglądarki"
 #: src/playlist.c:513
 msgid "Export playlist to file"
 msgstr "Eksportuj listę odtwarzania do ppliku"
+
+#: src/db.c:602
+#, c-format
+msgid "%d files added of %d"
+msgstr ""
 
 #~ msgid "Folder / File"
 #~ msgstr "Folder / Plik"

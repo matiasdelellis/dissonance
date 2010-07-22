@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Swedish\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-07-17 10:26-0300\n"
+"POT-Creation-Date: 2010-07-22 00:49-0300\n"
 "PO-Revision-Date: 2010-07-14 13:24-0300\n"
 "Last-Translator: Matias <mati86dl@gmail.com>\n"
 "Language-Team: Swedish team <LL@li.org>\n"
@@ -629,6 +629,11 @@ msgstr "Kan inte öppna webläsaren"
 #: src/playlist.c:513
 msgid "Export playlist to file"
 msgstr "Exportera spellista till fil"
+
+#: src/db.c:602
+#, c-format
+msgid "%d files added of %d"
+msgstr ""
 
 #~ msgid "Folder / File"
 #~ msgstr "Mapp / Fil"

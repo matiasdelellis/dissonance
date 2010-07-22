@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pragha\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-07-17 10:26-0300\n"
+"POT-Creation-Date: 2010-07-22 00:49-0300\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Matias <mati86dl@gmail.com>\n"
 "Language-Team: \n"
@@ -627,6 +627,11 @@ msgstr "Nejde otevřít prohlížeč"
 #: src/playlist.c:513
 msgid "Export playlist to file"
 msgstr "Exportovat playlist do souboru"
+
+#: src/db.c:602
+#, c-format
+msgid "%d files added of %d"
+msgstr ""
 
 #~ msgid "Folder / File"
 #~ msgstr "Složka / Soubor"

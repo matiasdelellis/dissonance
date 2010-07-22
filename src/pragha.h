@@ -823,6 +823,7 @@ void delete_playlist_db(gchar *playlist, struct con_win *cwin);
 void flush_playlist_db(gint playlist_id, struct con_win *cwin);
 void flush_stale_entries_db(struct con_win *cwin);
 void flush_db(struct con_win *cwin);
+gboolean fraction_update(GtkWidget *pbar);
 void rescan_db(gchar *dir_name, gint no_files, GtkWidget *pbar,
 	       gint call_recur, struct con_win *cwin);
 void update_db(gchar *dir_name, gint no_files, GtkWidget *pbar,
