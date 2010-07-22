@@ -635,7 +635,8 @@ void rescan_db(gchar *dir_name, gint no_files, GtkWidget *pbar,
 
 	if(progress_timeout == 0) {
 		g_object_set_data(G_OBJECT(pbar), "no_files", GINT_TO_POINTER(no_files));
-		progress_timeout = g_timeout_add(250, (GSourceFunc)fraction_update, pbar);
+		g_object_set_data(G_OBJECT(pbar), "files_scanned", GINT_TO_POINTER(files_scanned));
+		progress_timeout = g_timeout_add_seconds(1, (GSourceFunc)fraction_update, pbar);
 	}
 
 	next_file = g_dir_read_name(dir);
@@ -647,8 +648,6 @@ void rescan_db(gchar *dir_name, gint no_files, GtkWidget *pbar,
 			rescan_db(ab_file, no_files, pbar, 0, cwin);
 		else {
 			files_scanned++;
-			g_object_set_data(G_OBJECT(pbar), "files_scanned", GINT_TO_POINTER(files_scanned));
-
 			add_entry_db(ab_file, cwin);
 		}
 		/* Have to give control to GTK periodically ... */
@@ -694,7 +693,8 @@ void update_db(gchar *dir_name, gint no_files, GtkWidget *pbar,
 
 	if(progress_timeout == 0) {
 		g_object_set_data(G_OBJECT(pbar), "no_files", GINT_TO_POINTER(no_files));
-		progress_timeout = g_timeout_add(250, (GSourceFunc)fraction_update, pbar);
+		g_object_set_data(G_OBJECT(pbar), "files_scanned", GINT_TO_POINTER(files_scanned));
+		progress_timeout = g_timeout_add_seconds(1, (GSourceFunc)fraction_update, pbar);
 	}
 
 	next_file = g_dir_read_name(dir);
@@ -706,7 +706,6 @@ void update_db(gchar *dir_name, gint no_files, GtkWidget *pbar,
 			update_db(ab_file, no_files, pbar, 0, cwin);
 		else {
 			files_scanned++;
-			g_object_set_data(G_OBJECT(pbar), "files_scanned", GINT_TO_POINTER(files_scanned));
 			s_ab_file = sanitize_string_sqlite3(ab_file);
 			if (!find_location_db(s_ab_file, cwin)) {
 				add_entry_db(ab_file,cwin);
