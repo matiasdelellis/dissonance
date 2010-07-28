@@ -1259,31 +1259,31 @@ void init_library_view(struct con_win *cwin)
 		break;
 	case ARTIST:
 		gtk_label_set_text (GTK_LABEL(cwin->combo_order_label), _("Artist"));		
-		order_str = g_strdup("ARTIST.name DESC, TRACK.title DESC");
+		order_str = g_strdup("ARTIST.name COLLATE NOCASE DESC, TRACK.title COLLATE NOCASE DESC");
 		break;
 	case ALBUM:
 		gtk_label_set_text (GTK_LABEL(cwin->combo_order_label), _("Album"));	
-		order_str = g_strdup("ALBUM.name DESC, TRACK.title DESC");
+		order_str = g_strdup("ALBUM.name COLLATE NOCASE DESC, TRACK.title COLLATE NOCASE DESC");
 		break;
 	case GENRE:
 		gtk_label_set_text (GTK_LABEL(cwin->combo_order_label), _("Genre"));
-		order_str = g_strdup("GENRE.name DESC, TRACK.title DESC");
+		order_str = g_strdup("GENRE.name COLLATE NOCASE DESC, TRACK.title COLLATE NOCASE DESC");
 		break;
 	case ARTIST_ALBUM:
 		gtk_label_set_text (GTK_LABEL(cwin->combo_order_label), _("Artist / Album"));
-		order_str = g_strdup("ARTIST.name DESC, ALBUM.name DESC, TRACK.track_no DESC");
+		order_str = g_strdup("ARTIST.name COLLATE NOCASE DESC, ALBUM.name COLLATE NOCASE DESC, TRACK.track_no COLLATE NOCASE DESC");
 		break;
 	case GENRE_ARTIST:
 		gtk_label_set_text (GTK_LABEL(cwin->combo_order_label), _("Genre / Artist"));
-		order_str = g_strdup("GENRE.name DESC, ARTIST.name DESC, TRACK.title DESC");
+		order_str = g_strdup("GENRE.name COLLATE NOCASE DESC, ARTIST.name COLLATE NOCASE DESC, TRACK.title COLLATE NOCASE DESC");
 		break;
 	case GENRE_ALBUM:
 		gtk_label_set_text (GTK_LABEL(cwin->combo_order_label), _("Genre / Album"));
-		order_str = g_strdup("GENRE.name DESC, ALBUM.name DESC, TRACK.track_no DESC");
+		order_str = g_strdup("GENRE.name COLLATE NOCASE DESC, ALBUM.name COLLATE NOCASE DESC, TRACK.track_no COLLATE NOCASE DESC");
 		break;
 	case GENRE_ARTIST_ALBUM:
 		gtk_label_set_text (GTK_LABEL(cwin->combo_order_label), _("Genre / Artist / Album"));
-		order_str = g_strdup("GENRE.name DESC, ARTIST.name DESC, ALBUM.name DESC, TRACK.track_no DESC");
+		order_str = g_strdup("GENRE.name COLLATE NOCASE DESC, ARTIST.name COLLATE NOCASE DESC, ALBUM.name COLLATE NOCASE DESC, TRACK.track_no COLLATE NOCASE DESC");
 		break;
 	default:
 		break;
