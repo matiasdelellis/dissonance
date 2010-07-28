@@ -1302,12 +1302,13 @@ void track_properties_current_playlist(struct con_win *cwin)
 	struct musicobject *mobj = NULL;
 	GtkWidget *t_hbox, *align, *tag_box, *info_box, *tag_label, *info_label;
 	gint i=0;
-	gchar tags[11][20] = {N_("Track No"),
+	gchar tags[12][20] = {N_("Track No"),
 			      N_("Title"),
 			      N_("Artist"),
 			      N_("Album"),
 			      N_("Genre"),
 			      N_("Year"),
+			      N_("Comment"),
 			      N_("Length"),
 			      N_("Bitrate"),
 			      N_("Channels"),
@@ -1329,9 +1330,9 @@ void track_properties_current_playlist(struct con_win *cwin)
 			gchar *bitrate = g_strdup_printf("%d", mobj->tags->bitrate);
 			gchar *channels = g_strdup_printf("%d", mobj->tags->channels);
 			gchar *samplerate = g_strdup_printf("%d", mobj->tags->samplerate);
-			gchar *u_file = get_display_name(mobj);;
+			gchar *u_file = get_display_name(mobj);
 
-			gchar *tr_info[11] = {tno,
+			gchar *tr_info[12] = {tno,
 			      (mobj->tags->title && strlen(mobj->tags->title)) ?
 			      mobj->tags->title : _("Unknown Tags"),
 			      (mobj->tags->artist && strlen(mobj->tags->artist)) ?
@@ -1341,6 +1342,8 @@ void track_properties_current_playlist(struct con_win *cwin)
 			      (mobj->tags->genre && strlen(mobj->tags->genre)) ?
 			      mobj->tags->genre : _("Unknown Tags"),
 			      year,
+			      (mobj->tags->comment && strlen(mobj->tags->comment)) ?
+			      mobj->tags->comment : _("Unknown Tags"),
 			      length,
 			      bitrate,
 			      channels,
@@ -1358,7 +1361,7 @@ void track_properties_current_playlist(struct con_win *cwin)
 			info_box = gtk_vbox_new(FALSE, 0);
 			t_hbox = gtk_hbox_new(FALSE, 0);
 
-			for (i=0; i<11; i++) {
+			for (i=0; i<12; i++) {
 				align = gtk_alignment_new(0, 0, 0, 0);
 				tag_label = gtk_label_new(tags[i]);
 				gtk_label_set_selectable(GTK_LABEL(tag_label), TRUE);
@@ -1425,12 +1428,13 @@ void track_properties_current_playing(struct con_win *cwin)
 	GtkWidget *dialog;
 	GtkWidget *t_hbox, *align, *tag_box, *info_box, *tag_label, *info_label;
 	gint i=0;
-	gchar tags[11][20] = {N_("Track No"),
+	gchar tags[12][20] = {N_("Track No"),
 			      N_("Title"),
 			      N_("Artist"),
 			      N_("Album"),
 			      N_("Genre"),
 			      N_("Year"),
+			      N_("Comment"),
 			      N_("Length"),
 			      N_("Bitrate"),
 			      N_("Channels"),
@@ -1446,7 +1450,7 @@ void track_properties_current_playing(struct con_win *cwin)
 		gchar *samplerate = g_strdup_printf("%d", cwin->cstate->curr_mobj->tags->samplerate);
 		gchar *u_file = get_display_name(cwin->cstate->curr_mobj);
 
-		gchar *tr_info[11] = {tno,
+		gchar *tr_info[12] = {tno,
 				     (cwin->cstate->curr_mobj->tags->title && strlen(cwin->cstate->curr_mobj->tags->title)) ?
 				     cwin->cstate->curr_mobj->tags->title : _("Unknown Tags"),
 				     (cwin->cstate->curr_mobj->tags->artist && strlen(cwin->cstate->curr_mobj->tags->artist)) ?
@@ -1456,6 +1460,8 @@ void track_properties_current_playing(struct con_win *cwin)
 				     (cwin->cstate->curr_mobj->tags->genre && strlen(cwin->cstate->curr_mobj->tags->genre)) ?
 				     cwin->cstate->curr_mobj->tags->genre : _("Unknown Tags"),
 				     year,
+				     (cwin->cstate->curr_mobj->tags->comment && strlen(cwin->cstate->curr_mobj->tags->comment)) ?
+				     cwin->cstate->curr_mobj->tags->comment : _("Unknown Tags"),
 				     length,
 				     bitrate,
 				     channels,
@@ -1473,7 +1479,7 @@ void track_properties_current_playing(struct con_win *cwin)
 		info_box = gtk_vbox_new(FALSE, 0);
 		t_hbox = gtk_hbox_new(FALSE, 0);
 
-		for (i=0; i<11; i++) {
+		for (i=0; i<12; i++) {
 			align = gtk_alignment_new(0, 0, 0, 0);
 			tag_label = gtk_label_new(tags[i]);
 			gtk_label_set_selectable(GTK_LABEL(tag_label), TRUE);
@@ -1605,6 +1611,7 @@ void insert_current_playlist(struct musicobject *mobj, gboolean drop_after, GtkT
 			   P_GENRE, mobj->tags->genre,
 			   P_BITRATE, ch_bitrate,
 			   P_YEAR, ch_year,
+			   P_COMMENT, mobj->tags->comment,
 			   P_LENGTH, ch_length,
 			   P_FILENAME, ch_filename,
 			   P_PLAYED, FALSE,
@@ -1665,6 +1672,7 @@ void append_current_playlist(struct musicobject *mobj, struct con_win *cwin)
 			   P_GENRE, mobj->tags->genre,
 			   P_BITRATE, ch_bitrate,
 			   P_YEAR, ch_year,
+			   P_COMMENT, mobj->tags->comment,
 			   P_LENGTH, ch_length,
 			   P_FILENAME, ch_filename,
 			   P_PLAYED, FALSE,
@@ -2347,7 +2355,6 @@ void dnd_current_playlist_received(GtkWidget *widget,
 		if (!loc_arr)
 			g_warning("No selections to process in DnD");
 
-
 		CDEBUG(DBG_VERBOSE, "Target: LOCATION_ID, "
 		       "selection: %p, loc_arr: %p",
 		       data->data, loc_arr);
@@ -2765,6 +2772,28 @@ void playlist_year_column_change_cb(GtkCheckMenuItem *item, struct con_win *cwin
 	state = gtk_check_menu_item_get_active(item);
 	col = gtk_tree_view_get_column(GTK_TREE_VIEW(cwin->current_playlist),
 				       P_YEAR - 2);
+
+	if (!col) {
+		g_warning("Invalid column number");
+		return;
+	}
+
+	col_name = gtk_tree_view_column_get_title(col);
+	gtk_tree_view_column_set_visible(col, state);
+	modify_current_playlist_columns(cwin, col_name, state);
+}
+
+/* Callback for adding/deleting comment column */
+
+void playlist_comment_column_change_cb(GtkCheckMenuItem *item, struct con_win *cwin)
+{
+	const gchar *col_name;
+	gboolean state;
+	GtkTreeViewColumn *col;
+
+	state = gtk_check_menu_item_get_active(item);
+	col = gtk_tree_view_get_column(GTK_TREE_VIEW(cwin->current_playlist),
+				       P_COMMENT - 2);
 
 	if (!col) {
 		g_warning("Invalid column number");

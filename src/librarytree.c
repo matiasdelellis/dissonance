@@ -125,8 +125,8 @@ static void add_subpath(const gchar *path, int location_id,
 static void add_folder_file(const gchar *path, int location_id,
 	struct con_win *cwin, GtkTreeModel *model)
 {
-	gchar *filename = NULL, *fullpath = NULL; 			/* To be freed */
-	gchar *prefix = NULL, *filepath = NULL, *subpath = NULL;	/* Do not free */
+	gchar *filename = NULL, *fullpath = NULL, **subpaths = NULL;	/* To be freed */
+	gchar *prefix = NULL, *filepath = NULL;				/* Do not free */
 	int i = 0;
 		
 	/* Search all library directories for the one that matches the path */
@@ -143,16 +143,17 @@ static void add_folder_file(const gchar *path, int location_id,
 
 	/* Point after library directory prefix */
 	filepath = fullpath + strlen(prefix) + 1;
-	subpath = strtok(filepath, "/");
+	subpaths = g_strsplit(filepath, G_DIR_SEPARATOR_S, -1);
 
 	/* Add all subdirectories to the tree */
-	while (subpath) {
-		add_subpath(subpath, 0, cwin, model);
-		subpath = strtok(NULL, "/");
+	for (i = 0; subpaths[i]; i++) {
+		add_subpath(subpaths[i], 0, cwin, model);
 	}
+
 	/* Finally add filename */
 	add_subpath(filename, location_id, cwin, model);
-	
+
+	g_strfreev(subpaths);
 	g_free(filename);
 	g_free(fullpath);
 }

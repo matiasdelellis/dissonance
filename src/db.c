@@ -23,6 +23,7 @@ static void add_new_track_db(gint location_id,
 			     gint album_id,
 			     gint genre_id,
 			     gint year_id,
+			     gint comment_id,
 			     guint track_no,
 			     gint length,
 			     gint channels,
@@ -41,6 +42,7 @@ static void add_new_track_db(gint location_id,
 				"album, "
 				"genre, "
 				"year, "
+				"comment, "
 				"bitrate, "
 				"samplerate, "
 				"length, "
@@ -48,7 +50,7 @@ static void add_new_track_db(gint location_id,
 				"file_type, "
 				"title) "
 				"VALUES "
-				"('%d', '%d', '%d', '%d', '%d', '%d', "
+				"('%d', '%d', '%d', '%d', '%d', '%d', '%d', "
 				"'%d', '%d', '%d', %d, '%d', '%s')",
 				location_id,
 				track_no,
@@ -56,6 +58,7 @@ static void add_new_track_db(gint location_id,
 				album_id,
 				genre_id,
 				year_id,
+				comment_id,
 				bitrate,
 				samplerate,
 				length,
@@ -68,8 +71,8 @@ static void add_new_track_db(gint location_id,
 static void add_entry_db(gchar *file, struct con_win *cwin)
 {
 	struct musicobject *mobj;
-	gchar *sfile, *stitle, *sartist, *salbum, *sgenre;
-	gint location_id = 0, artist_id = 0, album_id = 0, genre_id = 0, year_id = 0;
+	gchar *sfile, *stitle, *sartist, *salbum, *sgenre, *scomment;
+	gint location_id = 0, artist_id = 0, album_id = 0, genre_id = 0, year_id = 0, comment_id;
 
 	mobj = new_musicobject_from_file(file);
 	if (mobj) {
@@ -78,6 +81,7 @@ static void add_entry_db(gchar *file, struct con_win *cwin)
 		sartist = sanitize_string_sqlite3(mobj->tags->artist);
 		salbum = sanitize_string_sqlite3(mobj->tags->album);
 		sgenre = sanitize_string_sqlite3(mobj->tags->genre);
+		scomment = sanitize_string_sqlite3(mobj->tags->comment);
 
 		/* Write location */
 
@@ -104,6 +108,11 @@ static void add_entry_db(gchar *file, struct con_win *cwin)
 		if ((year_id = find_year_db(mobj->tags->year, cwin)) == 0)
 			year_id = add_new_year_db(mobj->tags->year, cwin);
 
+		/* Write comment */
+
+		if ((comment_id = find_comment_db(scomment, cwin)) == 0)
+			comment_id = add_new_comment_db(scomment, cwin);
+
 		/* Write track */
 
 		add_new_track_db(location_id,
@@ -111,6 +120,7 @@ static void add_entry_db(gchar *file, struct con_win *cwin)
 				 album_id,
 				 genre_id,
 				 year_id,
+				 comment_id,
 				 mobj->tags->track_no,
 				 mobj->tags->length,
 				 mobj->tags->channels,
@@ -125,6 +135,7 @@ static void add_entry_db(gchar *file, struct con_win *cwin)
 		g_free(sartist);
 		g_free(salbum);
 		g_free(sgenre);
+		g_free(scomment);
 
 		delete_musicobject(mobj);
 	}
@@ -238,6 +249,26 @@ gint add_new_year_db(guint year, struct con_win *cwin)
 	return year_id;
 }
 
+gint add_new_comment_db(gchar *comment, struct con_win *cwin)
+{
+	gchar *query;
+	gint comment_id = 0;
+	struct db_result result;
+
+	query = g_strdup_printf("INSERT INTO COMMENT (name) VALUES ('%s')",
+				comment);
+	exec_sqlite_query(query, cwin, NULL);
+
+	query = g_strdup_printf("SELECT id FROM COMMENT WHERE name = '%s'",
+				comment);
+	if (exec_sqlite_query(query, cwin, &result)) {
+		comment_id = atoi(result.resultp[result.no_columns]);
+		sqlite3_free_table(result.resultp);
+	}
+
+	return comment_id;
+}
+
 gint add_new_location_db(gchar *location, struct con_win *cwin)
 {
 	gchar *query;
@@ -335,6 +366,22 @@ gint find_year_db(gint year, struct con_win *cwin)
 	return year_id;
 }
 
+gint find_comment_db(const gchar *comment, struct con_win *cwin)
+{
+	gint comment_id = 0;
+	gchar *query;
+	struct db_result result;
+
+	query = g_strdup_printf("SELECT id FROM COMMENT WHERE name = '%s';", comment);
+	if (exec_sqlite_query(query, cwin, &result)) {
+		if (result.no_rows)
+			comment_id = atoi(result.resultp[result.no_columns]);
+		sqlite3_free_table(result.resultp);
+	}
+
+	return comment_id;
+}
+
 gint find_location_db(const gchar *location, struct con_win *cwin)
 {
 	gchar *query;
@@ -408,7 +455,7 @@ gint delete_location_hdd(gint location_id, struct con_win *cwin)
 
 void update_track_db(gint location_id, gint changed,
 		     gint track_no, gchar *title,
-		     gint artist_id, gint album_id, gint genre_id, gint year_id,
+		     gint artist_id, gint album_id, gint genre_id, gint year_id, gint comment_id,
 		     struct con_win *cwin)
 {
 	gchar *query = NULL;
@@ -448,6 +495,12 @@ void update_track_db(gint location_id, gint changed,
 		query = g_strdup_printf("UPDATE TRACK SET year = '%d' "
 					"WHERE LOCATION = '%d';",
 					year_id, location_id);
+		exec_sqlite_query(query, cwin, NULL);
+	}
+	if (changed & TAG_COMMENT_CHANGED) {
+		query = g_strdup_printf("UPDATE TRACK SET comment = '%d' "
+					"WHERE LOCATION = '%d';",
+					comment_id, location_id);
 		exec_sqlite_query(query, cwin, NULL);
 	}
 }
@@ -561,6 +614,9 @@ void flush_db(struct con_win *cwin)
 
 	query = g_strdup_printf("DELETE FROM YEAR");
 	exec_sqlite_query(query, cwin, NULL);
+
+	query = g_strdup_printf("DELETE FROM COMMENT");
+	exec_sqlite_query(query, cwin, NULL);
 }
 
 /* Flush unused artists, albums, genres, years */
@@ -584,6 +640,10 @@ void flush_stale_entries_db(struct con_win *cwin)
 	query = g_strdup_printf("DELETE FROM YEAR WHERE id NOT IN "
 				"(SELECT year FROM TRACK);");
 	exec_sqlite_query(query, cwin, NULL);
+
+	query = g_strdup_printf("DELETE FROM COMMENT WHERE id NOT IN "
+				"(SELECT comment FROM TRACK);");
+	exec_sqlite_query(query, cwin, NULL);
 }
 
 gboolean fraction_update(GtkWidget *pbar)
@@ -591,7 +651,6 @@ gboolean fraction_update(GtkWidget *pbar)
 	static gdouble fraction = 0.0;
 	gint files_scanned = 0;
 	gint no_files;
-	gchar* message;
 
 	no_files = GPOINTER_TO_INT(g_object_get_data(G_OBJECT(pbar), "no_files"));
 	files_scanned = GPOINTER_TO_INT(g_object_get_data(G_OBJECT(pbar), "files_scanned"));
@@ -599,12 +658,7 @@ gboolean fraction_update(GtkWidget *pbar)
 	if(files_scanned > 0)
 		fraction = (gdouble)files_scanned / (gdouble)no_files;
 
-	message = g_strdup_printf (_("%d files added of %d"), files_scanned, no_files);
-
 	gtk_progress_bar_set_fraction(GTK_PROGRESS_BAR(pbar), fraction);
-	gtk_progress_bar_set_text(GTK_PROGRESS_BAR(pbar), message);
-
-	g_free (message);
 
 	return TRUE;
 }
@@ -636,7 +690,7 @@ void rescan_db(gchar *dir_name, gint no_files, GtkWidget *pbar,
 	if(progress_timeout == 0) {
 		g_object_set_data(G_OBJECT(pbar), "no_files", GINT_TO_POINTER(no_files));
 		g_object_set_data(G_OBJECT(pbar), "files_scanned", GINT_TO_POINTER(files_scanned));
-		progress_timeout = g_timeout_add_seconds(1, (GSourceFunc)fraction_update, pbar);
+		progress_timeout = g_timeout_add_seconds(3, (GSourceFunc)fraction_update, pbar);
 	}
 
 	next_file = g_dir_read_name(dir);
@@ -694,7 +748,7 @@ void update_db(gchar *dir_name, gint no_files, GtkWidget *pbar,
 	if(progress_timeout == 0) {
 		g_object_set_data(G_OBJECT(pbar), "no_files", GINT_TO_POINTER(no_files));
 		g_object_set_data(G_OBJECT(pbar), "files_scanned", GINT_TO_POINTER(files_scanned));
-		progress_timeout = g_timeout_add_seconds(1, (GSourceFunc)fraction_update, pbar);
+		progress_timeout = g_timeout_add_seconds(3, (GSourceFunc)fraction_update, pbar);
 	}
 
 	next_file = g_dir_read_name(dir);
@@ -780,13 +834,14 @@ gint init_dbase_schema(struct con_win *cwin)
 	/* Create 'TRACKS' table */
 
 	query = g_strdup_printf("CREATE TABLE IF NOT EXISTS TRACK "
-				"(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s);",
+				"(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s);",
 				"location INT PRIMARY KEY",
 				"track_no INT",
 				"artist INT",
 				"album INT",
 				"genre INT",
 				"year INT",
+				"comment INT",
 				"bitrate INT",
 				"length INT",
 				"channels INT",
@@ -844,6 +899,15 @@ gint init_dbase_schema(struct con_win *cwin)
 	if (!exec_sqlite_query(query, cwin, NULL))
 		return -1;
 
+	/* Create 'COMMENT' table */
+
+	query = g_strdup_printf("CREATE TABLE IF NOT EXISTS COMMENT "
+				"(%s, %s, UNIQUE(name));",
+				"id INTEGER PRIMARY KEY",
+				"name VARCHAR(255)");
+	if (!exec_sqlite_query(query,cwin,  NULL))
+		return -1;
+
 	/* Create 'PLAYLIST_TRACKS' table */
 
 	query = g_strdup_printf("CREATE TABLE IF NOT EXISTS PLAYLIST_TRACKS "
@@ -891,6 +955,10 @@ gint drop_dbase_schema(struct con_win *cwin)
 		ret = -1;
 
 	query = g_strdup_printf("DROP TABLE YEAR");
+	if (!exec_sqlite_query(query, cwin, NULL))
+		ret = -1;
+
+	query = g_strdup_printf("DROP TABLE COMMENT");
 	if (!exec_sqlite_query(query, cwin, NULL))
 		ret = -1;
 

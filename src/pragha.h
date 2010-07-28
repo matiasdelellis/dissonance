@@ -82,6 +82,7 @@
 #define P_GENRE_STR         N_("Genre")
 #define P_BITRATE_STR       N_("Bitrate")
 #define P_YEAR_STR          N_("Year")
+#define P_COMMENT_STR       N_("Comment")
 #define P_LENGTH_STR        N_("Length")
 #define P_FILENAME_STR      N_("Filename")
 
@@ -187,12 +188,13 @@
 #define KEY_ALBUM_ART_SIZE         "album_art_size"
 #define KEY_STATUS_BAR		   "status_bar"
 
-#define TAG_TNO_CHANGED    1<<0
-#define TAG_TITLE_CHANGED  1<<1
-#define TAG_ARTIST_CHANGED 1<<2
-#define TAG_ALBUM_CHANGED  1<<3
-#define TAG_GENRE_CHANGED  1<<4
-#define TAG_YEAR_CHANGED   1<<5
+#define TAG_TNO_CHANGED		1<<0
+#define TAG_TITLE_CHANGED	1<<1
+#define TAG_ARTIST_CHANGED	1<<2
+#define TAG_ALBUM_CHANGED	1<<3
+#define TAG_GENRE_CHANGED	1<<4
+#define TAG_YEAR_CHANGED	1<<5
+#define TAG_COMMENT_CHANGED	1<<6
 
 enum debug_level {
 	DBG_INFO = 1,
@@ -269,6 +271,7 @@ enum curplaylist_columns {
 	P_GENRE,
 	P_BITRATE,
 	P_YEAR,
+	P_COMMENT,
 	P_LENGTH,
 	P_FILENAME,
 	P_PLAYED,
@@ -344,6 +347,7 @@ struct tags {
 	gchar *artist;
 	gchar *album;
 	gchar *genre;
+	gchar *comment;
 	guint year;
 	guint track_no;
 	gint length;
@@ -803,19 +807,21 @@ gint add_new_artist_db(gchar *artist, struct con_win *cwin);
 gint add_new_album_db(gchar *album, struct con_win *cwin);
 gint add_new_genre_db(gchar *genre, struct con_win *cwin);
 gint add_new_year_db(guint year, struct con_win *cwin);
+gint add_new_comment_db(gchar *comment, struct con_win *cwin);
 gint add_new_location_db(gchar *location, struct con_win *cwin);
 void add_track_playlist_db(gchar *file, gint playlist_id, struct con_win *cwin);
 gint find_artist_db(const gchar *artist, struct con_win *cwin);
 gint find_album_db(const gchar *album, struct con_win *cwin);
 gint find_genre_db(const gchar *genre, struct con_win *cwin);
 gint find_year_db(gint year, struct con_win *cwin);
+gint find_comment_db(const gchar *comment, struct con_win *cwin);
 gint find_location_db(const gchar *location, struct con_win *cwin);
 gint find_playlist_db(const gchar *playlist, struct con_win *cwin);
 void delete_location_db(gint location_id, struct con_win *cwin);
 gint delete_location_hdd(gint location_id, struct con_win *cwin);
 void update_track_db(gint location_id, gint changed,
 		     gint track_no, gchar *title,
-		     gint artist_id, gint album_id, gint genre_id, gint year_id,
+		     gint artist_id, gint album_id, gint genre_id, gint year_id, gint comment_id,
 		     struct con_win *cwin);
 gint add_new_playlist_db(const gchar *playlist, struct con_win *cwin);
 gchar** get_playlist_names_db(struct con_win *cwin);
@@ -970,6 +976,8 @@ void playlist_year_column_change_cb(GtkCheckMenuItem *item,
 				    struct con_win *cwin);
 void playlist_length_column_change_cb(GtkCheckMenuItem *item,
 				      struct con_win *cwin);
+void playlist_comment_column_change_cb(GtkCheckMenuItem *item,
+				     struct con_win *cwin);
 void playlist_filename_column_change_cb(GtkCheckMenuItem *item,
 					struct con_win *cwin);
 void clear_sort_current_playlist_cb(GtkMenuItem *item,
