@@ -421,7 +421,7 @@ gint tag_edit_dialog(struct tags *otag, struct tags *ntag,
 	GtkWidget *chk_title, *chk_artist, *chk_album, *chk_genre, *chk_tno, *chk_year, *chk_comment;
 	GtkWidget *entry_title, *entry_artist, *entry_album, *entry_genre,  *entry_tno, *entry_year, *entry_comment;
 	GtkWidget *hbox_title, *hbox_artist, *hbox_album, *hbox_genre, *hbox_tno, *hbox_year, *hbox_comment;
-	GtkWidget *hbox_spins, *comment_view_scroll;
+	GtkWidget *hbox_spins, *comment_view_scroll, *chk_alignment;
 	GtkTextBuffer *buffer;
 	GtkTextIter start, end;
 
@@ -431,7 +431,7 @@ gint tag_edit_dialog(struct tags *otag, struct tags *ntag,
 
 	tag_table = gtk_table_new(7, 2, FALSE);
 
-	gtk_table_set_col_spacings(GTK_TABLE(tag_table), 15);
+	gtk_table_set_col_spacings(GTK_TABLE(tag_table), 5);
 	gtk_table_set_row_spacings(GTK_TABLE(tag_table), 5);
 	gtk_container_set_border_width(GTK_CONTAINER(tag_table), 5);
 
@@ -630,13 +630,16 @@ gint tag_edit_dialog(struct tags *otag, struct tags *ntag,
 					GTK_SHADOW_IN);
 	gtk_container_add(GTK_CONTAINER(comment_view_scroll), entry_comment);
 
+	chk_alignment = gtk_alignment_new(0.5, 0, 0, 0);
+	gtk_container_add(GTK_CONTAINER(chk_alignment), chk_comment);
+
 	gtk_box_pack_start(GTK_BOX(hbox_comment),
 			   comment_view_scroll,
 			   TRUE,
 			   TRUE,
 			   0);
 	gtk_box_pack_start(GTK_BOX(hbox_comment),
-			   chk_comment,
+			   chk_alignment,
 			   FALSE,
 			   FALSE,
 			   0);
@@ -658,7 +661,7 @@ gint tag_edit_dialog(struct tags *otag, struct tags *ntag,
 					     GTK_STOCK_OK,
 					     GTK_RESPONSE_OK,
 					     NULL);
-	gtk_window_set_default_size(GTK_WINDOW (dialog), 400, -1);
+	gtk_window_set_default_size(GTK_WINDOW (dialog), 450, -1);
 
 	/* Add to the dialog's main vbox */
 

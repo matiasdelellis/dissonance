@@ -931,6 +931,14 @@ gint init_musicdbase(struct con_win *cwin)
 		return -1;
 	}
 
+	if (g_ascii_strcasecmp(cwin->cpref->installed_version, PACKAGE_VERSION)) {
+		g_critical("Music database is incompatible with previous to 0.8.0. Please rescand library.");
+		if (drop_dbase_schema(cwin) == -1) {
+			g_critical("Unable to drop database schema");
+			return -1;
+		}
+	}
+
 	return init_dbase_schema(cwin);
 }
 
