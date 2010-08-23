@@ -1294,14 +1294,14 @@ gpointer sokoke_xfce_header_new(struct con_win *cwin)
 	GtkWidget* hbox = gtk_hbox_new(FALSE, 12);
 
 	gtk_container_set_border_width(GTK_CONTAINER(hbox), 6);
-	GtkWidget* image = gtk_image_new_from_icon_name("gtk-preferences",
+	GtkWidget* image = gtk_image_new_from_icon_name("pragha",
 							GTK_ICON_SIZE_DIALOG);
 	gtk_box_pack_start(GTK_BOX(hbox), image, FALSE, FALSE, 0);
 	GtkWidget* label = gtk_label_new(NULL);
 	gtk_widget_modify_fg(label,
 				GTK_STATE_NORMAL,
 				&entry->style->text[GTK_STATE_NORMAL]);
-        markup = g_strdup_printf("<span size='large' weight='bold'>%s</span>", _("Preferences"));
+        markup = g_strdup_printf("<span size='large' weight='bold'>%s</span>", _("Preferences of Pragha"));
 	gtk_label_set_markup(GTK_LABEL(label), markup);
 	gtk_box_pack_start(GTK_BOX(hbox), label, FALSE, FALSE, 0);
 	gtk_container_add(GTK_CONTAINER(xfce_heading), hbox);
@@ -1334,7 +1334,7 @@ void preferences_dialog(struct con_win *cwin)
 
 	/* The main preferences dialog */
 
-	dialog = gtk_dialog_new_with_buttons(_("Preferences"),
+	dialog = gtk_dialog_new_with_buttons(_("Preferences of Pragha"),
 					     GTK_WINDOW(cwin->mainwindow),
 					     GTK_DIALOG_MODAL,
 					     GTK_STOCK_CANCEL,

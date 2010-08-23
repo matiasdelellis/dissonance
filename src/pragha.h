@@ -684,6 +684,7 @@ void lyric_action(GtkAction *action, struct con_win *cwin);
 void home_action(GtkAction *action, struct con_win *cwin);
 void community_action(GtkAction *action, struct con_win *cwin);
 void wiki_action(GtkAction *action, struct con_win *cwin);
+void translate_action(GtkAction *action, struct con_win *cwin);
 void about_action(GtkAction *action, struct con_win *cwin);
 
 void rescan_library_handler(struct con_win *cwin);

@@ -1366,6 +1366,7 @@ void init_gui(gint argc, gchar **argv, struct con_win *cwin)
 	gtk_box_pack_start(GTK_BOX(vbox),
 			   GTK_WIDGET(status_bar),
 			   FALSE,FALSE, 0);
+
 	/* Init window state*/
 
 	if(!g_ascii_strcasecmp(cwin->cpref->start_mode, FULLSCREEN_STATE)) {
