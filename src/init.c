@@ -203,7 +203,7 @@ gint init_config(struct con_win *cwin)
 	gboolean err = FALSE;
 	gsize cnt = 0, i;
 
-	gboolean last_folder_f, recursively_f, album_art_pattern_f, timer_remaining_mode_f, close_to_tray_f, osd_f, lastfm_f;
+	gboolean last_folder_f, recursively_f, album_art_pattern_f, timer_remaining_mode_f, close_to_tray_f, show_osd_f, lastfm_f;
 	gboolean save_playlist_f, shuffle_f,repeat_f, columns_f, col_widths_f;
 	gboolean libs_f, lib_add_f, lib_delete_f, nodes_f, cur_lib_view_f, fuse_folders_f;
 	gboolean audio_sink_f, audio_alsa_device_f, audio_oss_device_f, software_mixer_f, use_cddb_f;
@@ -212,7 +212,7 @@ gint init_config(struct con_win *cwin)
 
 	CDEBUG(DBG_INFO, "Initializing configuration");
 
-	last_folder_f = recursively_f = album_art_pattern_f = timer_remaining_mode_f = close_to_tray_f = osd_f = lastfm_f = FALSE;
+	last_folder_f = recursively_f = album_art_pattern_f = timer_remaining_mode_f = close_to_tray_f = show_osd_f = lastfm_f = FALSE;
 	save_playlist_f = shuffle_f = repeat_f = columns_f = col_widths_f = FALSE;
 	libs_f = lib_add_f = lib_delete_f = nodes_f = cur_lib_view_f = fuse_folders_f = FALSE;
 	audio_sink_f = audio_alsa_device_f = audio_oss_device_f = software_mixer_f = use_cddb_f = FALSE;
@@ -656,7 +656,7 @@ gint init_config(struct con_win *cwin)
 		if (error) {
 			g_error_free(error);
 			error = NULL;
-			osd_f = TRUE;
+			show_osd_f = TRUE;
 		}
 
 		/* Retrieve Save playlist option */
@@ -672,39 +672,6 @@ gint init_config(struct con_win *cwin)
 			save_playlist_f = TRUE;
 		}
 
-		/* Retrieve last.fm option */
-
-		cwin->cpref->lw.lastfm_support =
-			g_key_file_get_boolean(cwin->cpref->configrc_keyfile,
-					       GROUP_GENERAL,
-					       KEY_LASTFM,
-					       &error);
-		if (error) {
-			g_error_free(error);
-			error = NULL;
-			lastfm_f = TRUE;
-		}
-
-		cwin->cpref->lw.lastfm_user =
-			g_key_file_get_string(cwin->cpref->configrc_keyfile,
-					      GROUP_GENERAL,
-					      KEY_LASTFM_USER,
-					      &error);
-		if (error) {
-			g_error_free(error);
-			error = NULL;
-		}
-
-		cwin->cpref->lw.lastfm_pass =
-			g_key_file_get_string(cwin->cpref->configrc_keyfile,
-					      GROUP_GENERAL,
-					      KEY_LASTFM_PASS,
-					      &error);
-		if (error) {
-			g_error_free(error);
-			error = NULL;
-		}
-
 		/* Retrieve software mixer option */
 
 		cwin->cpref->software_mixer =
@@ -716,19 +683,6 @@ gint init_config(struct con_win *cwin)
 			g_error_free(error);
 			error = NULL;
 			software_mixer_f = TRUE;
-		}
-
-		/* Retrieve use CDDB server option */
-
-		cwin->cpref->use_cddb =
-			g_key_file_get_boolean(cwin->cpref->configrc_keyfile,
-					       GROUP_AUDIO,
-					       KEY_USE_CDDB,
-					       &error);
-		if (error) {
-			g_error_free(error);
-			error = NULL;
-			use_cddb_f = TRUE;
 		}
 
 		/* Retrieve shuffle & repeat options */
@@ -805,6 +759,52 @@ gint init_config(struct con_win *cwin)
 			g_error_free(error);
 			error = NULL;
 		}
+
+		/* Retrieve last.fm option */
+
+		cwin->cpref->lw.lastfm_support =
+			g_key_file_get_boolean(cwin->cpref->configrc_keyfile,
+					       GROUP_SERVICES,
+					       KEY_LASTFM,
+					       &error);
+		if (error) {
+			g_error_free(error);
+			error = NULL;
+			lastfm_f = TRUE;
+		}
+
+		cwin->cpref->lw.lastfm_user =
+			g_key_file_get_string(cwin->cpref->configrc_keyfile,
+					      GROUP_SERVICES,
+					      KEY_LASTFM_USER,
+					      &error);
+		if (error) {
+			g_error_free(error);
+			error = NULL;
+		}
+
+		cwin->cpref->lw.lastfm_pass =
+			g_key_file_get_string(cwin->cpref->configrc_keyfile,
+					      GROUP_SERVICES,
+					      KEY_LASTFM_PASS,
+					      &error);
+		if (error) {
+			g_error_free(error);
+			error = NULL;
+		}
+
+		/* Retrieve use CDDB server option */
+
+		cwin->cpref->use_cddb =
+			g_key_file_get_boolean(cwin->cpref->configrc_keyfile,
+					       GROUP_SERVICES,
+					       KEY_USE_CDDB,
+					       &error);
+		if (error) {
+			g_error_free(error);
+			error = NULL;
+			use_cddb_f = TRUE;
+		}
 	}
 
 	/* Fill up with failsafe defaults */
@@ -869,7 +869,7 @@ gint init_config(struct con_win *cwin)
 		cwin->cpref->album_art_size = ALBUM_ART_SIZE;
 	if (all_f || timer_remaining_mode_f)
 		cwin->cpref->timer_remaining_mode = FALSE;
-	if (all_f || osd_f)
+	if (all_f || show_osd_f)
 		cwin->cpref->show_osd = FALSE;
 	if (all_f || remember_window_state_f)
 		cwin->cpref->remember_window_state = TRUE;
@@ -881,12 +881,8 @@ gint init_config(struct con_win *cwin)
 		cwin->cpref->status_bar = TRUE;
 	if (all_f || save_playlist_f)
 		cwin->cpref->save_playlist = TRUE;
-	if (all_f || lastfm_f)
-		cwin->cpref->lw.lastfm_support = FALSE;
 	if (all_f || software_mixer_f)
 		cwin->cpref->software_mixer = TRUE;
-	if (all_f || use_cddb_f)
-		cwin->cpref->use_cddb = TRUE;
 	if (all_f || shuffle_f)
 		cwin->cpref->shuffle = FALSE;
 	if (all_f || repeat_f)
@@ -898,6 +894,10 @@ gint init_config(struct con_win *cwin)
 		cwin->cpref->audio_alsa_device = g_strdup(ALSA_DEFAULT_DEVICE);
 	if (all_f || audio_oss_device_f)
 		cwin->cpref->audio_oss_device = g_strdup(OSS_DEFAULT_DEVICE);
+	if (all_f || lastfm_f)
+		cwin->cpref->lw.lastfm_support = FALSE;
+	if (all_f || use_cddb_f)
+		cwin->cpref->use_cddb = TRUE;
 
 	/* Cleanup */
 

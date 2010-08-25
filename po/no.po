@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-08-23 11:58-0300\n"
+"POT-Creation-Date: 2010-08-25 14:03-0300\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Matias <mati86dl@gmail.com>\n"
 "Language-Team: \n"
@@ -171,7 +171,7 @@ msgstr "_Gjenta"
 msgid "_Fullscreen"
 msgstr ""
 
-#: src/gui.c:231 src/gui.c:592 src/pref.c:1352
+#: src/gui.c:231 src/gui.c:592 src/pref.c:1332
 msgid "Library"
 msgstr "Samling"
 
@@ -465,15 +465,15 @@ msgstr ""
 msgid "Album art pattern"
 msgstr "Albumcover mønster"
 
-#: src/pref.c:61 src/pref.c:1451
+#: src/pref.c:61 src/pref.c:1548
 msgid "Start normal"
 msgstr ""
 
-#: src/pref.c:66 src/pref.c:1452
+#: src/pref.c:66 src/pref.c:1549
 msgid "Start fullscreen"
 msgstr ""
 
-#: src/pref.c:71 src/pref.c:1453
+#: src/pref.c:71 src/pref.c:1550
 msgid "Start in system tray"
 msgstr ""
 
@@ -483,110 +483,118 @@ msgid "Select a folder to add to library"
 msgstr "Velg en mappe for å legge til samling"
 
 #. The main preferences dialog
-#: src/pref.c:1304 src/pref.c:1337
+#: src/pref.c:1288 src/pref.c:1320
 #, fuzzy
 msgid "Preferences of Pragha"
 msgstr "Preferanser"
 
 #. Labels
-#: src/pref.c:1350
-msgid "General"
-msgstr "Generell"
-
-#: src/pref.c:1351
+#: src/pref.c:1331
 msgid "Audio"
 msgstr "Audio"
 
-#: src/pref.c:1353
-msgid "Last.fm"
-msgstr "Last.fm"
+#: src/pref.c:1333
+msgid "General"
+msgstr "Generell"
 
-#. CDDB
-#: src/pref.c:1394
-msgid "Connect to CDDB server"
-msgstr "Koble til CDDB server"
-
-#. Album art
-#: src/pref.c:1398
-msgid "Show Album art in Panel"
-msgstr "Vis Albumcover i Panel"
-
-#: src/pref.c:1401
-msgid "Size of Album art"
-msgstr "Størrelse på Albumcover"
-
-#: src/pref.c:1419
-msgid "Album art file pattern"
-msgstr "Albumcover filmønster"
-
-#: src/pref.c:1450
-msgid "Remember last window state"
+#: src/pref.c:1334
+msgid "Notifications"
 msgstr ""
 
-#: src/pref.c:1455
-msgid "When Pragha start"
+#: src/pref.c:1335
+msgid "Internet Services"
 msgstr ""
 
-#. General Check_buttons
-#: src/pref.c:1472
-msgid "Minimize Pragha when close the window"
-msgstr ""
-
-#: src/pref.c:1473
-#, fuzzy
-msgid "Restore last playlist"
-msgstr "Lagre/Gjenopprett spillelisten"
-
-#: src/pref.c:1474
-msgid "Add files recurcively"
-msgstr ""
-
-#: src/pref.c:1475
-msgid "Show OSD for track change"
-msgstr "Vis OSD for spor endring"
-
-#. Software mixer
-#: src/pref.c:1522
-msgid "Use software mixer"
-msgstr "Bruk mykvare mikser"
-
-#: src/pref.c:1523 src/pref.c:1529 src/pref.c:1558
+#: src/pref.c:1385 src/pref.c:1414 src/pref.c:1449
 msgid "Restart Required"
 msgstr "Krever Omstart"
 
-#: src/pref.c:1538
+#: src/pref.c:1394
 msgid "Audio sink"
 msgstr "Audio synk"
 
-#: src/pref.c:1555
+#: src/pref.c:1411
 msgid "Audio Device"
 msgstr "Lydenhet"
 
 #. Audio CD device
-#: src/pref.c:1573
+#: src/pref.c:1429
 msgid "Audio CD Device"
 msgstr "Audio CD Enhet"
 
-#: src/pref.c:1621
+#. Software mixer
+#: src/pref.c:1448
+msgid "Use software mixer"
+msgstr "Bruk mykvare mikser"
+
+#: src/pref.c:1482
 msgid "Folders"
 msgstr "Mappe"
 
-#: src/pref.c:1666
+#: src/pref.c:1527
 msgid "Merge folders in the folders estructure view"
 msgstr ""
 
-#. Last.fm
-#: src/pref.c:1684
+#: src/pref.c:1547
+msgid "Remember last window state"
+msgstr ""
+
+#: src/pref.c:1552
+#, fuzzy
+msgid "Restore last playlist"
+msgstr "Lagre/Gjenopprett spillelisten"
+
+#: src/pref.c:1554
+msgid "Minimize Pragha when close the window"
+msgstr ""
+
+#: src/pref.c:1555
+msgid "Add files recurcively"
+msgstr ""
+
+#: src/pref.c:1557
+msgid "Show Album art in Panel"
+msgstr "Vis Albumcover i Panel"
+
+#: src/pref.c:1560
+msgid "Size of Album art"
+msgstr "Størrelse på Albumcover"
+
+#: src/pref.c:1578
+msgid "Album art file pattern"
+msgstr "Albumcover filmønster"
+
+#. Notification OSD
+#: src/pref.c:1632
+msgid "Show OSD for track change"
+msgstr "Vis OSD for spor endring"
+
+#: src/pref.c:1633
+msgid "Associate notifications to system tray"
+msgstr ""
+
+#: src/pref.c:1634
+#, fuzzy
+msgid "Show Album art in notifications"
+msgstr "Vis Albumcover i Panel"
+
+#. Services Last.fm
+#: src/pref.c:1657
 msgid "Last.fm Support"
 msgstr "Last.fm Støtte"
 
-#: src/pref.c:1687
+#: src/pref.c:1660
 msgid "Username"
 msgstr "Brukernavn"
 
-#: src/pref.c:1688
+#: src/pref.c:1661
 msgid "Password"
 msgstr "Passord"
+
+#. Services CDDB
+#: src/pref.c:1672
+msgid "Connect to CDDB server"
+msgstr "Koble til CDDB server"
 
 #: src/menu.c:140
 msgid "Update Library"
@@ -651,6 +659,9 @@ msgstr ""
 #: src/playlist.c:513
 msgid "Export playlist to file"
 msgstr "Eksporter spilleliste til fil"
+
+#~ msgid "Last.fm"
+#~ msgstr "Last.fm"
 
 #~ msgid "Preferences"
 #~ msgstr "Preferanser"

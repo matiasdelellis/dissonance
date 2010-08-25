@@ -150,9 +150,6 @@
 #define KEY_TIMER_REMAINING_MODE   "timer_remaining_mode"
 #define KEY_CLOSE_TO_TRAY	   "close_to_tray"
 #define KEY_SHOW_OSD               "show_osd"
-#define KEY_LASTFM                 "lastfm"
-#define KEY_LASTFM_USER            "lastfm_user"
-#define KEY_LASTFM_PASS            "lastfm_pass"
 
 #define GROUP_PLAYLIST "Playlist"
 #define KEY_SAVE_PLAYLIST          "save_playlist"
@@ -178,7 +175,6 @@
 #define KEY_SOFTWARE_MIXER         "software_mixer"
 #define KEY_SOFTWARE_VOLUME	   "software_volume"
 #define KEY_AUDIO_CD_DEVICE        "audio_cd_device"
-#define KEY_USE_CDDB               "use_cddb"
 
 #define GROUP_WINDOW   "Window"
 #define KEY_REMEMBER_STATE	   "remember_window_state"
@@ -188,6 +184,12 @@
 #define KEY_SHOW_ALBUM_ART         "show_album_art"
 #define KEY_ALBUM_ART_SIZE         "album_art_size"
 #define KEY_STATUS_BAR		   "status_bar"
+
+#define GROUP_SERVICES   "services"
+#define KEY_LASTFM                 "lastfm"
+#define KEY_LASTFM_USER            "lastfm_user"
+#define KEY_LASTFM_PASS            "lastfm_pass"
+#define KEY_USE_CDDB               "use_cddb"
 
 #define TAG_TNO_CHANGED		1<<0
 #define TAG_TITLE_CHANGED	1<<1
@@ -374,9 +376,7 @@ struct lastfm_pref {
 	gchar *lastfm_pass;
 	GtkWidget *lastfm_w;
 	GtkWidget *lastfm_uname_w;
-	GtkWidget *lastfm_ulabel_w;
 	GtkWidget *lastfm_pass_w;
-	GtkWidget *lastfm_plabel_w;
 };
 
 struct con_pref {
@@ -414,24 +414,29 @@ struct con_pref {
 	GSList *library_tree_nodes;
 	GSList *lib_delete;
 	GSList *lib_add;
-	GtkWidget *window_state_combo;
-	GtkWidget *close_to_tray_w;
-	GtkWidget *album_art_w;
-	GtkWidget *add_recurcively_w;
-	GtkWidget *osd_w;
-	GtkWidget *save_playlist_w;
-	GtkWidget *album_art_pattern_w;
-	GtkWidget *album_art_pattern_label_w;
-	GtkWidget *album_art_size_w;
-	GtkWidget *album_art_size_label_w;
-	GtkWidget *soft_mixer;
-	GtkWidget *use_cddb_w;
-	GtkWidget *audio_sink_combo;
-	GtkWidget *library_view;
-	GtkWidget *fuse_folders_w;
-	GtkWidget *audio_cd_device_w;
+
 	GtkWidget *audio_device_w;
+	GtkWidget *audio_cd_device_w;
+	GtkWidget *audio_sink_combo_w;
+	GtkWidget *soft_mixer_w;
+
+	GtkWidget *library_view_w;
+	GtkWidget *fuse_folders_w;
+
+	GtkWidget *window_state_combo_w;
+	GtkWidget *restore_playlist_w;
+	GtkWidget *close_to_tray_w;
+	GtkWidget *add_recurcively_w;
+	GtkWidget *album_art_w;
+	GtkWidget *album_art_size_w;
+	GtkWidget *album_art_pattern_w;
+
+	GtkWidget *show_osd_w;
+	GtkWidget *osd_to_systray_w;
+	GtkWidget *albumart_in_osd_w;
+
 	struct lastfm_pref lw;
+	GtkWidget *use_cddb_w;
 };
 
 struct musicobject {

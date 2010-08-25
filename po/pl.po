@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Polski (polish)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-08-23 11:58-0300\n"
+"POT-Creation-Date: 2010-08-25 14:03-0300\n"
 "PO-Revision-Date: 2010-05-20 18:41+0100\n"
 "Last-Translator: Sid <translations@sidowo.uni.cc>\n"
 "Language-Team: Polski (polish) <translations@sidowo.uni.cc>\n"
@@ -163,7 +163,7 @@ msgstr "_Powtarzaj"
 msgid "_Fullscreen"
 msgstr "Pełny _ekran"
 
-#: src/gui.c:231 src/gui.c:592 src/pref.c:1352
+#: src/gui.c:231 src/gui.c:592 src/pref.c:1332
 msgid "Library"
 msgstr "Biblioteka"
 
@@ -455,15 +455,15 @@ msgstr ""
 msgid "Album art pattern"
 msgstr "Okładka albumu"
 
-#: src/pref.c:61 src/pref.c:1451
+#: src/pref.c:61 src/pref.c:1548
 msgid "Start normal"
 msgstr "Uruchom normalnie"
 
-#: src/pref.c:66 src/pref.c:1452
+#: src/pref.c:66 src/pref.c:1549
 msgid "Start fullscreen"
 msgstr "Włącz _tryb pełnoekranowy"
 
-#: src/pref.c:71 src/pref.c:1453
+#: src/pref.c:71 src/pref.c:1550
 msgid "Start in system tray"
 msgstr "Uruchom w trayu"
 
@@ -473,112 +473,120 @@ msgid "Select a folder to add to library"
 msgstr "Wybierz folder do dodania do biblioteki"
 
 #. The main preferences dialog
-#: src/pref.c:1304 src/pref.c:1337
+#: src/pref.c:1288 src/pref.c:1320
 #, fuzzy
 msgid "Preferences of Pragha"
 msgstr "Preferencje"
 
 #. Labels
-#: src/pref.c:1350
-msgid "General"
-msgstr "Ogólne"
-
-#: src/pref.c:1351
+#: src/pref.c:1331
 msgid "Audio"
 msgstr "Audio"
 
-#: src/pref.c:1353
-msgid "Last.fm"
-msgstr "Last.fm"
+#: src/pref.c:1333
+msgid "General"
+msgstr "Ogólne"
 
-#. CDDB
-#: src/pref.c:1394
-msgid "Connect to CDDB server"
-msgstr "Połącz z serwerem CDDB"
+#: src/pref.c:1334
+msgid "Notifications"
+msgstr ""
 
-#. Album art
-#: src/pref.c:1398
-msgid "Show Album art in Panel"
-msgstr "Pokaż okładkę albumu w panelu"
+#: src/pref.c:1335
+msgid "Internet Services"
+msgstr ""
 
-#: src/pref.c:1401
-msgid "Size of Album art"
-msgstr "Rozmiar okładki"
-
-#: src/pref.c:1419
-msgid "Album art file pattern"
-msgstr "Wzorzec pliku z okładką"
-
-#: src/pref.c:1450
-msgid "Remember last window state"
-msgstr "Zapamiętaj ostatnie położenie okna"
-
-#: src/pref.c:1455
-msgid "When Pragha start"
-msgstr "Podczas startu Pragha"
-
-#. General Check_buttons
-#: src/pref.c:1472
-#, fuzzy
-msgid "Minimize Pragha when close the window"
-msgstr "Minimalizuj program po zamknięciu okna"
-
-#: src/pref.c:1473
-msgid "Restore last playlist"
-msgstr "Przywróć ostatnią listę odtwarzania"
-
-#: src/pref.c:1474
-#, fuzzy
-msgid "Add files recurcively"
-msgstr "Dodaj pliki rekursywnie"
-
-#: src/pref.c:1475
-msgid "Show OSD for track change"
-msgstr "Pokazuj OSD przy zmianie utworu"
-
-#. Software mixer
-#: src/pref.c:1522
-msgid "Use software mixer"
-msgstr "Użyj programowego miksera"
-
-#: src/pref.c:1523 src/pref.c:1529 src/pref.c:1558
+#: src/pref.c:1385 src/pref.c:1414 src/pref.c:1449
 msgid "Restart Required"
 msgstr "Wymagane ponowne uruchomienie"
 
-#: src/pref.c:1538
+#: src/pref.c:1394
 msgid "Audio sink"
 msgstr "Sterownik dźwięku"
 
-#: src/pref.c:1555
+#: src/pref.c:1411
 msgid "Audio Device"
 msgstr "Urządzenie"
 
 #. Audio CD device
-#: src/pref.c:1573
+#: src/pref.c:1429
 msgid "Audio CD Device"
 msgstr "Napęd CD"
 
-#: src/pref.c:1621
+#. Software mixer
+#: src/pref.c:1448
+msgid "Use software mixer"
+msgstr "Użyj programowego miksera"
+
+#: src/pref.c:1482
 #, fuzzy
 msgid "Folders"
 msgstr "Folder"
 
-#: src/pref.c:1666
+#: src/pref.c:1527
 msgid "Merge folders in the folders estructure view"
 msgstr ""
 
-#. Last.fm
-#: src/pref.c:1684
+#: src/pref.c:1547
+msgid "Remember last window state"
+msgstr "Zapamiętaj ostatnie położenie okna"
+
+#: src/pref.c:1552
+msgid "Restore last playlist"
+msgstr "Przywróć ostatnią listę odtwarzania"
+
+#: src/pref.c:1554
+#, fuzzy
+msgid "Minimize Pragha when close the window"
+msgstr "Minimalizuj program po zamknięciu okna"
+
+#: src/pref.c:1555
+#, fuzzy
+msgid "Add files recurcively"
+msgstr "Dodaj pliki rekursywnie"
+
+#: src/pref.c:1557
+msgid "Show Album art in Panel"
+msgstr "Pokaż okładkę albumu w panelu"
+
+#: src/pref.c:1560
+msgid "Size of Album art"
+msgstr "Rozmiar okładki"
+
+#: src/pref.c:1578
+msgid "Album art file pattern"
+msgstr "Wzorzec pliku z okładką"
+
+#. Notification OSD
+#: src/pref.c:1632
+msgid "Show OSD for track change"
+msgstr "Pokazuj OSD przy zmianie utworu"
+
+#: src/pref.c:1633
+msgid "Associate notifications to system tray"
+msgstr ""
+
+#: src/pref.c:1634
+#, fuzzy
+msgid "Show Album art in notifications"
+msgstr "Pokaż okładkę albumu w panelu"
+
+#. Services Last.fm
+#: src/pref.c:1657
 msgid "Last.fm Support"
 msgstr "Obsługa Last.fm"
 
-#: src/pref.c:1687
+#: src/pref.c:1660
 msgid "Username"
 msgstr "Nazwa użytkownika"
 
-#: src/pref.c:1688
+#: src/pref.c:1661
 msgid "Password"
 msgstr "Hasło"
+
+#. Services CDDB
+#: src/pref.c:1672
+msgid "Connect to CDDB server"
+msgstr "Połącz z serwerem CDDB"
 
 #: src/menu.c:140
 msgid "Update Library"
@@ -646,6 +654,12 @@ msgstr "Nie można otworzyć przeglądarki"
 #: src/playlist.c:513
 msgid "Export playlist to file"
 msgstr "Eksportuj listę odtwarzania do ppliku"
+
+#~ msgid "Last.fm"
+#~ msgstr "Last.fm"
+
+#~ msgid "When Pragha start"
+#~ msgstr "Podczas startu Pragha"
 
 #~ msgid "Preferences"
 #~ msgstr "Preferencje"
