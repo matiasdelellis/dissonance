@@ -141,20 +141,20 @@ void show_osd(struct con_win *cwin)
 
 	/* Create notification instance */
 
-	if(gtk_status_icon_is_embedded(GTK_STATUS_ICON(cwin->status_icon))) {
+	if(cwin->cpref->osd_in_systray && gtk_status_icon_is_embedded(GTK_STATUS_ICON(cwin->status_icon))) {
 		osd = notify_notification_new_with_status_icon((const gchar *) summary,
 								body, NULL,
 								GTK_STATUS_ICON(cwin->status_icon));
 	}
 	else {
-		osd = notify_notification_new((const gchar *) summary, NULL, NULL, NULL);
+		osd = notify_notification_new((const gchar *) summary, body, NULL, NULL);
 	}
 
 	notify_notification_set_timeout(osd, OSD_TIMEOUT);
 
 	/* Add album art if set */
 
-	if (cwin->cpref->show_album_art && cwin->album_art &&
+	if (cwin->cpref->show_album_art && cwin->album_art && cwin->cpref->albumart_in_osd &&
 	    (gtk_image_get_storage_type(GTK_IMAGE(cwin->album_art)) == GTK_IMAGE_PIXBUF))
 			notify_notification_set_icon_from_pixbuf(osd, gtk_image_get_pixbuf(GTK_IMAGE(cwin->album_art)));
 
