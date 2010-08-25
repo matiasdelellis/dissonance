@@ -74,13 +74,29 @@ void toogle_main_window(struct con_win *cwin)
 }
 
 static void
-notify_next_Callback (NotifyNotification *osd,
+notify_Prev_Callback (NotifyNotification *osd,
                 const char *action,
                 struct con_win *cwin)
 {
+        g_assert (action != NULL);
+        g_assert (strcmp (action, "media-prev") == 0);
+
+	notify_notification_close (osd, NULL);
+	play_prev_track(cwin);
+}
+
+static void
+notify_Next_Callback (NotifyNotification *osd,
+                const char *action,
+                struct con_win *cwin)
+{
+        g_assert (action != NULL);
+        g_assert (strcmp (action, "media-next") == 0);
+
 	notify_notification_close (osd, NULL);
 	play_next_track(cwin);
 }
+
 
 static gboolean
 can_support_actions( void )
@@ -158,10 +174,14 @@ void show_osd(struct con_win *cwin)
 	    (gtk_image_get_storage_type(GTK_IMAGE(cwin->album_art)) == GTK_IMAGE_PIXBUF))
 			notify_notification_set_icon_from_pixbuf(osd, gtk_image_get_pixbuf(GTK_IMAGE(cwin->album_art)));
 
-	if(can_support_actions( )){
+	if(can_support_actions( ) && cwin->cpref->albumart_in_osd){
+                notify_notification_add_action(
+                    osd, "media-prev", _("Prev Track"),
+                    NOTIFY_ACTION_CALLBACK(notify_Prev_Callback), cwin,
+                    NULL );
                 notify_notification_add_action(
                     osd, "media-next", _("Next Track" ),
-                    NOTIFY_ACTION_CALLBACK(notify_next_Callback), cwin,
+                    NOTIFY_ACTION_CALLBACK(notify_Next_Callback), cwin,
                     NULL );
 	}
 	g_signal_connect (osd, "closed",

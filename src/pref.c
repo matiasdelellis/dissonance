@@ -209,6 +209,9 @@ static void pref_dialog_cb(GtkDialog *dialog, gint response_id,
 		cwin->cpref->albumart_in_osd =
 			gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(
 						  cwin->cpref->albumart_in_osd_w));
+		cwin->cpref->actions_in_osd =
+			gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(
+						  cwin->cpref->actions_in_osd_w));
 
 		/* Services internet preferences */
 
@@ -390,6 +393,7 @@ static void toggle_show_osd(GtkToggleButton *button, struct con_win *cwin)
 
 	gtk_widget_set_sensitive(cwin->cpref->osd_in_systray_w, is_active);
 	gtk_widget_set_sensitive(cwin->cpref->albumart_in_osd_w, is_active);
+	gtk_widget_set_sensitive(cwin->cpref->actions_in_osd_w, is_active);
 }
 
 
@@ -651,6 +655,10 @@ static void update_preferences(struct con_win *cwin)
 		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(
 					     cwin->cpref->albumart_in_osd_w),
 					     TRUE);
+	if (cwin->cpref->actions_in_osd)
+		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(
+					     cwin->cpref->actions_in_osd_w),
+					     TRUE);
 
 	/* Service Internet Option */
 
@@ -771,6 +779,10 @@ void save_preferences(struct con_win *cwin)
 			       GROUP_GENERAL,
 			       KEY_SHOW_ALBUM_ART_OSD,
 			       cwin->cpref->albumart_in_osd);
+	g_key_file_set_boolean(cwin->cpref->configrc_keyfile,
+			       GROUP_GENERAL,
+			       KEY_SHOW_ACTIONS_OSD,
+			       cwin->cpref->actions_in_osd);
 
 	/* Playlist options */
 
@@ -1299,7 +1311,7 @@ void preferences_dialog(struct con_win *cwin)
 		  *fuse_folders, *hbox_library;
 	GtkWidget *window_state_combo, *restore_playlist, *close_to_tray, *album_art, *album_art_pattern_label, *add_recurcively, \
 		  *hbox_album_art_pattern, *album_art_size, *album_art_size_label, *hbox_album_art_size;
-	GtkWidget *show_osd, *osd_in_systray, *albumart_in_osd;
+	GtkWidget *show_osd, *osd_in_systray, *albumart_in_osd, *actions_in_osd;
 	GtkWidget *lastfm_check, *lastfm_uname, *lastfm_pass, *album_art_pattern, *lastfm_uhbox, *lastfm_ulabel, \
 		  *lastfm_phbox, *lastfm_plabel, *use_cddb;
 
@@ -1624,9 +1636,7 @@ void preferences_dialog(struct con_win *cwin)
 	show_osd = gtk_check_button_new_with_label(_("Show OSD for track change"));
 	osd_in_systray = gtk_check_button_new_with_label(_("Associate notifications to system tray"));
 	albumart_in_osd = gtk_check_button_new_with_label(_("Show Album art in notifications"));
-
-	gtk_widget_set_sensitive(osd_in_systray, FALSE);
-	gtk_widget_set_sensitive(albumart_in_osd, FALSE);
+	actions_in_osd = gtk_check_button_new_with_label(_("Add actions to change track to notifications"));
 
 	gtk_box_pack_start(GTK_BOX(notification_vbox),
 			   show_osd,
@@ -1640,6 +1650,11 @@ void preferences_dialog(struct con_win *cwin)
 			   0);
 	gtk_box_pack_start(GTK_BOX(notification_vbox),
 			   albumart_in_osd,
+			   FALSE,
+			   FALSE,
+			   0);
+	gtk_box_pack_start(GTK_BOX(notification_vbox),
+			   actions_in_osd,
 			   FALSE,
 			   FALSE,
 			   0);
@@ -1735,6 +1750,7 @@ void preferences_dialog(struct con_win *cwin)
 	cwin->cpref->show_osd_w = show_osd;
 	cwin->cpref->osd_in_systray_w = osd_in_systray;
 	cwin->cpref->albumart_in_osd_w = albumart_in_osd;
+	cwin->cpref->actions_in_osd_w = actions_in_osd;
 
 	cwin->cpref->lw.lastfm_w = lastfm_check;
 	cwin->cpref->lw.lastfm_uname_w = lastfm_uname;

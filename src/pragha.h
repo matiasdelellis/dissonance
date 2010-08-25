@@ -152,7 +152,7 @@
 #define KEY_SHOW_OSD               "show_osd"
 #define KEY_OSD_IN_TRAY            "osd_in_tray"
 #define KEY_SHOW_ALBUM_ART_OSD     "show_albumart_osd"
-
+#define KEY_SHOW_ACTIONS_OSD       "show_action_osd"
 
 #define GROUP_PLAYLIST "Playlist"
 #define KEY_SAVE_PLAYLIST          "save_playlist"
@@ -403,6 +403,7 @@ struct con_pref {
 	gboolean show_osd;
 	gboolean osd_in_systray;
 	gboolean albumart_in_osd;
+	gboolean actions_in_osd;
 	gboolean timer_remaining_mode;
 	gboolean shuffle;
 	gboolean repeat;
@@ -439,6 +440,7 @@ struct con_pref {
 	GtkWidget *show_osd_w;
 	GtkWidget *osd_in_systray_w;
 	GtkWidget *albumart_in_osd_w;
+	GtkWidget *actions_in_osd_w;
 
 	struct lastfm_pref lw;
 	GtkWidget *use_cddb_w;

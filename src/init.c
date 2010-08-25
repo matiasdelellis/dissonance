@@ -208,7 +208,7 @@ gint init_config(struct con_win *cwin)
 	gboolean libs_f, lib_add_f, lib_delete_f, nodes_f, cur_lib_view_f, fuse_folders_f;
 	gboolean audio_sink_f, audio_alsa_device_f, audio_oss_device_f, software_mixer_f, use_cddb_f;
 	gboolean remember_window_state_f, start_mode_f, window_size_f, sidebar_size_f, album_f, album_art_size_f, status_bar_f;
-	gboolean show_osd_f, osd_in_systray_f, albumart_in_osd_f;
+	gboolean show_osd_f, osd_in_systray_f, albumart_in_osd_f, actions_in_osd_f;
 	gboolean all_f;
 
 	CDEBUG(DBG_INFO, "Initializing configuration");
@@ -218,7 +218,7 @@ gint init_config(struct con_win *cwin)
 	libs_f = lib_add_f = lib_delete_f = nodes_f = cur_lib_view_f = fuse_folders_f = FALSE;
 	audio_sink_f = audio_alsa_device_f = audio_oss_device_f = software_mixer_f = use_cddb_f = FALSE;
 	remember_window_state_f = start_mode_f = window_size_f = sidebar_size_f = album_f = album_art_size_f = status_bar_f = FALSE;
-	show_osd_f = osd_in_systray_f = albumart_in_osd_f = FALSE;
+	show_osd_f = osd_in_systray_f = albumart_in_osd_f = actions_in_osd_f = FALSE;
 
 	all_f = FALSE;
 
@@ -744,6 +744,16 @@ gint init_config(struct con_win *cwin)
 			error = NULL;
 			albumart_in_osd_f = TRUE;
 		}
+		cwin->cpref->actions_in_osd =
+			g_key_file_get_boolean(cwin->cpref->configrc_keyfile,
+					       GROUP_GENERAL,
+					       KEY_SHOW_ACTIONS_OSD,
+					       &error);
+		if (error) {
+			g_error_free(error);
+			error = NULL;
+			actions_in_osd_f = TRUE;
+		}
 
 		/* Retrieve Services Internet preferences */
 
@@ -858,6 +868,8 @@ gint init_config(struct con_win *cwin)
 		cwin->cpref->osd_in_systray = TRUE;
 	if (all_f || albumart_in_osd_f)
 		cwin->cpref->albumart_in_osd = TRUE;
+	if (all_f || actions_in_osd_f)
+		cwin->cpref->actions_in_osd = TRUE;
 	if (all_f || remember_window_state_f)
 		cwin->cpref->remember_window_state = TRUE;
 	if (all_f || start_mode_f)
