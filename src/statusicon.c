@@ -174,7 +174,7 @@ void show_osd(struct con_win *cwin)
 	    (gtk_image_get_storage_type(GTK_IMAGE(cwin->album_art)) == GTK_IMAGE_PIXBUF))
 			notify_notification_set_icon_from_pixbuf(osd, gtk_image_get_pixbuf(GTK_IMAGE(cwin->album_art)));
 
-	if(can_support_actions( ) && cwin->cpref->albumart_in_osd){
+	if(can_support_actions( ) && cwin->cpref->actions_in_osd){
                 notify_notification_add_action(
                     osd, "media-prev", _("Prev Track"),
                     NOTIFY_ACTION_CALLBACK(notify_Prev_Callback), cwin,
