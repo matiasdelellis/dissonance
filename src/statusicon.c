@@ -132,7 +132,7 @@ void show_osd(struct con_win *cwin)
 {
 	GError *error = NULL;
 	NotifyNotification *osd;
-	gchar *summary, *body, *length, *str;
+	gchar *summary, *body, *length;
 
 	/* Check if OSD is enabled in preferences */
 
@@ -140,20 +140,18 @@ void show_osd(struct con_win *cwin)
 		return;
 
 	if( g_utf8_strlen(cwin->cstate->curr_mobj->tags->title, -1))
-		str = g_strdup(cwin->cstate->curr_mobj->tags->title);
+		summary = g_strdup(cwin->cstate->curr_mobj->tags->title);
 	else
-		str = g_strdup(g_path_get_basename(cwin->cstate->curr_mobj->file));
+		summary = g_strdup(g_path_get_basename(cwin->cstate->curr_mobj->file));
 
 	length = convert_length_str(cwin->cstate->curr_mobj->tags->length);
-
-
-	summary = g_strdup(_("Pragha Music Player"));
-
-	body = g_markup_printf_escaped("%s: %s\n%s: %s\n%s: %s\n%s: %s",
- 			_("Title"), str,
- 			_("Artist"), cwin->cstate->curr_mobj->tags->artist,
- 			_("Album"), cwin->cstate->curr_mobj->tags->album,
-			_("Length"), length);
+	
+	body = g_markup_printf_escaped(_("by %s in %s (%s)"),
+			(cwin->cstate->curr_mobj->tags->artist && strlen(cwin->cstate->curr_mobj->tags->artist)) ?
+			cwin->cstate->curr_mobj->tags->artist : _("Unknown Artist"),
+			(cwin->cstate->curr_mobj->tags->album && strlen(cwin->cstate->curr_mobj->tags->album)) ?
+			cwin->cstate->curr_mobj->tags->album : _("Unknown Album"),
+			length);
 
 	/* Create notification instance */
 
@@ -197,7 +195,6 @@ void show_osd(struct con_win *cwin)
 	g_free(summary);
 	g_free(body);
 	g_free(length);
-	g_free(str);
 }
 
 gboolean status_get_tooltip_cb (GtkWidget        *widget,
