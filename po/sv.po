@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Swedish\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-08-25 19:38-0300\n"
+"POT-Creation-Date: 2010-08-30 22:50-0300\n"
 "PO-Revision-Date: 2010-07-14 13:24-0300\n"
 "Last-Translator: Matias <mati86dl@gmail.com>\n"
 "Language-Team: Swedish team <LL@li.org>\n"
@@ -183,7 +183,7 @@ msgid "Remove to playback queue"
 msgstr "Ta bort från spellistans kö"
 
 #. The main edit dialog
-#: src/gui.c:251 src/gui.c:279 src/tags.c:656
+#: src/gui.c:251 src/gui.c:279 src/tags.c:667
 msgid "Edit tags"
 msgstr "Redigera taggar"
 
@@ -534,7 +534,7 @@ msgstr ""
 
 #: src/pref.c:1559
 #, fuzzy
-msgid "Add files recurcively"
+msgid "Add files recursively"
 msgstr "Lägg till filer rekursivt"
 
 #: src/pref.c:1561

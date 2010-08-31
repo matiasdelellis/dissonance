@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-08-25 19:38-0300\n"
+"POT-Creation-Date: 2010-08-30 22:50-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -182,7 +182,7 @@ msgid "Remove to playback queue"
 msgstr ""
 
 #. The main edit dialog
-#: src/gui.c:251 src/gui.c:279 src/tags.c:656
+#: src/gui.c:251 src/gui.c:279 src/tags.c:667
 msgid "Edit tags"
 msgstr ""
 
@@ -521,7 +521,7 @@ msgid "Minimize Pragha when close the window"
 msgstr ""
 
 #: src/pref.c:1559
-msgid "Add files recurcively"
+msgid "Add files recursively"
 msgstr ""
 
 #: src/pref.c:1561

@@ -2,9 +2,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pragha\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-08-25 19:38-0300\n"
+"POT-Creation-Date: 2010-08-30 22:50-0300\n"
 "PO-Revision-Date: \n"
-"Last-Translator: Matias <mati86dl@gmail.com>\n"
+"Last-Translator: Alois Nešpor <info@aloisnespor.info>\n"
 "Language-Team: \n"
 "Language: \n"
 "MIME-Version: 1.0\n"
@@ -139,7 +139,7 @@ msgstr "Wiki"
 
 #: src/gui.c:215
 msgid "Translate Pragha"
-msgstr ""
+msgstr "Přeložit"
 
 #: src/gui.c:217 src/gui.c:311
 msgid "About"
@@ -178,7 +178,7 @@ msgid "Remove to playback queue"
 msgstr "Odebrat přehrávání fronty"
 
 #. The main edit dialog
-#: src/gui.c:251 src/gui.c:279 src/tags.c:656
+#: src/gui.c:251 src/gui.c:279 src/tags.c:667
 msgid "Edit tags"
 msgstr "Editovat tagy"
 
@@ -220,7 +220,7 @@ msgstr "_Zabalit"
 
 #: src/gui.c:292 src/librarytree.c:1258
 msgid "Folders structure"
-msgstr ""
+msgstr "Struktura adresářů"
 
 #: src/gui.c:294 src/gui.c:730 src/gui.c:861 src/current_playlist.c:1307
 #: src/current_playlist.c:1433 src/librarytree.c:1261 src/statusicon.c:154
@@ -264,9 +264,8 @@ msgid "Next Track"
 msgstr "Další"
 
 #: src/gui.c:621 src/statusicon.c:150
-#, fuzzy
 msgid "Pragha Music Player"
-msgstr "Pragha hudební manažer"
+msgstr "Pragha hudební přehrávač"
 
 #. Create the checkmenu items
 #: src/gui.c:728 src/gui.c:859 src/current_playlist.c:70
@@ -292,9 +291,8 @@ msgstr "Rok"
 
 #: src/gui.c:735 src/gui.c:866 src/current_playlist.c:1311
 #: src/current_playlist.c:1437 src/tags.c:446
-#, fuzzy
 msgid "Comment"
-msgstr "Komunita"
+msgstr "Komentář"
 
 #: src/gui.c:736 src/gui.c:867 src/current_playlist.c:1312
 #: src/current_playlist.c:1438 src/statusicon.c:156 src/statusicon.c:219
@@ -467,9 +465,8 @@ msgstr "Vybrat adresář k přidání do knihovny"
 
 #. The main preferences dialog
 #: src/pref.c:1292 src/pref.c:1324
-#, fuzzy
 msgid "Preferences of Pragha"
-msgstr "Možnosti"
+msgstr "Nastavení"
 
 #. Labels
 #: src/pref.c:1335
@@ -482,11 +479,11 @@ msgstr "Hlavní"
 
 #: src/pref.c:1338
 msgid "Notifications"
-msgstr ""
+msgstr "Upozornění"
 
 #: src/pref.c:1339
 msgid "Internet Services"
-msgstr ""
+msgstr "Internetové služby"
 
 #: src/pref.c:1389 src/pref.c:1418 src/pref.c:1453
 msgid "Restart Required"
@@ -527,13 +524,12 @@ msgid "Restore last playlist"
 msgstr "Obnovit poslední playlist"
 
 #: src/pref.c:1558
-#, fuzzy
 msgid "Minimize Pragha when close the window"
 msgstr "Minimalizovat při zavření okna"
 
 #: src/pref.c:1559
 #, fuzzy
-msgid "Add files recurcively"
+msgid "Add files recursively"
 msgstr "Přidat soubory rekurzivně"
 
 #: src/pref.c:1561
@@ -555,12 +551,11 @@ msgstr "Ukazovat OSD při změně stopy"
 
 #: src/pref.c:1637
 msgid "Associate notifications to system tray"
-msgstr ""
+msgstr "Seskupit oznamování do systémové lišty"
 
 #: src/pref.c:1638
-#, fuzzy
 msgid "Show Album art in notifications"
-msgstr "Ukazovat obal v panelu"
+msgstr "Zobrazovat obrázek obalu při  oznamování"
 
 #: src/pref.c:1639
 msgid "Add actions to change track to notifications"
@@ -630,7 +625,7 @@ msgstr "Statistika"
 
 #: src/menu.c:826
 msgid "translator-credits"
-msgstr "přeložil"
+msgstr "Alois Nešpor (info@aloisnespor.info)"
 
 #: src/utils.c:222
 msgid "days"

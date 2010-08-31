@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pragha 0.7.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-08-25 19:38-0300\n"
+"POT-Creation-Date: 2010-08-30 22:50-0300\n"
 "PO-Revision-Date: 2010-07-14 13:23-0300\n"
 "Last-Translator: Matias <mati86dl@gmail.com>\n"
 "Language-Team: Lyceuhns <mail@lyceuhns.net>\n"
@@ -178,7 +178,7 @@ msgid "Remove to playback queue"
 msgstr "Remover da fila de reprodução"
 
 #. The main edit dialog
-#: src/gui.c:251 src/gui.c:279 src/tags.c:656
+#: src/gui.c:251 src/gui.c:279 src/tags.c:667
 msgid "Edit tags"
 msgstr "Editar tags"
 
@@ -532,7 +532,8 @@ msgid "Minimize Pragha when close the window"
 msgstr "Minimizar o Pragha ao fechar a janela"
 
 #: src/pref.c:1559
-msgid "Add files recurcively"
+#, fuzzy
+msgid "Add files recursively"
 msgstr "Adicionar arquivos recursivamente"
 
 #: src/pref.c:1561

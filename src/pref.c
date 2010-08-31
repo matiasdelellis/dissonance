@@ -162,7 +162,7 @@ static void pref_dialog_cb(GtkDialog *dialog, gint response_id,
 
 		cwin->cpref->add_recursively_files =
 			gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(
-						  cwin->cpref->add_recurcively_w));
+						  cwin->cpref->add_recursively_w));
 
 		cwin->cpref->show_album_art =
 			gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(
@@ -595,7 +595,7 @@ static void update_preferences(struct con_win *cwin)
 
 	if (cwin->cpref->add_recursively_files)
 		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(
-					     cwin->cpref->add_recurcively_w),
+					     cwin->cpref->add_recursively_w),
 					     TRUE);
 
 	if (cwin->cpref->show_album_art)
@@ -1309,7 +1309,7 @@ void preferences_dialog(struct con_win *cwin)
 		  *hbox_sink, *soft_mixer, *audio_cd_device_label, *audio_cd_device_entry, *hbox_audio_cd_device;
 	GtkWidget *library_view, *library_view_scroll, *library_bbox_align, *library_bbox, *library_add, *library_remove, \
 		  *fuse_folders, *hbox_library;
-	GtkWidget *window_state_combo, *restore_playlist, *close_to_tray, *album_art, *album_art_pattern_label, *add_recurcively, \
+	GtkWidget *window_state_combo, *restore_playlist, *close_to_tray, *album_art, *album_art_pattern_label, *add_recursively, \
 		  *hbox_album_art_pattern, *album_art_size, *album_art_size_label, *hbox_album_art_size;
 	GtkWidget *show_osd, *osd_in_systray, *albumart_in_osd, *actions_in_osd;
 	GtkWidget *lastfm_check, *lastfm_uname, *lastfm_pass, *album_art_pattern, *lastfm_uhbox, *lastfm_ulabel, \
@@ -1556,7 +1556,7 @@ void preferences_dialog(struct con_win *cwin)
 	restore_playlist = gtk_check_button_new_with_label(_("Restore last playlist"));
 
 	close_to_tray = gtk_check_button_new_with_label(_("Minimize Pragha when close the window"));
-	add_recurcively = gtk_check_button_new_with_label(_("Add files recurcively"));
+	add_recursively = gtk_check_button_new_with_label(_("Add files recursively"));
 
 	album_art = gtk_check_button_new_with_label(_("Show Album art in Panel"));
 
@@ -1611,7 +1611,7 @@ void preferences_dialog(struct con_win *cwin)
 			   FALSE,
 			   0);
 	gtk_box_pack_start(GTK_BOX(general_vbox),
-			   add_recurcively,
+			   add_recursively,
 			   FALSE,
 			   FALSE,
 			   0);
@@ -1741,7 +1741,7 @@ void preferences_dialog(struct con_win *cwin)
 	cwin->cpref->window_state_combo_w = window_state_combo;
 	cwin->cpref->restore_playlist_w = restore_playlist;
 	cwin->cpref->close_to_tray_w = close_to_tray;
-	cwin->cpref->add_recurcively_w = add_recurcively;
+	cwin->cpref->add_recursively_w = add_recursively;
 	cwin->cpref->album_art_w = album_art;
 	cwin->cpref->album_art_size_w = album_art_size;
 

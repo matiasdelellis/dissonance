@@ -432,7 +432,7 @@ struct con_pref {
 	GtkWidget *window_state_combo_w;
 	GtkWidget *restore_playlist_w;
 	GtkWidget *close_to_tray_w;
-	GtkWidget *add_recurcively_w;
+	GtkWidget *add_recursively_w;
 	GtkWidget *album_art_w;
 	GtkWidget *album_art_size_w;
 	GtkWidget *album_art_pattern_w;

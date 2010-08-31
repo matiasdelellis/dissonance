@@ -1,8 +1,9 @@
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: Pragha svn rev. 60\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-08-25 19:38-0300\n"
+"POT-Creation-Date: 2010-08-30 22:50-0300\n"
 "PO-Revision-Date: 2010-07-30 11:26+0100\n"
 "Last-Translator: Christoph Wickert <cwickert@fedoraproject.org>\n"
 "Language-Team: Deutsch\n"
@@ -11,8 +12,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-Language: German\n"
-"X-Poedit-Country: GERMANY\n"
 "X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-Country: GERMANY\n"
 
 #: src/gui.c:161
 msgid "_File"
@@ -140,7 +141,7 @@ msgstr "Wiki"
 
 #: src/gui.c:215
 msgid "Translate Pragha"
-msgstr ""
+msgstr "Pragha übersetzen"
 
 #: src/gui.c:217 src/gui.c:311
 msgid "About"
@@ -179,7 +180,7 @@ msgid "Remove to playback queue"
 msgstr "Aus der Warteliste entfernen"
 
 #. The main edit dialog
-#: src/gui.c:251 src/gui.c:279 src/tags.c:656
+#: src/gui.c:251 src/gui.c:279 src/tags.c:667
 msgid "Edit tags"
 msgstr "Tags bearbeiten"
 
@@ -484,11 +485,11 @@ msgstr "Allgemein"
 
 #: src/pref.c:1338
 msgid "Notifications"
-msgstr ""
+msgstr "Benachrichtigungen"
 
 #: src/pref.c:1339
 msgid "Internet Services"
-msgstr ""
+msgstr "Internetdienste"
 
 #: src/pref.c:1389 src/pref.c:1418 src/pref.c:1453
 msgid "Restart Required"
@@ -533,7 +534,8 @@ msgid "Minimize Pragha when close the window"
 msgstr "Pragha beim Schließen des Fensters minimieren"
 
 #: src/pref.c:1559
-msgid "Add files recurcively"
+#, fuzzy
+msgid "Add files recursively"
 msgstr "Dateien rekursiv hinzufügen"
 
 #: src/pref.c:1561
@@ -558,9 +560,8 @@ msgid "Associate notifications to system tray"
 msgstr ""
 
 #: src/pref.c:1638
-#, fuzzy
 msgid "Show Album art in notifications"
-msgstr "Album-Cover in der Steuerleiste anzeigen"
+msgstr "Album-Cover in Benachrichtigungen anzeigen"
 
 #: src/pref.c:1639
 msgid "Add actions to change track to notifications"
@@ -671,7 +672,6 @@ msgstr "Wiedergabeliste in Datei speichern"
 #~ msgid "Files"
 #~ msgstr "Dateien"
 
-#, fuzzy
 #~ msgid "Show _hidden files"
 #~ msgstr "Dateien _hinzufügen"
 
@@ -684,7 +684,6 @@ msgstr "Wiedergabeliste in Datei speichern"
 #~ msgid "Show Hidden Files in File View"
 #~ msgstr "Versteckte Dateien in Datei-Ansicht zeigen"
 
-#, fuzzy
 #~ msgid "Lenght"
 #~ msgstr "Länge"
 
@@ -718,7 +717,6 @@ msgstr "Wiedergabeliste in Datei speichern"
 #~ msgid "Search Library"
 #~ msgstr "Musikbibliothek durchsuchen"
 
-#, fuzzy
 #~ msgid "%i Tracks - %s"
 #~ msgstr "%i Titel - %s"
 
@@ -728,14 +726,11 @@ msgstr "Wiedergabeliste in Datei speichern"
 #~ msgid "%s by %s"
 #~ msgstr "%s von %s"
 
-#, fuzzy
 #~ msgid "Artist / Track"
 #~ msgstr "Interpret / Titel"
 
-#, fuzzy
 #~ msgid "Album / Track"
 #~ msgstr "Album / Titel"
 
-#, fuzzy
 #~ msgid "Genre / Track"
 #~ msgstr "Genre / Titel"
