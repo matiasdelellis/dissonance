@@ -869,7 +869,7 @@ gint init_config(struct con_win *cwin)
 	if (all_f || albumart_in_osd_f)
 		cwin->cpref->albumart_in_osd = TRUE;
 	if (all_f || actions_in_osd_f)
-		cwin->cpref->actions_in_osd = TRUE;
+		cwin->cpref->actions_in_osd = FALSE;
 	if (all_f || remember_window_state_f)
 		cwin->cpref->remember_window_state = TRUE;
 	if (all_f || start_mode_f)

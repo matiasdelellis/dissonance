@@ -380,6 +380,8 @@ static void toggle_album_art(GtkToggleButton *button, struct con_win *cwin)
 
 	gtk_widget_set_sensitive(cwin->cpref->album_art_pattern_w, is_active);
 	gtk_widget_set_sensitive(cwin->cpref->album_art_size_w, is_active);
+
+	gtk_widget_set_sensitive(cwin->cpref->albumart_in_osd_w, is_active);
 }
 
 /* Toggle album art pattern */

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Polski (polish)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-08-31 20:00-0300\n"
+"POT-Creation-Date: 2010-09-06 20:00-0300\n"
 "PO-Revision-Date: 2010-05-20 18:41+0100\n"
 "Last-Translator: Sid <translations@sidowo.uni.cc>\n"
 "Language-Team: Polski (polish) <translations@sidowo.uni.cc>\n"
@@ -163,7 +163,7 @@ msgstr "_Powtarzaj"
 msgid "_Fullscreen"
 msgstr "Pełny _ekran"
 
-#: src/gui.c:231 src/gui.c:592 src/pref.c:1336
+#: src/gui.c:231 src/gui.c:592 src/pref.c:1338
 msgid "Library"
 msgstr "Biblioteka"
 
@@ -229,13 +229,13 @@ msgid "Folders structure"
 msgstr ""
 
 #: src/gui.c:294 src/gui.c:730 src/gui.c:861 src/current_playlist.c:1307
-#: src/current_playlist.c:1433 src/librarytree.c:1261 src/statusicon.c:215
+#: src/current_playlist.c:1433 src/librarytree.c:1261 src/statusicon.c:213
 #: src/tags.c:441
 msgid "Artist"
 msgstr "Wykonawca"
 
 #: src/gui.c:296 src/gui.c:731 src/gui.c:862 src/current_playlist.c:1308
-#: src/current_playlist.c:1434 src/librarytree.c:1265 src/statusicon.c:216
+#: src/current_playlist.c:1434 src/librarytree.c:1265 src/statusicon.c:214
 #: src/tags.c:442
 msgid "Album"
 msgstr "Album"
@@ -261,11 +261,11 @@ msgstr "Gatunek / Wykonawca"
 msgid "Genre / Artist / Album"
 msgstr "Gatunek / Wykonawca/ Album"
 
-#: src/gui.c:317 src/statusicon.c:178
+#: src/gui.c:317 src/statusicon.c:174
 msgid "Prev Track"
 msgstr "Poprzedni utwór"
 
-#: src/gui.c:323 src/gui.c:1573 src/statusicon.c:182
+#: src/gui.c:323 src/gui.c:1573 src/statusicon.c:178
 msgid "Next Track"
 msgstr "Następny utwór"
 
@@ -281,7 +281,7 @@ msgstr "Ścieżka"
 
 #. Create labels
 #: src/gui.c:729 src/gui.c:860 src/current_playlist.c:1306
-#: src/current_playlist.c:1432 src/statusicon.c:214 src/tags.c:440
+#: src/current_playlist.c:1432 src/statusicon.c:212 src/tags.c:440
 msgid "Title"
 msgstr "Tytuł"
 
@@ -302,7 +302,7 @@ msgid "Comment"
 msgstr "Społeczność"
 
 #: src/gui.c:736 src/gui.c:867 src/current_playlist.c:1312
-#: src/current_playlist.c:1438 src/statusicon.c:217
+#: src/current_playlist.c:1438 src/statusicon.c:215
 msgid "Length"
 msgstr "Długość"
 
@@ -340,7 +340,7 @@ msgstr "Odtwarzaj piosenki w losowej kolejności"
 msgid "Repeat playback list at the end"
 msgstr "Powtarzaj listę odtwarzania"
 
-#: src/gui.c:1618 src/panel.c:218 src/statusicon.c:211
+#: src/gui.c:1618 src/panel.c:218 src/statusicon.c:209
 msgid "<b>Not playing</b>"
 msgstr "<b>[Nie odtwarza]</b>"
 
@@ -407,11 +407,11 @@ msgstr "Nieznane tagi"
 msgid "Track Information"
 msgstr "Informacje o ścieżce"
 
-#: src/librarytree.c:189 src/statusicon.c:152
+#: src/librarytree.c:189 src/statusicon.c:150
 msgid "Unknown Artist"
 msgstr "Nieznany wykonawca"
 
-#: src/librarytree.c:195 src/statusicon.c:154
+#: src/librarytree.c:195 src/statusicon.c:152
 msgid "Unknown Album"
 msgstr "Nieznany album"
 
@@ -440,9 +440,9 @@ msgstr ""
 "\n"
 "Ostrzeżenie: Gdy usuniesz plik, nie będzie go można przywrócić."
 
-#: src/statusicon.c:150
+#: src/statusicon.c:148
 #, c-format
-msgid "by %s in %s (%s)"
+msgid "by <b>%s</b> in <b>%s</b> <b>(%s)</b>"
 msgstr ""
 
 #: src/pref.c:21
@@ -459,15 +459,15 @@ msgstr ""
 msgid "Album art pattern"
 msgstr "Okładka albumu"
 
-#: src/pref.c:136 src/pref.c:1552
+#: src/pref.c:136 src/pref.c:1554
 msgid "Start normal"
 msgstr "Uruchom normalnie"
 
-#: src/pref.c:141 src/pref.c:1553
+#: src/pref.c:141 src/pref.c:1555
 msgid "Start fullscreen"
 msgstr "Włącz _tryb pełnoekranowy"
 
-#: src/pref.c:146 src/pref.c:1554
+#: src/pref.c:146 src/pref.c:1556
 msgid "Start in system tray"
 msgstr "Uruchom w trayu"
 
@@ -477,122 +477,122 @@ msgid "Select a folder to add to library"
 msgstr "Wybierz folder do dodania do biblioteki"
 
 #. The main preferences dialog
-#: src/pref.c:1292 src/pref.c:1324
+#: src/pref.c:1294 src/pref.c:1326
 #, fuzzy
 msgid "Preferences of Pragha"
 msgstr "Preferencje"
 
 #. Labels
-#: src/pref.c:1335
+#: src/pref.c:1337
 msgid "Audio"
 msgstr "Audio"
 
-#: src/pref.c:1337
+#: src/pref.c:1339
 msgid "General"
 msgstr "Ogólne"
 
-#: src/pref.c:1338
+#: src/pref.c:1340
 msgid "Notifications"
 msgstr ""
 
-#: src/pref.c:1339
+#: src/pref.c:1341
 msgid "Internet Services"
 msgstr ""
 
-#: src/pref.c:1389 src/pref.c:1418 src/pref.c:1453
+#: src/pref.c:1391 src/pref.c:1420 src/pref.c:1455
 msgid "Restart Required"
 msgstr "Wymagane ponowne uruchomienie"
 
-#: src/pref.c:1398
+#: src/pref.c:1400
 msgid "Audio sink"
 msgstr "Sterownik dźwięku"
 
-#: src/pref.c:1415
+#: src/pref.c:1417
 msgid "Audio Device"
 msgstr "Urządzenie"
 
 #. Audio CD device
-#: src/pref.c:1433
+#: src/pref.c:1435
 msgid "Audio CD Device"
 msgstr "Napęd CD"
 
 #. Software mixer
-#: src/pref.c:1452
+#: src/pref.c:1454
 msgid "Use software mixer"
 msgstr "Użyj programowego miksera"
 
-#: src/pref.c:1486
+#: src/pref.c:1488
 #, fuzzy
 msgid "Folders"
 msgstr "Folder"
 
-#: src/pref.c:1531
+#: src/pref.c:1533
 msgid "Merge folders in the folders estructure view"
 msgstr ""
 
-#: src/pref.c:1551
+#: src/pref.c:1553
 msgid "Remember last window state"
 msgstr "Zapamiętaj ostatnie położenie okna"
 
-#: src/pref.c:1556
+#: src/pref.c:1558
 msgid "Restore last playlist"
 msgstr "Przywróć ostatnią listę odtwarzania"
 
-#: src/pref.c:1558
+#: src/pref.c:1560
 #, fuzzy
 msgid "Minimize Pragha when close the window"
 msgstr "Minimalizuj program po zamknięciu okna"
 
-#: src/pref.c:1559
+#: src/pref.c:1561
 #, fuzzy
 msgid "Add files recursively"
 msgstr "Dodaj pliki rekursywnie"
 
-#: src/pref.c:1561
+#: src/pref.c:1563
 msgid "Show Album art in Panel"
 msgstr "Pokaż okładkę albumu w panelu"
 
-#: src/pref.c:1564
+#: src/pref.c:1566
 msgid "Size of Album art"
 msgstr "Rozmiar okładki"
 
-#: src/pref.c:1582
+#: src/pref.c:1584
 msgid "Album art file pattern"
 msgstr "Wzorzec pliku z okładką"
 
 #. Notification OSD
-#: src/pref.c:1636
+#: src/pref.c:1638
 msgid "Show OSD for track change"
 msgstr "Pokazuj OSD przy zmianie utworu"
 
-#: src/pref.c:1637
+#: src/pref.c:1639
 msgid "Associate notifications to system tray"
 msgstr ""
 
-#: src/pref.c:1638
+#: src/pref.c:1640
 #, fuzzy
 msgid "Show Album art in notifications"
 msgstr "Pokaż okładkę albumu w panelu"
 
-#: src/pref.c:1639
+#: src/pref.c:1641
 msgid "Add actions to change track to notifications"
 msgstr ""
 
 #. Services Last.fm
-#: src/pref.c:1664
+#: src/pref.c:1666
 msgid "Last.fm Support"
 msgstr "Obsługa Last.fm"
 
-#: src/pref.c:1667
+#: src/pref.c:1669
 msgid "Username"
 msgstr "Nazwa użytkownika"
 
-#: src/pref.c:1668
+#: src/pref.c:1670
 msgid "Password"
 msgstr "Hasło"
 
 #. Services CDDB
-#: src/pref.c:1679
+#: src/pref.c:1681
 msgid "Connect to CDDB server"
 msgstr "Połącz z serwerem CDDB"
 
