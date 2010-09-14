@@ -266,9 +266,8 @@ msgid "Next Track"
 msgstr "Nächster Titel"
 
 #: src/gui.c:621
-#, fuzzy
 msgid "Pragha Music Player"
-msgstr "Pragha Music Manager"
+msgstr "Pragha Music Player"
 
 #. Create the checkmenu items
 #: src/gui.c:728 src/gui.c:859 src/current_playlist.c:70
@@ -293,9 +292,8 @@ msgstr "Jahr"
 
 #: src/gui.c:735 src/gui.c:866 src/current_playlist.c:1311
 #: src/current_playlist.c:1437 src/tags.c:446
-#, fuzzy
 msgid "Comment"
-msgstr "Gemeinschaft"
+msgstr "Kommentar"
 
 #: src/gui.c:736 src/gui.c:867 src/current_playlist.c:1312
 #: src/current_playlist.c:1438 src/statusicon.c:215
@@ -437,9 +435,9 @@ msgstr ""
 "Warnung: Die Datei kann nach dem Löschen nicht wiederhergestellt werden."
 
 #: src/statusicon.c:148
-#, fuzzy, c-format
+#, c-format
 msgid "by <b>%s</b> in <b>%s</b> <b>(%s)</b>"
-msgstr "von %s in %s (%s)"
+msgstr "von <b>%s</b> in <b>%s</b> <b>(%s)</b>"
 
 #: src/pref.c:21
 msgid ""
@@ -474,9 +472,8 @@ msgstr "Den zu hinzufügenden Ordner wählen"
 
 #. The main preferences dialog
 #: src/pref.c:1294 src/pref.c:1326
-#, fuzzy
 msgid "Preferences of Pragha"
-msgstr "Einstellungen"
+msgstr "Einstellungen von Pragha"
 
 #. Labels
 #: src/pref.c:1337
@@ -560,7 +557,7 @@ msgstr "Benachrichtigungspopup beim Titelwechsel zeigen"
 
 #: src/pref.c:1639
 msgid "Associate notifications to system tray"
-msgstr ""
+msgstr "Benachrichtigungen mit System-Tray verbinden"
 
 #: src/pref.c:1640
 msgid "Show Album art in notifications"

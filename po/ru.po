@@ -145,7 +145,7 @@ msgstr "Вики"
 
 #: src/gui.c:215
 msgid "Translate Pragha"
-msgstr ""
+msgstr "Перевести Pragha"
 
 #: src/gui.c:217 src/gui.c:311
 msgid "About"
@@ -181,7 +181,7 @@ msgstr "Добавить в очередь воспроизведения"
 
 #: src/gui.c:245
 msgid "Remove to playback queue"
-msgstr ""
+msgstr "Переместить в очередь"
 
 #. The main edit dialog
 #: src/gui.c:251 src/gui.c:279 src/tags.c:667
@@ -311,7 +311,7 @@ msgstr "Имя файла"
 
 #: src/gui.c:740
 msgid "Clear sort"
-msgstr ""
+msgstr "Без сортировки"
 
 #. Tooltips
 #: src/gui.c:1571
@@ -327,9 +327,8 @@ msgid "Stop playback"
 msgstr "Остановить воспроизведение"
 
 #: src/gui.c:1576
-#, fuzzy
 msgid "Leave Fullscreen"
-msgstr "Во весь экр_ан"
+msgstr "Выход из полноэкранного режима"
 
 #: src/gui.c:1577
 msgid "Play songs in a random order"
@@ -439,9 +438,9 @@ msgstr ""
 "Внимание: После удаления файл нельзя будет восстановить!"
 
 #: src/statusicon.c:148
-#, fuzzy, c-format
+#, c-format
 msgid "by <b>%s</b> in <b>%s</b> <b>(%s)</b>"
-msgstr "исполняет %s из %s (%s)"
+msgstr "<b>%s</b>, альбом: <b>%s</b> (%s)"
 
 #: src/pref.c:21
 msgid ""
@@ -459,12 +458,11 @@ msgstr "Обложка альбома"
 
 #: src/pref.c:136 src/pref.c:1554
 msgid "Start normal"
-msgstr ""
+msgstr "Обычный размер"
 
 #: src/pref.c:141 src/pref.c:1555
-#, fuzzy
 msgid "Start fullscreen"
-msgstr "Во весь экр_ан"
+msgstr "Во весь экран"
 
 #: src/pref.c:146 src/pref.c:1556
 msgid "Start in system tray"
@@ -477,7 +475,6 @@ msgstr "Добавить в коллекцию выделенную директ
 
 #. The main preferences dialog
 #: src/pref.c:1294 src/pref.c:1326
-#, fuzzy
 msgid "Preferences of Pragha"
 msgstr "Настройки"
 
@@ -492,11 +489,11 @@ msgstr "Основное"
 
 #: src/pref.c:1340
 msgid "Notifications"
-msgstr ""
+msgstr "Уведомления"
 
 #: src/pref.c:1341
 msgid "Internet Services"
-msgstr ""
+msgstr "Службы в Интернете"
 
 #: src/pref.c:1391 src/pref.c:1420 src/pref.c:1455
 msgid "Restart Required"
@@ -541,9 +538,8 @@ msgid "Minimize Pragha when close the window"
 msgstr "Сворачивать при закрытии окна"
 
 #: src/pref.c:1561
-#, fuzzy
 msgid "Add files recursively"
-msgstr "Добавить в плейлист (Рекурсивно)"
+msgstr "Добавлять содержимое вложенных папок"
 
 #: src/pref.c:1563
 msgid "Show Album art in Panel"
@@ -564,12 +560,11 @@ msgstr "Показывать OSD при смене трека"
 
 #: src/pref.c:1639
 msgid "Associate notifications to system tray"
-msgstr ""
+msgstr "Выводить уведомления в области уведомлений"
 
 #: src/pref.c:1640
-#, fuzzy
 msgid "Show Album art in notifications"
-msgstr "Показывать обложку альбома на панели"
+msgstr "Показывать обложку альбома в уведомлении"
 
 #: src/pref.c:1641
 msgid "Add actions to change track to notifications"

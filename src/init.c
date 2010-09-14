@@ -1294,6 +1294,7 @@ void init_gui(gint argc, gchar **argv, struct con_win *cwin)
 {
 	GtkUIManager *menu;
 	GtkWidget *vbox, *hbox_panel, *hbox_main, *status_bar, *menu_bar;
+	gchar *role;
 
 	CDEBUG(DBG_INFO, "Initializing gui");
 
@@ -1393,5 +1394,11 @@ void init_gui(gint argc, gchar **argv, struct con_win *cwin)
 
 	if (cwin->album_art_frame)
 		resize_album_art_frame(cwin);
+
+	/* set a unique role on each window (for session management) */
+	role = g_strdup_printf ("Pragha-%p-%d-%d", cwin->mainwindow, (gint) getpid (), (gint) time (NULL));
+	gtk_window_set_role (GTK_WINDOW (cwin->mainwindow), role);
+	g_free (role);
+
 	gtk_init_add(_init_gui_state, cwin);
 }

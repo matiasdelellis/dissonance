@@ -1,3 +1,4 @@
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: Español\n"
@@ -11,8 +12,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-Language: Spanish\n"
-"X-Poedit-Country: SPAIN\n"
 "X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-Country: SPAIN\n"
 
 #: src/gui.c:161
 msgid "_File"
@@ -265,9 +266,8 @@ msgid "Next Track"
 msgstr "Pista Siguiente"
 
 #: src/gui.c:621
-#, fuzzy
 msgid "Pragha Music Player"
-msgstr "Pragha"
+msgstr "Reproductor de Música Pragha"
 
 #. Create the checkmenu items
 #: src/gui.c:728 src/gui.c:859 src/current_playlist.c:70
@@ -434,7 +434,7 @@ msgstr ""
 "Advertencia: Una vez eliminado nunca podra recuperarlo."
 
 #: src/statusicon.c:148
-#, fuzzy, c-format
+#, c-format
 msgid "by <b>%s</b> in <b>%s</b> <b>(%s)</b>"
 msgstr "por %s en %s (%s)"
 
