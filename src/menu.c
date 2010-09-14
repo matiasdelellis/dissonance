@@ -131,7 +131,7 @@ void handle_selected_file(gpointer data, gpointer udata)
 
 static GtkWidget* lib_progress_bar(struct con_win *cwin, int update)
 {
-	GtkWidget *progress_bar;
+	GtkWidget *hbox, *spinner, *progress_bar;
 
 	/* Create a dialog with a Cancel button */
 
@@ -149,6 +149,16 @@ static GtkWidget* lib_progress_bar(struct con_win *cwin, int update)
 	progress_bar = gtk_progress_bar_new();
 	gtk_progress_bar_pulse(GTK_PROGRESS_BAR(progress_bar));
 
+	hbox = gtk_hbox_new (FALSE, 5);
+
+ 	#if GTK_CHECK_VERSION (2, 20, 0)
+	spinner = gtk_spinner_new ();
+	gtk_container_add (GTK_CONTAINER (hbox), spinner);
+	gtk_spinner_start(GTK_SPINNER(spinner))
+ 	#endif
+
+	gtk_container_add (GTK_CONTAINER (hbox), progress_bar);
+
 	/* Set various properties */
 
 	gtk_progress_bar_set_orientation(GTK_PROGRESS_BAR(progress_bar),
@@ -159,8 +169,6 @@ static GtkWidget* lib_progress_bar(struct con_win *cwin, int update)
 	gtk_button_box_set_layout(GTK_BUTTON_BOX(GTK_DIALOG(
 						 library_dialog)->action_area),
 				  GTK_BUTTONBOX_SPREAD);
-	gtk_progress_bar_set_text(GTK_PROGRESS_BAR(progress_bar),
-				  PROGRESS_BAR_TEXT);
 
 	/* Setup signal handlers */
 
@@ -171,8 +179,7 @@ static GtkWidget* lib_progress_bar(struct con_win *cwin, int update)
 
 	/* Add the progress bar to the dialog box's vbox and show everything */
 
-	gtk_container_add(GTK_CONTAINER(GTK_DIALOG(library_dialog)->vbox),
-			  progress_bar);
+	gtk_container_add(GTK_CONTAINER(GTK_DIALOG(library_dialog)->vbox), hbox);
 	gtk_widget_show_all(library_dialog);
 
 	return progress_bar;
