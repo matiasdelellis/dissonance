@@ -763,7 +763,7 @@ gboolean save_tags_to_file(gchar *file, struct tags *tags,
 			   int changed, struct con_win *cwin);
 void tag_update(GArray *loc_arr, GArray *file_arr, gint changed, struct tags *ntag,
 		struct con_win *cwin);
-gint tag_edit_dialog(struct tags *otag, struct tags *ntag,
+gint tag_edit_dialog(struct tags *otag, struct tags *ntag, gchar *file,
 		     struct con_win *cwin);
 void refresh_tag_completion_entries(struct con_win *cwin);
 void edit_tags_current_playlist(GtkAction *action, struct con_win *cwin);

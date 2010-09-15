@@ -154,7 +154,7 @@ static GtkWidget* lib_progress_bar(struct con_win *cwin, int update)
  	#if GTK_CHECK_VERSION (2, 20, 0)
 	spinner = gtk_spinner_new ();
 	gtk_container_add (GTK_CONTAINER (hbox), spinner);
-	gtk_spinner_start(GTK_SPINNER(spinner))
+	gtk_spinner_start(GTK_SPINNER(spinner));
  	#endif
 
 	gtk_container_add (GTK_CONTAINER (hbox), progress_bar);

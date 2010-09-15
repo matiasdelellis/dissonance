@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-09-06 20:00-0300\n"
+"POT-Creation-Date: 2010-09-14 21:02-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -182,7 +182,7 @@ msgid "Remove to playback queue"
 msgstr ""
 
 #. The main edit dialog
-#: src/gui.c:251 src/gui.c:279 src/tags.c:667
+#: src/gui.c:251 src/gui.c:279 src/tags.c:694
 msgid "Edit tags"
 msgstr ""
 
@@ -222,40 +222,40 @@ msgstr ""
 msgid "_Collapse library"
 msgstr ""
 
-#: src/gui.c:292 src/librarytree.c:1258
+#: src/gui.c:292 src/librarytree.c:1260
 msgid "Folders structure"
 msgstr ""
 
 #: src/gui.c:294 src/gui.c:730 src/gui.c:861 src/current_playlist.c:1307
-#: src/current_playlist.c:1433 src/librarytree.c:1261 src/statusicon.c:213
-#: src/tags.c:441
+#: src/current_playlist.c:1433 src/librarytree.c:1263 src/statusicon.c:213
+#: src/tags.c:454
 msgid "Artist"
 msgstr ""
 
 #: src/gui.c:296 src/gui.c:731 src/gui.c:862 src/current_playlist.c:1308
-#: src/current_playlist.c:1434 src/librarytree.c:1265 src/statusicon.c:214
-#: src/tags.c:442
+#: src/current_playlist.c:1434 src/librarytree.c:1267 src/statusicon.c:214
+#: src/tags.c:455
 msgid "Album"
 msgstr ""
 
 #: src/gui.c:298 src/gui.c:732 src/gui.c:863 src/current_playlist.c:1309
-#: src/current_playlist.c:1435 src/librarytree.c:1269 src/tags.c:443
+#: src/current_playlist.c:1435 src/librarytree.c:1271 src/tags.c:456
 msgid "Genre"
 msgstr ""
 
-#: src/gui.c:300 src/librarytree.c:1273
+#: src/gui.c:300 src/librarytree.c:1275
 msgid "Artist / Album"
 msgstr ""
 
-#: src/gui.c:302 src/librarytree.c:1281
+#: src/gui.c:302 src/librarytree.c:1283
 msgid "Genre / Album"
 msgstr ""
 
-#: src/gui.c:304 src/librarytree.c:1277
+#: src/gui.c:304 src/librarytree.c:1279
 msgid "Genre / Artist"
 msgstr ""
 
-#: src/gui.c:306 src/librarytree.c:1285
+#: src/gui.c:306 src/librarytree.c:1287
 msgid "Genre / Artist / Album"
 msgstr ""
 
@@ -278,7 +278,7 @@ msgstr ""
 
 #. Create labels
 #: src/gui.c:729 src/gui.c:860 src/current_playlist.c:1306
-#: src/current_playlist.c:1432 src/statusicon.c:212 src/tags.c:440
+#: src/current_playlist.c:1432 src/statusicon.c:212 src/tags.c:453
 msgid "Title"
 msgstr ""
 
@@ -288,12 +288,12 @@ msgid "Bitrate"
 msgstr ""
 
 #: src/gui.c:734 src/gui.c:865 src/current_playlist.c:1310
-#: src/current_playlist.c:1436 src/tags.c:445
+#: src/current_playlist.c:1436 src/tags.c:458
 msgid "Year"
 msgstr ""
 
 #: src/gui.c:735 src/gui.c:866 src/current_playlist.c:1311
-#: src/current_playlist.c:1437 src/tags.c:446
+#: src/current_playlist.c:1437 src/tags.c:459
 msgid "Comment"
 msgstr ""
 
@@ -377,7 +377,7 @@ msgstr ""
 msgid "<b>con_playlist</b> is a reserved playlist name"
 msgstr ""
 
-#: src/current_playlist.c:1305 src/current_playlist.c:1431 src/tags.c:444
+#: src/current_playlist.c:1305 src/current_playlist.c:1431 src/tags.c:457
 msgid "Track No"
 msgstr ""
 
@@ -430,6 +430,14 @@ msgstr ""
 #: src/statusicon.c:148
 #, c-format
 msgid "by <b>%s</b> in <b>%s</b> <b>(%s)</b>"
+msgstr ""
+
+#: src/tags.c:460
+msgid "File"
+msgstr ""
+
+#: src/tags.c:697
+msgid "Details"
 msgstr ""
 
 #: src/pref.c:21
@@ -583,43 +591,43 @@ msgstr ""
 msgid "Rescan Library"
 msgstr ""
 
-#: src/menu.c:238
+#: src/menu.c:245
 msgid "Select a file to play"
 msgstr ""
 
-#: src/menu.c:259
+#: src/menu.c:266
 msgid "Add recursively files"
 msgstr ""
 
-#: src/menu.c:280
+#: src/menu.c:287
 msgid "Supported media"
 msgstr ""
 
-#: src/menu.c:300
+#: src/menu.c:307
 msgid "All files"
 msgstr ""
 
-#: src/menu.c:588 src/menu.c:722
+#: src/menu.c:595 src/menu.c:729
 msgid "Library scan complete"
 msgstr ""
 
-#: src/menu.c:803
+#: src/menu.c:810
 msgid "Total Tracks:"
 msgstr ""
 
-#: src/menu.c:805
+#: src/menu.c:812
 msgid "Total Artists:"
 msgstr ""
 
-#: src/menu.c:807
+#: src/menu.c:814
 msgid "Total Albums:"
 msgstr ""
 
-#: src/menu.c:809
+#: src/menu.c:816
 msgid "Statistics"
 msgstr ""
 
-#: src/menu.c:826
+#: src/menu.c:833
 msgid "translator-credits"
 msgstr ""
 
