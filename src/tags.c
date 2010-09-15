@@ -793,7 +793,7 @@ gint tag_edit_dialog(struct tags *otag, struct tags *ntag, gchar *file,
 		(result != GTK_RESPONSE_DELETE_EVENT)) {
 
 		if(result == GTK_RESPONSE_HELP)
-			track_properties_current_playing(cwin);
+			track_properties(file, cwin);
 	}
 
 	switch (result)

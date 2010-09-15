@@ -1286,195 +1286,79 @@ void crop_current_playlist(GtkAction *action, struct con_win *cwin)
 /* Show track properties dialog
    This function is a fscking eyesore. */
 
-void track_properties_current_playlist_action(GtkAction *action, struct con_win *cwin)
+void track_properties(gchar *uri, struct con_win *cwin)
 {
-	track_properties_current_playlist(cwin);
-}
-
-void track_properties_current_playlist(struct con_win *cwin)
-{
-	GtkTreeModel *model;
 	GtkWidget *dialog;
-	GtkTreeSelection *selection;
-	GList *list;
-	GtkTreePath *path;
-	GtkTreeIter iter;
 	struct musicobject *mobj = NULL;
 	GtkWidget *t_hbox, *align, *tag_box, *info_box, *tag_label, *info_label;
-	gint i=0;
-	gchar tags[12][20] = {N_("Track No"),
-			      N_("Title"),
-			      N_("Artist"),
-			      N_("Album"),
-			      N_("Genre"),
-			      N_("Year"),
-			      N_("Comment"),
-			      N_("Length"),
-			      N_("Bitrate"),
-			      N_("Channels"),
-			      N_("Samplerate"),
-			      N_("Filename")};
+	gint location_id, i = 0;
+	gchar *file = NULL;
 
-	model = gtk_tree_view_get_model(GTK_TREE_VIEW(cwin->current_playlist));
-	selection = gtk_tree_view_get_selection(GTK_TREE_VIEW(cwin->current_playlist));
-	list = gtk_tree_selection_get_selected_rows(selection, NULL);
+	file = sanitize_string_sqlite3(uri);
 
-	if (list) {
-		path = list->data;
-		gtk_tree_model_get_iter(model, &iter, path);
-		gtk_tree_model_get(model, &iter, P_MOBJ_PTR, &mobj, -1);
-		if (mobj) {
-			gchar *tno = g_strdup_printf("%d", mobj->tags->track_no);
-			gchar *year = g_strdup_printf("%d", mobj->tags->year);
-			gchar *length = convert_length_str(mobj->tags->length);
-			gchar *bitrate = g_strdup_printf("%d", mobj->tags->bitrate);
-			gchar *channels = g_strdup_printf("%d", mobj->tags->channels);
-			gchar *samplerate = g_strdup_printf("%d", mobj->tags->samplerate);
-			gchar *u_file = get_display_name(mobj);
+	/* Form a musicobject since length and title are needed */
 
-			gchar *tr_info[12] = {tno,
-			      (mobj->tags->title && strlen(mobj->tags->title)) ?
-			      mobj->tags->title : _("Unknown Tags"),
-			      (mobj->tags->artist && strlen(mobj->tags->artist)) ?
-			      mobj->tags->artist : _("Unknown Tags"),
-			      (mobj->tags->album && strlen(mobj->tags->album)) ?
-			      mobj->tags->album : _("Unknown Tags"),
-			      (mobj->tags->genre && strlen(mobj->tags->genre)) ?
-			      mobj->tags->genre : _("Unknown Tags"),
-			      year,
-			      (mobj->tags->comment && strlen(mobj->tags->comment)) ?
-			      mobj->tags->comment : _("Unknown Tags"),
-			      length,
-			      bitrate,
-			      channels,
-			      samplerate,
-			      u_file};
+	if ((location_id = find_location_db(file, cwin)))
+		mobj = new_musicobject_from_db(location_id, cwin);
+	else
+		mobj = new_musicobject_from_file(uri);
 
-			dialog = gtk_dialog_new_with_buttons(_("Track Information"),
-					     GTK_WINDOW(cwin->mainwindow),
-					     GTK_DIALOG_MODAL |
-					     GTK_DIALOG_DESTROY_WITH_PARENT,
-					     GTK_STOCK_OK,
-					     GTK_RESPONSE_ACCEPT,
-					     NULL);
-			tag_box = gtk_vbox_new(FALSE, 0);
-			info_box = gtk_vbox_new(FALSE, 0);
-			t_hbox = gtk_hbox_new(FALSE, 0);
+	if (mobj) {
+		gchar tags[13][20] = {N_("Track No"),
+				      N_("Title"),
+				      N_("Artist"),
+				      N_("Album"),
+				      N_("Genre"),
+				      N_("Year"),
+				      N_("Comment"),
+				      N_("Length"),
+				      N_("Bitrate"),
+				      N_("Channels"),
+				      N_("Samplerate"),
+				      N_("Folder"),
+				      N_("Filename")};
 
-			for (i=0; i<12; i++) {
-				align = gtk_alignment_new(0, 0, 0, 0);
-				tag_label = gtk_label_new(tags[i]);
-				gtk_label_set_selectable(GTK_LABEL(tag_label), TRUE);
-				gtk_container_add(GTK_CONTAINER(align), tag_label);
-				gtk_box_pack_start(GTK_BOX(tag_box),
-						   GTK_WIDGET(align),
-						   FALSE,
-						   FALSE,
-						   0);
-				align = gtk_alignment_new(0, 0, 0, 0);
-				info_label = gtk_label_new(tr_info[i]);
-				gtk_label_set_selectable(GTK_LABEL(info_label), TRUE);
-				gtk_label_set_line_wrap(GTK_LABEL(info_label), TRUE);
-				gtk_container_add(GTK_CONTAINER(align), info_label);
-				gtk_box_pack_start(GTK_BOX(info_box),
-						   GTK_WIDGET(align),
-						   FALSE,
-						   FALSE,
-						   0);
-			}
+		gchar *tno = g_strdup_printf("%d", mobj->tags->track_no);
+		gchar *year = g_strdup_printf("%d", mobj->tags->year);
+		gchar *length = convert_length_str(mobj->tags->length);
+		gchar *bitrate = g_strdup_printf("%d", mobj->tags->bitrate);
+		gchar *channels = g_strdup_printf("%d", mobj->tags->channels);
+		gchar *samplerate = g_strdup_printf("%d", mobj->tags->samplerate);
+		gchar *folder = get_display_filename(uri, TRUE);
+		gchar *u_file = get_display_name(mobj);
 
-			gtk_box_pack_start(GTK_BOX(t_hbox),
-					   GTK_WIDGET(tag_box),
-					   FALSE,
-					   FALSE,
-					   10);
-			gtk_box_pack_start(GTK_BOX(t_hbox),
-					   GTK_WIDGET(info_box),
-					   FALSE,
-					   FALSE,
-					   10);
-			gtk_container_add(GTK_CONTAINER(GTK_DIALOG(dialog)->vbox),
-					  GTK_WIDGET(t_hbox));
-			gtk_widget_show_all(dialog);
-			gtk_dialog_run(GTK_DIALOG(dialog));
-			gtk_widget_destroy(dialog);
+		gchar *tr_info[13] = {tno,
+		      (mobj->tags->title && strlen(mobj->tags->title)) ?
+		      mobj->tags->title : _("Unknown Tags"),
+		      (mobj->tags->artist && strlen(mobj->tags->artist)) ?
+		      mobj->tags->artist : _("Unknown Artist"),
+		      (mobj->tags->album && strlen(mobj->tags->album)) ?
+		      mobj->tags->album : _("Unknown Album"),
+		      (mobj->tags->genre && strlen(mobj->tags->genre)) ?
+		      mobj->tags->genre : _("Unknown Genre"),
+		      year,
+		      (mobj->tags->comment && strlen(mobj->tags->comment)) ?
+		      mobj->tags->comment : _("Unknown Tags"),
+		      length,
+		      bitrate,
+		      channels,
+		      samplerate,
+		      folder,
+		      u_file};
 
-			g_free(tno);
-			g_free(year);
-			g_free(length);
-			g_free(bitrate);
-			g_free(channels);
-			g_free(samplerate);
-			g_free(u_file);
-		}
-		else
-			g_critical("Dangling music object");
-
-		gtk_tree_path_free(path);
-		g_list_free(list);
-	}
-}
-
-/* Show track properties dialog
-   This function is a fscking eyesore. */
-
-void track_properties_current_playing(struct con_win *cwin)
-{
-	GtkWidget *dialog;
-	GtkWidget *t_hbox, *align, *tag_box, *info_box, *tag_label, *info_label;
-	gint i=0;
-	gchar tags[12][20] = {N_("Track No"),
-			      N_("Title"),
-			      N_("Artist"),
-			      N_("Album"),
-			      N_("Genre"),
-			      N_("Year"),
-			      N_("Comment"),
-			      N_("Length"),
-			      N_("Bitrate"),
-			      N_("Channels"),
-			      N_("Samplerate"),
-			      N_("Filename")};
-
-	if (cwin->cstate->curr_mobj) {
-		gchar *tno = g_strdup_printf("%d", cwin->cstate->curr_mobj->tags->track_no);
-		gchar *year = g_strdup_printf("%d", cwin->cstate->curr_mobj->tags->year);
-		gchar *length = convert_length_str(cwin->cstate->curr_mobj->tags->length);
-		gchar *bitrate = g_strdup_printf("%d", cwin->cstate->curr_mobj->tags->bitrate);
-		gchar *channels = g_strdup_printf("%d", cwin->cstate->curr_mobj->tags->channels);
-		gchar *samplerate = g_strdup_printf("%d", cwin->cstate->curr_mobj->tags->samplerate);
-		gchar *u_file = get_display_name(cwin->cstate->curr_mobj);
-
-		gchar *tr_info[12] = {tno,
-				     (cwin->cstate->curr_mobj->tags->title && strlen(cwin->cstate->curr_mobj->tags->title)) ?
-				     cwin->cstate->curr_mobj->tags->title : _("Unknown Tags"),
-				     (cwin->cstate->curr_mobj->tags->artist && strlen(cwin->cstate->curr_mobj->tags->artist)) ?
-				     cwin->cstate->curr_mobj->tags->artist : _("Unknown Tags"),
-				     (cwin->cstate->curr_mobj->tags->album && strlen(cwin->cstate->curr_mobj->tags->album)) ?
-				     cwin->cstate->curr_mobj->tags->album : _("Unknown Tags"),
-				     (cwin->cstate->curr_mobj->tags->genre && strlen(cwin->cstate->curr_mobj->tags->genre)) ?
-				     cwin->cstate->curr_mobj->tags->genre : _("Unknown Tags"),
-				     year,
-				     (cwin->cstate->curr_mobj->tags->comment && strlen(cwin->cstate->curr_mobj->tags->comment)) ?
-				     cwin->cstate->curr_mobj->tags->comment : _("Unknown Tags"),
-				     length,
-				     bitrate,
-				     channels,
-				     samplerate,
-				     u_file};
 		dialog = gtk_dialog_new_with_buttons(_("Track Information"),
-					     GTK_WINDOW(cwin->mainwindow),
-					     GTK_DIALOG_MODAL |
-					     GTK_DIALOG_DESTROY_WITH_PARENT,
-					     GTK_STOCK_OK,
-					     GTK_RESPONSE_ACCEPT,
-					     NULL);
+				     GTK_WINDOW(cwin->mainwindow),
+				     GTK_DIALOG_MODAL |
+				     GTK_DIALOG_DESTROY_WITH_PARENT,
+				     GTK_STOCK_OK,
+				     GTK_RESPONSE_ACCEPT,
+				     NULL);
 
 		tag_box = gtk_vbox_new(FALSE, 0);
 		info_box = gtk_vbox_new(FALSE, 0);
 		t_hbox = gtk_hbox_new(FALSE, 0);
 
-		for (i=0; i<12; i++) {
+		for (i=0; i<13; i++) {
 			align = gtk_alignment_new(0, 0, 0, 0);
 			tag_label = gtk_label_new(tags[i]);
 			gtk_label_set_selectable(GTK_LABEL(tag_label), TRUE);
@@ -1489,7 +1373,7 @@ void track_properties_current_playing(struct con_win *cwin)
 			gtk_label_set_selectable(GTK_LABEL(info_label), TRUE);
 			gtk_label_set_line_wrap(GTK_LABEL(info_label), TRUE);
 			gtk_container_add(GTK_CONTAINER(align), info_label);
-				gtk_box_pack_start(GTK_BOX(info_box),
+			gtk_box_pack_start(GTK_BOX(info_box),
 					   GTK_WIDGET(align),
 					   FALSE,
 					   FALSE,
@@ -1508,12 +1392,10 @@ void track_properties_current_playing(struct con_win *cwin)
 				   10);
 
 		gtk_container_add(GTK_CONTAINER(GTK_DIALOG(dialog)->vbox),
-				  GTK_WIDGET(t_hbox));
+					  GTK_WIDGET(t_hbox));
 
 		gtk_widget_show_all(dialog);
-
 		gtk_dialog_run(GTK_DIALOG(dialog));
-
 		gtk_widget_destroy(dialog);
 
 		g_free(tno);
@@ -1522,12 +1404,14 @@ void track_properties_current_playing(struct con_win *cwin)
 		g_free(bitrate);
 		g_free(channels);
 		g_free(samplerate);
+		g_free(folder);
 		g_free(u_file);
 	}
 	else
-		track_properties_current_playlist(cwin);
-}
+		g_critical("Dangling music object");
 
+	g_free(file);
+}
 
 /* Clear all rows from current playlist */
 
