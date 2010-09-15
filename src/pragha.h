@@ -916,7 +916,7 @@ void remove_current_playlist(GtkAction *action, struct con_win *cwin);
 void crop_current_playlist(GtkAction *action, struct con_win *cwin);
 void track_properties_current_playlist_action(GtkAction *action, struct con_win *cwin);
 void track_properties_current_playlist(struct con_win *cwin);
-void track_properties_current_playing_action(GtkAction *action, struct con_win *cwin);
+void edit_tags_playing_action(GtkAction *action, struct con_win *cwin);
 void track_properties_current_playing(struct con_win *cwin);
 void clear_current_playlist(GtkAction *action, struct con_win *cwin);
 void insert_current_playlist(struct musicobject *mobj, gboolean drop_after, GtkTreeIter *pos, struct con_win *cwin);

@@ -418,7 +418,7 @@ directory_pressed (GtkEntry       *entry,
 		GdkEventButton *event,
 		gchar *file)
 {
-	if (position == GTK_ENTRY_ICON_SECONDARY) {
+	if (position == GTK_ENTRY_ICON_SECONDARY && file) {
 		gchar *uri = get_display_filename(file, TRUE);
 		open_url(NULL, uri);
 		g_free(uri);
@@ -696,13 +696,16 @@ gint tag_edit_dialog(struct tags *otag, struct tags *ntag, gchar *file,
 	dialog = gtk_dialog_new_with_buttons(_("Edit tags"),
 					     GTK_WINDOW(cwin->mainwindow),
 					     GTK_DIALOG_MODAL,
-					     _("Details"),
-					     GTK_RESPONSE_HELP,
 					     GTK_STOCK_CANCEL,
 					     GTK_RESPONSE_CANCEL,
 					     GTK_STOCK_OK,
 					     GTK_RESPONSE_OK,
 					     NULL);
+
+	if (file) {
+		gtk_dialog_add_button(GTK_DIALOG(dialog), _("Details"), GTK_RESPONSE_HELP);
+	}
+
 	gtk_window_set_default_size(GTK_WINDOW (dialog), 450, -1);
 
 	/* Add to the dialog's main vbox */

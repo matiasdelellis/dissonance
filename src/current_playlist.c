@@ -1418,7 +1418,7 @@ void track_properties_current_playlist(struct con_win *cwin)
 /* Show track properties dialog
    This function is a fscking eyesore. */
 
-void track_properties_current_playing_action(GtkAction *action, struct con_win *cwin)
+void edit_tags_playing_action(GtkAction *action, struct con_win *cwin)
 {
 	track_properties_current_playing(cwin);
 }
@@ -2006,7 +2006,7 @@ gboolean current_playlist_button_press_cb(GtkWidget *widget,
 					 GdkEventButton *event,
 					 struct con_win *cwin)
 {
-	GtkWidget *popup_menu, *track_prop;
+	GtkWidget *popup_menu, *item_widget;
 	gboolean ret = FALSE;
 	GtkTreeSelection *selection;
 	gint n_select = 0;
@@ -2039,52 +2039,40 @@ gboolean current_playlist_button_press_cb(GtkWidget *widget,
 				gtk_tree_selection_select_path(selection, path);
 			}
 
-			/* 'Properties' menuitem is shown only for a single selection */
-
-			track_prop = gtk_ui_manager_get_widget(cwin->cp_context_menu,
-							       "/popup/Properties");
-			if (!track_prop)
-				g_critical("Unable to find prop widget");
-
 			n_select = gtk_tree_selection_count_selected_rows(selection);
-
-			if (n_select != 1)
-				gtk_widget_set_sensitive (GTK_WIDGET(track_prop), FALSE);
-			else
-				gtk_widget_set_sensitive (GTK_WIDGET(track_prop), TRUE);
 
 			if (gtk_tree_model_get_iter(model, &iter, path)){
 				gtk_tree_model_get(model, &iter, P_BUBBLE, &is_queue, -1);
 
 				if(is_queue){
-					track_prop = gtk_ui_manager_get_widget(cwin->cp_context_menu, "/popup/Queue");
-					gtk_widget_hide(GTK_WIDGET(track_prop));
+					item_widget = gtk_ui_manager_get_widget(cwin->cp_context_menu, "/popup/Queue");
+					gtk_widget_hide(GTK_WIDGET(item_widget));
 
-					track_prop = gtk_ui_manager_get_widget(cwin->cp_context_menu, "/popup/Enqueue");
-					gtk_widget_show(GTK_WIDGET(track_prop));
+					item_widget = gtk_ui_manager_get_widget(cwin->cp_context_menu, "/popup/Enqueue");
+					gtk_widget_show(GTK_WIDGET(item_widget));
 
-					track_prop = gtk_ui_manager_get_widget(cwin->cp_context_menu, "/popup/Edit tags");
-					gtk_widget_set_sensitive (GTK_WIDGET(track_prop), TRUE);
+					item_widget = gtk_ui_manager_get_widget(cwin->cp_context_menu, "/popup/Edit tags");
+					gtk_widget_set_sensitive (GTK_WIDGET(item_widget), TRUE);
 				}
 				else{
-					track_prop = gtk_ui_manager_get_widget(cwin->cp_context_menu, "/popup/Queue");
-					gtk_widget_set_sensitive (GTK_WIDGET(track_prop), TRUE);
-					gtk_widget_show(GTK_WIDGET(track_prop));
+					item_widget = gtk_ui_manager_get_widget(cwin->cp_context_menu, "/popup/Queue");
+					gtk_widget_set_sensitive (GTK_WIDGET(item_widget), TRUE);
+					gtk_widget_show(GTK_WIDGET(item_widget));
 
-					track_prop = gtk_ui_manager_get_widget(cwin->cp_context_menu, "/popup/Enqueue");
-					gtk_widget_hide(GTK_WIDGET(track_prop));
+					item_widget = gtk_ui_manager_get_widget(cwin->cp_context_menu, "/popup/Enqueue");
+					gtk_widget_hide(GTK_WIDGET(item_widget));
 
-					track_prop = gtk_ui_manager_get_widget(cwin->cp_context_menu, "/popup/Edit tags");
-					gtk_widget_set_sensitive (GTK_WIDGET(track_prop), TRUE);
+					item_widget = gtk_ui_manager_get_widget(cwin->cp_context_menu, "/popup/Edit tags");
+					gtk_widget_set_sensitive (GTK_WIDGET(item_widget), TRUE);
 				}
 			}
 			else{
-				track_prop = gtk_ui_manager_get_widget(cwin->cp_context_menu, "/popup/Queue");
-				gtk_widget_set_sensitive (GTK_WIDGET(track_prop), FALSE);
-				gtk_widget_show(GTK_WIDGET(track_prop));
+				item_widget = gtk_ui_manager_get_widget(cwin->cp_context_menu, "/popup/Queue");
+				gtk_widget_set_sensitive (GTK_WIDGET(item_widget), FALSE);
+				gtk_widget_show(GTK_WIDGET(item_widget));
 
-				track_prop = gtk_ui_manager_get_widget(cwin->cp_context_menu, "/popup/Enqueue");
-				gtk_widget_hide(GTK_WIDGET(track_prop));
+				item_widget = gtk_ui_manager_get_widget(cwin->cp_context_menu, "/popup/Enqueue");
+				gtk_widget_hide(GTK_WIDGET(item_widget));
 			}
 
 			/* If more than one track is selected, don't propagate event */
@@ -2097,18 +2085,15 @@ gboolean current_playlist_button_press_cb(GtkWidget *widget,
 			gtk_tree_path_free(path);
 		}
 		else{
-			track_prop = gtk_ui_manager_get_widget(cwin->cp_context_menu, "/popup/Queue");
-			gtk_widget_set_sensitive (GTK_WIDGET(track_prop), FALSE);
-			gtk_widget_show(GTK_WIDGET(track_prop));
+			item_widget = gtk_ui_manager_get_widget(cwin->cp_context_menu, "/popup/Queue");
+			gtk_widget_set_sensitive (GTK_WIDGET(item_widget), FALSE);
+			gtk_widget_show(GTK_WIDGET(item_widget));
 
-			track_prop = gtk_ui_manager_get_widget(cwin->cp_context_menu, "/popup/Enqueue");
-			gtk_widget_hide(GTK_WIDGET(track_prop));
+			item_widget = gtk_ui_manager_get_widget(cwin->cp_context_menu, "/popup/Enqueue");
+			gtk_widget_hide(GTK_WIDGET(item_widget));
 
-			track_prop = gtk_ui_manager_get_widget(cwin->cp_context_menu, "/popup/Properties");
-			gtk_widget_set_sensitive (GTK_WIDGET(track_prop), FALSE);
-
-			track_prop = gtk_ui_manager_get_widget(cwin->cp_context_menu, "/popup/Edit tags");
-			gtk_widget_set_sensitive (GTK_WIDGET(track_prop), FALSE);
+			item_widget = gtk_ui_manager_get_widget(cwin->cp_context_menu, "/popup/Edit tags");
+			gtk_widget_set_sensitive (GTK_WIDGET(item_widget), FALSE);
 
 			gtk_tree_selection_unselect_all(selection);
 		}
