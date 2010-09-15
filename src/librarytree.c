@@ -1133,9 +1133,7 @@ void library_tree_edit_tags(GtkAction *action, struct con_win *cwin)
 	GArray *loc_arr = NULL;
 	gint sel, location_id, changed = 0;
 	gchar *node_data;
-	gchar *title, *artist, *album, *genre, *year;
 
-	node_data = title = artist = album = genre = year = NULL;
 	memset(&otag, 0, sizeof(struct tags));
 	memset(&ntag, 0, sizeof(struct tags));
 
@@ -1170,6 +1168,7 @@ void library_tree_edit_tags(GtkAction *action, struct con_win *cwin)
 				otag.artist = mobj->tags->artist;
 				otag.album = mobj->tags->album;
 				otag.genre = mobj->tags->genre;
+				otag.comment = mobj->tags->comment;
 				otag.year =  mobj->tags->year;
 
 				changed = tag_edit_dialog(&otag, &ntag, mobj->file, cwin);
@@ -1222,13 +1221,13 @@ void library_tree_edit_tags(GtkAction *action, struct con_win *cwin)
 exit:
 	/* Cleanup */
 
-	g_free(year);
 	g_free(node_data);
 
 	g_free(ntag.title);
 	g_free(ntag.artist);
 	g_free(ntag.album);
 	g_free(ntag.genre);
+	g_free(ntag.comment);
 
 	if (mobj)
 		delete_musicobject(mobj);

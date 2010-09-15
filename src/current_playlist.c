@@ -1418,11 +1418,6 @@ void track_properties_current_playlist(struct con_win *cwin)
 /* Show track properties dialog
    This function is a fscking eyesore. */
 
-void edit_tags_playing_action(GtkAction *action, struct con_win *cwin)
-{
-	track_properties_current_playing(cwin);
-}
-
 void track_properties_current_playing(struct con_win *cwin)
 {
 	GtkWidget *dialog;

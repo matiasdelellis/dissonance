@@ -372,6 +372,66 @@ void next_action (GtkAction *action, struct con_win *cwin)
 	play_next_track(cwin);
 }
 
+void edit_tags_playing_action(GtkAction *action, struct con_win *cwin)
+{
+	struct tags otag, ntag;
+	GArray *loc_arr = NULL, *file_arr = NULL;
+	gchar *sfile = NULL, *tfile = NULL;
+	gint location_id, changed = 0;
+
+	memset(&otag, 0, sizeof(struct tags));
+	memset(&ntag, 0, sizeof(struct tags));
+
+	if (cwin->cstate->curr_mobj) {
+		otag.track_no = cwin->cstate->curr_mobj->tags->track_no;
+		otag.title = cwin->cstate->curr_mobj->tags->title;
+		otag.artist = cwin->cstate->curr_mobj->tags->artist;
+		otag.album = cwin->cstate->curr_mobj->tags->album;
+		otag.genre = cwin->cstate->curr_mobj->tags->genre;
+		otag.comment = cwin->cstate->curr_mobj->tags->comment;
+		otag.year =  cwin->cstate->curr_mobj->tags->year;
+
+		changed = tag_edit_dialog(&otag, &ntag, cwin->cstate->curr_mobj->file, cwin);
+	}
+
+	if (!changed)
+		goto exit;
+
+	/* Store the new tags */
+
+	loc_arr = g_array_new(TRUE, TRUE, sizeof(gint));
+	file_arr = g_array_new(TRUE, TRUE, sizeof(gchar *));
+
+	sfile = sanitize_string_sqlite3(cwin->cstate->curr_mobj->file);
+	location_id = find_location_db(sfile, cwin);
+
+	if (location_id)
+		g_array_append_val(loc_arr, location_id);
+
+	tfile = g_strdup(cwin->cstate->curr_mobj->file);
+	file_arr = g_array_append_val(file_arr, tfile);
+
+	tag_update(loc_arr, file_arr, changed, &ntag, cwin);
+
+	init_library_view(cwin);
+
+exit:
+	/* Cleanup */
+
+	if (loc_arr)
+		g_array_free(loc_arr, TRUE);
+	if (file_arr)
+		g_array_free(file_arr, TRUE);
+
+	g_free(sfile);
+
+	g_free(ntag.title);
+	g_free(ntag.artist);
+	g_free(ntag.album);
+	g_free(ntag.genre);
+}
+
+
 /* Handler for the 'Quit' item in the pragha menu */
 
 void quit_action(GtkAction *action, struct con_win *cwin)
