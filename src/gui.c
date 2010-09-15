@@ -1696,8 +1696,10 @@ icon_pressed_cb (GtkEntry       *entry,
 		GdkEventButton *event,
 		gpointer        data)
 {
-	if (position == GTK_ENTRY_ICON_SECONDARY)
+	if (position == GTK_ENTRY_ICON_SECONDARY) {
 		gtk_entry_set_text (entry, "");
+		gtk_widget_grab_focus(GTK_WIDGET(entry));
+	}
 }
 
 /* Search (simple) */

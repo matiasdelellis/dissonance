@@ -408,8 +408,10 @@ clear_pressed (GtkEntry       *entry,
 		gint            position,
 		GdkEventButton *event)
 {
-	if (position == GTK_ENTRY_ICON_SECONDARY)
+	if (position == GTK_ENTRY_ICON_SECONDARY) {
 		gtk_entry_set_text (entry, "");
+		gtk_widget_grab_focus(GTK_WIDGET(entry));
+	}
 }
 
 static void
@@ -730,6 +732,8 @@ gint tag_edit_dialog(struct tags *otag, struct tags *ntag, gchar *file,
 		gtk_text_buffer_set_text (buffer, otag->comment, -1);
 	if (file)
 		gtk_entry_set_text(GTK_ENTRY(entry_file), file);
+	else
+		gtk_widget_set_sensitive(GTK_WIDGET(entry_file), FALSE);
 
 	g_signal_connect(G_OBJECT(entry_title),
 			 "changed",
@@ -785,7 +789,8 @@ gint tag_edit_dialog(struct tags *otag, struct tags *ntag, gchar *file,
 
 	while ((result = gtk_dialog_run (GTK_DIALOG (dialog))) &&
 		(result != GTK_RESPONSE_CANCEL) &&
-		(result != GTK_RESPONSE_OK)) {
+		(result != GTK_RESPONSE_OK) &&
+		(result != GTK_RESPONSE_DELETE_EVENT)) {
 
 		if(result == GTK_RESPONSE_HELP)
 			track_properties_current_playing(cwin);
@@ -830,6 +835,8 @@ gint tag_edit_dialog(struct tags *otag, struct tags *ntag, gchar *file,
 			ntag->comment = g_strdup(gtk_text_buffer_get_text (buffer, &start, &end, FALSE));
 			changed |= TAG_COMMENT_CHANGED;
 		}
+		break;
+	case GTK_RESPONSE_DELETE_EVENT:
 		break;
 	case GTK_RESPONSE_CANCEL:
 		break;
@@ -882,11 +889,12 @@ void edit_tags_current_playlist(GtkAction *action, struct con_win *cwin)
 		}
 
 		memcpy(&otag, mobj->tags, sizeof(struct tags));
+		changed = tag_edit_dialog(&otag, &ntag, mobj->file, cwin);
+	}
+	else {
+		changed = tag_edit_dialog(&otag, &ntag, NULL, cwin);
 	}
 
-	/* Prompt the user for tag changes */
-
-	changed = tag_edit_dialog(&otag, &ntag, mobj->file, cwin);
 	if (!changed)
 		goto exit;
 

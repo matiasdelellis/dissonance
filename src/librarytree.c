@@ -1132,7 +1132,7 @@ void library_tree_edit_tags(GtkAction *action, struct con_win *cwin)
 	GList *list, *i;
 	GArray *loc_arr = NULL;
 	gint sel, location_id, changed = 0;
-	gchar *node_data;
+	gchar *node_data = NULL;
 
 	memset(&otag, 0, sizeof(struct tags));
 	memset(&ntag, 0, sizeof(struct tags));
