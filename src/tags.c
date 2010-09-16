@@ -856,7 +856,7 @@ void edit_tags_current_playlist(GtkAction *action, struct con_win *cwin)
 	struct musicobject *mobj = NULL;
 	GtkTreeModel *model;
 	GtkTreeSelection *selection;
-	GtkTreePath *path;
+	GtkTreePath *path = NULL, *path_current = NULL;
 	GtkTreeIter iter;
 	GList *list, *i;
 	GArray *loc_arr = NULL, *file_arr = NULL;
@@ -869,10 +869,12 @@ void edit_tags_current_playlist(GtkAction *action, struct con_win *cwin)
 	model = gtk_tree_view_get_model(GTK_TREE_VIEW(cwin->current_playlist));
 	selection = gtk_tree_view_get_selection(GTK_TREE_VIEW(cwin->current_playlist));
 	sel = gtk_tree_selection_count_selected_rows(selection);
-	list = gtk_tree_selection_get_selected_rows(selection, &model);
 
 	if (!sel)
 		return;
+
+	list = gtk_tree_selection_get_selected_rows(selection, &model);
+	path_current = current_playlist_get_actual(cwin);
 
 	/* Setup initial entries */
 
@@ -917,6 +919,12 @@ void edit_tags_current_playlist(GtkAction *action, struct con_win *cwin)
 		update_musicobject(mobj, changed, &ntag, cwin);
 		update_track_current_playlist(&iter, changed, mobj, cwin);
 
+		if (gtk_tree_path_compare(path, path_current) == 0) {
+			update_musicobject(cwin->cstate->curr_mobj, changed, &ntag, cwin);
+			if(cwin->cstate->state != ST_STOPPED)
+				__update_current_song_info(cwin);
+		}
+
 		sfile = sanitize_string_sqlite3(mobj->file);
 		location_id = find_location_db(sfile, cwin);
 		if (location_id) {
@@ -940,6 +948,7 @@ exit:
 		path = i->data;
 		gtk_tree_path_free(path);
 	}
+	gtk_tree_path_free(path_current);
 
 	if (loc_arr)
 		g_array_free(loc_arr, TRUE);
