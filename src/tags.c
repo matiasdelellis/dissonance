@@ -913,6 +913,10 @@ void edit_tags_current_playlist(GtkAction *action, struct con_win *cwin)
 			g_warning("Invalid mobj pointer");
 			continue;
 		}
+
+		update_musicobject(mobj, changed, &ntag, cwin);
+		update_track_current_playlist(&iter, changed, mobj, cwin);
+
 		sfile = sanitize_string_sqlite3(mobj->file);
 		location_id = find_location_db(sfile, cwin);
 		if (location_id) {
@@ -926,39 +930,6 @@ void edit_tags_current_playlist(GtkAction *action, struct con_win *cwin)
 	}
 
 	tag_update(loc_arr, file_arr, changed, &ntag, cwin);
-
-	/* NB: Optimize this to just refresh the changed tracks */
-
-	if (changed && (loc_arr || file_arr))
-		remove_current_playlist(NULL, cwin);
-
-	if (changed && loc_arr) {
-		gint elem = 0;
-		for (j = 0; j < loc_arr->len; j++) {
-			elem = g_array_index(loc_arr, gint, j);
-			if (elem) {
-				mobj = new_musicobject_from_db(elem, cwin);
-				if (!mobj)
-					g_critical("Invalid location ID");
-				else
-					append_current_playlist(mobj, cwin);
-			}
-		}
-	}
-
-	if (changed && file_arr) {
-		gchar *elem = NULL;
-		for (j = 0; j < file_arr->len; j++) {
-			elem = g_array_index(file_arr, gchar *, j);
-			if (elem) {
-				mobj = new_musicobject_from_file(elem);
-				if (!mobj)
-					g_critical("Invalid File");
-				else
-					append_current_playlist(mobj, cwin);
-			}
-		}
-	}
 
 	if (changed && (loc_arr || file_arr))
 		init_library_view(cwin);

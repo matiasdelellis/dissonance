@@ -1444,13 +1444,63 @@ void clear_current_playlist(GtkAction *action, struct con_win *cwin)
 	update_status_bar(cwin);
 }
 
+/* Update a track to the current playlist */
+
+void update_track_current_playlist(GtkTreeIter *iter, gint changed, struct musicobject *mobj, struct con_win *cwin)
+{
+	GtkTreeModel *model;
+	gchar *ch_track_no = NULL, *ch_year = NULL, *ch_filename = NULL;
+
+	if (!changed)
+		return;
+
+	CDEBUG(DBG_VERBOSE, "Track Updates: 0x%x", changed);
+
+	model = gtk_tree_view_get_model(GTK_TREE_VIEW(cwin->current_playlist));
+
+	ch_year = g_strdup_printf("%d", mobj->tags->year);
+	ch_filename = get_display_name(mobj);
+
+	if(mobj->tags->track_no)
+		ch_track_no = g_strdup_printf("%d", mobj->tags->track_no);
+	if(mobj->tags->year)
+		ch_year = g_strdup_printf("%d", mobj->tags->year);
+
+	if (changed & TAG_TNO_CHANGED) {
+		gtk_list_store_set(GTK_LIST_STORE(model), iter, P_TRACK_NO, ch_track_no, -1);
+	}
+	if (changed & TAG_TITLE_CHANGED) {
+		gtk_list_store_set(GTK_LIST_STORE(model), iter, P_TITLE,
+					(mobj->tags->title && strlen(mobj->tags->title)) ? mobj->tags->title : ch_filename, -1);
+	}
+	if (changed & TAG_ARTIST_CHANGED) {
+		gtk_list_store_set(GTK_LIST_STORE(model), iter, P_ARTIST, mobj->tags->artist,-1);
+	}
+	if (changed & TAG_ALBUM_CHANGED) {
+		gtk_list_store_set(GTK_LIST_STORE(model), iter, P_ALBUM, mobj->tags->album,-1);
+	}
+	if (changed & TAG_GENRE_CHANGED) {
+		gtk_list_store_set(GTK_LIST_STORE(model), iter, P_GENRE, mobj->tags->genre,-1);
+	}
+	if (changed & TAG_YEAR_CHANGED) {
+		gtk_list_store_set(GTK_LIST_STORE(model), iter, P_YEAR, ch_year, -1);
+	}
+	if (changed & TAG_COMMENT_CHANGED) {
+		gtk_list_store_set(GTK_LIST_STORE(model), iter, P_COMMENT, mobj->tags->comment,-1);
+	}
+
+	g_free(ch_track_no);
+	g_free(ch_year);
+	g_free(ch_filename);
+}
+
 /* Insert a track to the current playlist */
 
 void insert_current_playlist(struct musicobject *mobj, gboolean drop_after, GtkTreeIter *pos, struct con_win *cwin)
 {
 	GtkTreeModel *model;
 	GtkTreeIter iter;
-	gchar *ch_length, *ch_track_no, *ch_year, *ch_bitrate, *ch_filename;
+	gchar *ch_length = NULL, *ch_track_no = NULL, *ch_year = NULL, *ch_bitrate = NULL, *ch_filename = NULL;
 
 	model = gtk_tree_view_get_model(GTK_TREE_VIEW(cwin->current_playlist));
 
@@ -1464,14 +1514,13 @@ void insert_current_playlist(struct musicobject *mobj, gboolean drop_after, GtkT
 	}
 
 	ch_length = convert_length_str(mobj->tags->length);
-	ch_year = g_strdup_printf("%d", mobj->tags->year);
 	ch_bitrate = g_strdup_printf("%d", mobj->tags->bitrate);
 	ch_filename = get_display_name(mobj);
 
 	if(mobj->tags->track_no)
 		ch_track_no = g_strdup_printf("%d", mobj->tags->track_no);
-	else
-		ch_track_no = NULL;
+	if(mobj->tags->year)
+		ch_year = g_strdup_printf("%d", mobj->tags->year);
 
 	if (drop_after)
 		gtk_list_store_insert_after(GTK_LIST_STORE(model), &iter, pos);
