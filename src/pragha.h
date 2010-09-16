@@ -749,6 +749,7 @@ struct musicobject* new_musicobject_from_db(gint location_id,
 					    struct con_win *cwin);
 struct musicobject* new_musicobject_from_cdda(struct con_win *cwin,
 					      gint track_no);
+void update_musicobject(struct musicobject *mobj, gint changed, struct tags *ntag, struct con_win *cwin);
 void delete_musicobject(struct musicobject *mobj);
 void test_delete_musicobject(struct musicobject *mobj, struct con_win *cwin);
 

@@ -412,6 +412,9 @@ void edit_tags_playing_action(GtkAction *action, struct con_win *cwin)
 	file_arr = g_array_append_val(file_arr, tfile);
 
 	tag_update(loc_arr, file_arr, changed, &ntag, cwin);
+	update_musicobject(cwin->cstate->curr_mobj, changed, &ntag , cwin);
+
+	__update_current_song_info(cwin);
 
 	init_library_view(cwin);
 
@@ -424,11 +427,13 @@ exit:
 		g_array_free(file_arr, TRUE);
 
 	g_free(sfile);
+	g_free(tfile);
 
 	g_free(ntag.title);
 	g_free(ntag.artist);
 	g_free(ntag.album);
 	g_free(ntag.genre);
+	g_free(ntag.comment);	
 }
 
 
