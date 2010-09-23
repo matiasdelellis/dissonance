@@ -440,7 +440,9 @@ gint tag_edit_dialog(struct tags *otag, struct tags *ntag, gchar *file,
 	GtkTextBuffer *buffer;
 	GtkTextIter start, end;
 
-	gint result, changed = 0;
+	gint location_id, result, changed = 0;
+	struct musicobject *mobj = NULL;
+	gchar *uri = NULL;
 
 	/*Create table*/
 
@@ -704,10 +706,6 @@ gint tag_edit_dialog(struct tags *otag, struct tags *ntag, gchar *file,
 					     GTK_RESPONSE_OK,
 					     NULL);
 
-	if (file) {
-		gtk_dialog_add_button(GTK_DIALOG(dialog), _("Details"), GTK_RESPONSE_HELP);
-	}
-
 	gtk_window_set_default_size(GTK_WINDOW (dialog), 450, -1);
 
 	/* Add to the dialog's main vbox */
@@ -730,8 +728,11 @@ gint tag_edit_dialog(struct tags *otag, struct tags *ntag, gchar *file,
 		gtk_spin_button_set_value(GTK_SPIN_BUTTON(entry_year), (int)otag->year);
 	if (otag->comment)
 		gtk_text_buffer_set_text (buffer, otag->comment, -1);
-	if (file)
+
+	if (file) {
 		gtk_entry_set_text(GTK_ENTRY(entry_file), file);
+		gtk_dialog_add_button(GTK_DIALOG(dialog), _("Details"), GTK_RESPONSE_HELP);
+	}
 	else
 		gtk_widget_set_sensitive(GTK_WIDGET(entry_file), FALSE);
 
@@ -792,9 +793,21 @@ gint tag_edit_dialog(struct tags *otag, struct tags *ntag, gchar *file,
 		(result != GTK_RESPONSE_OK) &&
 		(result != GTK_RESPONSE_DELETE_EVENT)) {
 
-		if(result == GTK_RESPONSE_HELP)
-			track_properties(file, cwin);
+		if(result == GTK_RESPONSE_HELP){
+			if (g_str_has_prefix(file, "cdda://"))
+				mobj = new_musicobject_from_cdda(cwin, otag->track_no);
+			else {
+				uri = sanitize_string_sqlite3(file);
+
+				if ((location_id = find_location_db(uri, cwin)))
+					mobj = new_musicobject_from_db(location_id, cwin);
+				else
+					mobj = new_musicobject_from_file(file);
+			}
+			track_properties(mobj, cwin);
+		}
 	}
+
 
 	switch (result)
 	{
@@ -844,6 +857,10 @@ gint tag_edit_dialog(struct tags *otag, struct tags *ntag, gchar *file,
 		break;
 	}
 	gtk_widget_destroy(dialog);
+
+	if (mobj)
+		delete_musicobject(mobj);
+	g_free(uri);
 
 	return changed;
 }

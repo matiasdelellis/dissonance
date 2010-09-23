@@ -211,7 +211,7 @@ GtkActionEntry main_aentries[] = {
 	 NULL, "Forum of pragha", G_CALLBACK(community_action)},
 	{"Wiki", GTK_STOCK_YES, N_("Wiki"),
 	 NULL, "Wiki of pragha", G_CALLBACK(wiki_action)},
-	{"Translate Pragha", NULL, N_("Translate Pragha"),
+	{"Translate Pragha", "preferences-desktop-locale", N_("Translate Pragha"),
 	 NULL, "Translate Pragha", G_CALLBACK(translate_action)},
 	{"About", GTK_STOCK_ABOUT, N_("About"),
 	 NULL, "About pragha", G_CALLBACK(about_action)},
