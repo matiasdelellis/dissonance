@@ -1289,92 +1289,146 @@ void crop_current_playlist(GtkAction *action, struct con_win *cwin)
 void track_properties(struct musicobject *mobj, struct con_win *cwin)
 {
 	GtkWidget *dialog;
-	GtkWidget *t_hbox, *align, *tag_box, *info_box, *tag_label, *info_label;
-	gint i = 0;
+	GtkWidget *properties_table;
+	GtkWidget *label_length, *label_bitrate, *label_channels, *label_samplerate, *label_folder, *label_filename;
+	GtkWidget *info_length, *info_bitrate, *info_channels, *info_samplerate, *info_folder, *info_filename;
 
-	if (mobj) {
-		gchar tags[6][20] = { N_("Length"),
-				      N_("Bitrate"),
-				      N_("Channels"),
-				      N_("Samplerate"),
-				      N_("Folder"),
-				      N_("Filename")};
+	gchar *length = NULL, *bitrate = NULL, *channels = NULL, *samplerate = NULL, *folder = NULL, *filename = NULL;
 
-		gchar *length = convert_length_str(mobj->tags->length);
-		gchar *bitrate = g_strdup_printf("%d", mobj->tags->bitrate);
-		gchar *channels = g_strdup_printf("%d", mobj->tags->channels);
-		gchar *samplerate = g_strdup_printf("%d", mobj->tags->samplerate);
-		gchar *folder = get_display_filename(mobj->file, TRUE);
-		gchar *u_file = get_display_name(mobj);
+	if(!mobj)
+		return;
 
-		gchar *tr_info[6] = { length,
-					bitrate,
-					channels,
-					samplerate,
-					folder,
-					u_file};
+	length = convert_length_str(mobj->tags->length);
+	bitrate = g_strdup_printf("%d", mobj->tags->bitrate);
+	channels = g_strdup_printf("%d", mobj->tags->channels);
+	samplerate = g_strdup_printf("%d", mobj->tags->samplerate);
+	folder = get_display_filename(mobj->file, TRUE);
+	filename = get_display_name(mobj);
 
-		dialog = gtk_dialog_new_with_buttons(_("Track Information"),
-				     GTK_WINDOW(cwin->mainwindow),
-				     GTK_DIALOG_MODAL |
-				     GTK_DIALOG_DESTROY_WITH_PARENT,
-				     GTK_STOCK_OK,
-				     GTK_RESPONSE_ACCEPT,
-				     NULL);
+	/* Create table */
 
-		tag_box = gtk_vbox_new(FALSE, 0);
-		info_box = gtk_vbox_new(FALSE, 0);
-		t_hbox = gtk_hbox_new(FALSE, 0);
+	properties_table = gtk_table_new(6, 2, FALSE);
 
-		for (i=0; i<6; i++) {
-			align = gtk_alignment_new(0, 0, 0, 0);
-			tag_label = gtk_label_new(tags[i]);
-			gtk_label_set_selectable(GTK_LABEL(tag_label), TRUE);
-			gtk_container_add(GTK_CONTAINER(align), tag_label);
-			gtk_box_pack_start(GTK_BOX(tag_box),
-					   GTK_WIDGET(align),
-					   FALSE,
-					   FALSE,
-					   0);
-			align = gtk_alignment_new(0, 0, 0, 0);
-			info_label = gtk_label_new(tr_info[i]);
-			gtk_label_set_selectable(GTK_LABEL(info_label), TRUE);
-			gtk_label_set_line_wrap(GTK_LABEL(info_label), TRUE);
-			gtk_container_add(GTK_CONTAINER(align), info_label);
-			gtk_box_pack_start(GTK_BOX(info_box),
-					   GTK_WIDGET(align),
-					   FALSE,
-					   FALSE,
-					   0);
-		}
+	gtk_table_set_col_spacings(GTK_TABLE(properties_table), 5);
+	gtk_table_set_row_spacings(GTK_TABLE(properties_table), 5);
+	gtk_container_set_border_width(GTK_CONTAINER(properties_table), 5);
 
-		gtk_box_pack_start(GTK_BOX(t_hbox),
-				   GTK_WIDGET(tag_box),
-				   FALSE,
-				   FALSE,
-				   10);
-		gtk_box_pack_start(GTK_BOX(t_hbox),
-				   GTK_WIDGET(info_box),
-				   FALSE,
-				   FALSE,
-				   10);
+	/* Create labels */
 
-		gtk_container_add(GTK_CONTAINER(GTK_DIALOG(dialog)->vbox),
-					  GTK_WIDGET(t_hbox));
+	label_length = gtk_label_new(_("Length"));
+	label_bitrate = gtk_label_new(_("Bitrate"));
+	label_channels = gtk_label_new(_("Channels"));
+	label_samplerate = gtk_label_new(_("Samplerate"));
+	label_folder = gtk_label_new(_("Folder"));
+	label_filename = gtk_label_new(_("Filename"));
 
-		gtk_widget_show_all(dialog);
-		gtk_dialog_run(GTK_DIALOG(dialog));
-		gtk_widget_destroy(dialog);
+	gtk_misc_set_alignment(GTK_MISC (label_length), 1, 0);
+	gtk_misc_set_alignment(GTK_MISC (label_bitrate), 1, 0);
+	gtk_misc_set_alignment(GTK_MISC (label_channels), 1, 0);
+	gtk_misc_set_alignment(GTK_MISC (label_samplerate), 1, 0);
+	gtk_misc_set_alignment(GTK_MISC (label_folder), 1, 0);
+	gtk_misc_set_alignment(GTK_MISC (label_filename), 1, 0);
 
-		g_free(length);
-		g_free(bitrate);
-		g_free(channels);
-		g_free(samplerate);
-		g_free(folder);
-		g_free(u_file);
-	}
-	else
-		g_critical("Dangling music object");
+	/* Create info labels */
+
+	info_length = gtk_label_new(length);
+	info_bitrate = gtk_label_new(bitrate);
+	info_channels = gtk_label_new(channels);
+	info_samplerate = gtk_label_new(samplerate);
+	info_folder = gtk_label_new(folder);
+	info_filename = gtk_label_new(filename);
+
+	gtk_misc_set_alignment(GTK_MISC (info_length), 0, 0);
+	gtk_misc_set_alignment(GTK_MISC (info_bitrate), 0, 0);
+	gtk_misc_set_alignment(GTK_MISC (info_channels), 0, 0);
+	gtk_misc_set_alignment(GTK_MISC (info_samplerate), 0, 0);
+	gtk_misc_set_alignment(GTK_MISC (info_folder), 0, 0);
+	gtk_misc_set_alignment(GTK_MISC (info_filename), 0, 0);
+
+	gtk_label_set_selectable(GTK_LABEL(info_length), TRUE);
+	gtk_label_set_selectable(GTK_LABEL(info_bitrate), TRUE);
+	gtk_label_set_selectable(GTK_LABEL(info_channels), TRUE);
+	gtk_label_set_selectable(GTK_LABEL(info_samplerate), TRUE);
+	gtk_label_set_selectable(GTK_LABEL(info_folder), TRUE);
+	gtk_label_set_selectable(GTK_LABEL(info_filename), TRUE);
+
+	/* Attach labels */
+
+	gtk_table_attach(GTK_TABLE (properties_table), label_length,
+			0, 1, 0, 1,
+			GTK_FILL, GTK_SHRINK,
+			0, 0);
+	gtk_table_attach(GTK_TABLE (properties_table), info_length,
+			1, 2, 0, 1,
+			GTK_FILL|GTK_EXPAND, GTK_SHRINK,
+			0, 0);
+
+	gtk_table_attach(GTK_TABLE (properties_table), label_bitrate,
+			0, 1, 1, 2,
+			GTK_FILL, GTK_SHRINK,
+			0, 0);
+	gtk_table_attach(GTK_TABLE (properties_table), info_bitrate,
+			1, 2, 1, 2,
+			GTK_FILL|GTK_EXPAND, GTK_SHRINK,
+			0, 0);
+
+	gtk_table_attach(GTK_TABLE (properties_table), label_channels,
+			0, 1, 2, 3,
+			GTK_FILL, GTK_SHRINK,
+			0, 0);
+	gtk_table_attach(GTK_TABLE (properties_table), info_channels,
+			1, 2, 2, 3,
+			GTK_FILL|GTK_EXPAND, GTK_SHRINK,
+			0, 0);
+
+	gtk_table_attach(GTK_TABLE (properties_table), label_samplerate,
+			0, 1, 3, 4,
+			GTK_FILL, GTK_SHRINK,
+			0, 0);
+	gtk_table_attach(GTK_TABLE (properties_table), info_samplerate,
+			1, 2, 3, 4,
+			GTK_FILL|GTK_EXPAND, GTK_SHRINK,
+			0, 0);
+
+	gtk_table_attach(GTK_TABLE (properties_table), label_folder,
+			0, 1, 4, 5,
+			GTK_FILL, GTK_SHRINK,
+			0, 0);
+	gtk_table_attach(GTK_TABLE (properties_table), info_folder,
+			1, 2, 4, 5,
+			GTK_FILL|GTK_EXPAND, GTK_SHRINK,
+			0, 0);
+
+	gtk_table_attach(GTK_TABLE (properties_table), label_filename,
+			0, 1, 5, 6,
+			GTK_FILL, GTK_SHRINK,
+			0, 0);
+	gtk_table_attach(GTK_TABLE (properties_table), info_filename,
+			1, 2, 5, 6,
+			GTK_FILL|GTK_EXPAND, GTK_SHRINK,
+			0, 0);
+
+	/* The main edit dialog */
+
+	dialog = gtk_dialog_new_with_buttons(_("Details"),
+					     GTK_WINDOW(cwin->mainwindow),
+					     GTK_DIALOG_MODAL,
+					     GTK_STOCK_OK,
+					     GTK_RESPONSE_OK,
+					     NULL);
+
+	gtk_container_add(GTK_CONTAINER(GTK_DIALOG(dialog)->vbox), properties_table);
+
+	gtk_widget_show_all(dialog);
+	gtk_dialog_run(GTK_DIALOG(dialog));
+	gtk_widget_destroy(dialog);
+
+	g_free(length);
+	g_free(bitrate);
+	g_free(channels);
+	g_free(samplerate);
+	g_free(folder);
+	g_free(filename);
 }
 
 /* Clear all rows from current playlist */
