@@ -556,15 +556,6 @@ gint init_config(struct con_win *cwin)
 			fuse_folders_f = TRUE;
 		}
 
-
-
-
-
-
-
-
-
-
 		/* Retrieve General preferences */
 
 		cwin->cpref->remember_window_state =

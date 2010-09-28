@@ -378,10 +378,13 @@ void edit_tags_playing_action(GtkAction *action, struct con_win *cwin)
 	GArray *loc_arr = NULL, *file_arr = NULL;
 	gchar *sfile = NULL, *tfile = NULL;
 	gint location_id, changed = 0;
+	GtkTreeModel *model;
+	GtkTreePath *path = NULL;
+	GtkTreeIter iter;
 
 	if(cwin->cstate->state == ST_STOPPED)
 		return;
-	
+
 	memset(&otag, 0, sizeof(struct tags));
 	memset(&ntag, 0, sizeof(struct tags));
 
@@ -416,6 +419,16 @@ void edit_tags_playing_action(GtkAction *action, struct con_win *cwin)
 
 	tag_update(loc_arr, file_arr, changed, &ntag, cwin);
 	update_musicobject(cwin->cstate->curr_mobj, changed, &ntag , cwin);
+
+	path = current_playlist_get_actual(cwin);
+
+	if (path != NULL) {
+		model = gtk_tree_view_get_model(GTK_TREE_VIEW(cwin->current_playlist));
+		if (gtk_tree_model_get_iter(model, &iter, path)) {
+			update_track_current_playlist(&iter, changed, cwin->cstate->curr_mobj, cwin);
+		}
+		gtk_tree_path_free(path);
+	}
 
 	__update_current_song_info(cwin);
 
