@@ -379,6 +379,9 @@ void edit_tags_playing_action(GtkAction *action, struct con_win *cwin)
 	gchar *sfile = NULL, *tfile = NULL;
 	gint location_id, changed = 0;
 
+	if(cwin->cstate->state == ST_STOPPED)
+		return;
+	
 	memset(&otag, 0, sizeof(struct tags));
 	memset(&ntag, 0, sizeof(struct tags));
 
