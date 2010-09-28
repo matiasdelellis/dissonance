@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: praga 0.7.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-09-14 21:47-0300\n"
+"POT-Creation-Date: 2010-09-28 20:02-0300\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Matias De lellis <mati86dl@gmail.com>\n"
 "Language-Team: \n"
@@ -62,7 +62,7 @@ msgid "Next track"
 msgstr "Morceau Suivant"
 
 #. The main edit dialog
-#: src/gui.c:177 src/gui.c:250 src/gui.c:276 src/gui.c:322 src/tags.c:696
+#: src/gui.c:177 src/gui.c:250 src/gui.c:276 src/gui.c:322 src/tags.c:700
 msgid "Edit tags"
 msgstr "Editer les Tags"
 
@@ -211,40 +211,38 @@ msgstr "_Maximiser la vue de la Bibliothèque"
 msgid "_Collapse library"
 msgstr "_Minimiser la vue de la Bibliothèque"
 
-#: src/gui.c:289 src/librarytree.c:1260
+#: src/gui.c:289 src/librarytree.c:1259
 msgid "Folders structure"
 msgstr ""
 
-#: src/gui.c:291 src/gui.c:727 src/gui.c:858 src/current_playlist.c:1307
-#: src/current_playlist.c:1433 src/librarytree.c:1263 src/statusicon.c:213
-#: src/tags.c:454
+#: src/gui.c:291 src/gui.c:727 src/gui.c:858 src/librarytree.c:1262
+#: src/statusicon.c:213 src/tags.c:458
 msgid "Artist"
 msgstr "Artiste"
 
-#: src/gui.c:293 src/gui.c:728 src/gui.c:859 src/current_playlist.c:1308
-#: src/current_playlist.c:1434 src/librarytree.c:1267 src/statusicon.c:214
-#: src/tags.c:455
+#: src/gui.c:293 src/gui.c:728 src/gui.c:859 src/librarytree.c:1266
+#: src/statusicon.c:214 src/tags.c:459
 msgid "Album"
 msgstr "Album"
 
-#: src/gui.c:295 src/gui.c:729 src/gui.c:860 src/current_playlist.c:1309
-#: src/current_playlist.c:1435 src/librarytree.c:1271 src/tags.c:456
+#: src/gui.c:295 src/gui.c:729 src/gui.c:860 src/librarytree.c:1270
+#: src/tags.c:460
 msgid "Genre"
 msgstr "Genre"
 
-#: src/gui.c:297 src/librarytree.c:1275
+#: src/gui.c:297 src/librarytree.c:1274
 msgid "Artist / Album"
 msgstr "Artiste / Album"
 
-#: src/gui.c:299 src/librarytree.c:1283
+#: src/gui.c:299 src/librarytree.c:1282
 msgid "Genre / Album"
 msgstr "Genre / Album"
 
-#: src/gui.c:301 src/librarytree.c:1279
+#: src/gui.c:301 src/librarytree.c:1278
 msgid "Genre / Artist"
 msgstr "Genre / Artiste"
 
-#: src/gui.c:303 src/librarytree.c:1287
+#: src/gui.c:303 src/librarytree.c:1286
 msgid "Genre / Artist / Album"
 msgstr "Genre / Artiste / Album"
 
@@ -267,34 +265,30 @@ msgid "Track"
 msgstr "Piste"
 
 #. Create labels
-#: src/gui.c:726 src/gui.c:857 src/current_playlist.c:1306
-#: src/current_playlist.c:1432 src/statusicon.c:212 src/tags.c:453
+#: src/gui.c:726 src/gui.c:857 src/statusicon.c:212 src/tags.c:457
 msgid "Title"
 msgstr "Titre"
 
-#: src/gui.c:730 src/gui.c:861 src/current_playlist.c:1313
-#: src/current_playlist.c:1439
+#: src/gui.c:730 src/gui.c:861 src/current_playlist.c:1319
 msgid "Bitrate"
 msgstr "Taux D'encodage"
 
-#: src/gui.c:731 src/gui.c:862 src/current_playlist.c:1310
-#: src/current_playlist.c:1436 src/tags.c:458
+#: src/gui.c:731 src/gui.c:862 src/tags.c:462
 msgid "Year"
 msgstr "Année"
 
-#: src/gui.c:732 src/gui.c:863 src/current_playlist.c:1311
-#: src/current_playlist.c:1437 src/tags.c:459
+#: src/gui.c:732 src/gui.c:863 src/tags.c:463
 #, fuzzy
 msgid "Comment"
 msgstr "Communauté"
 
-#: src/gui.c:733 src/gui.c:864 src/current_playlist.c:1312
-#: src/current_playlist.c:1438 src/statusicon.c:215
+#. Create labels
+#: src/gui.c:733 src/gui.c:864 src/current_playlist.c:1318
+#: src/statusicon.c:215
 msgid "Length"
 msgstr "Durée"
 
-#: src/gui.c:734 src/gui.c:865 src/current_playlist.c:1316
-#: src/current_playlist.c:1442
+#: src/gui.c:734 src/gui.c:865 src/current_playlist.c:1323
 msgid "Filename"
 msgstr "Nom du Fichier"
 
@@ -332,7 +326,7 @@ msgstr ""
 msgid "<b>Not playing</b>"
 msgstr "<b>Arrêté</b>"
 
-#: src/gui.c:1834
+#: src/gui.c:1836
 msgid "Options of the library"
 msgstr "Options de la bibliothèque"
 
@@ -371,29 +365,23 @@ msgstr "Ajouter à une Liste de Lecture Existante"
 msgid "<b>con_playlist</b> is a reserved playlist name"
 msgstr "<b>con_playlist</b> est un nom déjà utilisé"
 
-#: src/current_playlist.c:1305 src/current_playlist.c:1431 src/tags.c:457
-msgid "Track No"
-msgstr "Pistes No"
-
-#: src/current_playlist.c:1314 src/current_playlist.c:1440
+#: src/current_playlist.c:1320
 msgid "Channels"
 msgstr "Chaînes"
 
-#: src/current_playlist.c:1315 src/current_playlist.c:1441
+#: src/current_playlist.c:1321
 msgid "Samplerate"
 msgstr "Fréquence d'échantillonnage"
 
-#: src/current_playlist.c:1337 src/current_playlist.c:1339
-#: src/current_playlist.c:1341 src/current_playlist.c:1343
-#: src/current_playlist.c:1346 src/current_playlist.c:1455
-#: src/current_playlist.c:1457 src/current_playlist.c:1459
-#: src/current_playlist.c:1461 src/current_playlist.c:1464
-msgid "Unknown Tags"
-msgstr "Tags Inconnu"
+#: src/current_playlist.c:1322
+#, fuzzy
+msgid "Folder"
+msgstr "Dossier"
 
-#: src/current_playlist.c:1353 src/current_playlist.c:1470
-msgid "Track Information"
-msgstr "Information sur le Morceau"
+#. The main edit dialog
+#: src/current_playlist.c:1413 src/tags.c:734
+msgid "Details"
+msgstr ""
 
 #: src/librarytree.c:189 src/statusicon.c:150
 msgid "Unknown Artist"
@@ -426,13 +414,13 @@ msgstr ""
 msgid "by <b>%s</b> in <b>%s</b> <b>(%s)</b>"
 msgstr "par %s de %s (%s)"
 
-#: src/tags.c:460
+#: src/tags.c:461
+msgid "Track No"
+msgstr "Pistes No"
+
+#: src/tags.c:464
 msgid "File"
 msgstr "Fichier"
-
-#: src/tags.c:706
-msgid "Details"
-msgstr ""
 
 #: src/pref.c:21
 msgid ""
@@ -610,27 +598,27 @@ msgstr "Média Supportés"
 msgid "All files"
 msgstr "Tout les fichiers"
 
-#: src/menu.c:595 src/menu.c:729
+#: src/menu.c:676 src/menu.c:810
 msgid "Library scan complete"
 msgstr "Scan de la bibliothèque terminé"
 
-#: src/menu.c:810
+#: src/menu.c:891
 msgid "Total Tracks:"
 msgstr "Total de Pistes"
 
-#: src/menu.c:812
+#: src/menu.c:893
 msgid "Total Artists:"
 msgstr "Total d'artistes"
 
-#: src/menu.c:814
+#: src/menu.c:895
 msgid "Total Albums:"
 msgstr "Total d'albums"
 
-#: src/menu.c:816
+#: src/menu.c:897
 msgid "Statistics"
 msgstr "Statistiques"
 
-#: src/menu.c:833
+#: src/menu.c:914
 msgid "translator-credits"
 msgstr ""
 "Olivier Karquel <yellowspoon@free.fr>\n"
@@ -654,6 +642,12 @@ msgstr "Impossible d'ouvrir le navigateur"
 #: src/playlist.c:513
 msgid "Export playlist to file"
 msgstr "Exporter la liste de lecture dans un fichier"
+
+#~ msgid "Unknown Tags"
+#~ msgstr "Tags Inconnu"
+
+#~ msgid "Track Information"
+#~ msgstr "Information sur le Morceau"
 
 #~ msgid "_Properties"
 #~ msgstr "_Propriétés"
