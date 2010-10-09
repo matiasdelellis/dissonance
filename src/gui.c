@@ -366,6 +366,22 @@ static GtkUIManager* create_library_tree_context_menu(GtkWidget *library_tree,
 	return context_menu;
 }
 
+int library_tree_key_press (GtkWidget *win, GdkEventKey *event, struct con_win *cwin)
+{
+	if (event->state != 0
+			&& ((event->state & GDK_CONTROL_MASK)
+			|| (event->state & GDK_MOD1_MASK)
+			|| (event->state & GDK_MOD3_MASK)
+			|| (event->state & GDK_MOD4_MASK)
+			|| (event->state & GDK_MOD5_MASK)))
+		return FALSE;
+	if (event->keyval == GDK_Delete){
+		library_tree_delete_db(NULL, cwin);
+		return TRUE;
+	}
+	return FALSE;
+}
+
 static GtkWidget* create_library_tree(struct con_win *cwin)
 {
 	GtkWidget *library_tree;
@@ -423,6 +439,8 @@ static GtkWidget* create_library_tree(struct con_win *cwin)
 	cwin->library_tree = library_tree;
 	g_signal_connect(G_OBJECT(library_tree), "row-activated",
 			 G_CALLBACK(library_tree_row_activated_cb), cwin);
+	g_signal_connect (G_OBJECT (library_tree), "key_press_event",
+			  G_CALLBACK(library_tree_key_press), cwin);
 
 	/* Create right click popup menu */
 
@@ -1160,7 +1178,6 @@ static GtkWidget* create_current_playlist_view(struct con_win *cwin)
 	g_signal_connect(G_OBJECT(current_playlist), "row-activated",
 			 G_CALLBACK(current_playlist_row_activated_cb), cwin);
 
-	gtk_widget_add_events (GTK_WIDGET (current_playlist), GDK_KEY_PRESS_MASK);
 	g_signal_connect (G_OBJECT (current_playlist), "key_press_event",
 			  G_CALLBACK (current_playlist_key_press), cwin);
 

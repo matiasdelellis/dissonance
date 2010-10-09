@@ -1270,6 +1270,22 @@ void save_preferences(struct con_win *cwin)
 	g_free(data);
 }
 
+int library_view_key_press (GtkWidget *win, GdkEventKey *event, struct con_win *cwin)
+{
+	if (event->state != 0
+			&& ((event->state & GDK_CONTROL_MASK)
+			|| (event->state & GDK_MOD1_MASK)
+			|| (event->state & GDK_MOD3_MASK)
+			|| (event->state & GDK_MOD4_MASK)
+			|| (event->state & GDK_MOD5_MASK)))
+		return FALSE;
+	if (event->keyval == GDK_Delete){
+		library_remove_cb(NULL, cwin);
+		return TRUE;
+	}
+	return FALSE;
+}
+
 /* Based in Midori Web Browser. Copyright (C) 2007 Christian Dywan */
 gpointer sokoke_xfce_header_new(struct con_win *cwin)
 {
@@ -1773,6 +1789,8 @@ void preferences_dialog(struct con_win *cwin)
 			 G_CALLBACK(library_add_cb), cwin);
 	g_signal_connect(G_OBJECT(library_remove), "clicked",
 			 G_CALLBACK(library_remove_cb), cwin);
+	g_signal_connect (G_OBJECT (library_view), "key_press_event",
+			  G_CALLBACK(library_view_key_press), cwin);
 	g_signal_connect(G_OBJECT(audio_sink_combo), "changed",
 			 G_CALLBACK(change_audio_sink), cwin);
 

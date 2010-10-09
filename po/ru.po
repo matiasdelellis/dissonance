@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Russian\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-09-28 20:02-0300\n"
-"PO-Revision-Date: 2010-09-14 21:08-0300\n"
-"Last-Translator: Matias De lellis <mati86dl@gmail.com>\n"
+"POT-Creation-Date: 2010-10-09 17:13-0300\n"
+"PO-Revision-Date: 2010-10-08 22:16-0300\n"
+"Last-Translator: Matias <mati86dl@gmail.com>\n"
 "Language-Team: Russian\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
@@ -164,11 +164,11 @@ msgstr "Повтор_ять"
 msgid "_Fullscreen"
 msgstr "Во весь экр_ан"
 
-#: src/gui.c:230 src/gui.c:589 src/pref.c:1338
+#: src/gui.c:230 src/gui.c:607 src/pref.c:1354
 msgid "Library"
 msgstr "Коллекция"
 
-#: src/gui.c:233 src/gui.c:607 src/playlist.c:897
+#: src/gui.c:233 src/gui.c:625 src/playlist.c:897
 msgid "Playlists"
 msgstr "Плейлисты"
 
@@ -220,17 +220,17 @@ msgstr "Св_ернуть все"
 msgid "Folders structure"
 msgstr "Дерево папок"
 
-#: src/gui.c:291 src/gui.c:727 src/gui.c:858 src/librarytree.c:1262
+#: src/gui.c:291 src/gui.c:745 src/gui.c:876 src/librarytree.c:1262
 #: src/statusicon.c:213 src/tags.c:458
 msgid "Artist"
 msgstr "Исполнитель"
 
-#: src/gui.c:293 src/gui.c:728 src/gui.c:859 src/librarytree.c:1266
+#: src/gui.c:293 src/gui.c:746 src/gui.c:877 src/librarytree.c:1266
 #: src/statusicon.c:214 src/tags.c:459
 msgid "Album"
 msgstr "Альбом"
 
-#: src/gui.c:295 src/gui.c:729 src/gui.c:860 src/librarytree.c:1270
+#: src/gui.c:295 src/gui.c:747 src/gui.c:878 src/librarytree.c:1270
 #: src/tags.c:460
 msgid "Genre"
 msgstr "Жанр"
@@ -255,80 +255,80 @@ msgstr "Жанр / Исполнитель / Альбом"
 msgid "Prev Track"
 msgstr "Предыдущий трек"
 
-#: src/gui.c:320 src/gui.c:1570 src/statusicon.c:178
+#: src/gui.c:320 src/gui.c:1587 src/statusicon.c:178
 msgid "Next Track"
 msgstr "Следующий трек"
 
-#: src/gui.c:618
+#: src/gui.c:636
 msgid "Pragha Music Player"
 msgstr "Проигрыватель Pragha"
 
 #. Create the checkmenu items
-#: src/gui.c:725 src/gui.c:856 src/current_playlist.c:70
+#: src/gui.c:743 src/gui.c:874 src/current_playlist.c:70
 msgid "Track"
 msgstr "Трек"
 
 #. Create labels
-#: src/gui.c:726 src/gui.c:857 src/statusicon.c:212 src/tags.c:457
+#: src/gui.c:744 src/gui.c:875 src/statusicon.c:212 src/tags.c:457
 msgid "Title"
 msgstr "Название"
 
-#: src/gui.c:730 src/gui.c:861 src/current_playlist.c:1319
+#: src/gui.c:748 src/gui.c:879 src/current_playlist.c:1319
 msgid "Bitrate"
 msgstr "Битрейт"
 
-#: src/gui.c:731 src/gui.c:862 src/tags.c:462
+#: src/gui.c:749 src/gui.c:880 src/tags.c:462
 msgid "Year"
 msgstr "Год"
 
-#: src/gui.c:732 src/gui.c:863 src/tags.c:463
+#: src/gui.c:750 src/gui.c:881 src/tags.c:463
 msgid "Comment"
 msgstr "Примечания"
 
 #. Create labels
-#: src/gui.c:733 src/gui.c:864 src/current_playlist.c:1318
+#: src/gui.c:751 src/gui.c:882 src/current_playlist.c:1318
 #: src/statusicon.c:215
 msgid "Length"
 msgstr "Продолжительность"
 
-#: src/gui.c:734 src/gui.c:865 src/current_playlist.c:1323
+#: src/gui.c:752 src/gui.c:883 src/current_playlist.c:1323
 msgid "Filename"
 msgstr "Имя файла"
 
-#: src/gui.c:737
+#: src/gui.c:755
 msgid "Clear sort"
 msgstr "Без сортировки"
 
 #. Tooltips
-#: src/gui.c:1568
+#: src/gui.c:1585
 msgid "Play / Pause Track"
 msgstr "Воспроизвести / Пауза "
 
-#: src/gui.c:1569
+#: src/gui.c:1586
 msgid "Previous Track"
 msgstr "Предыдущий трек"
 
-#: src/gui.c:1571
+#: src/gui.c:1588
 msgid "Stop playback"
 msgstr "Остановить воспроизведение"
 
-#: src/gui.c:1573
+#: src/gui.c:1590
 msgid "Leave Fullscreen"
 msgstr "Выход из полноэкранного режима"
 
-#: src/gui.c:1574
+#: src/gui.c:1591
 msgid "Play songs in a random order"
 msgstr "Воспроизведение в случайном порядке"
 
-#: src/gui.c:1575
+#: src/gui.c:1592
 msgid "Repeat playback list at the end"
 msgstr "Циклическое воспроизведение списка"
 
-#: src/gui.c:1615 src/panel.c:218 src/statusicon.c:209
+#: src/gui.c:1632 src/panel.c:218 src/statusicon.c:209
 msgid "<b>Not playing</b>"
 msgstr "<b>Не воспроизводится</b>"
 
-#: src/gui.c:1836
+#: src/gui.c:1853
 msgid "Options of the library"
 msgstr "Настройки коллекции"
 
@@ -419,8 +419,12 @@ msgstr ""
 
 #: src/statusicon.c:148
 #, c-format
-msgid "by <b>%s</b> in <b>%s</b> <b>(%s)</b>"
-msgstr "<b>%s</b>, альбом: <b>%s</b> (%s)"
+msgid ""
+"<small><span weight=\"light\">by</span></small> %s <small><span weight="
+"\"light\">in</span></small> %s (%s)"
+msgstr ""
+"<small><span weight=\"light\">исполняет</span></small> %s <small><span "
+"weight=\"light\">из</span></small> %s (%s)"
 
 #: src/tags.c:461
 msgid "Track No"
@@ -444,15 +448,15 @@ msgstr ""
 msgid "Album art pattern"
 msgstr "Обложка альбома"
 
-#: src/pref.c:136 src/pref.c:1554
+#: src/pref.c:136 src/pref.c:1570
 msgid "Start normal"
 msgstr "Обычный размер"
 
-#: src/pref.c:141 src/pref.c:1555
+#: src/pref.c:141 src/pref.c:1571
 msgid "Start fullscreen"
 msgstr "Во весь экран"
 
-#: src/pref.c:146 src/pref.c:1556
+#: src/pref.c:146 src/pref.c:1572
 msgid "Start in system tray"
 msgstr "Запуск в области уведомлений"
 
@@ -462,117 +466,117 @@ msgid "Select a folder to add to library"
 msgstr "Добавить в коллекцию выделенную директорию"
 
 #. The main preferences dialog
-#: src/pref.c:1294 src/pref.c:1326
+#: src/pref.c:1310 src/pref.c:1342
 msgid "Preferences of Pragha"
 msgstr "Настройки"
 
 #. Labels
-#: src/pref.c:1337
+#: src/pref.c:1353
 msgid "Audio"
 msgstr "Аудио"
 
-#: src/pref.c:1339
+#: src/pref.c:1355
 msgid "General"
 msgstr "Основное"
 
-#: src/pref.c:1340
+#: src/pref.c:1356
 msgid "Notifications"
 msgstr "Уведомления"
 
-#: src/pref.c:1341
+#: src/pref.c:1357
 msgid "Internet Services"
 msgstr "Службы в Интернете"
 
-#: src/pref.c:1391 src/pref.c:1420 src/pref.c:1455
+#: src/pref.c:1407 src/pref.c:1436 src/pref.c:1471
 msgid "Restart Required"
 msgstr "Требуется перезапуск"
 
-#: src/pref.c:1400
+#: src/pref.c:1416
 msgid "Audio sink"
 msgstr "Звуковая подсистема"
 
-#: src/pref.c:1417
+#: src/pref.c:1433
 msgid "Audio Device"
 msgstr "Audio устройство"
 
 #. Audio CD device
-#: src/pref.c:1435
+#: src/pref.c:1451
 msgid "Audio CD Device"
 msgstr "Устройство Audio CD"
 
 #. Software mixer
-#: src/pref.c:1454
+#: src/pref.c:1470
 msgid "Use software mixer"
 msgstr "Использовать программный микшер"
 
-#: src/pref.c:1488
+#: src/pref.c:1504
 msgid "Folders"
 msgstr "Директория"
 
-#: src/pref.c:1533
+#: src/pref.c:1549
 msgid "Merge folders in the folders estructure view"
 msgstr ""
 
-#: src/pref.c:1553
+#: src/pref.c:1569
 msgid "Remember last window state"
 msgstr "Запоминать состояние окна"
 
-#: src/pref.c:1558
+#: src/pref.c:1574
 msgid "Restore last playlist"
 msgstr "Восстановить последний плейлист"
 
-#: src/pref.c:1560
+#: src/pref.c:1576
 msgid "Minimize Pragha when close the window"
 msgstr "Сворачивать при закрытии окна"
 
-#: src/pref.c:1561
+#: src/pref.c:1577
 msgid "Add files recursively"
 msgstr "Добавлять содержимое вложенных папок"
 
-#: src/pref.c:1563
+#: src/pref.c:1579
 msgid "Show Album art in Panel"
 msgstr "Показывать обложку альбома на панели"
 
-#: src/pref.c:1566
+#: src/pref.c:1582
 msgid "Size of Album art"
 msgstr "Размер изображения обложки альбома"
 
-#: src/pref.c:1584
+#: src/pref.c:1600
 msgid "Album art file pattern"
 msgstr "Шаблон имени файла обложки альбома"
 
 #. Notification OSD
-#: src/pref.c:1638
+#: src/pref.c:1654
 msgid "Show OSD for track change"
 msgstr "Показывать OSD при смене трека"
 
-#: src/pref.c:1639
+#: src/pref.c:1655
 msgid "Associate notifications to system tray"
 msgstr "Выводить уведомления в области уведомлений"
 
-#: src/pref.c:1640
+#: src/pref.c:1656
 msgid "Show Album art in notifications"
 msgstr "Показывать обложку альбома в уведомлении"
 
-#: src/pref.c:1641
+#: src/pref.c:1657
 msgid "Add actions to change track to notifications"
 msgstr ""
 
 #. Services Last.fm
-#: src/pref.c:1666
+#: src/pref.c:1682
 msgid "Last.fm Support"
 msgstr "Поддержка Last.fm"
 
-#: src/pref.c:1669
+#: src/pref.c:1685
 msgid "Username"
 msgstr "Имя учетной записи"
 
-#: src/pref.c:1670
+#: src/pref.c:1686
 msgid "Password"
 msgstr "Пароль"
 
 #. Services CDDB
-#: src/pref.c:1681
+#: src/pref.c:1697
 msgid "Connect to CDDB server"
 msgstr "Соединится с CDDB сервером"
 
@@ -639,6 +643,9 @@ msgstr "Невозможно открыть браузер"
 #: src/playlist.c:513
 msgid "Export playlist to file"
 msgstr "Экспортировать плейлист в файл"
+
+#~ msgid "by <b>%s</b> in <b>%s</b> <b>(%s)</b>"
+#~ msgstr "<b>%s</b>, альбом: <b>%s</b> (%s)"
 
 #~ msgid "Unknown Tags"
 #~ msgstr "Неизвестные теги"
