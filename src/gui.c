@@ -113,9 +113,10 @@ gchar *library_tree_context_menu_xml = "<ui>		\
 	<menuitem action=\"Add to playlist\"/>		\
 	<menuitem action=\"Replace playlist\"/>		\
 	<separator/>					\
-	<menuitem action=\"Edit\"/>			\
-	<menuitem action=\"Delete (From library)\"/>	\
-	<menuitem action=\"Delete (From HDD)\"/>	\
+	<menuitem action=\"Edit tags\"/>		\
+	<separator/>					\
+	<menuitem action=\"Move to trash\"/>		\
+	<menuitem action=\"Delete from library\"/>	\
 	</popup>					\
 	</ui>";
 
@@ -273,12 +274,12 @@ GtkActionEntry library_tree_context_aentries[] = {
 	 NULL, "Add to playlist", G_CALLBACK(library_tree_add_to_playlist_action)},
 	{"Replace playlist", NULL, N_("_Replace playlist"),
 	 NULL, "Replace playlist", G_CALLBACK(library_tree_replace_playlist)},
-	{"Edit", GTK_STOCK_EDIT, N_("Edit tags"),
+	{"Edit tags", GTK_STOCK_EDIT, N_("Edit tags"),
 	 NULL, "Edit tags", G_CALLBACK(library_tree_edit_tags)},
-	{"Delete (From library)", GTK_STOCK_REMOVE, N_("Delete from library"),
-	 NULL, "Delete from library", G_CALLBACK(library_tree_delete_db)},
-	{"Delete (From HDD)", GTK_STOCK_REMOVE, N_("Delete from HDD"),
-	 NULL, "Delete from HDD", G_CALLBACK(library_tree_delete_hdd)}
+	{"Move to trash", "user-trash", N_("Move to _trash"),
+	 NULL, "Move to trash", G_CALLBACK(library_tree_delete_hdd)},
+	{"Delete from library", GTK_STOCK_REMOVE, N_("Delete from library"),
+	 NULL, "Delete from library", G_CALLBACK(library_tree_delete_db)}
 };
 
 GtkActionEntry library_page_context_aentries[] = {
