@@ -351,25 +351,26 @@ static void trash_or_unlink_row(GArray *loc_arr, gboolean unlink,
 	GtkWidget *question_dialog;
 	gchar *query = NULL, *filename = NULL;
 	gchar *primary, *secondary;
-	gint response, i, elem = 0;
+	gint response, i, location_id = 0;
+	gboolean deleted = FALSE;
 	struct db_result result;
 
 	if (!loc_arr)
 		return;
 
 	for(i = 0; i < loc_arr->len; i++) {
-		elem = g_array_index(loc_arr, gint, i);
-		if (elem) {
+		location_id = g_array_index(loc_arr, gint, i);
+		if (location_id) {
 			query = g_strdup_printf("SELECT name FROM LOCATION "
 						"WHERE id = '%d';",
-						elem);
+						location_id);
 			if (exec_sqlite_query(query, cwin, &result)) {
 				filename = result.resultp[result.no_columns];
 				if(filename && g_file_test(filename, G_FILE_TEST_EXISTS)) {
 					GError *error = NULL;
 					GFile *file = g_file_new_for_path(filename);
 
-					if(!unlink && !g_file_trash(file, NULL, &error)) {
+					if(!unlink && !(deleted = g_file_trash(file, NULL, &error))) {
 						primary = g_strdup (_("Cannot move file to trash, do you want to delete immediately?"));
 						secondary = g_strdup_printf (_("The file \"%s\" cannot be moved to the trash. Details: %s"),
 										g_file_get_basename (file), error->message);
@@ -401,6 +402,7 @@ static void trash_or_unlink_row(GArray *loc_arr, gboolean unlink,
 								break;
 							case GTK_RESPONSE_ACCEPT:
 								g_unlink(filename);
+								deleted = TRUE;
 								break;
 							case PRAGHA_RESPONSE_SKIP:
 								break;
@@ -414,9 +416,13 @@ static void trash_or_unlink_row(GArray *loc_arr, gboolean unlink,
 					}
 					if(unlink) {
 						g_unlink(filename);
+						deleted = TRUE;
 					}
 					g_object_unref(G_OBJECT(file));
 				}
+			}
+			if (deleted) {
+				delete_location_db(location_id, cwin);
 			}
 			sqlite3_free_table(result.resultp);
 		}
