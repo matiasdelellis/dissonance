@@ -122,12 +122,11 @@ static void pref_dialog_cb(GtkDialog *dialog, gint response_id,
 			ret = gtk_tree_model_iter_next(model, &iter);
 		}
 
-		test_fuse_folders = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(cwin->cpref->fuse_folders_w));
+		test_fuse_folders = cwin->cpref->fuse_folders;
+		cwin->cpref->fuse_folders = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(cwin->cpref->fuse_folders_w));
 
-		if ((cwin->cpref->fuse_folders != test_fuse_folders) && (cwin->cpref->cur_library_view == FOLDERS)) {
-			cwin->cpref->fuse_folders = test_fuse_folders;
+		if ((cwin->cpref->fuse_folders != test_fuse_folders) && (cwin->cpref->cur_library_view == FOLDERS))
 			init_library_view(cwin);
-		}
 
 		/* General preferences */
 
