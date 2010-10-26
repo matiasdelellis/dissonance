@@ -731,6 +731,7 @@ gint tag_edit_dialog(struct tags *otag, struct tags *ntag, gchar *file,
 
 	if (file) {
 		gtk_entry_set_text(GTK_ENTRY(entry_file), file);
+		gtk_editable_set_position(GTK_EDITABLE(entry_file), strlen(file));
 		gtk_dialog_add_button(GTK_DIALOG(dialog), _("Details"), GTK_RESPONSE_HELP);
 	}
 	else
