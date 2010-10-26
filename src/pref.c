@@ -1185,6 +1185,27 @@ void save_preferences(struct con_win *cwin)
 			       KEY_SIDEBAR_SIZE,
 			       sidebar_size);
 
+	/* Save last sidebar pane used */
+
+	if(gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(cwin->toggle_lib))) {
+		g_key_file_set_string(cwin->cpref->configrc_keyfile,
+				      GROUP_WINDOW,
+				      KEY_SIDEBAR,
+				      PANE_LIBRARY);
+	}
+	else if(gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(cwin->toggle_playlists))) {
+		g_key_file_set_string(cwin->cpref->configrc_keyfile,
+				      GROUP_WINDOW,
+				      KEY_SIDEBAR,
+				      PANE_PLAYLISTS);
+	}
+	else {
+		g_key_file_set_string(cwin->cpref->configrc_keyfile,
+				      GROUP_WINDOW,
+				      KEY_SIDEBAR,
+				      PANE_NONE);
+	}
+
 	/* Save show album art option */
 
 	g_key_file_set_boolean(cwin->cpref->configrc_keyfile,
