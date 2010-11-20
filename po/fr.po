@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: praga 0.7.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-11-02 12:14-0300\n"
+"POT-Creation-Date: 2010-11-20 20:05-0300\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Matias <mati86dl@gmail.com>\n"
 "Language-Team: \n"
@@ -51,7 +51,7 @@ msgstr "Morceau Précédent"
 
 #: src/gui.c:172 src/gui.c:317
 msgid "Play / Pause"
-msgstr "Lecture/Pause"
+msgstr "Lecture / Pause"
 
 #: src/gui.c:174 src/gui.c:319
 msgid "Stop"
@@ -140,7 +140,7 @@ msgstr "Wiki"
 
 #: src/gui.c:215
 msgid "Translate Pragha"
-msgstr ""
+msgstr "Traduire Pragha"
 
 #: src/gui.c:217 src/gui.c:309
 msgid "About"
@@ -173,11 +173,11 @@ msgstr "Barre d'état"
 #: src/gui.c:243
 #, fuzzy
 msgid "Add to playback queue"
-msgstr "Stopper la lecture"
+msgstr "Ajouter à la lecture"
 
 #: src/gui.c:245
 msgid "Remove to playback queue"
-msgstr ""
+msgstr "Retirer de la lecture"
 
 #: src/gui.c:262 src/gui.c:273
 msgid "_Add to playlist"
@@ -197,7 +197,7 @@ msgstr "Exporter"
 
 #: src/gui.c:279
 msgid "Move to _trash"
-msgstr ""
+msgstr "Déplacer à la corbeille"
 
 #: src/gui.c:281
 msgid "Delete from library"
@@ -213,7 +213,7 @@ msgstr "_Minimiser la vue de la Bibliothèque"
 
 #: src/gui.c:290 src/librarytree.c:1319
 msgid "Folders structure"
-msgstr ""
+msgstr "Structure des dossiers"
 
 #: src/gui.c:292 src/gui.c:746 src/gui.c:877 src/pragha.h:80
 #: src/librarytree.c:1322 src/statusicon.c:213 src/tags.c:442
@@ -281,7 +281,7 @@ msgstr "Année"
 #: src/gui.c:751 src/gui.c:882 src/pragha.h:85 src/tags.c:447
 #, fuzzy
 msgid "Comment"
-msgstr "Communauté"
+msgstr "Commentaire"
 
 #. Create labels
 #: src/gui.c:752 src/gui.c:883 src/pragha.h:86 src/current_playlist.c:1318
@@ -317,7 +317,7 @@ msgstr "_Plein écran"
 
 #: src/gui.c:1592
 msgid "Play songs in a random order"
-msgstr ""
+msgstr "Lire les morceaux en ordre aléatoire"
 
 #: src/gui.c:1593
 msgid "Repeat playback list at the end"
@@ -337,7 +337,7 @@ msgstr "Pistes No"
 
 #: src/pragha.h:117
 msgid "Scanning"
-msgstr ""
+msgstr "Scan en cours"
 
 #: src/pragha.h:118
 #, fuzzy
@@ -346,16 +346,16 @@ msgstr "Arrêter"
 
 #: src/pragha.h:210
 msgid "_Skip"
-msgstr ""
+msgstr "Passer"
 
 #: src/pragha.h:211
 msgid "S_kip All"
-msgstr ""
+msgstr "Tout passer"
 
 #: src/pragha.h:212
 #, fuzzy
 msgid "Delete _All"
-msgstr "Enlever"
+msgstr "Tout enlever"
 
 #: src/panel.c:194
 #, c-format
@@ -382,7 +382,7 @@ msgstr "Pistes"
 
 #: src/current_playlist.c:624
 msgid "Save as a new playlist"
-msgstr "Sauvegarder dans une nouvelle liste de lecture"
+msgstr "Sauvegarder comme nouvelle liste de lecture"
 
 #: src/current_playlist.c:626
 msgid "Append to an existing playlist"
@@ -408,7 +408,7 @@ msgstr "Dossier"
 #. The main edit dialog
 #: src/current_playlist.c:1413 src/tags.c:716
 msgid "Details"
-msgstr ""
+msgstr "Détails"
 
 #: src/librarytree.c:189 src/statusicon.c:150
 msgid "Unknown Artist"
@@ -424,12 +424,12 @@ msgstr "Genre Inconnu"
 
 #: src/librarytree.c:374
 msgid "Cannot move file to trash, do you want to delete immediately?"
-msgstr ""
+msgstr "Impossible de déplacer à la corbeille; supprimer immédiatement?"
 
 #: src/librarytree.c:375
 #, c-format
 msgid "The file \"%s\" cannot be moved to the trash. Details: %s"
-msgstr ""
+msgstr "Le fichier \"%s\" ne peut être déplacé à la corbeille. Détails : %s"
 
 #: src/librarytree.c:1076
 msgid ""
@@ -437,14 +437,17 @@ msgid ""
 "\n"
 "Warning: To recover we must rescan the entire library."
 msgstr ""
+"Êtes-vous sur de vouloir supprimer la sélection de la bibliothèque?\n"
+"\n"
+"Attention: Pour récupérer, il faut rescaner toute la bibliothèque."
 
 #: src/librarytree.c:1134
 msgid "Really want to move the files to trash?"
-msgstr ""
+msgstr "Êtes-vous sur de vouloir déplacer les fichiers à la corbeille?"
 
 #: src/librarytree.c:1136
 msgid "Delete immediately instead of move to trash"
-msgstr ""
+msgstr "Supprimer immédiatement au lieu de déplacer à la corbeille?"
 
 #: src/statusicon.c:148
 #, c-format
@@ -476,7 +479,7 @@ msgstr "Motif à l'emplacement de la Pochette"
 
 #: src/pref.c:135 src/pref.c:1590
 msgid "Start normal"
-msgstr ""
+msgstr "Démarrer normalement"
 
 #: src/pref.c:140 src/pref.c:1591
 #, fuzzy
@@ -485,7 +488,7 @@ msgstr "_Plein écran"
 
 #: src/pref.c:145 src/pref.c:1592
 msgid "Start in system tray"
-msgstr ""
+msgstr "Démarer minimisé"
 
 #. Create a folder chooser dialog
 #: src/pref.c:268
@@ -509,11 +512,11 @@ msgstr "Général"
 
 #: src/pref.c:1376
 msgid "Notifications"
-msgstr ""
+msgstr "Notifications"
 
 #: src/pref.c:1377
 msgid "Internet Services"
-msgstr ""
+msgstr "Services internet"
 
 #: src/pref.c:1427 src/pref.c:1456 src/pref.c:1491
 msgid "Restart Required"
@@ -556,7 +559,7 @@ msgstr "Sauver/Restaurer la Liste de Lecture Courante"
 
 #: src/pref.c:1596
 msgid "Minimize Pragha when close the window"
-msgstr ""
+msgstr "Minimiser Pragha lors de la fermeture de la fenetre"
 
 #: src/pref.c:1597
 #, fuzzy
@@ -565,7 +568,7 @@ msgstr "Ajouter à la liste de lecture (Récursif)"
 
 #: src/pref.c:1599
 msgid "Show Album art in Panel"
-msgstr "Montrer la Pochette dans le Panneau  "
+msgstr "Montrer la Pochette d'album dans le Panneau"
 
 #: src/pref.c:1602
 msgid "Size of Album art"
@@ -625,7 +628,7 @@ msgstr "Sélectionner un fichier à jouer"
 
 #: src/menu.c:266
 msgid "Add recursively files"
-msgstr ""
+msgstr "Ajouter les fichiers récursivement"
 
 #: src/menu.c:287
 msgid "Supported media"
@@ -658,11 +661,12 @@ msgstr "Statistiques"
 #: src/menu.c:914
 msgid "translator-credits"
 msgstr ""
-"Olivier Karquel <yellowspoon@free.fr>\n"
+"Crédits pour la traductionOlivier Karquel <yellowspoon@free.fr>\n"
 "Raphael Tournoy <lexpas@free.fr>\n"
 "Laurent Coudeur <laurentc@iol.ie>\n"
 "Stéphane Raimbault <stephane.raimbault@gmail.com>\n"
-"Robert-André Mauchin <zebob.m@pengzone.org>"
+"Robert-André Mauchin <zebob.m@pengzone.org>Quentin Peten <quentin."
+"peten@gmail.com"
 
 #: src/utils.c:222
 msgid "days"
