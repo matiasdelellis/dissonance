@@ -157,13 +157,12 @@ static gboolean is_valid_mime(gchar *mime, const gchar **mlist)
 enum file_type get_file_type(gchar *file)
 {
 	gint ret = -1;
-	gboolean uncertain;
 	gchar *result = NULL;
 
 	if (!file)
 		return -1;
 
-	result = g_content_type_guess((const gchar *)file, NULL, 0, &uncertain);
+	result = get_mime_type(file);
 
 	if (result) {
 		if (is_valid_mime(result, mime_wav))
@@ -181,6 +180,16 @@ enum file_type get_file_type(gchar *file)
 
 	g_free(result);
 	return ret;
+}
+
+gchar* get_mime_type(gchar *file)
+{
+	gboolean uncertain;
+	gchar *result = NULL;
+
+	result = g_content_type_guess((const gchar *)file, NULL, 0, &uncertain);
+
+	return result;
 }
 
 /* Return true if given file is an image */

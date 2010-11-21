@@ -60,13 +60,35 @@ static void rescan_dialog_response_cb(GtkDialog *dialog,
 	}
 }
 
+/* Generate and add the recently-used data */
+
+void add_recent_file (gchar *filename)
+{
+	GtkRecentData recent_data;
+
+	recent_data.mime_type = get_mime_type(filename);
+	if (recent_data.mime_type == NULL)
+		return;
+
+	recent_data.display_name = g_filename_display_basename (filename);
+	recent_data.app_name = g_strdup (g_get_application_name ());
+	recent_data.app_exec =  g_strjoin (" ", g_get_prgname (), "%u", NULL);
+	recent_data.description = NULL;
+	recent_data.groups = NULL;
+	recent_data.is_private = FALSE;
+
+	gtk_recent_manager_add_full(gtk_recent_manager_get_default(), filename, &recent_data);
+
+	g_free (recent_data.display_name);
+	g_free (recent_data.mime_type);
+	g_free (recent_data.app_name);
+	g_free (recent_data.app_exec);
+}
+
 /* Add selected files from the file chooser to the current playlist */
 
 void handle_selected_file(gpointer data, gpointer udata)
 {
-	enum file_type type;
-	GtkRecentData recent_data;
-
 	struct musicobject *mobj;
 	struct con_win *cwin = (struct con_win*)udata;
 
@@ -82,49 +104,16 @@ void handle_selected_file(gpointer data, gpointer udata)
 		return;
 	}
 
-	if (is_m3u_playlist(data)){
+	else if (is_m3u_playlist(data)){
 		open_m3u_playlist(data, cwin);
-		recent_data.mime_type = "audio/x-mpegurl";
 	}
 	else{
 		mobj = new_musicobject_from_file(data);
-		if (mobj)
+		if (mobj) {
 			append_current_playlist(mobj, cwin);
-
-		/* generate the recently-used data */
-
-		type = get_file_type(data);
-		switch(type) {
-		case FILE_WAV:
-			recent_data.mime_type = "audio/x-wav";
-			break;
-		case FILE_MP3:
-			recent_data.mime_type = "audio/mpeg";
-			break;
-		case FILE_FLAC:
-			recent_data.mime_type = "audio/x-flac";
-			break;
-		case FILE_OGGVORBIS:
-			recent_data.mime_type = "audio/x-vorbis+ogg";
-			break;
-		case FILE_MODPLUG:
-			recent_data.mime_type = "audio/x-mod";
-			break;
-		default:
-			break;
+			add_recent_file(data);
 		}
 	}
-
-	recent_data.display_name = NULL;
-	recent_data.description = NULL;
-	recent_data.app_name = "Pragha Music Player";
-	recent_data.app_exec = "pragha %f";
-	recent_data.groups = NULL;
-	recent_data.is_private = FALSE;
-	
-	gtk_recent_manager_add_full(gtk_recent_manager_get_default(), g_filename_to_uri(data, NULL, NULL), &recent_data);
-
-	g_free(data);
 }
 
 /* Create a dialog box with a progress bar for rescan/update library */
