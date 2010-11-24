@@ -660,6 +660,8 @@ static void update_preferences(struct con_win *cwin)
 		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(
 					     cwin->cpref->actions_in_osd_w),
 					     TRUE);
+	if(!can_support_actions())
+		gtk_widget_set_sensitive(cwin->cpref->actions_in_osd_w, FALSE);
 
 	/* Service Internet Option */
 

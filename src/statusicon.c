@@ -98,7 +98,7 @@ notify_Next_Callback (NotifyNotification *osd,
 }
 
 
-static gboolean
+gboolean
 can_support_actions( void )
 {
 	static gboolean supported;

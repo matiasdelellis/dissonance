@@ -1056,7 +1056,7 @@ gint open_audio_device(gint samplerate, gint channels,
 		       gboolean resume, struct con_win *cwin);
 
 /* Systray functions */
-
+gboolean can_support_actions(void);
 void show_osd(struct con_win *cwin);
 gboolean status_icon_clicked (GtkWidget *widget, GdkEventButton *event, struct con_win *cwin);
 gboolean status_get_tooltip_cb (GtkWidget *widget, gint x, gint y, gboolean keyboard_mode,GtkTooltip *tooltip, struct con_win *cwin);
