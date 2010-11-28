@@ -1,3 +1,8 @@
+dnl configure.ac
+dnl
+dnl Pragha - A Lightweight Music Player for GNU/Linux
+dnl
+
 dnl Version information
 m4_define([pragha_version_major], [0])
 m4_define([pragha_version_minor], [8])
@@ -62,9 +67,23 @@ AC_CHECK_LIB([tag_c], [taglib_file_new],
 AC_SUBST([TAGLIBC_CFLAGS])
 AC_SUBST([TAGLIBC_LIBS]) 
 
+dnl *************************************
+dnl * Global keyboard shortcuts support *
+dnl *************************************
+LIBKEYBINDER_FOUND="no"
+XDT_CHECK_OPTIONAL_PACKAGE([LIBKEYBINDER],
+                       [keybinder], [0.2.0],
+                       [keybinder],
+                       [keybinder library], [yes])
+
 AC_OUTPUT([
 Makefile
 po/Makefile.in
 src/Makefile
 ])
+
+echo
+echo "Build Configuration for $PACKAGE version $VERSION"
+echo "  Global keyboard shortcuts support:   $LIBKEYBINDER_FOUND"
+echo
 

@@ -23,6 +23,10 @@
 #include <config.h>
 #endif
 
+#ifdef HAVE_LIBKEYBINDER
+#include <keybinder.h>
+#endif
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <errno.h>
@@ -57,7 +61,6 @@
 #include "mod.h"
 
 #include "gtkcellrendererbubble.h"
-#include "keybinder.h"
 
 #define MIN_WINDOW_WIDTH           640
 #define MIN_WINDOW_HEIGHT          480

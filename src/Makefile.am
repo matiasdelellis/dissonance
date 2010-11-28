@@ -45,9 +45,7 @@ pragha_SOURCES =pragha.c \
 		flac.h \
 		cdda.h \
 		gtkcellrendererbubble.c \
-		gtkcellrendererbubble.h \
-		bind.c \
-		keybinder.h
+		gtkcellrendererbubble.h
 
 pragha_CFLAGS =	$(GLIB_CFLAGS) 						\
 	$(GTHREAD_CFLAGS)						\
@@ -67,6 +65,7 @@ pragha_CFLAGS =	$(GLIB_CFLAGS) 						\
 	$(LIBCURL_CFLAGS) 						\
 	$(LIBCDIO_CFLAGS) 						\
 	$(LIBCDDB_CFLAGS) 						\
+	$(LIBKEYBINDER_CFLAGS) 						\
 	$(LIBX11_CFLAGS)						\
 	-I$(top_srcdir)/src/include 					\
 	-Wall
@@ -91,4 +90,5 @@ pragha_LDFLAGS = $(GLIB_LIBS) 						\
 	$(LIBCDIO_LIBS) 						\
 	$(LIBCDIO_PARANOIA_LIBS) 					\
 	$(LIBCDDB_LIBS)							\
+	$(LIBKEYBINDER_LIBS) 						\
 	$(LIBX11_LIBS)
