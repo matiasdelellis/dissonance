@@ -102,6 +102,7 @@ gchar *playlist_tree_context_menu_xml = "<ui>	\
 	<popup>					\
 	<menuitem action=\"Add to playlist\"/>	\
 	<menuitem action=\"Replace playlist\"/>	\
+	<menuitem action=\"Replace and play\"/>	\
 	<separator/>				\
 	<menuitem action=\"Delete\"/>		\
 	<menuitem action=\"Export\"/>		\
@@ -112,6 +113,7 @@ gchar *library_tree_context_menu_xml = "<ui>		\
 	<popup>						\
 	<menuitem action=\"Add to playlist\"/>		\
 	<menuitem action=\"Replace playlist\"/>		\
+	<menuitem action=\"Replace and play\"/>		\
 	<separator/>					\
 	<menuitem action=\"Edit tags\"/>		\
 	<separator/>					\
@@ -263,6 +265,8 @@ GtkActionEntry playlist_tree_context_aentries[] = {
 	 NULL, "Add to playlist", G_CALLBACK(playlist_tree_add_to_playlist_action)},
 	{"Replace playlist", NULL, N_("_Replace playlist"),
 	 NULL, "Replace playlist", G_CALLBACK(playlist_tree_replace_playlist)},
+	{"Replace and play", GTK_STOCK_MEDIA_PLAY, N_("Replace and _play"),
+	 NULL, "Replace and play", G_CALLBACK(playlist_tree_replace_and_play)},
 	{"Delete", GTK_STOCK_REMOVE, N_("Delete"),
 	 NULL, "Delete", G_CALLBACK(playlist_tree_delete)},
 	{"Export", GTK_STOCK_SAVE, N_("Export"),
@@ -274,6 +278,8 @@ GtkActionEntry library_tree_context_aentries[] = {
 	 NULL, "Add to playlist", G_CALLBACK(library_tree_add_to_playlist_action)},
 	{"Replace playlist", NULL, N_("_Replace playlist"),
 	 NULL, "Replace playlist", G_CALLBACK(library_tree_replace_playlist)},
+	{"Replace and play", GTK_STOCK_MEDIA_PLAY, N_("Replace and _play"),
+	 NULL, "Replace and play", G_CALLBACK(library_tree_replace_and_play)},
 	{"Edit tags", GTK_STOCK_EDIT, N_("Edit tags"),
 	 NULL, "Edit tags", G_CALLBACK(library_tree_edit_tags)},
 	{"Move to trash", "user-trash", N_("Move to _trash"),

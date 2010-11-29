@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pragha Music Manager\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-11-20 20:05-0300\n"
+"POT-Creation-Date: 2010-11-29 19:59-0300\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Matias <mati86dl@gmail.com>\n"
 "Language-Team: Dutch\n"
@@ -14,345 +14,350 @@ msgstr ""
 "X-Poedit-Country: BELGIUM\n"
 "X-Poedit-SourceCharset: utf-8\n"
 
-#: src/gui.c:161
+#: src/gui.c:163
 msgid "_File"
 msgstr "_Bestand"
 
-#: src/gui.c:162
+#: src/gui.c:164
 msgid "_Edit"
 msgstr "_Bewerken"
 
-#: src/gui.c:163
+#: src/gui.c:165
 msgid "_View"
 msgstr "_Beeld"
 
-#: src/gui.c:164
+#: src/gui.c:166
 msgid "_Tools"
 msgstr "_Extra"
 
-#: src/gui.c:165
+#: src/gui.c:167
 msgid "_Help"
 msgstr "_Hulp"
 
-#: src/gui.c:166 src/gui.c:311
+#: src/gui.c:168 src/gui.c:317
 msgid "_Add files"
 msgstr "_Bestanden toevoegen"
 
-#: src/gui.c:167
+#: src/gui.c:169
 msgid "Open a media file"
 msgstr "Open een mediabestand"
 
-#: src/gui.c:168 src/gui.c:313
+#: src/gui.c:170 src/gui.c:319
 msgid "_Play audio CD"
 msgstr "_Speel een audio CD af"
 
-#: src/gui.c:170
+#: src/gui.c:172
 msgid "Prev track"
 msgstr "Vorig nummer"
 
-#: src/gui.c:172 src/gui.c:317
+#: src/gui.c:174 src/gui.c:323
 msgid "Play / Pause"
 msgstr "Play / Pause"
 
-#: src/gui.c:174 src/gui.c:319
+#: src/gui.c:176 src/gui.c:325
 msgid "Stop"
 msgstr "Stop"
 
-#: src/gui.c:176
+#: src/gui.c:178
 msgid "Next track"
 msgstr "Volgend nummer"
 
 #. The main edit dialog
-#: src/gui.c:178 src/gui.c:251 src/gui.c:277 src/gui.c:323 src/tags.c:681
+#: src/gui.c:180 src/gui.c:253 src/gui.c:283 src/gui.c:329 src/tags.c:681
 msgid "Edit tags"
 msgstr "Tags bewerken"
 
-#: src/gui.c:180 src/gui.c:325
+#: src/gui.c:182 src/gui.c:331
 msgid "_Quit"
 msgstr "_Afsluiten"
 
-#: src/gui.c:182
+#: src/gui.c:184
 msgid "_Add the library"
 msgstr "_Voeg de bibliotheek toe"
 
-#: src/gui.c:184 src/gui.c:247
+#: src/gui.c:186 src/gui.c:249
 msgid "Remove"
 msgstr "Verwijderen"
 
-#: src/gui.c:186 src/gui.c:249
+#: src/gui.c:188 src/gui.c:251
 #, fuzzy
 msgid "Crop"
 msgstr "Overhouden"
 
-#: src/gui.c:188 src/gui.c:257
+#: src/gui.c:190 src/gui.c:259
 msgid "Clear playlist"
 msgstr "Afspeellijst leegmaken"
 
-#: src/gui.c:190 src/gui.c:253
+#: src/gui.c:192 src/gui.c:255
 msgid "Save selection"
 msgstr "Selectie bewaren"
 
-#: src/gui.c:192 src/gui.c:255 src/current_playlist.c:638
+#: src/gui.c:194 src/gui.c:257 src/current_playlist.c:638
 msgid "Save playlist"
 msgstr "Afspeellijst bewaren"
 
-#: src/gui.c:194
+#: src/gui.c:196
 msgid "_Preferences"
 msgstr "_Voorkeuren"
 
-#: src/gui.c:196
+#: src/gui.c:198
 msgid "Lateral _panel"
 msgstr "Zij_paneel"
 
-#: src/gui.c:197
+#: src/gui.c:199
 msgid "Jump to playing song"
 msgstr "Ga naar huidig nummer"
 
-#: src/gui.c:199
+#: src/gui.c:201
 msgid "Search _lyric"
 msgstr "Zoek _Songteksten"
 
-#: src/gui.c:201
+#: src/gui.c:203
 msgid "_Search in playlist"
 msgstr "_Zoek in afspeellijst"
 
-#: src/gui.c:203
+#: src/gui.c:205
 msgid "_Rescan library"
 msgstr "_Herscan bibliotheek"
 
-#: src/gui.c:205
+#: src/gui.c:207
 msgid "_Update library"
 msgstr "_Werk bibliotheek bij"
 
-#: src/gui.c:207
+#: src/gui.c:209
 msgid "_Statistics"
 msgstr "_Statistieken"
 
-#: src/gui.c:209
+#: src/gui.c:211
 #, fuzzy
 msgid "Homepage"
 msgstr "Thuispagina"
 
-#: src/gui.c:211
+#: src/gui.c:213
 #, fuzzy
 msgid "Community"
 msgstr "Gemeenschap"
 
-#: src/gui.c:213
+#: src/gui.c:215
 msgid "Wiki"
 msgstr "Wiki"
 
-#: src/gui.c:215
+#: src/gui.c:217
 msgid "Translate Pragha"
 msgstr "Pragha vertalen"
 
-#: src/gui.c:217 src/gui.c:309
+#: src/gui.c:219 src/gui.c:315
 msgid "About"
 msgstr "Over Pragha"
 
-#: src/gui.c:222
+#: src/gui.c:224
 msgid "_Shuffle"
 msgstr "_Shuffle"
 
-#: src/gui.c:225
+#: src/gui.c:227
 msgid "_Repeat"
 msgstr "_Repeat"
 
-#: src/gui.c:228
+#: src/gui.c:230
 msgid "_Fullscreen"
 msgstr "_Volledig scherm"
 
-#: src/gui.c:231 src/gui.c:608 src/pref.c:1374
+#: src/gui.c:233 src/gui.c:614 src/pref.c:1376
 msgid "Library"
 msgstr "Bibliotheek"
 
-#: src/gui.c:234 src/gui.c:626 src/playlist.c:897
+#: src/gui.c:236 src/gui.c:632 src/playlist.c:932
 msgid "Playlists"
 msgstr "Afspeellijsten"
 
-#: src/gui.c:237
+#: src/gui.c:239
 msgid "Status bar"
 msgstr "Statusbalk"
 
-#: src/gui.c:243
+#: src/gui.c:245
 msgid "Add to playback queue"
 msgstr "Toevoegen aan wachtrij"
 
-#: src/gui.c:245
+#: src/gui.c:247
 msgid "Remove to playback queue"
 msgstr "Verwijderen uit wachtrij"
 
-#: src/gui.c:262 src/gui.c:273
+#: src/gui.c:264 src/gui.c:277
 msgid "_Add to playlist"
 msgstr "_Toevoegen aan afspeellijst"
 
-#: src/gui.c:264 src/gui.c:275
+#: src/gui.c:266 src/gui.c:279
 msgid "_Replace playlist"
 msgstr "_Vervang afspeellijst"
 
-#: src/gui.c:266
+#: src/gui.c:268 src/gui.c:281
+#, fuzzy
+msgid "Replace and _play"
+msgstr "_Vervang afspeellijst"
+
+#: src/gui.c:270
 msgid "Delete"
 msgstr "Verwijder"
 
-#: src/gui.c:268
+#: src/gui.c:272
 msgid "Export"
 msgstr "Exporteer"
 
-#: src/gui.c:279
+#: src/gui.c:285
 msgid "Move to _trash"
 msgstr ""
 
-#: src/gui.c:281
+#: src/gui.c:287
 msgid "Delete from library"
 msgstr "Verwijder uit de bibliotheek"
 
-#: src/gui.c:286
+#: src/gui.c:292
 msgid "_Expand library"
 msgstr "_Maximaliseer de bibliotheek"
 
-#: src/gui.c:288
+#: src/gui.c:294
 msgid "_Collapse library"
 msgstr "_Minimaliseer de bibliotheek"
 
-#: src/gui.c:290 src/librarytree.c:1319
+#: src/gui.c:296 src/librarytree.c:1354
 msgid "Folders structure"
 msgstr "Mappenstructuur"
 
-#: src/gui.c:292 src/gui.c:746 src/gui.c:877 src/pragha.h:80
-#: src/librarytree.c:1322 src/statusicon.c:213 src/tags.c:442
+#: src/gui.c:298 src/gui.c:752 src/gui.c:883 src/pragha.h:83
+#: src/librarytree.c:1357 src/statusicon.c:213 src/tags.c:442
 msgid "Artist"
 msgstr "Artiest"
 
-#: src/gui.c:294 src/gui.c:747 src/gui.c:878 src/pragha.h:81
-#: src/librarytree.c:1326 src/statusicon.c:214 src/tags.c:443
+#: src/gui.c:300 src/gui.c:753 src/gui.c:884 src/pragha.h:84
+#: src/librarytree.c:1361 src/statusicon.c:214 src/tags.c:443
 msgid "Album"
 msgstr "Album"
 
-#: src/gui.c:296 src/gui.c:748 src/gui.c:879 src/pragha.h:82
-#: src/librarytree.c:1330 src/tags.c:444
+#: src/gui.c:302 src/gui.c:754 src/gui.c:885 src/pragha.h:85
+#: src/librarytree.c:1365 src/tags.c:444
 msgid "Genre"
 msgstr "Genre"
 
-#: src/gui.c:298 src/librarytree.c:1334
+#: src/gui.c:304 src/librarytree.c:1369
 msgid "Artist / Album"
 msgstr "Artiest / Album"
 
-#: src/gui.c:300 src/librarytree.c:1342
+#: src/gui.c:306 src/librarytree.c:1377
 msgid "Genre / Album"
 msgstr "Genre / Album"
 
-#: src/gui.c:302 src/librarytree.c:1338
+#: src/gui.c:308 src/librarytree.c:1373
 msgid "Genre / Artist"
 msgstr "Genre / Artiest"
 
-#: src/gui.c:304 src/librarytree.c:1346
+#: src/gui.c:310 src/librarytree.c:1381
 msgid "Genre / Artist / Album"
 msgstr "Genre / Artiest / Album"
 
-#: src/gui.c:315 src/statusicon.c:174
+#: src/gui.c:321 src/statusicon.c:174
 msgid "Prev Track"
 msgstr "Vorig nummer"
 
-#: src/gui.c:321 src/gui.c:1588 src/statusicon.c:178
+#: src/gui.c:327 src/gui.c:1594 src/statusicon.c:178
 msgid "Next Track"
 msgstr "Volgend nummer"
 
-#: src/gui.c:637
+#: src/gui.c:643
 msgid "Pragha Music Player"
 msgstr "Pragha Muziekspeler"
 
 #. Create the checkmenu items
-#: src/gui.c:744 src/gui.c:875 src/current_playlist.c:70
+#: src/gui.c:750 src/gui.c:881 src/current_playlist.c:70
 msgid "Track"
 msgstr "Nummer"
 
 #. Create labels
-#: src/gui.c:745 src/gui.c:876 src/pragha.h:79 src/statusicon.c:212
+#: src/gui.c:751 src/gui.c:882 src/pragha.h:82 src/statusicon.c:212
 #: src/tags.c:441
 msgid "Title"
 msgstr "Titel"
 
-#: src/gui.c:749 src/gui.c:880 src/pragha.h:83 src/current_playlist.c:1319
+#: src/gui.c:755 src/gui.c:886 src/pragha.h:86 src/current_playlist.c:1319
 msgid "Bitrate"
 msgstr "Bitrate"
 
-#: src/gui.c:750 src/gui.c:881 src/pragha.h:84 src/tags.c:446
+#: src/gui.c:756 src/gui.c:887 src/pragha.h:87 src/tags.c:446
 msgid "Year"
 msgstr "Jaar"
 
-#: src/gui.c:751 src/gui.c:882 src/pragha.h:85 src/tags.c:447
+#: src/gui.c:757 src/gui.c:888 src/pragha.h:88 src/tags.c:447
 msgid "Comment"
 msgstr "Commentaar"
 
 #. Create labels
-#: src/gui.c:752 src/gui.c:883 src/pragha.h:86 src/current_playlist.c:1318
+#: src/gui.c:758 src/gui.c:889 src/pragha.h:89 src/current_playlist.c:1318
 #: src/statusicon.c:215
 msgid "Length"
 msgstr "Lengte"
 
-#: src/gui.c:753 src/gui.c:884 src/pragha.h:87 src/current_playlist.c:1323
+#: src/gui.c:759 src/gui.c:890 src/pragha.h:90 src/current_playlist.c:1323
 msgid "Filename"
 msgstr "Bestandsnaam"
 
-#: src/gui.c:756
+#: src/gui.c:762
 msgid "Clear sort"
 msgstr "Verwijder volgorde"
 
 #. Tooltips
-#: src/gui.c:1586
+#: src/gui.c:1592
 msgid "Play / Pause Track"
 msgstr "Play / Pauzeer nummer"
 
-#: src/gui.c:1587
+#: src/gui.c:1593
 msgid "Previous Track"
 msgstr "Vorig nummer"
 
-#: src/gui.c:1589
+#: src/gui.c:1595
 msgid "Stop playback"
 msgstr "Stop weergave"
 
-#: src/gui.c:1591
+#: src/gui.c:1597
 msgid "Leave Fullscreen"
 msgstr "Verlaat volledig scherm"
 
-#: src/gui.c:1592
+#: src/gui.c:1598
 msgid "Play songs in a random order"
 msgstr "Speel nummers in willekeurige volgorde"
 
-#: src/gui.c:1593
+#: src/gui.c:1599
 msgid "Repeat playback list at the end"
 msgstr "Herhaal de wachtrij aan het einde"
 
-#: src/gui.c:1633 src/panel.c:218 src/statusicon.c:209
+#: src/gui.c:1639 src/panel.c:218 src/statusicon.c:209
 msgid "<b>Not playing</b>"
 msgstr "<b>Speelt niet</b>"
 
-#: src/gui.c:1854
+#: src/gui.c:1860
 msgid "Options of the library"
 msgstr "Bibliotheek opties"
 
-#: src/pragha.h:78 src/tags.c:445
+#: src/pragha.h:81 src/tags.c:445
 msgid "Track No"
 msgstr "Nummer"
 
-#: src/pragha.h:117
+#: src/pragha.h:120
 msgid "Scanning"
 msgstr ""
 
-#: src/pragha.h:118
+#: src/pragha.h:121
 #, fuzzy
 msgid "Stopped"
 msgstr "Stop"
 
-#: src/pragha.h:210
+#: src/pragha.h:213
 msgid "_Skip"
 msgstr ""
 
-#: src/pragha.h:211
+#: src/pragha.h:214
 msgid "S_kip All"
 msgstr ""
 
-#: src/pragha.h:212
+#: src/pragha.h:215
 #, fuzzy
 msgid "Delete _All"
 msgstr "Verwijder"
@@ -432,7 +437,7 @@ msgstr ""
 msgid "The file \"%s\" cannot be moved to the trash. Details: %s"
 msgstr ""
 
-#: src/librarytree.c:1076
+#: src/librarytree.c:1111
 msgid ""
 "Are you sure you want to delete current file from library?\n"
 "\n"
@@ -443,11 +448,11 @@ msgstr ""
 "Opgelet: om dit ongedaan te maken, met de volledige bibliotheek opnieuw "
 "gescand worden."
 
-#: src/librarytree.c:1134
+#: src/librarytree.c:1169
 msgid "Really want to move the files to trash?"
 msgstr ""
 
-#: src/librarytree.c:1136
+#: src/librarytree.c:1171
 msgid "Delete immediately instead of move to trash"
 msgstr ""
 
@@ -478,15 +483,15 @@ msgstr ""
 msgid "Album art pattern"
 msgstr "Patroon voor albumhoes"
 
-#: src/pref.c:135 src/pref.c:1590
+#: src/pref.c:135 src/pref.c:1592
 msgid "Start normal"
 msgstr "Start normaal op"
 
-#: src/pref.c:140 src/pref.c:1591
+#: src/pref.c:140 src/pref.c:1593
 msgid "Start fullscreen"
 msgstr "Start in volledig scherm op"
 
-#: src/pref.c:145 src/pref.c:1592
+#: src/pref.c:145 src/pref.c:1594
 msgid "Start in system tray"
 msgstr "Start geminimaliseerd op"
 
@@ -496,185 +501,185 @@ msgid "Select a folder to add to library"
 msgstr "Selecteer een map om aan de bibliotheek toe te voegen"
 
 #. The main preferences dialog
-#: src/pref.c:1330 src/pref.c:1362
+#: src/pref.c:1332 src/pref.c:1364
 msgid "Preferences of Pragha"
 msgstr "Pragha voorkeuren"
 
 #. Labels
-#: src/pref.c:1373
+#: src/pref.c:1375
 msgid "Audio"
 msgstr "Geluid"
 
-#: src/pref.c:1375
+#: src/pref.c:1377
 msgid "General"
 msgstr "Algemeen"
 
-#: src/pref.c:1376
+#: src/pref.c:1378
 msgid "Notifications"
 msgstr "Notificaties"
 
-#: src/pref.c:1377
+#: src/pref.c:1379
 msgid "Internet Services"
 msgstr "Internetdiensten"
 
-#: src/pref.c:1427 src/pref.c:1456 src/pref.c:1491
+#: src/pref.c:1429 src/pref.c:1458 src/pref.c:1493
 msgid "Restart Required"
 msgstr "Herstart noodzakelijk"
 
-#: src/pref.c:1436
+#: src/pref.c:1438
 #, fuzzy
 msgid "Audio sink"
 msgstr "Audio Sink"
 
-#: src/pref.c:1453
+#: src/pref.c:1455
 msgid "Audio Device"
 msgstr "Audio apparaat"
 
 #. Audio CD device
-#: src/pref.c:1471
+#: src/pref.c:1473
 msgid "Audio CD Device"
 msgstr "Audio CD apparaat"
 
 #. Software mixer
-#: src/pref.c:1490
+#: src/pref.c:1492
 msgid "Use software mixer"
 msgstr "Gebruik software mixer"
 
-#: src/pref.c:1524
+#: src/pref.c:1526
 msgid "Folders"
 msgstr "Mappen"
 
-#: src/pref.c:1569
+#: src/pref.c:1571
 msgid "Merge folders in the folders estructure view"
 msgstr "Mappen samenvoegen in de 'estructure' weergave"
 
-#: src/pref.c:1589
+#: src/pref.c:1591
 msgid "Remember last window state"
 msgstr "Onthoud de laatst gebruikte scherminstelling"
 
-#: src/pref.c:1594
+#: src/pref.c:1596
 msgid "Restore last playlist"
 msgstr "Zet de laatste afspeellijst terug"
 
-#: src/pref.c:1596
+#: src/pref.c:1598
 msgid "Minimize Pragha when close the window"
 msgstr "Minimaliseer Pragha wanneer het venster wordt gesloten"
 
-#: src/pref.c:1597
+#: src/pref.c:1599
 msgid "Add files recursively"
 msgstr "Voeg bestanden recursief toe"
 
-#: src/pref.c:1599
+#: src/pref.c:1601
 msgid "Show Album art in Panel"
 msgstr "Toon albumhoes in het zijpaneel"
 
-#: src/pref.c:1602
+#: src/pref.c:1604
 msgid "Size of Album art"
 msgstr "Grootte van albumhoes"
 
-#: src/pref.c:1620
+#: src/pref.c:1622
 #, fuzzy
 msgid "Album art file pattern"
 msgstr "Albumhoes bestandspatroon"
 
 #. Notification OSD
-#: src/pref.c:1674
+#: src/pref.c:1676
 msgid "Show OSD for track change"
 msgstr "Toon OSD bij nieuw nummer"
 
-#: src/pref.c:1675
+#: src/pref.c:1677
 #, fuzzy
 msgid "Associate notifications to system tray"
 msgstr "Associeer notificaties met de systeembalk"
 
-#: src/pref.c:1676
+#: src/pref.c:1678
 msgid "Show Album art in notifications"
 msgstr "Toon albumhoes in notificaties"
 
-#: src/pref.c:1677
+#: src/pref.c:1679
 msgid "Add actions to change track to notifications"
 msgstr "Toon actieknoppen in notificaties"
 
 #. Services Last.fm
-#: src/pref.c:1702
+#: src/pref.c:1704
 msgid "Last.fm Support"
 msgstr "Last.fm ondersteuning"
 
-#: src/pref.c:1705
+#: src/pref.c:1707
 msgid "Username"
 msgstr "Gebruikersnaam"
 
-#: src/pref.c:1706
+#: src/pref.c:1708
 msgid "Password"
 msgstr "Paswoord"
 
 #. Services CDDB
-#: src/pref.c:1717
+#: src/pref.c:1719
 msgid "Connect to CDDB server"
 msgstr "Verbind met CDDB server"
 
-#: src/menu.c:140
+#: src/menu.c:129
 msgid "Update Library"
 msgstr "Vernieuw bibliotheek"
 
-#: src/menu.c:140
+#: src/menu.c:129
 msgid "Rescan Library"
 msgstr "Herscan bibliotheek"
 
-#: src/menu.c:245
+#: src/menu.c:234
 msgid "Select a file to play"
 msgstr "Selecteer een bestand om af te spelen"
 
-#: src/menu.c:266
+#: src/menu.c:255
 msgid "Add recursively files"
 msgstr "Voeg bestanden recursief toe"
 
-#: src/menu.c:287
+#: src/menu.c:276
 msgid "Supported media"
 msgstr "Ondersteunde formaten"
 
-#: src/menu.c:307
+#: src/menu.c:296
 msgid "All files"
 msgstr "Alle bestanden"
 
-#: src/menu.c:676 src/menu.c:810
+#: src/menu.c:665 src/menu.c:799
 msgid "Library scan complete"
 msgstr "Scan van bibliotheek klaar"
 
-#: src/menu.c:891
+#: src/menu.c:880
 msgid "Total Tracks:"
 msgstr "Totaal aantal nummers:"
 
-#: src/menu.c:893
+#: src/menu.c:882
 msgid "Total Artists:"
 msgstr "Totaal aantal artiesten:"
 
-#: src/menu.c:895
+#: src/menu.c:884
 msgid "Total Albums:"
 msgstr "Totaal aantal albums:"
 
-#: src/menu.c:897
+#: src/menu.c:886
 msgid "Statistics"
 msgstr "Statistieken"
 
-#: src/menu.c:914
+#: src/menu.c:903
 #, fuzzy
 msgid "translator-credits"
 msgstr "Vertaler-credits"
 
-#: src/utils.c:222
+#: src/utils.c:231
 msgid "days"
 msgstr "dagen"
 
-#: src/utils.c:222
+#: src/utils.c:231
 msgid "day"
 msgstr "dag"
 
-#: src/utils.c:453
+#: src/utils.c:462
 msgid "Unable to open the browser"
 msgstr "Kan de browser niet openen"
 
-#: src/playlist.c:513
+#: src/playlist.c:548
 msgid "Export playlist to file"
 msgstr "Afspeellijst naar bestand exporteren"
 

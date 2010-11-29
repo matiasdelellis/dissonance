@@ -829,6 +829,7 @@ void genre_album_library_tree(GtkAction *action, struct con_win *cwin);
 void genre_artist_library_tree(GtkAction *action, struct con_win *cwin);
 void genre_artist_album_library_tree(GtkAction *action, struct con_win *cwin);
 void library_tree_replace_playlist(GtkAction *action, struct con_win *cwin);
+void library_tree_replace_and_play(GtkAction *action, struct con_win *cwin);
 void library_tree_add_to_playlist(struct con_win *cwin);
 void library_tree_add_to_playlist_action(GtkAction *action, struct con_win *cwin);
 void library_tree_edit_tags(GtkAction *action, struct con_win *cwin);
@@ -890,6 +891,7 @@ gboolean playlist_tree_button_release_cb(GtkWidget *widget,
 				      GdkEventButton *event,
 				      struct con_win *cwin);
 void playlist_tree_replace_playlist(GtkAction *action, struct con_win *cwin);
+void playlist_tree_replace_and_play(GtkAction *action, struct con_win *cwin);
 void playlist_tree_add_to_playlist(struct con_win *cwin);
 void playlist_tree_add_to_playlist_action(GtkAction *action, struct con_win *cwin);
 void playlist_tree_delete(GtkAction *action, struct con_win *cwin);
