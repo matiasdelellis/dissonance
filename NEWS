@@ -1,7 +1,30 @@
 =====================================================
-Overview of changes in Pragha 0.8.3
+Overview of changes in Pragha 0.8.4
 =====================================================
 
+News:
+	"Restore" replace and play option.
+
+Others Changes:
+	Depend on external libkeybinder (Optional).
+	Backport better generate of the recently-used data.
+
+Bugs fixed:
+	Disable "Add actions.." options if the notifier does not support it.
+
+Updates Translations:
+	Add Hungiran translatiton.
+	Update others translation.
+
+======================================================
+OTHERS REALESES:
+======================================================
+
+V0.8.3.1
+	D'Oh!. Fix crash when edit track without reproducing any song.
+	No show zero length, zero bitrate, or zero year in current playlist.
+
+V0.8.3
 News:
 	Move to trash instead remove tracks in library view.
 	Add dialog to Skip, Skip all, or delete all tracks if fails move to trash.
@@ -26,14 +49,6 @@ Bugs fixed:
 	Place the cursor at the end of the filename entry.
 	No save fuse option if not folders view is activate.
 	Fix tiny memory leak.
-
-v0.8.3.1
-	D'Oh!. Fix crash when edit track without reproducing any song.
-	No show zero length, zero bitrate, or zero year in current playlist.
-
-======================================================
-OTHERS REALESES:
-======================================================
 
 V0.8.2
 News:

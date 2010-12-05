@@ -7,8 +7,6 @@ INCLUDES =								\
 
 bin_PROGRAMS = pragha
 
-pragha_CFLAGS = $(DEFINES)
-
 pragha_SOURCES =pragha.c \
 		init.c \
 		gui.c \
