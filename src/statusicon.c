@@ -24,7 +24,7 @@ status_icon_clicked (GtkWidget *widget, GdkEventButton *event, struct con_win *c
 	GtkWidget *popup_menu;
 	switch (event->button)
 	{
-		case 1: toogle_main_window (cwin);
+		case 1: toogle_main_window (cwin, FALSE);
 			break;
 		case 2:	play_pause_resume(cwin);
 			break;
@@ -38,7 +38,7 @@ status_icon_clicked (GtkWidget *widget, GdkEventButton *event, struct con_win *c
 	return TRUE;
 }
 
-void toogle_main_window(struct con_win *cwin)
+void toogle_main_window(struct con_win *cwin, gboolean ignoreActivity)
 {
 	static gint x = 0, y = 0;
 	GdkWindowState state;
@@ -46,7 +46,7 @@ void toogle_main_window(struct con_win *cwin)
 	state = gdk_window_get_state (GTK_WIDGET (cwin->mainwindow)->window);
 
 	if (GTK_WIDGET_VISIBLE(cwin->mainwindow)) {
-		if(gtk_window_is_active(GTK_WINDOW(cwin->mainwindow))){
+		if(ignoreActivity || gtk_window_is_active(GTK_WINDOW(cwin->mainwindow))){
 			gtk_window_get_position(GTK_WINDOW(cwin->mainwindow), &x, &y );
 			gtk_widget_hide(GTK_WIDGET(cwin->mainwindow));
 			gtk_window_move (GTK_WINDOW(cwin->mainwindow),x ,y);
@@ -145,7 +145,7 @@ void show_osd(struct con_win *cwin)
 
 	length = convert_length_str(cwin->cstate->curr_mobj->tags->length);
 
-	body = g_markup_printf_escaped(_("<small><span weight=\"light\">by</span></small> %s <small><span weight=\"light\">in</span></small> %s (%s)"),
+	body = g_markup_printf_escaped(_("by <b>%s</b> in <b>%s</b> <b>(%s)</b>"),
 			(cwin->cstate->curr_mobj->tags->artist && strlen(cwin->cstate->curr_mobj->tags->artist)) ?
 			cwin->cstate->curr_mobj->tags->artist : _("Unknown Artist"),
 			(cwin->cstate->curr_mobj->tags->album && strlen(cwin->cstate->curr_mobj->tags->album)) ?
@@ -154,6 +154,7 @@ void show_osd(struct con_win *cwin)
 
 	/* Create notification instance */
 	if(cwin->cpref->osd_in_systray && gtk_status_icon_is_embedded(GTK_STATUS_ICON(cwin->status_icon))) {
+
 		osd = notify_notification_new_with_status_icon((const gchar *) summary,
 								body, NULL,
 								GTK_STATUS_ICON(cwin->status_icon));

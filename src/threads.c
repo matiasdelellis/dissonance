@@ -142,9 +142,10 @@ static gboolean advance_playback(gpointer data)
 
 		/* No more tracks */
 
-		if (!path)
+		if (!path) {
+			dbus_send_signal(DBUS_EVENT_UPDATE_STATE, cwin);
 			return FALSE;
-
+		}
 		/* Start playing new track */
 
 		mobj = current_playlist_mobj_at_path(path, cwin);
@@ -258,6 +259,7 @@ GThread* start_playback(struct musicobject *mobj, struct con_win *cwin)
 	}
 	else {
 		cwin->cstate->state = ST_PLAYING;
+		dbus_send_signal(DBUS_EVENT_UPDATE_STATE, cwin);
 		play_button_toggle_state(cwin);
 
 		CDEBUG(DBG_INFO, "Starting playback");
@@ -276,6 +278,7 @@ void pause_playback(struct con_win *cwin)
 		g_mutex_unlock(cwin->cstate->c_mutex);
 
 		cwin->cstate->state = ST_PAUSED;
+		dbus_send_signal(DBUS_EVENT_UPDATE_STATE, cwin);
 		play_button_toggle_state(cwin);
 	}
 }
@@ -291,6 +294,7 @@ void resume_playback(struct con_win *cwin)
 		g_mutex_unlock(cwin->cstate->c_mutex);
 
 		cwin->cstate->state = ST_PLAYING;
+		dbus_send_signal(DBUS_EVENT_UPDATE_STATE, cwin);
 		play_button_toggle_state(cwin);
 	}
 }
@@ -320,6 +324,7 @@ void stop_playback(struct con_win *cwin)
 
 		cwin->cstate->c_thread = NULL;
 		cwin->cstate->state = ST_STOPPED;
+		dbus_send_signal(DBUS_EVENT_UPDATE_STATE, cwin);
 		play_button_toggle_state(cwin);
 	}
 }

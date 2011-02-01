@@ -1809,7 +1809,7 @@ gboolean exit_gui(GtkWidget *widget, GdkEvent *event, struct con_win *cwin)
 {
 	if(cwin->cpref->close_to_tray){
 		if(gtk_status_icon_is_embedded(GTK_STATUS_ICON(cwin->status_icon))){
-			toogle_main_window(cwin);
+			toogle_main_window(cwin, FALSE);
 		}
 		else{
 			g_warning("(%s): No embedded status_icon.", __func__);

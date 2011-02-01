@@ -47,6 +47,8 @@ GOptionEntry cmd_entries[] = {
 	 cmd_dec_volume, "Decrease volume by 1", NULL},
 	{"show_osd", 'o', G_OPTION_FLAG_NO_ARG, G_OPTION_ARG_CALLBACK,
 	 cmd_show_osd, "Show OSD notification", NULL},
+	{"toggle_view", 'x', G_OPTION_FLAG_NO_ARG, G_OPTION_ARG_CALLBACK,
+	 cmd_toggle_view, "Toggle player visibility", NULL},
 	{"current_state", 'c', G_OPTION_FLAG_NO_ARG, G_OPTION_ARG_CALLBACK,
 	 cmd_current_state, "Get current player state", NULL},
 	{"audio_backend", 'a', 0, G_OPTION_ARG_STRING,

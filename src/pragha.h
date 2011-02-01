@@ -144,10 +144,13 @@
 #define DBUS_SIG_REPEAT   "repeat"
 #define DBUS_SIG_INC_VOL  "inc_vol"
 #define DBUS_SIG_DEC_VOL  "dec_vol"
+#define DBUS_SIG_TOGGLE_VIEW      "toggle_view"
+#define DBUS_SIG_SHOW_OSD "show_osd"
 #define DBUS_SIG_SHOW_OSD "show_osd"
 #define DBUS_SIG_ADD_FILE "add_files"
 
 #define DBUS_METHOD_CURRENT_STATE "curent_state"
+#define DBUS_EVENT_UPDATE_STATE   "update_state"
 
 #define GROUP_GENERAL  "General"
 #define KEY_INSTALLED_VERSION      "installed_version"
@@ -1100,6 +1103,8 @@ gboolean cmd_dec_volume(const gchar *opt_name, const gchar *val,
 			struct con_win *cwin, GError **error);
 gboolean cmd_show_osd(const gchar *opt_name, const gchar *val,
 		      struct con_win *cwin, GError **error);
+gboolean cmd_toggle_view(const gchar *opt_name, const gchar *val,
+		      struct con_win *cwin, GError **error);
 gboolean cmd_current_state(const gchar *opt_name, const gchar *val,
 			   struct con_win *cwin, GError **error);
 gboolean cmd_add_file(const gchar *opt_name, const gchar *val,
@@ -1174,7 +1179,7 @@ void init_gui(gint argc, gchar **argv, struct con_win *cwin);
 void common_cleanup(struct con_win *cwin);
 void exit_pragha(GtkWidget *widget, struct con_win *cwin);
 
-void toogle_main_window(struct con_win *cwin);
+void toogle_main_window(struct con_win *cwin, gboolean ignoreActivity);
 void systray_volume_scroll (GtkWidget *widget, GdkEventScroll *event, struct con_win *cwin);
 GtkUIManager* create_systray_menu(struct con_win *cwin);
 

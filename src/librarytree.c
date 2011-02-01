@@ -787,6 +787,7 @@ static gboolean filter_tree_func(GtkTreeModel *model,
 	return FALSE;
 }
 
+
 gboolean do_refilter(struct con_win *cwin )
 {
 	GtkTreeModel *filter_model;
