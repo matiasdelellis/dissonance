@@ -153,8 +153,10 @@ void show_osd(struct con_win *cwin)
 			length);
 
 	/* Create notification instance */
+	#if NOTIFY_CHECK_VERSION (0, 7, 0)
+		osd = notify_notification_new((const gchar *) summary, body, NULL);
+	#else
 	if(cwin->cpref->osd_in_systray && gtk_status_icon_is_embedded(GTK_STATUS_ICON(cwin->status_icon))) {
-
 		osd = notify_notification_new_with_status_icon((const gchar *) summary,
 								body, NULL,
 								GTK_STATUS_ICON(cwin->status_icon));
@@ -162,6 +164,7 @@ void show_osd(struct con_win *cwin)
 	else {
 		osd = notify_notification_new((const gchar *) summary, body, NULL, NULL);
 	}
+	#endif
 
 	notify_notification_set_timeout(osd, OSD_TIMEOUT);
 

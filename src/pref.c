@@ -648,10 +648,17 @@ static void update_preferences(struct con_win *cwin)
 		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(
 					     cwin->cpref->show_osd_w),
 					     TRUE);
+	#if NOTIFY_CHECK_VERSION (0, 7, 0)
+		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(
+					     cwin->cpref->osd_in_systray_w),
+					     FALSE);
+		gtk_widget_set_sensitive(cwin->cpref->osd_in_systray_w, FALSE);
+	#else
 	if (cwin->cpref->osd_in_systray)
 		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(
 					     cwin->cpref->osd_in_systray_w),
 					     TRUE);
+	#endif
 	if (cwin->cpref->albumart_in_osd)
 		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(
 					     cwin->cpref->albumart_in_osd_w),
