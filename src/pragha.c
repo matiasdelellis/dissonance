@@ -17,6 +17,7 @@
 /*************************************************************************/
 
 #include "pragha.h"
+#include <locale.h> /* require LC_ALL */
 
 gint debug_level;
 
@@ -125,6 +126,9 @@ void common_cleanup(struct con_win *cwin)
 			      NULL);
 	dbus_connection_unref(cwin->con_dbus);
 
+	#if GLIB_2_26_FOUND
+	mpris_cleanup();
+	#endif
 	if (notify_is_initted())
 		notify_uninit();
 

@@ -22,6 +22,22 @@ AM_INIT_AUTOMAKE([AC_PACKAGE_TARNAME()], [AC_PACKAGE_VERSION()])
 AM_CONFIG_HEADER([config.h])
 AM_MAINTAINER_MODE()
 
+dnl *********************
+dnl * Debugging support *
+dnl *********************
+AC_ARG_ENABLE(debug,[  --enable-debug    Turn on debugging],[
+	case "${enableval}" in
+	   yes)	debug=true ;
+		CFLAGS="$CFLAGS -DDEBUG -D_DEBUG -g -ggdb -O0 -fno-inline -fno-inline-functions" ;;
+	    no)	debug=false ;
+		CFLAGS="$CFLAGS -DNDEBUG -O3 -Werror" ;;
+	     *)	AC_MSG_ERROR(bad value ${enableval} for --enable-debug) ;;
+	esac
+],[	debug=false
+	CFLAGS="$CFLAGS -DNDEBUG -O3 -Werror"
+])
+AC_SUBST(CFLAGS)
+
 dnl check for basic programs
 AC_PROG_CC()
 AC_PROG_INSTALL()
@@ -52,7 +68,7 @@ XDT_CHECK_PACKAGE([LIBMODPLUG], [libmodplug], [0.7.0])
 XDT_CHECK_PACKAGE([LIBX11], [x11], 1.0.0)
 
 dnl ***********************************
-dnl *** Check for taglib_c ***
+dnl *** Check for taglib_c          ***
 dnl ***********************************
 TAGLIBC_LIBS=""
 TAGLIBC_CFLAGS=""
@@ -76,14 +92,31 @@ XDT_CHECK_OPTIONAL_PACKAGE([LIBKEYBINDER],
                        [keybinder],
                        [keybinder library], [yes])
 
+dnl *************************************
+dnl * Mpris2 support need glib 2.26     *
+dnl *************************************
+GLIB_2_26_FOUND="no"
+XDT_CHECK_OPTIONAL_PACKAGE([GLIB_2_26],
+                       [glib-2.0], [2.26.0],
+                       [glib-2.0],
+                       [glib-2.0 library], [yes])
+
 AC_OUTPUT([
 Makefile
 po/Makefile.in
 src/Makefile
 ])
 
+case "$debug" in
+     "true" )
+	AC_MSG_RESULT([Debugging enabled, optimizations disabled.]) ;;
+esac
+
+AC_MSG_RESULT([CFLAGS = $CFLAGS]) 
+
 echo
 echo "Build Configuration for $PACKAGE version $VERSION"
 echo "  Global keyboard shortcuts support:   $LIBKEYBINDER_FOUND"
+echo "  MPRIS2 remote control support....:   $GLIB_2_26_FOUND"
 echo
 

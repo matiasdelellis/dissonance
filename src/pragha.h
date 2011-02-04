@@ -868,6 +868,8 @@ void update_track_db(gint location_id, gint changed,
 		     struct con_win *cwin);
 gint add_new_playlist_db(const gchar *playlist, struct con_win *cwin);
 gchar** get_playlist_names_db(struct con_win *cwin);
+gint get_playlist_count_db(struct con_win *cwin);
+gint get_tracklist_count_db(struct con_win *cwin);
 void delete_playlist_db(gchar *playlist, struct con_win *cwin);
 void flush_playlist_db(gint playlist_id, struct con_win *cwin);
 void flush_stale_entries_db(struct con_win *cwin);
@@ -1121,6 +1123,10 @@ DBusHandlerResult dbus_filter_handler(DBusConnection *conn,
 				      gpointer data);
 void dbus_send_signal(const gchar *signal, struct con_win *cwin);
 
+/* MPRIS functions */
+gint mpris_init(struct con_win *cwin);
+void mpris_update_any(struct con_win *cwin);
+void mpris_cleanup();
 /* Utilities */
 gboolean is_playable_file(const gchar *file);
 gboolean is_dir_and_accessible(gchar *dir, struct con_win *cwin);

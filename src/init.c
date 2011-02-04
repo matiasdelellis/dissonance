@@ -133,8 +133,11 @@ gint init_dbus(struct con_win *cwin)
 
 	dbus_connection_setup_with_g_main(conn, NULL);
 	cwin->con_dbus = conn;
-
+	#if GLIB_2_26_FOUND
+	return mpris_init(cwin);
+	#else
 	return 0;
+	#endif
 }
 
 gint init_dbus_handlers(struct con_win *cwin)

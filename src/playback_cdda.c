@@ -239,7 +239,7 @@ void play_cdda(struct con_win *cwin)
 
 	CDEBUG(DBG_INFO, "Playing : %s", cwin->cstate->curr_mobj->file);
 
-	memset(&cdec, sizeof(struct con_cdda_decoder), 0);
+	memset(&cdec, 0, sizeof(struct con_cdda_decoder));
 	cdec.start = cdio_cddap_track_firstsector(cwin->cstate->cdda_drive,
 					  cwin->cstate->curr_mobj->tags->track_no);
 	cdec.end = cdio_cddap_track_lastsector(cwin->cstate->cdda_drive,

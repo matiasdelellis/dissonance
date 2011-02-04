@@ -3,6 +3,7 @@ INCLUDES =								\
 	-DG_LOG_DOMAIN=\"pragha\"					\
 	-DPACKAGE_LOCALE_DIR=\"$(localedir)\"				\
 	-DPIXMAPDIR=\""$(datadir)/pixmaps/pragha"\"			\
+	-DDESKTOPENTRY=\""$(datadir)/applications/pragha.desktop"\"	\
 	-I$(top_srcdir)
 
 bin_PROGRAMS = pragha
@@ -31,6 +32,7 @@ pragha_SOURCES =pragha.c \
 		statusicon.c \
 		cmdline.c \
 		dbus.c \
+		mpris.c \
 		playlist.c \
 		md5.c \
 		lastfm.c \
