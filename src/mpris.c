@@ -19,7 +19,7 @@
 #include "pragha.h"
 
 /* for GDBusConnection nedd Glib 2.26 */
-#if GLIB_2_26_FOUND
+#if HAVE_GLIB_2_26
 static guint owner_id;
 static GDBusNodeInfo *introspection_data = NULL;
 static GDBusConnection *dbus_connection = NULL;
@@ -701,6 +701,7 @@ void mpris_update_any(struct con_win *cwin) {
 
 gint mpris_init(struct con_win *cwin)
 {
+	CDEBUG(DBG_INFO, "Initializing MPRIS");
 	g_type_init();
 	
     introspection_data = g_dbus_node_info_new_for_xml (mpris2xml, NULL);

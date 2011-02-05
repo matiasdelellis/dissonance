@@ -372,6 +372,8 @@ shuffle_button_handler (GtkToggleButton *button, struct con_win *cwin)
 		shuffle_button(cwin);
 
 	g_signal_handlers_unblock_by_func (action_shuffle, shuffle_action, cwin);
+
+	dbus_send_signal(DBUS_EVENT_UPDATE_STATE, cwin);
 }
 
 void
@@ -387,6 +389,8 @@ repeat_button_handler (GtkToggleButton *button, struct con_win *cwin)
 		gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (action_repeat), cwin->cpref->repeat);
 
 	g_signal_handlers_unblock_by_func (action_repeat, repeat_action, cwin);
+
+	dbus_send_signal(DBUS_EVENT_UPDATE_STATE, cwin);
 }
 
 void shuffle_button (struct con_win *cwin)

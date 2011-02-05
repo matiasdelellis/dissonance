@@ -126,9 +126,10 @@ void common_cleanup(struct con_win *cwin)
 			      NULL);
 	dbus_connection_unref(cwin->con_dbus);
 
-	#if GLIB_2_26_FOUND
+	#if HAVE_GLIB_2_26
 	mpris_cleanup();
 	#endif
+
 	if (notify_is_initted())
 		notify_uninit();
 
@@ -184,6 +185,13 @@ gint main(gint argc, gchar *argv[])
 		g_critical("Unable to initialize DBUS filter handlers");
 		return -1;
 	}
+
+	#if HAVE_GLIB_2_26
+	if (mpris_init(cwin) == -1) {
+		g_critical("Unable to initialize MPRIS");
+		return -1;
+	}
+	#endif
 
 	if (init_options(cwin, argc, argv) == -1)
 		return -1;

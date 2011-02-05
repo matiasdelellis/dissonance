@@ -245,7 +245,7 @@ void dbus_send_signal(const gchar *signal, struct con_win *cwin)
 		g_critical("Unable to send DBUS message");
 		goto exit;
 	}
-	#if GLIB_2_26_FOUND
+	#if HAVE_GLIB_2_26
 	if(!g_strcmp0(signal, DBUS_EVENT_UPDATE_STATE))
 		mpris_update_any(cwin);
 	#endif

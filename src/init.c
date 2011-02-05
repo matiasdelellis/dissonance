@@ -111,6 +111,8 @@ gint init_dbus(struct con_win *cwin)
 	DBusError error;
 	gint ret = 0;
 
+	CDEBUG(DBG_INFO, "Initializing DBUS");
+
 	dbus_error_init(&error);
 	conn = dbus_bus_get(DBUS_BUS_SESSION, &error);
 	if (!conn) {
@@ -133,11 +135,8 @@ gint init_dbus(struct con_win *cwin)
 
 	dbus_connection_setup_with_g_main(conn, NULL);
 	cwin->con_dbus = conn;
-	#if GLIB_2_26_FOUND
-	return mpris_init(cwin);
-	#else
+
 	return 0;
-	#endif
 }
 
 gint init_dbus_handlers(struct con_win *cwin)
@@ -175,7 +174,7 @@ gint init_options(struct con_win *cwin, int argc, char **argv)
 
 	CDEBUG(DBG_INFO, "Initializing Command line options");
 
-	context = g_option_context_new("- A lightweight music manager");
+	context = g_option_context_new("- A lightweight music player");
 	group = g_option_group_new("General", "General", "General Options", cwin, NULL);
 	g_option_group_add_entries(group, cmd_entries);
 	g_option_context_set_main_group(context, group);
