@@ -6,7 +6,7 @@ dnl
 dnl Version information
 m4_define([pragha_version_major], [0])
 m4_define([pragha_version_minor], [8])
-m4_define([pragha_version_micro], [5svn])
+m4_define([pragha_version_micro], [5])
 m4_define([pragha_version], [pragha_version_major().pragha_version_minor().pragha_version_micro()])
 
 dnl Initialize autoconf
