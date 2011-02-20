@@ -182,7 +182,7 @@ gint init_options(struct con_win *cwin, int argc, char **argv)
 	if (!g_option_context_parse(context, &argc, &argv, &error)) {
 		gchar *txt;
 
-		g_critical("Unable to parse options: %s", error->message);
+		g_message("Unable to parse options. Some options need another instance of pragha running.");
 		txt = g_option_context_get_help(context, TRUE, NULL);
 		g_print("%s", txt);
 		g_free(txt);
