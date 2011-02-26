@@ -924,6 +924,7 @@ void init_playlist_view(struct con_win *cwin);
 
 /* Current playlist */
 
+void update_status_bar(struct con_win *cwin);
 void update_current_state(GThread *thread,
 			  GtkTreePath *path,
 			  enum playlist_action action,
@@ -951,6 +952,7 @@ void clear_current_playlist(GtkAction *action, struct con_win *cwin);
 void update_track_current_playlist(GtkTreeIter *iter, gint changed, struct musicobject *mobj, struct con_win *cwin);
 void insert_current_playlist(struct musicobject *mobj, gboolean drop_after, GtkTreeIter *pos, struct con_win *cwin);
 void append_current_playlist(struct musicobject *mobj, struct con_win *cwin);
+void append_current_playlist_on_model(GtkTreeModel *model, struct musicobject *mobj, struct con_win *cwin);
 void clear_sort_current_playlist(GtkAction *action, struct con_win *cwin);
 void save_selected_playlist(GtkAction *action, struct con_win *cwin);
 void save_current_playlist(GtkAction *action, struct con_win *cwin);

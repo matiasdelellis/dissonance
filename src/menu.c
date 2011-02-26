@@ -814,8 +814,14 @@ void add_all_action(GtkAction *action, struct con_win *cwin)
 	gchar *query;
 	struct db_result result;
 	struct musicobject *mobj;
+	GtkTreeModel *model;
 
 	clear_current_playlist(action, cwin);
+
+	model = gtk_tree_view_get_model(GTK_TREE_VIEW(cwin->current_playlist));
+	g_object_ref(model); 
+
+	gtk_tree_view_set_model(GTK_TREE_VIEW(cwin->current_playlist), NULL);
 
 	/* Query and insert entries */
 	/* NB: Optimization */
@@ -831,7 +837,7 @@ void add_all_action(GtkAction *action, struct con_win *cwin)
 					  " location_id : %d",
 					  location_id);
 			else
-				append_current_playlist(mobj, cwin);
+				append_current_playlist_on_model(model, mobj, cwin);
 
 			/* Have to give control to GTK periodically ... */
 			/* If gtk_main_quit has been called, return -
@@ -849,6 +855,10 @@ void add_all_action(GtkAction *action, struct con_win *cwin)
 		}
 		sqlite3_free_table(result.resultp);
 	}
+	gtk_tree_view_set_model(GTK_TREE_VIEW(cwin->current_playlist), model);
+	g_object_unref(model);
+
+	update_status_bar(cwin);
 }
 
 /* Handler for 'Statistics' action in the Tools menu */

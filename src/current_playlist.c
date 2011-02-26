@@ -58,7 +58,7 @@ static gint get_total_playtime(struct con_win *cwin)
 
 /* Update status bar */
 
-static void update_status_bar(struct con_win *cwin)
+void update_status_bar(struct con_win *cwin)
 {
 	gint total_playtime = 0;
 	gchar *str, *tot_str;
@@ -1642,6 +1642,64 @@ void append_current_playlist(struct musicobject *mobj, struct con_win *cwin)
 	g_free(ch_filename);
 }
 
+/* Append a track to the current playlist */
+
+void append_current_playlist_on_model(GtkTreeModel *model, struct musicobject *mobj, struct con_win *cwin)
+{
+	GtkTreeIter iter;
+	gchar *ch_length = NULL, *ch_track_no = NULL, *ch_year = NULL, *ch_bitrate = NULL, *ch_filename = NULL;
+
+	if (!mobj) {
+		g_warning("Dangling entry in current playlist");
+		return;
+	}
+	if (!mobj->tags) {
+		g_warning("Corrupt music object, no tags found");
+		return;
+	}
+
+	if(mobj->tags->track_no)
+		ch_track_no = g_strdup_printf("%d", mobj->tags->track_no);
+	if(mobj->tags->year)
+		ch_year = g_strdup_printf("%d", mobj->tags->year);
+	if(mobj->tags->length)
+		ch_length = convert_length_str(mobj->tags->length);
+	if(mobj->tags->bitrate)
+		ch_bitrate = g_strdup_printf("%d", mobj->tags->bitrate);
+
+	ch_filename = get_display_name(mobj);
+
+	gtk_list_store_append(GTK_LIST_STORE(model), &iter);
+	gtk_list_store_set(GTK_LIST_STORE(model), &iter,
+			   P_MOBJ_PTR, mobj,
+			   P_QUEUE, NULL,
+			   P_BUBBLE, FALSE, 
+			   P_TRACK_NO, ch_track_no,
+			   P_TITLE, (mobj->tags->title && strlen(mobj->tags->title)) ?
+					mobj->tags->title : ch_filename,
+			   P_ARTIST, mobj->tags->artist,
+			   P_ALBUM, mobj->tags->album,
+			   P_GENRE, mobj->tags->genre,
+			   P_BITRATE, ch_bitrate,
+			   P_YEAR, ch_year,
+			   P_COMMENT, mobj->tags->comment,
+			   P_LENGTH, ch_length,
+			   P_FILENAME, ch_filename,
+			   P_PLAYED, FALSE,
+			   -1);
+
+	/* Increment global count of tracks */
+
+	cwin->cstate->tracks_curr_playlist++;
+	cwin->cstate->unplayed_tracks++;
+
+	g_free(ch_length);
+	g_free(ch_track_no);
+	g_free(ch_year);
+	g_free(ch_bitrate);
+	g_free(ch_filename);
+}
+
 /* Clear sort in the current playlist */
 
 void clear_sort_current_playlist(GtkAction *action, struct con_win *cwin)
@@ -2470,6 +2528,45 @@ void save_current_playlist_state(struct con_win *cwin)
 /* Init current playlist on application bringup,
    restore stored playlist */
 
+void init_playlist_current_playlist(struct con_win *cwin)
+{
+	gchar *s_playlist, *query, *file;
+	gint playlist_id, location_id, i = 0;
+	struct db_result result;
+	struct musicobject *mobj;
+	GtkTreeModel *model;
+
+	model = gtk_tree_view_get_model(GTK_TREE_VIEW(cwin->current_playlist));
+	g_object_ref(model); 
+	gtk_tree_view_set_model(GTK_TREE_VIEW(cwin->current_playlist), NULL);
+
+	s_playlist = sanitize_string_sqlite3(SAVE_PLAYLIST_STATE);
+	playlist_id = find_playlist_db(s_playlist, cwin);
+	query = g_strdup_printf("SELECT FILE FROM PLAYLIST_TRACKS WHERE PLAYLIST=%d",
+				playlist_id);
+	exec_sqlite_query(query, cwin, &result);
+
+	for_each_result_row(result, i) {
+		file = sanitize_string_sqlite3(result.resultp[i]);
+
+		if ((location_id = find_location_db(file, cwin)))
+			mobj = new_musicobject_from_db(location_id, cwin);
+		else
+			mobj = new_musicobject_from_file(result.resultp[i]);
+
+		append_current_playlist_on_model(model, mobj, cwin);
+		g_free(file);
+	}
+
+	gtk_tree_view_set_model(GTK_TREE_VIEW(cwin->current_playlist), model);
+	g_object_unref(model);
+
+	update_status_bar(cwin);
+
+	sqlite3_free_table(result.resultp);
+	g_free(s_playlist);
+}
+
 void init_current_playlist_view(struct con_win *cwin)
 {
 	gchar *ref = NULL;
@@ -2481,7 +2578,7 @@ void init_current_playlist_view(struct con_win *cwin)
 	GdkRectangle vrect;
 	GdkRectangle crect;
 
-	add_playlist_current_playlist(SAVE_PLAYLIST_STATE, cwin);
+	init_playlist_current_playlist(cwin);
 
 	ref = g_key_file_get_string(cwin->cpref->configrc_keyfile,
 				    GROUP_PLAYLIST,
