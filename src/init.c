@@ -214,7 +214,9 @@ gint init_config(struct con_win *cwin)
 	gboolean remember_window_state_f, start_mode_f, window_size_f, sidebar_size_f, sidebar_pane_f, album_f, album_art_size_f, status_bar_f;
 	gboolean show_osd_f, osd_in_systray_f, albumart_in_osd_f, actions_in_osd_f;
 	gboolean all_f;
-
+#if HAVE_GLIB_2_26
+	gboolean use_mpris2_f;
+#endif
 	CDEBUG(DBG_INFO, "Initializing configuration");
 
 	last_folder_f = recursively_f = album_art_pattern_f = timer_remaining_mode_f = close_to_tray_f = lastfm_f = FALSE;
@@ -223,7 +225,9 @@ gint init_config(struct con_win *cwin)
 	audio_sink_f = audio_alsa_device_f = audio_oss_device_f = software_mixer_f = use_cddb_f = FALSE;
 	remember_window_state_f = start_mode_f = window_size_f = sidebar_size_f = sidebar_pane_f = album_f = album_art_size_f = status_bar_f = FALSE;
 	show_osd_f = osd_in_systray_f = albumart_in_osd_f = actions_in_osd_f = FALSE;
-
+#if HAVE_GLIB_2_26
+	use_mpris2_f = FALSE;
+#endif
 	all_f = FALSE;
 
 	config_dir = g_get_user_config_dir();
@@ -803,6 +807,19 @@ gint init_config(struct con_win *cwin)
 			error = NULL;
 			use_cddb_f = TRUE;
 		}
+
+#if HAVE_GLIB_2_26		
+		cwin->cpref->use_mpris2 =
+			g_key_file_get_boolean(cwin->cpref->configrc_keyfile,
+					       GROUP_SERVICES,
+					       KEY_ALLOW_MPRIS2,
+					       &error);
+		if (error) {
+			g_error_free(error);
+			error = NULL;
+			use_mpris2_f = TRUE;
+		}
+#endif		
 	}
 
 	/* Fill up with failsafe defaults */
@@ -904,6 +921,8 @@ gint init_config(struct con_win *cwin)
 		cwin->cpref->lw.lastfm_support = FALSE;
 	if (all_f || use_cddb_f)
 		cwin->cpref->use_cddb = TRUE;
+	if (all_f || use_mpris2_f)
+		cwin->cpref->use_mpris2 = TRUE;
 
 	/* Cleanup */
 

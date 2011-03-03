@@ -107,8 +107,7 @@ void handle_selected_file(gpointer data, gpointer udata)
 		g_free(data);
 		return;
 	}
-
-	else if (is_m3u_playlist(data)){
+	else if (is_m3u_playlist(data)) {
 		open_m3u_playlist(data, cwin);
 	}
 	else{
@@ -118,6 +117,7 @@ void handle_selected_file(gpointer data, gpointer udata)
 			add_recent_file(data);
 		}
 	}
+	g_free(data);
 }
 
 /* Create a dialog box with a progress bar for rescan/update library */
@@ -444,7 +444,6 @@ exit:
 	g_free(ntag.genre);
 	g_free(ntag.comment);	
 }
-
 
 /* Handler for the 'Quit' item in the pragha menu */
 
@@ -859,6 +858,11 @@ void add_all_action(GtkAction *action, struct con_win *cwin)
 	g_object_unref(model);
 
 	update_status_bar(cwin);
+	
+	/* inform mpris2 */
+	#if HAVE_GLIB_2_26
+	mpris_update_tracklist_changed(cwin);
+	#endif
 }
 
 /* Handler for 'Statistics' action in the Tools menu */
@@ -954,7 +958,7 @@ void wiki_action(GtkAction *action, struct con_win *cwin)
 
 void translate_action(GtkAction *action, struct con_win *cwin)
 {
-	const gchar *uri = "http://www.transifex.net/projects/p/Pragha/c/Pragha/";
+	const gchar *uri = "http://www.transifex.net/projects/p/Pragha/";
 	open_url(cwin, uri);
 }
 

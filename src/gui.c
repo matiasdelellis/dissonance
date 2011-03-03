@@ -1764,7 +1764,7 @@ void create_status_icon(struct con_win *cwin)
 		status_icon = gtk_status_icon_new_from_pixbuf(cwin->pixbuf->pixbuf_app);
 	else
 		status_icon = gtk_status_icon_new_from_stock(GTK_STOCK_NEW);
- 
+
 	g_signal_connect (status_icon, "button-press-event", G_CALLBACK (status_icon_clicked), cwin);
 	g_signal_connect (status_icon, "scroll_event", G_CALLBACK(systray_volume_scroll), cwin);
  

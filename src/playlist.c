@@ -362,22 +362,15 @@ gboolean playlist_tree_button_release_cb(GtkWidget *widget,
 
 void playlist_tree_replace_playlist(GtkAction *action, struct con_win *cwin)
 {
-	GtkTreeModel *model;
 	GtkTreeSelection *selection;
 	GtkTreePath *path;
 	GList *list, *i;
 
-	model = gtk_tree_view_get_model(GTK_TREE_VIEW(cwin->playlist_tree));
 	selection = gtk_tree_view_get_selection(GTK_TREE_VIEW(cwin->playlist_tree));
 	list = gtk_tree_selection_get_selected_rows(selection, NULL);
 
-	/* Clear current playlist first */
-
-	clear_current_playlist(NULL, cwin);
-
 	if (list) {
-
-		/* Add all the rows to the current playlist */
+		clear_current_playlist(NULL, cwin);
 
 		for (i=list; i != NULL; i = i->next) {
 			path = i->data;
@@ -443,12 +436,10 @@ void playlist_tree_add_to_playlist_action(GtkAction *action, struct con_win *cwi
 
 void playlist_tree_add_to_playlist(struct con_win *cwin)
 {
-	GtkTreeModel *model;
 	GtkTreeSelection *selection;
 	GtkTreePath *path;
 	GList *list, *i;
 
-	model = gtk_tree_view_get_model(GTK_TREE_VIEW(cwin->playlist_tree));
 	selection = gtk_tree_view_get_selection(GTK_TREE_VIEW(cwin->playlist_tree));
 	list = gtk_tree_selection_get_selected_rows(selection, NULL);
 

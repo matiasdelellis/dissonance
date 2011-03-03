@@ -1,6 +1,6 @@
 /*************************************************************************/
 /* Copyright (C) 2007-2009 sujith <m.sujith@gmail.com>			 */
-/* Copyright (C) 2009-2010 matias <mati86dl@gmail.com>			 */
+/* Copyright (C) 2009-2011 matias <mati86dl@gmail.com>			 */
 /* 									 */
 /* This program is free software: you can redistribute it and/or modify	 */
 /* it under the terms of the GNU General Public License as published by	 */
@@ -855,6 +855,28 @@ struct musicobject* current_playlist_mobj_at_path(GtkTreePath *path,
 	return mobj;
 }
 
+/* Return path of musicobject already in tree */
+
+GtkTreePath* current_playlist_path_at_mobj(struct musicobject *mobj,
+						struct con_win *cwin)
+{
+	GtkTreeModel *model;
+	GtkTreeIter iter;
+	struct musicobject *ptr = NULL;
+
+	model = gtk_tree_view_get_model(GTK_TREE_VIEW(cwin->current_playlist));
+	
+	gtk_tree_model_get_iter_first(model, &iter);
+	do {
+		gtk_tree_model_get(model, &iter, P_MOBJ_PTR, &ptr, -1);
+		if (ptr == mobj) {
+			return gtk_tree_model_get_path(model, &iter);
+		}
+	} while(gtk_tree_model_iter_next(model, &iter));
+	
+	return NULL;
+}
+
 /* Reset random rand_refs and appends given ref */
 
 void reset_rand_track_refs(GtkTreeRowReference *ref, struct con_win *cwin)
@@ -1506,6 +1528,12 @@ void update_track_current_playlist(GtkTreeIter *iter, gint changed, struct music
 	if (changed & TAG_COMMENT_CHANGED) {
 		gtk_list_store_set(GTK_LIST_STORE(model), iter, P_COMMENT, mobj->tags->comment,-1);
 	}
+	
+	/* inform mpris2 */
+	
+	#if HAVE_GLIB_2_26
+	mpris_update_mobj_changed(cwin, mobj, changed);
+	#endif
 
 	g_free(ch_track_no);
 	g_free(ch_year);
@@ -1542,7 +1570,6 @@ void insert_current_playlist(struct musicobject *mobj, gboolean drop_after, GtkT
 
 	ch_filename = get_display_name(mobj);
 
-
 	if (drop_after)
 		gtk_list_store_insert_after(GTK_LIST_STORE(model), &iter, pos);
 	else
@@ -1572,6 +1599,11 @@ void insert_current_playlist(struct musicobject *mobj, gboolean drop_after, GtkT
 	cwin->cstate->unplayed_tracks++;
 	update_status_bar(cwin);
 
+	/* inform mpris2 */
+	#if HAVE_GLIB_2_26
+	mpris_update_mobj_added(cwin, mobj, &iter);
+	#endif
+
 	g_free(ch_length);
 	g_free(ch_track_no);
 	g_free(ch_year);
@@ -1582,6 +1614,11 @@ void insert_current_playlist(struct musicobject *mobj, gboolean drop_after, GtkT
 /* Append a track to the current playlist */
 
 void append_current_playlist(struct musicobject *mobj, struct con_win *cwin)
+{
+	append_current_playlist_ex(mobj, cwin, NULL);
+}
+
+void append_current_playlist_ex(struct musicobject *mobj, struct con_win *cwin, GtkTreePath **path)
 {
 	GtkTreeModel *model;
 	GtkTreeIter iter;
@@ -1634,6 +1671,15 @@ void append_current_playlist(struct musicobject *mobj, struct con_win *cwin)
 	cwin->cstate->tracks_curr_playlist++;
 	cwin->cstate->unplayed_tracks++;
 	update_status_bar(cwin);
+
+	/* inform mpris2 */
+	
+	#if HAVE_GLIB_2_26
+	mpris_update_mobj_added(cwin, mobj, &iter);
+	#endif
+	
+	if(path)
+		*path = gtk_tree_model_get_path(model, &iter);
 
 	g_free(ch_length);
 	g_free(ch_track_no);
@@ -1833,20 +1879,16 @@ void play_prev_track(struct con_win *cwin)
 	GThread *thread;
 
 	/* Get the next (prev) track to be played */
-
 	path = current_playlist_get_prev(cwin);
 
 	/* No more tracks */
-
 	if (!path)
 		return;
 
 	/* Stop currently playing track */
-
 	stop_playback(cwin);
 
 	/* Start playing new track */
-
 	mobj = current_playlist_mobj_at_path(path, cwin);
 
 	thread = start_playback(mobj, cwin);
@@ -1867,20 +1909,16 @@ void play_next_track(struct con_win *cwin)
 	GThread *thread;
 
 	/* Get the next track to be played */
-
 	path = current_playlist_get_next(cwin);
 
 	/* No more tracks */
-
 	if (!path)
 		return;
 
 	/* Stop currently playing track */
-
 	stop_playback(cwin);
 
 	/* Start playing new track */
-
 	mobj = current_playlist_mobj_at_path(path, cwin);
 
 	thread = start_playback(mobj, cwin);
@@ -1955,7 +1993,6 @@ void play_track(struct con_win *cwin)
 		}
 		gtk_tree_path_free(path);
 		break;
-
 	default:
 		break;
 	}
@@ -2562,6 +2599,10 @@ void init_playlist_current_playlist(struct con_win *cwin)
 	g_object_unref(model);
 
 	update_status_bar(cwin);
+	/* inform mpris2 */
+	#if HAVE_GLIB_2_26
+	mpris_update_tracklist_changed(cwin);
+	#endif
 
 	sqlite3_free_table(result.resultp);
 	g_free(s_playlist);

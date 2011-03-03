@@ -127,7 +127,7 @@ void common_cleanup(struct con_win *cwin)
 	dbus_connection_unref(cwin->con_dbus);
 
 	#if HAVE_GLIB_2_26
-	mpris_cleanup();
+	mpris_cleanup(cwin);
 	#endif
 
 	if (notify_is_initted())
@@ -169,6 +169,9 @@ gint main(gint argc, gchar *argv[])
 	cwin->cmixer = g_slice_new0(struct con_mixer);
 	cwin->clibao = g_slice_new0(struct con_libao);
 	cwin->clastfm = g_slice_new0(struct con_lastfm);
+	#if HAVE_GLIB_2_26
+	cwin->cmpris2 = g_slice_new0(struct con_mpris2);
+	#endif
 	debug_level = 0;
 
 	setlocale (LC_ALL, "");
@@ -185,13 +188,6 @@ gint main(gint argc, gchar *argv[])
 		g_critical("Unable to initialize DBUS filter handlers");
 		return -1;
 	}
-
-	#if HAVE_GLIB_2_26
-	if (mpris_init(cwin) == -1) {
-		g_critical("Unable to initialize MPRIS");
-		return -1;
-	}
-	#endif
 
 	if (init_options(cwin, argc, argv) == -1)
 		return -1;
@@ -210,6 +206,13 @@ gint main(gint argc, gchar *argv[])
 		g_critical("Unable to init music dbase");
 		return -1;
 	}
+
+	#if HAVE_GLIB_2_26
+	if (cwin->cpref->use_mpris2 && mpris_init(cwin) == -1) {
+		g_critical("Unable to initialize MPRIS");
+		return -1;
+	}
+	#endif
 
 	ret = init_audio(cwin);
 	if (ret == -EINVAL) {

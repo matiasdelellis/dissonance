@@ -47,20 +47,20 @@ static void dbus_shuffle_handler(struct con_win *cwin)
 {
 	if (cwin->cpref->shuffle)
 		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(
-				     cwin->shuffle_button), false);
+				     cwin->shuffle_button), FALSE);
 	else
 		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(
-				     cwin->shuffle_button), true);
+				     cwin->shuffle_button), TRUE);
 }
 
 static void dbus_repeat_handler(struct con_win *cwin)
 {
 	if (cwin->cpref->repeat)
 		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(
-				     cwin->repeat_button), false);
+				     cwin->repeat_button), FALSE);
 	else
 		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(
-				     cwin->repeat_button), true);
+				     cwin->repeat_button), TRUE);
 }
 
 static void dbus_inc_vol_handler(struct con_win *cwin)

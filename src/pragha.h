@@ -208,6 +208,9 @@
 #define KEY_LASTFM_USER            "lastfm_user"
 #define KEY_LASTFM_PASS            "lastfm_pass"
 #define KEY_USE_CDDB               "use_cddb"
+#if HAVE_GLIB_2_26
+#define KEY_ALLOW_MPRIS2           "allow_mpris2"
+#endif
 
 #define TAG_TNO_CHANGED		1<<0
 #define TAG_TITLE_CHANGED	1<<1
@@ -436,6 +439,9 @@ struct con_pref {
 	gboolean save_playlist;
 	gboolean software_mixer;
 	gboolean use_cddb;
+#if HAVE_GLIB_2_26
+	gboolean use_mpris2;
+#endif
 	gboolean close_to_tray;
 	gboolean remember_window_state;
 	gboolean status_bar;
@@ -470,6 +476,9 @@ struct con_pref {
 
 	struct lastfm_pref lw;
 	GtkWidget *use_cddb_w;
+#if HAVE_GLIB_2_26
+	GtkWidget *use_mpris2_w;
+#endif	
 };
 
 struct musicobject {
@@ -592,6 +601,21 @@ struct con_lastfm {
 	gchar *submission_url;
 };
 
+#if HAVE_GLIB_2_26
+struct con_mpris2 {
+	guint owner_id;
+	GDBusNodeInfo *introspection_data;
+	GDBusConnection *dbus_connection;
+	GQuark interface_quarks[4];
+	gboolean saved_playbackstatus;
+	gboolean saved_shuffle;
+	gchar *saved_title;
+	enum player_state state;
+	GError **property_error; 					/* for returning errors in propget/propput */
+	GDBusMethodInvocation *method_invocation;	/* for returning errors during methods */
+};
+#endif
+
 struct con_win {
 	struct pixbuf *pixbuf;
 	struct con_pref *cpref;
@@ -600,6 +624,9 @@ struct con_win {
 	struct con_mixer *cmixer;
 	struct con_libao *clibao;
 	struct con_lastfm *clastfm;
+#if HAVE_GLIB_2_26
+	struct con_mpris2 *cmpris2;
+#endif
 	GtkWidget *mainwindow;
 	GtkWidget *hbox_panel;
 	GtkWidget *album_art_frame;
@@ -640,6 +667,7 @@ struct con_win {
 	GtkUIManager *systray_menu;
 	DBusConnection *con_dbus;
 };
+
 extern gulong switch_cb_id;
 extern gint debug_level;
 extern const gchar *mime_mpeg[];
@@ -931,6 +959,8 @@ void update_current_state(GThread *thread,
 			  struct con_win *cwin);
 struct musicobject* current_playlist_mobj_at_path(GtkTreePath *path,
 						  struct con_win *cwin);
+GtkTreePath* current_playlist_path_at_mobj(struct musicobject *mobj,
+						struct con_win *cwin);
 void reset_rand_track_refs(GtkTreeRowReference *ref, struct con_win *cwin);
 void current_playlist_clear_dirty_all(struct con_win *cwin);
 GtkTreePath* current_playlist_get_selection(struct con_win *cwin);
@@ -952,6 +982,7 @@ void clear_current_playlist(GtkAction *action, struct con_win *cwin);
 void update_track_current_playlist(GtkTreeIter *iter, gint changed, struct musicobject *mobj, struct con_win *cwin);
 void insert_current_playlist(struct musicobject *mobj, gboolean drop_after, GtkTreeIter *pos, struct con_win *cwin);
 void append_current_playlist(struct musicobject *mobj, struct con_win *cwin);
+void append_current_playlist_ex(struct musicobject *mobj, struct con_win *cwin, GtkTreePath **path);
 void append_current_playlist_on_model(GtkTreeModel *model, struct musicobject *mobj, struct con_win *cwin);
 void clear_sort_current_playlist(GtkAction *action, struct con_win *cwin);
 void save_selected_playlist(GtkAction *action, struct con_win *cwin);
@@ -1072,6 +1103,7 @@ gint open_audio_device(gint samplerate, gint channels,
 		       gboolean resume, struct con_win *cwin);
 
 /* Systray functions */
+
 gboolean can_support_actions(void);
 void show_osd(struct con_win *cwin);
 gboolean status_icon_clicked (GtkWidget *widget, GdkEventButton *event, struct con_win *cwin);
@@ -1126,9 +1158,15 @@ DBusHandlerResult dbus_filter_handler(DBusConnection *conn,
 void dbus_send_signal(const gchar *signal, struct con_win *cwin);
 
 /* MPRIS functions */
+
 gint mpris_init(struct con_win *cwin);
 void mpris_update_any(struct con_win *cwin);
-void mpris_cleanup();
+void mpris_update_mobj_remove(struct con_win *cwin, struct musicobject *mobj);
+void mpris_update_mobj_added(struct con_win *cwin, struct musicobject *mobj, GtkTreeIter *iter);
+void mpris_update_mobj_changed(struct con_win *cwin, struct musicobject *mobj, gint bitmask);
+void mpris_update_tracklist_changed(struct con_win *cwin);
+void mpris_close(struct con_win *cwin);
+void mpris_cleanup(struct con_win *cwin);
 /* Utilities */
 gboolean is_playable_file(const gchar *file);
 gboolean is_dir_and_accessible(gchar *dir, struct con_win *cwin);

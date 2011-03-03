@@ -1,71 +1,70 @@
-#
 msgid ""
 msgstr ""
-"Project-Id-Version: Pragha svn rev. 60\n"
+"Project-Id-Version: pragha\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-03-02 19:30+0100\n"
-"PO-Revision-Date: 2011-03-02 19:33+0100\n"
-"Last-Translator: Hakan Erduman <smultimeter@gmail.com>\n"
-"Language-Team: Deutsch\n"
+"PO-Revision-Date: \n"
+"Last-Translator: Hakan Erduman <hakan@erduman.de>\n"
+"Language-Team:  <smultimeter@gmail.com>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Poedit-Language: German\n"
+"X-Poedit-Language: Turkish\n"
+"X-Poedit-Country: TURKEY\n"
 "X-Poedit-SourceCharset: utf-8\n"
-"X-Poedit-Country: GERMANY\n"
 
 #: ../src/gui.c:163
 msgid "_File"
-msgstr "_Datei"
+msgstr "_Dosya"
 
 #: ../src/gui.c:164
 msgid "_Edit"
-msgstr "_Bearbeiten"
+msgstr "Düz_enle"
 
 #: ../src/gui.c:165
 msgid "_View"
-msgstr "_Ansicht"
+msgstr "_Görünüm"
 
 #: ../src/gui.c:166
 msgid "_Tools"
-msgstr "_Extras"
+msgstr "_Araçlar"
 
 #: ../src/gui.c:167
 msgid "_Help"
-msgstr "_Hilfe"
+msgstr "_Yardım"
 
 #: ../src/gui.c:168
 #: ../src/gui.c:317
 msgid "_Add files"
-msgstr "Dateien _hinzufügen"
+msgstr "Dosya _ekle"
 
 #: ../src/gui.c:169
 msgid "Open a media file"
-msgstr "Eine Mediendatei öffnen"
+msgstr "Müzik parçası aç"
 
 #: ../src/gui.c:170
 #: ../src/gui.c:319
 msgid "_Play audio CD"
-msgstr "Audio-_CD abspielen"
+msgstr "Ses _CD'si aç"
 
 #: ../src/gui.c:172
 msgid "Prev track"
-msgstr "Vorheriger Titel"
+msgstr "Önceki parça"
 
 #: ../src/gui.c:174
 #: ../src/gui.c:323
 msgid "Play / Pause"
-msgstr "Wiedergabe/Pause"
+msgstr "Oynat / Durakla"
 
 #: ../src/gui.c:176
 #: ../src/gui.c:325
 msgid "Stop"
-msgstr "Stopp"
+msgstr "Dur"
 
 #: ../src/gui.c:178
 msgid "Next track"
-msgstr "Nächster Titel"
+msgstr "Sonraki parça"
 
 #. The main edit dialog
 #: ../src/gui.c:180
@@ -74,82 +73,82 @@ msgstr "Nächster Titel"
 #: ../src/gui.c:329
 #: ../src/tags.c:681
 msgid "Edit tags"
-msgstr "Tags bearbeiten"
+msgstr "Etiketleri Düzenle"
 
 #: ../src/gui.c:182
 #: ../src/gui.c:331
 msgid "_Quit"
-msgstr "_Beenden"
+msgstr "_Çık"
 
 #: ../src/gui.c:184
 msgid "_Add the library"
-msgstr "Zur Musikbibliothek _hinzufügen"
+msgstr "Kütüphaneye ekle"
 
 #: ../src/gui.c:186
 #: ../src/gui.c:249
 msgid "Remove"
-msgstr "Entfernen"
+msgstr "Kaldır"
 
 #: ../src/gui.c:188
 #: ../src/gui.c:251
 msgid "Crop"
-msgstr "Zuschneiden"
+msgstr "Kes"
 
 #: ../src/gui.c:190
 #: ../src/gui.c:259
 msgid "Clear playlist"
-msgstr "Wiedergabeliste löschen"
+msgstr "Parça Listesini Temizle"
 
 #: ../src/gui.c:192
 #: ../src/gui.c:255
 msgid "Save selection"
-msgstr "Auswahl speichern"
+msgstr "Seçimi kaydet"
 
 #: ../src/gui.c:194
 #: ../src/gui.c:257
 #: ../src/current_playlist.c:638
 msgid "Save playlist"
-msgstr "Wiedergabeliste speichern"
+msgstr "Oynatma Listesini Kaydet"
 
 #: ../src/gui.c:196
 msgid "_Preferences"
-msgstr "_Einstellungen"
+msgstr "_Tercihler"
 
 #: ../src/gui.c:198
 msgid "Lateral _panel"
-msgstr "Seitenleiste"
+msgstr "Yan bölme"
 
 #: ../src/gui.c:199
 msgid "Jump to playing song"
-msgstr "Zum momentan wiedergegebenen Titel springen"
+msgstr "Çalınan parçaya git"
 
 #: ../src/gui.c:201
 msgid "Search _lyric"
-msgstr "Nach dem _Liedtext suchen"
+msgstr "Beste bu_l"
 
 #: ../src/gui.c:203
 msgid "_Search in playlist"
-msgstr "Wiedergabeliste durch_suchen"
+msgstr "Oynatma listesinde _ara"
 
 #: ../src/gui.c:205
 msgid "_Rescan library"
-msgstr "Musikbibliothek neu _einlesen"
+msgstr "Kütüphaneyi yenile"
 
 #: ../src/gui.c:207
 msgid "_Update library"
-msgstr "Musikbibliothek _aktualisieren"
+msgstr "Kütüphaneyi güncelle"
 
 #: ../src/gui.c:209
 msgid "_Statistics"
-msgstr "Statistiken"
+msgstr "_İstatistikler"
 
 #: ../src/gui.c:211
 msgid "Homepage"
-msgstr "Webseite"
+msgstr "Anasayfa"
 
 #: ../src/gui.c:213
 msgid "Community"
-msgstr "Gemeinschaft"
+msgstr "Topluluk "
 
 #: ../src/gui.c:215
 msgid "Wiki"
@@ -157,92 +156,92 @@ msgstr "Wiki"
 
 #: ../src/gui.c:217
 msgid "Translate Pragha"
-msgstr "Pragha übersetzen"
+msgstr "Pragha'yı tercüme et"
 
 #: ../src/gui.c:219
 #: ../src/gui.c:315
 msgid "About"
-msgstr "_Über"
+msgstr "Hakkında"
 
 #: ../src/gui.c:224
 msgid "_Shuffle"
-msgstr "_Zufallswiedergabe"
+msgstr "Tesa_düfle"
 
 #: ../src/gui.c:227
 msgid "_Repeat"
-msgstr "_Wiederholen"
+msgstr "_Tekrarla"
 
 #: ../src/gui.c:230
 msgid "_Fullscreen"
-msgstr "_Vollbild"
+msgstr "_Tam ekran"
 
 #: ../src/gui.c:233
 #: ../src/gui.c:614
 #: ../src/pref.c:1412
 msgid "Library"
-msgstr "Musikbibliothek"
+msgstr "Kütüphane"
 
 #: ../src/gui.c:236
 #: ../src/gui.c:632
 #: ../src/playlist.c:932
 msgid "Playlists"
-msgstr "Wiedergabelisten"
+msgstr "Oynatma Listeleri"
 
 #: ../src/gui.c:239
 msgid "Status bar"
-msgstr "Statuszeile"
+msgstr "Durum çubuğu"
 
 #: ../src/gui.c:245
 msgid "Add to playback queue"
-msgstr "Zur Warteliste hinzufügen"
+msgstr "Oynatma sırasına ekle"
 
 #: ../src/gui.c:247
 msgid "Remove to playback queue"
-msgstr "Aus der Warteliste entfernen"
+msgstr "Oynatma sırasına aktar"
 
 #: ../src/gui.c:264
 #: ../src/gui.c:277
 msgid "_Add to playlist"
-msgstr "Zur Wiedergabeliste _hinzufügen"
+msgstr "Oynatma listesine _ekle"
 
 #: ../src/gui.c:266
 #: ../src/gui.c:279
 msgid "_Replace playlist"
-msgstr "Wiedergabeliste ersetzen"
+msgstr "Oynatma listesini değiştir"
 
 #: ../src/gui.c:268
 #: ../src/gui.c:281
 msgid "Replace and _play"
-msgstr "Ersetzen und abs_pielen"
+msgstr "Değiştir ve Çal"
 
 #: ../src/gui.c:270
 msgid "Delete"
-msgstr "Löschen"
+msgstr "Sil"
 
 #: ../src/gui.c:272
 msgid "Export"
-msgstr "Exportieren"
+msgstr "Dışarı Aktar"
 
 #: ../src/gui.c:285
 msgid "Move to _trash"
-msgstr "In den _Müll verschieben"
+msgstr "Çöpe _Taşı"
 
 #: ../src/gui.c:287
 msgid "Delete from library"
-msgstr "Aus der Bibliothek entfernen"
+msgstr "Kütüphaneden kaldır"
 
 #: ../src/gui.c:292
 msgid "_Expand library"
-msgstr "Alles in der Musikbibliothek _aufklappen"
+msgstr "Kütüphaneyi _yay"
 
 #: ../src/gui.c:294
 msgid "_Collapse library"
-msgstr "Alles in der Musikbibliothek _zuklappen"
+msgstr "Kütüphaneyi _toparla"
 
 #: ../src/gui.c:296
 #: ../src/librarytree.c:1355
 msgid "Folders structure"
-msgstr "Verzeichnisbaum"
+msgstr "Klasör görünümü"
 
 #: ../src/gui.c:298
 #: ../src/gui.c:752
@@ -252,7 +251,7 @@ msgstr "Verzeichnisbaum"
 #: ../src/statusicon.c:217
 #: ../src/tags.c:442
 msgid "Artist"
-msgstr "Interpret"
+msgstr "Sanatçı"
 
 #: ../src/gui.c:300
 #: ../src/gui.c:753
@@ -262,7 +261,7 @@ msgstr "Interpret"
 #: ../src/statusicon.c:218
 #: ../src/tags.c:443
 msgid "Album"
-msgstr "Album"
+msgstr "Albüm"
 
 #: ../src/gui.c:302
 #: ../src/gui.c:754
@@ -271,49 +270,49 @@ msgstr "Album"
 #: ../src/librarytree.c:1366
 #: ../src/tags.c:444
 msgid "Genre"
-msgstr "Genre"
+msgstr "Tür"
 
 #: ../src/gui.c:304
 #: ../src/librarytree.c:1370
 msgid "Artist / Album"
-msgstr "Interpret / Album"
+msgstr "Sanatçı / Albüm"
 
 #: ../src/gui.c:306
 #: ../src/librarytree.c:1378
 msgid "Genre / Album"
-msgstr "Genre / Album"
+msgstr "Tür / Albüm"
 
 #: ../src/gui.c:308
 #: ../src/librarytree.c:1374
 msgid "Genre / Artist"
-msgstr "Genre / Interpret"
+msgstr "Tür / Sanatçı"
 
 #: ../src/gui.c:310
 #: ../src/librarytree.c:1382
 msgid "Genre / Artist / Album"
-msgstr "Genre / Interpret / Album"
+msgstr "Tür / Sanatçı / Albüm"
 
 #: ../src/gui.c:321
 #: ../src/statusicon.c:178
 msgid "Prev Track"
-msgstr "Vorheriger Titel"
+msgstr "Önceki Parça"
 
 #: ../src/gui.c:327
 #: ../src/gui.c:1594
 #: ../src/statusicon.c:182
 msgid "Next Track"
-msgstr "Nächster Titel"
+msgstr "Sonraki Parça"
 
 #: ../src/gui.c:643
 msgid "Pragha Music Player"
-msgstr "Pragha Music Player"
+msgstr "Pragha Müzik Çaları"
 
 #. Create the checkmenu items
 #: ../src/gui.c:750
 #: ../src/gui.c:881
 #: ../src/current_playlist.c:70
 msgid "Track"
-msgstr "Spur"
+msgstr "Parça"
 
 #. Create labels
 #: ../src/gui.c:751
@@ -322,28 +321,28 @@ msgstr "Spur"
 #: ../src/statusicon.c:216
 #: ../src/tags.c:441
 msgid "Title"
-msgstr "Titel"
+msgstr "Başlık"
 
 #: ../src/gui.c:755
 #: ../src/gui.c:886
 #: ../src/pragha.h:90
 #: ../src/current_playlist.c:1341
 msgid "Bitrate"
-msgstr "Bitrate"
+msgstr "Bit oranı"
 
 #: ../src/gui.c:756
 #: ../src/gui.c:887
 #: ../src/pragha.h:91
 #: ../src/tags.c:446
 msgid "Year"
-msgstr "Jahr"
+msgstr "Yıl"
 
 #: ../src/gui.c:757
 #: ../src/gui.c:888
 #: ../src/pragha.h:92
 #: ../src/tags.c:447
 msgid "Comment"
-msgstr "Kommentar"
+msgstr "Açıklama"
 
 #. Create labels
 #: ../src/gui.c:758
@@ -352,150 +351,150 @@ msgstr "Kommentar"
 #: ../src/current_playlist.c:1340
 #: ../src/statusicon.c:219
 msgid "Length"
-msgstr "Länge"
+msgstr "Süre"
 
 #: ../src/gui.c:759
 #: ../src/gui.c:890
 #: ../src/pragha.h:94
 #: ../src/current_playlist.c:1345
 msgid "Filename"
-msgstr "Dateiname"
+msgstr "Dosya adı"
 
 #: ../src/gui.c:762
 msgid "Clear sort"
-msgstr "Sortierung zurücksetzen"
+msgstr "Sıralamayı boşver"
 
 #. Tooltips
 #: ../src/gui.c:1592
 msgid "Play / Pause Track"
-msgstr "Titel wiedergeben / anhalten"
+msgstr "Parçayı çal / durakla"
 
 #: ../src/gui.c:1593
 msgid "Previous Track"
-msgstr "Vorheriger Titel"
+msgstr "Önceki parça"
 
 #: ../src/gui.c:1595
 msgid "Stop playback"
-msgstr "Wiedergabe stoppen"
+msgstr "Oynatmayı durdur"
 
 #: ../src/gui.c:1597
 msgid "Leave Fullscreen"
-msgstr "Vollbild verlassen"
+msgstr "Tam ekrandan çık"
 
 #: ../src/gui.c:1598
 msgid "Play songs in a random order"
-msgstr "In einer zufälligen Reihenfolge wiedergeben"
+msgstr "Oynatma sırasındaki dosyaları rastgele oynat"
 
 #: ../src/gui.c:1599
 msgid "Repeat playback list at the end"
-msgstr "Wiedergabe wiederholen"
+msgstr "Oynatma sırasının sonuna gelindiğinde tekrar başla"
 
 #: ../src/gui.c:1639
 #: ../src/panel.c:218
 #: ../src/statusicon.c:213
 msgid "<b>Not playing</b>"
-msgstr "<b>Keine Wiedergabe</b>"
+msgstr "<b>Çalınmıyor</b>"
 
 #: ../src/gui.c:1860
 msgid "Options of the library"
-msgstr "Einstellungen der Musikbibliothek"
+msgstr "Kütüphane tercihleri"
 
 #: ../src/pragha.h:85
 #: ../src/tags.c:445
 msgid "Track No"
-msgstr "Titelnummer"
+msgstr "İz numara"
 
 #: ../src/pragha.h:124
 msgid "Scanning"
-msgstr "Durchsuchen"
+msgstr "Taranıyor"
 
 #: ../src/pragha.h:125
 msgid "Stopped"
-msgstr "Angehalten"
+msgstr "Durduruldu"
 
 #: ../src/pragha.h:223
 msgid "_Skip"
-msgstr "Über_springen"
+msgstr "_Atla"
 
 #: ../src/pragha.h:224
 msgid "S_kip All"
-msgstr "Alle ü_berspringen"
+msgstr "_Hepsini Atla"
 
 #: ../src/pragha.h:225
 msgid "Delete _All"
-msgstr "_Alle löschen"
+msgstr "Hepsini Sil"
 
 #: ../src/panel.c:194
 #, c-format
 msgid "%s <small><span weight=\"light\">by</span></small> %s <small><span weight=\"light\">in</span></small> %s"
-msgstr "%s <small><span weight=\"light\">von</span></small> %s <small><span weight=\"light\">in</span></small> %s"
+msgstr "%s <small><span weight=\"light\">by</span></small> %s <small><span weight=\"light\">in</span></small> %s"
 
 #: ../src/panel.c:199
 #, c-format
 msgid "%s <small><span weight=\"light\">by</span></small> %s"
-msgstr "%s <small><span weight=\"light\">von</span></small> %s"
+msgstr ""
 
 #: ../src/panel.c:203
 #, c-format
 msgid "%s <small><span weight=\"light\">in</span></small> %s"
-msgstr "%s <small><span weight=\"light\">in</span></small> %s"
+msgstr "%s <small><span weight=\"light\">içi</span></small> %s"
 
 #: ../src/current_playlist.c:70
 msgid "Tracks"
-msgstr "Spuren"
+msgstr "Parça"
 
 #: ../src/current_playlist.c:624
 msgid "Save as a new playlist"
-msgstr "Als neue Wiedergabyliste speichern"
+msgstr "Yeni çalma listesine kaydet"
 
 #: ../src/current_playlist.c:626
 msgid "Append to an existing playlist"
-msgstr "An existierende Wiedergabeliste anhängen"
+msgstr "Çalma listesine ekle"
 
 #: ../src/current_playlist.c:703
 msgid "<b>con_playlist</b> is a reserved playlist name"
-msgstr "<b>con_playlist</b> ist ein reservierter Wiedergabelistenname"
+msgstr "<b>con_playlist</b> çalma listesinin adı muhafızdır"
 
 #: ../src/current_playlist.c:1342
 msgid "Channels"
-msgstr "Kanäle"
+msgstr "Ses Kanalları"
 
 #: ../src/current_playlist.c:1343
 msgid "Samplerate"
-msgstr "Samplerate"
+msgstr "Örnekleme hızı"
 
 #: ../src/current_playlist.c:1344
 msgid "Folder"
-msgstr "Ordner"
+msgstr "Klasör"
 
 #. The main edit dialog
 #: ../src/current_playlist.c:1435
 #: ../src/tags.c:716
 msgid "Details"
-msgstr "Details"
+msgstr "Ayrıntılar"
 
 #: ../src/librarytree.c:189
 #: ../src/statusicon.c:150
 msgid "Unknown Artist"
-msgstr "Unbekannter Interpret"
+msgstr "Bilinmeyen sanatçı"
 
 #: ../src/librarytree.c:195
 #: ../src/statusicon.c:152
 msgid "Unknown Album"
-msgstr "Unbekanntes Album"
+msgstr "Bilinmeyen albüm"
 
 #: ../src/librarytree.c:201
 msgid "Unknown Genre"
-msgstr "Unbekanntes Genre"
+msgstr "Bilinmeyen tür"
 
 #: ../src/librarytree.c:374
 msgid "Cannot move file to trash, do you want to delete immediately?"
-msgstr "Datei kann nicht in den Müll verschoben werden. Soll sie sofort gelöscht werden?"
+msgstr "Dosya çöpe aktarılamadı. Doğrudan silmeyi tercih eder misiniz?"
 
 #: ../src/librarytree.c:375
 #, c-format
 msgid "The file \"%s\" cannot be moved to the trash. Details: %s"
-msgstr "Die Datei »%s« kann nicht in den Müll verschoben werden. Details: %s"
+msgstr "Dosya \"%s\" maalesef silinemedi. Detay: %s"
 
 #: ../src/librarytree.c:1112
 msgid ""
@@ -503,26 +502,26 @@ msgid ""
 "\n"
 "Warning: To recover we must rescan the entire library."
 msgstr ""
-"Die Datei sicher aus der Musikbibliothek entfernen?\n"
+"Bütün kütüphaneyi cidden silmek mi istiyorsunuz?\n"
 "\n"
-"Warnung: Um die Datei wiederherzustellen, muss die gesamte Musikbibliothek neu eingelesen werden."
+"Uyarı: Bu işlemin ardından bütün kütüphaneyi yenilemek zorundayız."
 
 #: ../src/librarytree.c:1170
 msgid "Really want to move the files to trash?"
-msgstr "Soll die Datei wirklich in den Müll verschoben werden"
+msgstr "Bu dosyaları gerçekten çöpe aktarmak istiyor musunuz?"
 
 #: ../src/librarytree.c:1172
 msgid "Delete immediately instead of move to trash"
-msgstr "Dateien löschen anstatt sie in den Müll zu verschieben"
+msgstr "Çöpe atmaksızın hemen sil"
 
 #: ../src/statusicon.c:148
 #, c-format
 msgid "by <b>%s</b> in <b>%s</b> <b>(%s)</b>"
-msgstr "von <b>%s</b> in <b>%s</b> <b>(%s)</b>"
+msgstr "<b>%s</b> dan <b>%s</b> içinde <b>(%s)</b>"
 
 #: ../src/tags.c:448
 msgid "File"
-msgstr "Datei"
+msgstr "Dosya"
 
 #: ../src/pref.c:21
 msgid ""
@@ -530,300 +529,216 @@ msgid ""
 "A maximum of six patterns are allowed.\n"
 "Wildcards are not accepted as of now ( patches welcome :-) )."
 msgstr ""
-"Muster sollten in der Form <Dateiname>;<Dateiname>;... vorliegen\n"
-"Es sind maximal sechs Muster erlaubt.\n"
-"Platzhalter werden noch nicht verarbeitet (Patches sind willkommen :-) )."
 
 #: ../src/pref.c:35
 msgid "Album art pattern"
-msgstr "Muster für Album-Cover"
+msgstr "Kapak resmi türü"
 
 #: ../src/pref.c:135
 #: ../src/pref.c:1628
 msgid "Start normal"
-msgstr "Normal starten"
+msgstr "Düzgün başla"
 
 #: ../src/pref.c:140
 #: ../src/pref.c:1629
 msgid "Start fullscreen"
-msgstr "Vollbild starten"
+msgstr "Tam ekran kipinde başla"
 
 #: ../src/pref.c:145
 #: ../src/pref.c:1630
 msgid "Start in system tray"
-msgstr "Im Tray starten"
+msgstr "Sistem çekmecesinde başla"
 
 #. Create a folder chooser dialog
 #: ../src/pref.c:281
 msgid "Select a folder to add to library"
-msgstr "Den zu hinzufügenden Ordner wählen"
+msgstr "Kütüphaneye eklemek için klasör seçiniz"
 
 #. The main preferences dialog
 #: ../src/pref.c:1365
 #: ../src/pref.c:1400
 msgid "Preferences of Pragha"
-msgstr "Einstellungen von Pragha"
+msgstr "Praghanın Tercihleri"
 
 #. Labels
 #: ../src/pref.c:1411
 msgid "Audio"
-msgstr "Audio"
+msgstr "Ses"
 
 #: ../src/pref.c:1413
 msgid "General"
-msgstr "Allgemein"
+msgstr "Genel"
 
 #: ../src/pref.c:1414
 msgid "Notifications"
-msgstr "Benachrichtigungen"
+msgstr "Bildiriler"
 
 #: ../src/pref.c:1415
 msgid "Internet Services"
-msgstr "Internetdienste"
+msgstr "İnternet Servisleri"
 
 #: ../src/pref.c:1465
 #: ../src/pref.c:1494
 #: ../src/pref.c:1529
 msgid "Restart Required"
-msgstr "Neustart erforderlich"
+msgstr "Yeniden başlatılması gerekiyor"
 
 #: ../src/pref.c:1474
 msgid "Audio sink"
-msgstr "Audiosystem"
+msgstr "Ses alıcı"
 
 #: ../src/pref.c:1491
 msgid "Audio Device"
-msgstr "Audiogerät"
+msgstr "Ses aygıtı"
 
 #. Audio CD device
 #: ../src/pref.c:1509
 msgid "Audio CD Device"
-msgstr "Audio-CD-Laufwerk"
+msgstr "CD Okuyucu aygıtı"
 
 #. Software mixer
 #: ../src/pref.c:1528
 msgid "Use software mixer"
-msgstr "Software-Mixer verwenden"
+msgstr "Yazılım mikseri kullan"
 
 #: ../src/pref.c:1562
 msgid "Folders"
-msgstr "Ordner"
+msgstr "_Klasörler"
 
 #: ../src/pref.c:1607
 msgid "Merge folders in the folders estructure view"
-msgstr "Ordner im Verzeichnisbaum zusammenführen"
+msgstr "Dosyaları dosya ortamında birleştir"
 
 #: ../src/pref.c:1627
 msgid "Remember last window state"
-msgstr "Fensterposition und -größe merken"
+msgstr "Son kullanılan pencere kipini hatırla"
 
 #: ../src/pref.c:1632
 msgid "Restore last playlist"
-msgstr "Letzte Wiedergabeliste wiederherstellen"
+msgstr "Son çalma sırasını geri getir"
 
 #: ../src/pref.c:1634
 msgid "Minimize Pragha when close the window"
-msgstr "Pragha beim Schließen des Fensters minimieren"
+msgstr "Kapatmak yerine küçült"
 
 #: ../src/pref.c:1635
 msgid "Add files recursively"
-msgstr "Dateien rekursiv hinzufügen"
+msgstr "Ortam dosyaları ekle"
 
 #: ../src/pref.c:1637
 msgid "Show Album art in Panel"
-msgstr "Album-Cover in der Steuerleiste anzeigen"
+msgstr "Yan bölmede kapak resmini göster"
 
 #: ../src/pref.c:1640
 msgid "Size of Album art"
-msgstr "Größe des Album-Covers"
+msgstr "Kapak resim bouyutu"
 
 #: ../src/pref.c:1658
 msgid "Album art file pattern"
-msgstr "Muster für Album-Cover Dateien"
+msgstr "Kapak resmi dosya seçeneği"
 
 #. Notification OSD
 #: ../src/pref.c:1712
 msgid "Show OSD for track change"
-msgstr "Benachrichtigungspopup beim Titelwechsel zeigen"
+msgstr "Şarkı değiştiğinde OSD göster"
 
 #: ../src/pref.c:1713
 msgid "Associate notifications to system tray"
-msgstr "Benachrichtigungen mit System-Tray verbinden"
+msgstr "Bildirileri sistem çekmecesine bağla"
 
 #: ../src/pref.c:1714
 msgid "Show Album art in notifications"
-msgstr "Album-Cover in Benachrichtigungen anzeigen"
+msgstr "Bildirilerde kapak resmi göster"
 
 #: ../src/pref.c:1715
 msgid "Add actions to change track to notifications"
-msgstr "Aktionen zum Wechseln der Titel in den Benachrichtigungen anzeigen"
+msgstr "Bildirilerde ileri / geri tuşlarını göster"
 
 #. Services Last.fm
 #: ../src/pref.c:1740
 msgid "Last.fm Support"
-msgstr "Last.fm Unterstützung"
+msgstr "Last.fm desteği"
 
 #: ../src/pref.c:1743
 msgid "Username"
-msgstr "Benutzername"
+msgstr "Kullanıcı Adı"
 
 #: ../src/pref.c:1744
 msgid "Password"
-msgstr "Passwort"
+msgstr "Parola"
 
 #. Services CDDB
 #: ../src/pref.c:1755
 msgid "Connect to CDDB server"
-msgstr "Mit dem CDDB-Server verbinden"
+msgstr "CDDB Sunucusuna bağlan"
 
 #. Services MPRIS2
 #: ../src/pref.c:1759
 msgid "Allow remote control with MPRIS2 interface"
-msgstr "Fernsteuerung per MPRIS2-Schnittstelle erlauben"
+msgstr "MPRIS2 tipinde uzaktan kumanda edilmeyi kabul et"
 
 #: ../src/menu.c:133
 msgid "Update Library"
-msgstr "Musikbibliothek aktualisieren"
+msgstr "Kütüphaneyi güncelle"
 
 #: ../src/menu.c:133
 msgid "Rescan Library"
-msgstr "Musikbibliothek neu einlesen"
+msgstr "Kütüphaneyi yenile"
 
 #: ../src/menu.c:238
 msgid "Select a file to play"
-msgstr "Eine Datei zum Abspielen auswählen"
+msgstr "Oynatmak için dosya seç"
 
 #: ../src/menu.c:259
 msgid "Add recursively files"
-msgstr "Dateien rekursiv hinzufügen"
+msgstr "Ortam dosyaları ekle"
 
 #: ../src/menu.c:280
 msgid "Supported media"
-msgstr "Unterstützte Mediendateien"
+msgstr "Desteklenen medya"
 
 #: ../src/menu.c:300
 msgid "All files"
-msgstr "Alle Dateien"
+msgstr "Tüm dosyalar"
 
 #: ../src/menu.c:669
 #: ../src/menu.c:803
 msgid "Library scan complete"
-msgstr "Einlesen der Musikbibliothek abgeschlossen"
+msgstr "Dosya güncelleşmesi tamamlandı"
 
 #: ../src/menu.c:899
 msgid "Total Tracks:"
-msgstr "Gesamtzahl der Titel:"
+msgstr "Parça sayısı:"
 
 #: ../src/menu.c:901
 msgid "Total Artists:"
-msgstr "Anzahl der Künstler:"
+msgstr "Sanatçı sayısı:"
 
 #: ../src/menu.c:903
 msgid "Total Albums:"
-msgstr "Anzahl der Alben:"
+msgstr "Albüm sayısı:"
 
 #: ../src/menu.c:905
 msgid "Statistics"
-msgstr "Statistiken"
+msgstr "İstatistikler"
 
 #: ../src/menu.c:922
 msgid "translator-credits"
-msgstr ""
-"PhotonX\n"
-"Christoph Wickert <cwickert@fedoraproject.org>"
+msgstr "Almancı Türkçe çevirimi:Hakan Erduman <smultimeter@gmail.com> "
 
 #: ../src/utils.c:231
 msgid "days"
-msgstr "Tage"
+msgstr "gün"
 
 #: ../src/utils.c:231
 msgid "day"
-msgstr "Tag"
+msgstr "gün"
 
 #: ../src/utils.c:462
 msgid "Unable to open the browser"
-msgstr "Der Browser konnte nicht geöffnet werden"
+msgstr "Adres açılamadı"
 
 #: ../src/playlist.c:548
 msgid "Export playlist to file"
-msgstr "Wiedergabeliste in Datei speichern"
-
-#~ msgid ""
-#~ "<small><span weight=\"light\">by</span></small> %s <small><span weight="
-#~ "\"light\">in</span></small> %s (%s)"
-#~ msgstr ""
-#~ "<small><span weight=\"light\">von</span></small> %s <small><span weight="
-#~ "\"light\">in</span></small> %s (%s)"
-#~ msgid ""
-#~ "Are you sure you want to delete current file from HDD?\n"
-#~ "\n"
-#~ "Warning: Once deleted, the file cannot be recovered."
-#~ msgstr ""
-#~ "Die Datei sicher von der Festplatte löschen? \n"
-#~ "\n"
-#~ "Warnung: Die Datei kann nach dem Löschen nicht wiederhergestellt werden."
-#~ msgid "Delete from HDD"
-#~ msgstr "Vom Laufwerk löschen"
-#~ msgid "Unknown Tags"
-#~ msgstr "Unbekannte Tags"
-#~ msgid "Track Information"
-#~ msgstr "Titelinformationen"
-#~ msgid "_Properties"
-#~ msgstr "_Eigenschaften"
-#~ msgid "Properties"
-#~ msgstr "Eigenschaften"
-#~ msgid "Last.fm"
-#~ msgstr "Last.fm"
-#~ msgid "When Pragha start"
-#~ msgstr "Wenn Pragha startet"
-#~ msgid "Preferences"
-#~ msgstr "Einstellungen"
-#~ msgid "Folder structure"
-#~ msgstr "Verzeichnisbaum"
-#~ msgid "Folder / File"
-#~ msgstr "Ordner / Datei"
-#~ msgid "Save complete playlist"
-#~ msgstr "Komplette Wiedergabeliste speichern"
-#~ msgid "Files"
-#~ msgstr "Dateien"
-#~ msgid "Show _hidden files"
-#~ msgstr "Dateien _hinzufügen"
-#~ msgid "Add to playlist (Recursive)"
-#~ msgstr "Zur Wiedergabeliste hinzufügen (rekursiv)"
-#~ msgid "Add to playlist (Non recursive)"
-#~ msgstr "Zur Wiedergabeliste hinzufügen (nicht rekursiv)"
-#~ msgid "Show Hidden Files in File View"
-#~ msgstr "Versteckte Dateien in Datei-Ansicht zeigen"
-#~ msgid "Lenght"
-#~ msgstr "Länge"
-#~ msgid "by %s"
-#~ msgstr "von %s"
-#~ msgid "in %s"
-#~ msgstr "in %s"
-#~ msgid "Menu bar"
-#~ msgstr "Menüleiste"
-#~ msgid "Play"
-#~ msgstr "Abspielen"
-#~ msgid "Enqueue"
-#~ msgstr "In die Warteschlange einreihen"
-#~ msgid "Enqueue (Recursive)"
-#~ msgstr "In die Warteschlange einreihen (rekursiv)"
-#~ msgid "Enqueue (Non-Recursive)"
-#~ msgstr "In die Warteschlange einreihen (nicht rekursiv)"
-#~ msgid "_Open File"
-#~ msgstr "Datei öffnen"
-#~ msgid "Search Library"
-#~ msgstr "Musikbibliothek durchsuchen"
-#~ msgid "%i Tracks - %s"
-#~ msgstr "%i Titel - %s"
-#~ msgid "_Library View"
-#~ msgstr "Struktur der Musikbibliothek"
-#~ msgid "%s by %s"
-#~ msgstr "%s von %s"
-#~ msgid "Artist / Track"
-#~ msgstr "Interpret / Titel"
-#~ msgid "Album / Track"
-#~ msgstr "Album / Titel"
-#~ msgid "Genre / Track"
-#~ msgstr "Genre / Titel"
+msgstr "Oynatma listesini dosyaya kaydet"
 

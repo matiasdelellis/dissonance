@@ -54,7 +54,6 @@ static void pref_dialog_cb(GtkDialog *dialog, gint response_id,
 	case GTK_RESPONSE_CANCEL:
 		break;
 	case GTK_RESPONSE_OK:
-
 		/* Audio preferences */
 		audio_sink =
 			gtk_combo_box_get_active_text(GTK_COMBO_BOX(
@@ -70,7 +69,8 @@ static void pref_dialog_cb(GtkDialog *dialog, gint response_id,
 			g_free(cwin->cpref->audio_alsa_device);
 			cwin->cpref->audio_alsa_device = g_strdup(audio_alsa_device);
 			g_free(audio_alsa_device);
-		} else if (!g_ascii_strcasecmp(cwin->cpref->audio_sink, OSS_SINK)) {
+		}
+		else if (!g_ascii_strcasecmp(cwin->cpref->audio_sink, OSS_SINK)) {
 			audio_oss_device = gtk_combo_box_get_active_text(GTK_COMBO_BOX(
 							 cwin->cpref->audio_device_w));
 			g_free(cwin->cpref->audio_oss_device);
@@ -240,6 +240,19 @@ static void pref_dialog_cb(GtkDialog *dialog, gint response_id,
 		cwin->cpref->use_cddb =
 			gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(
 						     cwin->cpref->use_cddb_w));
+
+#if HAVE_GLIB_2_26
+		cwin->cpref->use_mpris2 =
+			gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(
+						     cwin->cpref->use_mpris2_w));
+		if(!cwin->cpref->use_mpris2) {
+			if(NULL != cwin->cmpris2->dbus_connection)
+				mpris_close(cwin);
+		} else {
+			if(NULL == cwin->cmpris2->dbus_connection)
+				mpris_init(cwin);
+		}
+#endif							 
 
 		save_preferences(cwin);
 
@@ -686,6 +699,12 @@ static void update_preferences(struct con_win *cwin)
 		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(
 					     cwin->cpref->use_cddb_w),
 					     TRUE);
+#if HAVE_GLIB_2_26
+	if (cwin->cpref->use_mpris2)
+		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(
+					     cwin->cpref->use_mpris2_w),
+					     TRUE);
+#endif
 }
 
 void save_preferences(struct con_win *cwin)
@@ -1288,6 +1307,13 @@ void save_preferences(struct con_win *cwin)
 			       KEY_USE_CDDB,
 			       cwin->cpref->use_cddb);
 
+	/* Save allow MPRIS2 server option */
+
+	g_key_file_set_boolean(cwin->cpref->configrc_keyfile,
+			       GROUP_SERVICES,
+			       KEY_ALLOW_MPRIS2,
+			       cwin->cpref->use_mpris2);
+
 
 	/* Save to conrc */
 
@@ -1361,6 +1387,9 @@ void preferences_dialog(struct con_win *cwin)
 	GtkWidget *show_osd, *osd_in_systray, *albumart_in_osd, *actions_in_osd;
 	GtkWidget *lastfm_check, *lastfm_uname, *lastfm_pass, *album_art_pattern, *lastfm_uhbox, *lastfm_ulabel, \
 		  *lastfm_phbox, *lastfm_plabel, *use_cddb;
+#if HAVE_GLIB_2_26
+	GtkWidget *use_mpris2;
+#endif
 
 	GtkListStore *library_store;
 	GtkCellRenderer *renderer;
@@ -1709,6 +1738,7 @@ void preferences_dialog(struct con_win *cwin)
 	/* Services Last.fm */
 
 	lastfm_check = gtk_check_button_new_with_label(_("Last.fm Support"));
+
 	lastfm_uname = gtk_entry_new();
 	lastfm_pass = gtk_entry_new();
 	lastfm_ulabel = gtk_label_new(_("Username"));
@@ -1724,6 +1754,10 @@ void preferences_dialog(struct con_win *cwin)
 	/* Services CDDB */
 
 	use_cddb = gtk_check_button_new_with_label(_("Connect to CDDB server"));
+	
+	/* Services MPRIS2 */
+	
+	use_mpris2 = gtk_check_button_new_with_label(_("Allow remote control with MPRIS2 interface"));
 
 	gtk_box_pack_start(GTK_BOX(lastfm_uhbox),
 			   lastfm_ulabel,
@@ -1767,6 +1801,13 @@ void preferences_dialog(struct con_win *cwin)
 			   FALSE,
 			   FALSE,
 			   0);
+#if HAVE_GLIB_2_26
+	gtk_box_pack_start(GTK_BOX(services_vbox),
+			   use_mpris2,
+			   FALSE,
+			   FALSE,
+			   0);
+#endif
 
 	/* Add to dialog */
 
@@ -1803,6 +1844,9 @@ void preferences_dialog(struct con_win *cwin)
 	cwin->cpref->lw.lastfm_uname_w = lastfm_uname;
 	cwin->cpref->lw.lastfm_pass_w = lastfm_pass;
 	cwin->cpref->use_cddb_w = use_cddb;
+#if HAVE_GLIB_2_26
+	cwin->cpref->use_mpris2_w = use_mpris2;
+#endif
 
 	/* Setup signal handlers */
 
