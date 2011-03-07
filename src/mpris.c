@@ -730,6 +730,7 @@ on_bus_acquired (GDBusConnection *connection,
 	
 	cwin->cmpris2->dbus_connection = connection;
 	g_object_ref(G_OBJECT(cwin->cmpris2->dbus_connection));
+
 }
 
 static void
@@ -791,7 +792,7 @@ void mpris_update_any(struct con_win *cwin) {
 		if(newtitle)
 			cwin->cmpris2->saved_title = g_strdup(newtitle);
 		else 
-			cwin->cmpris2->saved_title = g_strdup("");
+			cwin->cmpris2->saved_title = NULL;
 		g_variant_builder_add (b, "{sv}", "Metadata", mpris_Player_get_Metadata(cwin));
 	}
 	if(change_detected)
@@ -912,7 +913,7 @@ gint mpris_init(struct con_win *cwin)
 {
 	CDEBUG(DBG_INFO, "Initializing MPRIS");
 	g_type_init();
-	
+
 	cwin->cmpris2->saved_shuffle = false;
 	cwin->cmpris2->saved_playbackstatus = false;
 	cwin->cmpris2->saved_title = NULL;

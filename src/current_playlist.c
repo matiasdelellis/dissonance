@@ -2053,13 +2053,12 @@ gboolean current_playlist_button_press_cb(GtkWidget *widget,
 					 struct con_win *cwin)
 {
 	GtkWidget *popup_menu, *item_widget;
-	gboolean ret = FALSE;
 	GtkTreeSelection *selection;
 	gint n_select = 0;
 	GtkTreePath *path;
 	GtkTreeModel *model;
 	GtkTreeIter iter;
-	gboolean is_queue = FALSE;
+	gboolean ret = FALSE, is_queue = FALSE;
 
 	model = gtk_tree_view_get_model(GTK_TREE_VIEW(cwin->current_playlist));
 	selection = gtk_tree_view_get_selection(GTK_TREE_VIEW(cwin->current_playlist));
@@ -2079,6 +2078,12 @@ gboolean current_playlist_button_press_cb(GtkWidget *widget,
 		}
 		break;
 	case 3:
+		if ( cwin->cstate->tracks_curr_playlist == 0) {
+			popup_menu = gtk_ui_manager_get_widget(cwin->cp_null_context_menu, "/popup");
+			gtk_menu_popup(GTK_MENU(popup_menu), NULL, NULL, NULL, NULL, event->button, event->time);
+			ret = FALSE;
+			break;
+		}
 		if(gtk_tree_view_get_path_at_pos(GTK_TREE_VIEW(widget), (gint) event->x,(gint) event->y, &path, NULL, NULL, NULL)){
 			if (!(gtk_tree_selection_path_is_selected(selection, path))){
 				gtk_tree_selection_unselect_all(selection);

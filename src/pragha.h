@@ -661,6 +661,7 @@ struct con_win {
 	GtkEntryCompletion *completion[3];
 	GtkUIManager *bar_context_menu;
 	GtkUIManager *cp_context_menu;
+	GtkUIManager *cp_null_context_menu;
 	GtkUIManager *playlist_tree_context_menu;
 	GtkUIManager *library_tree_context_menu;
 	GtkUIManager *library_page_context_menu;

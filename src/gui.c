@@ -94,7 +94,19 @@ gchar *cp_context_menu_xml = "<ui>		    				\
 	<menuitem action=\"Save playlist\"/>					\
 	<separator/>				    				\
 	<menuitem action=\"Edit tags\"/>					\
+	</popup>				    				\
+	</ui>";
+
+gchar *cp_null_context_menu_xml = "<ui>		    				\
+	<popup>					    				\
+	<menuitem action=\"Add files\"/>					\
 	<separator/>				    				\
+	<menuitem action=\"Add the library\"/>	    				\
+	<separator/>				    				\
+	<menuitem action=\"Library\"/>						\
+	<menuitem action=\"Playlists\"/>					\
+	<separator/>				    				\
+	<menuitem action=\"Quit\"/>						\
 	</popup>				    				\
 	</ui>";
 
@@ -239,6 +251,24 @@ GtkToggleActionEntry toggles_entries[] = {
 	{"Status bar", NULL, N_("Status bar"),
 	 NULL, "Status bar", G_CALLBACK(status_bar_action),
 	TRUE}
+};
+
+GtkActionEntry cp_null_context_aentries[] = {
+	{"Add files", GTK_STOCK_OPEN, N_("_Add files"),
+	 NULL, N_("Open a media file"), G_CALLBACK(open_file_action)},
+	{"Add the library", GTK_STOCK_ADD, N_("_Add the library"),
+	 NULL, "Add all the library", G_CALLBACK(add_all_action)},
+	{"Quit", GTK_STOCK_QUIT, N_("_Quit"),
+	 "<Control>Q", "Quit pragha", G_CALLBACK(quit_action)}
+};
+
+GtkToggleActionEntry cp_null_toggles_entries[] = {
+	{"Library", NULL, N_("Library"),
+	 NULL, "Library", G_CALLBACK(library_pane_action),
+	TRUE},
+	{"Playlists", NULL, N_("Playlists"),
+	 NULL, "Playlists", G_CALLBACK(playlists_pane_action),
+	FALSE}
 };
 
 GtkActionEntry cp_context_aentries[] = {
@@ -861,6 +891,39 @@ static GtkUIManager* create_cp_context_menu(GtkWidget *current_playlist,
 	return context_menu;
 }
 
+static GtkUIManager* create_cp_null_context_menu(GtkWidget *current_playlist,
+					    struct con_win *cwin)
+{
+	GtkUIManager *context_menu = NULL;
+	GtkActionGroup *context_actions;
+	GError *error = NULL;
+
+	context_actions = gtk_action_group_new("CP Null Context Actions");
+	context_menu = gtk_ui_manager_new();
+
+	gtk_action_group_set_translation_domain (context_actions, GETTEXT_PACKAGE);
+
+	if (!gtk_ui_manager_add_ui_from_string(context_menu,
+					       cp_null_context_menu_xml,
+					       -1, &error)) {
+		g_critical("Unable to create current playlist null context menu, err : %s",
+			   error->message);
+	}
+	gtk_action_group_add_actions(context_actions,
+				     cp_null_context_aentries,
+				     G_N_ELEMENTS(cp_null_context_aentries),
+				     (gpointer)cwin);
+	gtk_action_group_add_toggle_actions (context_actions, 
+					cp_null_toggles_entries,
+					G_N_ELEMENTS(cp_null_toggles_entries), 
+					cwin);
+	gtk_window_add_accel_group(GTK_WINDOW(cwin->mainwindow),
+				   gtk_ui_manager_get_accel_group(context_menu));
+	gtk_ui_manager_insert_action_group(context_menu, context_actions, 0);
+
+	return context_menu;
+}
+
 static void create_current_playlist_columns(GtkWidget *current_playlist,
 					    struct con_win *cwin)
 {
@@ -1103,7 +1166,6 @@ static GtkWidget* create_current_playlist_view(struct con_win *cwin)
 {
 	GtkWidget *current_playlist_scroll;
 	GtkWidget *current_playlist;
-	GtkUIManager *cp_context_menu;
 	GtkListStore *store;
 	GtkTreeSelection *selection;
 	GtkTreeModel *model;
@@ -1190,8 +1252,8 @@ static GtkWidget* create_current_playlist_view(struct con_win *cwin)
 
 	/* Create contextual menus */
 
-	cp_context_menu = create_cp_context_menu(current_playlist, cwin);
-	cwin->cp_context_menu = cp_context_menu;
+	cwin->cp_context_menu = create_cp_context_menu(current_playlist, cwin);
+	cwin->cp_null_context_menu = create_cp_null_context_menu(current_playlist, cwin);
 	cwin->header_context_menu = create_header_context_menu(cwin);
 
 	/* Signal handler for right-clicking and selection */
