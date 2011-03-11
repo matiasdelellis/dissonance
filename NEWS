@@ -1,7 +1,29 @@
 =====================================================
-Overview of changes in Pragha 0.8.5
+Overview of changes in Pragha 0.8.6
 =====================================================
 
+Special thanks to Vikram Ambrose and Hakan Erduman for answering all my questions.
+News:
+	Complete MPRIS2 track list interface.
+	Add option to init MPRIS2 in preferences.
+	Add a new popup menu when current playlist is emply.
+
+Updates Translations:
+	Add Turkisk translation thanks to Hakan.
+	Update Czech translation thanks to Anespor.
+
+Bugs fixed:
+	Much more faster when you start with many songs, or add the complete library.
+	Fix bad editing of current playlist items when it is sorted (Issue 21).
+	Fix Segfault after clear playlist and play (Issue 23 and 24).
+	Never init pragha witch -p,-s,-t, -r, -n, -t... command options.
+	Better update album art.
+	Drop unused vars.
+
+======================================================
+OTHERS REALESES:
+======================================================
+V0.8.5
 News:
 	Add MPRIS2 control support and emit a dbus signal named 'update_state' thanks to Hakan Erduman.
 	Added a DBus message to toggle the visibility of the player thanks to Hakan Erduman.
@@ -17,10 +39,7 @@ Updates Translations:
 
 Note: Temporarily disables search lyrics, by license change of http://www.lyricsplugin.com.
 
-======================================================
-OTHERS REALESES:
-======================================================
-V0.8.5
+V0.8.4
 News:
 	"Restore" replace and play option.
 

@@ -1528,7 +1528,7 @@ void update_track_current_playlist(GtkTreeIter *iter, gint changed, struct music
 	if (changed & TAG_COMMENT_CHANGED) {
 		gtk_list_store_set(GTK_LIST_STORE(model), iter, P_COMMENT, mobj->tags->comment,-1);
 	}
-	
+
 	/* inform mpris2 */
 	
 	#if HAVE_GLIB_2_26
