@@ -430,8 +430,8 @@ void lastfm_init_thread(struct con_win *cwin)
 	GThread *thread = NULL;
 	GError *error = NULL;
 
-	thread = g_thread_create(do_lastfm_init_thread, cwin, TRUE, &error);
-	if (error)
-		g_critical("Unable to create last.fm init thread: %s",
-			   error->message);
+	if ((thread = g_thread_create(do_lastfm_init_thread, cwin, TRUE, &error)) == NULL) {
+		g_critical("Unable to create last.fm init thread: %s", error->message);
+		g_error_free(error);
+	}
 }

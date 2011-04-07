@@ -916,13 +916,11 @@ void current_playlist_clear_dirty_all(struct con_win *cwin)
 
 GtkTreePath* current_playlist_get_selection(struct con_win *cwin)
 {
-	GtkTreeModel *model;
 	GtkTreeSelection *selection;
 	GtkTreePath *path = NULL;
 	gint cnt_selected = 0;
 	GList *list;
 
-	model = gtk_tree_view_get_model(GTK_TREE_VIEW(cwin->current_playlist));
 	selection = gtk_tree_view_get_selection(GTK_TREE_VIEW(cwin->current_playlist));
 	cnt_selected = gtk_tree_selection_count_selected_rows(selection);
 
@@ -1080,12 +1078,10 @@ void jump_to_playing_song(struct con_win *cwin)
 
 void enqueue_current_playlist(GtkAction *action, struct con_win *cwin)
 {
-	GtkTreeModel *model;
 	GtkTreeSelection *selection;
 	GtkTreePath *path;
 	GList *list;
 
-	model = gtk_tree_view_get_model(GTK_TREE_VIEW(cwin->current_playlist));
 	selection = gtk_tree_view_get_selection(GTK_TREE_VIEW(cwin->current_playlist));
 	list = gtk_tree_selection_get_selected_rows(selection, NULL);
 

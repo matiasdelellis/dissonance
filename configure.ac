@@ -6,7 +6,7 @@ dnl
 dnl Version information
 m4_define([pragha_version_major], [0])
 m4_define([pragha_version_minor], [8])
-m4_define([pragha_version_micro], [6])
+m4_define([pragha_version_micro], [7svn])
 m4_define([pragha_version], [pragha_version_major().pragha_version_minor().pragha_version_micro()])
 
 dnl Initialize autoconf
@@ -57,6 +57,7 @@ XDT_CHECK_PACKAGE([TAGLIB], [taglib], [1.4])
 XDT_CHECK_PACKAGE([MAD], [mad], [0.15])
 XDT_CHECK_PACKAGE([SQLITE3], [sqlite3], [3.4])
 XDT_CHECK_PACKAGE([DBUS], [dbus-1], [0.74])
+XDT_CHECK_PACKAGE([DBUS_GLIB], [dbus-glib-1], [0.74])
 XDT_CHECK_PACKAGE([LIBNOTIFY], [libnotify], [0.4.4])
 XDT_CHECK_PACKAGE([SNDFILE], [sndfile >= 1.0.17], [1.0.17])
 XDT_CHECK_PACKAGE([VORBISFILE], [vorbisfile], [1.2.0])

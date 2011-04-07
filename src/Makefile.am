@@ -59,6 +59,7 @@ pragha_CFLAGS =	$(GLIB_CFLAGS) 						\
 	$(AO_CFLAGS) 							\
 	$(ALSA_CFLAGS) 							\
 	$(DBUS_CFLAGS) 							\
+	$(DBUS_GLIB_CFLAGS) 						\
 	$(LIBNOTIFY_CFLAGS) 						\
 	$(SNDFILE_CFLAGS) 						\
 	$(VORBISFILE_CFLAGS) 						\
@@ -82,6 +83,7 @@ pragha_LDFLAGS = $(GLIB_LIBS) 						\
 	$(AO_LIBS) 							\
 	$(ALSA_LIBS) 							\
 	$(DBUS_LIBS) 							\
+	$(DBUS_GLIB_LIBS)						\
 	$(LIBNOTIFY_LIBS) 						\
 	$(SNDFILE_LIBS) 						\
 	$(VORBISFILE_LIBS) 						\

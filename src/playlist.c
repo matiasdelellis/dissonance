@@ -337,7 +337,6 @@ gboolean playlist_tree_button_release_cb(GtkWidget *widget,
 				     struct con_win *cwin)
 {
 	GtkTreeSelection *selection;
-	gint n_select = 0;
 	GtkTreePath *path;
 	
 	selection = gtk_tree_view_get_selection(GTK_TREE_VIEW(cwin->playlist_tree));
@@ -348,7 +347,6 @@ gboolean playlist_tree_button_release_cb(GtkWidget *widget,
 		return FALSE;
 	}
 
-	n_select = gtk_tree_selection_count_selected_rows(selection);
 	gtk_tree_view_get_path_at_pos(GTK_TREE_VIEW(widget), (gint) event->x,(gint) event->y, &path, NULL, NULL, NULL);
 
 	if (path){
