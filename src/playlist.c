@@ -475,9 +475,8 @@ void playlist_tree_delete(GtkAction *action, struct con_win *cwin)
 	GList *list, *i;
 	gchar *playlist, *s_playlist;
 
-	model = gtk_tree_view_get_model(GTK_TREE_VIEW(cwin->playlist_tree));
 	selection = gtk_tree_view_get_selection(GTK_TREE_VIEW(cwin->playlist_tree));
-	list = gtk_tree_selection_get_selected_rows(selection, NULL);
+	list = gtk_tree_selection_get_selected_rows(selection, &model);
 
 	if (list) {
 
@@ -728,7 +727,6 @@ void dnd_playlist_tree_get(GtkWidget *widget,
 
 	switch(info) {
 	case TARGET_PLAYLIST:
-		model = gtk_tree_view_get_model(GTK_TREE_VIEW(cwin->playlist_tree));
 		selection = gtk_tree_view_get_selection(GTK_TREE_VIEW(cwin->playlist_tree));
 		list = gtk_tree_selection_get_selected_rows(selection, &model);
 

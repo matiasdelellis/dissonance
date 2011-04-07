@@ -1087,7 +1087,7 @@ void enqueue_current_playlist(GtkAction *action, struct con_win *cwin)
 
 	while(list) {
 		path = list->data;
-		delete_queue_track_refs(path,cwin);
+		delete_queue_track_refs(path, cwin);
 		list = list->next;
 	}
 	requeue_track_refs(cwin);
@@ -1104,9 +1104,8 @@ void queue_current_playlist(GtkAction *action, struct con_win *cwin)
 	GtkTreeRowReference *ref;
 	GList *list;
 
-	model = gtk_tree_view_get_model(GTK_TREE_VIEW(cwin->current_playlist));
 	selection = gtk_tree_view_get_selection(GTK_TREE_VIEW(cwin->current_playlist));
-	list = gtk_tree_selection_get_selected_rows(selection, NULL);
+	list = gtk_tree_selection_get_selected_rows(selection, &model);
 
 	while (list) {
 		path = list->data;
@@ -1154,12 +1153,11 @@ int current_playlist_key_press (GtkWidget *win, GdkEventKey *event, struct con_w
 		return TRUE;
 	}
 	else if(event->keyval == GDK_q || event->keyval == GDK_Q){
-		model = gtk_tree_view_get_model(GTK_TREE_VIEW(cwin->current_playlist));
 		selection = gtk_tree_view_get_selection(GTK_TREE_VIEW(cwin->current_playlist));
 		n_select = gtk_tree_selection_count_selected_rows(selection);
 
 		if(n_select==1){
-			list = gtk_tree_selection_get_selected_rows(selection, NULL);
+			list = gtk_tree_selection_get_selected_rows(selection, &model);
 			if (gtk_tree_model_get_iter(model, &iter, list->data)){
 				gtk_tree_model_get(model, &iter, P_BUBBLE, &is_queue, -1);
 				if(is_queue)
@@ -1192,9 +1190,8 @@ void remove_current_playlist(GtkAction *action, struct con_win *cwin)
 	struct musicobject *mobj = NULL;
 	gboolean played = FALSE;
 
-	model = gtk_tree_view_get_model(GTK_TREE_VIEW(cwin->current_playlist));
 	selection = gtk_tree_view_get_selection(GTK_TREE_VIEW(cwin->current_playlist));
-	list = gtk_tree_selection_get_selected_rows(selection, NULL);
+	list = gtk_tree_selection_get_selected_rows(selection, &model);
 
 	if (list) {
 
@@ -2241,9 +2238,8 @@ void drag_current_playlist_get_data (GtkWidget *widget,
 		case TARGET_URI_LIST:
 			CDEBUG(DBG_VERBOSE, "DnD: TARGET_URI_LIST");
 
-			model = gtk_tree_view_get_model(GTK_TREE_VIEW(cwin->current_playlist));
 			selection = gtk_tree_view_get_selection(GTK_TREE_VIEW( cwin->current_playlist));
-			list = gtk_tree_selection_get_selected_rows(selection, NULL);
+			list = gtk_tree_selection_get_selected_rows(selection, &model);
 			uri_list = g_new(gchar* , gtk_tree_selection_count_selected_rows(selection) + 1);
 
 			for (i=list; i != NULL; i = i->next){
@@ -2341,7 +2337,7 @@ void dnd_current_playlist_received(GtkWidget *widget,
 	if (gtk_drag_get_source_widget(context) == cwin->current_playlist) {
 		CDEBUG(DBG_VERBOSE, "Dnd: Reorder");
 		selection = gtk_tree_view_get_selection(GTK_TREE_VIEW(cwin->current_playlist));
-		list = gtk_tree_selection_get_selected_rows(selection, &model);
+		list = gtk_tree_selection_get_selected_rows(selection, NULL);
 
 		/* Clear sort */
 		clear_sort_current_playlist(NULL, cwin);
