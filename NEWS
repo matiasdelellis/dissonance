@@ -20,6 +20,13 @@ Bugs fixed:
 	Better update album art.
 	Drop unused vars.
 
+V0.8.6.1
+Bugs fixed:
+	Compile with Gcc 4.6, with all that this implies.
+	Use _tree_row_references to edit track.
+	Get the files to change quickly, to prevent when finished the song and change the selection.
+	Always check the current song to prevent when finished and change the song.
+
 ======================================================
 OTHERS REALESES:
 ======================================================

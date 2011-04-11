@@ -873,7 +873,6 @@ void edit_tags_current_playlist(GtkAction *action, struct con_win *cwin)
 		return;
 
 	list = gtk_tree_selection_get_selected_rows(selection, &model);
-	path_current = current_playlist_get_actual(cwin);
 
 	/* Setup initial entries */
 
@@ -890,19 +889,7 @@ void edit_tags_current_playlist(GtkAction *action, struct con_win *cwin)
 		}
 
 		memcpy(&otag, mobj->tags, sizeof(struct tags));
-		changed = tag_edit_dialog(&otag, &ntag, mobj->file, cwin);
 	}
-	else {
-		changed = tag_edit_dialog(&otag, &ntag, NULL, cwin);
-	}
-
-	if (!changed)
-		goto exit;
-
-	loc_arr = g_array_new(TRUE, TRUE, sizeof(gint));
-	file_arr = g_array_new(TRUE, TRUE, sizeof(gchar *));
-
-	clear_sort_current_playlist_cb(NULL, cwin);
 
 	/* Get references from the paths and store them in the 'data'
 	   portion of the list elements.
@@ -914,6 +901,18 @@ void edit_tags_current_playlist(GtkAction *action, struct con_win *cwin)
 		i->data = ref;
 		gtk_tree_path_free(path);
 	}
+
+	/* Get new tags edited */
+
+	changed = tag_edit_dialog(&otag, &ntag, (mobj != NULL) ?  mobj->file : NULL, cwin);
+
+	if (!changed)
+		goto exit;
+
+	loc_arr = g_array_new(TRUE, TRUE, sizeof(gint));
+	file_arr = g_array_new(TRUE, TRUE, sizeof(gchar *));
+
+	clear_sort_current_playlist_cb(NULL, cwin);
 
 	/* Now build iterators from the references and edit
 	   them from the store */
@@ -937,11 +936,14 @@ void edit_tags_current_playlist(GtkAction *action, struct con_win *cwin)
 		update_musicobject(mobj, changed, &ntag, cwin);
 		update_track_current_playlist(&iter, changed, mobj, cwin);
 
+		path_current = current_playlist_get_actual(cwin);
 		if ((path_current != NULL) && (gtk_tree_path_compare(path, path_current) == 0)) {
 			update_musicobject(cwin->cstate->curr_mobj, changed, &ntag, cwin);
 			if(cwin->cstate->state != ST_STOPPED)
 				__update_current_song_info(cwin);
 		}
+		gtk_tree_path_free(path_current);
+		gtk_tree_path_free(path);
 
 		sfile = sanitize_string_sqlite3(mobj->file);
 		location_id = find_location_db(sfile, cwin);
@@ -961,8 +963,6 @@ void edit_tags_current_playlist(GtkAction *action, struct con_win *cwin)
 		init_library_view(cwin);
 exit:
 	/* Cleanup */
-	gtk_tree_path_free(path_current);
-
 	if (loc_arr)
 		g_array_free(loc_arr, TRUE);
 	if (file_arr) {
