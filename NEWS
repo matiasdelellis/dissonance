@@ -32,7 +32,8 @@ Bugs fixed:
 	Fix never init Mpris2 interface when init.
 	Start pragha with file arguments.
 	Fix Typos.
-
+V0.8.6.2
+	Prepend interfece string to PropertiesChanged signal.
 ======================================================
 OTHERS REALESES:
 ======================================================
