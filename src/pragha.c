@@ -207,13 +207,6 @@ gint main(gint argc, gchar *argv[])
 		return -1;
 	}
 
-	#if HAVE_GLIB_2_26
-	if (cwin->cpref->use_mpris2 && mpris_init(cwin) == -1) {
-		g_critical("Unable to initialize MPRIS");
-		return -1;
-	}
-	#endif
-
 	ret = init_audio(cwin);
 	if (ret == -EINVAL) {
 		g_critical("Unable to init audio");
@@ -242,6 +235,12 @@ gint main(gint argc, gchar *argv[])
 	#ifdef HAVE_LIBKEYBINDER
 	if (init_keybinder(cwin) == -1) {
 		g_critical("Unable to initialize keybinder");
+		return -1;
+	}
+	#endif
+	#if HAVE_GLIB_2_26
+	if (mpris_init(cwin) == -1) {
+		g_critical("Unable to initialize MPRIS");
 		return -1;
 	}
 	#endif

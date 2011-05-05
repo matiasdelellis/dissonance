@@ -416,7 +416,7 @@ static GVariant* mpris_Playlists_ActivatePlaylist(struct con_win *cwin, GVariant
 	}
 	if(!found)
 		g_dbus_method_invocation_return_dbus_error(cwin->cmpris2->method_invocation, 
-				DBUS_ERROR_INVALID_ARGS, "Unkown or malformed playlist object path.");
+				DBUS_ERROR_INVALID_ARGS, "Unknown or malformed playlist object path.");
 		
 	g_free(playlist);
 	return NULL; 
@@ -537,7 +537,7 @@ static GVariant* mpris_TrackList_GoTo(struct con_win *cwin, GVariant* parameters
 			GTK_TREE_VIEW(cwin->current_playlist), tree_path, NULL, cwin);
 	} else
 		g_dbus_method_invocation_return_dbus_error(cwin->cmpris2->method_invocation, 
-				DBUS_ERROR_INVALID_ARGS, "Unkown or malformed playlist object path.");
+				DBUS_ERROR_INVALID_ARGS, "Unknown or malformed playlist object path.");
 	return NULL; 
 }
 static GVariant* mpris_TrackList_get_Tracks(struct con_win *cwin) { 
@@ -760,9 +760,11 @@ void mpris_update_any(struct con_win *cwin) {
 	gboolean change_detected = FALSE;
 	GVariantBuilder *b;
 	gchar *newtitle;
-	
+
 	if(NULL == cwin->cmpris2->dbus_connection)
 		return; /* better safe than sorry */
+	if(NULL == cwin->cstate->curr_mobj)
+		return;
 	
 	newtitle = cwin->cstate->curr_mobj->file;
 	b = g_variant_builder_new(G_VARIANT_TYPE("a{sv}"));
@@ -911,6 +913,9 @@ void mpris_update_tracklist_changed(struct con_win *cwin) {
 
 gint mpris_init(struct con_win *cwin)
 {
+	if (!cwin->cpref->use_mpris2)
+		return 0;
+
 	CDEBUG(DBG_INFO, "Initializing MPRIS");
 	g_type_init();
 

@@ -27,6 +27,12 @@ Bugs fixed:
 	Get the files to change quickly, to prevent when finished the song and change the selection.
 	Always check the current song to prevent when finished and change the song.
 
+V0.8.6.2
+Bugs fixed:
+	Fix never init Mpris2 interface when init.
+	Start pragha with file arguments.
+	Fix Typos.
+
 ======================================================
 OTHERS REALESES:
 ======================================================
