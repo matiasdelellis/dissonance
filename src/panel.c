@@ -553,7 +553,7 @@ void toggled_cb(GtkToggleButton *toggle, struct con_win *cwin)
 		gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (action_playlists) ,FALSE);
 		gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (null_action_playlists) ,FALSE);
 		gtk_toggle_button_set_active( GTK_TOGGLE_BUTTON(cwin->toggle_playlists), FALSE);
-		gtk_widget_show_all(GTK_WIDGET(cwin->browse_mode));
+		gtk_widget_show (GTK_WIDGET(cwin->browse_mode));
 		gtk_notebook_set_current_page(GTK_NOTEBOOK(cwin->browse_mode), 0);
 		gtk_widget_grab_focus(cwin->library_tree);
 	}
@@ -563,7 +563,7 @@ void toggled_cb(GtkToggleButton *toggle, struct con_win *cwin)
 		gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (action_lib), FALSE);
 		gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (null_action_lib), FALSE);
 		gtk_toggle_button_set_active( GTK_TOGGLE_BUTTON(cwin->toggle_lib), FALSE);
-		gtk_widget_show_all(GTK_WIDGET(cwin->browse_mode));
+		gtk_widget_show (GTK_WIDGET(cwin->browse_mode));
 		gtk_notebook_set_current_page(GTK_NOTEBOOK(cwin->browse_mode), 1);
 		gtk_widget_grab_focus(cwin->playlist_tree);
 	}
@@ -572,7 +572,7 @@ void toggled_cb(GtkToggleButton *toggle, struct con_win *cwin)
 		gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (null_action_lib), FALSE);
 		gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (action_playlists), FALSE);
 		gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (null_action_playlists), FALSE);
-		gtk_widget_hide_all(GTK_WIDGET(cwin->browse_mode));
+		gtk_widget_hide (GTK_WIDGET(cwin->browse_mode));
 		gtk_widget_grab_focus(cwin->current_playlist);
 	}
 
