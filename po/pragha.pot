@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-05 14:58-0300\n"
+"POT-Creation-Date: 2011-05-18 21:09-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -223,12 +223,12 @@ msgid "Folders structure"
 msgstr ""
 
 #: src/gui.c:328 src/gui.c:781 src/gui.c:945 src/pragha.h:87
-#: src/librarytree.c:1344 src/statusicon.c:217 src/tags.c:442
+#: src/librarytree.c:1344 src/statusicon.c:203 src/tags.c:442
 msgid "Artist"
 msgstr ""
 
 #: src/gui.c:330 src/gui.c:782 src/gui.c:946 src/pragha.h:88
-#: src/librarytree.c:1348 src/statusicon.c:218 src/tags.c:443
+#: src/librarytree.c:1348 src/statusicon.c:204 src/tags.c:443
 msgid "Album"
 msgstr ""
 
@@ -253,11 +253,11 @@ msgstr ""
 msgid "Genre / Artist / Album"
 msgstr ""
 
-#: src/gui.c:351 src/statusicon.c:178
+#: src/gui.c:351 src/statusicon.c:164
 msgid "Prev Track"
 msgstr ""
 
-#: src/gui.c:357 src/gui.c:1653 src/statusicon.c:182
+#: src/gui.c:357 src/gui.c:1653 src/statusicon.c:168
 msgid "Next Track"
 msgstr ""
 
@@ -271,12 +271,12 @@ msgid "Track"
 msgstr ""
 
 #. Create labels
-#: src/gui.c:780 src/gui.c:944 src/pragha.h:86 src/statusicon.c:216
+#: src/gui.c:780 src/gui.c:944 src/pragha.h:86 src/statusicon.c:202
 #: src/tags.c:441
 msgid "Title"
 msgstr ""
 
-#: src/gui.c:784 src/gui.c:948 src/pragha.h:90 src/current_playlist.c:1334
+#: src/gui.c:784 src/gui.c:948 src/pragha.h:90 src/current_playlist.c:1338
 msgid "Bitrate"
 msgstr ""
 
@@ -289,12 +289,12 @@ msgid "Comment"
 msgstr ""
 
 #. Create labels
-#: src/gui.c:787 src/gui.c:951 src/pragha.h:93 src/current_playlist.c:1333
-#: src/statusicon.c:219
+#: src/gui.c:787 src/gui.c:951 src/pragha.h:93 src/current_playlist.c:1337
+#: src/statusicon.c:205
 msgid "Length"
 msgstr ""
 
-#: src/gui.c:788 src/gui.c:952 src/pragha.h:94 src/current_playlist.c:1338
+#: src/gui.c:788 src/gui.c:952 src/pragha.h:94 src/current_playlist.c:1342
 msgid "Filename"
 msgstr ""
 
@@ -327,7 +327,7 @@ msgstr ""
 msgid "Repeat playback list at the end"
 msgstr ""
 
-#: src/gui.c:1698 src/panel.c:218 src/statusicon.c:213
+#: src/gui.c:1698 src/panel.c:218 src/statusicon.c:199
 msgid "<b>Not playing</b>"
 msgstr ""
 
@@ -392,28 +392,28 @@ msgstr ""
 msgid "<b>con_playlist</b> is a reserved playlist name"
 msgstr ""
 
-#: src/current_playlist.c:1335
+#: src/current_playlist.c:1339
 msgid "Channels"
 msgstr ""
 
-#: src/current_playlist.c:1336
+#: src/current_playlist.c:1340
 msgid "Samplerate"
 msgstr ""
 
-#: src/current_playlist.c:1337
+#: src/current_playlist.c:1341
 msgid "Folder"
 msgstr ""
 
 #. The main edit dialog
-#: src/current_playlist.c:1428 src/tags.c:716
+#: src/current_playlist.c:1432 src/tags.c:716
 msgid "Details"
 msgstr ""
 
-#: src/librarytree.c:189 src/statusicon.c:150
+#: src/librarytree.c:189 src/statusicon.c:136
 msgid "Unknown Artist"
 msgstr ""
 
-#: src/librarytree.c:195 src/statusicon.c:152
+#: src/librarytree.c:195 src/statusicon.c:138
 msgid "Unknown Album"
 msgstr ""
 
@@ -445,7 +445,7 @@ msgstr ""
 msgid "Delete immediately instead of move to trash"
 msgstr ""
 
-#: src/statusicon.c:148
+#: src/statusicon.c:134
 #, c-format
 msgid "by <b>%s</b> in <b>%s</b> <b>(%s)</b>"
 msgstr ""
@@ -602,51 +602,51 @@ msgstr ""
 msgid "Allow remote control with MPRIS2 interface"
 msgstr ""
 
-#: src/menu.c:133
+#: src/menu.c:136
 msgid "Update Library"
 msgstr ""
 
-#: src/menu.c:133
+#: src/menu.c:136
 msgid "Rescan Library"
 msgstr ""
 
-#: src/menu.c:238
+#: src/menu.c:241
 msgid "Select a file to play"
 msgstr ""
 
-#: src/menu.c:259
+#: src/menu.c:262
 msgid "Add recursively files"
 msgstr ""
 
-#: src/menu.c:280
+#: src/menu.c:283
 msgid "Supported media"
 msgstr ""
 
-#: src/menu.c:300
+#: src/menu.c:303
 msgid "All files"
 msgstr ""
 
-#: src/menu.c:668 src/menu.c:802
+#: src/menu.c:671 src/menu.c:805
 msgid "Library scan complete"
 msgstr ""
 
-#: src/menu.c:898
+#: src/menu.c:903
 msgid "Total Tracks:"
 msgstr ""
 
-#: src/menu.c:900
+#: src/menu.c:905
 msgid "Total Artists:"
 msgstr ""
 
-#: src/menu.c:902
+#: src/menu.c:907
 msgid "Total Albums:"
 msgstr ""
 
-#: src/menu.c:904
+#: src/menu.c:909
 msgid "Statistics"
 msgstr ""
 
-#: src/menu.c:921
+#: src/menu.c:926
 msgid "translator-credits"
 msgstr ""
 

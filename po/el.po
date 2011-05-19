@@ -7,358 +7,357 @@ msgstr ""
 "Project-Id-Version: Pragha\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-05-18 21:09-0300\n"
-"PO-Revision-Date: 2011-05-18 20:45-0300\n"
+"PO-Revision-Date: 2011-05-18 20:41-0300\n"
 "Last-Translator: Matias <mati86dl@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: uk\n"
+"Language: el\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2)\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
 
 #: src/gui.c:175
 msgid "_File"
-msgstr "_Файл"
+msgstr "_Αρχείο"
 
 #: src/gui.c:176
 msgid "_Edit"
-msgstr "_Зміни"
+msgstr "_Επεξεργασία"
 
 #: src/gui.c:177
 msgid "_View"
-msgstr "_Перегляд"
+msgstr "_Προβολή"
 
 #: src/gui.c:178
 msgid "_Tools"
-msgstr "З_асоби"
+msgstr "_Εργαλεία"
 
 #: src/gui.c:179
 msgid "_Help"
-msgstr "_Довідка"
+msgstr "_Βοήθεια"
 
 #: src/gui.c:180 src/gui.c:257 src/gui.c:347
 msgid "_Add files"
-msgstr "Д_одати файли"
+msgstr "_Προσθήκη αρχείων"
 
 #: src/gui.c:181 src/gui.c:258
 msgid "Open a media file"
-msgstr "Відкрити файл"
+msgstr "_Άνοιγμα αρχείου"
 
 #: src/gui.c:182 src/gui.c:349
 msgid "_Play audio CD"
-msgstr "_Відтворити аудіо CD"
+msgstr "_Αναπαραγωγή CD ήχου"
 
 #: src/gui.c:184
 msgid "Prev track"
-msgstr "Попередня доріжка"
+msgstr "Προηγούμενο"
 
 #: src/gui.c:186 src/gui.c:353
 msgid "Play / Pause"
-msgstr "Відтворення / Павза"
+msgstr "Έναρξη / Παύση"
 
 #: src/gui.c:188 src/gui.c:355
 msgid "Stop"
-msgstr "Зупинити"
+msgstr "Διακοπή"
 
 #: src/gui.c:190
 msgid "Next track"
-msgstr "Наступна доріжка"
+msgstr "Επόμενο"
 
 #. The main edit dialog
 #: src/gui.c:192 src/gui.c:283 src/gui.c:313 src/gui.c:359 src/tags.c:681
 msgid "Edit tags"
-msgstr "Змінити теґи"
+msgstr "Επεξεργασία ετικετών"
 
 #: src/gui.c:194 src/gui.c:261 src/gui.c:361
 msgid "_Quit"
-msgstr "Ви_йти"
+msgstr "_Έξοδος"
 
 #: src/gui.c:196 src/gui.c:259
 msgid "_Add the library"
-msgstr "Д_одати до фонотеки"
+msgstr "_Προσθήκη όλης της βιβλιοθήκης"
 
 #: src/gui.c:198 src/gui.c:279
 msgid "Remove"
-msgstr "Вилучити"
+msgstr "Αφαίρεση"
 
 #: src/gui.c:200 src/gui.c:281
 msgid "Crop"
-msgstr "Вирізати"
+msgstr "Αποκοπή"
 
 #: src/gui.c:202 src/gui.c:289
 msgid "Clear playlist"
-msgstr "Очистити список композицій"
+msgstr "Εκκαθάριση λίστας"
 
 #: src/gui.c:204 src/gui.c:285
 msgid "Save selection"
-msgstr "Зберегти вибране"
+msgstr "Αποθήκευση επιλογής"
 
 #: src/gui.c:206 src/gui.c:287 src/current_playlist.c:638
 msgid "Save playlist"
-msgstr "Зберегти список композицій"
+msgstr "Αποθήκευση λίστας"
 
 #: src/gui.c:208
 msgid "_Preferences"
-msgstr "_Налаштування"
+msgstr "_Προτιμήσεις"
 
 #: src/gui.c:210
 msgid "Lateral _panel"
-msgstr "Бічна _панель"
+msgstr "Πλάγια _"
 
 #: src/gui.c:211
 msgid "Jump to playing song"
-msgstr "Перейти до відтворюваної композиції"
+msgstr "Μετάβαση στο αρχείο που παίζει"
 
 #: src/gui.c:213
 msgid "Search _lyric"
-msgstr "Пошук _текстів пісень"
+msgstr "Αναζήτηση _Στίχων"
 
 #: src/gui.c:215
 msgid "_Search in playlist"
-msgstr "_Пошук у списку композицій"
+msgstr "_Αναζήτηση στη λίστα"
 
 #: src/gui.c:217
 msgid "_Rescan library"
-msgstr "П_ересканувати фонотеку"
+msgstr "_Επαναφόρτωση βιβλιοθήκης"
 
 #: src/gui.c:219
 msgid "_Update library"
-msgstr "_Оновити фонотеку"
+msgstr "_Ανανέωση βιβλιοθήκης"
 
 #: src/gui.c:221
 msgid "_Statistics"
-msgstr "С_татистика"
+msgstr "_Στατιστικά"
 
 #: src/gui.c:223
 msgid "Homepage"
-msgstr "Домашня сторінка"
+msgstr "Ιστοσελίδα"
 
 #: src/gui.c:225
 msgid "Community"
-msgstr "Спільнота"
+msgstr "Κοινότητα"
 
 #: src/gui.c:227
 msgid "Wiki"
-msgstr "Вікі"
+msgstr "Wiki"
 
 #: src/gui.c:229
 msgid "Translate Pragha"
-msgstr "Перекласти Pragha"
+msgstr "Μεταφράστε το Pragha"
 
 #: src/gui.c:231 src/gui.c:345
 msgid "About"
-msgstr "Про програму"
+msgstr "Περί"
 
 #: src/gui.c:236
 msgid "_Shuffle"
-msgstr "Перемі_шати"
+msgstr "_Τυχαία"
 
 #: src/gui.c:239
 msgid "_Repeat"
-msgstr "Повтор_ювати"
+msgstr "_Επανάληψη"
 
 #: src/gui.c:242
 msgid "_Fullscreen"
-msgstr "_На повний екран"
+msgstr "_Πλήρη οθόνη"
 
 #: src/gui.c:245 src/gui.c:266 src/gui.c:644 src/pref.c:1412
 msgid "Library"
-msgstr "Фонотека"
+msgstr "Βιβλιοθήκη"
 
 #: src/gui.c:248 src/gui.c:269 src/gui.c:662 src/playlist.c:919
 msgid "Playlists"
-msgstr "Списки композицій"
+msgstr "Λίστες"
 
 #: src/gui.c:251
 msgid "Status bar"
-msgstr "Рядок стану"
+msgstr "Γραμμή κατάστασης"
 
 #: src/gui.c:275
 msgid "Add to playback queue"
-msgstr "Додати до черги відтворення"
+msgstr "Προσθήκη στην σειρά αναπαραγωγής"
 
 #: src/gui.c:277
 msgid "Remove to playback queue"
-msgstr "Вилучити з черги відтворення"
+msgstr "Αφαίρεση από τη σειρά αναπαραγωγής"
 
 #: src/gui.c:294 src/gui.c:307
 msgid "_Add to playlist"
-msgstr "_Додати до списку композицій"
+msgstr "_Προσθήκη στη λίστα"
 
 #: src/gui.c:296 src/gui.c:309
 msgid "_Replace playlist"
-msgstr "_Замінити список композицій"
+msgstr "_Αντικατάσταση λίστας"
 
 #: src/gui.c:298 src/gui.c:311
 #, fuzzy
 msgid "Replace and _play"
-msgstr "_Замінити список композицій"
+msgstr "_Αντικατάσταση λίστας"
 
 #: src/gui.c:300
 msgid "Delete"
-msgstr "Вилучити"
+msgstr "Αφαίρεση"
 
 #: src/gui.c:302
 msgid "Export"
-msgstr "Експорт"
+msgstr "Εξαγωγή"
 
 #: src/gui.c:315
 msgid "Move to _trash"
-msgstr "Перем_істити у смітник"
+msgstr "_Μετακίνηση στα απορρίματα"
 
 #: src/gui.c:317
 msgid "Delete from library"
-msgstr "Вилучити з фонотеки"
+msgstr "Διαγραφή από τη βιβλιοθήκη"
 
 #: src/gui.c:322
 msgid "_Expand library"
-msgstr "Р_озширити фонотеку"
+msgstr "_Επέκταση βιβλιοθήκης"
 
 #: src/gui.c:324
 msgid "_Collapse library"
-msgstr "З_меншити фонотеку"
+msgstr "_Σύμπτηξη βιβλιοθήκης"
 
 #: src/gui.c:326 src/librarytree.c:1341
 msgid "Folders structure"
-msgstr "Структура тек"
+msgstr "Δομή φακέλων"
 
 #: src/gui.c:328 src/gui.c:781 src/gui.c:945 src/pragha.h:87
 #: src/librarytree.c:1344 src/statusicon.c:203 src/tags.c:442
 msgid "Artist"
-msgstr "Виконавець"
+msgstr "Καλλιτέχνης"
 
 #: src/gui.c:330 src/gui.c:782 src/gui.c:946 src/pragha.h:88
 #: src/librarytree.c:1348 src/statusicon.c:204 src/tags.c:443
 msgid "Album"
-msgstr "Альбом"
+msgstr "Άλμπουμ"
 
 #: src/gui.c:332 src/gui.c:783 src/gui.c:947 src/pragha.h:89
 #: src/librarytree.c:1352 src/tags.c:444
 msgid "Genre"
-msgstr "Жанр"
+msgstr "Είδος"
 
 #: src/gui.c:334 src/librarytree.c:1356
 msgid "Artist / Album"
-msgstr "Виконавець / Альбом"
+msgstr "Καλλιτέχνης / Άλμπουμ"
 
 #: src/gui.c:336 src/librarytree.c:1364
 msgid "Genre / Album"
-msgstr "Жанр / Альбом"
+msgstr "Είδος / Άλμπουμ"
 
 #: src/gui.c:338 src/librarytree.c:1360
 msgid "Genre / Artist"
-msgstr "Жанр / Виконавець"
+msgstr "Είδος / Καλλιτέχνης"
 
 #: src/gui.c:340 src/librarytree.c:1368
 msgid "Genre / Artist / Album"
-msgstr "Жанр / Виконавець / Альбом"
+msgstr "Είδος / Καλλιτέχνης / Άλμπουμ"
 
 #: src/gui.c:351 src/statusicon.c:164
 msgid "Prev Track"
-msgstr "Попередня доріжка"
+msgstr "Προηγούμενο"
 
 #: src/gui.c:357 src/gui.c:1653 src/statusicon.c:168
 msgid "Next Track"
-msgstr "Наступна доріжка"
+msgstr "Επόμενο"
 
 #: src/gui.c:673
 msgid "Pragha Music Player"
-msgstr "Музичний програвач Pragha"
+msgstr "Πρόγραμμα αναπαραγωγής μουσικής Pragha"
 
 #. Create the checkmenu items
 #: src/gui.c:779 src/gui.c:943 src/current_playlist.c:70
 msgid "Track"
-msgstr "Доріжка"
+msgstr "Κομμάτι"
 
 #. Create labels
 #: src/gui.c:780 src/gui.c:944 src/pragha.h:86 src/statusicon.c:202
 #: src/tags.c:441
 msgid "Title"
-msgstr "Назва"
+msgstr "Τίτλος"
 
 #: src/gui.c:784 src/gui.c:948 src/pragha.h:90 src/current_playlist.c:1338
 msgid "Bitrate"
-msgstr "Бітрейт"
+msgstr "Bitrate"
 
 #: src/gui.c:785 src/gui.c:949 src/pragha.h:91 src/tags.c:446
 msgid "Year"
-msgstr "Рік"
+msgstr "Έτος"
 
 #: src/gui.c:786 src/gui.c:950 src/pragha.h:92 src/tags.c:447
 msgid "Comment"
-msgstr "Коментар"
+msgstr "Σχόλιο"
 
 #. Create labels
 #: src/gui.c:787 src/gui.c:951 src/pragha.h:93 src/current_playlist.c:1337
 #: src/statusicon.c:205
 msgid "Length"
-msgstr "Тривалість"
+msgstr "Διάρκεια"
 
 #: src/gui.c:788 src/gui.c:952 src/pragha.h:94 src/current_playlist.c:1342
 msgid "Filename"
-msgstr "Назва файла"
+msgstr "Όνομα αρχείου"
 
 #: src/gui.c:791
 msgid "Clear sort"
-msgstr "Очистити сортування"
+msgstr "Εκκαθάριση τακτοποίησης"
 
 #. Tooltips
 #: src/gui.c:1651
 msgid "Play / Pause Track"
-msgstr "Відтворити / Зупинити доріжку"
+msgstr "Αναπαραγωγή / Παύση κομματιού"
 
 #: src/gui.c:1652
 msgid "Previous Track"
-msgstr "Попередня доріжка"
+msgstr "Προηγούμενο κομμάτι"
 
 #: src/gui.c:1654
 msgid "Stop playback"
-msgstr "Зупинити відтворення"
+msgstr "Διακοπή αναπαραγωγής"
 
 #: src/gui.c:1656
 msgid "Leave Fullscreen"
-msgstr "Вийти з повноекранного режиму"
+msgstr "Έξοδος από την πλήρη οθόνη"
 
 #: src/gui.c:1657
 msgid "Play songs in a random order"
-msgstr "У випадковому порядку"
+msgstr "Αναπαραγωγή αρχείων σε τυχαία σειρά"
 
 #: src/gui.c:1658
 msgid "Repeat playback list at the end"
-msgstr "Повторювати список безкінечно"
+msgstr "Επανάληψη λίστας μετά το τέλος"
 
 #: src/gui.c:1698 src/panel.c:218 src/statusicon.c:199
 msgid "<b>Not playing</b>"
-msgstr "<b>Не відтворюється</b>"
+msgstr "<b>Δεν παίζει τίποτα</b>"
 
 #: src/gui.c:1919
 msgid "Options of the library"
-msgstr "Налаштування фонотеки"
+msgstr "Επιλογές της βιβλιοθήκης"
 
 #: src/pragha.h:85 src/tags.c:445
 msgid "Track No"
-msgstr "№ доріжки"
+msgstr "Αριθμός κομματιού"
 
 #: src/pragha.h:124
 msgid "Scanning"
-msgstr "Сканування"
+msgstr "Διαβάζει"
 
 #: src/pragha.h:125
 msgid "Stopped"
-msgstr "Зупинено"
+msgstr "Σταματημένο"
 
 #: src/pragha.h:223
 msgid "_Skip"
-msgstr "_Пропустити"
+msgstr "Πα_ράληψη"
 
 #: src/pragha.h:224
 msgid "S_kip All"
-msgstr "Пр_опустити все"
+msgstr "Παράληψη _Όλων"
 
 #: src/pragha.h:225
 msgid "Delete _All"
-msgstr "_Вилучити все"
+msgstr "_Διαγραφή Όλων"
 
 #: src/panel.c:194
 #, c-format
@@ -366,72 +365,74 @@ msgid ""
 "%s <small><span weight=\"light\">by</span></small> %s <small><span weight="
 "\"light\">in</span></small> %s"
 msgstr ""
-"%s <small><span weight=\"light\">виконує</span></small> %s <small><span "
-"weight=\"light\">з альбому</span></small> %s"
+"%s <small><span weight=\"light\">Από</span></small> %s <small><span weight="
+"\"light\">στο</span></small> %s"
 
 #: src/panel.c:199
 #, c-format
 msgid "%s <small><span weight=\"light\">by</span></small> %s"
-msgstr "%s <small><span weight=\"light\">виконує</span></small> %s"
+msgstr "%s <small><span weight=\"light\">Από</span></small> %s"
 
 #: src/panel.c:203
 #, c-format
 msgid "%s <small><span weight=\"light\">in</span></small> %s"
-msgstr "%s <small><span weight=\"light\">з альбому</span></small> %s"
+msgstr "%s <small><span weight=\"light\">στο</span></small> %s"
 
 #: src/current_playlist.c:70
 msgid "Tracks"
-msgstr "Доріжки"
+msgstr "Κομμάτια"
 
 #: src/current_playlist.c:624
 msgid "Save as a new playlist"
-msgstr "Зберегти як новий список композицій"
+msgstr "Αποθήκευση ως νέα λίστα"
 
 #: src/current_playlist.c:626
 msgid "Append to an existing playlist"
-msgstr "Додати до наявного списку"
+msgstr "Προσκόλληση σε υπάρχουσα λίστα"
 
 #: src/current_playlist.c:703
 msgid "<b>con_playlist</b> is a reserved playlist name"
-msgstr "<b>con_playlist</b> — резервна назва списку композицій"
+msgstr "το <b>con_playlist</b> είναι μη διαθέσιμο όνομα λίστας"
 
 #: src/current_playlist.c:1339
 msgid "Channels"
-msgstr "Канали"
+msgstr "Κανάλια"
 
 #: src/current_playlist.c:1340
 msgid "Samplerate"
-msgstr "Рейтинг"
+msgstr "Δειγματοληψία"
 
 #: src/current_playlist.c:1341
 msgid "Folder"
-msgstr "Тека"
+msgstr "Φάκελος"
 
 #. The main edit dialog
 #: src/current_playlist.c:1432 src/tags.c:716
 msgid "Details"
-msgstr "Деталі"
+msgstr "Λεπτομέρειες"
 
 #: src/librarytree.c:189 src/statusicon.c:136
 msgid "Unknown Artist"
-msgstr "Невідомий виконавець"
+msgstr "Άγνωστος Καλλιτέχνης"
 
 #: src/librarytree.c:195 src/statusicon.c:138
 msgid "Unknown Album"
-msgstr "Невідомий альбом"
+msgstr "Άγνωστο Άλμπουμ"
 
 #: src/librarytree.c:201
 msgid "Unknown Genre"
-msgstr "Невідомий жанр"
+msgstr "Άγνωστο Είδος"
 
 #: src/librarytree.c:374
 msgid "Cannot move file to trash, do you want to delete immediately?"
-msgstr "Не вдалось перемістити файл у смітник, вилучити його остаточно?"
+msgstr ""
+"Αδύνατη η μετακίνηση του αρχείου στα απορρίματα, θέλετε να διαγραφεί άμεσα;"
 
 #: src/librarytree.c:375
 #, c-format
 msgid "The file \"%s\" cannot be moved to the trash. Details: %s"
-msgstr "Не вдалось перемістити файл «%s» у смітник. Деталі: %s"
+msgstr ""
+"Το αρχείο \"%s\" δεν μπορεί να μεταφερθεί στα απορρίματα. Λεπτομέρειες: %s"
 
 #: src/librarytree.c:1100
 msgid ""
@@ -439,17 +440,17 @@ msgid ""
 "\n"
 "Warning: To recover we must rescan the entire library."
 msgstr ""
-"Ви впевнені, що хочете вилучити цей файл з фонотеки?\n"
+"Είστε σίγουροι ότι θέλετε να διαγράψετε το αρχείο αυτό από τη βιβλιοθήκη;\n"
 "\n"
-"Заувага: Щоб його відновити, потрібно пересканувати всю фонотеку."
+"Για να το επαναφέρετε πρέπει να γίνει ανανέωση όλης της βιβλιοθήκης."
 
 #: src/librarytree.c:1157
 msgid "Really want to move the files to trash?"
-msgstr "Дійсно перемістити всі ці файли у смітник?"
+msgstr "Είστε σίγουροι ότι θέλετε να μετακινήσετε τα αρχεία στα απορρίματα;"
 
 #: src/librarytree.c:1159
 msgid "Delete immediately instead of move to trash"
-msgstr "Вилучити остаточно і не переміщати у смітник"
+msgstr "Άμεση διαγραφή αντί για μετακίνηση στα απορρίματα"
 
 #: src/statusicon.c:134
 #, c-format
@@ -458,7 +459,7 @@ msgstr ""
 
 #: src/tags.c:448
 msgid "File"
-msgstr "Файл"
+msgstr "Αρχείο"
 
 #: src/pref.c:21
 msgid ""
@@ -466,145 +467,146 @@ msgid ""
 "A maximum of six patterns are allowed.\n"
 "Wildcards are not accepted as of now ( patches welcome :-) )."
 msgstr ""
-"Шаблони мають бути у вигляді: <filename>назва;<filename>;....\n"
-"Дозволено максимум шість шаблонів.\n"
-"На цей час шаблони ще не прийняті ( латки вітаються :-) )."
+"Τα σχέδια θα πρέπει να είναι της μορφής:<filename>;<filename>;....\n"
+"Το όριο είναι έξι σχέδια.\n"
+"Δεν είναι δεκτά τα μπαλαντέρ αυτή τη στιγμή (δεκτά τα όποια patches "
+"στείλετε :-) )"
 
 #: src/pref.c:35
 msgid "Album art pattern"
-msgstr "Шаблон обкладинки альбому"
+msgstr "Σχέδιο εξώφυλλων άλμπουμ"
 
 #: src/pref.c:135 src/pref.c:1628
 msgid "Start normal"
-msgstr "Звичайний запуск"
+msgstr "Κανονική εκκίνηση"
 
 #: src/pref.c:140 src/pref.c:1629
 msgid "Start fullscreen"
-msgstr "Запуск на повний екран"
+msgstr "Εκκίνηση σε πλήρη οθόνη"
 
 #: src/pref.c:145 src/pref.c:1630
 msgid "Start in system tray"
-msgstr "Запуск в системний лоток"
+msgstr "Εκκίνηση στη περιοχή ειδοποιήσεων"
 
 #. Create a folder chooser dialog
 #: src/pref.c:281
 msgid "Select a folder to add to library"
-msgstr "Вибрати теку для додавання у фонотеку"
+msgstr "Επιλέξτε φάκελο για προσθήκη στη βιβλιοθήκη"
 
 #. The main preferences dialog
 #: src/pref.c:1365 src/pref.c:1400
 msgid "Preferences of Pragha"
-msgstr "Налаштування Pragha"
+msgstr "Προτιμήσεις του Pragha"
 
 #. Labels
 #: src/pref.c:1411
 msgid "Audio"
-msgstr "Аудіо"
+msgstr "Ήχος"
 
 #: src/pref.c:1413
 msgid "General"
-msgstr "Загальне"
+msgstr "Γενικά"
 
 #: src/pref.c:1414
 msgid "Notifications"
-msgstr "Сповіщення"
+msgstr "Ειδοποιήσεις"
 
 #: src/pref.c:1415
 msgid "Internet Services"
-msgstr "Інтернет-служби"
+msgstr "Διαδικτυακές υπηρεσίες"
 
 #: src/pref.c:1465 src/pref.c:1494 src/pref.c:1529
 msgid "Restart Required"
-msgstr "Потрібний перезапуск"
+msgstr "Χρειάζεται επανεκκίνηση"
 
 #: src/pref.c:1474
 msgid "Audio sink"
-msgstr "Аудіо система"
+msgstr "Σύστημα εξόδου ήχου"
 
 #: src/pref.c:1491
 msgid "Audio Device"
-msgstr "Audio пристрій"
+msgstr "Συσκευή εξόδου"
 
 #. Audio CD device
 #: src/pref.c:1509
 msgid "Audio CD Device"
-msgstr "Аудіо CD-пристрій"
+msgstr "Συσκευή CD ήχου"
 
 #. Software mixer
 #: src/pref.c:1528
 msgid "Use software mixer"
-msgstr "Використовувати програмний мікшер"
+msgstr "Χρήση μίκτη λογισμικού"
 
 #: src/pref.c:1562
 msgid "Folders"
-msgstr "Теки"
+msgstr "Φάκελοι"
 
 #: src/pref.c:1607
 msgid "Merge folders in the folders estructure view"
-msgstr "Об'єднати теки у дерево каталогів"
+msgstr "Συγχώνευση φακέλων στην προβολή δέντρου φακέλων"
 
 #: src/pref.c:1627
 msgid "Remember last window state"
-msgstr "Пам'ятати останнє розташування вікна"
+msgstr "Αποθήκευση προηγούμενης κατάστασης παραθύρου"
 
 #: src/pref.c:1632
 msgid "Restore last playlist"
-msgstr "Відновити останній список композицій"
+msgstr "Επαναφορά προηγούμενης λίστας"
 
 #: src/pref.c:1634
 msgid "Minimize Pragha when close the window"
-msgstr "Мінімізувати Pragha під час закривання вікна"
+msgstr "Ελαχιστοποίηση του Pragha κατά το κλείσιμο του παραθύρου"
 
 #: src/pref.c:1635
 msgid "Add files recursively"
-msgstr "Додати файли рекурсивно"
+msgstr "Προσθήκη αρχείων αναδρομικά"
 
 #: src/pref.c:1637
 msgid "Show Album art in Panel"
-msgstr "Показувати обкладинку на панелі"
+msgstr "Εμφάνιση εξώφυλλων στην μπάρα"
 
 #: src/pref.c:1640
 msgid "Size of Album art"
-msgstr "Розмір обкладинки"
+msgstr "Μέγεθος εξώφυλλων"
 
 #: src/pref.c:1658
 msgid "Album art file pattern"
-msgstr "Шаблон файла обкладинки альбому"
+msgstr "Μορφή ονόματος αρχείων εξώφυλλων"
 
 #. Notification OSD
 #: src/pref.c:1712
 msgid "Show OSD for track change"
-msgstr "Показувати повідомлення про зміну доріжки"
+msgstr "Εμφάνιση ειδοποίησης κατά την αλλαγή κομματιού"
 
 #: src/pref.c:1713
 msgid "Associate notifications to system tray"
-msgstr "Пов'язані сповіщення у системному лотку"
+msgstr "Συσχέτιση ειδοποιήσεων με την περιοχή ειδοποιήσεων"
 
 #: src/pref.c:1714
 msgid "Show Album art in notifications"
-msgstr "Показувати обкладинку в сповіщеннях"
+msgstr "Εμφάνιση εξώφυλλων στις ειδοποιήσεις"
 
 #: src/pref.c:1715
 msgid "Add actions to change track to notifications"
-msgstr "Додати дії до сповіщень щодо зміни доріжок"
+msgstr "Προσθήκη πλήκτρων για αλλαγή κομματιού στις ειδοποιήσεις"
 
 #. Services Last.fm
 #: src/pref.c:1740
 msgid "Last.fm Support"
-msgstr "Підтримка Last.fm"
+msgstr "Υποστήριξη Last.fm"
 
 #: src/pref.c:1744
 msgid "Username"
-msgstr "Ім'я користувача"
+msgstr "Όνομα χρήστη"
 
 #: src/pref.c:1745
 msgid "Password"
-msgstr "Пароль"
+msgstr "Κωδικός"
 
 #. Services CDDB
 #: src/pref.c:1756
 msgid "Connect to CDDB server"
-msgstr "З'єднається із сервером CDDB"
+msgstr "Σύνδεση με διακομιστή CDDB"
 
 #. Services MPRIS2
 #: src/pref.c:1760
@@ -613,71 +615,71 @@ msgstr ""
 
 #: src/menu.c:136
 msgid "Update Library"
-msgstr "Оновити фонотеку"
+msgstr "Ανανέωση βιβλιοθήκης"
 
 #: src/menu.c:136
 msgid "Rescan Library"
-msgstr "Пересканувати фонотеку"
+msgstr "Πλήρη σάρωση βιβλιοθήκης"
 
 #: src/menu.c:241
 msgid "Select a file to play"
-msgstr "Вибрати файл для відтворення"
+msgstr "Επιλογή αρχείου προς αναπαραγωγή"
 
 #: src/menu.c:262
 msgid "Add recursively files"
-msgstr "Додати файли рекурсивно"
+msgstr "Προσθήκη αρχείων αναδρομικά"
 
 #: src/menu.c:283
 msgid "Supported media"
-msgstr "Підтримувані файли"
+msgstr "Τύποι αρχείων"
 
 #: src/menu.c:303
 msgid "All files"
-msgstr "Всі файли"
+msgstr "Όλα τα αρχεία"
 
 #: src/menu.c:671 src/menu.c:805
 msgid "Library scan complete"
-msgstr "Сканування завершено"
+msgstr "Σάρωση βιβλιοθήκης πλήρης"
 
 #: src/menu.c:903
 msgid "Total Tracks:"
-msgstr "Загалом доріжок:"
+msgstr "Συνολικός αριθμός κομματιών"
 
 #: src/menu.c:905
 msgid "Total Artists:"
-msgstr "Загалом виконавців:"
+msgstr "Συνολικός αριθμός καλλιτεχνών"
 
 #: src/menu.c:907
 msgid "Total Albums:"
-msgstr "Загалом альбомів:"
+msgstr "Συνολικος αριθμός Άλμπουμ"
 
 #: src/menu.c:909
 msgid "Statistics"
-msgstr "Статистика"
+msgstr "Στατιστικά"
 
 #: src/menu.c:926
 msgid "translator-credits"
-msgstr "Sergiy Gavrylov <sergiovana@bigmir.net>, 2011."
+msgstr "μνεία μετάφρασης"
 
 #: src/utils.c:231
 msgid "days"
-msgstr "дні"
+msgstr "ημέρες"
 
 #: src/utils.c:231
 msgid "day"
-msgstr "день"
+msgstr "ημέρα"
 
 #: src/utils.c:462
 msgid "Unable to open the browser"
-msgstr "Не вдалось відкрити переглядач"
+msgstr "Αδύνατο το άνοιγμα περιηγητή"
 
 #: src/playlist.c:536
 msgid "Export playlist to file"
-msgstr "Експорт списку композицій у файл"
+msgstr "Εξαγωγή λίστας σε αρχείο"
 
 #~ msgid ""
 #~ "<small><span weight=\"light\">by</span></small> %s <small><span weight="
 #~ "\"light\">in</span></small> %s (%s)"
 #~ msgstr ""
-#~ "<small><span weight=\"light\">виконує</span></small> %s <small><span "
-#~ "weight=\"light\">з альбому</span></small> %s (%s)"
+#~ "<small><span weight=\"light\">Από</span></small> %s <small><span weight="
+#~ "\"light\">στο</span></small> %s (%s)"
