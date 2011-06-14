@@ -102,7 +102,7 @@ static void add_child_node_by_folder(GtkTreeModel *model, GtkTreeIter *iter,
 					L_NODE_DATA, node_data,
 					L_NODE_TYPE, node_type,
 					L_LOCATION_ID, location_id,
-					L_VISIBILE, TRUE, -1
+					L_VISIBILE, TRUE, -1);
 }
 
 /* Helper function for add_folder_file() */
