@@ -25,15 +25,22 @@ static gboolean find_child_node(const gchar *node_data, GtkTreeIter *iter,
 	GtkTreeIter *p_iter, GtkTreeModel *model)
 {
 	gchar *data = NULL;
-	gint i = 0;
+	gint i = 0, cmp;
 
 	while (gtk_tree_model_iter_nth_child(model, iter, p_iter, i++)) {
 		gtk_tree_model_get(model, iter, L_NODE_DATA, &data, -1);
-		if (data && !g_ascii_strcasecmp(data, node_data)) {
-			g_free(data);
-			return TRUE;
-		}
+		if (data) {
+			cmp = g_ascii_strcasecmp (data, node_data);
+			if (cmp == 0) {
+				g_free(data);
+				return TRUE;
+			}
+			else if (cmp > 0) {
+				g_free(data);
+				return FALSE;
+			}
 		g_free(data);
+		}
 	}
 	return FALSE;
 }
@@ -90,14 +97,12 @@ static void add_child_node_by_folder(GtkTreeModel *model, GtkTreeIter *iter,
 		}
 	}
 	/* Insert the new file after the last subdirectory/file by order */
-	gtk_tree_store_insert(GTK_TREE_STORE(model), iter, p_iter, pos);
-
-	gtk_tree_store_set(GTK_TREE_STORE(model), iter,
-		L_PIXBUF, pixbuf,
-		L_NODE_DATA, node_data,
-		L_NODE_TYPE, node_type,
-		L_LOCATION_ID, location_id,
-		L_VISIBILE, TRUE, -1);
+	gtk_tree_store_insert_with_values (GTK_TREE_STORE(model), iter, p_iter, pos,
+					L_PIXBUF, pixbuf,
+					L_NODE_DATA, node_data,
+					L_NODE_TYPE, node_type,
+					L_LOCATION_ID, location_id,
+					L_VISIBILE, TRUE, -1
 }
 
 /* Helper function for add_folder_file() */
@@ -840,7 +845,10 @@ void clear_library_search(struct con_win *cwin)
 	filter_model = gtk_tree_view_get_model(GTK_TREE_VIEW(cwin->library_tree));
 	model = gtk_tree_model_filter_get_model(GTK_TREE_MODEL_FILTER(filter_model));
 
-	cwin->cstate->filter_entry = NULL;
+	if (cwin->cstate->filter_entry != NULL) {
+		g_free (cwin->cstate->filter_entry);
+		cwin->cstate->filter_entry = NULL;
+	}
 	gtk_tree_model_foreach(model, set_all_visible, cwin);
 	gtk_tree_view_collapse_all(GTK_TREE_VIEW(cwin->library_tree));
 }
