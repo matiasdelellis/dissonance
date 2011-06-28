@@ -213,10 +213,12 @@ gint init_config(struct con_win *cwin)
 	gboolean audio_sink_f, audio_alsa_device_f, audio_oss_device_f, software_mixer_f, use_cddb_f;
 	gboolean remember_window_state_f, start_mode_f, window_size_f, sidebar_size_f, sidebar_pane_f, album_f, album_art_size_f, status_bar_f;
 	gboolean show_osd_f, osd_in_systray_f, albumart_in_osd_f, actions_in_osd_f;
+	gboolean instant_filter_f, use_hint_f;
 	gboolean all_f;
 #if HAVE_GLIB_2_26
 	gboolean use_mpris2_f;
 #endif
+
 	CDEBUG(DBG_INFO, "Initializing configuration");
 
 	last_folder_f = recursively_f = album_art_pattern_f = timer_remaining_mode_f = close_to_tray_f = lastfm_f = FALSE;
@@ -225,6 +227,7 @@ gint init_config(struct con_win *cwin)
 	audio_sink_f = audio_alsa_device_f = audio_oss_device_f = software_mixer_f = use_cddb_f = FALSE;
 	remember_window_state_f = start_mode_f = window_size_f = sidebar_size_f = sidebar_pane_f = album_f = album_art_size_f = status_bar_f = FALSE;
 	show_osd_f = osd_in_systray_f = albumart_in_osd_f = actions_in_osd_f = FALSE;
+	instant_filter_f = use_hint_f = FALSE;
 #if HAVE_GLIB_2_26
 	use_mpris2_f = FALSE;
 #endif
@@ -697,6 +700,27 @@ gint init_config(struct con_win *cwin)
 			g_free(u_file);
 		}
 
+		cwin->cpref->instant_filter =
+			g_key_file_get_boolean(cwin->cpref->configrc_keyfile,
+					       GROUP_GENERAL,
+					       KEY_INSTANT_FILTER,
+					       &error);
+		if (error) {
+			g_error_free(error);
+			error = NULL;
+			instant_filter_f= TRUE;
+		}
+		cwin->cpref->use_hint =
+			g_key_file_get_boolean(cwin->cpref->configrc_keyfile,
+					       GROUP_GENERAL,
+					       KEY_USE_HINT,
+					       &error);
+		if (error) {
+			g_error_free(error);
+			error = NULL;
+			use_hint_f= TRUE;
+		}
+
 		cwin->cpref->shuffle =
 			g_key_file_get_boolean(cwin->cpref->configrc_keyfile,
 					       GROUP_PLAYLIST,
@@ -923,6 +947,10 @@ gint init_config(struct con_win *cwin)
 		cwin->cpref->use_cddb = TRUE;
 	if (all_f || use_mpris2_f)
 		cwin->cpref->use_mpris2 = TRUE;
+	if (all_f || instant_filter_f)
+		cwin->cpref->instant_filter = TRUE;
+	if (all_f || use_hint_f)
+		cwin->cpref->use_hint = TRUE;
 
 	/* Cleanup */
 

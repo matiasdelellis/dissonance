@@ -167,6 +167,8 @@
 #define KEY_OSD_IN_TRAY            "osd_in_tray"
 #define KEY_SHOW_ALBUM_ART_OSD     "show_albumart_osd"
 #define KEY_SHOW_ACTIONS_OSD       "show_action_osd"
+#define KEY_INSTANT_FILTER         "instant_filter"
+#define KEY_USE_HINT               "use_hint"
 
 #define GROUP_PLAYLIST "Playlist"
 #define KEY_SAVE_PLAYLIST          "save_playlist"
@@ -446,6 +448,8 @@ struct con_pref {
 	gboolean remember_window_state;
 	gboolean status_bar;
 	gboolean fuse_folders;
+	gboolean instant_filter;
+	gboolean use_hint;
 	GSList *library_dir;
 	GSList *playlist_columns;
 	GSList *playlist_column_widths;
@@ -458,16 +462,19 @@ struct con_pref {
 	GtkWidget *audio_sink_combo_w;
 	GtkWidget *soft_mixer_w;
 
+	GtkWidget *use_hint_w;
+	GtkWidget *album_art_w;
+	GtkWidget *album_art_size_w;
+	GtkWidget *album_art_pattern_w;
+
 	GtkWidget *library_view_w;
 	GtkWidget *fuse_folders_w;
 
+	GtkWidget *instant_filter_w;
 	GtkWidget *window_state_combo_w;
 	GtkWidget *restore_playlist_w;
 	GtkWidget *close_to_tray_w;
 	GtkWidget *add_recursively_w;
-	GtkWidget *album_art_w;
-	GtkWidget *album_art_size_w;
-	GtkWidget *album_art_pattern_w;
 
 	GtkWidget *show_osd_w;
 	GtkWidget *osd_in_systray_w;
@@ -854,8 +861,8 @@ void dnd_library_tree_get(GtkWidget *widget,
 			  guint time,
 			  struct con_win *cwin);
 void simple_library_search_keyrelease(struct con_win *cwin);
-gboolean simple_library_search_keyrelease_handler(GtkEntry *entry,
-						  struct con_win *cwin);
+gboolean simple_library_search_keyrelease_handler(GtkEntry *entry, struct con_win *cwin);
+gboolean simple_library_search_activate_handler(GtkEntry *entry, struct con_win *cwin);
 void clear_library_search(struct con_win *cwin);
 void folders_library_tree(GtkAction *action, struct con_win *cwin);
 void artist_library_tree(GtkAction *action, struct con_win *cwin);

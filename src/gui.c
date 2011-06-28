@@ -1265,8 +1265,11 @@ static GtkWidget* create_current_playlist_view(struct con_win *cwin)
 
 	/* Store the treeview in the scrollbar widget */
 
-	gtk_container_add(GTK_CONTAINER(current_playlist_scroll), current_playlist);
-	gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW(current_playlist_scroll),GTK_SHADOW_IN);
+	gtk_container_add (GTK_CONTAINER(current_playlist_scroll), current_playlist);
+	gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW(current_playlist_scroll), GTK_SHADOW_IN);
+
+	gtk_tree_view_set_rules_hint (GTK_TREE_VIEW(current_playlist), cwin->cpref->use_hint);
+
 	cwin->current_playlist = current_playlist;
 
 	/* Set initial column visibility */
@@ -1777,11 +1780,14 @@ static void
 icon_pressed_cb (GtkEntry       *entry,
 		gint            position,
 		GdkEventButton *event,
-		gpointer        data)
+		struct con_win *cwin)
 {
 	if (position == GTK_ENTRY_ICON_SECONDARY) {
 		gtk_entry_set_text (entry, "");
 		gtk_widget_grab_focus(GTK_WIDGET(entry));
+
+		if (!cwin->cpref->instant_filter)
+			clear_library_search (cwin);
 	}
 }
 
@@ -1807,6 +1813,10 @@ GtkWidget* create_search_bar(struct con_win *cwin)
 	g_signal_connect(G_OBJECT(search_entry),
 			 "changed",
 			 G_CALLBACK(simple_library_search_keyrelease_handler),
+			 cwin);
+	g_signal_connect(G_OBJECT(search_entry),
+			 "activate",
+			 G_CALLBACK(simple_library_search_activate_handler),
 			 cwin);
 
 	cwin->search_entry = search_entry;
