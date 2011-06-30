@@ -1510,12 +1510,11 @@ void update_track_current_playlist(GtkTreeIter *iter, gint changed, struct music
 
 	model = gtk_tree_view_get_model(GTK_TREE_VIEW(cwin->current_playlist));
 
-	ch_year = g_strdup_printf("%d", mobj->tags->year);
 	ch_filename = get_display_name(mobj);
 
-	if(mobj->tags->track_no)
+	if(mobj->tags->track_no > 0)
 		ch_track_no = g_strdup_printf("%d", mobj->tags->track_no);
-	if(mobj->tags->year)
+	if(mobj->tags->year > 0)
 		ch_year = g_strdup_printf("%d", mobj->tags->year);
 
 	if (changed & TAG_TNO_CHANGED) {
@@ -1568,9 +1567,9 @@ void insert_current_playlist_on_model(GtkTreeModel *model, struct musicobject *m
 		return;
 	}
 
-	if(mobj->tags->track_no)
+	if(mobj->tags->track_no > 0)
 		ch_track_no = g_strdup_printf("%d", mobj->tags->track_no);
-	if(mobj->tags->year)
+	if(mobj->tags->year > 0)
 		ch_year = g_strdup_printf("%d", mobj->tags->year);
 	if(mobj->tags->length)
 		ch_length = convert_length_str(mobj->tags->length);
@@ -1643,9 +1642,9 @@ void insert_current_playlist(struct musicobject *mobj,  GtkTreeViewDropPosition 
 		return;
 	}
 
-	if(mobj->tags->track_no)
+	if(mobj->tags->track_no > 0)
 		ch_track_no = g_strdup_printf("%d", mobj->tags->track_no);
-	if(mobj->tags->year)
+	if(mobj->tags->year > 0)
 		ch_year = g_strdup_printf("%d", mobj->tags->year);
 	if(mobj->tags->length)
 		ch_length = convert_length_str(mobj->tags->length);
@@ -1719,9 +1718,9 @@ void append_current_playlist_ex(struct musicobject *mobj, struct con_win *cwin, 
 		return;
 	}
 
-	if(mobj->tags->track_no)
+	if(mobj->tags->track_no > 0)
 		ch_track_no = g_strdup_printf("%d", mobj->tags->track_no);
-	if(mobj->tags->year)
+	if(mobj->tags->year > 0)
 		ch_year = g_strdup_printf("%d", mobj->tags->year);
 	if(mobj->tags->length)
 		ch_length = convert_length_str(mobj->tags->length);
@@ -1796,9 +1795,9 @@ void append_current_playlist_on_model(GtkTreeModel *model, struct musicobject *m
 		return;
 	}
 
-	if(mobj->tags->track_no)
+	if(mobj->tags->track_no > 0)
 		ch_track_no = g_strdup_printf("%d", mobj->tags->track_no);
-	if(mobj->tags->year)
+	if(mobj->tags->year > 0)
 		ch_year = g_strdup_printf("%d", mobj->tags->year);
 	if(mobj->tags->length)
 		ch_length = convert_length_str(mobj->tags->length);
