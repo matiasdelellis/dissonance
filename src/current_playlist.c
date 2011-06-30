@@ -721,6 +721,8 @@ void jump_to_path_on_current_playlist (GtkTreePath *path, struct con_win *cwin)
 							     path, NULL, TRUE, 1.0, 0.0);
 			}
 		}
+		gtk_tree_view_set_cursor(GTK_TREE_VIEW(cwin->current_playlist),
+					 path, NULL, FALSE);
 	}
 }
 

@@ -186,6 +186,7 @@
 #define KEY_LIBRARY_VIEW_ORDER     "library_view_order"
 #define KEY_LIBRARY_LAST_SCANNED   "library_last_scanned"
 #define KEY_FUSE_FOLDERS	   "library_fuse_folders"
+#define KEY_SORT_BY_YEAR	   "library_sort_by_year"
 
 #define GROUP_AUDIO    "Audio"
 #define KEY_AUDIO_SINK             "audio_sink"
@@ -448,6 +449,7 @@ struct con_pref {
 	gboolean remember_window_state;
 	gboolean status_bar;
 	gboolean fuse_folders;
+	gboolean sort_by_year;
 	gboolean instant_filter;
 	gboolean use_hint;
 	GSList *library_dir;
@@ -469,6 +471,7 @@ struct con_pref {
 
 	GtkWidget *library_view_w;
 	GtkWidget *fuse_folders_w;
+	GtkWidget *sort_by_year_w;
 
 	GtkWidget *instant_filter_w;
 	GtkWidget *window_state_combo_w;
