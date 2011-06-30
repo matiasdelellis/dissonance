@@ -7,425 +7,367 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pragha\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-11-20 20:05-0300\n"
+"POT-Creation-Date: 2011-06-30 20:43-0300\n"
 "PO-Revision-Date: 2011-03-02 21:08-0300\n"
 "Last-Translator: Matias <mati86dl@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: cs\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2\n"
 
-#: src/gui.c:161
+#: src/gui.c:175
 msgid "_File"
 msgstr "_Soubor"
 
-#: src/gui.c:162
+#: src/gui.c:176
 msgid "_Edit"
 msgstr "_Upravit"
 
-#: src/gui.c:163
+#: src/gui.c:177
 msgid "_View"
 msgstr "_Zobrazení"
 
-#: src/gui.c:164
+#: src/gui.c:178
 msgid "_Tools"
 msgstr "_Nástroje"
 
-#: src/gui.c:165
+#: src/gui.c:179
 msgid "_Help"
 msgstr "_Nápověda"
 
-#: src/gui.c:166
-#: src/gui.c:311
+#: src/gui.c:180 src/gui.c:257 src/gui.c:347
 msgid "_Add files"
 msgstr "_Přidat soubory"
 
-#: src/gui.c:167
+#: src/gui.c:181 src/gui.c:258
 msgid "Open a media file"
 msgstr "Otevřít soubor"
 
-#: src/gui.c:168
-#: src/gui.c:313
+#: src/gui.c:182 src/gui.c:349
 msgid "_Play audio CD"
 msgstr "_Přehrát audio CD"
 
-#: src/gui.c:170
+#: src/gui.c:184
 msgid "Prev track"
 msgstr "Předchozí stopa"
 
-#: src/gui.c:172
-#: src/gui.c:317
+#: src/gui.c:186 src/gui.c:353
 msgid "Play / Pause"
 msgstr "Hrát / Pauza"
 
-#: src/gui.c:174
-#: src/gui.c:319
+#: src/gui.c:188 src/gui.c:355
 msgid "Stop"
 msgstr "Zastavit"
 
-#: src/gui.c:176
+#: src/gui.c:190
 msgid "Next track"
 msgstr "Další stopa"
 
 #. The main edit dialog
-#: src/gui.c:178
-#: src/gui.c:251
-#: src/gui.c:277
-#: src/gui.c:323
-#: src/tags.c:681
+#: src/gui.c:192 src/gui.c:283 src/gui.c:313 src/gui.c:359 src/tags.c:847
 msgid "Edit tags"
 msgstr "Editovat tagy"
 
-#: src/gui.c:180
-#: src/gui.c:325
+#: src/gui.c:194 src/gui.c:261 src/gui.c:361
 msgid "_Quit"
 msgstr "_Konec"
 
-#: src/gui.c:182
+#: src/gui.c:196 src/gui.c:259
 msgid "_Add the library"
 msgstr "_Přidat knihovnu"
 
-#: src/gui.c:184
-#: src/gui.c:247
+#: src/gui.c:198 src/gui.c:279
 msgid "Remove"
 msgstr "Vyjmout"
 
-#: src/gui.c:186
-#: src/gui.c:249
+#: src/gui.c:200 src/gui.c:281
 msgid "Crop"
 msgstr "Ořezat"
 
-#: src/gui.c:188
-#: src/gui.c:257
+#: src/gui.c:202 src/gui.c:289
 msgid "Clear playlist"
 msgstr "Vyčistit playlist"
 
-#: src/gui.c:190
-#: src/gui.c:253
+#: src/gui.c:204 src/gui.c:285
 msgid "Save selection"
 msgstr "Uložit vybrané"
 
-#: src/gui.c:192
-#: src/gui.c:255
-#: src/current_playlist.c:638
+#: src/gui.c:206 src/gui.c:287 src/current_playlist.c:638
 msgid "Save playlist"
 msgstr "Uložit playlist"
 
-#: src/gui.c:194
+#: src/gui.c:208
 msgid "_Preferences"
 msgstr "_Možnosti"
 
-#: src/gui.c:196
+#: src/gui.c:210
 msgid "Lateral _panel"
 msgstr "Postranní _panel"
 
-#: src/gui.c:197
+#: src/gui.c:211
 msgid "Jump to playing song"
 msgstr "Skočit na hrající píseň"
 
-#: src/gui.c:199
+#: src/gui.c:213
 msgid "Search _lyric"
 msgstr "Najít _text písně"
 
-#: src/gui.c:201
+#: src/gui.c:215
 msgid "_Search in playlist"
 msgstr "_Hledat v playlistu"
 
-#: src/gui.c:203
+#: src/gui.c:217
 msgid "_Rescan library"
 msgstr "_Znovu sestavit knihovnu"
 
-#: src/gui.c:205
+#: src/gui.c:219
 msgid "_Update library"
 msgstr "_Aktualizovat knihovnu"
 
-#: src/gui.c:207
+#: src/gui.c:221
 msgid "_Statistics"
 msgstr "_Statistiky"
 
-#: src/gui.c:209
+#: src/gui.c:223
 msgid "Homepage"
 msgstr "Domů"
 
-#: src/gui.c:211
+#: src/gui.c:225
 msgid "Community"
 msgstr "Komunita"
 
-#: src/gui.c:213
+#: src/gui.c:227
 msgid "Wiki"
 msgstr "Wiki"
 
-#: src/gui.c:215
+#: src/gui.c:229
 msgid "Translate Pragha"
 msgstr "Přeložit"
 
-#: src/gui.c:217
-#: src/gui.c:309
+#: src/gui.c:231 src/gui.c:345
 msgid "About"
 msgstr "O aplikaci"
 
-#: src/gui.c:222
+#: src/gui.c:236
 msgid "_Shuffle"
 msgstr "_Zamíchat"
 
-#: src/gui.c:225
+#: src/gui.c:239
 msgid "_Repeat"
 msgstr "_Opakovat"
 
-#: src/gui.c:228
+#: src/gui.c:242
 msgid "_Fullscreen"
 msgstr "_Na celou obrazovku"
 
-#: src/gui.c:231
-#: src/gui.c:608
-#: src/pref.c:1374
+#: src/gui.c:245 src/gui.c:266 src/gui.c:644 src/pref.c:1474
 msgid "Library"
 msgstr "Knihovna"
 
-#: src/gui.c:234
-#: src/gui.c:626
-#: src/playlist.c:897
+#: src/gui.c:248 src/gui.c:269 src/gui.c:662 src/playlist.c:919
 msgid "Playlists"
 msgstr "Playlisty"
 
-#: src/gui.c:237
+#: src/gui.c:251
 msgid "Status bar"
 msgstr "Stavový řádek"
 
-#: src/gui.c:243
+#: src/gui.c:275
 msgid "Add to playback queue"
 msgstr "Přidat do fronty"
 
-#: src/gui.c:245
+#: src/gui.c:277
 msgid "Remove to playback queue"
 msgstr "Odebrat z fronty"
 
-#: src/gui.c:262
-#: src/gui.c:273
+#: src/gui.c:294 src/gui.c:307
 msgid "_Add to playlist"
 msgstr "_Přidat na playlist"
 
-#: src/gui.c:264
-#: src/gui.c:275
+#: src/gui.c:296 src/gui.c:309
 msgid "_Replace playlist"
 msgstr "_Nahradit playlist"
 
-#: src/gui.c:266
+#: src/gui.c:298 src/gui.c:311
+#, fuzzy
+msgid "Replace and _play"
+msgstr "_Nahradit playlist"
+
+#: src/gui.c:300
 msgid "Delete"
 msgstr "Smazat"
 
-#: src/gui.c:268
+#: src/gui.c:302
 msgid "Export"
 msgstr "Exportovat"
 
-#: src/gui.c:279
+#: src/gui.c:315
 msgid "Move to _trash"
 msgstr "Přesunout do _koše"
 
-#: src/gui.c:281
+#: src/gui.c:317
 msgid "Delete from library"
 msgstr "Smazat z knihovny"
 
-#: src/gui.c:286
+#: src/gui.c:322
 msgid "_Expand library"
 msgstr "_Rozbalit"
 
-#: src/gui.c:288
+#: src/gui.c:324
 msgid "_Collapse library"
 msgstr "_Zabalit"
 
-#: src/gui.c:290
-#: src/librarytree.c:1319
+#: src/gui.c:326 src/librarytree.c:1398
 msgid "Folders structure"
 msgstr "Struktura adresářů"
 
-#: src/gui.c:292
-#: src/gui.c:746
-#: src/gui.c:877
-#: src/pragha.h:80
-#: src/librarytree.c:1322
-#: src/statusicon.c:213
-#: src/tags.c:442
+#: src/gui.c:328 src/gui.c:781 src/gui.c:945 src/pragha.h:87
+#: src/librarytree.c:1401 src/statusicon.c:203 src/tags.c:554 src/tags.c:608
 msgid "Artist"
 msgstr "Umělec"
 
-#: src/gui.c:294
-#: src/gui.c:747
-#: src/gui.c:878
-#: src/pragha.h:81
-#: src/librarytree.c:1326
-#: src/statusicon.c:214
-#: src/tags.c:443
+#: src/gui.c:330 src/gui.c:782 src/gui.c:946 src/pragha.h:88
+#: src/librarytree.c:1405 src/statusicon.c:204 src/tags.c:557 src/tags.c:609
 msgid "Album"
 msgstr "Album"
 
-#: src/gui.c:296
-#: src/gui.c:748
-#: src/gui.c:879
-#: src/pragha.h:82
-#: src/librarytree.c:1330
-#: src/tags.c:444
+#: src/gui.c:332 src/gui.c:783 src/gui.c:947 src/pragha.h:89
+#: src/librarytree.c:1411 src/tags.c:560 src/tags.c:610
 msgid "Genre"
 msgstr "Žánr"
 
-#: src/gui.c:298
-#: src/librarytree.c:1334
+#: src/gui.c:334 src/librarytree.c:1415
 msgid "Artist / Album"
 msgstr "Umělec / Album"
 
-#: src/gui.c:300
-#: src/librarytree.c:1342
+#: src/gui.c:336 src/librarytree.c:1426
 msgid "Genre / Album"
 msgstr "Žánr / Album"
 
-#: src/gui.c:302
-#: src/librarytree.c:1338
+#: src/gui.c:338 src/librarytree.c:1422
 msgid "Genre / Artist"
 msgstr "Žánr / Umělec"
 
-#: src/gui.c:304
-#: src/librarytree.c:1346
+#: src/gui.c:340 src/librarytree.c:1433
 msgid "Genre / Artist / Album"
 msgstr "Žánr / Umělec / Album"
 
-#: src/gui.c:315
-#: src/statusicon.c:174
+#: src/gui.c:351 src/statusicon.c:164
 msgid "Prev Track"
 msgstr "Předchozí stopa"
 
-#: src/gui.c:321
-#: src/gui.c:1588
-#: src/statusicon.c:178
+#: src/gui.c:357 src/gui.c:1656 src/statusicon.c:168
 msgid "Next Track"
 msgstr "Další stopa"
 
-#: src/gui.c:637
+#: src/gui.c:673
 msgid "Pragha Music Player"
 msgstr "Pragha hudební přehrávač"
 
 #. Create the checkmenu items
-#: src/gui.c:744
-#: src/gui.c:875
-#: src/current_playlist.c:70
+#: src/gui.c:779 src/gui.c:943 src/current_playlist.c:70
 msgid "Track"
 msgstr "Stopa"
 
 #. Create labels
-#: src/gui.c:745
-#: src/gui.c:876
-#: src/pragha.h:79
-#: src/statusicon.c:212
-#: src/tags.c:441
+#: src/gui.c:780 src/gui.c:944 src/pragha.h:86 src/statusicon.c:202
+#: src/tags.c:551 src/tags.c:607
 msgid "Title"
 msgstr "Název"
 
-#: src/gui.c:749
-#: src/gui.c:880
-#: src/pragha.h:83
-#: src/current_playlist.c:1319
+#: src/gui.c:784 src/gui.c:948 src/pragha.h:90 src/current_playlist.c:1352
 msgid "Bitrate"
 msgstr "Bitráž"
 
-#: src/gui.c:750
-#: src/gui.c:881
-#: src/pragha.h:84
-#: src/tags.c:446
+#: src/gui.c:785 src/gui.c:949 src/pragha.h:91 src/tags.c:612
 msgid "Year"
 msgstr "Rok"
 
-#: src/gui.c:751
-#: src/gui.c:882
-#: src/pragha.h:85
-#: src/tags.c:447
+#: src/gui.c:786 src/gui.c:950 src/pragha.h:92 src/tags.c:563 src/tags.c:613
 msgid "Comment"
 msgstr "Komentář"
 
 #. Create labels
-#: src/gui.c:752
-#: src/gui.c:883
-#: src/pragha.h:86
-#: src/current_playlist.c:1318
-#: src/statusicon.c:215
+#: src/gui.c:787 src/gui.c:951 src/pragha.h:93 src/current_playlist.c:1351
+#: src/statusicon.c:205
 msgid "Length"
 msgstr "Délka"
 
-#: src/gui.c:753
-#: src/gui.c:884
-#: src/pragha.h:87
-#: src/current_playlist.c:1323
+#: src/gui.c:788 src/gui.c:952 src/pragha.h:94 src/current_playlist.c:1356
 msgid "Filename"
 msgstr "Jméno souboru"
 
-#: src/gui.c:756
+#: src/gui.c:791
 msgid "Clear sort"
 msgstr "Zrušit výběr"
 
 #. Tooltips
-#: src/gui.c:1586
+#: src/gui.c:1654
 msgid "Play / Pause Track"
 msgstr "Přehrát / Zastavit"
 
-#: src/gui.c:1587
+#: src/gui.c:1655
 msgid "Previous Track"
 msgstr "Předchozí"
 
-#: src/gui.c:1589
+#: src/gui.c:1657
 msgid "Stop playback"
 msgstr "Zastavit přehrávání"
 
-#: src/gui.c:1591
+#: src/gui.c:1659
 msgid "Leave Fullscreen"
 msgstr "Opustit 'Celou obrazovku'"
 
-#: src/gui.c:1592
+#: src/gui.c:1660
 msgid "Play songs in a random order"
 msgstr "Přehrávat náhodně"
 
-#: src/gui.c:1593
+#: src/gui.c:1661
 msgid "Repeat playback list at the end"
 msgstr "Opakovat playlist po přehrání poslední skladby"
 
-#: src/gui.c:1633
-#: src/panel.c:218
-#: src/statusicon.c:209
+#: src/gui.c:1701 src/panel.c:218 src/statusicon.c:199
 msgid "<b>Not playing</b>"
 msgstr "<b>Nepřehrává</b>"
 
-#: src/gui.c:1854
+#: src/gui.c:1929
 msgid "Options of the library"
 msgstr "Volby knihovny"
 
-#: src/pragha.h:78
-#: src/tags.c:445
+#: src/pragha.h:85 src/tags.c:611
 msgid "Track No"
 msgstr "Stopa č."
 
-#: src/pragha.h:117
+#: src/pragha.h:124
 msgid "Scanning"
 msgstr "Prohledávání"
 
-#: src/pragha.h:118
+#: src/pragha.h:125
 msgid "Stopped"
 msgstr "Zastaveno"
 
-#: src/pragha.h:210
+#: src/pragha.h:226
 msgid "_Skip"
 msgstr "_Přeskočit"
 
-#: src/pragha.h:211
+#: src/pragha.h:227
 msgid "S_kip All"
 msgstr "P_řeskočit vše"
 
-#: src/pragha.h:212
+#: src/pragha.h:228
 msgid "Delete _All"
 msgstr "Smazat _vše"
 
 #: src/panel.c:194
 #, c-format
-msgid "%s <small><span weight=\"light\">by</span></small> %s <small><span weight=\"light\">in</span></small> %s"
-msgstr "%s <small><span weight=\"light\">od</span></small> %s <small><span weight=\"light\">v</span></small> %s"
+msgid ""
+"%s <small><span weight=\"light\">by</span></small> %s <small><span weight="
+"\"light\">in</span></small> %s"
+msgstr ""
+"%s <small><span weight=\"light\">od</span></small> %s <small><span weight="
+"\"light\">v</span></small> %s"
 
 #: src/panel.c:199
 #, c-format
@@ -449,52 +391,54 @@ msgstr "Uložit jako nový playlist"
 msgid "Append to an existing playlist"
 msgstr "Připojit k existujícímu playlistu"
 
-#: src/current_playlist.c:703
+#: src/current_playlist.c:745
 msgid "<b>con_playlist</b> is a reserved playlist name"
 msgstr "<b>con_playlist</b> je rezervované jméno playlistu"
 
-#: src/current_playlist.c:1320
+#: src/current_playlist.c:1353
 msgid "Channels"
 msgstr "Kanály"
 
-#: src/current_playlist.c:1321
+#: src/current_playlist.c:1354
 msgid "Samplerate"
 msgstr "Vzorkovací frekvence"
 
-#: src/current_playlist.c:1322
+#: src/current_playlist.c:1355
 msgid "Folder"
 msgstr "Adresář"
 
 #. The main edit dialog
-#: src/current_playlist.c:1413
-#: src/tags.c:716
+#: src/current_playlist.c:1446 src/tags.c:882
 msgid "Details"
 msgstr "Detaily "
 
-#: src/librarytree.c:189
-#: src/statusicon.c:150
+#: src/librarytree.c:194 src/statusicon.c:136
 msgid "Unknown Artist"
 msgstr "Neznámý umělec"
 
-#: src/librarytree.c:195
-#: src/statusicon.c:152
+#: src/librarytree.c:201
+#, fuzzy
+msgid "Unknown"
+msgstr "Neznámé album"
+
+#: src/librarytree.c:201 src/librarytree.c:205 src/statusicon.c:138
 msgid "Unknown Album"
 msgstr "Neznámé album"
 
-#: src/librarytree.c:201
+#: src/librarytree.c:212
 msgid "Unknown Genre"
 msgstr "Neznámý žánr"
 
-#: src/librarytree.c:374
+#: src/librarytree.c:385
 msgid "Cannot move file to trash, do you want to delete immediately?"
 msgstr "Nelze přesunout do koše, chcete smazat trvale?"
 
-#: src/librarytree.c:375
+#: src/librarytree.c:386
 #, c-format
 msgid "The file \"%s\" cannot be moved to the trash. Details: %s"
 msgstr "Soubor \"%s\" nelze přesunout do koše. Detaily: %s"
 
-#: src/librarytree.c:1076
+#: src/librarytree.c:1149
 msgid ""
 "Are you sure you want to delete current file from library?\n"
 "\n"
@@ -504,20 +448,29 @@ msgstr ""
 "\n"
 "Varování: K obnovení je nutné přeskenovat knihovnu."
 
-#: src/librarytree.c:1134
+#: src/librarytree.c:1206
 msgid "Really want to move the files to trash?"
 msgstr "Opravdu chcete přesunout do koše?"
 
-#: src/librarytree.c:1136
+#: src/librarytree.c:1208
 msgid "Delete immediately instead of move to trash"
 msgstr "Smazat namísto přesunutí do koše"
 
-#: src/statusicon.c:148
+#: src/statusicon.c:134
 #, c-format
-msgid "<small><span weight=\"light\">by</span></small> %s <small><span weight=\"light\">in</span></small> %s (%s)"
-msgstr "<small><span weight=\"light\">od</span></small> %s <small><span weight=\"light\">v</span></small> %s (%s)"
+msgid "by <b>%s</b> in <b>%s</b> <b>(%s)</b>"
+msgstr ""
 
-#: src/tags.c:448
+#: src/tags.c:544
+#, fuzzy
+msgid "Selection to"
+msgstr "Uložit vybrané"
+
+#: src/tags.c:573
+msgid "Open folder"
+msgstr ""
+
+#: src/tags.c:614
 msgid "File"
 msgstr "Soubor"
 
@@ -535,206 +488,228 @@ msgstr ""
 msgid "Album art pattern"
 msgstr "Název obalu"
 
-#: src/pref.c:135
-#: src/pref.c:1590
+#: src/pref.c:142 src/pref.c:1769
 msgid "Start normal"
 msgstr "Sputit normálně"
 
-#: src/pref.c:140
-#: src/pref.c:1591
+#: src/pref.c:147 src/pref.c:1770
 msgid "Start fullscreen"
 msgstr "Spustit na celou obrazovku (fullscreen)"
 
-#: src/pref.c:145
-#: src/pref.c:1592
+#: src/pref.c:152 src/pref.c:1771
 msgid "Start in system tray"
 msgstr "Spustit minimalizovaně v systémové liště"
 
 #. Create a folder chooser dialog
-#: src/pref.c:268
+#: src/pref.c:296
 msgid "Select a folder to add to library"
 msgstr "Vybrat adresář k přidání do knihovny"
 
 #. The main preferences dialog
-#: src/pref.c:1330
-#: src/pref.c:1362
+#: src/pref.c:1425 src/pref.c:1461
 msgid "Preferences of Pragha"
 msgstr "Možnosti"
 
 #. Labels
-#: src/pref.c:1373
+#: src/pref.c:1472
 msgid "Audio"
 msgstr "Audio"
 
-#: src/pref.c:1375
+#: src/pref.c:1473
+msgid "Appearance"
+msgstr ""
+
+#: src/pref.c:1475
 msgid "General"
 msgstr "Hlavní"
 
-#: src/pref.c:1376
+#: src/pref.c:1476
 msgid "Notifications"
 msgstr "Upozornění"
 
-#: src/pref.c:1377
+#: src/pref.c:1477
 msgid "Internet Services"
 msgstr "Internetové služby"
 
-#: src/pref.c:1427
-#: src/pref.c:1456
-#: src/pref.c:1491
+#: src/pref.c:1534 src/pref.c:1563 src/pref.c:1598
 msgid "Restart Required"
 msgstr "Potřebuje restart"
 
-#: src/pref.c:1436
+#: src/pref.c:1543
 msgid "Audio sink"
 msgstr "Audio sink"
 
-#: src/pref.c:1453
+#: src/pref.c:1560
 msgid "Audio Device"
 msgstr "Audio zařízení"
 
 #. Audio CD device
-#: src/pref.c:1471
+#: src/pref.c:1578
 msgid "Audio CD Device"
 msgstr "Audio CD zařízení"
 
 #. Software mixer
-#: src/pref.c:1490
+#: src/pref.c:1597
 msgid "Use software mixer"
 msgstr "Použít softwarový mixer"
 
-#: src/pref.c:1524
-msgid "Folders"
-msgstr "Adresáře"
+#. Appearance Widgets
+#: src/pref.c:1625
+msgid "Highlight rows on current playlist"
+msgstr ""
 
-#: src/pref.c:1569
-msgid "Merge folders in the folders estructure view"
-msgstr "Zobrazovat v knihovně všechny vybrané adresáře spolu"
-
-#: src/pref.c:1589
-msgid "Remember last window state"
-msgstr "Pamatovat si poslední pozici okna"
-
-#: src/pref.c:1594
-msgid "Restore last playlist"
-msgstr "Obnovit poslední playlist"
-
-#: src/pref.c:1596
-msgid "Minimize Pragha when close the window"
-msgstr "Minimalizovat při zavření okna"
-
-#: src/pref.c:1597
-msgid "Add files recursively"
-msgstr "Přidat soubory rekurzivně"
-
-#: src/pref.c:1599
+#: src/pref.c:1627
 msgid "Show Album art in Panel"
 msgstr "Ukazovat obal v panelu"
 
-#: src/pref.c:1602
+#: src/pref.c:1630
 msgid "Size of Album art"
 msgstr "Rozměry obalu"
 
-#: src/pref.c:1620
+#: src/pref.c:1648
 msgid "Album art file pattern"
 msgstr "Vzor souboru obalu"
 
+#: src/pref.c:1693
+msgid "Folders"
+msgstr "Adresáře"
+
+#: src/pref.c:1738
+msgid "Merge folders in the folders estructure view"
+msgstr "Zobrazovat v knihovně všechny vybrané adresáře spolu"
+
+#: src/pref.c:1739
+msgid "Sort albums by release year"
+msgstr ""
+
+#. General Widgets
+#: src/pref.c:1764
+msgid "Refine the search while writing"
+msgstr ""
+
+#: src/pref.c:1768
+msgid "Remember last window state"
+msgstr "Pamatovat si poslední pozici okna"
+
+#: src/pref.c:1773
+msgid "Restore last playlist"
+msgstr "Obnovit poslední playlist"
+
+#: src/pref.c:1775
+msgid "Minimize Pragha when close the window"
+msgstr "Minimalizovat při zavření okna"
+
+#: src/pref.c:1776
+msgid "Add files recursively"
+msgstr "Přidat soubory rekurzivně"
+
 #. Notification OSD
-#: src/pref.c:1674
+#: src/pref.c:1808
 msgid "Show OSD for track change"
 msgstr "Ukazovat OSD při změně stopy"
 
-#: src/pref.c:1675
+#: src/pref.c:1809
 msgid "Associate notifications to system tray"
 msgstr " Asociovat upozornění do systémové lišty"
 
-#: src/pref.c:1676
+#: src/pref.c:1810
 msgid "Show Album art in notifications"
 msgstr "Zobrazovat obal při  oznamování"
 
-#: src/pref.c:1677
+#: src/pref.c:1811
 msgid "Add actions to change track to notifications"
 msgstr "Přidat akce při změně stopy do oznámení"
 
 #. Services Last.fm
-#: src/pref.c:1702
+#: src/pref.c:1836
 msgid "Last.fm Support"
 msgstr "Podpora Last.fm"
 
-#: src/pref.c:1705
+#: src/pref.c:1840
 msgid "Username"
 msgstr "Jméno uživatele"
 
-#: src/pref.c:1706
+#: src/pref.c:1841
 msgid "Password"
 msgstr "Heslo"
 
 #. Services CDDB
-#: src/pref.c:1717
+#: src/pref.c:1852
 msgid "Connect to CDDB server"
 msgstr "Připojení k CDDB serveru"
 
-#: src/menu.c:140
+#. Services MPRIS2
+#: src/pref.c:1856
+msgid "Allow remote control with MPRIS2 interface"
+msgstr ""
+
+#: src/menu.c:136
 msgid "Update Library"
 msgstr "Aktualizovat knihovnu"
 
-#: src/menu.c:140
+#: src/menu.c:136
 msgid "Rescan Library"
 msgstr "Přeskenovat knihovnu"
 
-#: src/menu.c:245
+#: src/menu.c:241
 msgid "Select a file to play"
 msgstr "Vybrat soubor k přehrání"
 
-#: src/menu.c:266
+#: src/menu.c:262
 msgid "Add recursively files"
 msgstr "Přidat soubory rekurzivně"
 
-#: src/menu.c:287
+#: src/menu.c:283
 msgid "Supported media"
 msgstr "Podporované média"
 
-#: src/menu.c:307
+#: src/menu.c:303
 msgid "All files"
 msgstr "Všechny soubory"
 
-#: src/menu.c:676
-#: src/menu.c:810
+#: src/menu.c:676 src/menu.c:810
 msgid "Library scan complete"
 msgstr "Skenování knihovny dokončeno"
 
-#: src/menu.c:891
+#: src/menu.c:908
 msgid "Total Tracks:"
 msgstr "Celkem Stop:"
 
-#: src/menu.c:893
+#: src/menu.c:910
 msgid "Total Artists:"
 msgstr "Celkem umělců:"
 
-#: src/menu.c:895
+#: src/menu.c:912
 msgid "Total Albums:"
 msgstr "Celkem Alb:"
 
-#: src/menu.c:897
+#: src/menu.c:914
 msgid "Statistics"
 msgstr "Statistika"
 
-#: src/menu.c:914
+#: src/menu.c:931
 msgid "translator-credits"
 msgstr "Alois Nešpor (info@aloisnespor.info)"
 
-#: src/utils.c:222
+#: src/utils.c:231
 msgid "days"
 msgstr "dnů"
 
-#: src/utils.c:222
+#: src/utils.c:231
 msgid "day"
 msgstr "den"
 
-#: src/utils.c:453
+#: src/utils.c:462
 msgid "Unable to open the browser"
 msgstr "Nejde otevřít prohlížeč"
 
-#: src/playlist.c:513
+#: src/playlist.c:536
 msgid "Export playlist to file"
 msgstr "Exportovat playlist do souboru"
 
+#~ msgid ""
+#~ "<small><span weight=\"light\">by</span></small> %s <small><span weight="
+#~ "\"light\">in</span></small> %s (%s)"
+#~ msgstr ""
+#~ "<small><span weight=\"light\">od</span></small> %s <small><span weight="
+#~ "\"light\">v</span></small> %s (%s)"
