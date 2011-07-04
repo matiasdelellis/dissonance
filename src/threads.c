@@ -112,7 +112,7 @@ free_exit:
 static gboolean advance_playback(gpointer data)
 {
 	struct con_win *cwin = data;
-	GtkTreePath *path;
+	GtkTreePath *path, *last_path;
 	struct musicobject *mobj = NULL;
 	GThread *thread;
 
@@ -135,17 +135,21 @@ static gboolean advance_playback(gpointer data)
 
 		/* Get the next track to be played */
 
-		path = current_playlist_get_next(cwin);
-
 		cwin->cstate->state = ST_STOPPED;
 		play_button_toggle_state(cwin);
 
-		/* No more tracks */
+		last_path = current_playlist_get_actual(cwin);
+		if (last_path) {
+			update_pixbuf_state_on_path(last_path, cwin);
+			gtk_tree_path_free(last_path);
+		}
 
+		path = current_playlist_get_next(cwin);
 		if (!path) {
 			dbus_send_signal(DBUS_EVENT_UPDATE_STATE, cwin);
 			return FALSE;
 		}
+
 		/* Start playing new track */
 
 		mobj = current_playlist_mobj_at_path(path, cwin);
@@ -270,6 +274,8 @@ GThread* start_playback(struct musicobject *mobj, struct con_win *cwin)
 
 void pause_playback(struct con_win *cwin)
 {
+	GtkTreePath *path = NULL;
+
 	CDEBUG(DBG_INFO, "Pause playback");
 
 	if (cwin->cstate->state == ST_PLAYING) {
@@ -278,13 +284,23 @@ void pause_playback(struct con_win *cwin)
 		g_mutex_unlock(cwin->cstate->c_mutex);
 
 		cwin->cstate->state = ST_PAUSED;
-		dbus_send_signal(DBUS_EVENT_UPDATE_STATE, cwin);
+
 		play_button_toggle_state(cwin);
+
+		path = current_playlist_get_actual(cwin);
+		if (path) {
+			update_pixbuf_state_on_path(path, cwin);
+			gtk_tree_path_free(path);
+		}
+
+		dbus_send_signal(DBUS_EVENT_UPDATE_STATE, cwin);
 	}
 }
 
 void resume_playback(struct con_win *cwin)
 {
+	GtkTreePath *path = NULL;
+
 	CDEBUG(DBG_INFO, "Resuming playback");
 
 	if (cwin->cstate->state == ST_PAUSED) {
@@ -294,13 +310,23 @@ void resume_playback(struct con_win *cwin)
 		g_mutex_unlock(cwin->cstate->c_mutex);
 
 		cwin->cstate->state = ST_PLAYING;
-		dbus_send_signal(DBUS_EVENT_UPDATE_STATE, cwin);
+
 		play_button_toggle_state(cwin);
+
+		path = current_playlist_get_actual(cwin);
+		if (path) {
+			update_pixbuf_state_on_path(path, cwin);
+			gtk_tree_path_free(path);
+		}
+
+		dbus_send_signal(DBUS_EVENT_UPDATE_STATE, cwin);
 	}
 }
 
 void stop_playback(struct con_win *cwin)
 {
+	GtkTreePath *path = NULL;
+
 	CDEBUG(DBG_INFO, "Stopping playback");
 
 	if ((cwin->cstate->state == ST_PAUSED) ||
@@ -323,9 +349,18 @@ void stop_playback(struct con_win *cwin)
 		unset_album_art(cwin);
 
 		cwin->cstate->c_thread = NULL;
+
 		cwin->cstate->state = ST_STOPPED;
-		dbus_send_signal(DBUS_EVENT_UPDATE_STATE, cwin);
+
 		play_button_toggle_state(cwin);
+
+		path = current_playlist_get_actual(cwin);
+		if (path) {
+			update_pixbuf_state_on_path(path, cwin);
+			gtk_tree_path_free(path);
+		}
+
+		dbus_send_signal(DBUS_EVENT_UPDATE_STATE, cwin);
 	}
 }
 
