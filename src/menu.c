@@ -399,6 +399,20 @@ void edit_tags_playing_action(GtkAction *action, struct con_win *cwin)
 	if (!changed)
 		goto exit;
 
+	update_musicobject(cwin->cstate->curr_mobj, changed, &ntag , cwin);
+
+	/* Update the gui */
+
+	__update_current_song_info(cwin);
+
+	if ((path = current_playlist_get_actual(cwin)) != NULL) {
+		model = gtk_tree_view_get_model(GTK_TREE_VIEW(cwin->current_playlist));
+		if (gtk_tree_model_get_iter(model, &iter, path)) {
+			update_track_current_playlist(&iter, changed, cwin->cstate->curr_mobj, cwin);
+		}
+		gtk_tree_path_free(path);
+	}
+
 	/* Store the new tags */
 
 	loc_arr = g_array_new(TRUE, TRUE, sizeof(gint));
@@ -414,19 +428,6 @@ void edit_tags_playing_action(GtkAction *action, struct con_win *cwin)
 	file_arr = g_array_append_val(file_arr, tfile);
 
 	tag_update(loc_arr, file_arr, changed, &ntag, cwin);
-	update_musicobject(cwin->cstate->curr_mobj, changed, &ntag , cwin);
-
-	path = current_playlist_get_actual(cwin);
-
-	if (path != NULL) {
-		model = gtk_tree_view_get_model(GTK_TREE_VIEW(cwin->current_playlist));
-		if (gtk_tree_model_get_iter(model, &iter, path)) {
-			update_track_current_playlist(&iter, changed, cwin->cstate->curr_mobj, cwin);
-		}
-		gtk_tree_path_free(path);
-	}
-
-	__update_current_song_info(cwin);
 
 	init_library_view(cwin);
 
