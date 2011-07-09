@@ -299,9 +299,9 @@ enum playlist_columns {
 
 enum curplaylist_columns {
 	P_MOBJ_PTR,
-	P_STATUS_PIXBUF,
 	P_QUEUE,
 	P_BUBBLE,
+	P_STATUS_PIXBUF,
 	P_TRACK_NO,
 	P_TITLE,
 	P_ARTIST,

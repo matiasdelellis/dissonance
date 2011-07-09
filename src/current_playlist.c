@@ -1577,9 +1577,9 @@ void insert_current_playlist_on_model(GtkTreeModel *model, struct musicobject *m
 
 	gtk_list_store_set(GTK_LIST_STORE(model), &iter,
 			   P_MOBJ_PTR, mobj,
-			   P_STATUS_PIXBUF, NULL,
 			   P_QUEUE, NULL,
 			   P_BUBBLE, FALSE,
+			   P_STATUS_PIXBUF, NULL,
 			   P_TRACK_NO, ch_track_no,
 			   P_TITLE, (mobj->tags->title && strlen(mobj->tags->title)) ?
 					mobj->tags->title : ch_filename,
@@ -1653,9 +1653,9 @@ void insert_current_playlist(struct musicobject *mobj,  GtkTreeViewDropPosition 
 
 	gtk_list_store_set(GTK_LIST_STORE(model), &iter,
 			   P_MOBJ_PTR, mobj,
-			   P_STATUS_PIXBUF, NULL,
 			   P_QUEUE, NULL,
-			   P_BUBBLE, FALSE, 
+			   P_BUBBLE, FALSE,
+			   P_STATUS_PIXBUF, NULL,
 			   P_TRACK_NO, ch_track_no,
 			   P_TITLE, (mobj->tags->title && strlen(mobj->tags->title)) ?
 					mobj->tags->title : ch_filename,
@@ -1727,9 +1727,9 @@ void append_current_playlist_ex(struct musicobject *mobj, struct con_win *cwin, 
 	gtk_list_store_append(GTK_LIST_STORE(model), &iter);
 	gtk_list_store_set(GTK_LIST_STORE(model), &iter,
 			   P_MOBJ_PTR, mobj,
-			   P_STATUS_PIXBUF, NULL,
 			   P_QUEUE, NULL,
-			   P_BUBBLE, FALSE, 
+			   P_BUBBLE, FALSE,
+			   P_STATUS_PIXBUF, NULL,
 			   P_TRACK_NO, ch_track_no,
 			   P_TITLE, (mobj->tags->title && strlen(mobj->tags->title)) ?
 					mobj->tags->title : ch_filename,
@@ -1804,9 +1804,9 @@ void append_current_playlist_on_model(GtkTreeModel *model, struct musicobject *m
 	gtk_list_store_append(GTK_LIST_STORE(model), &iter);
 	gtk_list_store_set(GTK_LIST_STORE(model), &iter,
 			   P_MOBJ_PTR, mobj,
-			   P_STATUS_PIXBUF, NULL,
 			   P_QUEUE, NULL,
-			   P_BUBBLE, FALSE, 
+			   P_BUBBLE, FALSE,
+			   P_STATUS_PIXBUF, NULL,
 			   P_TRACK_NO, ch_track_no,
 			   P_TITLE, (mobj->tags->title && strlen(mobj->tags->title)) ?
 					mobj->tags->title : ch_filename,
@@ -2799,11 +2799,9 @@ void init_current_playlist_columns(struct con_win *cwin)
 	else
 		g_warning("(%s): No columns in playlist view", __func__);
 
-	/* Always show status pixbuf and queue colum */
+	/* Always show queue and status pixbuf colum */
 
-	col = gtk_tree_view_get_column(GTK_TREE_VIEW(cwin->current_playlist),
-				       P_STATUS_PIXBUF - 1);
-	col_name = gtk_tree_view_column_get_title(col);
+	col = gtk_tree_view_get_column(GTK_TREE_VIEW(cwin->current_playlist), 0);
 	gtk_tree_view_column_set_visible(col, TRUE);
 }
 
