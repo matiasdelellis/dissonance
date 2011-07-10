@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-30 20:43-0300\n"
+"POT-Creation-Date: 2011-07-10 19:49-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -222,17 +222,17 @@ msgstr ""
 msgid "Folders structure"
 msgstr ""
 
-#: src/gui.c:328 src/gui.c:781 src/gui.c:945 src/pragha.h:87
+#: src/gui.c:328 src/gui.c:781 src/gui.c:946 src/pragha.h:87
 #: src/librarytree.c:1401 src/statusicon.c:203 src/tags.c:554 src/tags.c:608
 msgid "Artist"
 msgstr ""
 
-#: src/gui.c:330 src/gui.c:782 src/gui.c:946 src/pragha.h:88
+#: src/gui.c:330 src/gui.c:782 src/gui.c:947 src/pragha.h:88
 #: src/librarytree.c:1405 src/statusicon.c:204 src/tags.c:557 src/tags.c:609
 msgid "Album"
 msgstr ""
 
-#: src/gui.c:332 src/gui.c:783 src/gui.c:947 src/pragha.h:89
+#: src/gui.c:332 src/gui.c:783 src/gui.c:948 src/pragha.h:89
 #: src/librarytree.c:1411 src/tags.c:560 src/tags.c:610
 msgid "Genre"
 msgstr ""
@@ -257,7 +257,7 @@ msgstr ""
 msgid "Prev Track"
 msgstr ""
 
-#: src/gui.c:357 src/gui.c:1656 src/statusicon.c:168
+#: src/gui.c:357 src/gui.c:1670 src/statusicon.c:168
 msgid "Next Track"
 msgstr ""
 
@@ -266,35 +266,35 @@ msgid "Pragha Music Player"
 msgstr ""
 
 #. Create the checkmenu items
-#: src/gui.c:779 src/gui.c:943 src/current_playlist.c:70
+#: src/gui.c:779 src/gui.c:944 src/current_playlist.c:70
 msgid "Track"
 msgstr ""
 
 #. Create labels
-#: src/gui.c:780 src/gui.c:944 src/pragha.h:86 src/statusicon.c:202
+#: src/gui.c:780 src/gui.c:945 src/pragha.h:86 src/statusicon.c:202
 #: src/tags.c:551 src/tags.c:607
 msgid "Title"
 msgstr ""
 
-#: src/gui.c:784 src/gui.c:948 src/pragha.h:90 src/current_playlist.c:1352
+#: src/gui.c:784 src/gui.c:949 src/pragha.h:90 src/current_playlist.c:1316
 msgid "Bitrate"
 msgstr ""
 
-#: src/gui.c:785 src/gui.c:949 src/pragha.h:91 src/tags.c:612
+#: src/gui.c:785 src/gui.c:950 src/pragha.h:91 src/tags.c:612
 msgid "Year"
 msgstr ""
 
-#: src/gui.c:786 src/gui.c:950 src/pragha.h:92 src/tags.c:563 src/tags.c:613
+#: src/gui.c:786 src/gui.c:951 src/pragha.h:92 src/tags.c:563 src/tags.c:613
 msgid "Comment"
 msgstr ""
 
 #. Create labels
-#: src/gui.c:787 src/gui.c:951 src/pragha.h:93 src/current_playlist.c:1351
+#: src/gui.c:787 src/gui.c:952 src/pragha.h:93 src/current_playlist.c:1315
 #: src/statusicon.c:205
 msgid "Length"
 msgstr ""
 
-#: src/gui.c:788 src/gui.c:952 src/pragha.h:94 src/current_playlist.c:1356
+#: src/gui.c:788 src/gui.c:953 src/pragha.h:94 src/current_playlist.c:1320
 msgid "Filename"
 msgstr ""
 
@@ -303,35 +303,35 @@ msgid "Clear sort"
 msgstr ""
 
 #. Tooltips
-#: src/gui.c:1654
+#: src/gui.c:1668
 msgid "Play / Pause Track"
 msgstr ""
 
-#: src/gui.c:1655
+#: src/gui.c:1669
 msgid "Previous Track"
 msgstr ""
 
-#: src/gui.c:1657
+#: src/gui.c:1671
 msgid "Stop playback"
 msgstr ""
 
-#: src/gui.c:1659
+#: src/gui.c:1673
 msgid "Leave Fullscreen"
 msgstr ""
 
-#: src/gui.c:1660
+#: src/gui.c:1674
 msgid "Play songs in a random order"
 msgstr ""
 
-#: src/gui.c:1661
+#: src/gui.c:1675
 msgid "Repeat playback list at the end"
 msgstr ""
 
-#: src/gui.c:1701 src/panel.c:218 src/statusicon.c:199
+#: src/gui.c:1715 src/panel.c:218 src/statusicon.c:199
 msgid "<b>Not playing</b>"
 msgstr ""
 
-#: src/gui.c:1929
+#: src/gui.c:1943
 msgid "Options of the library"
 msgstr ""
 
@@ -392,20 +392,20 @@ msgstr ""
 msgid "<b>con_playlist</b> is a reserved playlist name"
 msgstr ""
 
-#: src/current_playlist.c:1353
+#: src/current_playlist.c:1317
 msgid "Channels"
 msgstr ""
 
-#: src/current_playlist.c:1354
+#: src/current_playlist.c:1318
 msgid "Samplerate"
 msgstr ""
 
-#: src/current_playlist.c:1355
+#: src/current_playlist.c:1319
 msgid "Folder"
 msgstr ""
 
 #. The main edit dialog
-#: src/current_playlist.c:1446 src/tags.c:882
+#: src/current_playlist.c:1410 src/tags.c:882
 msgid "Details"
 msgstr ""
 
@@ -656,27 +656,27 @@ msgstr ""
 msgid "All files"
 msgstr ""
 
-#: src/menu.c:676 src/menu.c:810
+#: src/menu.c:677 src/menu.c:811
 msgid "Library scan complete"
 msgstr ""
 
-#: src/menu.c:908
+#: src/menu.c:909
 msgid "Total Tracks:"
 msgstr ""
 
-#: src/menu.c:910
+#: src/menu.c:911
 msgid "Total Artists:"
 msgstr ""
 
-#: src/menu.c:912
+#: src/menu.c:913
 msgid "Total Albums:"
 msgstr ""
 
-#: src/menu.c:914
+#: src/menu.c:915
 msgid "Statistics"
 msgstr ""
 
-#: src/menu.c:931
+#: src/menu.c:932
 msgid "translator-credits"
 msgstr ""
 

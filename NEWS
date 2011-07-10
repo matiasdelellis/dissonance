@@ -1,7 +1,55 @@
 =====================================================
-Overview of changes in Pragha 0.8.6
+Overview of changes in Pragha 0.8.8
 =====================================================
 
+News:
+	Return the playback status icon on current playlist. Thanks to Brett Kleinschmidt.
+	Add a popup menu on file entry of tag editor, to open folder and copy selection to title tag, artist tag, etc.
+	Add option to hint current_playlist and library view. Thanks to Brett Kleinschmidt.
+	Add option to activate instant filter or search only when press enter.
+	Add option to sort Albums in library view by release-year. Thanks to Fabian Köster.
+
+Others Changes:
+	Save changes when press enter on tag editor
+
+Updates Translations:
+	Updated Czech translation thanks to Alois Nespor.
+
+Bugs fixed:
+	Show track_no and year only if are positive.
+	Improve the speed of the library view.
+	Only jump to tack droped when change the model, and scroll to the same position.
+	Select and set cursor on new song when drop a tack on current playlist.
+	Fix somes memory leaks and occasional cleanup.
+
+======================================================
+OTHERS REALESES:
+======================================================
+
+V0.8.7
+News:
+	Better (Much more faster) insert tracks from library tree.
+	Better (More smooth) insert tracks from file manager.
+
+Others Changes:
+	Use Structure Folder view by default.
+	Emit volumes changes on mpris2.
+	Use folder-music to folder structure view.
+	Set cursor when jump to current track.
+	Add recent files info on a idle func.
+
+Updates Translations:
+	Add a new translation to Simplified Chinese thanks to ifree.
+	Add a new translation to Greek thanks to koleoptero.
+	Update Dutch translation thanks to tuxmachine.
+	Update Ukrainian thanslation thanks to Sergiy_Gavrylov.
+
+Bugs fixed:
+	Insensitive tree views when change the model.
+	Fix add recurive folder with command line.
+	Remove some unuseles gtk_widget_show/hide_all.
+
+V0.8.6
 Special thanks to Vikram Ambrose and Hakan Erduman for answering all my questions.
 News:
 	Complete MPRIS2 track list interface.
@@ -34,9 +82,7 @@ Bugs fixed:
 	Fix Typos.
 V0.8.6.2
 	Prepend interfece string to PropertiesChanged signal.
-======================================================
-OTHERS REALESES:
-======================================================
+
 V0.8.5
 News:
 	Add MPRIS2 control support and emit a dbus signal named 'update_state' thanks to Hakan Erduman.
