@@ -738,12 +738,12 @@ static inline void lastfm_track_reset(struct con_win *cwin,
 
 /* Menu actions */
 void open_file_action(GtkAction *action, struct con_win *cwin);
-void play_audio_cd_action(GtkAction *action, struct con_win *cwin);
+void add_audio_cd_action(GtkAction *action, struct con_win *cwin);
 void prev_action(GtkAction *action, struct con_win *cwin);
 void play_pause_action(GtkAction *action, struct con_win *cwin);
 void stop_action(GtkAction *action, struct con_win *cwin);
 void next_action (GtkAction *action, struct con_win *cwin);
-void play_audio_cd(struct con_win *cwin);
+void add_audio_cd(struct con_win *cwin);
 void quit_action(GtkAction *action, struct con_win *cwin);
 void expand_all_action(GtkAction *action, struct con_win *cwin);
 void collapse_all_action(GtkAction *action, struct con_win *cwin);

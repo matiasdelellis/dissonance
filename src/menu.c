@@ -1,6 +1,6 @@
 /*************************************************************************/
 /* Copyright (C) 2007-2009 sujith <m.sujith@gmail.com>			 */
-/* Copyright (C) 2009-2010 matias <mati86dl@gmail.com>			 */
+/* Copyright (C) 2009-2011 matias <mati86dl@gmail.com>			 */
 /* 									 */
 /* This program is free software: you can redistribute it and/or modify	 */
 /* it under the terms of the GNU General Public License as published by	 */
@@ -86,6 +86,7 @@ gboolean add_recent_file (gchar *filename)
 	g_free (recent_data.mime_type);
 	g_free (recent_data.app_name);
 	g_free (recent_data.app_exec);
+	g_free (filename);
 	g_free (uri);
 	
 	return FALSE;
@@ -120,7 +121,6 @@ void handle_selected_file(gpointer data, gpointer udata)
 							data, NULL);
 		}
 	}
-	g_free(data);
 }
 
 /* Create a dialog box with a progress bar for rescan/update library */
@@ -333,11 +333,11 @@ void open_file_action(GtkAction *action, struct con_win *cwin)
 	gtk_widget_show_all(window);
 }
 
-/* Handler for the 'Play Audio CD' item in the pragha menu */
+/* Handler for the 'Add Audio CD' item in the pragha menu */
 
-void play_audio_cd_action(GtkAction *action, struct con_win *cwin)
+void add_audio_cd_action(GtkAction *action, struct con_win *cwin)
 {
-	play_audio_cd(cwin);
+	add_audio_cd(cwin);
 }
 
 /* Handler for the 'Prev' item in the pragha menu */

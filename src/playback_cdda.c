@@ -1,6 +1,6 @@
 /*************************************************************************/
 /* Copyright (C) 2007-2009 sujith <m.sujith@gmail.com>			 */
-/* Copyright (C) 2009-2010 matias <mati86dl@gmail.com>			 */
+/* Copyright (C) 2009-2011 matias <mati86dl@gmail.com>			 */
 /* 									 */
 /* This program is free software: you can redistribute it and/or modify	 */
 /* it under the terms of the GNU General Public License as published by	 */
@@ -54,8 +54,6 @@ static void add_audio_cd_tracks(struct con_win *cwin)
 	num_tracks = cdio_cddap_tracks(cwin->cstate->cdda_drive);
 	if (!num_tracks)
 		return;
-
-	clear_current_playlist(NULL, cwin);
 
 	for (i = 1; i <= num_tracks; i++) {
 		mobj = new_musicobject_from_cdda(cwin, i);
@@ -251,13 +249,10 @@ exit:
 	playback_end_cleanup(cwin, cdec.ltrack, ret, lastfm_f);
 }
 
-void play_audio_cd(struct con_win *cwin)
+void add_audio_cd(struct con_win *cwin)
 {
-	gint disc_len = 0;
 	lba_t lba;
-
-	/* Stop playback first */
-	stop_playback(cwin);
+	gint matches;
 
 	/* Clean earlier CDDA state */
 	if (cwin->cstate->cdda_drive) {
@@ -296,8 +291,7 @@ void play_audio_cd(struct con_win *cwin)
 		if (lba == CDIO_INVALID_LBA)
 			goto cddb_clean;
 
-		disc_len = lba / CDIO_CD_FRAMES_PER_SEC;
-		cddb_disc_set_length(cwin->cstate->cddb_disc, disc_len);
+		cddb_disc_set_length(cwin->cstate->cddb_disc, FRAMES_TO_SECONDS(lba));
 		if (cddb_add_tracks(cwin) < 0)
 			goto cddb_clean;
 
@@ -305,6 +299,10 @@ void play_audio_cd(struct con_win *cwin)
 			goto cddb_clean;
 
 		cddb_disc_set_category(cwin->cstate->cddb_disc, CDDB_CAT_MISC);
+
+		matches = cddb_query(cwin->cstate->cddb_conn, cwin->cstate->cddb_disc);
+		if (matches == -1)
+			goto cddb_clean;
 
 		if (!cddb_read(cwin->cstate->cddb_conn,
 			       cwin->cstate->cddb_disc)) {
@@ -328,6 +326,4 @@ cddb_clean:
 add:
 	add_audio_cd_tracks(cwin);
 	CDEBUG(DBG_INFO, "Successfully opened Audio CD device");
-
-	play_first_current_playlist(cwin);
 }
