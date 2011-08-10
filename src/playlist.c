@@ -37,7 +37,7 @@ static void add_entry_playlist(gchar *playlist,
 /* Add all the tracks under the given path to the current playlist */
 /* NB: Optimization */
 
-static void add_row_current_playlist(GtkTreePath *path, struct con_win *cwin)
+static void add_playlist_row_current_playlist(GtkTreePath *path, struct con_win *cwin)
 {
 	GtkTreeModel *model;
 	GtkTreeIter iter;
@@ -216,6 +216,7 @@ exit:
 
 void add_playlist_current_playlist(gchar *playlist, struct con_win *cwin)
 {
+	GtkTreeModel *model;
 	gchar *s_playlist, *query, *file;
 	gint playlist_id, location_id, i = 0;
 	struct db_result result;
@@ -223,9 +224,15 @@ void add_playlist_current_playlist(gchar *playlist, struct con_win *cwin)
 
 	s_playlist = sanitize_string_sqlite3(playlist);
 	playlist_id = find_playlist_db(s_playlist, cwin);
+
 	query = g_strdup_printf("SELECT FILE FROM PLAYLIST_TRACKS WHERE PLAYLIST=%d",
 				playlist_id);
 	exec_sqlite_query(query, cwin, &result);
+
+	model = gtk_tree_view_get_model(GTK_TREE_VIEW(cwin->current_playlist));
+	g_object_ref(model);
+	gtk_widget_set_sensitive(GTK_WIDGET(cwin->current_playlist), FALSE);
+	gtk_tree_view_set_model(GTK_TREE_VIEW(cwin->current_playlist), NULL);
 
 	for_each_result_row(result, i) {
 		file = sanitize_string_sqlite3(result.resultp[i]);
@@ -235,9 +242,16 @@ void add_playlist_current_playlist(gchar *playlist, struct con_win *cwin)
 		else
 			mobj = new_musicobject_from_file(result.resultp[i]);
 
-		append_current_playlist(mobj, cwin);
+		append_current_playlist_on_model(model, mobj, cwin);
+
 		g_free(file);
 	}
+
+	gtk_tree_view_set_model(GTK_TREE_VIEW(cwin->current_playlist), model);
+	gtk_widget_set_sensitive(GTK_WIDGET(cwin->current_playlist), TRUE);
+	g_object_unref(model);
+
+	update_status_bar(cwin);
 
 	sqlite3_free_table(result.resultp);
 	g_free(s_playlist);
@@ -267,7 +281,7 @@ void playlist_tree_row_activated_cb(GtkTreeView *playlist_tree,
 						   path);
 	}
 	else {
-		add_row_current_playlist(path, cwin);
+		add_playlist_row_current_playlist(path, cwin);
 	}
 
 	gtk_tree_path_free(r_path);
@@ -373,7 +387,7 @@ void playlist_tree_replace_playlist(GtkAction *action, struct con_win *cwin)
 		for (i=list; i != NULL; i = i->next) {
 			path = i->data;
 			if (gtk_tree_path_get_depth(path) > 1)
-				add_row_current_playlist(path, cwin);
+				add_playlist_row_current_playlist(path, cwin);
 			gtk_tree_path_free(path);
 
 			/* Have to give control to GTK periodically ... */
@@ -407,7 +421,7 @@ void playlist_tree_replace_and_play(GtkAction *action, struct con_win *cwin)
 		for (i=list; i != NULL; i = i->next) {
 			path = i->data;
 			if (gtk_tree_path_get_depth(path) > 1)
-				add_row_current_playlist(path, cwin);
+				add_playlist_row_current_playlist(path, cwin);
 			gtk_tree_path_free(path);
 
 			/* Have to give control to GTK periodically ... */
@@ -448,7 +462,7 @@ void playlist_tree_add_to_playlist(struct con_win *cwin)
 		for (i=list; i != NULL; i = i->next) {
 			path = i->data;
 			if (gtk_tree_path_get_depth(path) > 1)
-				add_row_current_playlist(path, cwin);
+				add_playlist_row_current_playlist(path, cwin);
 			gtk_tree_path_free(path);
 
 			/* Have to give control to GTK periodically ... */
