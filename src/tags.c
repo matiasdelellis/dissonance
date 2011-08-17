@@ -190,6 +190,8 @@ gboolean save_tags_to_file(gchar *file, struct tags *ntag,
 		g_warning("Unable to save tags for: %s\n", file);
 		ret = FALSE;
 	}
+
+	taglib_tag_free_strings();
 exit:
 	taglib_file_free(tfile);
 
@@ -869,9 +871,9 @@ gint tag_edit_dialog(struct tags *otag, struct tags *ntag, gchar *file,
 		gtk_entry_set_text(GTK_ENTRY(entry_album), otag->album);
 	if (otag->genre)
 		gtk_entry_set_text(GTK_ENTRY(entry_genre), otag->genre);
-	if (otag->track_no)
+	if (otag->track_no > 0)
 		gtk_spin_button_set_value(GTK_SPIN_BUTTON(entry_tno), (int)otag->track_no);
-	if (otag->year)
+	if (otag->year > 0)
 		gtk_spin_button_set_value(GTK_SPIN_BUTTON(entry_year), (int)otag->year);
 	if (otag->comment)
 		gtk_text_buffer_set_text (buffer, otag->comment, -1);
@@ -1143,16 +1145,18 @@ void edit_tags_current_playlist(GtkAction *action, struct con_win *cwin)
 		}
 		update_track_current_playlist(&iter, changed, mobj, cwin);
 
-		sfile = sanitize_string_sqlite3(mobj->file);
-		location_id = find_location_db(sfile, cwin);
-		if (location_id) {
-			g_array_append_val(loc_arr, location_id);
+		if(mobj->file_type != FILE_CDDA) {
+			sfile = sanitize_string_sqlite3(mobj->file);
+			location_id = find_location_db(sfile, cwin);
+			if (location_id) {
+				g_array_append_val(loc_arr, location_id);
+				g_free(sfile);
+				continue;
+			}
+			tfile = g_strdup(mobj->file);
+			file_arr = g_array_append_val(file_arr, tfile);
 			g_free(sfile);
-			continue;
 		}
-		tfile = g_strdup(mobj->file);
-		file_arr = g_array_append_val(file_arr, tfile);
-		g_free(sfile);
 	}
 
 	tag_update(loc_arr, file_arr, changed, &ntag, cwin);
