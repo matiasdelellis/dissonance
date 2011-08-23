@@ -711,27 +711,67 @@ exit_close:
 	return list;
 }
 
-void open_m3u_playlist(gchar *file, struct con_win *cwin)
+GSList *
+pragha_pl_parser_parse (enum playlist_type format, const gchar *filename)
+{
+	GSList *list = NULL;
+
+	switch (format)
+	{
+	case PL_FORMAT_M3U:
+		list = pragha_pl_parser_parse_m3u (filename);
+		break;
+	case PL_FORMAT_PLS:
+		//list = pragha_pl_parser_parse_pls (filename);
+		break;
+	case PL_FORMAT_ASX:
+		//list = pragha_pl_parser_parse_asx (filename);
+		break;
+	case PL_FORMAT_XSPF:
+		//list = pragha_pl_parser_parse_xspf (filename);
+		break;
+	default:
+	break;
+    }
+
+    return list;
+}
+
+GSList *pragha_pl_parser_parse_from_file_by_extension (const gchar *filename)
+{
+	enum playlist_type format = PL_FORMAT_UNKNOWN;
+	GSList *list = NULL;
+
+	if ((format = pragha_pl_parser_guess_format_from_extension (filename)) != PL_FORMAT_UNKNOWN) {
+		list = pragha_pl_parser_parse (format, filename);
+	}
+	else {
+		g_debug ("Unable to guess playlist format : %s", filename);
+	}
+
+	return list;
+}
+
+void pragha_pl_parser_open_from_file_by_extension (gchar *file, struct con_win *cwin)
 {
 	GSList *list = NULL, *i = NULL;
 	struct musicobject *mobj;
 
-	list = pragha_pl_parser_parse_m3u (file);
+	list = pragha_pl_parser_parse_from_file_by_extension (file);
 
 	for (i = list; i != NULL; i = i->next) {
 		mobj = new_musicobject_from_file(i->data);
 		if (mobj)
 			append_current_playlist(mobj, cwin);
-		g_free(i->data);
 
 		while(gtk_events_pending()) {
 			if (gtk_main_iteration_do(FALSE))
 				return;
 		}
+		g_free(i->data);
 	}
 	g_slist_free(list);
 }
-
 
 /*******/
 /* DnD */

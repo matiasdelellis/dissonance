@@ -370,6 +370,16 @@ enum file_type {
 	FILE_CDDA
 };
 
+/* Playlist type formats */
+
+enum playlist_type {
+	PL_FORMAT_UNKNOWN,
+	PL_FORMAT_M3U,
+	PL_FORMAT_PLS,
+	PL_FORMAT_ASX,
+	PL_FORMAT_XSPF
+};
+
 /* Track sources for last.fm submission */
 
 enum track_source {
@@ -625,7 +635,7 @@ struct con_mpris2 {
 	gchar *saved_title;
 	gdouble volume;
 	enum player_state state;
-	GError **property_error; 					/* for returning errors in propget/propput */
+	GError **property_error;					/* for returning errors in propget/propput */
 	GDBusMethodInvocation *method_invocation;	/* for returning errors during methods */
 };
 #endif
@@ -799,8 +809,7 @@ void stop_button_handler(GtkButton *button, struct con_win *cwin);
 void prev_button_handler(GtkButton *button, struct con_win *cwin);
 void next_button_handler(GtkButton *button, struct con_win *cwin);
 void jump_to_playing_song_handler(GtkButton *button, struct con_win *cwin);
-void vol_button_handler(GtkScaleButton *button, gdouble value,
-			struct con_win *cwin);
+void vol_button_handler(GtkScaleButton *button, gdouble value, struct con_win *cwin);
 void play_button_toggle_state(struct con_win *cwin);
 void album_art_toggle_state(struct con_win *cwin);
 void resize_album_art_frame(struct con_win *cwin);
@@ -948,7 +957,7 @@ void playlist_tree_add_to_playlist(struct con_win *cwin);
 void playlist_tree_add_to_playlist_action(GtkAction *action, struct con_win *cwin);
 void playlist_tree_delete(GtkAction *action, struct con_win *cwin);
 void playlist_tree_export(GtkAction *action, struct con_win *cwi);
-void open_m3u_playlist(gchar *file, struct con_win *cwin);
+void pragha_pl_parser_open_from_file_by_extension(gchar *file, struct con_win *cwin);
 gboolean dnd_playlist_tree_begin(GtkWidget *widget,
 				    GdkDragContext *context,
 				    struct con_win *cwin);
@@ -996,7 +1005,7 @@ void edit_tags_playing_action(GtkAction *action, struct con_win *cwin);
 void track_properties(struct musicobject *mobj, struct con_win *cwin);
 void clear_current_playlist(GtkAction *action, struct con_win *cwin);
 void update_track_current_playlist(GtkTreeIter *iter, gint changed, struct musicobject *mobj, struct con_win *cwin);
-void insert_current_playlist(struct musicobject *mobj,  GtkTreeViewDropPosition droppos, GtkTreeIter *pos, struct con_win *cwin);
+void insert_current_playlist(struct musicobject *mobj, GtkTreeViewDropPosition droppos, GtkTreeIter *pos, struct con_win *cwin);
 void append_current_playlist(struct musicobject *mobj, struct con_win *cwin);
 void append_current_playlist_ex(struct musicobject *mobj, struct con_win *cwin, GtkTreePath **path);
 void append_current_playlist_on_model(GtkTreeModel *model, struct musicobject *mobj, struct con_win *cwin);
@@ -1190,6 +1199,7 @@ gint dir_file_count(gchar *dir_name, gint call_recur);
 gchar* sanitize_string_sqlite3(gchar *str);
 enum file_type get_file_type(gchar *file);
 gchar* get_mime_type(gchar *file);
+enum playlist_type pragha_pl_parser_guess_format_from_extension (const gchar *filename);
 gboolean is_image_file(gchar *file);
 gchar* convert_length_str(gint length);
 gboolean is_present_str_list(const gchar *str, GSList *list);
