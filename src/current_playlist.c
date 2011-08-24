@@ -169,7 +169,7 @@ void requeue_track_refs (struct con_win *cwin)
 		ref = list->data;
 		lpath = gtk_tree_row_reference_get_path(ref);
 		if (gtk_tree_model_get_iter(model, &iter, lpath)){
-			ch_queue_no = g_strdup_printf("%d", ++i);
+			ch_queue_no = g_strdup_printf("<small>%d</small>", ++i);
 			gtk_list_store_set(GTK_LIST_STORE(model), &iter, P_QUEUE, ch_queue_no, -1);
 			gtk_list_store_set(GTK_LIST_STORE(model), &iter, P_BUBBLE, TRUE, -1);
 			g_free(ch_queue_no);
@@ -2553,6 +2553,7 @@ void dnd_current_playlist_received(GtkWidget *widget,
 	gboolean is_row;
 	GdkRectangle vrect, crect;
 	gdouble row_align;
+	GdkCursor *cursor;
 
 	model = gtk_tree_view_get_model(GTK_TREE_VIEW(cwin->current_playlist));
 
@@ -2622,6 +2623,12 @@ void dnd_current_playlist_received(GtkWidget *widget,
 		g_list_free(list);
 		goto exit;
 	}
+
+	/* Show busy mouse icon */
+
+	cursor = gdk_cursor_new(GDK_WATCH);
+	gdk_window_set_cursor (GDK_WINDOW(cwin->mainwindow->window), cursor);
+	gdk_cursor_unref(cursor);
 
 	/* Append new tracks to playlist */
 
@@ -2748,6 +2755,8 @@ void dnd_current_playlist_received(GtkWidget *widget,
 	}
 
 exit:
+	gdk_window_set_cursor(GDK_WINDOW(cwin->mainwindow->window), NULL);
+
 	gtk_tree_path_free(dest_path);
 	gtk_drag_finish(context, TRUE, FALSE, time);
 }
@@ -2816,10 +2825,15 @@ void init_playlist_current_playlist(struct con_win *cwin)
 	struct db_result result;
 	struct musicobject *mobj;
 	GtkTreeModel *model;
+	GdkCursor *cursor;
 
 	model = gtk_tree_view_get_model(GTK_TREE_VIEW(cwin->current_playlist));
 
-	g_object_ref(model); 
+	cursor = gdk_cursor_new(GDK_WATCH);
+	gdk_window_set_cursor (GDK_WINDOW(cwin->mainwindow->window), cursor);
+	gdk_cursor_unref(cursor);
+
+	g_object_ref(model);
 	gtk_widget_set_sensitive(GTK_WIDGET(cwin->current_playlist), FALSE);
 	gtk_tree_view_set_model(GTK_TREE_VIEW(cwin->current_playlist), NULL);
 
@@ -2850,6 +2864,8 @@ void init_playlist_current_playlist(struct con_win *cwin)
 	#if HAVE_GLIB_2_26
 	mpris_update_tracklist_changed(cwin);
 	#endif
+
+	gdk_window_set_cursor(GDK_WINDOW(cwin->mainwindow->window), NULL);
 
 	sqlite3_free_table(result.resultp);
 	g_free(s_playlist);
