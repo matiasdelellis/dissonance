@@ -852,7 +852,7 @@ pragha_pl_parser_parse_pls (const gchar *file)
 			for (i = 1; i <= nentries; i++) {
 				g_snprintf (key, 128, "File%d", i);
 				file_entry = g_key_file_get_string(plskeyfile, "playlist", key, NULL);
-				if(file_entry)
+				if (NULL == file_entry)
 					continue;
 				list = g_slist_append (list, file_entry);
 			}

@@ -166,10 +166,6 @@ static void pref_dialog_cb(GtkDialog *dialog, gint response_id,
 			gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(
 						     cwin->cpref->restore_playlist_w));
 
-		cwin->cpref->save_playlist =
-			gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(
-						     cwin->cpref->restore_playlist_w));
-
 		cwin->cpref->close_to_tray =
 			gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(
 						  cwin->cpref->close_to_tray_w));
@@ -1438,8 +1434,8 @@ void preferences_dialog(struct con_win *cwin)
 	GtkWidget *audio_vbox, *appearance_vbox, *library_vbox, *general_vbox, *notification_vbox, *services_vbox;
 	GtkWidget *label_audio, *label_appearance, *label_library, *label_general, *label_notification, *label_services;
 
-	GtkWidget *audio_device_combo, *audio_device_label, *hbox_audio_device, *audio_sink_combo, *sink_label, \
-		  *hbox_sink, *soft_mixer, *audio_cd_device_label, *audio_cd_device_entry, *hbox_audio_cd_device;
+	GtkWidget *audio_table, *audio_device_combo, *audio_device_label, *audio_sink_combo, *sink_label, \
+		  *soft_mixer, *audio_cd_device_label, *separator, *audio_cd_device_entry;
 	GtkWidget *use_hint, *album_art, *album_art_pattern_label, *hbox_album_art_pattern, *album_art_size, *album_art_size_label, \
 		  *hbox_album_art_size, *album_art_pattern;
 	GtkWidget *library_view, *library_view_scroll, *library_bbox_align, *library_bbox, *library_add, *library_remove, \
@@ -1527,7 +1523,17 @@ void preferences_dialog(struct con_win *cwin)
 	gtk_alignment_set_padding(GTK_ALIGNMENT(alignment), 6, 6, 12, 6);
 	gtk_container_add(GTK_CONTAINER(alignment), services_vbox);
 
+	/* Audio preferences page */
+
+	audio_table = gtk_table_new(4, 2, FALSE);
+
+	gtk_table_set_col_spacings(GTK_TABLE(audio_table), 5);
+	gtk_table_set_row_spacings(GTK_TABLE(audio_table), 2);
+
 	/* Audio Sink */
+
+	sink_label = gtk_label_new(_("Audio sink"));
+	gtk_misc_set_alignment(GTK_MISC (sink_label), 0, 0);
 
 	audio_sink_combo = gtk_combo_box_new_text();
 	gtk_widget_set_tooltip_text(GTK_WIDGET(audio_sink_combo),
@@ -1540,82 +1546,74 @@ void preferences_dialog(struct con_win *cwin)
 	gtk_combo_box_append_text(GTK_COMBO_BOX(audio_sink_combo),
 				  OSS_SINK);
 
-	sink_label = gtk_label_new(_("Audio sink"));
-	hbox_sink = gtk_hbox_new(FALSE, 2);
-
-	gtk_box_pack_start(GTK_BOX(hbox_sink),
-			   sink_label,
-			   FALSE,
-			   FALSE,
-			   0);
-	gtk_box_pack_end(GTK_BOX(hbox_sink),
-			 audio_sink_combo,
-			 FALSE,
-			 FALSE,
-			 0);
+	gtk_table_attach(GTK_TABLE (audio_table), sink_label,
+			0, 1, 0, 1,
+			GTK_FILL, GTK_SHRINK,
+			0, 0);
+	gtk_table_attach(GTK_TABLE (audio_table), audio_sink_combo,
+			1, 2, 0, 1,
+			GTK_FILL|GTK_EXPAND, GTK_SHRINK,
+			0, 0);
 
 	/* Audio Device */
 
-	audio_device_combo = gtk_combo_box_entry_new_text();
 	audio_device_label = gtk_label_new(_("Audio Device"));
-	hbox_audio_device = gtk_hbox_new(FALSE, 2);
+	gtk_misc_set_alignment(GTK_MISC (audio_device_label), 0, 0);
+
+	audio_device_combo = gtk_combo_box_entry_new_text();
 	gtk_widget_set_tooltip_text(GTK_WIDGET(audio_device_combo),
 				    _("Restart Required"));
 
-	gtk_box_pack_start(GTK_BOX(hbox_audio_device),
-			   audio_device_label,
-			   FALSE,
-			   FALSE,
-			   0);
-	gtk_box_pack_end(GTK_BOX(hbox_audio_device),
-			 audio_device_combo,
-			 FALSE,
-			 FALSE,
-			 0);
-
-	/* Audio CD device */
-
-	audio_cd_device_label = gtk_label_new(_("Audio CD Device"));
-	audio_cd_device_entry = gtk_entry_new();
-	gtk_entry_set_max_length(GTK_ENTRY(audio_cd_device_entry),
-				 AUDIO_CD_DEVICE_ENTRY_LEN);
-
-	hbox_audio_cd_device = gtk_hbox_new(FALSE, 2);
-	gtk_box_pack_start(GTK_BOX(hbox_audio_cd_device),
-			   audio_cd_device_label,
-			   FALSE,
-			   FALSE,
-			   0);
-	gtk_box_pack_end(GTK_BOX(hbox_audio_cd_device),
-			 audio_cd_device_entry,
-			 TRUE,
-			 TRUE,
-			 0);
+	gtk_table_attach(GTK_TABLE (audio_table), audio_device_label,
+			0, 1, 1, 2,
+			GTK_FILL, GTK_SHRINK,
+			0, 0);
+	gtk_table_attach(GTK_TABLE (audio_table), audio_device_combo,
+			1, 2, 1, 2,
+			GTK_FILL|GTK_EXPAND, GTK_SHRINK,
+			0, 0);
 
 	/* Software mixer */
 
 	soft_mixer = gtk_check_button_new_with_label(_("Use software mixer"));
 	gtk_widget_set_tooltip_text(GTK_WIDGET(soft_mixer), _("Restart Required"));
 
+	gtk_table_attach(GTK_TABLE (audio_table), soft_mixer,
+			0, 2, 2, 3,
+			GTK_FILL, GTK_SHRINK,
+			0, 0);
+
+	/* Add a separator */
+
+	separator = gtk_hseparator_new();
+
+	gtk_table_attach(GTK_TABLE (audio_table), separator,
+			0, 2, 3, 4,
+			GTK_FILL, GTK_SHRINK,
+			5, 5);
+
+	/* Audio CD device */
+
+	audio_cd_device_label = gtk_label_new(_("Audio CD Device"));
+	gtk_misc_set_alignment(GTK_MISC (audio_cd_device_label), 0, 0);
+
+	audio_cd_device_entry = gtk_entry_new();
+	gtk_entry_set_max_length(GTK_ENTRY(audio_cd_device_entry),
+				 AUDIO_CD_DEVICE_ENTRY_LEN);
+
+	gtk_table_attach(GTK_TABLE (audio_table), audio_cd_device_label,
+			0, 1, 4, 5,
+			GTK_FILL, GTK_SHRINK,
+			0, 0);
+	gtk_table_attach(GTK_TABLE (audio_table), audio_cd_device_entry,
+			1, 2, 4, 5,
+			GTK_FILL|GTK_EXPAND, GTK_SHRINK,
+			0, 0);
+
 	/* Pack audio items */
 
 	gtk_box_pack_start(GTK_BOX(audio_vbox),
-			   hbox_sink,
-			   FALSE,
-			   FALSE,
-			   0);
-	gtk_box_pack_start(GTK_BOX(audio_vbox),
-			   hbox_audio_device,
-			   FALSE,
-			   FALSE,
-			   0);
-	gtk_box_pack_start(GTK_BOX(audio_vbox),
-			   hbox_audio_cd_device,
-			   FALSE,
-			   FALSE,
-			   0);
-	gtk_box_pack_start(GTK_BOX(audio_vbox),
-			   soft_mixer,
+			   audio_table,
 			   FALSE,
 			   FALSE,
 			   0);
