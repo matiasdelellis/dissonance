@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: pragha\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-07-30 14:41-0300\n"
+"POT-Creation-Date: 2011-08-18 19:08-0300\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Hakan Erduman <hakan@erduman.de>\n"
 "Language-Team:  <smultimeter@gmail.com>\n"
@@ -14,334 +14,334 @@ msgstr ""
 "X-Poedit-Country: TURKEY\n"
 "X-Poedit-SourceCharset: utf-8\n"
 
-#: src/gui.c:175
+#: src/gui.c:176
 msgid "_File"
 msgstr "_Dosya"
 
-#: src/gui.c:176
+#: src/gui.c:177
 msgid "_Edit"
 msgstr "Düz_enle"
 
-#: src/gui.c:177
+#: src/gui.c:178
 msgid "_View"
 msgstr "_Görünüm"
 
-#: src/gui.c:178
+#: src/gui.c:179
 msgid "_Tools"
 msgstr "_Araçlar"
 
-#: src/gui.c:179
+#: src/gui.c:180
 msgid "_Help"
 msgstr "_Yardım"
 
-#: src/gui.c:180 src/gui.c:257 src/gui.c:346
+#: src/gui.c:181 src/gui.c:258 src/gui.c:349
 msgid "_Add files"
 msgstr "Dosya _ekle"
 
-#: src/gui.c:181 src/gui.c:258
+#: src/gui.c:182 src/gui.c:259
 msgid "Open a media file"
 msgstr "Müzik parçası aç"
 
-#: src/gui.c:182 src/gui.c:348
-msgid "_Play audio CD"
-msgstr "Ses _CD'si aç"
+#: src/gui.c:183 src/gui.c:260 src/gui.c:351
+msgid "Add Audio _CD"
+msgstr ""
 
-#: src/gui.c:184
+#: src/gui.c:185
 msgid "Prev track"
 msgstr "Önceki parça"
 
-#: src/gui.c:186 src/gui.c:352
+#: src/gui.c:187 src/gui.c:355
 msgid "Play / Pause"
 msgstr "Oynat / Durakla"
 
-#: src/gui.c:188 src/gui.c:354
+#: src/gui.c:189 src/gui.c:357
 msgid "Stop"
 msgstr "Dur"
 
-#: src/gui.c:190
+#: src/gui.c:191
 msgid "Next track"
 msgstr "Sonraki parça"
 
 #. The main edit dialog
-#: src/gui.c:192 src/gui.c:288 src/gui.c:312 src/gui.c:358 src/tags.c:847
+#: src/gui.c:193 src/gui.c:291 src/gui.c:315 src/gui.c:361 src/tags.c:849
 msgid "Edit tags"
 msgstr "Etiketleri Düzenle"
 
-#: src/gui.c:194 src/gui.c:261 src/gui.c:360
+#: src/gui.c:195 src/gui.c:264 src/gui.c:363
 msgid "_Quit"
 msgstr "_Çık"
 
-#: src/gui.c:196 src/gui.c:259
+#: src/gui.c:197 src/gui.c:262
 msgid "_Add the library"
 msgstr "Kütüphaneye ekle"
 
-#: src/gui.c:198 src/gui.c:279
+#: src/gui.c:199 src/gui.c:282
 msgid "Remove"
 msgstr "Kaldır"
 
-#: src/gui.c:200 src/gui.c:281
+#: src/gui.c:201 src/gui.c:284
 msgid "Crop"
 msgstr "Kes"
 
-#: src/gui.c:202 src/gui.c:283
+#: src/gui.c:203 src/gui.c:286
 #, fuzzy
 msgid "Clear current playlist"
 msgstr "Parça Listesini Temizle"
 
-#: src/gui.c:204
+#: src/gui.c:205
 msgid "Save selection"
 msgstr "Seçimi kaydet"
 
-#: src/gui.c:206 src/gui.c:286
+#: src/gui.c:207 src/gui.c:289
 #, fuzzy
 msgid "Save current playlist"
 msgstr "Oynatma Listesini Kaydet"
 
-#: src/gui.c:208
+#: src/gui.c:209
 msgid "_Preferences"
 msgstr "_Tercihler"
 
-#: src/gui.c:210
+#: src/gui.c:211
 msgid "Lateral _panel"
 msgstr "Yan bölme"
 
-#: src/gui.c:211
+#: src/gui.c:212
 msgid "Jump to playing song"
 msgstr "Çalınan parçaya git"
 
-#: src/gui.c:213
+#: src/gui.c:214
 msgid "Search _lyric"
 msgstr "Beste bu_l"
 
-#: src/gui.c:215
+#: src/gui.c:216
 msgid "_Search in playlist"
 msgstr "Oynatma listesinde _ara"
 
-#: src/gui.c:217
+#: src/gui.c:218
 msgid "_Rescan library"
 msgstr "Kütüphaneyi yenile"
 
-#: src/gui.c:219
+#: src/gui.c:220
 msgid "_Update library"
 msgstr "Kütüphaneyi güncelle"
 
-#: src/gui.c:221
+#: src/gui.c:222
 msgid "_Statistics"
 msgstr "_İstatistikler"
 
-#: src/gui.c:223
+#: src/gui.c:224
 msgid "Homepage"
 msgstr "Anasayfa"
 
-#: src/gui.c:225
+#: src/gui.c:226
 msgid "Community"
 msgstr "Topluluk "
 
-#: src/gui.c:227
+#: src/gui.c:228
 msgid "Wiki"
 msgstr "Wiki"
 
-#: src/gui.c:229
+#: src/gui.c:230
 msgid "Translate Pragha"
 msgstr "Pragha'yı tercüme et"
 
-#: src/gui.c:231 src/gui.c:344
+#: src/gui.c:232 src/gui.c:347
 msgid "About"
 msgstr "Hakkında"
 
-#: src/gui.c:236
+#: src/gui.c:237
 msgid "_Shuffle"
 msgstr "Tesa_düfle"
 
-#: src/gui.c:239
+#: src/gui.c:240
 msgid "_Repeat"
 msgstr "_Tekrarla"
 
-#: src/gui.c:242
+#: src/gui.c:243
 msgid "_Fullscreen"
 msgstr "_Tam ekran"
 
-#: src/gui.c:245 src/gui.c:266 src/gui.c:643 src/pref.c:1474
+#: src/gui.c:246 src/gui.c:269 src/gui.c:649 src/pref.c:1474
 msgid "Library"
 msgstr "Kütüphane"
 
-#: src/gui.c:248 src/gui.c:269 src/gui.c:661 src/playlist.c:919
+#: src/gui.c:249 src/gui.c:272 src/gui.c:667 src/playlist.c:933
 msgid "Playlists"
 msgstr "Oynatma Listeleri"
 
-#: src/gui.c:251
+#: src/gui.c:252
 msgid "Status bar"
 msgstr "Durum çubuğu"
 
-#: src/gui.c:275
+#: src/gui.c:278
 msgid "Add to playback queue"
 msgstr "Oynatma sırasına ekle"
 
-#: src/gui.c:277
+#: src/gui.c:280
 msgid "Remove to playback queue"
 msgstr "Oynatma sırasına aktar"
 
-#: src/gui.c:285
+#: src/gui.c:288
 #, fuzzy
 msgid "Add to playlist"
 msgstr "Oynatma listesine _ekle"
 
-#: src/gui.c:293 src/gui.c:306
+#: src/gui.c:296 src/gui.c:309
 #, fuzzy
 msgid "_Add to current playlist"
 msgstr "Oynatma listesine _ekle"
 
-#: src/gui.c:295 src/gui.c:308
+#: src/gui.c:298 src/gui.c:311
 #, fuzzy
 msgid "_Replace current playlist"
 msgstr "Oynatma listesini değiştir"
 
-#: src/gui.c:297 src/gui.c:310
+#: src/gui.c:300 src/gui.c:313
 msgid "Replace and _play"
 msgstr "Değiştir ve Çal"
 
-#: src/gui.c:299
+#: src/gui.c:302
 msgid "Delete"
 msgstr "Sil"
 
-#: src/gui.c:301
+#: src/gui.c:304
 msgid "Export"
 msgstr "Dışarı Aktar"
 
-#: src/gui.c:314
+#: src/gui.c:317
 msgid "Move to _trash"
 msgstr "Çöpe _Taşı"
 
-#: src/gui.c:316
+#: src/gui.c:319
 msgid "Delete from library"
 msgstr "Kütüphaneden kaldır"
 
-#: src/gui.c:321
+#: src/gui.c:324
 msgid "_Expand library"
 msgstr "Kütüphaneyi _yay"
 
-#: src/gui.c:323
+#: src/gui.c:326
 msgid "_Collapse library"
 msgstr "Kütüphaneyi _toparla"
 
-#: src/gui.c:325 src/librarytree.c:1398
+#: src/gui.c:328 src/librarytree.c:1436
 msgid "Folders structure"
 msgstr "Klasör görünümü"
 
-#: src/gui.c:327 src/gui.c:780 src/gui.c:945 src/pragha.h:87
-#: src/librarytree.c:1401 src/statusicon.c:203 src/tags.c:554 src/tags.c:608
+#: src/gui.c:330 src/gui.c:786 src/gui.c:951 src/pragha.h:87
+#: src/librarytree.c:1439 src/statusicon.c:203 src/tags.c:556 src/tags.c:610
 msgid "Artist"
 msgstr "Sanatçı"
 
-#: src/gui.c:329 src/gui.c:781 src/gui.c:946 src/pragha.h:88
-#: src/librarytree.c:1405 src/statusicon.c:204 src/tags.c:557 src/tags.c:609
+#: src/gui.c:332 src/gui.c:787 src/gui.c:952 src/pragha.h:88
+#: src/librarytree.c:1443 src/statusicon.c:204 src/tags.c:559 src/tags.c:611
 msgid "Album"
 msgstr "Albüm"
 
-#: src/gui.c:331 src/gui.c:782 src/gui.c:947 src/pragha.h:89
-#: src/librarytree.c:1411 src/tags.c:560 src/tags.c:610
+#: src/gui.c:334 src/gui.c:788 src/gui.c:953 src/pragha.h:89
+#: src/librarytree.c:1450 src/tags.c:562 src/tags.c:612
 msgid "Genre"
 msgstr "Tür"
 
-#: src/gui.c:333 src/librarytree.c:1415
+#: src/gui.c:336 src/librarytree.c:1454
 msgid "Artist / Album"
 msgstr "Sanatçı / Albüm"
 
-#: src/gui.c:335 src/librarytree.c:1426
+#: src/gui.c:338 src/librarytree.c:1465
 msgid "Genre / Album"
 msgstr "Tür / Albüm"
 
-#: src/gui.c:337 src/librarytree.c:1422
+#: src/gui.c:340 src/librarytree.c:1461
 msgid "Genre / Artist"
 msgstr "Tür / Sanatçı"
 
-#: src/gui.c:339 src/librarytree.c:1433
+#: src/gui.c:342 src/librarytree.c:1472
 msgid "Genre / Artist / Album"
 msgstr "Tür / Sanatçı / Albüm"
 
-#: src/gui.c:350 src/statusicon.c:164
+#: src/gui.c:353 src/statusicon.c:164
 msgid "Prev Track"
 msgstr "Önceki Parça"
 
-#: src/gui.c:356 src/gui.c:1669 src/statusicon.c:168
+#: src/gui.c:359 src/gui.c:1675 src/statusicon.c:168
 msgid "Next Track"
 msgstr "Sonraki Parça"
 
-#: src/gui.c:672
+#: src/gui.c:678
 msgid "Pragha Music Player"
 msgstr "Pragha Müzik Çaları"
 
 #. Create the checkmenu items
-#: src/gui.c:778 src/gui.c:943 src/current_playlist.c:70
+#: src/gui.c:784 src/gui.c:949 src/current_playlist.c:70
 msgid "Track"
 msgstr "Parça"
 
 #. Create labels
-#: src/gui.c:779 src/gui.c:944 src/pragha.h:86 src/statusicon.c:202
-#: src/tags.c:551 src/tags.c:607
+#: src/gui.c:785 src/gui.c:950 src/pragha.h:86 src/statusicon.c:202
+#: src/tags.c:553 src/tags.c:609
 msgid "Title"
 msgstr "Başlık"
 
-#: src/gui.c:783 src/gui.c:948 src/pragha.h:90 src/current_playlist.c:1316
+#: src/gui.c:789 src/gui.c:954 src/pragha.h:90 src/current_playlist.c:1356
 msgid "Bitrate"
 msgstr "Bit oranı"
 
-#: src/gui.c:784 src/gui.c:949 src/pragha.h:91 src/tags.c:612
+#: src/gui.c:790 src/gui.c:955 src/pragha.h:91 src/tags.c:614
 msgid "Year"
 msgstr "Yıl"
 
-#: src/gui.c:785 src/gui.c:950 src/pragha.h:92 src/tags.c:563 src/tags.c:613
+#: src/gui.c:791 src/gui.c:956 src/pragha.h:92 src/tags.c:565 src/tags.c:615
 msgid "Comment"
 msgstr "Açıklama"
 
 #. Create labels
-#: src/gui.c:786 src/gui.c:951 src/pragha.h:93 src/current_playlist.c:1315
+#: src/gui.c:792 src/gui.c:957 src/pragha.h:93 src/current_playlist.c:1355
 #: src/statusicon.c:205
 msgid "Length"
 msgstr "Süre"
 
-#: src/gui.c:787 src/gui.c:952 src/pragha.h:94 src/current_playlist.c:1320
+#: src/gui.c:793 src/gui.c:958 src/pragha.h:94 src/current_playlist.c:1360
 msgid "Filename"
 msgstr "Dosya adı"
 
-#: src/gui.c:790
+#: src/gui.c:796
 msgid "Clear sort"
 msgstr "Sıralamayı boşver"
 
 #. Tooltips
-#: src/gui.c:1667
+#: src/gui.c:1673
 msgid "Play / Pause Track"
 msgstr "Parçayı çal / durakla"
 
-#: src/gui.c:1668
+#: src/gui.c:1674
 msgid "Previous Track"
 msgstr "Önceki parça"
 
-#: src/gui.c:1670
+#: src/gui.c:1676
 msgid "Stop playback"
 msgstr "Oynatmayı durdur"
 
-#: src/gui.c:1672
+#: src/gui.c:1678
 msgid "Leave Fullscreen"
 msgstr "Tam ekrandan çık"
 
-#: src/gui.c:1673
+#: src/gui.c:1679
 msgid "Play songs in a random order"
 msgstr "Oynatma sırasındaki dosyaları rastgele oynat"
 
-#: src/gui.c:1674
+#: src/gui.c:1680
 msgid "Repeat playback list at the end"
 msgstr "Oynatma sırasının sonuna gelindiğinde tekrar başla"
 
-#: src/gui.c:1714 src/panel.c:218 src/statusicon.c:199
+#: src/gui.c:1720 src/panel.c:218 src/statusicon.c:199
 msgid "<b>Not playing</b>"
 msgstr "<b>Çalınmıyor</b>"
 
-#: src/gui.c:1942
+#: src/gui.c:1948
 msgid "Options of the library"
 msgstr "Kütüphane tercihleri"
 
-#: src/pragha.h:85 src/tags.c:611
+#: src/pragha.h:85 src/tags.c:613
 msgid "Track No"
 msgstr "İz numara"
 
@@ -404,24 +404,24 @@ msgstr "Oynatma Listesini Kaydet"
 msgid "<b>con_playlist</b> is a reserved playlist name"
 msgstr "<b>con_playlist</b> çalma listesinin adı muhafızdır"
 
-#: src/current_playlist.c:1317
+#: src/current_playlist.c:1357
 msgid "Channels"
 msgstr "Ses Kanalları"
 
-#: src/current_playlist.c:1318
+#: src/current_playlist.c:1358
 msgid "Samplerate"
 msgstr "Örnekleme hızı"
 
-#: src/current_playlist.c:1319
+#: src/current_playlist.c:1359
 msgid "Folder"
 msgstr "Klasör"
 
 #. The main edit dialog
-#: src/current_playlist.c:1410 src/tags.c:882
+#: src/current_playlist.c:1450 src/tags.c:884
 msgid "Details"
 msgstr "Ayrıntılar"
 
-#: src/current_playlist.c:2168
+#: src/current_playlist.c:2220
 #, fuzzy
 msgid "New playlist"
 msgstr "Oynatma Listesini Kaydet"
@@ -443,16 +443,16 @@ msgstr "Bilinmeyen albüm"
 msgid "Unknown Genre"
 msgstr "Bilinmeyen tür"
 
-#: src/librarytree.c:385
+#: src/librarytree.c:386
 msgid "Cannot move file to trash, do you want to delete immediately?"
 msgstr "Dosya çöpe aktarılamadı. Doğrudan silmeyi tercih eder misiniz?"
 
-#: src/librarytree.c:386
+#: src/librarytree.c:387
 #, c-format
 msgid "The file \"%s\" cannot be moved to the trash. Details: %s"
 msgstr "Dosya \"%s\" maalesef silinemedi. Detay: %s"
 
-#: src/librarytree.c:1149
+#: src/librarytree.c:1187
 msgid ""
 "Are you sure you want to delete current file from library?\n"
 "\n"
@@ -462,11 +462,11 @@ msgstr ""
 "\n"
 "Uyarı: Bu işlemin ardından bütün kütüphaneyi yenilemek zorundayız."
 
-#: src/librarytree.c:1206
+#: src/librarytree.c:1244
 msgid "Really want to move the files to trash?"
 msgstr "Bu dosyaları gerçekten çöpe aktarmak istiyor musunuz?"
 
-#: src/librarytree.c:1208
+#: src/librarytree.c:1246
 msgid "Delete immediately instead of move to trash"
 msgstr "Çöpe atmaksızın hemen sil"
 
@@ -475,16 +475,16 @@ msgstr "Çöpe atmaksızın hemen sil"
 msgid "by <b>%s</b> in <b>%s</b> <b>(%s)</b>"
 msgstr "<b>%s</b> dan <b>%s</b> içinde <b>(%s)</b>"
 
-#: src/tags.c:544
+#: src/tags.c:546
 #, fuzzy
 msgid "Selection to"
 msgstr "Seçimi kaydet"
 
-#: src/tags.c:573
+#: src/tags.c:575
 msgid "Open folder"
 msgstr ""
 
-#: src/tags.c:614
+#: src/tags.c:616
 msgid "File"
 msgstr "Dosya"
 
@@ -714,6 +714,9 @@ msgstr "gün"
 msgid "Unable to open the browser"
 msgstr "Adres açılamadı"
 
-#: src/playlist.c:536
+#: src/playlist.c:550
 msgid "Export playlist to file"
 msgstr "Oynatma listesini dosyaya kaydet"
+
+#~ msgid "_Play audio CD"
+#~ msgstr "Ses _CD'si aç"

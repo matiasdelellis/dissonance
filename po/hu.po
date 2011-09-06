@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pragha 0.8.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-07-30 14:41-0300\n"
+"POT-Creation-Date: 2011-08-18 19:08-0300\n"
 "PO-Revision-Date: 2010-11-09 22:24+0100\n"
 "Last-Translator: Peter Polonkai <polesz@nedudu.hu>\n"
 "Language-Team: ned <polesz@nedudu.hu>\n"
@@ -18,335 +18,335 @@ msgstr ""
 "X-Poedit-Language: Hungarian\n"
 "X-Poedit-Country: HUNGARY\n"
 
-#: src/gui.c:175
+#: src/gui.c:176
 msgid "_File"
 msgstr "_Fájl"
 
-#: src/gui.c:176
+#: src/gui.c:177
 msgid "_Edit"
 msgstr "Sz_erkesztés"
 
-#: src/gui.c:177
+#: src/gui.c:178
 msgid "_View"
 msgstr "_Nézet"
 
-#: src/gui.c:178
+#: src/gui.c:179
 msgid "_Tools"
 msgstr "E_szközök"
 
-#: src/gui.c:179
+#: src/gui.c:180
 msgid "_Help"
 msgstr "_Súgó"
 
-#: src/gui.c:180 src/gui.c:257 src/gui.c:346
+#: src/gui.c:181 src/gui.c:258 src/gui.c:349
 msgid "_Add files"
 msgstr "Fájlok hozzá_adása"
 
-#: src/gui.c:181 src/gui.c:258
+#: src/gui.c:182 src/gui.c:259
 msgid "Open a media file"
 msgstr "Média fájl megnyitása"
 
-#: src/gui.c:182 src/gui.c:348
-msgid "_Play audio CD"
-msgstr "_Audio CD lejátszása"
+#: src/gui.c:183 src/gui.c:260 src/gui.c:351
+msgid "Add Audio _CD"
+msgstr ""
 
-#: src/gui.c:184
+#: src/gui.c:185
 msgid "Prev track"
 msgstr "Előző sáv"
 
-#: src/gui.c:186 src/gui.c:352
+#: src/gui.c:187 src/gui.c:355
 msgid "Play / Pause"
 msgstr "Lejátszás / Szünet"
 
-#: src/gui.c:188 src/gui.c:354
+#: src/gui.c:189 src/gui.c:357
 msgid "Stop"
 msgstr "Megállítás"
 
-#: src/gui.c:190
+#: src/gui.c:191
 msgid "Next track"
 msgstr "Következő sáv"
 
 #. The main edit dialog
-#: src/gui.c:192 src/gui.c:288 src/gui.c:312 src/gui.c:358 src/tags.c:847
+#: src/gui.c:193 src/gui.c:291 src/gui.c:315 src/gui.c:361 src/tags.c:849
 msgid "Edit tags"
 msgstr "Címkék szerkesztése"
 
-#: src/gui.c:194 src/gui.c:261 src/gui.c:360
+#: src/gui.c:195 src/gui.c:264 src/gui.c:363
 msgid "_Quit"
 msgstr "_Kilépés"
 
-#: src/gui.c:196 src/gui.c:259
+#: src/gui.c:197 src/gui.c:262
 msgid "_Add the library"
 msgstr "Hozzá_adás a gyűjteményhez"
 
-#: src/gui.c:198 src/gui.c:279
+#: src/gui.c:199 src/gui.c:282
 msgid "Remove"
 msgstr "Törlés"
 
-#: src/gui.c:200 src/gui.c:281
+#: src/gui.c:201 src/gui.c:284
 msgid "Crop"
 msgstr "Kivágás"
 
-#: src/gui.c:202 src/gui.c:283
+#: src/gui.c:203 src/gui.c:286
 #, fuzzy
 msgid "Clear current playlist"
 msgstr "Lejátszólista törlése"
 
-#: src/gui.c:204
+#: src/gui.c:205
 msgid "Save selection"
 msgstr "Kiválasztás mentése"
 
-#: src/gui.c:206 src/gui.c:286
+#: src/gui.c:207 src/gui.c:289
 #, fuzzy
 msgid "Save current playlist"
 msgstr "Lejátszólista mentése"
 
-#: src/gui.c:208
+#: src/gui.c:209
 msgid "_Preferences"
 msgstr "_Beállítások"
 
-#: src/gui.c:210
+#: src/gui.c:211
 msgid "Lateral _panel"
 msgstr "Oldalsó _panel"
 
-#: src/gui.c:211
+#: src/gui.c:212
 msgid "Jump to playing song"
 msgstr "Ugrás a most szóló számra"
 
-#: src/gui.c:213
+#: src/gui.c:214
 msgid "Search _lyric"
 msgstr "Da_lszöveg keresése"
 
-#: src/gui.c:215
+#: src/gui.c:216
 msgid "_Search in playlist"
 msgstr "Kere_sés a lejátszólistában"
 
-#: src/gui.c:217
+#: src/gui.c:218
 msgid "_Rescan library"
 msgstr "Gyűjtemény új_raolvasása"
 
-#: src/gui.c:219
+#: src/gui.c:220
 msgid "_Update library"
 msgstr "Gyűjtemény _frissítése"
 
-#: src/gui.c:221
+#: src/gui.c:222
 msgid "_Statistics"
 msgstr "_Statisztika"
 
-#: src/gui.c:223
+#: src/gui.c:224
 msgid "Homepage"
 msgstr "Honlap"
 
-#: src/gui.c:225
+#: src/gui.c:226
 msgid "Community"
 msgstr "Közösség"
 
-#: src/gui.c:227
+#: src/gui.c:228
 msgid "Wiki"
 msgstr "Wiki"
 
-#: src/gui.c:229
+#: src/gui.c:230
 msgid "Translate Pragha"
 msgstr "Pragha fordítása"
 
-#: src/gui.c:231 src/gui.c:344
+#: src/gui.c:232 src/gui.c:347
 msgid "About"
 msgstr "Névjegy"
 
-#: src/gui.c:236
+#: src/gui.c:237
 msgid "_Shuffle"
 msgstr "Véletlen_szerű"
 
-#: src/gui.c:239
+#: src/gui.c:240
 msgid "_Repeat"
 msgstr "_Ismétlés"
 
-#: src/gui.c:242
+#: src/gui.c:243
 msgid "_Fullscreen"
 msgstr "_Teljes képernyő"
 
-#: src/gui.c:245 src/gui.c:266 src/gui.c:643 src/pref.c:1474
+#: src/gui.c:246 src/gui.c:269 src/gui.c:649 src/pref.c:1474
 msgid "Library"
 msgstr "Gyűjtemény"
 
-#: src/gui.c:248 src/gui.c:269 src/gui.c:661 src/playlist.c:919
+#: src/gui.c:249 src/gui.c:272 src/gui.c:667 src/playlist.c:933
 msgid "Playlists"
 msgstr "Lejátszólisták"
 
-#: src/gui.c:251
+#: src/gui.c:252
 msgid "Status bar"
 msgstr "Státusz sor"
 
-#: src/gui.c:275
+#: src/gui.c:278
 msgid "Add to playback queue"
 msgstr "Hozzáadás a lejátszási sorhoz"
 
-#: src/gui.c:277
+#: src/gui.c:280
 msgid "Remove to playback queue"
 msgstr "Törlés a lejátszási sorból"
 
-#: src/gui.c:285
+#: src/gui.c:288
 #, fuzzy
 msgid "Add to playlist"
 msgstr "_Hozzáadás a lejátszólistához"
 
-#: src/gui.c:293 src/gui.c:306
+#: src/gui.c:296 src/gui.c:309
 #, fuzzy
 msgid "_Add to current playlist"
 msgstr "_Hozzáadás a lejátszólistához"
 
-#: src/gui.c:295 src/gui.c:308
+#: src/gui.c:298 src/gui.c:311
 #, fuzzy
 msgid "_Replace current playlist"
 msgstr "Lejátszólista cse_réje"
 
-#: src/gui.c:297 src/gui.c:310
+#: src/gui.c:300 src/gui.c:313
 #, fuzzy
 msgid "Replace and _play"
 msgstr "Lejátszólista cse_réje"
 
-#: src/gui.c:299
+#: src/gui.c:302
 msgid "Delete"
 msgstr "Törlés"
 
-#: src/gui.c:301
+#: src/gui.c:304
 msgid "Export"
 msgstr "Export"
 
-#: src/gui.c:314
+#: src/gui.c:317
 msgid "Move to _trash"
 msgstr "Mozgat_ás a kukába"
 
-#: src/gui.c:316
+#: src/gui.c:319
 msgid "Delete from library"
 msgstr "Törlés a gyűjteményből"
 
-#: src/gui.c:321
+#: src/gui.c:324
 msgid "_Expand library"
 msgstr "Gyűjt_emény kinyitása"
 
-#: src/gui.c:323
+#: src/gui.c:326
 msgid "_Collapse library"
 msgstr "Gyűjtemény _összezárása"
 
-#: src/gui.c:325 src/librarytree.c:1398
+#: src/gui.c:328 src/librarytree.c:1436
 msgid "Folders structure"
 msgstr "Mappák struktúrája"
 
-#: src/gui.c:327 src/gui.c:780 src/gui.c:945 src/pragha.h:87
-#: src/librarytree.c:1401 src/statusicon.c:203 src/tags.c:554 src/tags.c:608
+#: src/gui.c:330 src/gui.c:786 src/gui.c:951 src/pragha.h:87
+#: src/librarytree.c:1439 src/statusicon.c:203 src/tags.c:556 src/tags.c:610
 msgid "Artist"
 msgstr "Előadó"
 
-#: src/gui.c:329 src/gui.c:781 src/gui.c:946 src/pragha.h:88
-#: src/librarytree.c:1405 src/statusicon.c:204 src/tags.c:557 src/tags.c:609
+#: src/gui.c:332 src/gui.c:787 src/gui.c:952 src/pragha.h:88
+#: src/librarytree.c:1443 src/statusicon.c:204 src/tags.c:559 src/tags.c:611
 msgid "Album"
 msgstr "Album"
 
-#: src/gui.c:331 src/gui.c:782 src/gui.c:947 src/pragha.h:89
-#: src/librarytree.c:1411 src/tags.c:560 src/tags.c:610
+#: src/gui.c:334 src/gui.c:788 src/gui.c:953 src/pragha.h:89
+#: src/librarytree.c:1450 src/tags.c:562 src/tags.c:612
 msgid "Genre"
 msgstr "Műfaj"
 
-#: src/gui.c:333 src/librarytree.c:1415
+#: src/gui.c:336 src/librarytree.c:1454
 msgid "Artist / Album"
 msgstr "Előadó / Album"
 
-#: src/gui.c:335 src/librarytree.c:1426
+#: src/gui.c:338 src/librarytree.c:1465
 msgid "Genre / Album"
 msgstr "Műfaj / Album"
 
-#: src/gui.c:337 src/librarytree.c:1422
+#: src/gui.c:340 src/librarytree.c:1461
 msgid "Genre / Artist"
 msgstr "Műfaj / Előadó"
 
-#: src/gui.c:339 src/librarytree.c:1433
+#: src/gui.c:342 src/librarytree.c:1472
 msgid "Genre / Artist / Album"
 msgstr "Műfaj / Előadó / Album"
 
-#: src/gui.c:350 src/statusicon.c:164
+#: src/gui.c:353 src/statusicon.c:164
 msgid "Prev Track"
 msgstr "Előző sáv"
 
-#: src/gui.c:356 src/gui.c:1669 src/statusicon.c:168
+#: src/gui.c:359 src/gui.c:1675 src/statusicon.c:168
 msgid "Next Track"
 msgstr "Következő sáv"
 
-#: src/gui.c:672
+#: src/gui.c:678
 msgid "Pragha Music Player"
 msgstr "Pragha Zene lejátszó"
 
 #. Create the checkmenu items
-#: src/gui.c:778 src/gui.c:943 src/current_playlist.c:70
+#: src/gui.c:784 src/gui.c:949 src/current_playlist.c:70
 msgid "Track"
 msgstr "Sáv"
 
 #. Create labels
-#: src/gui.c:779 src/gui.c:944 src/pragha.h:86 src/statusicon.c:202
-#: src/tags.c:551 src/tags.c:607
+#: src/gui.c:785 src/gui.c:950 src/pragha.h:86 src/statusicon.c:202
+#: src/tags.c:553 src/tags.c:609
 msgid "Title"
 msgstr "Cím"
 
-#: src/gui.c:783 src/gui.c:948 src/pragha.h:90 src/current_playlist.c:1316
+#: src/gui.c:789 src/gui.c:954 src/pragha.h:90 src/current_playlist.c:1356
 msgid "Bitrate"
 msgstr "Bitráta"
 
-#: src/gui.c:784 src/gui.c:949 src/pragha.h:91 src/tags.c:612
+#: src/gui.c:790 src/gui.c:955 src/pragha.h:91 src/tags.c:614
 msgid "Year"
 msgstr "Év"
 
-#: src/gui.c:785 src/gui.c:950 src/pragha.h:92 src/tags.c:563 src/tags.c:613
+#: src/gui.c:791 src/gui.c:956 src/pragha.h:92 src/tags.c:565 src/tags.c:615
 msgid "Comment"
 msgstr "Megjegyzés"
 
 #. Create labels
-#: src/gui.c:786 src/gui.c:951 src/pragha.h:93 src/current_playlist.c:1315
+#: src/gui.c:792 src/gui.c:957 src/pragha.h:93 src/current_playlist.c:1355
 #: src/statusicon.c:205
 msgid "Length"
 msgstr "Hossz"
 
-#: src/gui.c:787 src/gui.c:952 src/pragha.h:94 src/current_playlist.c:1320
+#: src/gui.c:793 src/gui.c:958 src/pragha.h:94 src/current_playlist.c:1360
 msgid "Filename"
 msgstr "Fájlnév"
 
-#: src/gui.c:790
+#: src/gui.c:796
 msgid "Clear sort"
 msgstr "Rendezés törlése"
 
 #. Tooltips
-#: src/gui.c:1667
+#: src/gui.c:1673
 msgid "Play / Pause Track"
 msgstr "Sáv Lejátszása / Megállítása"
 
-#: src/gui.c:1668
+#: src/gui.c:1674
 msgid "Previous Track"
 msgstr "Előző sáv"
 
-#: src/gui.c:1670
+#: src/gui.c:1676
 msgid "Stop playback"
 msgstr "Lejátszás megállítása"
 
-#: src/gui.c:1672
+#: src/gui.c:1678
 msgid "Leave Fullscreen"
 msgstr "Teljes képernyő elhagyása"
 
-#: src/gui.c:1673
+#: src/gui.c:1679
 msgid "Play songs in a random order"
 msgstr "Számok lejátszása véletlenszerű sorrendben"
 
-#: src/gui.c:1674
+#: src/gui.c:1680
 msgid "Repeat playback list at the end"
 msgstr "Lejátszólista  ismétlése"
 
-#: src/gui.c:1714 src/panel.c:218 src/statusicon.c:199
+#: src/gui.c:1720 src/panel.c:218 src/statusicon.c:199
 msgid "<b>Not playing</b>"
 msgstr "<b>Nincs lejátszás</b>"
 
-#: src/gui.c:1942
+#: src/gui.c:1948
 msgid "Options of the library"
 msgstr "Gyűjtemény beállításai"
 
-#: src/pragha.h:85 src/tags.c:611
+#: src/pragha.h:85 src/tags.c:613
 msgid "Track No"
 msgstr "Sáv száma"
 
@@ -409,24 +409,24 @@ msgstr "Lejátszólista mentése"
 msgid "<b>con_playlist</b> is a reserved playlist name"
 msgstr "<b>con_playlist</b> egy védett lejátszólista neve"
 
-#: src/current_playlist.c:1317
+#: src/current_playlist.c:1357
 msgid "Channels"
 msgstr "Csatornák"
 
-#: src/current_playlist.c:1318
+#: src/current_playlist.c:1358
 msgid "Samplerate"
 msgstr "Mintavétel"
 
-#: src/current_playlist.c:1319
+#: src/current_playlist.c:1359
 msgid "Folder"
 msgstr "Mappa"
 
 #. The main edit dialog
-#: src/current_playlist.c:1410 src/tags.c:882
+#: src/current_playlist.c:1450 src/tags.c:884
 msgid "Details"
 msgstr "Részletek"
 
-#: src/current_playlist.c:2168
+#: src/current_playlist.c:2220
 #, fuzzy
 msgid "New playlist"
 msgstr "Lejátszólista mentése"
@@ -448,16 +448,16 @@ msgstr "Ismeretlen album"
 msgid "Unknown Genre"
 msgstr "Ismeretlen műfaj"
 
-#: src/librarytree.c:385
+#: src/librarytree.c:386
 msgid "Cannot move file to trash, do you want to delete immediately?"
 msgstr "Nem sikerült a kukába mozgatni, szeretné azonnal törölni?"
 
-#: src/librarytree.c:386
+#: src/librarytree.c:387
 #, c-format
 msgid "The file \"%s\" cannot be moved to the trash. Details: %s"
 msgstr "A  \"%s\" fájl mozgatása a kukába sikertelen. Részletek: %s"
 
-#: src/librarytree.c:1149
+#: src/librarytree.c:1187
 msgid ""
 "Are you sure you want to delete current file from library?\n"
 "\n"
@@ -467,11 +467,11 @@ msgstr ""
 "\n"
 "Figyelem: Ahhoz hogy helyreállítsa újra kell ellenőrizni a gyűjteményt."
 
-#: src/librarytree.c:1206
+#: src/librarytree.c:1244
 msgid "Really want to move the files to trash?"
 msgstr "Valóban a kukába szeretné dobni a fájlokat?"
 
-#: src/librarytree.c:1208
+#: src/librarytree.c:1246
 msgid "Delete immediately instead of move to trash"
 msgstr "Végleges törlés a kukába helyezés helyett"
 
@@ -480,16 +480,16 @@ msgstr "Végleges törlés a kukába helyezés helyett"
 msgid "by <b>%s</b> in <b>%s</b> <b>(%s)</b>"
 msgstr ""
 
-#: src/tags.c:544
+#: src/tags.c:546
 #, fuzzy
 msgid "Selection to"
 msgstr "Kiválasztás mentése"
 
-#: src/tags.c:573
+#: src/tags.c:575
 msgid "Open folder"
 msgstr ""
 
-#: src/tags.c:614
+#: src/tags.c:616
 msgid "File"
 msgstr "Fájl"
 
@@ -722,9 +722,12 @@ msgstr "nap"
 msgid "Unable to open the browser"
 msgstr "A böngésző megnyitása sikertelen"
 
-#: src/playlist.c:536
+#: src/playlist.c:550
 msgid "Export playlist to file"
 msgstr "Lejátszólista exportálása fájlba"
+
+#~ msgid "_Play audio CD"
+#~ msgstr "_Audio CD lejátszása"
 
 #~ msgid ""
 #~ "<small><span weight=\"light\">by</span></small> %s <small><span weight="
