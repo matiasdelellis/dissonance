@@ -236,6 +236,9 @@ typedef enum {
 enum debug_level {
 	DBG_INFO = 1,
 	DBG_MOBJ,
+#if HAVE_GLIB_2_26
+	DBG_MPRIS,
+#endif
 	DBG_DB,
 	DBG_VERBOSE,
 };

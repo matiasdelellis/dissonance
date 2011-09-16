@@ -12,9 +12,10 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the        *
  * GNU General Public License for more details.                         *
  *                                                                      *
- * You should have received a copy of the GNU General Public License    * 
- * along with this program.  If not, see <http:www.gnu.org/licenses/>.  * 
+ * You should have received a copy of the GNU General Public License    *
+ * along with this program.  If not, see <http:www.gnu.org/licenses/>.  *
  ************************************************************************/
+
 #include "pragha.h"
 
 /* for GDBusConnection nedd Glib 2.26 */
@@ -134,40 +135,47 @@ static const gchar mpris2xml[] =
 #define PROPPUT(x,y) \
 	if(g_quark_try_string(property_name)==g_quark_from_static_string(#y)) \
 		mpris_##x##_put_##y(cwin, value);
-#define END_INTERFACE }	
+#define END_INTERFACE }
 
 /* org.mpris.MediaPlayer2 */
-static GVariant* mpris_Root_Raise(struct con_win *cwin, GVariant* parameters) { 
+static GVariant* mpris_Root_Raise(struct con_win *cwin, GVariant* parameters) {
 	gtk_window_present(GTK_WINDOW(cwin->mainwindow));
-	return NULL; 
+	return NULL;
 }
-static GVariant* mpris_Root_Quit(struct con_win *cwin, GVariant* parameters) { 
+
+static GVariant* mpris_Root_Quit(struct con_win *cwin, GVariant* parameters) {
 	exit_pragha(NULL, cwin);
-	return NULL; 
+	return NULL;
 }
-static GVariant* mpris_Root_get_CanQuit(struct con_win *cwin) { 
-	return g_variant_new_boolean(TRUE); 
-}
-static GVariant* mpris_Root_get_CanRaise(struct con_win *cwin) { 
-	return g_variant_new_boolean(TRUE); 
-}
-static GVariant* mpris_Root_get_HasTrackList(struct con_win *cwin) { 
+
+static GVariant* mpris_Root_get_CanQuit(struct con_win *cwin) {
 	return g_variant_new_boolean(TRUE);
 }
-static GVariant* mpris_Root_get_Identity(struct con_win *cwin) { 	
 
-	return g_variant_new_string("Pragha Music Player"); 
+static GVariant* mpris_Root_get_CanRaise(struct con_win *cwin) {
+	return g_variant_new_boolean(TRUE);
 }
-static GVariant* mpris_Root_get_DesktopEntry(struct con_win *cwin) { 
-	GVariant* ret_val = g_variant_new_string(DESKTOPENTRY); 
+
+static GVariant* mpris_Root_get_HasTrackList(struct con_win *cwin) {
+	return g_variant_new_boolean(TRUE);
+}
+
+static GVariant* mpris_Root_get_Identity(struct con_win *cwin) {
+	return g_variant_new_string("Pragha Music Player");
+}
+
+static GVariant* mpris_Root_get_DesktopEntry(struct con_win *cwin) {
+	GVariant* ret_val = g_variant_new_string("pragha");
 	return ret_val;
 }
-static GVariant* mpris_Root_get_SupportedUriSchemes(struct con_win *cwin) { 
-	return g_variant_parse(G_VARIANT_TYPE("as"), 
+
+static GVariant* mpris_Root_get_SupportedUriSchemes(struct con_win *cwin) {
+	return g_variant_parse(G_VARIANT_TYPE("as"),
 		"['file', 'cdda']", NULL, NULL, NULL);
 }
-static GVariant* mpris_Root_get_SupportedMimeTypes(struct con_win *cwin) { 
-	return g_variant_parse(G_VARIANT_TYPE("as"), 
+
+static GVariant* mpris_Root_get_SupportedMimeTypes(struct con_win *cwin) {
+	return g_variant_parse(G_VARIANT_TYPE("as"),
 		"['audio/x-mp3', 'audio/mpeg', 'audio/x-mpeg', 'audio/mpeg3', "
 		"'audio/mp3', 'application/ogg', 'application/x-ogg', 'audio/vorbis', "
 		"'audio/x-vorbis', 'audio/ogg', 'audio/x-ogg', 'audio/x-flac', "
@@ -177,28 +185,34 @@ static GVariant* mpris_Root_get_SupportedMimeTypes(struct con_win *cwin) {
 /* org.mpris.MediaPlayer2.Player */
 static GVariant* mpris_Player_Play(struct con_win *cwin, GVariant* parameters) {
 	play_track(cwin);
-	return NULL; 
+	return NULL;
 }
+
 static GVariant* mpris_Player_Next(struct con_win *cwin, GVariant* parameters) {
-	play_next_track(cwin); 
-	return NULL; 
+	play_next_track(cwin);
+	return NULL;
 }
+
 static GVariant* mpris_Player_Previous(struct con_win *cwin, GVariant* parameters) {
-	play_prev_track(cwin); 
-	return NULL; 
+	play_prev_track(cwin);
+	return NULL;
 }
+
 static GVariant* mpris_Player_Pause(struct con_win *cwin, GVariant* parameters) {
-	pause_playback(cwin); 
-	return NULL; 
+	pause_playback(cwin);
+	return NULL;
 }
+
 static GVariant* mpris_Player_PlayPause(struct con_win *cwin, GVariant* parameters) {
 	play_pause_resume(cwin);
-	return NULL; 
+	return NULL;
 }
+
 static GVariant* mpris_Player_Stop(struct con_win *cwin, GVariant* parameters) {
-	stop_playback(cwin); 
-	return NULL; 
+	stop_playback(cwin);
+	return NULL;
 }
+
 static GVariant* mpris_Player_Seek(struct con_win *cwin, GVariant* parameters) {
 	gdouble fraction = gtk_progress_bar_get_fraction(GTK_PROGRESS_BAR(cwin->track_progress_bar));
 	gint seek = cwin->cstate->curr_mobj->tags->length * fraction;
@@ -209,6 +223,7 @@ static GVariant* mpris_Player_Seek(struct con_win *cwin, GVariant* parameters) {
 	seek_playback(cwin, seek, fraction);
 	return NULL;
 }
+
 static GVariant* mpris_Player_SetPosition(struct con_win *cwin, GVariant* parameters) {
 	gint64 param;
 	gchar *path = NULL;
@@ -223,10 +238,14 @@ static GVariant* mpris_Player_SetPosition(struct con_win *cwin, GVariant* parame
 	g_free(path);
 	return NULL;
 }
+
 static GVariant* mpris_Player_OpenUri(struct con_win *cwin, GVariant* parameters) {
 	gchar *uri = NULL;
 	g_variant_get(parameters, "(s)", &uri);
 	gboolean failed = FALSE;
+
+	CDEBUG(DBG_MPRIS, "MPRIS Player OpenUri");
+
 	if(uri) {
 		// TODO: Translate "cdda://sr0/Track 01.wav" URIs for new_musicobject_from_cdda()
 		//       If there is such a convention on other players
@@ -236,11 +255,11 @@ static GVariant* mpris_Player_OpenUri(struct con_win *cwin, GVariant* parameters
 			if(mobj) {
 				GtkTreePath *tree_path;
 				append_current_playlist_ex(mobj, cwin, &tree_path);
-				
+
 				// Dangerous: reusing double-click-handler here.
 				current_playlist_row_activated_cb(
 					GTK_TREE_VIEW(cwin->current_playlist), tree_path, NULL, cwin);
-				
+
 				gtk_tree_path_free(tree_path);
 			} else {
 				failed = TRUE;
@@ -259,33 +278,41 @@ static GVariant* mpris_Player_OpenUri(struct con_win *cwin, GVariant* parameters
 				DBUS_ERROR_INVALID_FILE_CONTENT, "This file does not play here.");
 	return NULL;
 }
-static GVariant* mpris_Player_get_PlaybackStatus(struct con_win *cwin) { 
+
+static GVariant* mpris_Player_get_PlaybackStatus(struct con_win *cwin) {
 	switch (cwin->cstate->state) {
 	case ST_PLAYING:	return g_variant_new_string("Playing");
 	case ST_PAUSED:		return g_variant_new_string("Paused");
 	default:		return g_variant_new_string("Stopped");
 	}
 }
-static GVariant* mpris_Player_get_LoopStatus(struct con_win *cwin) { 
+
+static GVariant* mpris_Player_get_LoopStatus(struct con_win *cwin) {
 	return g_variant_new_string(cwin->cpref->repeat ? "Playlist" : "None");
 }
+
 static void mpris_Player_put_LoopStatus(struct con_win *cwin, GVariant *value) {
-	const gchar *new_loop = g_variant_get_string(value, NULL); 
+	const gchar *new_loop = g_variant_get_string(value, NULL);
 	cwin->cpref->repeat = g_strcmp0("Playlist", new_loop) ? FALSE : TRUE;
 }
-static GVariant* mpris_Player_get_Rate(struct con_win *cwin) { 
+
+static GVariant* mpris_Player_get_Rate(struct con_win *cwin) {
 	return g_variant_new_double(1.0);
 }
-static void mpris_Player_put_Rate(struct con_win *cwin, GVariant *value) { 
-	g_dbus_method_invocation_return_dbus_error(cwin->cmpris2->method_invocation, 
+
+static void mpris_Player_put_Rate(struct con_win *cwin, GVariant *value) {
+	g_dbus_method_invocation_return_dbus_error(cwin->cmpris2->method_invocation,
 		DBUS_ERROR_NOT_SUPPORTED, "This is not alsaplayer.");
 }
+
 static GVariant* mpris_Player_get_Shuffle(struct con_win *cwin) {
 	return g_variant_new_boolean(cwin->cpref->shuffle);
 }
-static void mpris_Player_put_Shuffle(struct con_win *cwin, GVariant *value) { 
+
+static void mpris_Player_put_Shuffle(struct con_win *cwin, GVariant *value) {
 	cwin->cpref->shuffle = g_variant_get_boolean(value);
 }
+
 static GVariant * handle_get_trackid(struct musicobject *mobj) {
 	gchar *o = alloca(260);
 	if(NULL == mobj)
@@ -293,64 +320,74 @@ static GVariant * handle_get_trackid(struct musicobject *mobj) {
 	g_snprintf(o, 260, "%s/TrackList/%p", MPRIS_PATH, mobj);
 	return g_variant_new_object_path(o);
 }
-static void handle_get_metadata(struct musicobject *mobj, GVariantBuilder *b) {
-	gchar *artists = g_strdup_printf("['%s']", mobj->tags->artist);
-	gchar *genres = g_strdup_printf("['%s']", mobj->tags->genre);
+
+void handle_strings_request(GVariantBuilder *b, gchar *tag, gchar *val)
+{
+	GVariant *vval = g_variant_new_string(val);
+	GVariant *vvals = g_variant_new_array(G_VARIANT_TYPE_STRING, &vval, 1);
+
+	g_variant_builder_add (b, "{sv}", tag, vvals);
+}
+
+static void handle_get_metadata(struct musicobject *mobj, GVariantBuilder *b)
+{
 	gchar *date = g_strdup_printf("%d", mobj->tags->year);
-	gchar *comments = g_strdup_printf("['%s']", mobj->tags->comment);
-	gchar *url = g_str_has_prefix(mobj->file, "cdda") ? 
-		g_strdup(mobj->file) : 
+	gchar *url = g_str_has_prefix(mobj->file, "cdda") ?
+		g_strdup(mobj->file) :
 		g_filename_to_uri(mobj->file, NULL, NULL);
 
-	g_variant_builder_add (b, "{sv}", "mpris:trackid", 
+	CDEBUG(DBG_MPRIS, "MPRIS handle get metadata");
+
+	g_variant_builder_add (b, "{sv}", "mpris:trackid",
 		handle_get_trackid(mobj));
-	g_variant_builder_add (b, "{sv}", "xesam:url", 
+	g_variant_builder_add (b, "{sv}", "xesam:url",
 		g_variant_new_string(url));
-	g_variant_builder_add (b, "{sv}", "xesam:title", 
+	g_variant_builder_add (b, "{sv}", "xesam:title",
 		g_variant_new_string(mobj->tags->title));
-	g_variant_builder_add (b, "{sv}", "xesam:artist", 
-		g_variant_parse(G_VARIANT_TYPE("as"), artists, NULL, NULL, NULL));
-	g_variant_builder_add (b, "{sv}", "xesam:album", 
+	handle_strings_request(b, "xesam:artist", mobj->tags->artist);
+	g_variant_builder_add (b, "{sv}", "xesam:album",
 		g_variant_new_string(mobj->tags->album));
-	g_variant_builder_add (b, "{sv}", "xesam:genre", 
-		g_variant_parse(G_VARIANT_TYPE("as"), genres, NULL, NULL, NULL));
-	g_variant_builder_add (b, "{sv}", "xesam:contentCreated", 
+	handle_strings_request(b, "xesam:genre", mobj->tags->genre);
+	g_variant_builder_add (b, "{sv}", "xesam:contentCreated",
 		g_variant_new_string (date));
-	g_variant_builder_add (b, "{sv}", "xesam:trackNumber", 
+	g_variant_builder_add (b, "{sv}", "xesam:trackNumber",
 		g_variant_new_int32(mobj->tags->track_no));
-	g_variant_builder_add (b, "{sv}", "xesam:comment", 
-		g_variant_parse(G_VARIANT_TYPE("as"), comments, NULL, NULL, NULL));
-	g_variant_builder_add (b, "{sv}", "mpris:length", 
+	handle_strings_request(b, "xesam:comment", mobj->tags->comment);
+	g_variant_builder_add (b, "{sv}", "mpris:length",
 		g_variant_new_int64(mobj->tags->length * 1000000l));
-	g_variant_builder_add (b, "{sv}", "audio-bitrate", 
+	g_variant_builder_add (b, "{sv}", "audio-bitrate",
 		g_variant_new_int32(mobj->tags->bitrate));
-	g_variant_builder_add (b, "{sv}", "audio-channels", 
+	g_variant_builder_add (b, "{sv}", "audio-channels",
 		g_variant_new_int32(mobj->tags->channels));
-	g_variant_builder_add (b, "{sv}", "audio-samplerate", 
+	g_variant_builder_add (b, "{sv}", "audio-samplerate",
 		g_variant_new_int32(mobj->tags->samplerate));
-	g_free(artists);
-	g_free(genres);
+
 	g_free(date);
-	g_free(comments);
 	g_free(url);
 }
-static GVariant* mpris_Player_get_Metadata(struct con_win *cwin) { 
+
+static GVariant* mpris_Player_get_Metadata(struct con_win *cwin) {
 	GVariantBuilder *b = g_variant_builder_new (G_VARIANT_TYPE ("a{sv}"));
+
+	CDEBUG(DBG_MPRIS, "MPRIS Player get Metadata");
+
 	if (cwin->cstate->state != ST_STOPPED) {
 		handle_get_metadata(cwin->cstate->curr_mobj, b);
 	} else {
-		g_variant_builder_add (b, "{sv}", "mpris:trackid", 
+		g_variant_builder_add (b, "{sv}", "mpris:trackid",
 			handle_get_trackid(NULL));
 	}
-	return g_variant_builder_end(b); 
+	return g_variant_builder_end(b);
 }
-static GVariant* mpris_Player_get_Volume(struct con_win *cwin) { 
+
+static GVariant* mpris_Player_get_Volume(struct con_win *cwin) {
 	return g_variant_new_double(
 		((gdouble)cwin->cmixer->curr_vol - (gdouble)cwin->cmixer->min_vol) / (gdouble)cwin->cmixer->max_vol);
 }
-static void mpris_Player_put_Volume(struct con_win *cwin, GVariant *value) { 
+
+static void mpris_Player_put_Volume(struct con_win *cwin, GVariant *value) {
 	gdouble volume = g_variant_get_double(value);
-	
+
 	if (!cwin->cstate->audio_init)
 		return;
 	volume *= cwin->cmixer->max_vol;
@@ -360,116 +397,152 @@ static void mpris_Player_put_Volume(struct con_win *cwin, GVariant *value) {
 	gtk_scale_button_set_value(GTK_SCALE_BUTTON(cwin->vol_button),
 				   cwin->cmixer->curr_vol);
 }
-static GVariant* mpris_Player_get_Position(struct con_win *cwin) { 
+
+static GVariant* mpris_Player_get_Position(struct con_win *cwin) {
 	if (cwin->cstate->state == ST_STOPPED)
 		return g_variant_new_int64(0);
 	else
 		return g_variant_new_int64(cwin->cstate->newsec * 1000000);
 }
-static GVariant* mpris_Player_get_MinimumRate(struct con_win *cwin) { 
+
+static GVariant* mpris_Player_get_MinimumRate(struct con_win *cwin) {
 	return g_variant_new_double(1.0);
 }
-static GVariant* mpris_Player_get_MaximumRate(struct con_win *cwin) { 
+
+static GVariant* mpris_Player_get_MaximumRate(struct con_win *cwin) {
 	return g_variant_new_double(1.0);
 }
-static GVariant* mpris_Player_get_CanGoNext(struct con_win *cwin) { 
+
+static GVariant* mpris_Player_get_CanGoNext(struct con_win *cwin) {
 	// do we need to go into such detail?
 	return g_variant_new_boolean(TRUE);
 }
-static GVariant* mpris_Player_get_CanGoPrevious(struct con_win *cwin) { 
+
+static GVariant* mpris_Player_get_CanGoPrevious(struct con_win *cwin) {
 	// do we need to go into such detail?
 	return g_variant_new_boolean(TRUE);
 }
-static GVariant* mpris_Player_get_CanPlay(struct con_win *cwin) { 
+
+static GVariant* mpris_Player_get_CanPlay(struct con_win *cwin) {
 	return g_variant_new_boolean(NULL != cwin->cstate->curr_mobj);
 }
-static GVariant* mpris_Player_get_CanPause(struct con_win *cwin) { 
+
+static GVariant* mpris_Player_get_CanPause(struct con_win *cwin) {
 	return g_variant_new_boolean(NULL != cwin->cstate->curr_mobj);
 }
-static GVariant* mpris_Player_get_CanSeek(struct con_win *cwin) { 
+
+static GVariant* mpris_Player_get_CanSeek(struct con_win *cwin) {
 	return g_variant_new_boolean(TRUE);
 }
-static GVariant* mpris_Player_get_CanControl(struct con_win *cwin) { 
+
+static GVariant* mpris_Player_get_CanControl(struct con_win *cwin) {
 	// always?
 	return g_variant_new_boolean(TRUE);
 }
 
 /* org.mpris.MediaPlayer2.Playlists */
-static GVariant* mpris_Playlists_ActivatePlaylist(struct con_win *cwin, GVariant* parameters) { 
-	gchar* playlist = NULL;
-	gboolean found = FALSE;
-	g_variant_get(parameters, "(o)", &playlist);
-	if(playlist && g_str_has_prefix(playlist, MPRIS_PATH)) {
-		gint i = 0;
-		gchar **playlists = get_playlist_names_db(cwin);
-		while(playlists[i]) {
-			gchar *list = g_strdup_printf("%s/Playlists/%d", MPRIS_PATH, i);
-			if(!g_strcmp0(list, playlist)) {
-				stop_playback(cwin);
-				clear_current_playlist(NULL, cwin);
-				add_playlist_current_playlist(playlists[i], cwin);
-				play_track(cwin);
-				found = TRUE;
-				break;
+static GVariant* mpris_Playlists_ActivatePlaylist(struct con_win *cwin, GVariant* parameters)
+{
+	gchar *get_playlist = NULL, *test_playlist = NULL, *found_playlist = NULL;
+	gchar **db_playlists = NULL;
+	gint i = 0;
+
+	CDEBUG(DBG_MPRIS, "MPRIS Playlists ActivatePlaylist");
+
+	g_variant_get(parameters, "(o)", &get_playlist);
+
+	if(get_playlist && g_str_has_prefix(get_playlist, MPRIS_PATH)) {
+		db_playlists = get_playlist_names_db(cwin);
+		if(db_playlists) {
+			while(db_playlists[i]) {
+				test_playlist = g_strdup_printf("%s/Playlists/%d", MPRIS_PATH, i);
+				if(0 == g_strcmp0(test_playlist, get_playlist))
+					found_playlist = g_strdup(db_playlists[i]);
+				g_free(test_playlist);
+				i++;
 			}
-			g_free(list);
-			i++;
+			g_strfreev(db_playlists);
 		}
-		g_free(playlists);
 	}
-	if(!found)
-		g_dbus_method_invocation_return_dbus_error(cwin->cmpris2->method_invocation, 
-				DBUS_ERROR_INVALID_ARGS, "Unknown or malformed playlist object path.");
-		
-	g_free(playlist);
-	return NULL; 
+
+	if(found_playlist) {
+		clear_current_playlist(NULL, cwin);
+		add_playlist_current_playlist(found_playlist, cwin);
+
+		stop_playback(cwin);
+		play_first_current_playlist (cwin);
+
+		g_free(found_playlist);
+	}
+	else {
+		g_dbus_method_invocation_return_dbus_error(cwin->cmpris2->method_invocation,
+							DBUS_ERROR_INVALID_ARGS, "Unknown or malformed playlist object path.");
+	}
+
+	return NULL;
 }
-static GVariant* mpris_Playlists_GetPlaylists(struct con_win *cwin, GVariant* parameters) { 
+
+static GVariant* mpris_Playlists_GetPlaylists(struct con_win *cwin, GVariant* parameters)
+{
 	GVariantBuilder *builder;
 	guint start, max;
 	gchar *order;
+	gchar ** lists = NULL;
+	gchar *listpath = NULL;
 	gboolean reverse;
-	g_variant_get(parameters, "(uusb)", &start, &max, &order, &reverse);
-	gchar ** lists = get_playlist_names_db(cwin);
+	gint i = 0, imax = 0;
+
+	CDEBUG(DBG_MPRIS, "MPRIS Playlists GetPlaylists");
+
 	builder = g_variant_builder_new (G_VARIANT_TYPE ("(a(oss))"));
 	g_variant_builder_open(builder, G_VARIANT_TYPE("a(oss)"));
-	gint i = 0;
-	gint imax = max;
-	while(lists[i]) {
-		if(i >= start && imax > 0) {
-			gchar *listpath = g_strdup_printf("%s/Playlists/%d", MPRIS_PATH, i);
-			g_variant_builder_add (builder, "(oss)", listpath, lists[i], "");
-			g_free(listpath);
-			imax--;
+
+	lists = get_playlist_names_db(cwin);
+
+	if (lists) {
+		g_variant_get(parameters, "(uusb)", &start, &max, &order, &reverse);
+		imax = max;
+		while(lists[i]) {
+			if(i >= start && imax > 0) {
+				listpath = g_strdup_printf("%s/Playlists/%d", MPRIS_PATH, i);
+				g_variant_builder_add (builder, "(oss)", listpath, lists[i], "");
+
+				g_free(listpath);
+				imax--;
+			}
+			i++;
 		}
-		i++;
+		g_strfreev(lists);
 	}
-	g_free(lists);
 	g_variant_builder_close(builder);
-	return g_variant_builder_end(builder); 
-}
-static GVariant* mpris_Playlists_get_ActivePlaylist(struct con_win *cwin) { 
-	return g_variant_new("(b(oss))", 
-		FALSE, "/", "invalid", "invalid");
-}
-static GVariant* mpris_Playlists_get_Orderings(struct con_win *cwin) {
-	return g_variant_parse(G_VARIANT_TYPE("as"), 
-		"['UserDefined']", NULL, NULL, NULL);
-}
-static GVariant* mpris_Playlists_get_PlaylistCount(struct con_win *cwin) { 
-	return g_variant_new_uint32(get_playlist_count_db(cwin)); 
+
+	return g_variant_builder_end(builder);
 }
 
-gboolean handle_path_request(struct con_win *cwin, const gchar *dbus_path, 
+static GVariant* mpris_Playlists_get_ActivePlaylist(struct con_win *cwin) {
+	return g_variant_new("(b(oss))",
+		FALSE, "/", "invalid", "invalid");
+}
+
+static GVariant* mpris_Playlists_get_Orderings(struct con_win *cwin) {
+	return g_variant_parse(G_VARIANT_TYPE("as"),
+		"['UserDefined']", NULL, NULL, NULL);
+}
+
+static GVariant* mpris_Playlists_get_PlaylistCount(struct con_win *cwin) {
+	return g_variant_new_uint32(get_playlist_count_db(cwin));
+}
+
+gboolean handle_path_request(struct con_win *cwin, const gchar *dbus_path,
 		struct musicobject **mobj, GtkTreePath **tree_path) {
 	gchar *base = g_strdup_printf("%s/TrackList/", MPRIS_PATH);
 	gboolean found = FALSE;
 	*mobj = NULL;
 	if(g_str_has_prefix(dbus_path, base)) {
-		
+
 		void *request = NULL;
 		sscanf(dbus_path + strlen(base), "%p", &request);
-		
+
 		if(request) {
 			GtkTreePath *path = current_playlist_path_at_mobj(request, cwin);
 			if(path) {
@@ -487,16 +560,18 @@ gboolean handle_path_request(struct con_win *cwin, const gchar *dbus_path,
 }
 
 /* org.mpris.MediaPlayer2.TrackList */
-static GVariant* mpris_TrackList_GetTracksMetadata(struct con_win *cwin, GVariant* parameters) { 
+static GVariant* mpris_TrackList_GetTracksMetadata(struct con_win *cwin, GVariant* parameters) {
 	/* In: (ao) out: aa{sv} */
-	
+
 	GVariant *param1 = g_variant_get_child_value(parameters, 0);
 	gsize i, length;
 	GVariantBuilder *b = g_variant_builder_new (G_VARIANT_TYPE ("(aa{sv})"));
 	const gchar *path;
-	
+
+	CDEBUG(DBG_MPRIS, "MPRIS Tracklist GetTracksMetada");
+
 	g_variant_builder_open(b, G_VARIANT_TYPE("aa{sv}"));
-	
+
 	length = g_variant_n_children(param1);
 	
 	for(i = 0; i < length; i++) {
@@ -504,36 +579,38 @@ static GVariant* mpris_TrackList_GetTracksMetadata(struct con_win *cwin, GVarian
 		struct musicobject *mobj= NULL;
 		path = g_variant_get_string(g_variant_get_child_value(param1, i), NULL);
 		if (handle_path_request(cwin, path, &mobj, NULL)) {
-			
 			handle_get_metadata(mobj, b);
-			
 		} else {
-			
-			g_variant_builder_add (b, "{sv}", "mpris:trackid", 
+			g_variant_builder_add (b, "{sv}", "mpris:trackid",
 			g_variant_new_object_path(path));
 		}
 		g_variant_builder_close(b);
 	}
-	
 	g_variant_builder_close(b);
-	
-	return g_variant_builder_end(b); 
+
+	return g_variant_builder_end(b);
 }
+
 static GVariant* mpris_TrackList_AddTrack(struct con_win *cwin, GVariant* parameters) {
-	g_dbus_method_invocation_return_dbus_error(cwin->cmpris2->method_invocation, 
+	g_dbus_method_invocation_return_dbus_error(cwin->cmpris2->method_invocation,
 		DBUS_ERROR_NOT_SUPPORTED, "TrackList is read-only.");
-	return NULL; 
+	return NULL;
 }
-static GVariant* mpris_TrackList_RemoveTrack(struct con_win *cwin, GVariant* parameters) { 
-	g_dbus_method_invocation_return_dbus_error(cwin->cmpris2->method_invocation, 
+
+static GVariant* mpris_TrackList_RemoveTrack(struct con_win *cwin, GVariant* parameters) {
+	g_dbus_method_invocation_return_dbus_error(cwin->cmpris2->method_invocation,
 		DBUS_ERROR_NOT_SUPPORTED, "TrackList is read-only.");
-	return NULL; 
+	return NULL;
 }
+
 static GVariant* mpris_TrackList_GoTo(struct con_win *cwin, GVariant* parameters) {
 	gchar *path = NULL;
 	GtkTreePath *tree_path = NULL;
 	g_variant_get(parameters, "(o)", &path);
 	struct musicobject *mobj = NULL;
+
+	CDEBUG(DBG_MPRIS, "MPRIS Tracklist GoTo");
+
 	if(handle_path_request(cwin, path, &mobj, &tree_path)) {
 		// Dangerous: reusing double-click handler here.
 		current_playlist_row_activated_cb(
@@ -541,13 +618,16 @@ static GVariant* mpris_TrackList_GoTo(struct con_win *cwin, GVariant* parameters
 	} else
 		g_dbus_method_invocation_return_dbus_error(cwin->cmpris2->method_invocation, 
 				DBUS_ERROR_INVALID_ARGS, "Unknown or malformed playlist object path.");
-	return NULL; 
+	return NULL;
 }
-static GVariant* mpris_TrackList_get_Tracks(struct con_win *cwin) { 
+
+static GVariant* mpris_TrackList_get_Tracks(struct con_win *cwin) {
 	GVariantBuilder *builder = g_variant_builder_new(G_VARIANT_TYPE("ao"));
 	GtkTreeModel *model;
 	GtkTreeIter iter;
 	struct musicobject *mobj = NULL;
+
+	CDEBUG(DBG_MPRIS, "MPRIS Tracklist get Tracks");
 
 	// TODO: remove tree access
 	model = gtk_tree_view_get_model(GTK_TREE_VIEW(cwin->current_playlist));
@@ -562,13 +642,13 @@ static GVariant* mpris_TrackList_get_Tracks(struct con_win *cwin) {
 		}
 	} while(gtk_tree_model_iter_next(model, &iter));
 
-bad:	
-	return g_variant_builder_end(builder); 
-}
-static GVariant* mpris_TrackList_get_CanEditTracks(struct con_win *cwin) { 
-	return g_variant_new_boolean(FALSE); 
+bad:
+	return g_variant_builder_end(builder);
 }
 
+static GVariant* mpris_TrackList_get_CanEditTracks(struct con_win *cwin) {
+	return g_variant_new_boolean(FALSE);
+}
 
 /* dbus callbacks */
 static void
@@ -759,6 +839,7 @@ on_name_lost (GDBusConnection *connection,
 }
 
 /* pragha callbacks */
+
 void mpris_update_any(struct con_win *cwin) {
 	gboolean change_detected = FALSE;
 	GVariantBuilder *b;
@@ -767,10 +848,11 @@ void mpris_update_any(struct con_win *cwin) {
 	if(NULL == cwin->cmpris2->dbus_connection)
 		return; /* better safe than sorry */
 
+	CDEBUG(DBG_MPRIS, "MPRIS update any");
+
 	if (cwin->cstate->state != ST_STOPPED)
 		newtitle = cwin->cstate->curr_mobj->file;
-	
-	newtitle = cwin->cstate->curr_mobj->file;
+
 	b = g_variant_builder_new(G_VARIANT_TYPE("a{sv}"));
 	if(cwin->cmpris2->saved_shuffle != cwin->cpref->shuffle)
 	{
@@ -833,10 +915,12 @@ void mpris_update_mobj_remove(struct con_win *cwin, struct musicobject *mobj) {
 	if(NULL == cwin->cmpris2->dbus_connection)
 		return; /* better safe than sorry */
 
+	CDEBUG(DBG_MPRIS, "MPRIS update mobj remove");
+
 	tuples[0] = handle_get_trackid(mobj);
-	
-	g_dbus_connection_emit_signal(cwin->cmpris2->dbus_connection, NULL, MPRIS_PATH, 
-		"org.mpris.MediaPlayer2.TrackList", "TrackRemoved", 
+
+	g_dbus_connection_emit_signal(cwin->cmpris2->dbus_connection, NULL, MPRIS_PATH,
+		"org.mpris.MediaPlayer2.TrackList", "TrackRemoved",
 		g_variant_new_tuple(tuples, 1), NULL);
 }
 
@@ -845,13 +929,16 @@ void mpris_update_mobj_added(struct con_win *cwin, struct musicobject *mobj, Gtk
 	GtkTreePath *path = NULL;
 	struct musicobject *prev = NULL;
 	GVariantBuilder *b;
-	
+
 	if(NULL == cwin->cmpris2->dbus_connection)
 		return; /* better safe than sorry */
 
 	model = gtk_tree_view_get_model(GTK_TREE_VIEW(cwin->current_playlist));
 	if(NULL == model)
 		return;
+
+	CDEBUG(DBG_MPRIS, "MPRIS update mobj added");
+
 	b = g_variant_builder_new (G_VARIANT_TYPE ("(a{sv}o)"));
 	path = gtk_tree_model_get_path(model, iter);
 
@@ -859,20 +946,20 @@ void mpris_update_mobj_added(struct con_win *cwin, struct musicobject *mobj, Gtk
 		prev = current_playlist_mobj_at_path(path, cwin);
 	}
 	gtk_tree_path_free(path);
-	
+
 	g_variant_builder_open(b, G_VARIANT_TYPE("a{sv}"));
 	handle_get_metadata(mobj, b);
 	g_variant_builder_close(b);
 
 	g_variant_builder_add_value(b, (prev) ?
-		handle_get_trackid(prev) : 
+		handle_get_trackid(prev) :
 		g_variant_new_object_path("/"));
 		// or use g_variant_new_string(""); ?
-		// "/" is the only legal empty object path, but 
+		// "/" is the only legal empty object path, but
 		// the spec wants an empty string. What do the others do?
-	
-	g_dbus_connection_emit_signal(cwin->cmpris2->dbus_connection, NULL, MPRIS_PATH, 
-		"org.mpris.MediaPlayer2.TrackList", "TrackAdded", 
+
+	g_dbus_connection_emit_signal(cwin->cmpris2->dbus_connection, NULL, MPRIS_PATH,
+		"org.mpris.MediaPlayer2.TrackList", "TrackAdded",
 		g_variant_builder_end(b), NULL);
 }
 
@@ -882,17 +969,19 @@ void mpris_update_mobj_changed(struct con_win *cwin, struct musicobject *mobj, g
 	if(NULL == cwin->cmpris2->dbus_connection)
 		return; /* better safe than sorry */
 
+	CDEBUG(DBG_MPRIS, "MPRIS update mobj changed");
+
 	b = g_variant_builder_new (G_VARIANT_TYPE ("(a{sv})"));
 	g_variant_builder_open(b, G_VARIANT_TYPE("a{sv}"));
-	
+
 	// should we only submit the changed metadata here? The spec is not clear.
 	// If yes, use the portions in the bitmask parameter only.
 	handle_get_metadata(mobj, b);
-	
+
 	g_variant_builder_close(b);
-	
-	g_dbus_connection_emit_signal(cwin->cmpris2->dbus_connection, NULL, MPRIS_PATH, 
-		"org.mpris.MediaPlayer2.TrackList", "TrackChanged", 
+
+	g_dbus_connection_emit_signal(cwin->cmpris2->dbus_connection, NULL, MPRIS_PATH,
+		"org.mpris.MediaPlayer2.TrackList", "TrackChanged",
 		g_variant_builder_end(b), NULL);
 }
 
@@ -901,9 +990,11 @@ void mpris_update_tracklist_changed(struct con_win *cwin) {
 	GtkTreeModel *model;
 	GtkTreeIter iter;
 	struct musicobject *mobj = NULL;
-	
+
 	if(NULL == cwin->cmpris2->dbus_connection)
 		return; /* better safe than sorry */
+
+	CDEBUG(DBG_MPRIS, "MPRIS update tracklist changed");
 
 	g_variant_builder_open(b, G_VARIANT_TYPE("ao"));
 
@@ -919,10 +1010,9 @@ void mpris_update_tracklist_changed(struct con_win *cwin) {
 	
 	g_variant_builder_close(b);
 	g_variant_builder_add_value(b, handle_get_trackid(cwin->cstate->curr_mobj));
-	g_dbus_connection_emit_signal(cwin->cmpris2->dbus_connection, NULL, MPRIS_PATH, 
-		"org.mpris.MediaPlayer2.TrackList", "TrackListChanged", 
+	g_dbus_connection_emit_signal(cwin->cmpris2->dbus_connection, NULL, MPRIS_PATH,
+		"org.mpris.MediaPlayer2.TrackList", "TrackListChanged",
 		g_variant_builder_end(b), NULL);
-	
 }
 
 gint mpris_init(struct con_win *cwin)
@@ -937,6 +1027,7 @@ gint mpris_init(struct con_win *cwin)
 	cwin->cmpris2->saved_playbackstatus = false;
 	cwin->cmpris2->saved_title = NULL;
 	cwin->cmpris2->volume = 0;
+
 	cwin->cmpris2->introspection_data = g_dbus_node_info_new_for_xml (mpris2xml, NULL);
 	g_assert (cwin->cmpris2->introspection_data != NULL);
 
