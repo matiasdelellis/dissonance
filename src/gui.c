@@ -34,6 +34,8 @@ gchar *main_menu_xml = "<ui>							\
 			<menuitem action=\"Quit\"/>				\
 		</menu>								\
 		<menu action=\"EditMenu\">					\
+			<menuitem action=\"Add the library\"/>	    		\
+			<separator/>						\
 			<menuitem action=\"Remove\"/>		    		\
 			<menuitem action=\"Crop\"/>		    		\
 			<menuitem action=\"Clear current playlist\"/>		\
@@ -43,6 +45,8 @@ gchar *main_menu_xml = "<ui>							\
 			<separator/>						\
 			<menuitem action=\"Shuffle\"/>				\
 			<menuitem action=\"Repeat\"/>				\
+			<separator/>						\
+			<menuitem action=\"Search in playlist\"/>		\
 			<separator/>						\
 			<menuitem action=\"Preferences\"/>			\
 		</menu>								\
@@ -58,11 +62,7 @@ gchar *main_menu_xml = "<ui>							\
 			<menuitem action=\"Jump to playing song\"/>		\
 		</menu>								\
 		<menu action=\"ToolsMenu\">					\
-			<menuitem action=\"Add the library\"/>	    		\
-			<separator/>						\
 			<menuitem action=\"Search lyric\"/>			\
-			<separator/>						\
-			<menuitem action=\"Search in playlist\"/>		\
 			<separator/>						\
 			<menuitem action=\"Rescan library\"/>			\
 			<menuitem action=\"Update library\"/>			\
