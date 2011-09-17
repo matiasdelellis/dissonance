@@ -478,7 +478,7 @@ static GtkWidget* create_library_tree(struct con_win *cwin)
 
 	g_signal_connect(G_OBJECT(library_tree), "row-activated",
 			 G_CALLBACK(library_tree_row_activated_cb), cwin);
-	g_signal_connect (G_OBJECT (library_tree), "key_press_event",
+	g_signal_connect (G_OBJECT (library_tree), "key-press-event",
 			  G_CALLBACK(library_tree_key_press), cwin);
 
 	/* Create right click popup menu */
@@ -1266,7 +1266,7 @@ static GtkWidget* create_current_playlist_view(struct con_win *cwin)
 	g_signal_connect(G_OBJECT(current_playlist), "row-activated",
 			 G_CALLBACK(current_playlist_row_activated_cb), cwin);
 
-	g_signal_connect (G_OBJECT (current_playlist), "key_press_event",
+	g_signal_connect (G_OBJECT (current_playlist), "key-press-event",
 			  G_CALLBACK (current_playlist_key_press), cwin);
 
 	/* Create contextual menus */
@@ -1641,6 +1641,15 @@ GtkWidget* create_panel(struct con_win *cwin)
 	g_signal_connect(G_OBJECT(next_button), "clicked",
 			 G_CALLBACK(next_button_handler), cwin);
 
+	g_signal_connect (G_OBJECT (prev_button), "key-press-event",
+			  G_CALLBACK(panel_button_key_press), cwin);
+	g_signal_connect (G_OBJECT (play_button), "key-press-event",
+			  G_CALLBACK(panel_button_key_press), cwin);
+	g_signal_connect (G_OBJECT (stop_button), "key-press-event",
+			  G_CALLBACK(panel_button_key_press), cwin);
+	g_signal_connect (G_OBJECT (next_button), "key-press-event",
+			  G_CALLBACK(panel_button_key_press), cwin);
+
 	g_signal_connect(G_OBJECT(GTK_BUTTON(unfull_button)), "clicked",
 			 G_CALLBACK(unfull_button_handler), cwin );
 	g_signal_connect(G_OBJECT(GTK_TOGGLE_BUTTON(shuffle_button)), "toggled",
@@ -1654,6 +1663,15 @@ GtkWidget* create_panel(struct con_win *cwin)
 
 	gtk_scale_button_set_value(GTK_SCALE_BUTTON(vol_button),
 				   SCALE_UP_VOL(cwin->cmixer->curr_vol));
+
+	g_signal_connect (G_OBJECT (unfull_button), "key-press-event",
+			  G_CALLBACK(panel_button_key_press), cwin);
+	g_signal_connect (G_OBJECT (shuffle_button), "key-press-event",
+			  G_CALLBACK(panel_button_key_press), cwin);
+	g_signal_connect (G_OBJECT (repeat_button), "key-press-event",
+			  G_CALLBACK(panel_button_key_press), cwin);
+	g_signal_connect (G_OBJECT (vol_button), "key-press-event",
+			  G_CALLBACK(panel_button_key_press), cwin);
 
 	/* References to widgets */
 
