@@ -102,6 +102,15 @@ XDT_CHECK_OPTIONAL_PACKAGE([GLIB_2_26],
                        [glib-2.0],
                        [glib-2.0 library], [yes])
 
+dnl *************************************
+dnl * Check libglyr to search info      *
+dnl *************************************
+LIBGLYR_FOUND="no"
+XDT_CHECK_OPTIONAL_PACKAGE([LIBGLYR],
+                       [libglyr], [0.8.5],
+                       [libglyr],
+                       [libglyr library], [yes])
+
 AC_OUTPUT([
 Makefile
 po/Makefile.in
@@ -119,5 +128,6 @@ echo
 echo "Build Configuration for $PACKAGE version $VERSION"
 echo "  Global keyboard shortcuts support:   $LIBKEYBINDER_FOUND"
 echo "  MPRIS2 remote control support....:   $GLIB_2_26_FOUND"
+echo "  Use glyr to search related info..:   $LIBGLYR_FOUND"
 echo
 

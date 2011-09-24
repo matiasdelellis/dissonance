@@ -247,7 +247,11 @@ static void pref_dialog_cb(GtkDialog *dialog, gint response_id,
 					    cwin->cpref->lw.lastfm_pass_w)));
 		}
 		lastfm_init_thread(cwin);
-
+#ifdef HAVE_LIBGLYR
+		cwin->cpref->get_album_art =
+			gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(
+						     cwin->cpref->get_album_art_w));
+#endif
 		cwin->cpref->use_cddb =
 			gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(
 						     cwin->cpref->use_cddb_w));
@@ -729,7 +733,11 @@ static void update_preferences(struct con_win *cwin)
 		gtk_entry_set_text(GTK_ENTRY(cwin->cpref->lw.lastfm_pass_w),
 				   cwin->cpref->lw.lastfm_pass);
 	}
-
+#ifdef HAVE_LIBGLYR
+	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(
+				     cwin->cpref->get_album_art_w),
+				     TRUE);
+#endif
 	if (cwin->cpref->use_cddb)
 		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(
 					     cwin->cpref->use_cddb_w),
@@ -1356,6 +1364,14 @@ void save_preferences(struct con_win *cwin)
 					      KEY_LASTFM_PASS,
 					      cwin->cpref->lw.lastfm_pass);
 	}
+
+	/* Save get album art option */
+#ifdef HAVE_LIBGLYR
+	g_key_file_set_boolean(cwin->cpref->configrc_keyfile,
+			       GROUP_SERVICES,
+			       KEY_GET_ALBUM_ART,
+			       cwin->cpref->get_album_art);
+#endif
 	/* Save use CDDB server option */
 
 	g_key_file_set_boolean(cwin->cpref->configrc_keyfile,
@@ -1397,36 +1413,6 @@ int library_view_key_press (GtkWidget *win, GdkEventKey *event, struct con_win *
 	return FALSE;
 }
 
-/* Based in Midori Web Browser. Copyright (C) 2007 Christian Dywan */
-gpointer sokoke_xfce_header_new(struct con_win *cwin)
-{
-	GtkWidget* entry = gtk_entry_new();
-	gchar* markup;
-
-	GtkWidget* xfce_heading = gtk_event_box_new();
-
-	gtk_widget_modify_bg(xfce_heading,
-				GTK_STATE_NORMAL,
-				&entry->style->base[GTK_STATE_NORMAL]);
-	GtkWidget* hbox = gtk_hbox_new(FALSE, 12);
-
-	gtk_container_set_border_width(GTK_CONTAINER(hbox), 6);
-	GtkWidget* image = gtk_image_new_from_icon_name("pragha",
-							GTK_ICON_SIZE_DIALOG);
-	gtk_box_pack_start(GTK_BOX(hbox), image, FALSE, FALSE, 0);
-	GtkWidget* label = gtk_label_new(NULL);
-	gtk_widget_modify_fg(label,
-				GTK_STATE_NORMAL,
-				&entry->style->text[GTK_STATE_NORMAL]);
-        markup = g_strdup_printf("<span size='large' weight='bold'>%s</span>", _("Preferences of Pragha"));
-	gtk_label_set_markup(GTK_LABEL(label), markup);
-	gtk_box_pack_start(GTK_BOX(hbox), label, FALSE, FALSE, 0);
-	gtk_container_add(GTK_CONTAINER(xfce_heading), hbox);
-	g_free(markup);
-
-	return xfce_heading;
-}
-
 void preferences_dialog(struct con_win *cwin)
 {
 	GtkWidget *dialog, *header, *pref_notebook, *alignment;
@@ -1444,6 +1430,9 @@ void preferences_dialog(struct con_win *cwin)
 	GtkWidget *show_osd, *osd_in_systray, *albumart_in_osd, *actions_in_osd;
 	GtkWidget *lastfm_check, *lastfm_uname, *lastfm_pass, *lastfm_uhbox, *lastfm_ulabel, \
 		  *lastfm_phbox, *lastfm_plabel, *use_cddb;
+#ifdef HAVE_LIBGLYR
+	GtkWidget *get_album_art;
+#endif
 #if HAVE_GLIB_2_26
 	GtkWidget *use_mpris2;
 #endif
@@ -1845,6 +1834,9 @@ void preferences_dialog(struct con_win *cwin)
 	gtk_entry_set_visibility(GTK_ENTRY(lastfm_pass), FALSE);
 	gtk_entry_set_invisible_char(GTK_ENTRY(lastfm_pass), '*');
 
+#ifdef HAVE_LIBGLYR
+	get_album_art = gtk_check_button_new_with_label(_("Get album art"));
+#endif
 	/* Services CDDB */
 
 	use_cddb = gtk_check_button_new_with_label(_("Connect to CDDB server"));
@@ -1890,6 +1882,13 @@ void preferences_dialog(struct con_win *cwin)
 			   FALSE,
 			   FALSE,
 			   0);
+#ifdef HAVE_LIBGLYR
+	gtk_box_pack_start(GTK_BOX(services_vbox),
+			   get_album_art,
+			   FALSE,
+			   FALSE,
+			   0);
+#endif
 	gtk_box_pack_start(GTK_BOX(services_vbox),
 			   use_cddb,
 			   FALSE,
@@ -1905,7 +1904,7 @@ void preferences_dialog(struct con_win *cwin)
 
 	/* Add to dialog */
 
-	header = sokoke_xfce_header_new (cwin);
+	header = sokoke_xfce_header_new (_("Preferences of Pragha"), "pragha", cwin);
 
 	gtk_box_pack_start (GTK_BOX (GTK_DIALOG (dialog)->vbox), header, FALSE, FALSE, 0);
 	gtk_box_pack_start (GTK_BOX (GTK_DIALOG (dialog)->vbox), pref_notebook, TRUE, TRUE, 0);
@@ -1941,6 +1940,10 @@ void preferences_dialog(struct con_win *cwin)
 	cwin->cpref->lw.lastfm_w = lastfm_check;
 	cwin->cpref->lw.lastfm_uname_w = lastfm_uname;
 	cwin->cpref->lw.lastfm_pass_w = lastfm_pass;
+	cwin->cpref->use_cddb_w = use_cddb;
+#ifdef HAVE_LIBGLYR
+	cwin->cpref->get_album_art_w = get_album_art;
+#endif
 	cwin->cpref->use_cddb_w = use_cddb;
 #if HAVE_GLIB_2_26
 	cwin->cpref->use_mpris2_w = use_mpris2;

@@ -180,7 +180,7 @@ void __update_current_song_info(struct con_win *cwin)
 		return;
 	}
 
-	if( g_utf8_strlen(cwin->cstate->curr_mobj->tags->title, -1))
+	if(g_utf8_strlen(cwin->cstate->curr_mobj->tags->title, -1))
 		str_title = g_strdup(cwin->cstate->curr_mobj->tags->title);
 	else
 		str_title = get_display_filename(cwin->cstate->curr_mobj->file, FALSE);
@@ -273,20 +273,37 @@ void update_album_art(struct musicobject *mobj, struct con_win *cwin)
 	CDEBUG(DBG_INFO, "Update album art");
 
 	GError *error = NULL;
-	GdkPixbuf *scaled_album_art, *album_art, *scaled_frame, *frame;
-	gchar *dir;
+	GdkPixbuf *scaled_album_art = NULL, *album_art = NULL, *scaled_frame = NULL, *frame = NULL;
+	gchar *path = NULL;
 
 	if (cwin->cpref->show_album_art) {
 		frame = gdk_pixbuf_new_from_file (PIXMAPDIR"/cover.png", &error);
 
 		if (mobj && mobj->file_type != FILE_CDDA){
-			dir = g_path_get_dirname(mobj->file);
-			if (cwin->cpref->album_art_pattern){
-				album_art = get_pref_image_dir(dir, cwin);
-				if (!album_art)
-					album_art = get_image_from_dir(dir, cwin);
+			#ifdef HAVE_LIBGLYR
+			if(cwin->cpref->get_album_art) {
+				path = g_strdup_printf("%s/%s - %s.jpeg",
+							cwin->cpref->cache_album_art_folder,
+							mobj->tags->artist,
+							mobj->tags->album);
+
+				album_art = gdk_pixbuf_new_from_file_at_size (path,
+									cwin->cpref->album_art_size,
+									cwin->cpref->album_art_size,
+									&error);
+				g_free(path);
 			}
-			else album_art = get_image_from_dir(dir, cwin);
+			#endif
+			if (album_art == NULL) {
+				path = g_path_get_dirname(mobj->file);
+				if (cwin->cpref->album_art_pattern) {
+					album_art = get_pref_image_dir(path, cwin);
+					if (!album_art)
+						album_art = get_image_from_dir(path, cwin);
+				}
+				else album_art = get_image_from_dir(path, cwin);
+				g_free(path);
+			}
 
 			if (album_art) {
 				scaled_album_art = gdk_pixbuf_scale_simple (album_art, 112, 112, GDK_INTERP_BILINEAR);
@@ -294,7 +311,6 @@ void update_album_art(struct musicobject *mobj, struct con_win *cwin)
 				g_object_unref(G_OBJECT(scaled_album_art));
 				g_object_unref(G_OBJECT(album_art));
 			}
-			g_free(dir);
 		}
 
 		scaled_frame = gdk_pixbuf_scale_simple (frame,
@@ -619,7 +635,7 @@ void play_button_toggle_state(struct con_win *cwin)
 		 (cwin->cstate->state == ST_STOPPED))
 		gtk_button_set_image(GTK_BUTTON(cwin->play_button),
 				     cwin->pixbuf->image_play);
-}	
+}
 
 /* Toggle appearance of album art widget */
 

@@ -228,9 +228,13 @@ gint init_config(struct con_win *cwin)
 	remember_window_state_f = start_mode_f = window_size_f = sidebar_size_f = sidebar_pane_f = album_f = album_art_size_f = status_bar_f = FALSE;
 	show_osd_f = osd_in_systray_f = albumart_in_osd_f = actions_in_osd_f = FALSE;
 	instant_filter_f = use_hint_f = FALSE;
-#if HAVE_GLIB_2_26
+	#ifdef HAVE_LIBGLYR
+	gboolean get_album_art_f = FALSE;
+	gchar *cache_album_art = NULL;
+	#endif
+	#if HAVE_GLIB_2_26
 	use_mpris2_f = FALSE;
-#endif
+	#endif
 	all_f = FALSE;
 
 	config_dir = g_get_user_config_dir();
@@ -261,6 +265,17 @@ gint init_config(struct con_win *cwin)
 		}
 		CDEBUG(DBG_INFO, "Created config file");
 	}
+
+	/* Get cache of downloaded albums arts */
+	#ifdef HAVE_LIBGLYR
+	cache_album_art = g_strdup_printf("%s/pragha-album-art",
+						g_get_user_cache_dir());
+
+	if (g_file_test(cache_album_art, G_FILE_TEST_EXISTS | G_FILE_TEST_IS_DIR) == FALSE)
+		g_mkdir(cache_album_art, S_IRWXU);
+	cwin->cpref->cache_album_art_folder = g_strdup(cache_album_art);
+	#endif
+
 
 	/* Load the settings file */
 
@@ -831,7 +846,18 @@ gint init_config(struct con_win *cwin)
 			g_error_free(error);
 			error = NULL;
 		}
-
+		#ifdef HAVE_LIBGLYR
+		cwin->cpref->get_album_art =
+			g_key_file_get_boolean(cwin->cpref->configrc_keyfile,
+					       GROUP_SERVICES,
+					       KEY_GET_ALBUM_ART,
+					       &error);
+		if (error) {
+			g_error_free(error);
+			error = NULL;
+			get_album_art_f = TRUE;
+		}
+		#endif
 		cwin->cpref->use_cddb =
 			g_key_file_get_boolean(cwin->cpref->configrc_keyfile,
 					       GROUP_SERVICES,
@@ -956,6 +982,10 @@ gint init_config(struct con_win *cwin)
 		cwin->cpref->audio_oss_device = g_strdup(OSS_DEFAULT_DEVICE);
 	if (all_f || lastfm_f)
 		cwin->cpref->lw.lastfm_support = FALSE;
+	#ifdef HAVE_LIBGLYR
+	if (all_f || get_album_art_f)
+		cwin->cpref->get_album_art = FALSE;
+	#endif
 	if (all_f || use_cddb_f)
 		cwin->cpref->use_cddb = TRUE;
 	if (all_f || use_mpris2_f)
@@ -969,7 +999,9 @@ gint init_config(struct con_win *cwin)
 
 	g_free(conrc);
 	g_free(condir);
-
+#ifdef HAVE_LIBGLYR
+	g_free(cache_album_art);
+#endif
 	if (err)
 		return -1;
 	else
@@ -1309,8 +1341,16 @@ void init_menu_actions(struct con_win *cwin)
 	action = gtk_ui_manager_get_action(cwin->bar_context_menu,"/Menubar/ViewMenu/Status bar");
 	gtk_toggle_action_set_active (GTK_TOGGLE_ACTION(action), cwin->cpref->status_bar);
 
+#ifndef HAVE_LIBGLYR
 	action = gtk_ui_manager_get_action(cwin->bar_context_menu,"/Menubar/ToolsMenu/Search lyric");
 	gtk_action_set_sensitive(action, FALSE);
+
+	action = gtk_ui_manager_get_action(cwin->bar_context_menu,"/Menubar/ToolsMenu/Search artist info");
+	gtk_action_set_sensitive(action, FALSE);
+
+	action = gtk_ui_manager_get_action(cwin->bar_context_menu,"/Menubar/ToolsMenu/Search album art");
+	gtk_action_set_sensitive(action, FALSE);
+#endif
 }
 
 void init_pixbufs(struct con_win *cwin)

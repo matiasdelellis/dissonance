@@ -27,6 +27,10 @@
 #include <keybinder.h>
 #endif
 
+#ifdef HAVE_LIBGLYR
+#include <glyr/glyr.h>
+#endif
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <errno.h>
@@ -135,6 +139,8 @@
 #define LASTFM_MIN_PLAYTIME        30  /* seconds */
 #define LASTFM_MIN_DURATION        240 /* seconds */
 
+#define WAIT_UPDATE 5
+
 #define DBUS_PATH      "/org/pragha/DBus"
 #define DBUS_NAME      "org.pragha.DBus"
 #define DBUS_INTERFACE "org.pragha.DBus"
@@ -210,6 +216,7 @@
 #define KEY_LASTFM                 "lastfm"
 #define KEY_LASTFM_USER            "lastfm_user"
 #define KEY_LASTFM_PASS            "lastfm_pass"
+#define KEY_GET_ALBUM_ART          "get_album_art"
 #define KEY_USE_CDDB               "use_cddb"
 #if HAVE_GLIB_2_26
 #define KEY_ALLOW_MPRIS2           "allow_mpris2"
@@ -447,6 +454,9 @@ struct con_pref {
 	GTimeVal last_rescan_time;
 	GKeyFile *configrc_keyfile;
 	gchar *configrc_file;
+#ifdef HAVE_LIBGLYR
+	gchar *cache_album_art_folder;
+#endif
 	gboolean add_recursively_files;
 	gboolean show_album_art;
 	gboolean show_osd;
@@ -458,6 +468,9 @@ struct con_pref {
 	gboolean repeat;
 	gboolean save_playlist;
 	gboolean software_mixer;
+#ifdef HAVE_LIBGLYR
+	gboolean get_album_art;
+#endif
 	gboolean use_cddb;
 #if HAVE_GLIB_2_26
 	gboolean use_mpris2;
@@ -503,6 +516,9 @@ struct con_pref {
 
 	struct lastfm_pref lw;
 	GtkWidget *use_cddb_w;
+#ifdef HAVE_LIBGLYR
+	GtkWidget *get_album_art_w;
+#endif
 #if HAVE_GLIB_2_26
 	GtkWidget *use_mpris2_w;
 #endif	
@@ -694,6 +710,7 @@ struct con_win {
 	GtkUIManager *library_tree_context_menu;
 	GtkUIManager *library_page_context_menu;
 	GtkUIManager *systray_menu;
+	gint related_timeout_id;
 	DBusConnection *con_dbus;
 };
 
@@ -1198,7 +1215,12 @@ void mpris_update_mobj_changed(struct con_win *cwin, struct musicobject *mobj, g
 void mpris_update_tracklist_changed(struct con_win *cwin);
 void mpris_close(struct con_win *cwin);
 void mpris_cleanup(struct con_win *cwin);
+
 /* Utilities */
+
+void set_status_message (gchar *message, struct con_win *cwin);
+GdkPixbuf *vgdk_pixbuf_new_from_memory (char *data, size_t size);
+gpointer sokoke_xfce_header_new (const gchar *header, const gchar *icon, struct con_win *cwin);
 gboolean is_playable_file(const gchar *file);
 gboolean is_dir_and_accessible(gchar *dir, struct con_win *cwin);
 gint dir_file_count(gchar *dir_name, gint call_recur);
@@ -1238,6 +1260,18 @@ gint lastfm_handshake(struct con_win *cwin);
 gint lastfm_submit(struct con_win *cwin, gchar *title, gchar *artist,
 		   gchar *album, gint track_no, gint track_len,
 		   GTimeVal start_time, enum track_source source);
+
+/* Related info helpers */
+
+void related_get_album_art_action(GtkAction *action, struct con_win *cwin);
+void related_get_artist_info_action(GtkAction *action, struct con_win *cwin);
+void related_get_lyric_action(GtkAction *action, struct con_win *cwin);
+
+int uninit_glyr_related (struct con_win *cwin);
+int init_glyr_related (struct con_win *cwin);
+
+void update_related_state (struct con_win *cwin);
+
 
 /* Init */
 

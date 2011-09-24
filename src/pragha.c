@@ -141,6 +141,9 @@ void common_cleanup(struct con_win *cwin)
 	keybinder_unbind("XF86AudioMedia", (KeybinderHandler) keybind_media_handler);
 	#endif
 
+#ifdef HAVE_LIBGLYR
+	uninit_glyr_related (cwin);
+#endif
 	g_option_context_free(cwin->cmd_context);
 
 	g_slice_free(struct con_win, cwin);
@@ -238,6 +241,13 @@ gint main(gint argc, gchar *argv[])
 		return -1;
 	}
 	#endif
+
+	#ifdef HAVE_LIBGLYR
+	if (init_glyr_related(cwin) == -1) {
+		g_critical("Unable to initialize libglyr");
+	}
+	#endif
+
 	#if HAVE_GLIB_2_26
 	if (mpris_init(cwin) == -1) {
 		g_critical("Unable to initialize MPRIS");

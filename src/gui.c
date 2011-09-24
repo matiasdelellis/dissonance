@@ -63,6 +63,8 @@ gchar *main_menu_xml = "<ui>							\
 		</menu>								\
 		<menu action=\"ToolsMenu\">					\
 			<menuitem action=\"Search lyric\"/>			\
+			<menuitem action=\"Search artist info\"/>		\
+			<menuitem action=\"Search album art\"/>			\
 			<separator/>						\
 			<menuitem action=\"Rescan library\"/>			\
 			<menuitem action=\"Update library\"/>			\
@@ -211,8 +213,21 @@ GtkActionEntry main_aentries[] = {
 	{"Lateral panel", NULL, N_("Lateral _panel")},
 	{"Jump to playing song", GTK_STOCK_JUMP_TO, N_("Jump to playing song"),
 	 "<Control>J", "Jump to playing song", G_CALLBACK(jump_to_playing_song_action)},
+	#ifdef HAVE_LIBGLYR
 	{"Search lyric", GTK_STOCK_JUSTIFY_FILL, N_("Search _lyric"),
-	 "<Control>Y", "Search lyric", G_CALLBACK(lyric_action)},
+	 "<Control>Y", "Search lyric", G_CALLBACK(related_get_lyric_action)},
+	{"Search artist info", GTK_STOCK_INFO, N_("Search _artist info"),
+	 NULL, "Search artist info", G_CALLBACK(related_get_artist_info_action)},
+	{"Search album art", NULL, N_("Search album art"),
+	 NULL, "Search album art", G_CALLBACK(related_get_album_art_action)},
+	#else
+	{"Search lyric", GTK_STOCK_JUSTIFY_FILL, N_("Search _lyric"),
+	 "<Control>Y", "Search lyric", NULL},
+	{"Search artist info", GTK_STOCK_INFO, N_("Search _artist info"),
+	 NULL, "Search artist info", NULL},
+	{"Search album art", NULL, N_("Search album art"),
+	 NULL, "Search album art", NULL},
+	#endif
 	{"Search in playlist", GTK_STOCK_FIND, N_("_Search in playlist"),
 	 "<Control>F", "Search in playlist", G_CALLBACK(search_playlist_action)},
 	{"Rescan library", GTK_STOCK_EXECUTE, N_("_Rescan library"),
