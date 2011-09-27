@@ -96,6 +96,17 @@ exists:
 	return NULL;
 }
 
+GLYR_ERROR check_download(GlyrMemCache * dl, GlyrQuery * s)
+{
+	struct con_win *cwin = s->callback.user_pointer;
+
+	if((0 == g_strcmp0(s->artist, cwin->cstate->curr_mobj->tags->artist)) &&
+	   (0 == g_strcmp0(s->album, cwin->cstate->curr_mobj->tags->album)))
+		return GLYRE_OK;
+
+	return GLYRE_STOP_PRE;
+}
+
 void *do_get_album_art_idle (gpointer data)
 {
 	GError *error = NULL;
@@ -126,6 +137,8 @@ void *do_get_album_art_idle (gpointer data)
 
 	glyr_opt_artist(&q, artist);
 	glyr_opt_album(&q, album);
+
+	glyr_opt_dlcallback (&q, check_download, cwin);
 
 	head = glyr_get(&q, &err, NULL);
 

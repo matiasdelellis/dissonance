@@ -147,6 +147,7 @@ static gboolean advance_playback(gpointer data)
 		path = current_playlist_get_next(cwin);
 		if (!path) {
 			dbus_send_signal(DBUS_EVENT_UPDATE_STATE, cwin);
+			update_related_state(cwin);
 			return FALSE;
 		}
 
@@ -265,6 +266,7 @@ GThread* start_playback(struct musicobject *mobj, struct con_win *cwin)
 		cwin->cstate->state = ST_PLAYING;
 		dbus_send_signal(DBUS_EVENT_UPDATE_STATE, cwin);
 		play_button_toggle_state(cwin);
+		update_related_state(cwin);
 
 		CDEBUG(DBG_INFO, "Starting playback");
 
@@ -294,6 +296,7 @@ void pause_playback(struct con_win *cwin)
 		}
 
 		dbus_send_signal(DBUS_EVENT_UPDATE_STATE, cwin);
+		update_related_state(cwin);
 	}
 }
 
@@ -320,6 +323,7 @@ void resume_playback(struct con_win *cwin)
 		}
 
 		dbus_send_signal(DBUS_EVENT_UPDATE_STATE, cwin);
+		update_related_state(cwin);
 	}
 }
 
@@ -361,6 +365,7 @@ void stop_playback(struct con_win *cwin)
 		}
 
 		dbus_send_signal(DBUS_EVENT_UPDATE_STATE, cwin);
+		update_related_state(cwin);
 	}
 }
 
