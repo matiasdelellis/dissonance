@@ -67,6 +67,9 @@ void common_cleanup(struct con_win *cwin)
 
 	g_free(cwin->cpref->lw.lastfm_user);
 	g_free(cwin->cpref->lw.lastfm_pass);
+#ifdef HAVE_LIBGLYR
+	g_free(cwin->cpref->cache_folder);
+#endif
 	g_free(cwin->cpref->configrc_file);
 	g_free(cwin->cpref->installed_version);
 	g_free(cwin->cpref->audio_sink);

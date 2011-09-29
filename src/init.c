@@ -230,7 +230,7 @@ gint init_config(struct con_win *cwin)
 	instant_filter_f = use_hint_f = FALSE;
 	#ifdef HAVE_LIBGLYR
 	gboolean get_album_art_f = FALSE;
-	gchar *cache_album_art = NULL;
+	gchar *cache_folder = NULL;
 	#endif
 	#if HAVE_GLIB_2_26
 	use_mpris2_f = FALSE;
@@ -268,12 +268,12 @@ gint init_config(struct con_win *cwin)
 
 	/* Get cache of downloaded albums arts */
 	#ifdef HAVE_LIBGLYR
-	cache_album_art = g_strdup_printf("%s/pragha-album-art",
-						g_get_user_cache_dir());
+	cache_folder = g_strdup_printf("%s/pragha",
+					g_get_user_cache_dir());
 
-	if (g_file_test(cache_album_art, G_FILE_TEST_EXISTS | G_FILE_TEST_IS_DIR) == FALSE)
-		g_mkdir(cache_album_art, S_IRWXU);
-	cwin->cpref->cache_album_art_folder = g_strdup(cache_album_art);
+	if (g_file_test(cache_folder, G_FILE_TEST_EXISTS | G_FILE_TEST_IS_DIR) == FALSE)
+		g_mkdir(cache_folder, S_IRWXU);
+	cwin->cpref->cache_folder = g_strdup(cache_folder);
 	#endif
 
 
@@ -1000,7 +1000,7 @@ gint init_config(struct con_win *cwin)
 	g_free(conrc);
 	g_free(condir);
 #ifdef HAVE_LIBGLYR
-	g_free(cache_album_art);
+	g_free(cache_folder);
 #endif
 	if (err)
 		return -1;
