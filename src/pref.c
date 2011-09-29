@@ -431,7 +431,8 @@ static void toggle_show_osd(GtkToggleButton *button, struct con_win *cwin)
 
 	gtk_widget_set_sensitive(cwin->cpref->osd_in_systray_w, is_active);
 	gtk_widget_set_sensitive(cwin->cpref->albumart_in_osd_w, is_active);
-	gtk_widget_set_sensitive(cwin->cpref->actions_in_osd_w, is_active);
+	if (can_support_actions())
+		gtk_widget_set_sensitive(cwin->cpref->actions_in_osd_w, is_active);
 }
 
 
