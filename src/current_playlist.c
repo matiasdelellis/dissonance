@@ -169,7 +169,7 @@ void requeue_track_refs (struct con_win *cwin)
 		ref = list->data;
 		lpath = gtk_tree_row_reference_get_path(ref);
 		if (gtk_tree_model_get_iter(model, &iter, lpath)){
-			ch_queue_no = g_strdup_printf("<small>%d</small>", ++i);
+			ch_queue_no = g_strdup_printf("%d", ++i);
 			gtk_list_store_set(GTK_LIST_STORE(model), &iter, P_QUEUE, ch_queue_no, -1);
 			gtk_list_store_set(GTK_LIST_STORE(model), &iter, P_BUBBLE, TRUE, -1);
 			g_free(ch_queue_no);
@@ -624,17 +624,20 @@ static gchar* get_playlist_dialog(enum playlist_mgmt *choice,
 	radio_new = gtk_radio_button_new_with_label(NULL, _("Save as a new playlist"));
 	radio_add = gtk_radio_button_new_with_label_from_widget(
 		GTK_RADIO_BUTTON(radio_new), _("Append to an existing playlist"));
+
 	if (playlists) {
 		while (playlists[i]) {
 			gtk_combo_box_append_text(GTK_COMBO_BOX(combo_add),
 						  playlists[i]);
 			i++;
 		}
+		g_strfreev(playlists);
 	}
 	else {
 		gtk_widget_set_sensitive(combo_add, FALSE);
 		gtk_widget_set_sensitive(radio_add, FALSE);
 	}
+
 	dialog = gtk_dialog_new_with_buttons(_("Save playlist"),
 			     GTK_WINDOW(cwin->mainwindow),
 			     GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
@@ -680,11 +683,7 @@ static gchar* get_playlist_dialog(enum playlist_mgmt *choice,
 		break;
 	}
 
-	/* Cleanup and exit */
-
 	gtk_widget_destroy(dialog);
-	if (playlists)
-		g_strfreev(playlists);
 
 	return playlist;
 }
@@ -1182,7 +1181,7 @@ void remove_current_playlist(GtkAction *action, struct con_win *cwin)
 	GtkTreeModel *model;
 	GtkTreeSelection *selection;
 	GtkTreeRowReference *ref;
-	GtkTreePath *path;
+	GtkTreePath *path, *next;
 	GtkTreeIter iter;
 	GList *list = NULL, *i = NULL;
 	GSList *mobj_to_delete = NULL;
@@ -1193,6 +1192,19 @@ void remove_current_playlist(GtkAction *action, struct con_win *cwin)
 	list = gtk_tree_selection_get_selected_rows(selection, &model);
 
 	if (list) {
+		/* Select the next row to the last selected */
+
+		gtk_tree_view_get_cursor(GTK_TREE_VIEW(cwin->current_playlist), &next, NULL);
+		do {
+			if(gtk_tree_selection_path_is_selected(selection, next) == FALSE)
+				break;
+
+			gtk_tree_path_next(next);
+		}
+		while(next != NULL);
+		gtk_tree_view_set_cursor (GTK_TREE_VIEW(cwin->current_playlist), next, NULL, FALSE);
+		gtk_tree_path_free (next);
+
 		/* Get references from the paths and store them in the 'data'
 		   portion of the list elements.
 		   This idea was inspired by code from 'claws-mail' */
