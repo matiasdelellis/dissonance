@@ -216,6 +216,7 @@ static void add_by_tag(gint location_id, gchar *location, gchar *genre,
 			if (!strlen(genre)) need_gfree = TRUE;
 		}
 
+		/* Find / add child node if it's not already added */
 		if (node_type != NODE_TRACK) {
 			if (!find_child_node(node_data, &search_iter, p_iter, model)) {
 				add_child_node_by_tag(model, &iter, p_iter, node_pixbuf,
@@ -1345,7 +1346,7 @@ void library_tree_edit_tags(GtkAction *action, struct con_win *cwin)
 	GList *list, *i;
 	GArray *loc_arr = NULL;
 	gint sel, location_id, changed = 0;
-	gchar *node_data = NULL, **split_album = NULL;;
+	gchar *node_data = NULL, **split_album = NULL, *uri = NULL;
 
 	memset(&otag, 0, sizeof(struct tags));
 	memset(&ntag, 0, sizeof(struct tags));
@@ -1382,8 +1383,7 @@ void library_tree_edit_tags(GtkAction *action, struct con_win *cwin)
 				otag.genre = mobj->tags->genre;
 				otag.comment = mobj->tags->comment;
 				otag.year =  mobj->tags->year;
-
-				changed = tag_edit_dialog(&otag, &ntag, mobj->file, cwin);
+				uri = mobj->file;
 			}
 		}
 		else {
@@ -1409,10 +1409,10 @@ void library_tree_edit_tags(GtkAction *action, struct con_win *cwin)
 			default:
 				break;
 			}
-		changed = tag_edit_dialog(&otag, &ntag, NULL, cwin);
 		}
 	}
 
+	changed = tag_edit_dialog(&otag, &ntag, uri, cwin);
 	if (!changed)
 		goto exit;
 
