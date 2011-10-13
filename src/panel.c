@@ -368,6 +368,18 @@ void update_album_art(struct musicobject *mobj, struct con_win *cwin)
 	}
 }
 
+gboolean
+album_art_frame_press_callback (GtkWidget      *event_box,
+				GdkEventButton *event,
+				struct con_win *cwin)
+{
+	if (cwin->cstate->state != ST_STOPPED &&
+	   (event->type==GDK_2BUTTON_PRESS || event->type==GDK_3BUTTON_PRESS))
+		open_url(cwin, cwin->cstate->arturl);
+
+	return TRUE;
+}
+
 /* Unset album art */
 
 void unset_album_art(struct con_win *cwin)
@@ -375,7 +387,7 @@ void unset_album_art(struct con_win *cwin)
 	GError *error = NULL;
 	GdkPixbuf *cover;
 
-	if (cwin->cpref->show_album_art){
+	if (cwin->cpref->show_album_art) {
 		cover = gdk_pixbuf_new_from_file_at_size (PIXMAPDIR"/cover.png",
 							cwin->cpref->album_art_size,
 							cwin->cpref->album_art_size,
@@ -386,8 +398,9 @@ void unset_album_art(struct con_win *cwin)
 		}
 		else {
 			cwin->album_art = gtk_image_new_from_pixbuf(cover);
-			gtk_container_add(GTK_CONTAINER(cwin->album_art_frame),
-					  GTK_WIDGET(cwin->album_art));
+
+			gtk_container_add (GTK_CONTAINER(cwin->album_art_frame), cwin->album_art);
+
 			gtk_widget_show_all(cwin->album_art_frame);
 		}
 
