@@ -466,8 +466,10 @@ static GVariant* mpris_Playlists_ActivatePlaylist(struct con_win *cwin, GVariant
 	}
 
 	if(found_playlist) {
+		gdk_threads_enter();
 		clear_current_playlist(NULL, cwin);
 		add_playlist_current_playlist(found_playlist, cwin);
+		gdk_threads_leave()
 
 		stop_playback(cwin);
 		play_first_current_playlist (cwin);
@@ -521,7 +523,12 @@ static GVariant* mpris_Playlists_GetPlaylists(struct con_win *cwin, GVariant* pa
 
 static GVariant* mpris_Playlists_get_ActivePlaylist(struct con_win *cwin) {
 	return g_variant_new("(b(oss))",
-		FALSE, "/", "invalid", "invalid");
+		FALSE, "/", _("Playlists"), _("Playlists"));
+
+	/* Formally is correct, but in the practice only is used to
+	   display a confuse message "invalid" in the ubuntu-soundmenu.
+	return g_variant_new("(b(oss))",
+		FALSE, "/", "invalid", "invalid");*/
 }
 
 static GVariant* mpris_Playlists_get_Orderings(struct con_win *cwin) {
