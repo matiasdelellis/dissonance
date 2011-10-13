@@ -258,7 +258,8 @@ gint main(gint argc, gchar *argv[])
 	}
 	#endif
 
-	init_state(cwin);
+	if(init_first_state(cwin) == -1)
+		return -1;
 
 	gdk_threads_enter();
 	init_gui(argc, argv, cwin);

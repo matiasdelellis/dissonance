@@ -469,7 +469,7 @@ static GVariant* mpris_Playlists_ActivatePlaylist(struct con_win *cwin, GVariant
 		gdk_threads_enter();
 		clear_current_playlist(NULL, cwin);
 		add_playlist_current_playlist(found_playlist, cwin);
-		gdk_threads_leave()
+		gdk_threads_leave();
 
 		stop_playback(cwin);
 		play_first_current_playlist (cwin);

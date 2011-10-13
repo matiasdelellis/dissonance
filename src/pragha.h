@@ -598,6 +598,7 @@ struct con_state {
 	gdouble seek_fraction;
 	gchar *last_folder;
 	gchar *filter_entry;
+	gchar *arturl;
 	GRand *rand;
 	GThread *c_thread;
 	GMutex *c_mutex;
@@ -1292,7 +1293,7 @@ gint init_threads(struct con_win *cwin);
 gint init_notify(struct con_win *cwin);
 gint init_keybinder(struct con_win *cwin);
 gint init_lastfm(struct con_win *cwin);
-void init_state(struct con_win *cwin);
+gint init_first_state(struct con_win *cwin);
 void init_tag_completion(struct con_win *cwin);
 void init_gui(gint argc, gchar **argv, struct con_win *cwin);
 
