@@ -32,6 +32,10 @@
 #include <glyr/cache.h>
 #endif
 
+#ifdef HAVE_EXO
+#include <exo/exo.h>
+#endif
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <errno.h>
@@ -51,7 +55,7 @@
 #include <sqlite3.h>
 #include <ao/ao.h>
 #include <curl/curl.h>
-#include <glib/gi18n.h>
+//#include <glib/gi18n.h> /* Uncomment if you use an older version of glib and does not compile */
 #include <gdk/gdkkeysyms.h>
 #include <gdk/gdkx.h>
 #include <X11/Xatom.h>

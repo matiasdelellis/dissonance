@@ -100,6 +100,9 @@ void common_cleanup(struct con_win *cwin)
 	g_cond_free(cwin->cstate->c_cond);
 	g_slice_free(struct con_state, cwin->cstate);
 
+#ifdef HAVE_LIBGLYR
+	uninit_glyr_related (cwin);
+#endif
 	g_free(cwin->cdbase->db_file);
 	sqlite3_close(cwin->cdbase->db);
 	g_slice_free(struct con_dbase, cwin->cdbase);
@@ -144,9 +147,6 @@ void common_cleanup(struct con_win *cwin)
 	keybinder_unbind("XF86AudioMedia", (KeybinderHandler) keybind_media_handler);
 	#endif
 
-#ifdef HAVE_LIBGLYR
-	uninit_glyr_related (cwin);
-#endif
 	g_option_context_free(cwin->cmd_context);
 
 	g_slice_free(struct con_win, cwin);

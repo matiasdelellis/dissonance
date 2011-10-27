@@ -107,10 +107,18 @@ dnl * Check libglyr to search info      *
 dnl *************************************
 LIBGLYR_FOUND="no"
 XDT_CHECK_OPTIONAL_PACKAGE([LIBGLYR],
-                       [libglyr], [0.8.5],
+                       [libglyr], [0.9.0],
                        [libglyr],
                        [libglyr library], [yes])
 
+dnl *************************************
+dnl * Check exo to session support      *
+dnl *************************************
+EXO_FOUND="no"
+XDT_CHECK_OPTIONAL_PACKAGE([EXO],
+                       [exo-1], [0.6.0],
+                       [exo-1],
+                       [exo-1 library], [yes])
 AC_OUTPUT([
 Makefile
 po/Makefile.in
@@ -126,8 +134,12 @@ AC_MSG_RESULT([CFLAGS = $CFLAGS])
 
 echo
 echo "Build Configuration for $PACKAGE version $VERSION"
-echo "  Global keyboard shortcuts support:   $LIBKEYBINDER_FOUND"
-echo "  MPRIS2 remote control support....:   $GLIB_2_26_FOUND"
-echo "  Use glyr to search related info..:   $LIBGLYR_FOUND"
+echo ""
+echo "  Prefix: ${prefix}"
+echo ""
+echo "  Global keyboard shortcuts support (Need keybinder >= 0.2.0).......: $LIBKEYBINDER_FOUND"
+echo "  MPRIS2 remote control support (Need glib >= 2.26.0)...............: $GLIB_2_26_FOUND"
+echo "  Better session management support (Need exo-1 >= 0.6.0)...........: $EXO_FOUND"
+echo "  Search lyrics, artists info and albums art (Need libglyr >= 0.9.0): $LIBGLYR_FOUND"
 echo
 
