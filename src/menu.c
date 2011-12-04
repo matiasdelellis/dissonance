@@ -431,33 +431,32 @@ void edit_tags_playing_action(GtkAction *action, struct con_win *cwin)
 
 	/* Store the new tags */
 
-	loc_arr = g_array_new(TRUE, TRUE, sizeof(gint));
-	file_arr = g_array_new(TRUE, TRUE, sizeof(gchar *));
+	if(cwin->cstate->curr_mobj->file_type != FILE_CDDA) {
+		loc_arr = g_array_new(TRUE, TRUE, sizeof(gint));
+		file_arr = g_array_new(TRUE, TRUE, sizeof(gchar *));
 
-	sfile = sanitize_string_sqlite3(cwin->cstate->curr_mobj->file);
-	location_id = find_location_db(sfile, cwin);
+		sfile = sanitize_string_sqlite3(cwin->cstate->curr_mobj->file);
+		location_id = find_location_db(sfile, cwin);
 
-	if (location_id)
-		g_array_append_val(loc_arr, location_id);
+		if (location_id)
+			g_array_append_val(loc_arr, location_id);
 
-	tfile = g_strdup(cwin->cstate->curr_mobj->file);
-	file_arr = g_array_append_val(file_arr, tfile);
+		tfile = g_strdup(cwin->cstate->curr_mobj->file);
+		file_arr = g_array_append_val(file_arr, tfile);
 
-	tag_update(loc_arr, file_arr, changed, &ntag, cwin);
+		tag_update(loc_arr, file_arr, changed, &ntag, cwin);
 
-	init_library_view(cwin);
+		init_library_view(cwin);
+
+		g_array_free(loc_arr, TRUE);
+		g_array_free(file_arr, TRUE);
+
+		g_free(sfile);
+		g_free(tfile);
+	}
 
 exit:
 	/* Cleanup */
-
-	if (loc_arr)
-		g_array_free(loc_arr, TRUE);
-	if (file_arr)
-		g_array_free(file_arr, TRUE);
-
-	g_free(sfile);
-	g_free(tfile);
-
 	g_free(ntag.title);
 	g_free(ntag.artist);
 	g_free(ntag.album);
@@ -610,7 +609,7 @@ status_bar_action (GtkAction *action, struct con_win *cwin)
 void
 show_controls_below_action (GtkAction *action, struct con_win *cwin)
 {
-	//gboolean order = gtk_toggle_action_get_active(GTK_TOGGLE_ACTION(action));
+	cwin->cpref->controls_below = gtk_toggle_action_get_active(GTK_TOGGLE_ACTION(action));
 
 	GtkWidget *parent;
 	GList *children, *l;
