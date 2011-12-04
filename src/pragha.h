@@ -799,12 +799,12 @@ void fullscreen_action (GtkAction *action, struct con_win *cwin);
 void library_pane_action (GtkAction *action, struct con_win *cwin);
 void playlists_pane_action (GtkAction *action, struct con_win *cwin);
 void status_bar_action (GtkAction *action, struct con_win *cwin);
+void show_controls_below_action (GtkAction *action, struct con_win *cwin);
 void jump_to_playing_song_action (GtkAction *action, struct con_win *cwin);
 void rescan_library_action(GtkAction *action, struct con_win *cwin);
 void update_library_action(GtkAction *action, struct con_win *cwin);
 void add_all_action(GtkAction *action, struct con_win *cwin);
 void statistics_action(GtkAction *action, struct con_win *cwin);
-void lyric_action(GtkAction *action, struct con_win *cwin);
 void home_action(GtkAction *action, struct con_win *cwin);
 void community_action(GtkAction *action, struct con_win *cwin);
 void wiki_action(GtkAction *action, struct con_win *cwin);
@@ -856,10 +856,8 @@ void __recur_add(gchar *dir_name, struct con_win *cwin);
 /* Musicobject functions */
 
 struct musicobject* new_musicobject_from_file(gchar *file);
-struct musicobject* new_musicobject_from_db(gint location_id,
-					    struct con_win *cwin);
-struct musicobject* new_musicobject_from_cdda(struct con_win *cwin,
-					      gint track_no);
+struct musicobject* new_musicobject_from_db(gint location_id, struct con_win *cwin);
+struct musicobject* new_musicobject_from_cdda(struct con_win *cwin, gint track_no);
 void update_musicobject(struct musicobject *mobj, gint changed, struct tags *ntag, struct con_win *cwin);
 void delete_musicobject(struct musicobject *mobj);
 void test_delete_musicobject(struct musicobject *mobj, struct con_win *cwin);
@@ -951,6 +949,7 @@ void update_track_db(gint location_id, gint changed,
 		     gint track_no, gchar *title,
 		     gint artist_id, gint album_id, gint genre_id, gint year_id, gint comment_id,
 		     struct con_win *cwin);
+void update_playlist_name_db(const gchar *oplaylist, gchar *nplaylist, struct con_win *cwin);
 gint add_new_playlist_db(const gchar *playlist, struct con_win *cwin);
 gchar** get_playlist_names_db(struct con_win *cwin);
 gint get_playlist_count_db(struct con_win *cwin);
@@ -988,6 +987,7 @@ void playlist_tree_replace_playlist(GtkAction *action, struct con_win *cwin);
 void playlist_tree_replace_and_play(GtkAction *action, struct con_win *cwin);
 void playlist_tree_add_to_playlist(struct con_win *cwin);
 void playlist_tree_add_to_playlist_action(GtkAction *action, struct con_win *cwin);
+void playlist_tree_rename(GtkAction *action, struct con_win *cwin);
 void playlist_tree_delete(GtkAction *action, struct con_win *cwin);
 void export_playlist (gint choice, struct con_win *cwin);
 void playlist_tree_export(GtkAction *action, struct con_win *cwi);
@@ -1030,10 +1030,10 @@ GtkTreePath* get_next_queue_track(struct con_win *cwin);
 gchar* get_ref_current_track(struct con_win *cwin);
 void init_current_playlist_columns(struct con_win *cwin);
 void requeue_track_refs (struct con_win *cwin);
-void enqueue_current_playlist(GtkAction *action, struct con_win *cwin);
+void dequeue_current_playlist(GtkAction *action, struct con_win *cwin);
 void queue_current_playlist(GtkAction *action, struct con_win *cwin);
 int current_playlist_key_press (GtkWidget *win, GdkEventKey *event, struct con_win *cwin);
-void remove_current_playlist(GtkAction *action, struct con_win *cwin);
+void remove_from_playlist(GtkAction *action, struct con_win *cwin);
 void crop_current_playlist(GtkAction *action, struct con_win *cwin);
 void edit_tags_playing_action(GtkAction *action, struct con_win *cwin);
 void track_properties(struct musicobject *mobj, struct con_win *cwin);

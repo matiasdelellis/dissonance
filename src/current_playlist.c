@@ -600,6 +600,7 @@ static void modify_current_playlist_columns(struct con_win *cwin,
 /* Build a dialog to get a new playlist name */
 
 static gchar* get_playlist_dialog(enum playlist_mgmt *choice,
+				  enum playlist_mgmt type,
 				  struct con_win *cwin)
 {
 	gchar **playlists, *playlist = NULL;
@@ -638,7 +639,7 @@ static gchar* get_playlist_dialog(enum playlist_mgmt *choice,
 		gtk_widget_set_sensitive(radio_add, FALSE);
 	}
 
-	dialog = gtk_dialog_new_with_buttons(_("Save playlist"),
+	dialog = gtk_dialog_new_with_buttons(NULL,
 			     GTK_WINDOW(cwin->mainwindow),
 			     GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
 			     GTK_STOCK_CANCEL,
@@ -646,6 +647,11 @@ static gchar* get_playlist_dialog(enum playlist_mgmt *choice,
 			     GTK_STOCK_OK,
 			     GTK_RESPONSE_ACCEPT,
 			     NULL);
+
+	if(type == SAVE_COMPLETE)
+		gtk_window_set_title (GTK_WINDOW(dialog), _("Save playlist"));
+	else
+		gtk_window_set_title (GTK_WINDOW(dialog), _("Save selection"));
 
 	gtk_dialog_add_button(GTK_DIALOG(dialog), _("Export"), GTK_RESPONSE_HELP);
 
@@ -732,13 +738,13 @@ void jump_to_path_on_current_playlist (GtkTreePath *path, struct con_win *cwin)
 
 /* Get a new playlist name that is not reserved */
 
-static gchar* get_playlist_name(struct con_win *cwin, enum playlist_mgmt *choice)
+static gchar* get_playlist_name(struct con_win *cwin, enum playlist_mgmt type, enum playlist_mgmt *choice)
 {
 	gchar *playlist = NULL;
 	enum playlist_mgmt sel = 0;
 
 	do {
-		playlist = get_playlist_dialog(&sel, cwin);
+		playlist = get_playlist_dialog(&sel, type, cwin);
 		if (playlist && !g_ascii_strcasecmp(playlist, SAVE_PLAYLIST_STATE)) {
 			GtkWidget *dialog;
 			dialog = gtk_message_dialog_new_with_markup(
@@ -1056,9 +1062,9 @@ void jump_to_playing_song_handler(GtkButton *button, struct con_win *cwin)
 	gtk_tree_path_free(path);
 }
 
-/* Queue selected rows from current playlist */
+/* Dequeue selected rows from current playlist */
 
-void enqueue_current_playlist(GtkAction *action, struct con_win *cwin)
+void dequeue_current_playlist(GtkAction *action, struct con_win *cwin)
 {
 	GtkTreeSelection *selection;
 	GtkTreePath *path;
@@ -1131,7 +1137,7 @@ int current_playlist_key_press (GtkWidget *win, GdkEventKey *event, struct con_w
 			|| (event->state & GDK_MOD5_MASK)))
 		return FALSE;
 	if (event->keyval == GDK_Delete){
-		remove_current_playlist(NULL, cwin);
+		remove_from_playlist(NULL, cwin);
 		return TRUE;
 	}
 	else if(event->keyval == GDK_q || event->keyval == GDK_Q){
@@ -1176,7 +1182,7 @@ gboolean idle_delete_mobj_list (GSList *to_delete)
 
 /* Remove selected rows from current playlist */
 
-void remove_current_playlist(GtkAction *action, struct con_win *cwin)
+void remove_from_playlist(GtkAction *action, struct con_win *cwin)
 {
 	GtkTreeModel *model;
 	GtkTreeSelection *selection;
@@ -1229,7 +1235,7 @@ void remove_current_playlist(GtkAction *action, struct con_win *cwin)
 			if (gtk_tree_model_get_iter(model, &iter, path)) {
 				gtk_tree_model_get(model, &iter, P_MOBJ_PTR, &mobj, -1);
 
-				if (mobj == cwin->cstate->curr_mobj)
+				if (G_UNLIKELY(mobj == cwin->cstate->curr_mobj))
 					cwin->cstate->curr_mobj_clear = TRUE;
 				else
 					mobj_to_delete = g_slist_prepend(mobj_to_delete, mobj);
@@ -1279,7 +1285,7 @@ void crop_current_playlist(GtkAction *action, struct con_win *cwin)
 	/* Get a reference to all the nodes that are _not_ selected */
 
 	while (ret) {
-		if (!gtk_tree_selection_iter_is_selected(selection, &iter)) {
+		if (gtk_tree_selection_iter_is_selected(selection, &iter) == FALSE) {
 			path = gtk_tree_model_get_path(model, &iter);
 			ref = gtk_tree_row_reference_new(model, path);
 			to_delete = g_slist_prepend(to_delete, ref);
@@ -1289,6 +1295,10 @@ void crop_current_playlist(GtkAction *action, struct con_win *cwin)
 	}
 
 	/* Delete the referenced nodes */
+
+	g_object_ref(model);
+	gtk_widget_set_sensitive(GTK_WIDGET(cwin->current_playlist), FALSE);
+	gtk_tree_view_set_model(GTK_TREE_VIEW(cwin->current_playlist), NULL);
 
 	for (i=to_delete; i != NULL; i = i->next) {
 		ref = i->data;
@@ -1300,7 +1310,7 @@ void crop_current_playlist(GtkAction *action, struct con_win *cwin)
 		if (gtk_tree_model_get_iter(model, &iter, path)) {
 			gtk_tree_model_get(model, &iter, P_MOBJ_PTR, &mobj, -1);
 
-			if (mobj == cwin->cstate->curr_mobj)
+			if (G_UNLIKELY(mobj == cwin->cstate->curr_mobj))
 				cwin->cstate->curr_mobj_clear = TRUE;
 			else
 				mobj_to_delete = g_slist_prepend(mobj_to_delete, mobj);
@@ -1314,6 +1324,10 @@ void crop_current_playlist(GtkAction *action, struct con_win *cwin)
 		gtk_tree_path_free(path);
 		gtk_tree_row_reference_free(ref);
 	}
+
+	gtk_tree_view_set_model(GTK_TREE_VIEW(cwin->current_playlist), model);
+	gtk_widget_set_sensitive(GTK_WIDGET(cwin->current_playlist), TRUE);
+	g_object_unref(model);
 
 	g_idle_add_full(G_PRIORITY_LOW, (GSourceFunc) idle_delete_mobj_list, mobj_to_delete, NULL);
 
@@ -1491,7 +1505,7 @@ void clear_current_playlist(GtkAction *action, struct con_win *cwin)
 	while (ret) {
 		gtk_tree_model_get(model, &iter, P_MOBJ_PTR, &mobj, -1);
 
-		if (mobj == cwin->cstate->curr_mobj)
+		if (G_UNLIKELY(mobj == cwin->cstate->curr_mobj))
 			cwin->cstate->curr_mobj_clear = TRUE;
 		else
 			to_delete = g_slist_prepend(to_delete, mobj);
@@ -1934,7 +1948,7 @@ void save_selected_playlist(GtkAction *action, struct con_win *cwin)
 	if (!gtk_tree_selection_count_selected_rows(selection))
 		return;
 
-	playlist = get_playlist_name(cwin, &choice);
+	playlist = get_playlist_name(cwin, SAVE_SELECTED, &choice);
 	if (playlist) {
 		switch(choice) {
 		case NEW_PLAYLIST:
@@ -1972,7 +1986,7 @@ void save_current_playlist(GtkAction *action, struct con_win *cwin)
 		return;
 	}
 
-	playlist = get_playlist_name(cwin, &choice);
+	playlist = get_playlist_name(cwin, SAVE_COMPLETE, &choice);
 	if (playlist) {
 		switch(choice) {
 		case NEW_PLAYLIST:
@@ -2205,48 +2219,6 @@ void current_playlist_row_activated_cb(GtkTreeView *current_playlist,
 	}
 }
 
-void append_to_playlist(GtkMenuItem *menuitem, struct con_win *cwin)
-{
-	const gchar *playlist;
-
-	playlist = gtk_menu_item_get_label (menuitem);
-
-	append_playlist(playlist, SAVE_SELECTED, cwin);
-}
-
-void complete_add_to_playlist_submenu (struct con_win *cwin)
-{
-	struct db_result result;
-	GtkWidget *submenu, *menuitem;
-	gchar *query;
-	gint i;
-	
-	submenu = gtk_menu_new ();
-
-	gtk_menu_item_set_submenu (GTK_MENU_ITEM (gtk_ui_manager_get_widget (cwin->cp_context_menu, "/popup/Add to playlist")), submenu);
-
-	menuitem = gtk_image_menu_item_new_with_label (_("New playlist"));
-	gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM(menuitem), gtk_image_new_from_stock (GTK_STOCK_NEW, GTK_ICON_SIZE_MENU));
-	g_signal_connect(menuitem, "activate", G_CALLBACK(save_selected_playlist), cwin);
-	gtk_menu_shell_append (GTK_MENU_SHELL(submenu), menuitem);
-
-	menuitem = gtk_separator_menu_item_new ();
-	gtk_menu_shell_append (GTK_MENU_SHELL(submenu), menuitem);
-
-	query = g_strdup_printf ("SELECT NAME FROM PLAYLIST WHERE NAME != \"%s\";", SAVE_PLAYLIST_STATE);
-
-	exec_sqlite_query (query, cwin, &result);
-
-	for_each_result_row (result, i) {
-		menuitem = gtk_image_menu_item_new_with_label (result.resultp[i]);
-		g_signal_connect (menuitem, "activate", G_CALLBACK(append_to_playlist), cwin);
-		gtk_menu_shell_append (GTK_MENU_SHELL (submenu), menuitem);
-	}
-
-	gtk_widget_show_all (submenu);
-	sqlite3_free_table (result.resultp);
-}
-
 /* Handler for current playlist click */
 
 gboolean current_playlist_button_press_cb(GtkWidget *widget,
@@ -2297,39 +2269,39 @@ gboolean current_playlist_button_press_cb(GtkWidget *widget,
 				gtk_tree_model_get(model, &iter, P_BUBBLE, &is_queue, -1);
 
 				if(is_queue){
-					item_widget = gtk_ui_manager_get_widget(cwin->cp_context_menu, "/popup/Queue");
+					item_widget = gtk_ui_manager_get_widget(cwin->cp_context_menu, "/popup/Queue track");
 					gtk_widget_hide(GTK_WIDGET(item_widget));
 
-					item_widget = gtk_ui_manager_get_widget(cwin->cp_context_menu, "/popup/Enqueue");
+					item_widget = gtk_ui_manager_get_widget(cwin->cp_context_menu, "/popup/Dequeue track");
 					gtk_widget_show(GTK_WIDGET(item_widget));
 
-					item_widget = gtk_ui_manager_get_widget(cwin->cp_context_menu, "/popup/Remove");
+					item_widget = gtk_ui_manager_get_widget(cwin->cp_context_menu, "/popup/Remove from playlist");
 					gtk_widget_set_sensitive (GTK_WIDGET(item_widget), TRUE);
 
-					item_widget = gtk_ui_manager_get_widget(cwin->cp_context_menu, "/popup/Crop");
+					item_widget = gtk_ui_manager_get_widget(cwin->cp_context_menu, "/popup/Crop playlist");
 					gtk_widget_set_sensitive (GTK_WIDGET(item_widget), TRUE);
 
-					item_widget = gtk_ui_manager_get_widget(cwin->cp_context_menu, "/popup/Add to playlist");
+					item_widget = gtk_ui_manager_get_widget(cwin->cp_context_menu, "/popup/Add to another playlist");
 					gtk_widget_set_sensitive (GTK_WIDGET(item_widget), TRUE);
 
 					item_widget = gtk_ui_manager_get_widget(cwin->cp_context_menu, "/popup/Edit tags");
 					gtk_widget_set_sensitive (GTK_WIDGET(item_widget), TRUE);
 				}
 				else{
-					item_widget = gtk_ui_manager_get_widget(cwin->cp_context_menu, "/popup/Queue");
+					item_widget = gtk_ui_manager_get_widget(cwin->cp_context_menu, "/popup/Queue track");
 					gtk_widget_set_sensitive (GTK_WIDGET(item_widget), TRUE);
 					gtk_widget_show(GTK_WIDGET(item_widget));
 
-					item_widget = gtk_ui_manager_get_widget(cwin->cp_context_menu, "/popup/Enqueue");
+					item_widget = gtk_ui_manager_get_widget(cwin->cp_context_menu, "/popup/Dequeue track");
 					gtk_widget_hide(GTK_WIDGET(item_widget));
 
-					item_widget = gtk_ui_manager_get_widget(cwin->cp_context_menu, "/popup/Remove");
+					item_widget = gtk_ui_manager_get_widget(cwin->cp_context_menu, "/popup/Remove from playlist");
 					gtk_widget_set_sensitive (GTK_WIDGET(item_widget), TRUE);
 
-					item_widget = gtk_ui_manager_get_widget(cwin->cp_context_menu, "/popup/Crop");
+					item_widget = gtk_ui_manager_get_widget(cwin->cp_context_menu, "/popup/Crop playlist");
 					gtk_widget_set_sensitive (GTK_WIDGET(item_widget), TRUE);
 
-					item_widget = gtk_ui_manager_get_widget(cwin->cp_context_menu, "/popup/Add to playlist");
+					item_widget = gtk_ui_manager_get_widget(cwin->cp_context_menu, "/popup/Add to another playlist");
 					gtk_widget_set_sensitive (GTK_WIDGET(item_widget), TRUE);
 
 					item_widget = gtk_ui_manager_get_widget(cwin->cp_context_menu, "/popup/Edit tags");
@@ -2337,11 +2309,11 @@ gboolean current_playlist_button_press_cb(GtkWidget *widget,
 				}
 			}
 			else{
-				item_widget = gtk_ui_manager_get_widget(cwin->cp_context_menu, "/popup/Queue");
+				item_widget = gtk_ui_manager_get_widget(cwin->cp_context_menu, "/popup/Queue track");
 				gtk_widget_set_sensitive (GTK_WIDGET(item_widget), FALSE);
 				gtk_widget_show(GTK_WIDGET(item_widget));
 
-				item_widget = gtk_ui_manager_get_widget(cwin->cp_context_menu, "/popup/Enqueue");
+				item_widget = gtk_ui_manager_get_widget(cwin->cp_context_menu, "/popup/Dequeue track");
 				gtk_widget_hide(GTK_WIDGET(item_widget));
 			}
 
@@ -2355,20 +2327,20 @@ gboolean current_playlist_button_press_cb(GtkWidget *widget,
 			gtk_tree_path_free(path);
 		}
 		else{
-			item_widget = gtk_ui_manager_get_widget(cwin->cp_context_menu, "/popup/Queue");
+			item_widget = gtk_ui_manager_get_widget(cwin->cp_context_menu, "/popup/Queue track");
 			gtk_widget_set_sensitive (GTK_WIDGET(item_widget), FALSE);
 			gtk_widget_show(GTK_WIDGET(item_widget));
 
-			item_widget = gtk_ui_manager_get_widget(cwin->cp_context_menu, "/popup/Enqueue");
+			item_widget = gtk_ui_manager_get_widget(cwin->cp_context_menu, "/popup/Dequeue track");
 			gtk_widget_hide(GTK_WIDGET(item_widget));
 
-			item_widget = gtk_ui_manager_get_widget(cwin->cp_context_menu, "/popup/Remove");
+			item_widget = gtk_ui_manager_get_widget(cwin->cp_context_menu, "/popup/Remove from playlist");
 			gtk_widget_set_sensitive (GTK_WIDGET(item_widget), FALSE);
 
-			item_widget = gtk_ui_manager_get_widget(cwin->cp_context_menu, "/popup/Crop");
+			item_widget = gtk_ui_manager_get_widget(cwin->cp_context_menu, "/popup/Crop playlist");
 			gtk_widget_set_sensitive (GTK_WIDGET(item_widget), FALSE);
 
-			item_widget = gtk_ui_manager_get_widget(cwin->cp_context_menu, "/popup/Add to playlist");
+			item_widget = gtk_ui_manager_get_widget(cwin->cp_context_menu, "/popup/Add to another playlist");
 			gtk_widget_set_sensitive (GTK_WIDGET(item_widget), FALSE);
 
 			item_widget = gtk_ui_manager_get_widget(cwin->cp_context_menu, "/popup/Edit tags");
@@ -2376,8 +2348,6 @@ gboolean current_playlist_button_press_cb(GtkWidget *widget,
 
 			gtk_tree_selection_unselect_all(selection);
 		}
-
-		complete_add_to_playlist_submenu (cwin);
 
 		popup_menu = gtk_ui_manager_get_widget(cwin->cp_context_menu,
 						       "/popup");

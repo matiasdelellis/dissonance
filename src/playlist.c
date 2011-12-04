@@ -516,6 +516,7 @@ void playlist_tree_replace_playlist(GtkAction *action, struct con_win *cwin)
 			path = i->data;
 			if (gtk_tree_path_get_depth(path) > 1)
 				add_playlist_row_current_playlist(path, cwin);
+
 			gtk_tree_path_free(path);
 
 			/* Have to give control to GTK periodically ... */
@@ -584,13 +585,13 @@ void playlist_tree_add_to_playlist(struct con_win *cwin)
 	list = gtk_tree_selection_get_selected_rows(selection, NULL);
 
 	if (list) {
-
 		/* Add all the rows to the current playlist */
 
 		for (i=list; i != NULL; i = i->next) {
 			path = i->data;
 			if (gtk_tree_path_get_depth(path) > 1)
 				add_playlist_row_current_playlist(path, cwin);
+
 			gtk_tree_path_free(path);
 
 			/* Have to give control to GTK periodically ... */
@@ -606,6 +607,96 @@ void playlist_tree_add_to_playlist(struct con_win *cwin)
 		}
 		g_list_free(list);
 	}
+}
+
+/* Build a dialog to get a new playlist name */
+
+gchar* rename_playlist_dialog(const gchar * oplaylist, struct con_win *cwin)
+{
+	GtkWidget *dialog;
+	GtkWidget *hbox;
+	GtkWidget *label_new, *entry;
+	gchar *playlist = NULL;
+	gint result;
+
+	/* Create dialog window */
+
+	hbox = gtk_hbox_new(FALSE, 2);
+
+	label_new = gtk_label_new_with_mnemonic(_("Choose a new name"));
+
+	entry = gtk_entry_new();
+	gtk_entry_set_max_length(GTK_ENTRY(entry), 255);
+	gtk_entry_set_activates_default (GTK_ENTRY(entry), TRUE);
+
+	gtk_entry_set_text(GTK_ENTRY(entry), oplaylist);
+
+	dialog = gtk_dialog_new_with_buttons(_("Rename"),
+			     GTK_WINDOW(cwin->mainwindow),
+			     GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
+			     GTK_STOCK_CANCEL,
+			     GTK_RESPONSE_CANCEL,
+			     GTK_STOCK_OK,
+			     GTK_RESPONSE_ACCEPT,
+			     NULL);
+
+	gtk_dialog_set_default_response (GTK_DIALOG (dialog), GTK_RESPONSE_ACCEPT);
+
+	gtk_box_pack_start(GTK_BOX(hbox), label_new, FALSE, FALSE, 2);
+	gtk_box_pack_start(GTK_BOX(hbox), entry, TRUE, TRUE, 2);
+
+	gtk_container_add(GTK_CONTAINER(GTK_DIALOG(dialog)->vbox), hbox);
+
+	gtk_widget_show_all(dialog);
+
+	result = gtk_dialog_run(GTK_DIALOG(dialog));
+	switch(result) {
+	case GTK_RESPONSE_ACCEPT:
+		/* Get playlist name */
+		playlist = g_strdup(gtk_entry_get_text(GTK_ENTRY(entry)));
+		break;
+	case GTK_RESPONSE_CANCEL:
+		break;
+	default:
+		break;
+	}
+	gtk_widget_destroy(dialog);
+
+	return playlist;
+}
+
+void playlist_tree_rename(GtkAction *action, struct con_win *cwin)
+{
+	GtkTreeModel *model;
+	GtkTreeSelection *selection;
+	GtkTreePath *path;
+	GtkTreeIter iter;
+	GList *list;
+	gchar *playlist = NULL, *s_playlist = NULL, *n_playlist = NULL;
+
+	selection = gtk_tree_view_get_selection(GTK_TREE_VIEW(cwin->playlist_tree));
+	list = gtk_tree_selection_get_selected_rows(selection, &model);
+
+	if (list) {
+		path = list->data;
+		if (gtk_tree_path_get_depth(path) > 1) {
+			gtk_tree_model_get_iter(model, &iter, path);
+			gtk_tree_model_get(model, &iter, P_PLAYLIST, &playlist, -1);
+
+			s_playlist = sanitize_string_sqlite3(playlist);
+
+			n_playlist = rename_playlist_dialog(s_playlist, cwin);
+			if(n_playlist != NULL) {
+				update_playlist_name_db(s_playlist, n_playlist, cwin);
+				g_free(n_playlist);
+				init_playlist_view(cwin);
+			}
+			g_free(s_playlist);
+			g_free(playlist);
+		}
+		gtk_tree_path_free(path);
+	}
+	g_list_free(list);
 }
 
 void playlist_tree_delete(GtkAction *action, struct con_win *cwin)
@@ -837,7 +928,7 @@ exit:
 	gtk_widget_destroy(dialog);
 }
 
-static GSList *
+GSList *
 pragha_pl_parser_parse_pls (const gchar *file)
 {
 	GKeyFile *plskeyfile;
@@ -870,7 +961,7 @@ pragha_pl_parser_parse_pls (const gchar *file)
 
 /* Load a M3U playlist, and add tracks to current playlist */
 
-static GSList *
+GSList *
 pragha_pl_parser_parse_m3u (const gchar *file)
 {
 	GError *err = NULL;
@@ -993,21 +1084,29 @@ GSList *pragha_pl_parser_parse_from_file_by_extension (const gchar *filename)
 void pragha_pl_parser_open_from_file_by_extension (gchar *file, struct con_win *cwin)
 {
 	GSList *list = NULL, *i = NULL;
+	gchar *summary;
+	gint try = 0, added = 0;
 	struct musicobject *mobj;
 
 	list = pragha_pl_parser_parse_from_file_by_extension (file);
 
 	for (i = list; i != NULL; i = i->next) {
+		try++;
 		mobj = new_musicobject_from_file(i->data);
-		if (mobj)
+		if (mobj) {
+			added++;
 			append_current_playlist(mobj, cwin);
-
+		}
 		while(gtk_events_pending()) {
 			if (gtk_main_iteration_do(FALSE))
 				return;
 		}
 		g_free(i->data);
 	}
+	summary = g_strdup_printf(_("Added %d songs from %d of the imported playlist."), added, try);
+	set_status_message(summary, cwin);
+	g_free(summary);
+
 	g_slist_free(list);
 }
 
@@ -1210,6 +1309,172 @@ exit:
 	g_free(s_playlist);
 }
 
+void append_to_playlist(GtkMenuItem *menuitem, struct con_win *cwin)
+{
+	const gchar *playlist;
+
+	playlist = gtk_menu_item_get_label (menuitem);
+
+	append_playlist(playlist, SAVE_SELECTED, cwin);
+}
+
+void save_to_playlist(GtkMenuItem *menuitem, struct con_win *cwin)
+{
+	const gchar *playlist;
+
+	playlist = gtk_menu_item_get_label (menuitem);
+
+	new_playlist(playlist, SAVE_COMPLETE, cwin);
+}
+
+void complete_add_to_playlist_submenu (struct con_win *cwin)
+{
+	struct db_result result;
+	GtkWidget *submenu, *menuitem;
+	gchar *query;
+	gint i;
+	
+	submenu = gtk_menu_new ();
+
+	gtk_menu_item_set_submenu (GTK_MENU_ITEM (gtk_ui_manager_get_widget (cwin->cp_context_menu, "/popup/Add to another playlist")), submenu);
+
+	menuitem = gtk_image_menu_item_new_with_label (_("New playlist"));
+	gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM(menuitem), gtk_image_new_from_stock (GTK_STOCK_NEW, GTK_ICON_SIZE_MENU));
+	g_signal_connect(menuitem, "activate", G_CALLBACK(save_selected_playlist), cwin);
+	gtk_menu_shell_append (GTK_MENU_SHELL(submenu), menuitem);
+
+	menuitem = gtk_separator_menu_item_new ();
+	gtk_menu_shell_append (GTK_MENU_SHELL(submenu), menuitem);
+
+	query = g_strdup_printf ("SELECT NAME FROM PLAYLIST WHERE NAME != \"%s\";", SAVE_PLAYLIST_STATE);
+
+	exec_sqlite_query (query, cwin, &result);
+
+	for_each_result_row (result, i) {
+		menuitem = gtk_image_menu_item_new_with_label (result.resultp[i]);
+		g_signal_connect (menuitem, "activate", G_CALLBACK(append_to_playlist), cwin);
+		gtk_menu_shell_append (GTK_MENU_SHELL (submenu), menuitem);
+	}
+
+	gtk_widget_show_all (submenu);
+	sqlite3_free_table (result.resultp);
+}
+
+void complete_save_playlist_submenu (struct con_win *cwin)
+{
+	struct db_result result;
+	GtkWidget *submenu, *menuitem;
+	gchar *query;
+	gint i;
+	
+	submenu = gtk_menu_new ();
+
+	gtk_menu_item_set_submenu (GTK_MENU_ITEM (gtk_ui_manager_get_widget (cwin->cp_context_menu, "/popup/Save playlist")), submenu);
+
+	menuitem = gtk_image_menu_item_new_with_label (_("New playlist"));
+	gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM(menuitem), gtk_image_new_from_stock (GTK_STOCK_NEW, GTK_ICON_SIZE_MENU));
+	g_signal_connect(menuitem, "activate", G_CALLBACK(save_current_playlist), cwin);
+	gtk_menu_shell_append (GTK_MENU_SHELL(submenu), menuitem);
+
+	menuitem = gtk_separator_menu_item_new ();
+	gtk_menu_shell_append (GTK_MENU_SHELL(submenu), menuitem);
+
+	query = g_strdup_printf ("SELECT NAME FROM PLAYLIST WHERE NAME != \"%s\";", SAVE_PLAYLIST_STATE);
+
+	exec_sqlite_query (query, cwin, &result);
+
+	for_each_result_row (result, i) {
+		menuitem = gtk_image_menu_item_new_with_label (result.resultp[i]);
+		g_signal_connect (menuitem, "activate", G_CALLBACK(save_to_playlist), cwin);
+		gtk_menu_shell_append (GTK_MENU_SHELL (submenu), menuitem);
+	}
+
+	gtk_widget_show_all (submenu);
+	sqlite3_free_table (result.resultp);
+}
+
+void complete_main_save_playlist_submenu (struct con_win *cwin)
+{
+	struct db_result result;
+	GtkWidget *submenu, *menuitem;
+	GtkAccelGroup* accel_group;
+	gchar *query;
+	gint i;
+
+	submenu = gtk_menu_new ();
+
+	gtk_menu_item_set_submenu (GTK_MENU_ITEM(gtk_ui_manager_get_widget(cwin->bar_context_menu,"/Menubar/EditMenu/Save playlist")), submenu);
+
+	menuitem = gtk_image_menu_item_new_with_label (_("New playlist"));
+	gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM(menuitem), gtk_image_new_from_stock (GTK_STOCK_NEW, GTK_ICON_SIZE_MENU));
+	g_signal_connect(menuitem, "activate", G_CALLBACK(save_current_playlist), cwin);
+
+	accel_group = gtk_accel_group_new ();
+	gtk_window_add_accel_group(GTK_WINDOW(cwin->mainwindow), accel_group);
+	gtk_menu_set_accel_group(GTK_MENU(submenu), accel_group);
+	gtk_accel_map_add_entry ("<SubMenu>/New playlist", gdk_keyval_from_name ("s"), GDK_CONTROL_MASK);
+	gtk_menu_item_set_accel_path (GTK_MENU_ITEM(menuitem), "<SubMenu>/New playlist");
+
+	gtk_menu_shell_append (GTK_MENU_SHELL(submenu), menuitem);
+
+	menuitem = gtk_separator_menu_item_new ();
+	gtk_menu_shell_append (GTK_MENU_SHELL(submenu), menuitem);
+
+	query = g_strdup_printf ("SELECT NAME FROM PLAYLIST WHERE NAME != \"%s\";", SAVE_PLAYLIST_STATE);
+
+	exec_sqlite_query (query, cwin, &result);
+
+	for_each_result_row (result, i) {
+		menuitem = gtk_image_menu_item_new_with_label (result.resultp[i]);
+		g_signal_connect (menuitem, "activate", G_CALLBACK(save_to_playlist), cwin);
+		gtk_menu_shell_append (GTK_MENU_SHELL (submenu), menuitem);
+	}
+
+	gtk_widget_show_all (submenu);
+	sqlite3_free_table (result.resultp);
+}
+
+void complete_main_add_to_playlist_submenu (struct con_win *cwin)
+{
+	struct db_result result;
+	GtkWidget *submenu, *menuitem;
+	GtkAccelGroup* accel_group;
+	gchar *query;
+	gint i;
+	
+	submenu = gtk_menu_new ();
+
+	gtk_menu_item_set_submenu (GTK_MENU_ITEM(gtk_ui_manager_get_widget(cwin->bar_context_menu,"/Menubar/EditMenu/Add to another playlist")), submenu);
+
+	menuitem = gtk_image_menu_item_new_with_label (_("New playlist"));
+	gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM(menuitem), gtk_image_new_from_stock (GTK_STOCK_NEW, GTK_ICON_SIZE_MENU));
+	g_signal_connect(menuitem, "activate", G_CALLBACK(save_selected_playlist), cwin);
+
+	accel_group = gtk_accel_group_new ();
+	gtk_window_add_accel_group(GTK_WINDOW(cwin->mainwindow), accel_group);
+	gtk_menu_set_accel_group(GTK_MENU(submenu), accel_group);
+	gtk_accel_map_add_entry ("<SubMenu>/Add to another playlist", gdk_keyval_from_name ("s"), GDK_CONTROL_MASK+GDK_SHIFT_MASK);
+	gtk_menu_item_set_accel_path (GTK_MENU_ITEM(menuitem), "<SubMenu>/Add to another playlist");
+
+	gtk_menu_shell_append (GTK_MENU_SHELL(submenu), menuitem);
+
+	menuitem = gtk_separator_menu_item_new ();
+	gtk_menu_shell_append (GTK_MENU_SHELL(submenu), menuitem);
+
+	query = g_strdup_printf ("SELECT NAME FROM PLAYLIST WHERE NAME != \"%s\";", SAVE_PLAYLIST_STATE);
+
+	exec_sqlite_query (query, cwin, &result);
+
+	for_each_result_row (result, i) {
+		menuitem = gtk_image_menu_item_new_with_label (result.resultp[i]);
+		g_signal_connect (menuitem, "activate", G_CALLBACK(save_to_playlist), cwin);
+		gtk_menu_shell_append (GTK_MENU_SHELL (submenu), menuitem);
+	}
+
+	gtk_widget_show_all (submenu);
+	sqlite3_free_table (result.resultp);
+}
+
 void init_playlist_view(struct con_win *cwin)
 {
 	gint i = 0;
@@ -1265,6 +1530,11 @@ void init_playlist_view(struct con_win *cwin)
 	gtk_tree_view_expand_all(GTK_TREE_VIEW(cwin->playlist_tree));
 
 	gdk_window_set_cursor(GDK_WINDOW(cwin->mainwindow->window), NULL);
+
+	complete_add_to_playlist_submenu (cwin);
+	complete_save_playlist_submenu (cwin);
+	complete_main_save_playlist_submenu(cwin);
+	complete_main_add_to_playlist_submenu (cwin);
 
 	cwin->cstate->view_change = FALSE;
 }

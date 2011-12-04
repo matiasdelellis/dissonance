@@ -424,9 +424,8 @@ void edit_tags_playing_action(GtkAction *action, struct con_win *cwin)
 
 	if ((path = current_playlist_get_actual(cwin)) != NULL) {
 		model = gtk_tree_view_get_model(GTK_TREE_VIEW(cwin->current_playlist));
-		if (gtk_tree_model_get_iter(model, &iter, path)) {
+		if (gtk_tree_model_get_iter(model, &iter, path))
 			update_track_current_playlist(&iter, changed, cwin->cstate->curr_mobj, cwin);
-		}
 		gtk_tree_path_free(path);
 	}
 
@@ -604,6 +603,31 @@ status_bar_action (GtkAction *action, struct con_win *cwin)
 		gtk_widget_show(GTK_WIDGET(cwin->status_bar));
 	else
 		gtk_widget_hide(GTK_WIDGET(cwin->status_bar));
+}
+
+/* Handler for the 'Show_controls_below_action' item in the view menu */
+
+void
+show_controls_below_action (GtkAction *action, struct con_win *cwin)
+{
+	//gboolean order = gtk_toggle_action_get_active(GTK_TOGGLE_ACTION(action));
+
+	GtkWidget *parent;
+	GList *children, *l;
+	gint i = 0;
+
+	parent = gtk_widget_get_parent (GTK_WIDGET(cwin->status_bar));
+
+	children = gtk_container_get_children (GTK_CONTAINER (parent));
+
+	for (l = children; l; i++, l = l->next) {
+		if(i == 1) {
+			gtk_box_reorder_child(GTK_BOX(parent),
+					      GTK_WIDGET(l->data),
+					      2);
+		}
+	}
+	
 }
 
 void
@@ -960,17 +984,6 @@ void about_widget(struct con_win *cwin)
 				"name", PACKAGE_NAME,
 				"version", PACKAGE_VERSION,
 				NULL);
-}
-
-void lyric_action(GtkAction *action, struct con_win *cwin)
-{
-	if (cwin->cstate->state != ST_STOPPED){
-		gchar *uri = g_markup_printf_escaped("http://www.lyricsplugin.com/winamp03/plugin/?artist=%s&title=%s",
-							cwin->cstate->curr_mobj->tags->artist,
-							cwin->cstate->curr_mobj->tags->title);
-	open_url(cwin, uri);
-	g_free(uri);
-	}
 }
 
 void home_action(GtkAction *action, struct con_win *cwin)

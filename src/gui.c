@@ -36,12 +36,12 @@ gchar *main_menu_xml = "<ui>							\
 		<menu action=\"EditMenu\">					\
 			<menuitem action=\"Add the library\"/>	    		\
 			<separator/>						\
-			<menuitem action=\"Remove\"/>		    		\
-			<menuitem action=\"Crop\"/>		    		\
-			<menuitem action=\"Clear current playlist\"/>		\
+			<menuitem action=\"Remove from playlist\"/>		\
+			<menuitem action=\"Crop playlist\"/>			\
+			<menuitem action=\"Clear playlist\"/>			\
 			<separator/>				    		\
-			<menuitem action=\"Save selection\"/>			\
-			<menuitem action=\"Save current playlist\"/>		\
+			<menuitem action=\"Add to another playlist\"/>		\
+			<menuitem action=\"Save playlist\"/>			\
 			<separator/>						\
 			<menuitem action=\"Shuffle\"/>				\
 			<menuitem action=\"Repeat\"/>				\
@@ -57,6 +57,7 @@ gchar *main_menu_xml = "<ui>							\
 				<menuitem action=\"Library\"/>			\
 				<menuitem action=\"Playlists\"/>		\
 			</menu>							\
+			<menuitem action=\"Show controls below\"/>		\
 			<menuitem action=\"Status bar\"/>			\
 			<separator/>						\
 			<menuitem action=\"Jump to playing song\"/>		\
@@ -85,15 +86,15 @@ gchar *main_menu_xml = "<ui>							\
 
 gchar *cp_context_menu_xml = "<ui>		    				\
 	<popup>					    				\
-	<menuitem action=\"Queue\"/>						\
-	<menuitem action=\"Enqueue\"/>						\
+	<menuitem action=\"Queue track\"/>					\
+	<menuitem action=\"Dequeue track\"/>					\
 	<separator/>				    				\
-	<menuitem action=\"Remove\"/>		    				\
-	<menuitem action=\"Crop\"/>						\
-	<menuitem action=\"Clear current playlist\"/>				\
+	<menuitem action=\"Remove from playlist\"/>				\
+	<menuitem action=\"Crop playlist\"/>					\
+	<menuitem action=\"Clear playlist\"/>					\
 	<separator/>				    				\
-	<menuitem action=\"Add to playlist\"/>					\
-	<menuitem action=\"Save current playlist\"/>				\
+	<menuitem action=\"Add to another playlist\"/>				\
+	<menuitem action=\"Save playlist\"/>					\
 	<separator/>				    				\
 	<menuitem action=\"Edit tags\"/>					\
 	</popup>				    				\
@@ -119,6 +120,7 @@ gchar *playlist_tree_context_menu_xml = "<ui>	\
 	<menuitem action=\"Replace current playlist\"/>	\
 	<menuitem action=\"Replace and play\"/>	\
 	<separator/>				\
+	<menuitem action=\"Rename\"/>		\
 	<menuitem action=\"Delete\"/>		\
 	<menuitem action=\"Export\"/>		\
 	</popup>				\
@@ -192,22 +194,22 @@ GtkActionEntry main_aentries[] = {
 	 NULL, "Stop", G_CALLBACK(stop_action)},
 	{"Next", GTK_STOCK_MEDIA_NEXT, N_("Next track"),
 	 "<Alt>Right", "Next track", G_CALLBACK(next_action)},
-	{"Edit tags", GTK_STOCK_EDIT, N_("Edit tags"),
-	 NULL, "Edit tag for this track", G_CALLBACK(edit_tags_playing_action)},
+	{"Edit tags", GTK_STOCK_EDIT, N_("Edit track information"),
+	 "<Control>E", "Edit information of current track", G_CALLBACK(edit_tags_playing_action)},
 	{"Quit", GTK_STOCK_QUIT, N_("_Quit"),
 	 "<Control>Q", "Quit pragha", G_CALLBACK(quit_action)},
 	{"Add the library", GTK_STOCK_ADD, N_("_Add the library"),
 	 NULL, "Add all the library", G_CALLBACK(add_all_action)},
-	{"Remove", GTK_STOCK_REMOVE, N_("Remove"),
-	 NULL, "Delete this entry", G_CALLBACK(remove_current_playlist)},
-	{"Crop", GTK_STOCK_REMOVE, N_("Crop"),
-	 "<Control>C", "Crop the playlist", G_CALLBACK(crop_current_playlist)},
-	{"Clear current playlist", GTK_STOCK_CLEAR, N_("Clear current playlist"),
+	{"Remove from playlist", GTK_STOCK_REMOVE, N_("Remove from playlist"),
+	 NULL, "Remove selection from playlist", G_CALLBACK(remove_from_playlist)},
+	{"Crop playlist", GTK_STOCK_REMOVE, N_("Crop playlist"),
+	 "<Control>C", "Crop playlist", G_CALLBACK(crop_current_playlist)},
+	{"Clear playlist", GTK_STOCK_CLEAR, N_("Clear playlist"),
 	 "<Control>L", "Clear the current playlist", G_CALLBACK(clear_current_playlist)},
-	{"Save selection", GTK_STOCK_SAVE_AS, N_("Save selection"),
-	 "<control><shift>s", "Save selected tracks as playlist", G_CALLBACK(save_selected_playlist)},
-	{"Save current playlist", GTK_STOCK_SAVE, N_("Save current playlist"),
-	 "<control>s", "Save the complete playlist", G_CALLBACK(save_current_playlist)},
+	{"Add to another playlist", NULL, N_("Add to another playlist")},
+	{"Save playlist", GTK_STOCK_SAVE_AS, N_("Save playlist")},
+	{"Search in playlist", GTK_STOCK_FIND, N_("_Search in playlist"),
+	 "<Control>F", "Search in playlist", G_CALLBACK(search_playlist_action)},
 	{"Preferences", GTK_STOCK_PREFERENCES, N_("_Preferences"),
 	 "<Control>P", "Set preferences", G_CALLBACK(pref_action)},
 	{"Lateral panel", NULL, N_("Lateral _panel")},
@@ -264,6 +266,9 @@ GtkToggleActionEntry toggles_entries[] = {
 	{"Playlists", NULL, N_("Playlists"),
 	 NULL, "Playlists", G_CALLBACK(playlists_pane_action),
 	FALSE},
+	{"Show controls below", NULL, N_("Show controls below"),
+	 NULL, "Show controls below", G_CALLBACK(show_controls_below_action),
+	FALSE},
 	{"Status bar", NULL, N_("Status bar"),
 	 NULL, "Status bar", G_CALLBACK(status_bar_action),
 	TRUE}
@@ -290,21 +295,20 @@ GtkToggleActionEntry cp_null_toggles_entries[] = {
 };
 
 GtkActionEntry cp_context_aentries[] = {
-	{"Queue", GTK_STOCK_ADD, N_("Add to playback queue"),
+	{"Queue track", GTK_STOCK_ADD, N_("Add to playback queue"),
 	 NULL, "Add to playback queue", G_CALLBACK(queue_current_playlist)},
-	{"Enqueue", GTK_STOCK_REMOVE, N_("Remove to playback queue"),
-	 NULL, "Remove to playback queue", G_CALLBACK(enqueue_current_playlist)},
-	{"Remove", GTK_STOCK_REMOVE, N_("Remove"),
-	 NULL, "Delete this entry", G_CALLBACK(remove_current_playlist)},
-	{"Crop", GTK_STOCK_REMOVE, N_("Crop"),
-	 NULL, "Crop the playlist", G_CALLBACK(crop_current_playlist)},
-	{"Clear current playlist", GTK_STOCK_CLEAR, N_("Clear current playlist"),
+	{"Dequeue track", GTK_STOCK_REMOVE, N_("Remove to playback queue"),
+	 NULL, "Remove to playback queue", G_CALLBACK(dequeue_current_playlist)},
+	{"Remove from playlist", GTK_STOCK_REMOVE, N_("Remove from playlist"),
+	 NULL, "Remove selection from playlist", G_CALLBACK(remove_from_playlist)},
+	{"Crop playlist", GTK_STOCK_REMOVE, N_("Crop playlist"),
+	 NULL, "Remove no telected tracks of playlist", G_CALLBACK(crop_current_playlist)},
+	{"Clear playlist", GTK_STOCK_CLEAR, N_("Clear playlist"),
 	 NULL, "Clear the current playlist", G_CALLBACK(clear_current_playlist)},
-	{"Add to playlist", NULL, N_("Add to playlist")},
-	{"Save current playlist", GTK_STOCK_SAVE, N_("Save current playlist"),
-	 NULL, "Save the complete playlist", G_CALLBACK(save_current_playlist)},
-	{"Edit tags", GTK_STOCK_EDIT, N_("Edit tags"),
-	 NULL, "Edit tag for this track", G_CALLBACK(edit_tags_current_playlist)}
+	{"Add to another playlist", GTK_STOCK_SAVE_AS, N_("Add to another playlist")},
+	{"Save playlist", GTK_STOCK_SAVE, N_("Save playlist")},
+	{"Edit tags", GTK_STOCK_EDIT, N_("Edit track information"),
+	 NULL, "Edit information for this track", G_CALLBACK(edit_tags_current_playlist)}
 };
 
 GtkActionEntry playlist_tree_context_aentries[] = {
@@ -314,6 +318,8 @@ GtkActionEntry playlist_tree_context_aentries[] = {
 	 NULL, "Replace current playlist", G_CALLBACK(playlist_tree_replace_playlist)},
 	{"Replace and play", GTK_STOCK_MEDIA_PLAY, N_("Replace and _play"),
 	 NULL, "Replace and play", G_CALLBACK(playlist_tree_replace_and_play)},
+	{"Rename", NULL, N_("Rename"),
+	 NULL, "Rename", G_CALLBACK(playlist_tree_rename)},
 	{"Delete", GTK_STOCK_REMOVE, N_("Delete"),
 	 NULL, "Delete", G_CALLBACK(playlist_tree_delete)},
 	{"Export", GTK_STOCK_SAVE, N_("Export"),
@@ -373,8 +379,8 @@ GtkActionEntry systray_menu_aentries[] = {
 	 NULL, "Stop", G_CALLBACK(stop_action)},
 	{"Next", GTK_STOCK_MEDIA_NEXT, N_("Next Track"),
 	 NULL, "Next Track", G_CALLBACK(next_action)},
-	{"Edit tags", GTK_STOCK_EDIT, N_("Edit tags"),
-	 NULL, "Edit tag for this track", G_CALLBACK(edit_tags_playing_action)},
+	{"Edit tags", GTK_STOCK_EDIT, N_("Edit track information"),
+	 NULL, "Edit information of current track", G_CALLBACK(edit_tags_playing_action)},
 	{"Quit", GTK_STOCK_QUIT, N_("_Quit"),
 	 NULL, "Quit", G_CALLBACK(systray_quit)}
 };
