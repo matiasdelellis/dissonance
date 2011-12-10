@@ -1106,6 +1106,39 @@ void queue_current_playlist(GtkAction *action, struct con_win *cwin)
 	g_list_free (list);
 }
 
+/* Toglle queue state of selection on current playlist. */
+
+void toggle_queue_selected_current_playlist (struct con_win *cwin)
+{
+	GtkTreeModel *model;
+	GtkTreeRowReference *ref;
+	GtkTreeSelection *selection;
+	GtkTreePath *path;
+	GtkTreeIter iter;
+	gboolean is_queue = FALSE;
+	GList *list;
+
+	selection = gtk_tree_view_get_selection(GTK_TREE_VIEW(cwin->current_playlist));
+	list = gtk_tree_selection_get_selected_rows(selection, &model);
+
+	while (list) {
+		path = list->data;
+		if (gtk_tree_model_get_iter(model, &iter, path)) {
+			gtk_tree_model_get(model, &iter, P_BUBBLE, &is_queue, -1);
+			if(is_queue)
+				delete_queue_track_refs(path, cwin);
+			else {
+				ref = gtk_tree_row_reference_new(model, path);
+				cwin->cstate->queue_track_refs = g_slist_append(cwin->cstate->queue_track_refs, ref);
+			}
+		}
+		gtk_tree_path_free(path);
+		list = list->next;
+	}
+	requeue_track_refs(cwin);
+	g_list_free (list);
+}
+
 /* Based on Totem Code */
 int current_playlist_key_press (GtkWidget *win, GdkEventKey *event, struct con_win *cwin)
 {
@@ -2737,38 +2770,6 @@ exit:
 
 	gtk_tree_path_free(dest_path);
 	gtk_drag_finish(context, TRUE, FALSE, time);
-}
-
-/* Search through title, artist, album and filename */
-
-gboolean current_playlist_search_compare(GtkTreeModel *model,
-					 gint column,
-					 const gchar *key,
-					 GtkTreeIter *iter,
-					 gpointer data)
-{
-	gchar *basename;
-	struct musicobject *mobj;
-
-	gtk_tree_model_get(model, iter, P_MOBJ_PTR, &mobj, -1);
-	if(!mobj)
-		return FALSE;
-
-	if (!g_strncasecmp(key, mobj->tags->title, strlen(key)))
-		return FALSE;
-	if (!g_strncasecmp(key, mobj->tags->artist, strlen(key)))
-		return FALSE;
-	if (!g_strncasecmp(key, mobj->tags->album, strlen(key)))
-		return FALSE;
-
-	basename = g_path_get_basename(mobj->file);
-	if (!g_strncasecmp(key, basename, strlen(key))) {
-		g_free(basename);
-		return FALSE;
-	}
-	g_free(basename);
-
-	return TRUE;
 }
 
 /* Save current playlist state on exit */

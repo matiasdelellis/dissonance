@@ -604,6 +604,7 @@ struct con_state {
 	gdouble seek_fraction;
 	gchar *last_folder;
 	gchar *filter_entry;
+	gchar *jump_filter;
 	gchar *arturl;
 	GRand *rand;
 	GThread *c_thread;
@@ -712,6 +713,7 @@ struct con_win {
 	GtkWidget *now_playing_label;
 	GtkWidget *library_tree;
 	GtkWidget *playlist_tree;
+	GtkWidget *jump_tree;
 	GtkWidget *header_context_menu;
 	GtkTreeStore *library_store;
 	GOptionContext *cmd_context;
@@ -1034,6 +1036,7 @@ void init_current_playlist_columns(struct con_win *cwin);
 void requeue_track_refs (struct con_win *cwin);
 void dequeue_current_playlist(GtkAction *action, struct con_win *cwin);
 void queue_current_playlist(GtkAction *action, struct con_win *cwin);
+void toggle_queue_selected_current_playlist (struct con_win *cwin);
 int current_playlist_key_press (GtkWidget *win, GdkEventKey *event, struct con_win *cwin);
 void remove_from_playlist(GtkAction *action, struct con_win *cwin);
 void crop_current_playlist(GtkAction *action, struct con_win *cwin);
@@ -1303,6 +1306,7 @@ void init_tag_completion(struct con_win *cwin);
 void init_gui(gint argc, gchar **argv, struct con_win *cwin);
 
 /* Others */
+void dialog_jump_to_track (struct con_win *cwin);
 
 void common_cleanup(struct con_win *cwin);
 void exit_pragha(GtkWidget *widget, struct con_win *cwin);

@@ -1295,6 +1295,7 @@ gint init_first_state(struct con_win *cwin)
 
 	cwin->cstate->arturl = NULL;
 	cwin->cstate->filter_entry = NULL;
+	cwin->cstate->jump_filter = NULL;
 
 	cwin->cstate->rand = g_rand_new();
 	cwin->cstate->rand_track_refs = NULL;

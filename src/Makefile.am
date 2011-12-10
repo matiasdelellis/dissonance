@@ -46,7 +46,8 @@ pragha_SOURCES =pragha.c \
 		cdda.h \
 		gtkcellrendererbubble.c \
 		gtkcellrendererbubble.h \
-		glyr-related.c
+		glyr-related.c \
+		jumptotrack.c
 
 pragha_CFLAGS =	$(GLIB_CFLAGS) 						\
 	$(GTHREAD_CFLAGS)						\
