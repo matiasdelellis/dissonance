@@ -1755,13 +1755,18 @@ GtkWidget* create_playing_box(struct con_win *cwin)
 	GtkWidget *now_playing_label,*track_length_label,*track_time_label;
 	GtkWidget *track_progress_bar;
 	GtkWidget *track_length_align, *track_time_align, *track_progress_align, *vbox_align;
-	GtkWidget *new_vbox,*new_hbox; 
-	GtkWidget *track_length_event_box;
+	GtkWidget *new_vbox,*new_hbox;
+	GtkWidget *track_length_event_box, *track_playing_event_box;
 
 	now_playing_label = gtk_label_new(NULL);
 	gtk_label_set_ellipsize (GTK_LABEL(now_playing_label), PANGO_ELLIPSIZE_END);
 	gtk_label_set_markup(GTK_LABEL(now_playing_label),_("<b>Not playing</b>"));
 	gtk_misc_set_alignment (GTK_MISC(now_playing_label) , 0, 1);
+
+	track_playing_event_box = gtk_event_box_new();
+	g_signal_connect (GTK_OBJECT(track_playing_event_box), "button-press-event",
+			G_CALLBACK(edit_tags_playing_event), cwin);
+	gtk_container_add(GTK_CONTAINER(track_playing_event_box), now_playing_label);
 
 	new_vbox = gtk_vbox_new(FALSE, 2);
 	new_hbox = gtk_hbox_new(FALSE, 1);
@@ -1815,7 +1820,7 @@ GtkWidget* create_playing_box(struct con_win *cwin)
 			   FALSE, FALSE, 3);
 
 	gtk_box_pack_start(GTK_BOX(new_vbox),
-			   GTK_WIDGET(now_playing_label),
+			   GTK_WIDGET(track_playing_event_box),
 			   FALSE, FALSE, 0);
 	gtk_box_pack_start(GTK_BOX(new_vbox),
 			   GTK_WIDGET(new_hbox),

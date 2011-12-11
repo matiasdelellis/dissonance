@@ -178,6 +178,10 @@ gint main(gint argc, gchar *argv[])
 	#if HAVE_GLIB_2_26
 	cwin->cmpris2 = g_slice_new0(struct con_mpris2);
 	#endif
+
+	if(init_first_state(cwin) == -1)
+		return -1;
+
 	debug_level = 0;
 
 	setlocale (LC_ALL, "");
@@ -257,9 +261,6 @@ gint main(gint argc, gchar *argv[])
 		return -1;
 	}
 	#endif
-
-	if(init_first_state(cwin) == -1)
-		return -1;
 
 	gdk_threads_enter();
 	init_gui(argc, argv, cwin);
