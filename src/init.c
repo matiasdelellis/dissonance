@@ -1229,8 +1229,13 @@ gint init_threads(struct con_win *cwin)
 {
 	CDEBUG(DBG_INFO, "Initializing threads");
 
+	#if !GLIB_CHECK_VERSION(2,31,0)
 	if (!g_thread_supported())
 		g_thread_init(NULL);
+	#endif
+	#if GLIB_CHECK_VERSION(2,24,0)
+	g_type_init ();
+	#endif
 	gdk_threads_init();
 	cwin->cstate->c_thread = NULL;
 	cwin->cstate->c_mutex = g_mutex_new();
