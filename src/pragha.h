@@ -241,6 +241,28 @@
 #define PRAGHA_BUTTON_SKIP_ALL   _("S_kip All")
 #define PRAGHA_BUTTON_DELETE_ALL _("Delete _All")
 
+/* Next are some missing tranlation to match whit Pragha 1.0 */
+#define TRANSLATION_00 _("Import a XSPF playlist")
+#define TRANSLATION_01 _("Added %d songs of the last %d loved on Last.fm.")
+#define TRANSLATION_02 _("You had no favorite songs on Last.fm.")
+#define TRANSLATION_03 _("No connection Last.fm has been established.")
+#define TRANSLATION_04 _("Added %d songs of %d sugested from Last.fm.")
+#define TRANSLATION_05 _("Last.fm not suggest any similar song.")
+#define TRANSLATION_06 _("Love song on Last.fm failed."
+#define TRANSLATION_07 _("Unlove song on Last.fm failed.")
+#define TRANSLATION_08 _("Update current song on Last.fm failed.")
+#define TRANSLATION_09 _("Love track") 
+#define TRANSLATION_10 _("Unlove track")
+#define TRANSLATION_11 _("Add favorites")
+#define TRANSLATION_12 _("Add similar")
+#define TRANSLATION_13 _("Add _location")
+#define TRANSLATION_14 _("Radios")
+#define TRANSLATION_15 _("_Lastfm")
+#define TRANSLATION_16 _("Enter the URL of an internet radio stream")
+#define TRANSLATION_17 _("Give it a name to save")
+#define TRANSLATION_18 _("Add a location")
+#define TRANSLATION_19 _("<b>Error playing current track.</b>\n(%s)\n<b>Reason:</b> %s")
+
 typedef enum {
 	PRAGHA_RESPONSE_SKIP,
 	PRAGHA_RESPONSE_SKIP_ALL,
