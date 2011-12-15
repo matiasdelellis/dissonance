@@ -147,7 +147,9 @@ static gboolean advance_playback(gpointer data)
 		path = current_playlist_get_next(cwin);
 		if (!path) {
 			dbus_send_signal(DBUS_EVENT_UPDATE_STATE, cwin);
+			#ifdef HAVE_LIBGLYR
 			update_related_state(cwin);
+			#endif
 			return FALSE;
 		}
 
@@ -266,7 +268,9 @@ GThread* start_playback(struct musicobject *mobj, struct con_win *cwin)
 		cwin->cstate->state = ST_PLAYING;
 		dbus_send_signal(DBUS_EVENT_UPDATE_STATE, cwin);
 		play_button_toggle_state(cwin);
+		#ifdef HAVE_LIBGLYR
 		update_related_state(cwin);
+		#endif
 
 		CDEBUG(DBG_INFO, "Starting playback");
 
@@ -296,7 +300,9 @@ void pause_playback(struct con_win *cwin)
 		}
 
 		dbus_send_signal(DBUS_EVENT_UPDATE_STATE, cwin);
+		#ifdef HAVE_LIBGLYR
 		update_related_state(cwin);
+		#endif
 	}
 }
 
@@ -323,7 +329,9 @@ void resume_playback(struct con_win *cwin)
 		}
 
 		dbus_send_signal(DBUS_EVENT_UPDATE_STATE, cwin);
+		#ifdef HAVE_LIBGLYR
 		update_related_state(cwin);
+		#endif
 	}
 }
 
@@ -365,7 +373,9 @@ void stop_playback(struct con_win *cwin)
 		}
 
 		dbus_send_signal(DBUS_EVENT_UPDATE_STATE, cwin);
+		#ifdef HAVE_LIBGLYR
 		update_related_state(cwin);
+		#endif
 	}
 }
 
