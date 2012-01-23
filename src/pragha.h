@@ -55,12 +55,16 @@
 #include <sqlite3.h>
 #include <ao/ao.h>
 #include <curl/curl.h>
-//#include <glib/gi18n.h> /* Uncomment if you use an older version of glib and does not compile */
 #include <gdk/gdkkeysyms.h>
 #include <gdk/gdkx.h>
 #include <X11/Xatom.h>
 #include <cddb/cddb.h>
-/*#include <libintl.h>*/
+
+#if defined(GETTEXT_PACKAGE)
+#include <glib/gi18n-lib.h>
+#else
+#include <glib/gi18n.h>
+#endif
 
 #include "mp3.h"
 #include "wav.h"
