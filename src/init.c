@@ -1,6 +1,6 @@
 /*************************************************************************/
 /* Copyright (C) 2007-2009 sujith <m.sujith@gmail.com>			 */
-/* Copyright (C) 2009-2011 matias <mati86dl@gmail.com>			 */
+/* Copyright (C) 2009-2012 matias <mati86dl@gmail.com>			 */
 /* 									 */
 /* This program is free software: you can redistribute it and/or modify	 */
 /* it under the terms of the GNU General Public License as published by	 */
@@ -1502,6 +1502,20 @@ gint init_session_support(struct con_win *cwin)
 }
 #endif
 
+static gboolean
+window_state_event (GtkWidget *widget, GdkEventWindowState *event, struct con_win *cwin)
+{
+	GtkAction *action_fullscreen;
+
+ 	if (event->type == GDK_WINDOW_STATE && (event->changed_mask & GDK_WINDOW_STATE_FULLSCREEN)) {
+		action_fullscreen = gtk_ui_manager_get_action(cwin->bar_context_menu, "/Menubar/ViewMenu/Fullscreen");
+
+		gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (action_fullscreen), (event->new_window_state & GDK_WINDOW_STATE_FULLSCREEN) != 0);
+	}
+
+	return TRUE;
+}
+
 void init_gui(gint argc, gchar **argv, struct con_win *cwin)
 {
 	GtkUIManager *menu;
@@ -1534,6 +1548,9 @@ void init_gui(gint argc, gchar **argv, struct con_win *cwin)
 		gtk_widget_set_default_colormap(colormap);
 	}
 
+	g_signal_connect(G_OBJECT(cwin->mainwindow),
+			 "window-state-event",
+			 G_CALLBACK(window_state_event), cwin);
 	g_signal_connect(G_OBJECT(cwin->mainwindow),
 			 "delete_event",
 			 G_CALLBACK(exit_gui), cwin);
