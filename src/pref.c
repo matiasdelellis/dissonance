@@ -1959,7 +1959,6 @@ void preferences_dialog(struct con_win *cwin)
 	cwin->cpref->albumart_in_osd_w = albumart_in_osd;
 	cwin->cpref->actions_in_osd_w = actions_in_osd;
 
-
 	cwin->cpref->lw.lastfm_w = lastfm_check;
 	cwin->cpref->lw.lastfm_uname_w = lastfm_uname;
 	cwin->cpref->lw.lastfm_pass_w = lastfm_pass;

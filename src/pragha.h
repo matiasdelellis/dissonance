@@ -265,7 +265,8 @@
 #define TRANSLATION_16 _("Enter the URL of an internet radio stream")
 #define TRANSLATION_17 _("Give it a name to save")
 #define TRANSLATION_18 _("Add a location")
-#define TRANSLATION_19 _("<b>Error playing current track.</b>\n(%s)\n<b>Reason:</b> %s")
+#define TRANSLATION_19 _("<b>Error playing current track.</b>\n(%s)\n<b>Reason: </b> %s")
+#define TRANSLATION_20 _("E_qualizer")
 
 typedef enum {
 	PRAGHA_RESPONSE_SKIP,
