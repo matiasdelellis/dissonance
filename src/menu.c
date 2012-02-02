@@ -416,11 +416,13 @@ void edit_tags_playing_action(GtkAction *action, struct con_win *cwin)
 	if (!changed)
 		goto exit;
 
+	/* Update the music object, the gui and them mpris */
+
 	update_musicobject(cwin->cstate->curr_mobj, changed, &ntag , cwin);
 
-	/* Update the gui */
-
 	__update_current_song_info(cwin);
+
+	mpris_update_metadata_changed(cwin);
 
 	if ((path = current_playlist_get_actual(cwin)) != NULL) {
 		model = gtk_tree_view_get_model(GTK_TREE_VIEW(cwin->current_playlist));
@@ -431,7 +433,7 @@ void edit_tags_playing_action(GtkAction *action, struct con_win *cwin)
 
 	/* Store the new tags */
 
-	if(cwin->cstate->curr_mobj->file_type != FILE_CDDA) {
+	if(G_LIKELY(cwin->cstate->curr_mobj->file_type != FILE_CDDA)) {
 		loc_arr = g_array_new(TRUE, TRUE, sizeof(gint));
 		file_arr = g_array_new(TRUE, TRUE, sizeof(gchar *));
 
@@ -911,7 +913,7 @@ void add_all_action(GtkAction *action, struct con_win *cwin)
 	gdk_window_set_cursor(GDK_WINDOW(cwin->mainwindow->window), NULL);
 
 	update_status_bar(cwin);
-	
+
 	/* inform mpris2 */
 	#if HAVE_GLIB_2_26
 	mpris_update_tracklist_changed(cwin);

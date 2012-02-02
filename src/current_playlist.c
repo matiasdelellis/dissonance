@@ -825,6 +825,9 @@ void update_current_state(GThread *thread, GtkTreePath *path,
 
 	show_osd(cwin);
 
+	/* Emit new state on mpris and pragha dbus. */
+	dbus_send_signal(DBUS_EVENT_UPDATE_STATE, cwin);
+
 	/* Store reference */
 
 	if (!cwin->cpref->shuffle) {

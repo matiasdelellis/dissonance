@@ -146,7 +146,6 @@ static gboolean advance_playback(gpointer data)
 
 		path = current_playlist_get_next(cwin);
 		if (!path) {
-			dbus_send_signal(DBUS_EVENT_UPDATE_STATE, cwin);
 			#ifdef HAVE_LIBGLYR
 			update_related_state(cwin);
 			#endif
@@ -266,7 +265,6 @@ GThread* start_playback(struct musicobject *mobj, struct con_win *cwin)
 	}
 	else {
 		cwin->cstate->state = ST_PLAYING;
-		dbus_send_signal(DBUS_EVENT_UPDATE_STATE, cwin);
 		play_button_toggle_state(cwin);
 		#ifdef HAVE_LIBGLYR
 		update_related_state(cwin);

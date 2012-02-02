@@ -330,7 +330,7 @@ void update_album_art(struct musicobject *mobj, struct con_win *cwin)
 	if (cwin->cpref->show_album_art) {
 		frame = gdk_pixbuf_new_from_file (PIXMAPDIR"/cover.png", &error);
 
-		if (mobj && mobj->file_type != FILE_CDDA){
+		if (G_LIKELY(mobj && mobj->file_type != FILE_CDDA)){
 			#ifdef HAVE_LIBGLYR
 			album_art = get_image_from_cache(cwin);
 			#endif
@@ -702,14 +702,20 @@ void album_art_toggle_state(struct con_win *cwin)
 
 	if (cwin->cpref->show_album_art) {
 		if (!cwin->album_art_frame) {
-			cwin->album_art_frame = gtk_frame_new(NULL);
-			gtk_frame_set_shadow_type (GTK_FRAME(cwin->album_art_frame), GTK_SHADOW_NONE);
+			cwin->album_art_frame = gtk_event_box_new ();
+
 			gtk_box_pack_end(GTK_BOX(cwin->hbox_panel),
 					   GTK_WIDGET(cwin->album_art_frame),
 					   FALSE, FALSE, 0);
+
 			gtk_box_reorder_child(GTK_BOX(cwin->hbox_panel),
 					      cwin->album_art_frame,
 					      2);
+
+			g_signal_connect (G_OBJECT (cwin->album_art_frame),
+					"button_press_event",
+					G_CALLBACK (album_art_frame_press_callback),
+					cwin);
 		}
 		gtk_widget_show_now(cwin->album_art_frame);
 		resize_album_art_frame(cwin);

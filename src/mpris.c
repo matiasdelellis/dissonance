@@ -366,14 +366,20 @@ static void handle_get_metadata(struct musicobject *mobj, GVariantBuilder *b)
 	g_free(url);
 }
 
-static GVariant* mpris_Player_get_Metadata(struct con_win *cwin) {
+static GVariant* mpris_Player_get_Metadata(struct con_win *cwin)
+{
 	GVariantBuilder *b = g_variant_builder_new (G_VARIANT_TYPE ("a{sv}"));
 
 	CDEBUG(DBG_MPRIS, "MPRIS Player get Metadata");
 
 	if (cwin->cstate->state != ST_STOPPED) {
 		handle_get_metadata(cwin->cstate->curr_mobj, b);
-	} else {
+		/* Append the album art url metadata. */
+		if(cwin->cstate->arturl != NULL)
+			g_variant_builder_add (b, "{sv}", "xesam:art",
+				g_variant_new_string(cwin->cstate->arturl));
+	}
+	else {
 		g_variant_builder_add (b, "{sv}", "mpris:trackid",
 			handle_get_trackid(NULL));
 	}
@@ -847,7 +853,8 @@ on_name_lost (GDBusConnection *connection,
 
 /* pragha callbacks */
 
-void mpris_update_any(struct con_win *cwin) {
+void mpris_update_any(struct con_win *cwin)
+{
 	gboolean change_detected = FALSE;
 	GVariantBuilder *b;
 	gchar *newtitle = NULL;
@@ -916,7 +923,41 @@ void mpris_update_any(struct con_win *cwin) {
 	g_variant_builder_unref(b);
 }
 
-void mpris_update_mobj_remove(struct con_win *cwin, struct musicobject *mobj) {
+void
+mpris_update_metadata_changed(struct con_win *cwin)
+{
+	GVariantBuilder *b;
+
+	if(NULL == cwin->cmpris2->dbus_connection)
+		return; /* better safe than sorry */
+
+	CDEBUG(DBG_MPRIS, "MPRIS update metadata of current track.");
+
+	b = g_variant_builder_new(G_VARIANT_TYPE("a{sv}"));
+
+	g_variant_builder_add (b, "{sv}", "Metadata", mpris_Player_get_Metadata(cwin));
+
+	GVariant * tuples[] = {
+		g_variant_new_string("org.mpris.MediaPlayer2.Player"),
+		g_variant_builder_end(b),
+		g_variant_parse(G_VARIANT_TYPE("as"), "[]", NULL, NULL, NULL)
+	};
+
+	if(g_variant_is_floating(tuples[0]))
+		g_variant_ref_sink(tuples[0]);
+	if(g_variant_is_floating(tuples[1]))
+		g_variant_ref_sink(tuples[1]);
+	if(g_variant_is_floating(tuples[2]))
+		g_variant_ref_sink(tuples[2]);
+	g_dbus_connection_emit_signal(cwin->cmpris2->dbus_connection, NULL, MPRIS_PATH,
+		"org.freedesktop.DBus.Properties", "PropertiesChanged",
+		g_variant_new_tuple(tuples, 3) , NULL);
+
+	g_variant_builder_unref(b);
+}
+
+void mpris_update_mobj_remove(struct con_win *cwin, struct musicobject *mobj)
+{
 
 	GVariant * tuples[1];
 	if(NULL == cwin->cmpris2->dbus_connection)
@@ -931,7 +972,8 @@ void mpris_update_mobj_remove(struct con_win *cwin, struct musicobject *mobj) {
 		g_variant_new_tuple(tuples, 1), NULL);
 }
 
-void mpris_update_mobj_added(struct con_win *cwin, struct musicobject *mobj, GtkTreeIter *iter) {
+void mpris_update_mobj_added(struct con_win *cwin, struct musicobject *mobj, GtkTreeIter *iter)
+{
 	GtkTreeModel *model;
 	GtkTreePath *path = NULL;
 	struct musicobject *prev = NULL;

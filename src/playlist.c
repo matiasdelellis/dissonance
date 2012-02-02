@@ -135,7 +135,7 @@ static gint save_complete_m3u_playlist(GIOChannel *chan, gchar *filename, struct
 	next = gtk_tree_model_get_iter_first(model, &iter);
 	while (next) {
 		gtk_tree_model_get (model, &iter, P_MOBJ_PTR, &mobj, -1);
-		if (mobj && mobj->file_type != FILE_CDDA) {
+		if (G_LIKELY(mobj && mobj->file_type != FILE_CDDA)) {
 
 			base = get_display_filename(mobj->file, TRUE);
 
@@ -207,7 +207,7 @@ static gint save_selected_to_m3u_playlist(GIOChannel *chan, gchar *filename, str
 			gtk_tree_model_get_iter(model, &iter, path);
 			gtk_tree_model_get(model, &iter,
 					   P_MOBJ_PTR, &mobj, -1);
-			if (mobj && mobj->file_type != FILE_CDDA) {
+			if (G_LIKELY(mobj && mobj->file_type != FILE_CDDA)) {
 
 				base = get_display_filename(mobj->file, TRUE);
 
@@ -773,7 +773,6 @@ void playlist_tree_delete(GtkAction *action, struct con_win *cwin)
 	list = gtk_tree_selection_get_selected_rows(selection, &model);
 
 	if (list) {
-
 		/* Delete selected playlists */
 
 		for (i=list; i != NULL; i = i->next) {
@@ -1297,7 +1296,7 @@ void save_playlist(gint playlist_id, enum playlist_mgmt type,
 		gtk_tree_model_get_iter_first(model, &iter);
 		do {
 			gtk_tree_model_get(model, &iter, P_MOBJ_PTR, &mobj, -1);
-			if (mobj && mobj->file_type != FILE_CDDA) {
+			if (G_LIKELY(mobj && mobj->file_type != FILE_CDDA)) {
 				file = sanitize_string_sqlite3(mobj->file);
 				add_track_playlist_db(file, playlist_id, cwin);
 				g_free(file);
@@ -1324,7 +1323,7 @@ void save_playlist(gint playlist_id, enum playlist_mgmt type,
 				gtk_tree_model_get(model, &iter,
 						   P_MOBJ_PTR, &mobj, -1);
 
-				if (mobj && mobj->file_type != FILE_CDDA) {
+				if (G_LIKELY(mobj && mobj->file_type != FILE_CDDA)) {
 					file = sanitize_string_sqlite3(mobj->file);
 					add_track_playlist_db(file, playlist_id,
 							      cwin);
