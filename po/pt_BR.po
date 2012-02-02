@@ -1,19 +1,22 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
 #
+# Translators:
 msgid ""
 msgstr ""
-"Project-Id-Version: Pragha 0.7.6\n"
+"Project-Id-Version: Pragha\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=glib&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2011-12-12 14:55-0300\n"
-"PO-Revision-Date: 2011-06-30 13:16-0300\n"
-"Last-Translator: Matias <mati86dl@gmail.com>\n"
-"Language-Team: Lyceuhns <mail@lyceuhns.net>\n"
-"Language: \n"
+"POT-Creation-Date: 2012-02-02 11:58-0300\n"
+"PO-Revision-Date: 2012-01-06 22:16-0300\n"
+"Last-Translator: Matias De lellis <mati86dl@gmail.com>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Poedit-Language: Portuguese\n"
-"X-Poedit-SourceCharset: utf-8\n"
+"Plural-Forms: nplurals=2; plural=(n > 1)\n"
 
 #: ../src/gui.c:180
 msgid "_File"
@@ -45,7 +48,7 @@ msgstr "Abrir um arquivo de mídia"
 
 #: ../src/gui.c:187 ../src/gui.c:278 ../src/gui.c:370
 msgid "Add Audio _CD"
-msgstr ""
+msgstr "Adicionar _CD de áudio"
 
 #: ../src/gui.c:189
 msgid "Prev track"
@@ -64,9 +67,8 @@ msgid "Next track"
 msgstr "Próxima faixa"
 
 #: ../src/gui.c:197 ../src/gui.c:308 ../src/gui.c:380
-#, fuzzy
 msgid "Edit track information"
-msgstr "Informação da Faixa"
+msgstr ""
 
 #: ../src/gui.c:199 ../src/gui.c:282 ../src/gui.c:382
 msgid "_Quit"
@@ -77,23 +79,20 @@ msgid "_Add the library"
 msgstr "_Adicionar a biblioteca"
 
 #: ../src/gui.c:203
-#, fuzzy
 msgid "Remove selection from playlist"
-msgstr "Salvar lista de reprodução"
+msgstr ""
 
 #: ../src/gui.c:205 ../src/gui.c:302
-#, fuzzy
 msgid "Crop playlist"
-msgstr "Limpar lista de reprodução"
+msgstr ""
 
 #: ../src/gui.c:207 ../src/gui.c:304
 msgid "Clear playlist"
-msgstr "Limpar lista de reprodução"
+msgstr ""
 
 #: ../src/gui.c:209
-#, fuzzy
 msgid "Add selection to another playlist"
-msgstr "_Adicionar para a lista de reprodução"
+msgstr ""
 
 #: ../src/gui.c:210 ../src/gui.c:307 ../src/current_playlist.c:675
 msgid "Save playlist"
@@ -120,14 +119,12 @@ msgid "Search _lyric"
 msgstr "Procurar _letra da música"
 
 #: ../src/gui.c:221 ../src/gui.c:228
-#, fuzzy
 msgid "Search _artist info"
-msgstr "Artista"
+msgstr "Procurar informações do _artista"
 
 #: ../src/gui.c:223 ../src/gui.c:230
-#, fuzzy
 msgid "Search album art"
-msgstr "Tamanho da arte do álbum"
+msgstr "Procurar capa de álbum"
 
 #: ../src/gui.c:233
 msgid "_Rescan library"
@@ -178,7 +175,7 @@ msgid "Library"
 msgstr "Biblioteca"
 
 #: ../src/gui.c:264 ../src/gui.c:290 ../src/gui.c:686 ../src/menu.c:314
-#: ../src/playlist.c:756 ../src/playlist.c:1502
+#: ../src/playlist.c:821 ../src/playlist.c:1587
 msgid "Playlists"
 msgstr "Listas de reprodução"
 
@@ -199,34 +196,28 @@ msgid "Remove to playback queue"
 msgstr "Remover da fila de reprodução"
 
 #: ../src/gui.c:300
-#, fuzzy
 msgid "Remove from playlist"
-msgstr "Salvar lista de reprodução"
+msgstr ""
 
 #: ../src/gui.c:306
-#, fuzzy
 msgid "Add to another playlist"
-msgstr "_Adicionar para a lista de reprodução"
+msgstr ""
 
 #: ../src/gui.c:313 ../src/gui.c:328
-#, fuzzy
 msgid "_Add to current playlist"
-msgstr "_Adicionar para a lista de reprodução"
+msgstr "_Adicionar para a lista de reprodução atual"
 
 #: ../src/gui.c:315 ../src/gui.c:330
-#, fuzzy
 msgid "_Replace current playlist"
-msgstr "_Substituir lista de reprodução"
+msgstr "_Substituir lista de reprodução atual"
 
 #: ../src/gui.c:317 ../src/gui.c:332
-#, fuzzy
 msgid "Replace and _play"
-msgstr "_Substituir lista de reprodução"
+msgstr "Substituir e _reproduzir"
 
-#: ../src/gui.c:319 ../src/playlist.c:634
-#, fuzzy
+#: ../src/gui.c:319 ../src/playlist.c:662
 msgid "Rename"
-msgstr "Nome do Arquivo"
+msgstr ""
 
 #: ../src/gui.c:321
 msgid "Delete"
@@ -243,7 +234,7 @@ msgstr "Editar tags"
 
 #: ../src/gui.c:336
 msgid "Move to _trash"
-msgstr ""
+msgstr "Mover para a _lixeira"
 
 #: ../src/gui.c:338
 msgid "Delete from library"
@@ -261,19 +252,19 @@ msgstr "E_sconder biblioteca"
 msgid "Folders structure"
 msgstr "Estrutura de pastas"
 
-#: ../src/gui.c:349 ../src/gui.c:805 ../src/gui.c:970 ../src/pragha.h:96
-#: ../src/librarytree.c:1483 ../src/statusicon.c:203 ../src/tags.c:556
+#: ../src/gui.c:349 ../src/gui.c:805 ../src/gui.c:970 ../src/pragha.h:100
+#: ../src/librarytree.c:1483 ../src/statusicon.c:201 ../src/tags.c:556
 #: ../src/tags.c:610
 msgid "Artist"
 msgstr "Artista"
 
-#: ../src/gui.c:351 ../src/gui.c:806 ../src/gui.c:971 ../src/pragha.h:97
-#: ../src/librarytree.c:1487 ../src/statusicon.c:204 ../src/tags.c:559
+#: ../src/gui.c:351 ../src/gui.c:806 ../src/gui.c:971 ../src/pragha.h:101
+#: ../src/librarytree.c:1487 ../src/statusicon.c:202 ../src/tags.c:559
 #: ../src/tags.c:611
 msgid "Album"
 msgstr "Álbum"
 
-#: ../src/gui.c:353 ../src/gui.c:807 ../src/gui.c:972 ../src/pragha.h:98
+#: ../src/gui.c:353 ../src/gui.c:807 ../src/gui.c:972 ../src/pragha.h:102
 #: ../src/librarytree.c:1494 ../src/tags.c:562 ../src/tags.c:612
 msgid "Genre"
 msgstr "Gênero"
@@ -294,11 +285,11 @@ msgstr "Gênero / Artista"
 msgid "Genre / Artist / Album"
 msgstr "Gênero / Artista / Álbum"
 
-#: ../src/gui.c:372 ../src/statusicon.c:164
+#: ../src/gui.c:372 ../src/statusicon.c:140
 msgid "Prev Track"
 msgstr "Faixa Anterior"
 
-#: ../src/gui.c:378 ../src/gui.c:1712 ../src/statusicon.c:168
+#: ../src/gui.c:378 ../src/gui.c:1712 ../src/statusicon.c:144
 msgid "Next Track"
 msgstr "Próxima Faixa"
 
@@ -312,33 +303,33 @@ msgid "Track"
 msgstr "Faixa"
 
 #. Create labels
-#: ../src/gui.c:804 ../src/gui.c:969 ../src/pragha.h:95
-#: ../src/statusicon.c:202 ../src/tags.c:553 ../src/tags.c:609
+#: ../src/gui.c:804 ../src/gui.c:969 ../src/pragha.h:99
+#: ../src/statusicon.c:200 ../src/tags.c:553 ../src/tags.c:609
 msgid "Title"
 msgstr "Título"
 
-#: ../src/gui.c:808 ../src/gui.c:973 ../src/pragha.h:99
-#: ../src/current_playlist.c:1428
+#: ../src/gui.c:808 ../src/gui.c:973 ../src/pragha.h:103
+#: ../src/current_playlist.c:1431
 msgid "Bitrate"
 msgstr "Taxa de bits"
 
-#: ../src/gui.c:809 ../src/gui.c:974 ../src/pragha.h:100 ../src/tags.c:614
+#: ../src/gui.c:809 ../src/gui.c:974 ../src/pragha.h:104 ../src/tags.c:614
 msgid "Year"
 msgstr "Ano"
 
-#: ../src/gui.c:810 ../src/gui.c:975 ../src/pragha.h:101 ../src/tags.c:565
+#: ../src/gui.c:810 ../src/gui.c:975 ../src/pragha.h:105 ../src/tags.c:565
 #: ../src/tags.c:615
 msgid "Comment"
 msgstr "Comentário"
 
 #. Create labels
-#: ../src/gui.c:811 ../src/gui.c:976 ../src/pragha.h:102
-#: ../src/current_playlist.c:1427 ../src/statusicon.c:205
+#: ../src/gui.c:811 ../src/gui.c:976 ../src/pragha.h:106
+#: ../src/current_playlist.c:1430 ../src/statusicon.c:203
 msgid "Length"
 msgstr "Tempo"
 
-#: ../src/gui.c:812 ../src/gui.c:977 ../src/pragha.h:103
-#: ../src/current_playlist.c:1432
+#: ../src/gui.c:812 ../src/gui.c:977 ../src/pragha.h:107
+#: ../src/current_playlist.c:1435
 msgid "Filename"
 msgstr "Nome do Arquivo"
 
@@ -371,7 +362,7 @@ msgstr "Reproduzir em ordem aleatória"
 msgid "Repeat playback list at the end"
 msgstr "Repetir lista de reprodução"
 
-#: ../src/gui.c:1763 ../src/panel.c:263 ../src/statusicon.c:199
+#: ../src/gui.c:1763 ../src/panel.c:263 ../src/statusicon.c:197
 msgid "<b>Not playing</b>"
 msgstr "<b>Parado</b>"
 
@@ -379,123 +370,120 @@ msgstr "<b>Parado</b>"
 msgid "Options of the library"
 msgstr "Opções da biblioteca"
 
-#: ../src/pragha.h:94 ../src/tags.c:613
+#: ../src/pragha.h:98 ../src/tags.c:613
 msgid "Track No"
 msgstr "Faixa Nº"
 
-#: ../src/pragha.h:133
+#: ../src/pragha.h:137
 msgid "Scanning"
-msgstr ""
+msgstr "Analisando"
 
-#: ../src/pragha.h:134
-#, fuzzy
+#: ../src/pragha.h:138
 msgid "Stopped"
-msgstr "Parar"
+msgstr "Parado"
 
-#: ../src/pragha.h:240
+#: ../src/pragha.h:244
 msgid "_Skip"
-msgstr ""
+msgstr "_Pular"
 
-#: ../src/pragha.h:241
-msgid "S_kip All"
-msgstr ""
-
-#: ../src/pragha.h:242
-#, fuzzy
-msgid "Delete _All"
-msgstr "Apagar"
-
-#. Next are some missing tranlation to match whit Pragha 1.0
 #: ../src/pragha.h:245
-#, fuzzy
-msgid "Import a XSPF playlist"
-msgstr "Restaurar a última lista de reprodução"
+msgid "S_kip All"
+msgstr "Pu_lar Todas"
 
 #: ../src/pragha.h:246
-#, c-format
-msgid "Added %d songs of the last %d loved on Last.fm."
-msgstr ""
+msgid "Delete _All"
+msgstr "Deletar _Todas"
 
-#: ../src/pragha.h:247
-msgid "You had no favorite songs on Last.fm."
-msgstr ""
-
-#: ../src/pragha.h:248
-msgid "No connection Last.fm has been established."
-msgstr ""
-
+#. Next are some missing tranlation to match whit Pragha 1.0
 #: ../src/pragha.h:249
-#, c-format
-msgid "Added %d songs of %d sugested from Last.fm."
-msgstr ""
+msgid "Import a XSPF playlist"
+msgstr "Importar uma lista XSPF"
 
 #: ../src/pragha.h:250
-msgid "Last.fm not suggest any similar song."
-msgstr ""
+#, c-format
+msgid "Added %d songs of the last %d loved on Last.fm."
+msgstr "Adicionadas %d últimas músicas %d favoritas no Last.fm."
+
+#: ../src/pragha.h:251
+msgid "You had no favorite songs on Last.fm."
+msgstr "Você não tem músicas favoritas no Last.fm."
 
 #: ../src/pragha.h:252
-msgid "Unlove song on Last.fm failed."
-msgstr ""
+msgid "No connection Last.fm has been established."
+msgstr "Conexão não estabelecida com o Last.fm."
 
 #: ../src/pragha.h:253
-msgid "Update current song on Last.fm failed."
-msgstr ""
+#, c-format
+msgid "Added %d songs of %d sugested from Last.fm."
+msgstr "Adicionadas %d músicas %d sugeridas do Last.fm."
 
 #: ../src/pragha.h:254
-#, fuzzy
-msgid "Love track"
-msgstr "Faixa anterior"
-
-#: ../src/pragha.h:255
-#, fuzzy
-msgid "Unlove track"
-msgstr "Faixa anterior"
+msgid "Last.fm not suggest any similar song."
+msgstr "Não foi encontrada nenhuma música semelhante no Last.fm"
 
 #: ../src/pragha.h:256
-#, fuzzy
-msgid "Add favorites"
-msgstr "_Adicionar arquivos"
+msgid "Unlove song on Last.fm failed."
+msgstr "Falha ao enviar dados para Last.fm"
 
 #: ../src/pragha.h:257
-msgid "Add similar"
-msgstr ""
+msgid "Update current song on Last.fm failed."
+msgstr "Falha ao atualizar faixa no Last.fm"
 
 #: ../src/pragha.h:258
+msgid "Love track"
+msgstr "Música favorita"
+
+#: ../src/pragha.h:259
+msgid "Unlove track"
+msgstr "Não é favorita"
+
+#: ../src/pragha.h:260
+msgid "Add favorites"
+msgstr "Adicionar favoritos"
+
+#: ../src/pragha.h:261
+msgid "Add similar"
+msgstr "Adicionar semelhante"
+
+#: ../src/pragha.h:262
 msgid "Add _location"
 msgstr ""
 
-#: ../src/pragha.h:259
+#: ../src/pragha.h:263
 msgid "Radios"
 msgstr ""
 
-#: ../src/pragha.h:260
-#, fuzzy
+#: ../src/pragha.h:264
 msgid "_Lastfm"
-msgstr "Last.fm"
+msgstr "_Last.fm"
 
-#: ../src/pragha.h:261
+#: ../src/pragha.h:265
 msgid "Enter the URL of an internet radio stream"
 msgstr ""
 
-#: ../src/pragha.h:262
+#: ../src/pragha.h:266
 msgid "Give it a name to save"
 msgstr ""
 
-#: ../src/pragha.h:263
+#: ../src/pragha.h:267
 msgid "Add a location"
 msgstr ""
 
-#: ../src/pragha.h:264
+#: ../src/pragha.h:268
 #, c-format
 msgid ""
 "<b>Error playing current track.</b>\n"
 "(%s)\n"
-"<b>Reason:</b> %s"
+"<b>Reason: </b> %s"
 msgstr ""
 
-#: ../src/pragha.h:251
-msgid "Love song on Last.fm failed."
+#: ../src/pragha.h:269
+msgid "E_qualizer"
 msgstr ""
+
+#: ../src/pragha.h:255
+msgid "Love song on Last.fm failed."
+msgstr "Falha ao enviar dados para Last.fm"
 
 #: ../src/panel.c:239
 #, c-format
@@ -506,7 +494,7 @@ msgstr ""
 "%s <small><span weight=\"light\">por</span></small> %s <small><span weight="
 "\"light\">em</span></small> %s"
 
-#: ../src/panel.c:244 ../src/glyr-related.c:407
+#: ../src/panel.c:244 ../src/glyr-related.c:410
 #, c-format
 msgid "%s <small><span weight=\"light\">by</span></small> %s"
 msgstr "%s <small><span weight=\"light\">por</span></small> %s"
@@ -532,35 +520,33 @@ msgstr "Anexar a uma lista de reprodução existente"
 msgid "Save selection"
 msgstr "Salvar seleção"
 
-#: ../src/current_playlist.c:706 ../src/playlist.c:1341 ../src/playlist.c:1374
-#: ../src/playlist.c:1408 ../src/playlist.c:1449
-#, fuzzy
+#: ../src/current_playlist.c:706 ../src/playlist.c:1426 ../src/playlist.c:1459
+#: ../src/playlist.c:1493 ../src/playlist.c:1534
 msgid "New playlist"
-msgstr "Salvar lista de reprodução"
+msgstr "Nova lista de reprodução"
 
 #: ../src/current_playlist.c:778
 msgid "<b>con_playlist</b> is a reserved playlist name"
 msgstr "<b>con_playlist</b> é um nome reservado"
 
-#: ../src/current_playlist.c:1429
+#: ../src/current_playlist.c:1432
 msgid "Channels"
 msgstr "Canais"
 
-#: ../src/current_playlist.c:1430
+#: ../src/current_playlist.c:1433
 msgid "Samplerate"
 msgstr "Taxa de amostragem"
 
-#: ../src/current_playlist.c:1431
-#, fuzzy
+#: ../src/current_playlist.c:1434
 msgid "Folder"
 msgstr "Pasta"
 
 #. The main edit dialog
-#: ../src/current_playlist.c:1522 ../src/tags.c:884
+#: ../src/current_playlist.c:1525 ../src/tags.c:884
 msgid "Details"
-msgstr ""
+msgstr "Detalhes"
 
-#: ../src/librarytree.c:197 ../src/statusicon.c:136
+#: ../src/librarytree.c:197 ../src/statusicon.c:127
 msgid "Unknown Artist"
 msgstr "Artista Desconhecido"
 
@@ -568,7 +554,7 @@ msgstr "Artista Desconhecido"
 msgid "Unknown"
 msgstr "Desconhecido"
 
-#: ../src/librarytree.c:204 ../src/librarytree.c:208 ../src/statusicon.c:138
+#: ../src/librarytree.c:204 ../src/librarytree.c:208 ../src/statusicon.c:129
 msgid "Unknown Album"
 msgstr "Álbum Desconhecido"
 
@@ -579,11 +565,13 @@ msgstr "Gênero Desconhecido"
 #: ../src/librarytree.c:396
 msgid "Cannot move file to trash, do you want to delete immediately?"
 msgstr ""
+"Não foi possível mover o arquivo para a lixeira, deseja remover ele "
+"imediatamente?"
 
 #: ../src/librarytree.c:397
 #, c-format
 msgid "The file \"%s\" cannot be moved to the trash. Details: %s"
-msgstr ""
+msgstr "O arquivo \"%s\" não pode ser movido para a lixeira. Detalhes: %s"
 
 #: ../src/librarytree.c:1231
 msgid ""
@@ -597,25 +585,24 @@ msgstr ""
 
 #: ../src/librarytree.c:1288
 msgid "Really want to move the files to trash?"
-msgstr ""
+msgstr "Você realmente deseja mover os arquivos para a lixeira?"
 
 #: ../src/librarytree.c:1290
 msgid "Delete immediately instead of move to trash"
-msgstr ""
+msgstr "Deletar imediatamente ao invés de mover para a lixeira"
 
-#: ../src/statusicon.c:134
-#, fuzzy, c-format
+#: ../src/statusicon.c:125
+#, c-format
 msgid "by <b>%s</b> in <b>%s</b> <b>(%s)</b>"
-msgstr "por %s em %s (%s)"
+msgstr "por <b>%s</b> em <b>%s</b> <b>(%s)</b>"
 
 #: ../src/tags.c:546
-#, fuzzy
 msgid "Selection to"
-msgstr "Salvar seleção"
+msgstr "Selecionar para"
 
 #: ../src/tags.c:575
 msgid "Open folder"
-msgstr ""
+msgstr "Abrir pasta"
 
 #: ../src/tags.c:616
 msgid "File"
@@ -665,7 +652,7 @@ msgstr "Áudio"
 
 #: ../src/pref.c:1481
 msgid "Appearance"
-msgstr ""
+msgstr "Aparência"
 
 #: ../src/pref.c:1483
 msgid "General"
@@ -706,7 +693,7 @@ msgstr "Dispositivo do CD de Áudio"
 #. Appearance Widgets
 #: ../src/pref.c:1635
 msgid "Highlight rows on current playlist"
-msgstr ""
+msgstr "Destacar linhas na lista de reprodução atual"
 
 #: ../src/pref.c:1637
 msgid "Show Album art in Panel"
@@ -729,14 +716,13 @@ msgid "Merge folders in the folders estructure view"
 msgstr "Mesclar pastas na visão de estrutura de pastas"
 
 #: ../src/pref.c:1749
-#, fuzzy
 msgid "Sort albums by release year"
-msgstr "Tamanho da arte do álbum"
+msgstr "Mostrar álbuns por ano de lançamento"
 
 #. General Widgets
 #: ../src/pref.c:1774
 msgid "Refine the search while writing"
-msgstr ""
+msgstr "Buscar automaticamente enquanto se escreve"
 
 #: ../src/pref.c:1778
 msgid "Remember last window state"
@@ -785,9 +771,8 @@ msgid "Password"
 msgstr "Senha"
 
 #: ../src/pref.c:1861
-#, fuzzy
 msgid "Get album art"
-msgstr "Tamanho da arte do álbum"
+msgstr "Buscar capa"
 
 #. Services CDDB
 #: ../src/pref.c:1865
@@ -797,7 +782,7 @@ msgstr "Conectar ao servidor CDDB"
 #. Services MPRIS2
 #: ../src/pref.c:1869
 msgid "Allow remote control with MPRIS2 interface"
-msgstr ""
+msgstr "Permitir controle remoto por meio da interface MPRIS2"
 
 #: ../src/menu.c:136
 msgid "Update Library"
@@ -823,27 +808,27 @@ msgstr "Mídias suportados"
 msgid "All files"
 msgstr "Todos os arquivos"
 
-#: ../src/menu.c:713 ../src/menu.c:847
+#: ../src/menu.c:714 ../src/menu.c:848
 msgid "Library scan complete"
 msgstr "Varredura da biblioteca completa"
 
-#: ../src/menu.c:952
+#: ../src/menu.c:953
 msgid "Total Tracks:"
 msgstr "Total de Faixas:"
 
-#: ../src/menu.c:954
+#: ../src/menu.c:955
 msgid "Total Artists:"
 msgstr "Total de Artistas:"
 
-#: ../src/menu.c:956
+#: ../src/menu.c:957
 msgid "Total Albums:"
 msgstr "Total de Álbuns:"
 
-#: ../src/menu.c:958
+#: ../src/menu.c:959
 msgid "Statistics"
 msgstr "Estatísticas"
 
-#: ../src/menu.c:975
+#: ../src/menu.c:976
 msgid "translator-credits"
 msgstr "translator-credits"
 
@@ -859,130 +844,50 @@ msgstr "dia"
 msgid "Unable to open the browser"
 msgstr "Não foi possível abrir o navegador"
 
-#: ../src/playlist.c:626
-#, fuzzy
-msgid "Choose a new name"
-msgstr "Salvar como uma nova lista de reprodução"
+#: ../src/playlist.c:65
+#, c-format
+msgid "Do you want to overwrite the playlist: %s ?"
+msgstr ""
 
-#: ../src/playlist.c:746 ../src/playlist.c:843
+#: ../src/playlist.c:654
+msgid "Choose a new name"
+msgstr ""
+
+#: ../src/playlist.c:741
+#, c-format
+msgid "Do you want to delete the item: %s ?"
+msgstr ""
+
+#: ../src/playlist.c:811 ../src/playlist.c:908
 msgid "Export playlist to file"
 msgstr "Exportar lista de reprodução para arquivo"
 
-#: ../src/playlist.c:1106
+#: ../src/playlist.c:1191
 #, c-format
 msgid "Added %d songs from %d of the imported playlist."
-msgstr ""
+msgstr "Adicionadas %d de %d faixas da lista de reprodução importada"
 
 #: ../src/glyr-related.c:21
 msgid "en"
-msgstr ""
+msgstr "pt_BR"
 
-#: ../src/glyr-related.c:70 ../src/glyr-related.c:94
-#, fuzzy
+#: ../src/glyr-related.c:70 ../src/glyr-related.c:95
 msgid "Album art not found."
-msgstr "Nome da arte do álbum"
+msgstr "Capa de álbum não encontrada"
 
-#: ../src/glyr-related.c:260
+#: ../src/glyr-related.c:263
 msgid "Artist information not found."
-msgstr ""
+msgstr "Informações do artista não encontradas"
 
-#: ../src/glyr-related.c:286
-#, fuzzy
+#: ../src/glyr-related.c:289
 msgid "Artist info"
-msgstr "Artista"
+msgstr "Informações do artista"
 
-#: ../src/glyr-related.c:293
-#, fuzzy, c-format
+#: ../src/glyr-related.c:296
+#, c-format
 msgid "%s <small><span weight=\"light\">thanks to</span></small> %s"
-msgstr "%s <small><span weight=\"light\">em</span></small> %s"
+msgstr "%s <small><span weight=\"light\">obrigado a</span></small> %s"
 
-#: ../src/glyr-related.c:369
+#: ../src/glyr-related.c:372
 msgid "Error searching Lyric."
-msgstr ""
-
-#, fuzzy
-#~ msgid "Edit track information),"
-#~ msgstr "Informação da Faixa"
-
-#~ msgid "Remove"
-#~ msgstr "Remover"
-
-#~ msgid "Crop"
-#~ msgstr "Recortar"
-
-#, fuzzy
-#~ msgid "Clear current playlist"
-#~ msgstr "Salvar toda a lista de reprodução"
-
-#, fuzzy
-#~ msgid "Save current playlist"
-#~ msgstr "Salvar toda a lista de reprodução"
-
-#, fuzzy
-#~ msgid "Similar artists:"
-#~ msgstr "Total de Artistas:"
-
-#~ msgid "_Play audio CD"
-#~ msgstr "_Reproduzir CD de áudio"
-
-#, fuzzy
-#~ msgid "Use lastfm artist art"
-#~ msgstr "Artista"
-
-#~ msgid ""
-#~ "<small><span weight=\"light\">by</span></small> %s <small><span weight="
-#~ "\"light\">in</span></small> %s (%s)"
-#~ msgstr ""
-#~ "<small><span weight=\"light\">por</span></small> %s <small><span weight="
-#~ "\"light\">em</span></small> %s (%s)"
-
-#~ msgid ""
-#~ "Are you sure you want to delete current file from HDD?\n"
-#~ "\n"
-#~ "Warning: Once deleted, the file cannot be recovered."
-#~ msgstr ""
-#~ "Tem certeza de que quer apagar o arquivo atual do HD?\n"
-#~ "\n"
-#~ "Atenção: uma vez apagado, o arquivo não pode ser recuperado."
-
-#~ msgid "Delete from HDD"
-#~ msgstr "Apagar do disco rígido"
-
-#~ msgid "_Properties"
-#~ msgstr "_Propriedades"
-
-#~ msgid "Properties"
-#~ msgstr "Propriedades"
-
-#~ msgid "When Pragha start"
-#~ msgstr "Quando o Pragha iniciar"
-
-#~ msgid "Preferences"
-#~ msgstr "Preferências"
-
-#~ msgid "Folder / File"
-#~ msgstr "Pasta / Arquivo"
-
-#~ msgid "Files"
-#~ msgstr "Arquivos"
-
-#~ msgid "Show _hidden files"
-#~ msgstr "_Adicionar arquivos"
-
-#~ msgid "Add to playlist (Recursive)"
-#~ msgstr "Adicionar a lista de reprodução (Recursivamente)"
-
-#~ msgid "Add to playlist (Non recursive)"
-#~ msgstr "Adicionar a lista de reprodução (Não recursivamente)"
-
-#~ msgid "Show Hidden Files in File View"
-#~ msgstr "Mostrar arquivos ocultos na visualização de arquivos"
-
-#~ msgid "Lenght"
-#~ msgstr "Tempo"
-
-#~ msgid "by %s"
-#~ msgstr "por %s"
-
-#~ msgid "in %s"
-#~ msgstr "em %s"
+msgstr "Erro ao procurar letras"

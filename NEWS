@@ -1,7 +1,90 @@
 =====================================================
-Overview of changes in Pragha 0.8.10
+Overview of changes in Pragha 0.8.11rc1
 =====================================================
 
+News:
+	Add rename playlists option.
+	Backport jump to track (Search, jump and queue) dialog.
+	Add a new popup menu with "New playlist" and a list of saved playlist to "Save playlist" like the "Add selection" popup.
+	Also append boths pupups submenus to main menu.
+	Implement "Show controls below" option in menu.
+	Better session managament support when exo-1 >= 0.6 is abiable.
+	* Now save current playlist when save session.
+	* Now save last posicion when save session.
+	* etc, etc, etc..
+	Now use libglyr to search lyrics, cover art, and artist info if available. [1]
+	Use the cache of libglyr to save the downloaded artist info and lyrics in a Metadata.db file.
+
+Others Changes:
+	Add basic Static Quicklist entries on deskton file to control pragha on unity.
+	Emit new metadata when edit tag of current track.
+	Add playlists mime on desktop file.
+	Update notifications instead of show one for each song change.
+	Can open playlists with relative paths.
+	When playback is stopped and no has selected any track, play a random track if shuffle has activated.
+	Edit tags when double click on track label of panel.
+	Open the image when double click on the cover in the panel.
+	Also remeber window position when restart pragha. Thanks to carlosjosepita.
+	Grab focus on current playlist when press Up or Down and move between controls with Left or Right.
+	Adds some debug messages in mpris.
+		
+Bugs fixed:
+	Fix add files with command line.
+	Add playlists mime on desktop file.
+	Coordinate Pragha when the window manager unfullscreen the window.
+	Comfirm with an dialog before delete any playlist item.
+	Save the m3u playlists with relative paths when stored in the same directory that the audio files.
+	Init the threads conditionally depending on the version of glibc, removing g_thread_init deprecated in 2.31.
+	Remove unused code, that remove g_strncasecmp deprecated function.
+	Use some un/likely ompimiizations.
+	Init with focus on play button.
+	Properly set "Save playlist" or "Save selection" in save dialogs.
+	Fix a segfault when close pragha.
+	Fix Main toolbar items use GTK_ICON_SIZE_LARGE_TOOLBAR, volume button uses _SMALL_TOOLBAR.
+	Set width of queue/pixbuf column fixed to 32px. Set queue bubble size fixed to 12px.
+	Better initiation of variables that establish the current status.
+	Fix pragha freezes when select a playlist with mpris2.
+	Even emit _("Playlists") like current playlist in mpri2.
+	Fix show all options when use any commands line option.
+	Allow to use relative paths to add files with command line.
+	D'Oh!. Not can edit multiple files from the library, Since whe
+	Reduce padding on playlist view, leave this for the GTK+ theme to figure out.
+	Select the next row to the last selected when remove tracks in current playlist.
+	Not use small markup to queue string.
+	Not sensitive "osd in systray" option if libnotify >= 0.7.0.
+	No sensitive the "Add action in OSD" option when the notification daemon no support it.
+	D'Oh!. Now keybinder is fully optional
+	Tiny reorganization of the menu.
+	No change model when crop and remove in current playlist.
+	Use key-press-event instead key_press_event.
+	Remove all extraneous spaces in mpris.c
+	Fixs bad array of string in mpris metadata when string has apostrophes.
+	Fixes two segmentation faults when use ubuntu soundmenu and pragha has not playlists.
+	Remove all extraneous spaces in mpris.c
+	Fix bad folder estucture view entries because a bad conversion of filnames to UTF.
+	Fix that not add duplicated songs in library view.
+	Use strlen to test NULL strings.
+	Use some G_LIKELY omptimitations.
+	Fix/Change somes strings.
+	Fixes some memory leaks.
+	
+Updates Translations:
+	Add Italian translation thanks to Stribianese91.
+	Update German translation thanks to Cwickert.
+	Update Rusian translation thanks to lazy.kent.suse.
+	Update Portuguese translation thanks to smarquespt.
+	Sorry if I lost any translation. Transifex does not show the entire history. Please. Contact me.
+
+[1] https://github.com/sahib/glyr:
+Is a very new library, an the author defines it as "GlyR is a searchengine for musicrelated metadata"
+Many thanks to Chris for writing to me, offering his library when asked for a alternative to chartyrics.
+
+
+======================================================
+OTHERS REALESES:
+======================================================
+
+V0.8.10
 News:
 	Show a busy mouse icon when running a slow function.
 	Add structure to read new playlists formats. Until now only PLS.
@@ -20,10 +103,6 @@ Updates Translations:
 Bugs fixed:
 	Fix "All files" filter in open file chooser.
 	Update about dialog year.
-
-======================================================
-OTHERS REALESES:
-======================================================
 
 V0.8.9
 News:

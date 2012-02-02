@@ -8,9 +8,9 @@ msgstr ""
 "Project-Id-Version: Russian\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=glib&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2011-12-12 14:55-0300\n"
-"PO-Revision-Date: 2011-06-30 13:17-0300\n"
-"Last-Translator: Matias <mati86dl@gmail.com>\n"
+"POT-Creation-Date: 2012-02-02 11:58-0300\n"
+"PO-Revision-Date: 2012-01-06 21:57-0300\n"
+"Last-Translator: Matias De lellis <mati86dl@gmail.com>\n"
 "Language-Team: Russian\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
@@ -19,6 +19,8 @@ msgstr ""
 "X-Poedit-Language: Russian\n"
 "X-Poedit-SourceCharset: utf-8\n"
 "X-Poedit-Country: RUSSIAN FEDERATION\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
 #: ../src/gui.c:180
 msgid "_File"
@@ -26,7 +28,7 @@ msgstr "_Файл"
 
 #: ../src/gui.c:181
 msgid "_Edit"
-msgstr "П_равка"
+msgstr "_Правка"
 
 #: ../src/gui.c:182
 msgid "_View"
@@ -46,11 +48,11 @@ msgstr "_Добавить файлы"
 
 #: ../src/gui.c:186 ../src/gui.c:277
 msgid "Open a media file"
-msgstr "Открыть медиа файл"
+msgstr "Открыть медиа-файл"
 
 #: ../src/gui.c:187 ../src/gui.c:278 ../src/gui.c:370
 msgid "Add Audio _CD"
-msgstr ""
+msgstr "Добавить Audio _CD"
 
 #: ../src/gui.c:189
 msgid "Prev track"
@@ -58,7 +60,7 @@ msgstr "Предыдущий трек"
 
 #: ../src/gui.c:191 ../src/gui.c:374
 msgid "Play / Pause"
-msgstr "Воспроизведение/Пауза"
+msgstr "Воспроизведение / Пауза"
 
 #: ../src/gui.c:193 ../src/gui.c:376
 msgid "Stop"
@@ -69,9 +71,8 @@ msgid "Next track"
 msgstr "Следующий трек"
 
 #: ../src/gui.c:197 ../src/gui.c:308 ../src/gui.c:380
-#, fuzzy
 msgid "Edit track information"
-msgstr "Информация о треке"
+msgstr "Редактировать теги"
 
 #: ../src/gui.c:199 ../src/gui.c:282 ../src/gui.c:382
 msgid "_Quit"
@@ -79,26 +80,23 @@ msgstr "_Выход"
 
 #: ../src/gui.c:201 ../src/gui.c:280
 msgid "_Add the library"
-msgstr "Д_обавить в коллекцию"
+msgstr "_Добавить коллекцию"
 
 #: ../src/gui.c:203
-#, fuzzy
 msgid "Remove selection from playlist"
-msgstr "Сохранить плейлист"
+msgstr "Удалить выбранное из плейлиста"
 
 #: ../src/gui.c:205 ../src/gui.c:302
-#, fuzzy
 msgid "Crop playlist"
-msgstr "Очистить плейлист"
+msgstr "Исключить из списка остальные"
 
 #: ../src/gui.c:207 ../src/gui.c:304
 msgid "Clear playlist"
 msgstr "Очистить плейлист"
 
 #: ../src/gui.c:209
-#, fuzzy
 msgid "Add selection to another playlist"
-msgstr "_Добавить в текущий плейлист"
+msgstr "Добавить выбранное в другой плейлист"
 
 #: ../src/gui.c:210 ../src/gui.c:307 ../src/current_playlist.c:675
 msgid "Save playlist"
@@ -122,29 +120,27 @@ msgstr "Перейти к проигрываемому треку"
 
 #: ../src/gui.c:219 ../src/gui.c:226
 msgid "Search _lyric"
-msgstr "Поиск ко_мпозиции"
+msgstr "Искать текст песни"
 
 #: ../src/gui.c:221 ../src/gui.c:228
-#, fuzzy
 msgid "Search _artist info"
-msgstr "Исполнитель"
+msgstr "Искать информацию об исполнителе"
 
 #: ../src/gui.c:223 ../src/gui.c:230
-#, fuzzy
 msgid "Search album art"
-msgstr "Размер изображения обложки альбома"
+msgstr "Искать обложку альбома"
 
 #: ../src/gui.c:233
 msgid "_Rescan library"
-msgstr "Повторн_ое сканирование коллекции"
+msgstr "_Повторное сканирование коллекции"
 
 #: ../src/gui.c:235
 msgid "_Update library"
-msgstr "О_бновить коллекцию"
+msgstr "_Обновить коллекцию"
 
 #: ../src/gui.c:237
 msgid "_Statistics"
-msgstr "Стат_истика"
+msgstr "_Статистика"
 
 #: ../src/gui.c:239
 msgid "Homepage"
@@ -168,28 +164,28 @@ msgstr "О программе"
 
 #: ../src/gui.c:252
 msgid "_Shuffle"
-msgstr "В с_лучайном порядке"
+msgstr "В _случайном порядке"
 
 #: ../src/gui.c:255
 msgid "_Repeat"
-msgstr "Повтор_ять"
+msgstr "_Повторять"
 
 #: ../src/gui.c:258
 msgid "_Fullscreen"
-msgstr "Во весь экр_ан"
+msgstr "Во весь _экран"
 
 #: ../src/gui.c:261 ../src/gui.c:287 ../src/gui.c:668 ../src/pref.c:1482
 msgid "Library"
 msgstr "Коллекция"
 
 #: ../src/gui.c:264 ../src/gui.c:290 ../src/gui.c:686 ../src/menu.c:314
-#: ../src/playlist.c:756 ../src/playlist.c:1502
+#: ../src/playlist.c:821 ../src/playlist.c:1587
 msgid "Playlists"
 msgstr "Плейлисты"
 
 #: ../src/gui.c:267
 msgid "Playback controls below"
-msgstr ""
+msgstr "Управление проигрывателем снизу"
 
 #: ../src/gui.c:270
 msgid "Status bar"
@@ -201,37 +197,31 @@ msgstr "Добавить в очередь воспроизведения"
 
 #: ../src/gui.c:298
 msgid "Remove to playback queue"
-msgstr "Переместить в очередь"
+msgstr "Удалить из очереди воспроизведения"
 
 #: ../src/gui.c:300
-#, fuzzy
 msgid "Remove from playlist"
-msgstr "Сохранить плейлист"
+msgstr "Удалить из плейлиста"
 
 #: ../src/gui.c:306
-#, fuzzy
 msgid "Add to another playlist"
-msgstr "_Добавить в текущий плейлист"
+msgstr "Добавить в другой плейлист"
 
 #: ../src/gui.c:313 ../src/gui.c:328
-#, fuzzy
 msgid "_Add to current playlist"
 msgstr "_Добавить в текущий плейлист"
 
 #: ../src/gui.c:315 ../src/gui.c:330
-#, fuzzy
 msgid "_Replace current playlist"
-msgstr "_Заменить плейлист"
+msgstr "_Заменить текущий плейлист"
 
 #: ../src/gui.c:317 ../src/gui.c:332
-#, fuzzy
 msgid "Replace and _play"
-msgstr "_Заменить плейлист"
+msgstr "Заменить и воспроизвести"
 
-#: ../src/gui.c:319 ../src/playlist.c:634
-#, fuzzy
+#: ../src/gui.c:319 ../src/playlist.c:662
 msgid "Rename"
-msgstr "Имя файла"
+msgstr "Переименовать"
 
 #: ../src/gui.c:321
 msgid "Delete"
@@ -248,7 +238,7 @@ msgstr "Редактировать теги"
 
 #: ../src/gui.c:336
 msgid "Move to _trash"
-msgstr ""
+msgstr "Переместить в корзину"
 
 #: ../src/gui.c:338
 msgid "Delete from library"
@@ -256,29 +246,29 @@ msgstr "Удалить из коллекции"
 
 #: ../src/gui.c:343
 msgid "_Expand library"
-msgstr "Р_азвернуть все"
+msgstr "_Развернуть все"
 
 #: ../src/gui.c:345
 msgid "_Collapse library"
-msgstr "Св_ернуть все"
+msgstr "_Свернуть все"
 
 #: ../src/gui.c:347 ../src/librarytree.c:1480
 msgid "Folders structure"
-msgstr "Дерево папок"
+msgstr "Дерево каталогов"
 
-#: ../src/gui.c:349 ../src/gui.c:805 ../src/gui.c:970 ../src/pragha.h:96
-#: ../src/librarytree.c:1483 ../src/statusicon.c:203 ../src/tags.c:556
+#: ../src/gui.c:349 ../src/gui.c:805 ../src/gui.c:970 ../src/pragha.h:100
+#: ../src/librarytree.c:1483 ../src/statusicon.c:201 ../src/tags.c:556
 #: ../src/tags.c:610
 msgid "Artist"
 msgstr "Исполнитель"
 
-#: ../src/gui.c:351 ../src/gui.c:806 ../src/gui.c:971 ../src/pragha.h:97
-#: ../src/librarytree.c:1487 ../src/statusicon.c:204 ../src/tags.c:559
+#: ../src/gui.c:351 ../src/gui.c:806 ../src/gui.c:971 ../src/pragha.h:101
+#: ../src/librarytree.c:1487 ../src/statusicon.c:202 ../src/tags.c:559
 #: ../src/tags.c:611
 msgid "Album"
 msgstr "Альбом"
 
-#: ../src/gui.c:353 ../src/gui.c:807 ../src/gui.c:972 ../src/pragha.h:98
+#: ../src/gui.c:353 ../src/gui.c:807 ../src/gui.c:972 ../src/pragha.h:102
 #: ../src/librarytree.c:1494 ../src/tags.c:562 ../src/tags.c:612
 msgid "Genre"
 msgstr "Жанр"
@@ -299,11 +289,11 @@ msgstr "Жанр / Исполнитель"
 msgid "Genre / Artist / Album"
 msgstr "Жанр / Исполнитель / Альбом"
 
-#: ../src/gui.c:372 ../src/statusicon.c:164
+#: ../src/gui.c:372 ../src/statusicon.c:140
 msgid "Prev Track"
 msgstr "Предыдущий трек"
 
-#: ../src/gui.c:378 ../src/gui.c:1712 ../src/statusicon.c:168
+#: ../src/gui.c:378 ../src/gui.c:1712 ../src/statusicon.c:144
 msgid "Next Track"
 msgstr "Следующий трек"
 
@@ -317,33 +307,33 @@ msgid "Track"
 msgstr "Трек"
 
 #. Create labels
-#: ../src/gui.c:804 ../src/gui.c:969 ../src/pragha.h:95
-#: ../src/statusicon.c:202 ../src/tags.c:553 ../src/tags.c:609
+#: ../src/gui.c:804 ../src/gui.c:969 ../src/pragha.h:99
+#: ../src/statusicon.c:200 ../src/tags.c:553 ../src/tags.c:609
 msgid "Title"
 msgstr "Название"
 
-#: ../src/gui.c:808 ../src/gui.c:973 ../src/pragha.h:99
-#: ../src/current_playlist.c:1428
+#: ../src/gui.c:808 ../src/gui.c:973 ../src/pragha.h:103
+#: ../src/current_playlist.c:1431
 msgid "Bitrate"
 msgstr "Битрейт"
 
-#: ../src/gui.c:809 ../src/gui.c:974 ../src/pragha.h:100 ../src/tags.c:614
+#: ../src/gui.c:809 ../src/gui.c:974 ../src/pragha.h:104 ../src/tags.c:614
 msgid "Year"
 msgstr "Год"
 
-#: ../src/gui.c:810 ../src/gui.c:975 ../src/pragha.h:101 ../src/tags.c:565
+#: ../src/gui.c:810 ../src/gui.c:975 ../src/pragha.h:105 ../src/tags.c:565
 #: ../src/tags.c:615
 msgid "Comment"
 msgstr "Примечания"
 
 #. Create labels
-#: ../src/gui.c:811 ../src/gui.c:976 ../src/pragha.h:102
-#: ../src/current_playlist.c:1427 ../src/statusicon.c:205
+#: ../src/gui.c:811 ../src/gui.c:976 ../src/pragha.h:106
+#: ../src/current_playlist.c:1430 ../src/statusicon.c:203
 msgid "Length"
 msgstr "Продолжительность"
 
-#: ../src/gui.c:812 ../src/gui.c:977 ../src/pragha.h:103
-#: ../src/current_playlist.c:1432
+#: ../src/gui.c:812 ../src/gui.c:977 ../src/pragha.h:107
+#: ../src/current_playlist.c:1435
 msgid "Filename"
 msgstr "Имя файла"
 
@@ -376,7 +366,7 @@ msgstr "Воспроизведение в случайном порядке"
 msgid "Repeat playback list at the end"
 msgstr "Циклическое воспроизведение списка"
 
-#: ../src/gui.c:1763 ../src/panel.c:263 ../src/statusicon.c:199
+#: ../src/gui.c:1763 ../src/panel.c:263 ../src/statusicon.c:197
 msgid "<b>Not playing</b>"
 msgstr "<b>Не воспроизводится</b>"
 
@@ -384,123 +374,120 @@ msgstr "<b>Не воспроизводится</b>"
 msgid "Options of the library"
 msgstr "Настройки коллекции"
 
-#: ../src/pragha.h:94 ../src/tags.c:613
+#: ../src/pragha.h:98 ../src/tags.c:613
 msgid "Track No"
 msgstr "Трек №"
 
-#: ../src/pragha.h:133
+#: ../src/pragha.h:137
 msgid "Scanning"
-msgstr ""
+msgstr "Сканирование"
 
-#: ../src/pragha.h:134
-#, fuzzy
+#: ../src/pragha.h:138
 msgid "Stopped"
-msgstr "Остановить"
+msgstr "Остановлено"
 
-#: ../src/pragha.h:240
+#: ../src/pragha.h:244
 msgid "_Skip"
-msgstr ""
+msgstr "_Пропустить"
 
-#: ../src/pragha.h:241
-msgid "S_kip All"
-msgstr ""
-
-#: ../src/pragha.h:242
-#, fuzzy
-msgid "Delete _All"
-msgstr "Удалить"
-
-#. Next are some missing tranlation to match whit Pragha 1.0
 #: ../src/pragha.h:245
-#, fuzzy
-msgid "Import a XSPF playlist"
-msgstr "Восстановить последний плейлист"
+msgid "S_kip All"
+msgstr "Пр_опустить всё"
 
 #: ../src/pragha.h:246
-#, c-format
-msgid "Added %d songs of the last %d loved on Last.fm."
-msgstr ""
+msgid "Delete _All"
+msgstr "Удалить _всё"
 
-#: ../src/pragha.h:247
-msgid "You had no favorite songs on Last.fm."
-msgstr ""
-
-#: ../src/pragha.h:248
-msgid "No connection Last.fm has been established."
-msgstr ""
-
+#. Next are some missing tranlation to match whit Pragha 1.0
 #: ../src/pragha.h:249
-#, c-format
-msgid "Added %d songs of %d sugested from Last.fm."
-msgstr ""
+msgid "Import a XSPF playlist"
+msgstr "Импортировать плейлист XSPF"
 
 #: ../src/pragha.h:250
-msgid "Last.fm not suggest any similar song."
-msgstr ""
+#, c-format
+msgid "Added %d songs of the last %d loved on Last.fm."
+msgstr "Добавлено %d композиций из %d последних «любимых» на Last.fm."
+
+#: ../src/pragha.h:251
+msgid "You had no favorite songs on Last.fm."
+msgstr "У вас нет «любимых» песен на Last.fm."
 
 #: ../src/pragha.h:252
-msgid "Unlove song on Last.fm failed."
-msgstr ""
+msgid "No connection Last.fm has been established."
+msgstr "Не установлено соединение с Last.fm."
 
 #: ../src/pragha.h:253
-msgid "Update current song on Last.fm failed."
-msgstr ""
+#, c-format
+msgid "Added %d songs of %d sugested from Last.fm."
+msgstr "Добавлено %d композиций из %d рекомендованных Last.fm."
 
 #: ../src/pragha.h:254
-#, fuzzy
-msgid "Love track"
-msgstr "Предыдущий трек"
-
-#: ../src/pragha.h:255
-#, fuzzy
-msgid "Unlove track"
-msgstr "Предыдущий трек"
+msgid "Last.fm not suggest any similar song."
+msgstr "Last.fm не может посоветовать похожую песню."
 
 #: ../src/pragha.h:256
-#, fuzzy
-msgid "Add favorites"
-msgstr "_Добавить файлы"
+msgid "Unlove song on Last.fm failed."
+msgstr "Ошибка удаления композиции из «любимых» на Last.fm."
 
 #: ../src/pragha.h:257
-msgid "Add similar"
-msgstr ""
+msgid "Update current song on Last.fm failed."
+msgstr "Ошибка отправки композиции на Last.fm"
 
 #: ../src/pragha.h:258
-msgid "Add _location"
-msgstr ""
+msgid "Love track"
+msgstr "Добавить в «любимые»"
 
 #: ../src/pragha.h:259
-msgid "Radios"
-msgstr ""
+msgid "Unlove track"
+msgstr "Удалить из «любимых»"
 
 #: ../src/pragha.h:260
-#, fuzzy
+msgid "Add favorites"
+msgstr "Добавить «любимые»"
+
+#: ../src/pragha.h:261
+msgid "Add similar"
+msgstr "Добавить похожие"
+
+#: ../src/pragha.h:262
+msgid "Add _location"
+msgstr "Добавить _расположение"
+
+#: ../src/pragha.h:263
+msgid "Radios"
+msgstr "Радиостанции"
+
+#: ../src/pragha.h:264
 msgid "_Lastfm"
 msgstr "Last.fm"
 
-#: ../src/pragha.h:261
+#: ../src/pragha.h:265
 msgid "Enter the URL of an internet radio stream"
-msgstr ""
+msgstr "Введите URL интернет радио-потока"
 
-#: ../src/pragha.h:262
+#: ../src/pragha.h:266
 msgid "Give it a name to save"
-msgstr ""
+msgstr "Введите имя для сохранения"
 
-#: ../src/pragha.h:263
+#: ../src/pragha.h:267
 msgid "Add a location"
-msgstr ""
+msgstr "Добавить расположение"
 
-#: ../src/pragha.h:264
+#: ../src/pragha.h:268
 #, c-format
 msgid ""
 "<b>Error playing current track.</b>\n"
 "(%s)\n"
-"<b>Reason:</b> %s"
+"<b>Reason: </b> %s"
 msgstr ""
 
-#: ../src/pragha.h:251
-msgid "Love song on Last.fm failed."
+#: ../src/pragha.h:269
+msgid "E_qualizer"
 msgstr ""
+
+#: ../src/pragha.h:255
+msgid "Love song on Last.fm failed."
+msgstr "Ошибка добавления композиции в «любимые» на Last.fm."
 
 #: ../src/panel.c:239
 #, c-format
@@ -511,7 +498,7 @@ msgstr ""
 "%s <small><span weight=\"light\">исполняет</span></small> %s <small><span "
 "weight=\"light\">из</span></small> %s"
 
-#: ../src/panel.c:244 ../src/glyr-related.c:407
+#: ../src/panel.c:244 ../src/glyr-related.c:410
 #, c-format
 msgid "%s <small><span weight=\"light\">by</span></small> %s"
 msgstr "%s <small><span weight=\"light\">исполняет</span></small> %s"
@@ -537,35 +524,33 @@ msgstr "Добавить в существующий плейлист"
 msgid "Save selection"
 msgstr "Сохранить выделенное"
 
-#: ../src/current_playlist.c:706 ../src/playlist.c:1341 ../src/playlist.c:1374
-#: ../src/playlist.c:1408 ../src/playlist.c:1449
-#, fuzzy
+#: ../src/current_playlist.c:706 ../src/playlist.c:1426 ../src/playlist.c:1459
+#: ../src/playlist.c:1493 ../src/playlist.c:1534
 msgid "New playlist"
-msgstr "Сохранить плейлист"
+msgstr "Создать плейлист"
 
 #: ../src/current_playlist.c:778
 msgid "<b>con_playlist</b> is a reserved playlist name"
 msgstr "<b>con_playlist</b> это зарезервированное название плейлиста"
 
-#: ../src/current_playlist.c:1429
+#: ../src/current_playlist.c:1432
 msgid "Channels"
 msgstr "Каналы"
 
-#: ../src/current_playlist.c:1430
+#: ../src/current_playlist.c:1433
 msgid "Samplerate"
 msgstr "Рейтинг"
 
-#: ../src/current_playlist.c:1431
-#, fuzzy
+#: ../src/current_playlist.c:1434
 msgid "Folder"
-msgstr "Директория"
+msgstr "Каталог"
 
 #. The main edit dialog
-#: ../src/current_playlist.c:1522 ../src/tags.c:884
+#: ../src/current_playlist.c:1525 ../src/tags.c:884
 msgid "Details"
-msgstr ""
+msgstr "Подробности"
 
-#: ../src/librarytree.c:197 ../src/statusicon.c:136
+#: ../src/librarytree.c:197 ../src/statusicon.c:127
 msgid "Unknown Artist"
 msgstr "Неизвестный Исполнитель"
 
@@ -573,7 +558,7 @@ msgstr "Неизвестный Исполнитель"
 msgid "Unknown"
 msgstr "Неизвестные"
 
-#: ../src/librarytree.c:204 ../src/librarytree.c:208 ../src/statusicon.c:138
+#: ../src/librarytree.c:204 ../src/librarytree.c:208 ../src/statusicon.c:129
 msgid "Unknown Album"
 msgstr "Неизвестный Альбом"
 
@@ -583,12 +568,12 @@ msgstr "Неизвестный Жанр"
 
 #: ../src/librarytree.c:396
 msgid "Cannot move file to trash, do you want to delete immediately?"
-msgstr ""
+msgstr "Не удалось переместить файл в корзину, удалить его безвозвратно?"
 
 #: ../src/librarytree.c:397
 #, c-format
 msgid "The file \"%s\" cannot be moved to the trash. Details: %s"
-msgstr ""
+msgstr "Файл «%s» не удалось поместить в корзину. Подробности: %s"
 
 #: ../src/librarytree.c:1231
 msgid ""
@@ -596,32 +581,31 @@ msgid ""
 "\n"
 "Warning: To recover we must rescan the entire library."
 msgstr ""
-"Are you sure you want to delete current file from library?\n"
+"Вы уверены, что хотите удалить этот файл из библиотеки?\n"
 "\n"
-"Внимание: Для его восстановления потребуется просмотреть библиотеку заново."
+"Внимание: Для его восстановления потребуется просканировать библиотеку "
+"заново."
 
 #: ../src/librarytree.c:1288
 msgid "Really want to move the files to trash?"
-msgstr ""
+msgstr "Вы действительно хотите переместить файлы в корзину?"
 
 #: ../src/librarytree.c:1290
 msgid "Delete immediately instead of move to trash"
-msgstr ""
+msgstr "Удалять файлы вместо перемещения в корзину"
 
-#: ../src/statusicon.c:134
+#: ../src/statusicon.c:125
 #, c-format
 msgid "by <b>%s</b> in <b>%s</b> <b>(%s)</b>"
 msgstr "<b>%s</b>, альбом: <b>%s</b> (%s)"
 
 #: ../src/tags.c:546
-#, fuzzy
 msgid "Selection to"
 msgstr "Сохранить выделенное"
 
 #: ../src/tags.c:575
-#, fuzzy
 msgid "Open folder"
-msgstr "_Открыть Файл"
+msgstr "Открыть каталог"
 
 #: ../src/tags.c:616
 msgid "File"
@@ -671,7 +655,7 @@ msgstr "Аудио"
 
 #: ../src/pref.c:1481
 msgid "Appearance"
-msgstr ""
+msgstr "Внешний вид"
 
 #: ../src/pref.c:1483
 msgid "General"
@@ -712,7 +696,7 @@ msgstr "Устройство Audio CD"
 #. Appearance Widgets
 #: ../src/pref.c:1635
 msgid "Highlight rows on current playlist"
-msgstr ""
+msgstr "Подсветка строк в плейлисте"
 
 #: ../src/pref.c:1637
 msgid "Show Album art in Panel"
@@ -732,17 +716,16 @@ msgstr "Директория"
 
 #: ../src/pref.c:1748
 msgid "Merge folders in the folders estructure view"
-msgstr ""
+msgstr "Объединить директории в структуре коллекции"
 
 #: ../src/pref.c:1749
-#, fuzzy
 msgid "Sort albums by release year"
-msgstr "Размер изображения обложки альбома"
+msgstr "Сортировать альбомы по году выпуска"
 
 #. General Widgets
 #: ../src/pref.c:1774
 msgid "Refine the search while writing"
-msgstr ""
+msgstr "Поиск по мере набора"
 
 #: ../src/pref.c:1778
 msgid "Remember last window state"
@@ -750,7 +733,7 @@ msgstr "Запоминать состояние окна"
 
 #: ../src/pref.c:1783
 msgid "Restore last playlist"
-msgstr "Восстановить последний плейлист"
+msgstr "Восстанавливать последний плейлист"
 
 #: ../src/pref.c:1785
 msgid "Minimize Pragha when close the window"
@@ -775,7 +758,7 @@ msgstr "Показывать обложку альбома в уведомлен
 
 #: ../src/pref.c:1821
 msgid "Add actions to change track to notifications"
-msgstr ""
+msgstr "Добавить действия в сообщении о смене трека"
 
 #. Services Last.fm
 #: ../src/pref.c:1846
@@ -791,9 +774,8 @@ msgid "Password"
 msgstr "Пароль"
 
 #: ../src/pref.c:1861
-#, fuzzy
 msgid "Get album art"
-msgstr "Размер изображения обложки альбома"
+msgstr "Получить обложку альбома"
 
 #. Services CDDB
 #: ../src/pref.c:1865
@@ -803,7 +785,7 @@ msgstr "Соединится с CDDB сервером"
 #. Services MPRIS2
 #: ../src/pref.c:1869
 msgid "Allow remote control with MPRIS2 interface"
-msgstr ""
+msgstr "Разрешить управление через интерфейс MPRIS2"
 
 #: ../src/menu.c:136
 msgid "Update Library"
@@ -819,7 +801,7 @@ msgstr "Воспроизвести выделенный файл"
 
 #: ../src/menu.c:262
 msgid "Add recursively files"
-msgstr ""
+msgstr "Добавить файлы рекурсивно"
 
 #: ../src/menu.c:283
 msgid "Supported media"
@@ -829,82 +811,89 @@ msgstr "Поддерживаемые типы"
 msgid "All files"
 msgstr "Все файлы"
 
-#: ../src/menu.c:713 ../src/menu.c:847
+#: ../src/menu.c:714 ../src/menu.c:848
 msgid "Library scan complete"
 msgstr "Коллекция просканирована"
 
-#: ../src/menu.c:952
+#: ../src/menu.c:953
 msgid "Total Tracks:"
-msgstr "Количество Треков:"
+msgstr "Количество треков:"
 
-#: ../src/menu.c:954
+#: ../src/menu.c:955
 msgid "Total Artists:"
-msgstr "Количество Исполнителей:"
+msgstr "Количество исполнителей:"
 
-#: ../src/menu.c:956
+#: ../src/menu.c:957
 msgid "Total Albums:"
-msgstr "Количество Альбомов:"
+msgstr "Количество альбомов:"
 
-#: ../src/menu.c:958
+#: ../src/menu.c:959
 msgid "Statistics"
 msgstr "Статистика"
 
-#: ../src/menu.c:975
+#: ../src/menu.c:976
 msgid "translator-credits"
-msgstr ""
+msgstr "Kyrill Detinov <lazy.kent@opensuse.org>"
 
 #: ../src/utils.c:342
 msgid "days"
-msgstr "Дней"
+msgstr "дней"
 
 #: ../src/utils.c:342
 msgid "day"
-msgstr "День"
+msgstr "день"
 
 #: ../src/utils.c:542
 msgid "Unable to open the browser"
 msgstr "Невозможно открыть браузер"
 
-#: ../src/playlist.c:626
-#, fuzzy
-msgid "Choose a new name"
-msgstr "Сохранить новый плейлист"
+#: ../src/playlist.c:65
+#, c-format
+msgid "Do you want to overwrite the playlist: %s ?"
+msgstr ""
 
-#: ../src/playlist.c:746 ../src/playlist.c:843
+#: ../src/playlist.c:654
+msgid "Choose a new name"
+msgstr "Выберите имя"
+
+#: ../src/playlist.c:741
+#, c-format
+msgid "Do you want to delete the item: %s ?"
+msgstr ""
+
+#: ../src/playlist.c:811 ../src/playlist.c:908
 msgid "Export playlist to file"
 msgstr "Экспортировать плейлист в файл"
 
-#: ../src/playlist.c:1106
+#: ../src/playlist.c:1191
 #, c-format
 msgid "Added %d songs from %d of the imported playlist."
-msgstr ""
+msgstr "Добавлено %d композиций из %d импортированных плейлистов."
 
 #: ../src/glyr-related.c:21
 msgid "en"
-msgstr ""
+msgstr "ru"
 
-#: ../src/glyr-related.c:70 ../src/glyr-related.c:94
-#, fuzzy
+#: ../src/glyr-related.c:70 ../src/glyr-related.c:95
 msgid "Album art not found."
-msgstr "Обложка альбома"
+msgstr "Обложка альбома не найдена"
 
-#: ../src/glyr-related.c:260
+#: ../src/glyr-related.c:263
 msgid "Artist information not found."
-msgstr ""
+msgstr "Информация об исполнителе не найдена"
 
-#: ../src/glyr-related.c:286
-#, fuzzy
+#: ../src/glyr-related.c:289
 msgid "Artist info"
-msgstr "Исполнитель"
+msgstr "Информация об исполнителе"
 
-#: ../src/glyr-related.c:293
-#, fuzzy, c-format
+#: ../src/glyr-related.c:296
+#, c-format
 msgid "%s <small><span weight=\"light\">thanks to</span></small> %s"
-msgstr "%s <small><span weight=\"light\">из</span></small> %s"
+msgstr "%s <small><span weight=\"light\">спасибо</span></small> %s"
 
-#: ../src/glyr-related.c:369
+#: ../src/glyr-related.c:372
 msgid "Error searching Lyric."
-msgstr ""
+msgstr "Ошибка поиска текста песни."
 
 #, fuzzy
 #~ msgid "Edit track information),"
@@ -947,12 +936,12 @@ msgstr ""
 #~ "\n"
 #~ "Warning: Once deleted, the file cannot be recovered."
 #~ msgstr ""
-#~ "Вы хотите удалить этот файл с жесткого диска?\n"
+#~ "Вы хотите удалить этот файл с жёсткого диска?\n"
 #~ "\n"
 #~ "Внимание: После удаления файл нельзя будет восстановить!"
 
 #~ msgid "Delete from HDD"
-#~ msgstr "Удалить с жесткого диска"
+#~ msgstr "Удалить с жёсткого диска"
 
 #~ msgid "_Properties"
 #~ msgstr "_Настройки"

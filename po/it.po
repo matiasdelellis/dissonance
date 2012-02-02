@@ -1,156 +1,150 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# 
+# Translators:
+# Matteo Varalta <matteovaralta91@gmail.com>, 2011.
 msgid ""
 msgstr ""
-"Project-Id-Version: Pragha 0.8.3\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
-"product=glib&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2012-02-02 11:58-0300\n"
-"PO-Revision-Date: 2011-06-30 13:14-0300\n"
-"Last-Translator: Matias <mati86dl@gmail.com>\n"
-"Language-Team: ned <polesz@nedudu.hu>\n"
-"Language: \n"
+"Project-Id-Version: Pragha\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=glib&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2011-12-12 14:55-0300\n"
+"PO-Revision-Date: 2011-12-13 15:55+0000\n"
+"Last-Translator: matias <mati86dl@gmail.com>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Poedit-Language: Hungarian\n"
-"X-Poedit-Country: HUNGARY\n"
+"Language: en\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
 
 #: ../src/gui.c:180
 msgid "_File"
-msgstr "_Fájl"
+msgstr "_File"
 
 #: ../src/gui.c:181
 msgid "_Edit"
-msgstr "Sz_erkesztés"
+msgstr "_Modifica"
 
 #: ../src/gui.c:182
 msgid "_View"
-msgstr "_Nézet"
+msgstr "_Visualizza"
 
 #: ../src/gui.c:183
 msgid "_Tools"
-msgstr "E_szközök"
+msgstr "S_trumenti"
 
 #: ../src/gui.c:184
 msgid "_Help"
-msgstr "_Súgó"
+msgstr "A_iuto"
 
 #: ../src/gui.c:185 ../src/gui.c:276 ../src/gui.c:368
 msgid "_Add files"
-msgstr "Fájlok hozzá_adása"
+msgstr "_Aggiungi file"
 
 #: ../src/gui.c:186 ../src/gui.c:277
 msgid "Open a media file"
-msgstr "Média fájl megnyitása"
+msgstr "Apri media"
 
 #: ../src/gui.c:187 ../src/gui.c:278 ../src/gui.c:370
 msgid "Add Audio _CD"
-msgstr ""
+msgstr "Aggiungi _CD audio"
 
 #: ../src/gui.c:189
 msgid "Prev track"
-msgstr "Előző sáv"
+msgstr "Traccia precedente"
 
 #: ../src/gui.c:191 ../src/gui.c:374
 msgid "Play / Pause"
-msgstr "Lejátszás / Szünet"
+msgstr "Riproduci / Pausa"
 
 #: ../src/gui.c:193 ../src/gui.c:376
 msgid "Stop"
-msgstr "Megállítás"
+msgstr "Ferma"
 
 #: ../src/gui.c:195
 msgid "Next track"
-msgstr "Következő sáv"
+msgstr "Traccia successiva"
 
 #: ../src/gui.c:197 ../src/gui.c:308 ../src/gui.c:380
 msgid "Edit track information"
-msgstr ""
+msgstr "Modifica informationi traccia"
 
 #: ../src/gui.c:199 ../src/gui.c:282 ../src/gui.c:382
 msgid "_Quit"
-msgstr "_Kilépés"
+msgstr "_Esci"
 
 #: ../src/gui.c:201 ../src/gui.c:280
 msgid "_Add the library"
-msgstr "Hozzá_adás a gyűjteményhez"
+msgstr "_Aggiungi la libreria"
 
 #: ../src/gui.c:203
-#, fuzzy
 msgid "Remove selection from playlist"
-msgstr "Lejátszólista mentése"
+msgstr "Rimuovi selezionati dalla scaletta"
 
 #: ../src/gui.c:205 ../src/gui.c:302
-#, fuzzy
 msgid "Crop playlist"
-msgstr "Lejátszólista törlése"
+msgstr "Ritaglia scaletta"
 
 #: ../src/gui.c:207 ../src/gui.c:304
 msgid "Clear playlist"
-msgstr "Lejátszólista törlése"
+msgstr "Pulisci scaletta"
 
 #: ../src/gui.c:209
-#, fuzzy
 msgid "Add selection to another playlist"
-msgstr "_Hozzáadás a lejátszólistához"
+msgstr "Aggiungi selezionati in una scaletta"
 
 #: ../src/gui.c:210 ../src/gui.c:307 ../src/current_playlist.c:675
 msgid "Save playlist"
-msgstr "Lejátszólista mentése"
+msgstr "Salva scaletta"
 
 #: ../src/gui.c:211
 msgid "_Search in playlist"
-msgstr "Kere_sés a lejátszólistában"
+msgstr "_Cerca nella scaletta"
 
 #: ../src/gui.c:213
 msgid "_Preferences"
-msgstr "_Beállítások"
+msgstr "_Preferenze"
 
 #: ../src/gui.c:215
 msgid "Lateral _panel"
-msgstr "Oldalsó _panel"
+msgstr "_Pannello laterale"
 
 #: ../src/gui.c:216
 msgid "Jump to playing song"
-msgstr "Ugrás a most szóló számra"
+msgstr "Vai al brano in riproduzione"
 
 #: ../src/gui.c:219 ../src/gui.c:226
 msgid "Search _lyric"
-msgstr "Da_lszöveg keresése"
+msgstr "Cerca _lyric"
 
 #: ../src/gui.c:221 ../src/gui.c:228
-#, fuzzy
 msgid "Search _artist info"
-msgstr "Előadó"
+msgstr "Cerca informazini _artista"
 
 #: ../src/gui.c:223 ../src/gui.c:230
-#, fuzzy
 msgid "Search album art"
-msgstr "Album borító mérete"
+msgstr "Cerca copertina"
 
 #: ../src/gui.c:233
 msgid "_Rescan library"
-msgstr "Gyűjtemény új_raolvasása"
+msgstr "_Ricontrolla libreria"
 
 #: ../src/gui.c:235
 msgid "_Update library"
-msgstr "Gyűjtemény _frissítése"
+msgstr "_Aggiorna libreria"
 
 #: ../src/gui.c:237
 msgid "_Statistics"
-msgstr "_Statisztika"
+msgstr "_Statistiche"
 
 #: ../src/gui.c:239
 msgid "Homepage"
-msgstr "Honlap"
+msgstr "Homepage"
 
 #: ../src/gui.c:241
 msgid "Community"
-msgstr "Közösség"
+msgstr "Community"
 
 #: ../src/gui.c:243
 msgid "Wiki"
@@ -158,435 +152,423 @@ msgstr "Wiki"
 
 #: ../src/gui.c:245
 msgid "Translate Pragha"
-msgstr "Pragha fordítása"
+msgstr "Traduci Pragha"
 
 #: ../src/gui.c:247 ../src/gui.c:366
 msgid "About"
-msgstr "Névjegy"
+msgstr "Informazioni"
 
 #: ../src/gui.c:252
 msgid "_Shuffle"
-msgstr "Véletlen_szerű"
+msgstr "_Mischia"
 
 #: ../src/gui.c:255
 msgid "_Repeat"
-msgstr "_Ismétlés"
+msgstr "_Ripeti"
 
 #: ../src/gui.c:258
 msgid "_Fullscreen"
-msgstr "_Teljes képernyő"
+msgstr "Sc_hermo intero"
 
 #: ../src/gui.c:261 ../src/gui.c:287 ../src/gui.c:668 ../src/pref.c:1482
 msgid "Library"
-msgstr "Gyűjtemény"
+msgstr "Libreria"
 
 #: ../src/gui.c:264 ../src/gui.c:290 ../src/gui.c:686 ../src/menu.c:314
-#: ../src/playlist.c:821 ../src/playlist.c:1587
+#: ../src/playlist.c:756 ../src/playlist.c:1502
 msgid "Playlists"
-msgstr "Lejátszólisták"
+msgstr "Scalette"
 
 #: ../src/gui.c:267
 msgid "Playback controls below"
-msgstr ""
+msgstr "Controlli di riproduzione sotto"
 
 #: ../src/gui.c:270
 msgid "Status bar"
-msgstr "Státusz sor"
+msgstr "Barra di stato"
 
 #: ../src/gui.c:296
 msgid "Add to playback queue"
-msgstr "Hozzáadás a lejátszási sorhoz"
+msgstr "Aggiungi alla coda di riproduzione"
 
 #: ../src/gui.c:298
 msgid "Remove to playback queue"
-msgstr "Törlés a lejátszási sorból"
+msgstr "Rimuovi dalla coda di riproduzione"
 
 #: ../src/gui.c:300
-#, fuzzy
 msgid "Remove from playlist"
-msgstr "Lejátszólista mentése"
+msgstr "Rimuovi dalla scaletta"
 
 #: ../src/gui.c:306
-#, fuzzy
 msgid "Add to another playlist"
-msgstr "_Hozzáadás a lejátszólistához"
+msgstr "Aggiungi a un'altra scaletta"
 
 #: ../src/gui.c:313 ../src/gui.c:328
-#, fuzzy
 msgid "_Add to current playlist"
-msgstr "_Hozzáadás a lejátszólistához"
+msgstr "_Aggiungi alla scaletta corrente"
 
 #: ../src/gui.c:315 ../src/gui.c:330
-#, fuzzy
 msgid "_Replace current playlist"
-msgstr "Lejátszólista cse_réje"
+msgstr "_Sostituisci scaletta corrente"
 
 #: ../src/gui.c:317 ../src/gui.c:332
-#, fuzzy
 msgid "Replace and _play"
-msgstr "Lejátszólista cse_réje"
+msgstr "Sostituisci e _riproduci"
 
-#: ../src/gui.c:319 ../src/playlist.c:662
-#, fuzzy
+#: ../src/gui.c:319 ../src/playlist.c:634
 msgid "Rename"
-msgstr "Fájlnév"
+msgstr "Rinomina"
 
 #: ../src/gui.c:321
 msgid "Delete"
-msgstr "Törlés"
+msgstr "Elimina"
 
 #: ../src/gui.c:323 ../src/current_playlist.c:679
 msgid "Export"
-msgstr "Export"
+msgstr "Esporta"
 
 #. The main edit dialog
 #: ../src/gui.c:334 ../src/tags.c:849
 msgid "Edit tags"
-msgstr "Címkék szerkesztése"
+msgstr "Modifica tag"
 
 #: ../src/gui.c:336
 msgid "Move to _trash"
-msgstr "Mozgat_ás a kukába"
+msgstr "Sposta nel _cestino"
 
 #: ../src/gui.c:338
 msgid "Delete from library"
-msgstr "Törlés a gyűjteményből"
+msgstr "Rimuovi dalla libreria"
 
 #: ../src/gui.c:343
 msgid "_Expand library"
-msgstr "Gyűjt_emény kinyitása"
+msgstr "_Espandi libreria"
 
 #: ../src/gui.c:345
 msgid "_Collapse library"
-msgstr "Gyűjtemény _összezárása"
+msgstr "_Comprimi libreria"
 
 #: ../src/gui.c:347 ../src/librarytree.c:1480
 msgid "Folders structure"
-msgstr "Mappák struktúrája"
+msgstr "Struttura delle cartelle"
 
-#: ../src/gui.c:349 ../src/gui.c:805 ../src/gui.c:970 ../src/pragha.h:100
-#: ../src/librarytree.c:1483 ../src/statusicon.c:201 ../src/tags.c:556
+#: ../src/gui.c:349 ../src/gui.c:805 ../src/gui.c:970 ../src/pragha.h:96
+#: ../src/librarytree.c:1483 ../src/statusicon.c:203 ../src/tags.c:556
 #: ../src/tags.c:610
 msgid "Artist"
-msgstr "Előadó"
+msgstr "Artista"
 
-#: ../src/gui.c:351 ../src/gui.c:806 ../src/gui.c:971 ../src/pragha.h:101
-#: ../src/librarytree.c:1487 ../src/statusicon.c:202 ../src/tags.c:559
+#: ../src/gui.c:351 ../src/gui.c:806 ../src/gui.c:971 ../src/pragha.h:97
+#: ../src/librarytree.c:1487 ../src/statusicon.c:204 ../src/tags.c:559
 #: ../src/tags.c:611
 msgid "Album"
 msgstr "Album"
 
-#: ../src/gui.c:353 ../src/gui.c:807 ../src/gui.c:972 ../src/pragha.h:102
+#: ../src/gui.c:353 ../src/gui.c:807 ../src/gui.c:972 ../src/pragha.h:98
 #: ../src/librarytree.c:1494 ../src/tags.c:562 ../src/tags.c:612
 msgid "Genre"
-msgstr "Műfaj"
+msgstr "Genere"
 
 #: ../src/gui.c:355 ../src/librarytree.c:1498
 msgid "Artist / Album"
-msgstr "Előadó / Album"
+msgstr "Artista / Album"
 
 #: ../src/gui.c:357 ../src/librarytree.c:1509
 msgid "Genre / Album"
-msgstr "Műfaj / Album"
+msgstr "Genere / Album"
 
 #: ../src/gui.c:359 ../src/librarytree.c:1505
 msgid "Genre / Artist"
-msgstr "Műfaj / Előadó"
+msgstr "Genere / Artista"
 
 #: ../src/gui.c:361 ../src/librarytree.c:1516
 msgid "Genre / Artist / Album"
-msgstr "Műfaj / Előadó / Album"
+msgstr "Genere / Artista / Album"
 
-#: ../src/gui.c:372 ../src/statusicon.c:140
+#: ../src/gui.c:372 ../src/statusicon.c:164
 msgid "Prev Track"
-msgstr "Előző sáv"
+msgstr "Traccia precedente"
 
-#: ../src/gui.c:378 ../src/gui.c:1712 ../src/statusicon.c:144
+#: ../src/gui.c:378 ../src/gui.c:1712 ../src/statusicon.c:168
 msgid "Next Track"
-msgstr "Következő sáv"
+msgstr "Traccia successiva"
 
 #: ../src/gui.c:697
 msgid "Pragha Music Player"
-msgstr "Pragha Zene lejátszó"
+msgstr "Riproduttore musicale Pragha"
 
 #. Create the checkmenu items
 #: ../src/gui.c:803 ../src/gui.c:968 ../src/current_playlist.c:70
 msgid "Track"
-msgstr "Sáv"
+msgstr "Traccia"
 
 #. Create labels
-#: ../src/gui.c:804 ../src/gui.c:969 ../src/pragha.h:99
-#: ../src/statusicon.c:200 ../src/tags.c:553 ../src/tags.c:609
+#: ../src/gui.c:804 ../src/gui.c:969 ../src/pragha.h:95
+#: ../src/statusicon.c:202 ../src/tags.c:553 ../src/tags.c:609
 msgid "Title"
-msgstr "Cím"
+msgstr "Titolo"
 
-#: ../src/gui.c:808 ../src/gui.c:973 ../src/pragha.h:103
-#: ../src/current_playlist.c:1431
+#: ../src/gui.c:808 ../src/gui.c:973 ../src/pragha.h:99
+#: ../src/current_playlist.c:1428
 msgid "Bitrate"
-msgstr "Bitráta"
+msgstr "Bitrate"
 
-#: ../src/gui.c:809 ../src/gui.c:974 ../src/pragha.h:104 ../src/tags.c:614
+#: ../src/gui.c:809 ../src/gui.c:974 ../src/pragha.h:100 ../src/tags.c:614
 msgid "Year"
-msgstr "Év"
+msgstr "Anno"
 
-#: ../src/gui.c:810 ../src/gui.c:975 ../src/pragha.h:105 ../src/tags.c:565
+#: ../src/gui.c:810 ../src/gui.c:975 ../src/pragha.h:101 ../src/tags.c:565
 #: ../src/tags.c:615
 msgid "Comment"
-msgstr "Megjegyzés"
+msgstr "Commento"
 
 #. Create labels
-#: ../src/gui.c:811 ../src/gui.c:976 ../src/pragha.h:106
-#: ../src/current_playlist.c:1430 ../src/statusicon.c:203
+#: ../src/gui.c:811 ../src/gui.c:976 ../src/pragha.h:102
+#: ../src/current_playlist.c:1427 ../src/statusicon.c:205
 msgid "Length"
-msgstr "Hossz"
+msgstr "Durata"
 
-#: ../src/gui.c:812 ../src/gui.c:977 ../src/pragha.h:107
-#: ../src/current_playlist.c:1435
+#: ../src/gui.c:812 ../src/gui.c:977 ../src/pragha.h:103
+#: ../src/current_playlist.c:1432
 msgid "Filename"
-msgstr "Fájlnév"
+msgstr "Nome file"
 
 #: ../src/gui.c:815
 msgid "Clear sort"
-msgstr "Rendezés törlése"
+msgstr "Non ordinare"
 
 #. Tooltips
 #: ../src/gui.c:1710
 msgid "Play / Pause Track"
-msgstr "Sáv Lejátszása / Megállítása"
+msgstr "Riproduci / Pausa"
 
 #: ../src/gui.c:1711
 msgid "Previous Track"
-msgstr "Előző sáv"
+msgstr "Traccia precedente"
 
 #: ../src/gui.c:1713
 msgid "Stop playback"
-msgstr "Lejátszás megállítása"
+msgstr "Ferma riproduzione"
 
 #: ../src/gui.c:1715
 msgid "Leave Fullscreen"
-msgstr "Teljes képernyő elhagyása"
+msgstr "Finestra normale"
 
 #: ../src/gui.c:1716
 msgid "Play songs in a random order"
-msgstr "Számok lejátszása véletlenszerű sorrendben"
+msgstr "Riproduci in ordine casuale"
 
 #: ../src/gui.c:1717
 msgid "Repeat playback list at the end"
-msgstr "Lejátszólista  ismétlése"
+msgstr "Ripeti scaletta quando è finita"
 
-#: ../src/gui.c:1763 ../src/panel.c:263 ../src/statusicon.c:197
+#: ../src/gui.c:1763 ../src/panel.c:263 ../src/statusicon.c:199
 msgid "<b>Not playing</b>"
-msgstr "<b>Nincs lejátszás</b>"
+msgstr "<b>Non in riproduzione</b>"
 
 #: ../src/gui.c:1996
 msgid "Options of the library"
-msgstr "Gyűjtemény beállításai"
+msgstr "Opzioni della libreria"
 
-#: ../src/pragha.h:98 ../src/tags.c:613
+#: ../src/pragha.h:94 ../src/tags.c:613
 msgid "Track No"
-msgstr "Sáv száma"
+msgstr "Traccia numero"
 
-#: ../src/pragha.h:137
+#: ../src/pragha.h:133
 msgid "Scanning"
-msgstr "Vizsgálat"
+msgstr "Controllo"
 
-#: ../src/pragha.h:138
+#: ../src/pragha.h:134
 msgid "Stopped"
-msgstr "Megállítva"
+msgstr "Fermato"
 
-#: ../src/pragha.h:244
+#: ../src/pragha.h:240
 msgid "_Skip"
-msgstr "Ki_hagy"
+msgstr "_Salta"
 
-#: ../src/pragha.h:245
+#: ../src/pragha.h:241
 msgid "S_kip All"
-msgstr "Mind _kihagy"
+msgstr "S_alta tutto"
 
-#: ../src/pragha.h:246
+#: ../src/pragha.h:242
 msgid "Delete _All"
-msgstr "Mind törlése"
+msgstr "Rimuovi _tutto"
 
 #. Next are some missing tranlation to match whit Pragha 1.0
-#: ../src/pragha.h:249
-#, fuzzy
+#: ../src/pragha.h:245
 msgid "Import a XSPF playlist"
-msgstr "Utolsónak használt lejátszólista visszaállítása"
+msgstr "Importa una scaletta XSPF"
 
-#: ../src/pragha.h:250
+#: ../src/pragha.h:246
 #, c-format
 msgid "Added %d songs of the last %d loved on Last.fm."
-msgstr ""
+msgstr "Aggiunte %d canzoni delle ultime %d preferite su Last.fm."
 
-#: ../src/pragha.h:251
+#: ../src/pragha.h:247
 msgid "You had no favorite songs on Last.fm."
-msgstr ""
+msgstr "Non hai canzoni preferite su Last.fm."
 
-#: ../src/pragha.h:252
+#: ../src/pragha.h:248
 msgid "No connection Last.fm has been established."
-msgstr ""
+msgstr "Non è stata stabilita nessuna connessione a Last.fm."
 
-#: ../src/pragha.h:253
+#: ../src/pragha.h:249
 #, c-format
 msgid "Added %d songs of %d sugested from Last.fm."
-msgstr ""
+msgstr "Aggiunte %d canzoni delle %d suggerite da Last.fm."
+
+#: ../src/pragha.h:250
+msgid "Last.fm not suggest any similar song."
+msgstr "Last.fm non suggerisce nessuna canzone simile."
+
+#: ../src/pragha.h:252
+msgid "Unlove song on Last.fm failed."
+msgstr "Fallita rimozione dalle preferite su Last.fm."
+
+#: ../src/pragha.h:253
+msgid "Update current song on Last.fm failed."
+msgstr "Fallito aggiornamento della canzone corrente su Last.fm."
 
 #: ../src/pragha.h:254
-msgid "Last.fm not suggest any similar song."
-msgstr ""
+msgid "Love track"
+msgstr "Traccia preferita"
+
+#: ../src/pragha.h:255
+msgid "Unlove track"
+msgstr "Traccia non preferita"
 
 #: ../src/pragha.h:256
-msgid "Unlove song on Last.fm failed."
-msgstr ""
+msgid "Add favorites"
+msgstr "Aggiungi preferite"
 
 #: ../src/pragha.h:257
-msgid "Update current song on Last.fm failed."
-msgstr ""
+msgid "Add similar"
+msgstr "Aggiungi simili"
 
 #: ../src/pragha.h:258
-#, fuzzy
-msgid "Love track"
-msgstr "Előző sáv"
+msgid "Add _location"
+msgstr "Aggiungi _posizione"
 
 #: ../src/pragha.h:259
-#, fuzzy
-msgid "Unlove track"
-msgstr "Előző sáv"
+msgid "Radios"
+msgstr "Radio"
 
 #: ../src/pragha.h:260
-#, fuzzy
-msgid "Add favorites"
-msgstr "Fájlok hozzá_adása"
+msgid "_Lastfm"
+msgstr "_Lastfm"
 
 #: ../src/pragha.h:261
-msgid "Add similar"
-msgstr ""
+msgid "Enter the URL of an internet radio stream"
+msgstr "Inserisci l'URL di una radio su internet"
 
 #: ../src/pragha.h:262
-msgid "Add _location"
-msgstr ""
+msgid "Give it a name to save"
+msgstr "Inserisci nome da salvare"
 
 #: ../src/pragha.h:263
-msgid "Radios"
-msgstr ""
+msgid "Add a location"
+msgstr "Aggiungi un percorso"
 
 #: ../src/pragha.h:264
-msgid "_Lastfm"
-msgstr ""
-
-#: ../src/pragha.h:265
-msgid "Enter the URL of an internet radio stream"
-msgstr ""
-
-#: ../src/pragha.h:266
-msgid "Give it a name to save"
-msgstr ""
-
-#: ../src/pragha.h:267
-msgid "Add a location"
-msgstr ""
-
-#: ../src/pragha.h:268
 #, c-format
 msgid ""
 "<b>Error playing current track.</b>\n"
 "(%s)\n"
-"<b>Reason: </b> %s"
+"<b>Reason:</b> %s"
 msgstr ""
+"<b>Errore nella riproduzione della traccia corrente.</b>\n"
+"(%s)\n"
+"<b>Motivo:</b> %s"
 
-#: ../src/pragha.h:269
-msgid "E_qualizer"
-msgstr ""
-
-#: ../src/pragha.h:255
+#: ../src/pragha.h:251
 msgid "Love song on Last.fm failed."
-msgstr ""
+msgstr "Canzone preferita su Last.fm fallita."
 
 #: ../src/panel.c:239
 #, c-format
 msgid ""
-"%s <small><span weight=\"light\">by</span></small> %s <small><span weight="
-"\"light\">in</span></small> %s"
+"%s <small><span weight=\"light\">by</span></small> %s <small><span "
+"weight=\"light\">in</span></small> %s"
 msgstr ""
-"%s <small><span weight=\"light\">előadó<//span><//small> %s <small><span "
-"weight=\"light\">album</span></small> %s"
+"%s <small><span weight=\"light\">di</span></small> %s <small><span "
+"weight=\"light\">in</span></small> %s"
 
-#: ../src/panel.c:244 ../src/glyr-related.c:410
+#: ../src/panel.c:244 ../src/glyr-related.c:407
 #, c-format
 msgid "%s <small><span weight=\"light\">by</span></small> %s"
-msgstr "%s <small><span weight=\"light\">előadó</span></small> %s"
+msgstr "%s <small><span weight=\"light\">di</span></small> %s"
 
 #: ../src/panel.c:248
 #, c-format
 msgid "%s <small><span weight=\"light\">in</span></small> %s"
-msgstr "%s <small><span weight=\"light\">album</span></small> %s"
+msgstr "%s <small><span weight=\"light\">in</span></small> %s"
 
 #: ../src/current_playlist.c:70
 msgid "Tracks"
-msgstr "Sávok"
+msgstr "Tracce"
 
 #: ../src/current_playlist.c:648
 msgid "Save as a new playlist"
-msgstr "Mentés új lejátszólistaként"
+msgstr "Salva come nuova scaletta"
 
 #: ../src/current_playlist.c:650
 msgid "Append to an existing playlist"
-msgstr "Létező lejátszólistához adás"
+msgstr "Aggiungi a una scaletta esistente"
 
 #: ../src/current_playlist.c:677
 msgid "Save selection"
-msgstr "Kiválasztás mentése"
+msgstr "Salva selezionati"
 
-#: ../src/current_playlist.c:706 ../src/playlist.c:1426 ../src/playlist.c:1459
-#: ../src/playlist.c:1493 ../src/playlist.c:1534
-#, fuzzy
+#: ../src/current_playlist.c:706 ../src/playlist.c:1341 ../src/playlist.c:1374
+#: ../src/playlist.c:1408 ../src/playlist.c:1449
 msgid "New playlist"
-msgstr "Lejátszólista mentése"
+msgstr "Nuova scaletta"
 
 #: ../src/current_playlist.c:778
 msgid "<b>con_playlist</b> is a reserved playlist name"
-msgstr "<b>con_playlist</b> egy védett lejátszólista neve"
+msgstr "<b>con_playlist</b> è un nome di scaletta riservato"
 
-#: ../src/current_playlist.c:1432
+#: ../src/current_playlist.c:1429
 msgid "Channels"
-msgstr "Csatornák"
+msgstr "Canali"
 
-#: ../src/current_playlist.c:1433
+#: ../src/current_playlist.c:1430
 msgid "Samplerate"
-msgstr "Mintavétel"
+msgstr "Frequenza di campionamento"
 
-#: ../src/current_playlist.c:1434
+#: ../src/current_playlist.c:1431
 msgid "Folder"
-msgstr "Mappa"
+msgstr "Cartella"
 
 #. The main edit dialog
-#: ../src/current_playlist.c:1525 ../src/tags.c:884
+#: ../src/current_playlist.c:1522 ../src/tags.c:884
 msgid "Details"
-msgstr "Részletek"
+msgstr "Dettagli"
 
-#: ../src/librarytree.c:197 ../src/statusicon.c:127
+#: ../src/librarytree.c:197 ../src/statusicon.c:136
 msgid "Unknown Artist"
-msgstr "Ismeretlen előadó"
+msgstr "Artista sconosciuto"
 
 #: ../src/librarytree.c:204
 msgid "Unknown"
-msgstr "Ismeretlen"
+msgstr "Sconosciuto"
 
-#: ../src/librarytree.c:204 ../src/librarytree.c:208 ../src/statusicon.c:129
+#: ../src/librarytree.c:204 ../src/librarytree.c:208 ../src/statusicon.c:138
 msgid "Unknown Album"
-msgstr "Ismeretlen album"
+msgstr "Album sconosciuto"
 
 #: ../src/librarytree.c:215
 msgid "Unknown Genre"
-msgstr "Ismeretlen műfaj"
+msgstr "Genere sconosciuto"
 
 #: ../src/librarytree.c:396
 msgid "Cannot move file to trash, do you want to delete immediately?"
-msgstr "Nem sikerült a kukába mozgatni, szeretné azonnal törölni?"
+msgstr "Impossibile spostare i fine nel cestino, eliminarli immediatamente?"
 
 #: ../src/librarytree.c:397
 #, c-format
 msgid "The file \"%s\" cannot be moved to the trash. Details: %s"
-msgstr "A  \"%s\" fájl mozgatása a kukába sikertelen. Részletek: %s"
+msgstr "Il file \"%s\" non può essere spostato nel cestino. Dettagli: %s"
 
 #: ../src/librarytree.c:1231
 msgid ""
@@ -594,35 +576,34 @@ msgid ""
 "\n"
 "Warning: To recover we must rescan the entire library."
 msgstr ""
-"Valóban töröli akarja az aktuális fájlt a gyűjteményből?\n"
+"Eliminare veramente il file corrente dalla libreria?\n"
 "\n"
-"Figyelem: Ahhoz hogy helyreállítsa újra kell ellenőrizni a gyűjteményt."
+"Attenzione: per recuperarlo bisogna ricontrollare l'intera libreria."
 
 #: ../src/librarytree.c:1288
 msgid "Really want to move the files to trash?"
-msgstr "Valóban a kukába szeretné dobni a fájlokat?"
+msgstr "Spostare veramente i file nel cestino?"
 
 #: ../src/librarytree.c:1290
 msgid "Delete immediately instead of move to trash"
-msgstr "Végleges törlés a kukába helyezés helyett"
+msgstr "Rimuovere immediatamente invece di spostarlo nel cestino"
 
-#: ../src/statusicon.c:125
+#: ../src/statusicon.c:134
 #, c-format
 msgid "by <b>%s</b> in <b>%s</b> <b>(%s)</b>"
-msgstr ""
+msgstr "di <b>%s</b> in <b>%s</b> <b>(%s)</b>"
 
 #: ../src/tags.c:546
-#, fuzzy
 msgid "Selection to"
-msgstr "Kiválasztás mentése"
+msgstr "Selezione a"
 
 #: ../src/tags.c:575
 msgid "Open folder"
-msgstr ""
+msgstr "Apri cartella"
 
 #: ../src/tags.c:616
 msgid "File"
-msgstr "Fájl"
+msgstr "File"
 
 #: ../src/pref.c:21
 msgid ""
@@ -630,36 +611,36 @@ msgid ""
 "A maximum of six patterns are allowed.\n"
 "Wildcards are not accepted as of now ( patches welcome :-) )."
 msgstr ""
-"Az alábbi minták lehetnek:<fájlnév>;<fájlnév>;...\n"
-"Maximum hat minta lehetséges.\n"
-"Helyettesítők nem elfogadottak jelenleg ( patchet fogadunk :-) )."
+"Gli schemi devono essere nella forma:<filename>;<filename>;....\n"
+"Sono ammessi un massimo di sei schemi.\n"
+"I caratteri jolly non sono accettati ( le patch sono benvenute :-) )."
 
 #: ../src/pref.c:35
 msgid "Album art pattern"
-msgstr "Album borító minta"
+msgstr "Schema della copertina"
 
 #: ../src/pref.c:142 ../src/pref.c:1779
 msgid "Start normal"
-msgstr "Normál indítás"
+msgstr "Avvia normalmente"
 
 #: ../src/pref.c:147 ../src/pref.c:1780
 msgid "Start fullscreen"
-msgstr "Indítás teljes képernyőn"
+msgstr "Avvia a schermo intero"
 
 #: ../src/pref.c:152 ../src/pref.c:1781
 msgid "Start in system tray"
-msgstr "Indítás tálcaikonnal"
+msgstr "Avvia nell'area di notifica"
 
 #. Create a folder chooser dialog
 #: ../src/pref.c:296
 msgid "Select a folder to add to library"
-msgstr "Válasszon mappát amit hozzáad a gyűjteményhez"
+msgstr "Seleziona una cartella da aggiungere alla libreria"
 
 #. The main preferences dialog
 #. Add to dialog
 #: ../src/pref.c:1469 ../src/pref.c:1930
 msgid "Preferences of Pragha"
-msgstr "Pragha beállításai"
+msgstr "Preferenze di Pragha"
 
 #. Labels
 #: ../src/pref.c:1480
@@ -668,279 +649,234 @@ msgstr "Audio"
 
 #: ../src/pref.c:1481
 msgid "Appearance"
-msgstr ""
+msgstr "Aspetto"
 
 #: ../src/pref.c:1483
 msgid "General"
-msgstr "Általános"
+msgstr "Generale"
 
 #: ../src/pref.c:1484
 msgid "Notifications"
-msgstr "Értesítések"
+msgstr "Notifiche"
 
 #: ../src/pref.c:1485
 msgid "Internet Services"
-msgstr "Internetes szolgáltatások"
+msgstr "Servizi internet"
 
 #. Audio Sink
 #: ../src/pref.c:1547
 msgid "Audio sink"
-msgstr "Audio választás"
+msgstr "Uscita"
 
 #: ../src/pref.c:1552 ../src/pref.c:1577 ../src/pref.c:1591
 msgid "Restart Required"
-msgstr "Újraindítás szükséges"
+msgstr "È necessario riavviare"
 
 #. Audio Device
 #: ../src/pref.c:1572
 msgid "Audio Device"
-msgstr "Audio eszköz"
+msgstr "Dispositivo Audio"
 
 #. Software mixer
 #: ../src/pref.c:1590
 msgid "Use software mixer"
-msgstr "Szoftveres keverő használata"
+msgstr "Usa un mixer software"
 
 #. Audio CD device
 #: ../src/pref.c:1609
 msgid "Audio CD Device"
-msgstr "Audio CD eszköz"
+msgstr "Dispositivo CD audio"
 
 #. Appearance Widgets
 #: ../src/pref.c:1635
 msgid "Highlight rows on current playlist"
-msgstr ""
+msgstr "Evidenzia riga della canzone corrente"
 
 #: ../src/pref.c:1637
 msgid "Show Album art in Panel"
-msgstr "Album borító mutatása a panelen"
+msgstr "Mostra copertina nel pannello"
 
 #: ../src/pref.c:1640
 msgid "Size of Album art"
-msgstr "Album borító mérete"
+msgstr "Dimensione della copertina"
 
 #: ../src/pref.c:1658
 msgid "Album art file pattern"
-msgstr "Album borító fájlnév minta"
+msgstr "Nomi di copertina preferiti"
 
 #: ../src/pref.c:1703
 msgid "Folders"
-msgstr "Mappák"
+msgstr "Cartelle"
 
 #: ../src/pref.c:1748
 msgid "Merge folders in the folders estructure view"
-msgstr "Mappák összevonása a struktúra nézetben"
+msgstr "Unisci cartelle nella visualizzazione a cartella"
 
 #: ../src/pref.c:1749
-#, fuzzy
 msgid "Sort albums by release year"
-msgstr "Album borító mérete"
+msgstr "Ordina album per anno"
 
 #. General Widgets
 #: ../src/pref.c:1774
 msgid "Refine the search while writing"
-msgstr ""
+msgstr "Mostra risultati della ricerca automaticamente"
 
 #: ../src/pref.c:1778
 msgid "Remember last window state"
-msgstr "Jegyezze meg az ablak méretét"
+msgstr "Ricorda l'ultimo stato della finestra"
 
 #: ../src/pref.c:1783
 msgid "Restore last playlist"
-msgstr "Utolsónak használt lejátszólista visszaállítása"
+msgstr "Ripristina l'ultima scaletta"
 
 #: ../src/pref.c:1785
 msgid "Minimize Pragha when close the window"
-msgstr "Pragha minimalizása az ablak bezárásakor"
+msgstr "Minimizza Pragha quando viene chiusa la finestra"
 
 #: ../src/pref.c:1786
 msgid "Add files recursively"
-msgstr "Fájlok hozzáadása rekurzívan"
+msgstr "Aggiungi file ricorsivamente"
 
 #. Notification OSD
 #: ../src/pref.c:1818
 msgid "Show OSD for track change"
-msgstr "OSD használata szám váltásakor"
+msgstr "Mostra OSD al cambio della traccia"
 
 #: ../src/pref.c:1819
 msgid "Associate notifications to system tray"
-msgstr "További értesítések a tálcán"
+msgstr "Associa notifiche all'area di notifica"
 
 #: ../src/pref.c:1820
 msgid "Show Album art in notifications"
-msgstr "Album borító mutatása az értesítési területen"
+msgstr "Mostra copertina nelle notifiche"
 
 #: ../src/pref.c:1821
 msgid "Add actions to change track to notifications"
-msgstr "Sáv váltáskor további események hozzáadása az értesítéshez"
+msgstr "Aggiungi azioni per cambiare traccia dalle notifiche"
 
 #. Services Last.fm
 #: ../src/pref.c:1846
 msgid "Last.fm Support"
-msgstr "Last.fm támogatás"
+msgstr "Supporto a Last.fm"
 
 #: ../src/pref.c:1850
 msgid "Username"
-msgstr "Felhasználónév"
+msgstr "Username"
 
 #: ../src/pref.c:1851
 msgid "Password"
-msgstr "Jelszó"
+msgstr "Password"
 
 #: ../src/pref.c:1861
-#, fuzzy
 msgid "Get album art"
-msgstr "Album borító mérete"
+msgstr "Ottieni copertine"
 
 #. Services CDDB
 #: ../src/pref.c:1865
 msgid "Connect to CDDB server"
-msgstr "Kapcsolódás a CDDB szerverhez"
+msgstr "Connetti a un server CDDB"
 
 #. Services MPRIS2
 #: ../src/pref.c:1869
 msgid "Allow remote control with MPRIS2 interface"
-msgstr ""
+msgstr "Permetti controllo remoto con l'interfaccia MPRIS2"
 
 #: ../src/menu.c:136
 msgid "Update Library"
-msgstr "Gyűjtemény frissítése"
+msgstr "Aggiorna libreria"
 
 #: ../src/menu.c:136
 msgid "Rescan Library"
-msgstr "Gyűjtemény újraellenőrzése"
+msgstr "Ricontrolla libreria"
 
 #: ../src/menu.c:241
 msgid "Select a file to play"
-msgstr "Fáj választása lejátszáshoz"
+msgstr "Seleziona un file da riprodurre"
 
 #: ../src/menu.c:262
 msgid "Add recursively files"
-msgstr "Fájlok hozzáadása rekurzívan"
+msgstr "Aggiungi file ricorsivamente"
 
 #: ../src/menu.c:283
 msgid "Supported media"
-msgstr "Támogatott formátumok"
+msgstr "Media supportati"
 
 #: ../src/menu.c:317
 msgid "All files"
-msgstr "Minden fájl"
+msgstr "Tutti i file"
 
-#: ../src/menu.c:714 ../src/menu.c:848
+#: ../src/menu.c:713 ../src/menu.c:847
 msgid "Library scan complete"
-msgstr "Gyűjtemény ellenőrzés sikeres"
+msgstr "Controllo libreria completo"
 
-#: ../src/menu.c:953
+#: ../src/menu.c:952
 msgid "Total Tracks:"
-msgstr "Összes sáv:"
+msgstr "Tracce totali:"
 
-#: ../src/menu.c:955
+#: ../src/menu.c:954
 msgid "Total Artists:"
-msgstr "Összes előadó:"
+msgstr "Artisti totali:"
 
-#: ../src/menu.c:957
+#: ../src/menu.c:956
 msgid "Total Albums:"
-msgstr "Összes album:"
+msgstr "Album totali:"
 
-#: ../src/menu.c:959
+#: ../src/menu.c:958
 msgid "Statistics"
-msgstr "Statisztika"
+msgstr "Statistiche"
 
-#: ../src/menu.c:976
+#: ../src/menu.c:975
 msgid "translator-credits"
-msgstr "Polonkai Péter"
+msgstr "riconoscimenti-ai-traduttori"
 
 #: ../src/utils.c:342
 msgid "days"
-msgstr "nap"
+msgstr "giorni"
 
 #: ../src/utils.c:342
 msgid "day"
-msgstr "nap"
+msgstr "giorno"
 
 #: ../src/utils.c:542
 msgid "Unable to open the browser"
-msgstr "A böngésző megnyitása sikertelen"
+msgstr "Impossibile aprire il browser"
 
-#: ../src/playlist.c:65
-#, c-format
-msgid "Do you want to overwrite the playlist: %s ?"
-msgstr ""
-
-#: ../src/playlist.c:654
-#, fuzzy
+#: ../src/playlist.c:626
 msgid "Choose a new name"
-msgstr "Mentés új lejátszólistaként"
+msgstr "Scegliere un nuovo nome"
 
-#: ../src/playlist.c:741
-#, c-format
-msgid "Do you want to delete the item: %s ?"
-msgstr ""
-
-#: ../src/playlist.c:811 ../src/playlist.c:908
+#: ../src/playlist.c:746 ../src/playlist.c:843
 msgid "Export playlist to file"
-msgstr "Lejátszólista exportálása fájlba"
+msgstr "Esporta scaletta in un file"
 
-#: ../src/playlist.c:1191
+#: ../src/playlist.c:1106
 #, c-format
 msgid "Added %d songs from %d of the imported playlist."
-msgstr ""
+msgstr "Aggiunte %d canzoni da %d della scaletta importata."
 
 #: ../src/glyr-related.c:21
 msgid "en"
-msgstr ""
+msgstr "it"
 
-#: ../src/glyr-related.c:70 ../src/glyr-related.c:95
-#, fuzzy
+#: ../src/glyr-related.c:70 ../src/glyr-related.c:94
 msgid "Album art not found."
-msgstr "Album borító minta"
+msgstr "Copertina non trovata."
 
-#: ../src/glyr-related.c:263
+#: ../src/glyr-related.c:260
 msgid "Artist information not found."
-msgstr ""
+msgstr "Informazioni dell'artista non trovate."
 
-#: ../src/glyr-related.c:289
-#, fuzzy
+#: ../src/glyr-related.c:286
 msgid "Artist info"
-msgstr "Előadó"
+msgstr "Informazioni dell'artista"
 
-#: ../src/glyr-related.c:296
-#, fuzzy, c-format
+#: ../src/glyr-related.c:293
+#, c-format
 msgid "%s <small><span weight=\"light\">thanks to</span></small> %s"
-msgstr "%s <small><span weight=\"light\">album</span></small> %s"
+msgstr "%s <small><span weight=\"light\">grazie a</span></small> %s"
 
-#: ../src/glyr-related.c:372
+#: ../src/glyr-related.c:369
 msgid "Error searching Lyric."
-msgstr ""
+msgstr "Errore cercando Lyric."
 
-#~ msgid "Remove"
-#~ msgstr "Törlés"
 
-#~ msgid "Crop"
-#~ msgstr "Kivágás"
-
-#, fuzzy
-#~ msgid "Clear current playlist"
-#~ msgstr "Lejátszólista mentése"
-
-#, fuzzy
-#~ msgid "Save current playlist"
-#~ msgstr "Lejátszólista mentése"
-
-#, fuzzy
-#~ msgid "Similar artists:"
-#~ msgstr "Összes előadó:"
-
-#~ msgid "_Play audio CD"
-#~ msgstr "_Audio CD lejátszása"
-
-#, fuzzy
-#~ msgid "Use lastfm artist art"
-#~ msgstr "Előadó"
-
-#~ msgid ""
-#~ "<small><span weight=\"light\">by</span></small> %s <small><span weight="
-#~ "\"light\">in</span></small> %s (%s)"
-#~ msgstr ""
-#~ "<small><span weight=\"light\">előadó</span></small> %s <small><span "
-#~ "weight=\"light\">album</span></small> %s (%s)"

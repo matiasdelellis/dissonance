@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: pragha\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=glib&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2011-12-12 14:55-0300\n"
+"POT-Creation-Date: 2012-02-02 11:58-0300\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Matias <mati86dl@gmail.com>\n"
 "Language-Team:  <smultimeter@gmail.com>\n"
@@ -177,7 +177,7 @@ msgid "Library"
 msgstr "Kütüphane"
 
 #: ../src/gui.c:264 ../src/gui.c:290 ../src/gui.c:686 ../src/menu.c:314
-#: ../src/playlist.c:756 ../src/playlist.c:1502
+#: ../src/playlist.c:821 ../src/playlist.c:1587
 msgid "Playlists"
 msgstr "Oynatma Listeleri"
 
@@ -221,7 +221,7 @@ msgstr "Oynatma listesini değiştir"
 msgid "Replace and _play"
 msgstr "Değiştir ve Çal"
 
-#: ../src/gui.c:319 ../src/playlist.c:634
+#: ../src/gui.c:319 ../src/playlist.c:662
 #, fuzzy
 msgid "Rename"
 msgstr "Dosya adı"
@@ -259,19 +259,19 @@ msgstr "Kütüphaneyi _toparla"
 msgid "Folders structure"
 msgstr "Klasör görünümü"
 
-#: ../src/gui.c:349 ../src/gui.c:805 ../src/gui.c:970 ../src/pragha.h:96
-#: ../src/librarytree.c:1483 ../src/statusicon.c:203 ../src/tags.c:556
+#: ../src/gui.c:349 ../src/gui.c:805 ../src/gui.c:970 ../src/pragha.h:100
+#: ../src/librarytree.c:1483 ../src/statusicon.c:201 ../src/tags.c:556
 #: ../src/tags.c:610
 msgid "Artist"
 msgstr "Sanatçı"
 
-#: ../src/gui.c:351 ../src/gui.c:806 ../src/gui.c:971 ../src/pragha.h:97
-#: ../src/librarytree.c:1487 ../src/statusicon.c:204 ../src/tags.c:559
+#: ../src/gui.c:351 ../src/gui.c:806 ../src/gui.c:971 ../src/pragha.h:101
+#: ../src/librarytree.c:1487 ../src/statusicon.c:202 ../src/tags.c:559
 #: ../src/tags.c:611
 msgid "Album"
 msgstr "Albüm"
 
-#: ../src/gui.c:353 ../src/gui.c:807 ../src/gui.c:972 ../src/pragha.h:98
+#: ../src/gui.c:353 ../src/gui.c:807 ../src/gui.c:972 ../src/pragha.h:102
 #: ../src/librarytree.c:1494 ../src/tags.c:562 ../src/tags.c:612
 msgid "Genre"
 msgstr "Tür"
@@ -292,11 +292,11 @@ msgstr "Tür / Sanatçı"
 msgid "Genre / Artist / Album"
 msgstr "Tür / Sanatçı / Albüm"
 
-#: ../src/gui.c:372 ../src/statusicon.c:164
+#: ../src/gui.c:372 ../src/statusicon.c:140
 msgid "Prev Track"
 msgstr "Önceki Parça"
 
-#: ../src/gui.c:378 ../src/gui.c:1712 ../src/statusicon.c:168
+#: ../src/gui.c:378 ../src/gui.c:1712 ../src/statusicon.c:144
 msgid "Next Track"
 msgstr "Sonraki Parça"
 
@@ -310,33 +310,33 @@ msgid "Track"
 msgstr "Parça"
 
 #. Create labels
-#: ../src/gui.c:804 ../src/gui.c:969 ../src/pragha.h:95
-#: ../src/statusicon.c:202 ../src/tags.c:553 ../src/tags.c:609
+#: ../src/gui.c:804 ../src/gui.c:969 ../src/pragha.h:99
+#: ../src/statusicon.c:200 ../src/tags.c:553 ../src/tags.c:609
 msgid "Title"
 msgstr "Başlık"
 
-#: ../src/gui.c:808 ../src/gui.c:973 ../src/pragha.h:99
-#: ../src/current_playlist.c:1428
+#: ../src/gui.c:808 ../src/gui.c:973 ../src/pragha.h:103
+#: ../src/current_playlist.c:1431
 msgid "Bitrate"
 msgstr "Bit oranı"
 
-#: ../src/gui.c:809 ../src/gui.c:974 ../src/pragha.h:100 ../src/tags.c:614
+#: ../src/gui.c:809 ../src/gui.c:974 ../src/pragha.h:104 ../src/tags.c:614
 msgid "Year"
 msgstr "Yıl"
 
-#: ../src/gui.c:810 ../src/gui.c:975 ../src/pragha.h:101 ../src/tags.c:565
+#: ../src/gui.c:810 ../src/gui.c:975 ../src/pragha.h:105 ../src/tags.c:565
 #: ../src/tags.c:615
 msgid "Comment"
 msgstr "Açıklama"
 
 #. Create labels
-#: ../src/gui.c:811 ../src/gui.c:976 ../src/pragha.h:102
-#: ../src/current_playlist.c:1427 ../src/statusicon.c:205
+#: ../src/gui.c:811 ../src/gui.c:976 ../src/pragha.h:106
+#: ../src/current_playlist.c:1430 ../src/statusicon.c:203
 msgid "Length"
 msgstr "Süre"
 
-#: ../src/gui.c:812 ../src/gui.c:977 ../src/pragha.h:103
-#: ../src/current_playlist.c:1432
+#: ../src/gui.c:812 ../src/gui.c:977 ../src/pragha.h:107
+#: ../src/current_playlist.c:1435
 msgid "Filename"
 msgstr "Dosya adı"
 
@@ -369,7 +369,7 @@ msgstr "Oynatma sırasındaki dosyaları rastgele oynat"
 msgid "Repeat playback list at the end"
 msgstr "Oynatma sırasının sonuna gelindiğinde tekrar başla"
 
-#: ../src/gui.c:1763 ../src/panel.c:263 ../src/statusicon.c:199
+#: ../src/gui.c:1763 ../src/panel.c:263 ../src/statusicon.c:197
 msgid "<b>Not playing</b>"
 msgstr "<b>Çalınmıyor</b>"
 
@@ -377,118 +377,122 @@ msgstr "<b>Çalınmıyor</b>"
 msgid "Options of the library"
 msgstr "Kütüphane tercihleri"
 
-#: ../src/pragha.h:94 ../src/tags.c:613
+#: ../src/pragha.h:98 ../src/tags.c:613
 msgid "Track No"
 msgstr "İz numara"
 
-#: ../src/pragha.h:133
+#: ../src/pragha.h:137
 msgid "Scanning"
 msgstr "Taranıyor"
 
-#: ../src/pragha.h:134
+#: ../src/pragha.h:138
 msgid "Stopped"
 msgstr "Durduruldu"
 
-#: ../src/pragha.h:240
+#: ../src/pragha.h:244
 msgid "_Skip"
 msgstr "_Atla"
 
-#: ../src/pragha.h:241
+#: ../src/pragha.h:245
 msgid "S_kip All"
 msgstr "_Hepsini Atla"
 
-#: ../src/pragha.h:242
+#: ../src/pragha.h:246
 msgid "Delete _All"
 msgstr "Hepsini Sil"
 
 #. Next are some missing tranlation to match whit Pragha 1.0
-#: ../src/pragha.h:245
+#: ../src/pragha.h:249
 #, fuzzy
 msgid "Import a XSPF playlist"
 msgstr "Son çalma sırasını geri getir"
 
-#: ../src/pragha.h:246
+#: ../src/pragha.h:250
 #, c-format
 msgid "Added %d songs of the last %d loved on Last.fm."
 msgstr ""
 
-#: ../src/pragha.h:247
+#: ../src/pragha.h:251
 msgid "You had no favorite songs on Last.fm."
 msgstr ""
 
-#: ../src/pragha.h:248
+#: ../src/pragha.h:252
 msgid "No connection Last.fm has been established."
 msgstr ""
 
-#: ../src/pragha.h:249
+#: ../src/pragha.h:253
 #, c-format
 msgid "Added %d songs of %d sugested from Last.fm."
 msgstr ""
 
-#: ../src/pragha.h:250
+#: ../src/pragha.h:254
 msgid "Last.fm not suggest any similar song."
 msgstr ""
 
-#: ../src/pragha.h:252
+#: ../src/pragha.h:256
 msgid "Unlove song on Last.fm failed."
 msgstr ""
 
-#: ../src/pragha.h:253
+#: ../src/pragha.h:257
 msgid "Update current song on Last.fm failed."
 msgstr ""
 
-#: ../src/pragha.h:254
+#: ../src/pragha.h:258
 #, fuzzy
 msgid "Love track"
 msgstr "Önceki parça"
 
-#: ../src/pragha.h:255
+#: ../src/pragha.h:259
 #, fuzzy
 msgid "Unlove track"
 msgstr "Önceki parça"
 
-#: ../src/pragha.h:256
+#: ../src/pragha.h:260
 #, fuzzy
 msgid "Add favorites"
 msgstr "Dosya _ekle"
 
-#: ../src/pragha.h:257
+#: ../src/pragha.h:261
 msgid "Add similar"
 msgstr ""
 
-#: ../src/pragha.h:258
+#: ../src/pragha.h:262
 msgid "Add _location"
 msgstr ""
 
-#: ../src/pragha.h:259
+#: ../src/pragha.h:263
 msgid "Radios"
 msgstr ""
 
-#: ../src/pragha.h:260
+#: ../src/pragha.h:264
 msgid "_Lastfm"
 msgstr ""
 
-#: ../src/pragha.h:261
+#: ../src/pragha.h:265
 msgid "Enter the URL of an internet radio stream"
 msgstr ""
 
-#: ../src/pragha.h:262
+#: ../src/pragha.h:266
 msgid "Give it a name to save"
 msgstr ""
 
-#: ../src/pragha.h:263
+#: ../src/pragha.h:267
 msgid "Add a location"
 msgstr ""
 
-#: ../src/pragha.h:264
+#: ../src/pragha.h:268
 #, c-format
 msgid ""
 "<b>Error playing current track.</b>\n"
 "(%s)\n"
-"<b>Reason:</b> %s"
+"<b>Reason: </b> %s"
 msgstr ""
 
-#: ../src/pragha.h:251
+#: ../src/pragha.h:269
+msgid "E_qualizer"
+msgstr ""
+
+#: ../src/pragha.h:255
 msgid "Love song on Last.fm failed."
 msgstr ""
 
@@ -501,7 +505,7 @@ msgstr ""
 "%s <small><span weight=\"light\">by</span></small> %s <small><span weight="
 "\"light\">in</span></small> %s"
 
-#: ../src/panel.c:244 ../src/glyr-related.c:407
+#: ../src/panel.c:244 ../src/glyr-related.c:410
 #, c-format
 msgid "%s <small><span weight=\"light\">by</span></small> %s"
 msgstr ""
@@ -527,8 +531,8 @@ msgstr "Çalma listesine ekle"
 msgid "Save selection"
 msgstr "Seçimi kaydet"
 
-#: ../src/current_playlist.c:706 ../src/playlist.c:1341 ../src/playlist.c:1374
-#: ../src/playlist.c:1408 ../src/playlist.c:1449
+#: ../src/current_playlist.c:706 ../src/playlist.c:1426 ../src/playlist.c:1459
+#: ../src/playlist.c:1493 ../src/playlist.c:1534
 #, fuzzy
 msgid "New playlist"
 msgstr "Oynatma Listesini Kaydet"
@@ -537,24 +541,24 @@ msgstr "Oynatma Listesini Kaydet"
 msgid "<b>con_playlist</b> is a reserved playlist name"
 msgstr "<b>con_playlist</b> çalma listesinin adı muhafızdır"
 
-#: ../src/current_playlist.c:1429
+#: ../src/current_playlist.c:1432
 msgid "Channels"
 msgstr "Ses Kanalları"
 
-#: ../src/current_playlist.c:1430
+#: ../src/current_playlist.c:1433
 msgid "Samplerate"
 msgstr "Örnekleme hızı"
 
-#: ../src/current_playlist.c:1431
+#: ../src/current_playlist.c:1434
 msgid "Folder"
 msgstr "Klasör"
 
 #. The main edit dialog
-#: ../src/current_playlist.c:1522 ../src/tags.c:884
+#: ../src/current_playlist.c:1525 ../src/tags.c:884
 msgid "Details"
 msgstr "Ayrıntılar"
 
-#: ../src/librarytree.c:197 ../src/statusicon.c:136
+#: ../src/librarytree.c:197 ../src/statusicon.c:127
 msgid "Unknown Artist"
 msgstr "Bilinmeyen sanatçı"
 
@@ -562,7 +566,7 @@ msgstr "Bilinmeyen sanatçı"
 msgid "Unknown"
 msgstr "Bilinmeyen"
 
-#: ../src/librarytree.c:204 ../src/librarytree.c:208 ../src/statusicon.c:138
+#: ../src/librarytree.c:204 ../src/librarytree.c:208 ../src/statusicon.c:129
 msgid "Unknown Album"
 msgstr "Bilinmeyen albüm"
 
@@ -597,7 +601,7 @@ msgstr "Bu dosyaları gerçekten çöpe aktarmak istiyor musunuz?"
 msgid "Delete immediately instead of move to trash"
 msgstr "Çöpe atmaksızın hemen sil"
 
-#: ../src/statusicon.c:134
+#: ../src/statusicon.c:125
 #, c-format
 msgid "by <b>%s</b> in <b>%s</b> <b>(%s)</b>"
 msgstr "<b>%s</b> dan <b>%s</b> içinde <b>(%s)</b>"
@@ -814,27 +818,27 @@ msgstr "Desteklenen medya"
 msgid "All files"
 msgstr "Tüm dosyalar"
 
-#: ../src/menu.c:713 ../src/menu.c:847
+#: ../src/menu.c:714 ../src/menu.c:848
 msgid "Library scan complete"
 msgstr "Dosya güncelleşmesi tamamlandı"
 
-#: ../src/menu.c:952
+#: ../src/menu.c:953
 msgid "Total Tracks:"
 msgstr "Parça sayısı:"
 
-#: ../src/menu.c:954
+#: ../src/menu.c:955
 msgid "Total Artists:"
 msgstr "Sanatçı sayısı:"
 
-#: ../src/menu.c:956
+#: ../src/menu.c:957
 msgid "Total Albums:"
 msgstr "Albüm sayısı:"
 
-#: ../src/menu.c:958
+#: ../src/menu.c:959
 msgid "Statistics"
 msgstr "İstatistikler"
 
-#: ../src/menu.c:975
+#: ../src/menu.c:976
 msgid "translator-credits"
 msgstr "Almancı Türkçe çevirimi:Hakan Erduman <smultimeter@gmail.com> "
 
@@ -850,16 +854,26 @@ msgstr "gün"
 msgid "Unable to open the browser"
 msgstr "Adres açılamadı"
 
-#: ../src/playlist.c:626
+#: ../src/playlist.c:65
+#, c-format
+msgid "Do you want to overwrite the playlist: %s ?"
+msgstr ""
+
+#: ../src/playlist.c:654
 #, fuzzy
 msgid "Choose a new name"
 msgstr "Yeni çalma listesine kaydet"
 
-#: ../src/playlist.c:746 ../src/playlist.c:843
+#: ../src/playlist.c:741
+#, c-format
+msgid "Do you want to delete the item: %s ?"
+msgstr ""
+
+#: ../src/playlist.c:811 ../src/playlist.c:908
 msgid "Export playlist to file"
 msgstr "Oynatma listesini dosyaya kaydet"
 
-#: ../src/playlist.c:1106
+#: ../src/playlist.c:1191
 #, c-format
 msgid "Added %d songs from %d of the imported playlist."
 msgstr ""
@@ -868,26 +882,26 @@ msgstr ""
 msgid "en"
 msgstr ""
 
-#: ../src/glyr-related.c:70 ../src/glyr-related.c:94
+#: ../src/glyr-related.c:70 ../src/glyr-related.c:95
 #, fuzzy
 msgid "Album art not found."
 msgstr "Kapak resmi türü"
 
-#: ../src/glyr-related.c:260
+#: ../src/glyr-related.c:263
 msgid "Artist information not found."
 msgstr ""
 
-#: ../src/glyr-related.c:286
+#: ../src/glyr-related.c:289
 #, fuzzy
 msgid "Artist info"
 msgstr "Sanatçı"
 
-#: ../src/glyr-related.c:293
+#: ../src/glyr-related.c:296
 #, fuzzy, c-format
 msgid "%s <small><span weight=\"light\">thanks to</span></small> %s"
 msgstr "%s <small><span weight=\"light\">içi</span></small> %s"
 
-#: ../src/glyr-related.c:369
+#: ../src/glyr-related.c:372
 msgid "Error searching Lyric."
 msgstr ""
 
