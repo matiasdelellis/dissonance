@@ -1311,6 +1311,8 @@ gint init_first_state(struct con_win *cwin)
 
 	cwin->cstate->curr_mobj= NULL;
 
+	cwin->osd_notify = NULL;
+
 	return 0;
 }
 
