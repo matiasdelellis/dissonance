@@ -265,7 +265,7 @@
 #define TRANSLATION_16 _("Enter the URL of an internet radio stream")
 #define TRANSLATION_17 _("Give it a name to save")
 #define TRANSLATION_18 _("Add a location")
-#define TRANSLATION_19 _("<b>Error playing current track.</b>\n(%s)\n<b>Reason: </b> %s")
+#define TRANSLATION_19 _("<b>Error playing current track.</b>\n(%s)\n<b>Reason:</b> %s")
 #define TRANSLATION_20 _("E_qualizer")
 
 typedef enum {
@@ -1265,6 +1265,9 @@ void mpris_cleanup(struct con_win *cwin);
 
 /* Utilities */
 
+struct musicobject *get_selected_musicobject(struct con_win *cwin);
+void set_watch_cursor_on_thread(struct con_win *cwin);
+void remove_watch_cursor_on_thread(gchar *message, struct con_win *cwin);
 void set_status_message (gchar *message, struct con_win *cwin);
 GdkPixbuf *vgdk_pixbuf_new_from_memory (char *data, size_t size);
 gpointer sokoke_xfce_header_new (const gchar *header, const gchar *icon, struct con_win *cwin);
@@ -1310,7 +1313,8 @@ gint lastfm_submit(struct con_win *cwin, gchar *title, gchar *artist,
 
 /* Related info helpers */
 
-void related_get_album_art_action(GtkAction *action, struct con_win *cwin);
+void related_get_lyric_current_playlist_action(GtkAction *action, struct con_win *cwin);
+void related_get_artist_info_current_playlist_action(GtkAction *action, struct con_win *cwin);
 void related_get_artist_info_action(GtkAction *action, struct con_win *cwin);
 void related_get_lyric_action(GtkAction *action, struct con_win *cwin);
 

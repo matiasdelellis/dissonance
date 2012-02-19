@@ -28,6 +28,58 @@ const gchar *mime_ogg[] = {"audio/x-vorbis+ogg", "audio/ogg",
 const gchar *mime_modplug[] = {"audio/x-mod", "audio/x-xm", NULL};
 const gchar *mime_image[] = {"image/jpeg", "image/png", NULL};
 
+/* Get the musicobject of seleceted track on current playlist */
+
+struct musicobject *
+get_selected_musicobject(struct con_win *cwin)
+{
+	GtkTreeModel *model;
+	GtkTreeSelection *selection;
+	GList *list;
+	GtkTreePath *path = NULL;
+	GtkTreeIter iter;
+	struct musicobject *mobj = NULL;
+
+	selection = gtk_tree_view_get_selection(GTK_TREE_VIEW(cwin->current_playlist));
+	list = gtk_tree_selection_get_selected_rows(selection, &model);
+
+	if (list != NULL) {
+		path = list->data;
+		if (gtk_tree_model_get_iter(model, &iter, path)) {
+			gtk_tree_model_get(model, &iter, P_MOBJ_PTR, &mobj, -1);
+			if (!mobj)
+				g_warning("Invalid mobj pointer");
+		}
+		gtk_tree_path_free(path);
+		g_list_free(list);
+	}
+	return mobj;
+}
+
+/* Set and remove the watch cursor to suggest background work.*/
+
+void
+set_watch_cursor_on_thread(struct con_win *cwin)
+{
+	GdkCursor *cursor;
+
+	gdk_threads_enter ();
+	cursor = gdk_cursor_new(GDK_WATCH);
+	gdk_window_set_cursor(GDK_WINDOW(cwin->mainwindow->window), cursor);
+	gdk_cursor_unref(cursor);
+	gdk_threads_leave ();
+}
+
+void
+remove_watch_cursor_on_thread(gchar *message, struct con_win *cwin)
+{
+	gdk_threads_enter ();
+	if(message != NULL)
+		set_status_message(message, cwin);
+	gdk_window_set_cursor(GDK_WINDOW(cwin->mainwindow->window), NULL);
+	gdk_threads_leave ();
+}
+
 /* Set a message on status bar, and restore it at 5 seconds */
 
 gboolean restore_status_bar(gpointer data)
