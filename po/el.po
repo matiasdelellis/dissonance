@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Pragha\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=glib&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2012-02-02 11:58-0300\n"
+"POT-Creation-Date: 2012-02-20 11:07-0300\n"
 "PO-Revision-Date: 2011-06-30 13:13-0300\n"
 "Last-Translator: Matias <mati86dl@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,118 +17,113 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
 
-#: ../src/gui.c:180
+#: ../src/gui.c:184
 msgid "_File"
 msgstr "_Αρχείο"
 
-#: ../src/gui.c:181
+#: ../src/gui.c:185
 msgid "_Edit"
 msgstr "_Επεξεργασία"
 
-#: ../src/gui.c:182
+#: ../src/gui.c:186
 msgid "_View"
 msgstr "_Προβολή"
 
-#: ../src/gui.c:183
+#: ../src/gui.c:187 ../src/gui.c:308
 msgid "_Tools"
 msgstr "_Εργαλεία"
 
-#: ../src/gui.c:184
+#: ../src/gui.c:188
 msgid "_Help"
 msgstr "_Βοήθεια"
 
-#: ../src/gui.c:185 ../src/gui.c:276 ../src/gui.c:368
+#: ../src/gui.c:189 ../src/gui.c:276 ../src/gui.c:380
 msgid "_Add files"
 msgstr "_Προσθήκη αρχείων"
 
-#: ../src/gui.c:186 ../src/gui.c:277
+#: ../src/gui.c:190 ../src/gui.c:277
 msgid "Open a media file"
 msgstr "_Άνοιγμα αρχείου"
 
-#: ../src/gui.c:187 ../src/gui.c:278 ../src/gui.c:370
+#: ../src/gui.c:191 ../src/gui.c:278 ../src/gui.c:382
 msgid "Add Audio _CD"
 msgstr ""
 
-#: ../src/gui.c:189
+#: ../src/gui.c:193
 msgid "Prev track"
 msgstr "Προηγούμενο"
 
-#: ../src/gui.c:191 ../src/gui.c:374
+#: ../src/gui.c:195 ../src/gui.c:386
 msgid "Play / Pause"
 msgstr "Έναρξη / Παύση"
 
-#: ../src/gui.c:193 ../src/gui.c:376
+#: ../src/gui.c:197 ../src/gui.c:388
 msgid "Stop"
 msgstr "Διακοπή"
 
-#: ../src/gui.c:195
+#: ../src/gui.c:199
 msgid "Next track"
 msgstr "Επόμενο"
 
-#: ../src/gui.c:197 ../src/gui.c:308 ../src/gui.c:380
+#: ../src/gui.c:201 ../src/gui.c:320 ../src/gui.c:392
 msgid "Edit track information"
 msgstr ""
 
-#: ../src/gui.c:199 ../src/gui.c:282 ../src/gui.c:382
+#: ../src/gui.c:203 ../src/gui.c:282 ../src/gui.c:394
 msgid "_Quit"
 msgstr "_Έξοδος"
 
-#: ../src/gui.c:201 ../src/gui.c:280
+#: ../src/gui.c:205 ../src/gui.c:280
 msgid "_Add the library"
 msgstr "_Προσθήκη όλης της βιβλιοθήκης"
 
-#: ../src/gui.c:203
+#: ../src/gui.c:207
 #, fuzzy
 msgid "Remove selection from playlist"
 msgstr "Αποθήκευση λίστας"
 
-#: ../src/gui.c:205 ../src/gui.c:302
+#: ../src/gui.c:209 ../src/gui.c:302
 #, fuzzy
 msgid "Crop playlist"
 msgstr "Εκκαθάριση λίστας"
 
-#: ../src/gui.c:207 ../src/gui.c:304
+#: ../src/gui.c:211 ../src/gui.c:304
 msgid "Clear playlist"
 msgstr "Εκκαθάριση λίστας"
 
-#: ../src/gui.c:209
+#: ../src/gui.c:213
 #, fuzzy
 msgid "Add selection to another playlist"
 msgstr "_Προσθήκη στη λίστα"
 
-#: ../src/gui.c:210 ../src/gui.c:307 ../src/current_playlist.c:675
+#: ../src/gui.c:214 ../src/gui.c:307 ../src/current_playlist.c:675
 msgid "Save playlist"
 msgstr "Αποθήκευση λίστας"
 
-#: ../src/gui.c:211
+#: ../src/gui.c:215
 msgid "_Search in playlist"
 msgstr "_Αναζήτηση στη λίστα"
 
-#: ../src/gui.c:213
+#: ../src/gui.c:217
 msgid "_Preferences"
 msgstr "_Προτιμήσεις"
 
-#: ../src/gui.c:215
+#: ../src/gui.c:219
 msgid "Lateral _panel"
 msgstr "Πλάγια _"
 
-#: ../src/gui.c:216
+#: ../src/gui.c:220
 msgid "Jump to playing song"
 msgstr "Μετάβαση στο αρχείο που παίζει"
 
-#: ../src/gui.c:219 ../src/gui.c:226
+#: ../src/gui.c:223 ../src/gui.c:228 ../src/gui.c:310 ../src/gui.c:315
 msgid "Search _lyric"
 msgstr "Αναζήτηση _Στίχων"
 
-#: ../src/gui.c:221 ../src/gui.c:228
+#: ../src/gui.c:225 ../src/gui.c:230 ../src/gui.c:312 ../src/gui.c:317
 #, fuzzy
 msgid "Search _artist info"
 msgstr "Καλλιτέχνης"
-
-#: ../src/gui.c:223 ../src/gui.c:230
-#, fuzzy
-msgid "Search album art"
-msgstr "Μέγεθος εξώφυλλων"
 
 #: ../src/gui.c:233
 msgid "_Rescan library"
@@ -158,7 +153,7 @@ msgstr "Wiki"
 msgid "Translate Pragha"
 msgstr "Μεταφράστε το Pragha"
 
-#: ../src/gui.c:247 ../src/gui.c:366
+#: ../src/gui.c:247 ../src/gui.c:378
 msgid "About"
 msgstr "Περί"
 
@@ -174,11 +169,11 @@ msgstr "_Επανάληψη"
 msgid "_Fullscreen"
 msgstr "_Πλήρη οθόνη"
 
-#: ../src/gui.c:261 ../src/gui.c:287 ../src/gui.c:668 ../src/pref.c:1482
+#: ../src/gui.c:261 ../src/gui.c:287 ../src/gui.c:680 ../src/pref.c:1482
 msgid "Library"
 msgstr "Βιβλιοθήκη"
 
-#: ../src/gui.c:264 ../src/gui.c:290 ../src/gui.c:686 ../src/menu.c:314
+#: ../src/gui.c:264 ../src/gui.c:290 ../src/gui.c:698 ../src/menu.c:314
 #: ../src/playlist.c:821 ../src/playlist.c:1587
 msgid "Playlists"
 msgstr "Λίστες"
@@ -209,174 +204,174 @@ msgstr "Αποθήκευση λίστας"
 msgid "Add to another playlist"
 msgstr "_Προσθήκη στη λίστα"
 
-#: ../src/gui.c:313 ../src/gui.c:328
+#: ../src/gui.c:325 ../src/gui.c:340
 #, fuzzy
 msgid "_Add to current playlist"
 msgstr "_Προσθήκη στη λίστα"
 
-#: ../src/gui.c:315 ../src/gui.c:330
+#: ../src/gui.c:327 ../src/gui.c:342
 #, fuzzy
 msgid "_Replace current playlist"
 msgstr "_Αντικατάσταση λίστας"
 
-#: ../src/gui.c:317 ../src/gui.c:332
+#: ../src/gui.c:329 ../src/gui.c:344
 #, fuzzy
 msgid "Replace and _play"
 msgstr "_Αντικατάσταση λίστας"
 
-#: ../src/gui.c:319 ../src/playlist.c:662
+#: ../src/gui.c:331 ../src/playlist.c:662
 #, fuzzy
 msgid "Rename"
 msgstr "Όνομα αρχείου"
 
-#: ../src/gui.c:321
+#: ../src/gui.c:333
 msgid "Delete"
 msgstr "Αφαίρεση"
 
-#: ../src/gui.c:323 ../src/current_playlist.c:679
+#: ../src/gui.c:335 ../src/current_playlist.c:679
 msgid "Export"
 msgstr "Εξαγωγή"
 
 #. The main edit dialog
-#: ../src/gui.c:334 ../src/tags.c:849
+#: ../src/gui.c:346 ../src/tags.c:849
 msgid "Edit tags"
 msgstr "Επεξεργασία ετικετών"
 
-#: ../src/gui.c:336
+#: ../src/gui.c:348
 msgid "Move to _trash"
 msgstr "_Μετακίνηση στα απορρίματα"
 
-#: ../src/gui.c:338
+#: ../src/gui.c:350
 msgid "Delete from library"
 msgstr "Διαγραφή από τη βιβλιοθήκη"
 
-#: ../src/gui.c:343
+#: ../src/gui.c:355
 msgid "_Expand library"
 msgstr "_Επέκταση βιβλιοθήκης"
 
-#: ../src/gui.c:345
+#: ../src/gui.c:357
 msgid "_Collapse library"
 msgstr "_Σύμπτηξη βιβλιοθήκης"
 
-#: ../src/gui.c:347 ../src/librarytree.c:1480
+#: ../src/gui.c:359 ../src/librarytree.c:1480
 msgid "Folders structure"
 msgstr "Δομή φακέλων"
 
-#: ../src/gui.c:349 ../src/gui.c:805 ../src/gui.c:970 ../src/pragha.h:100
+#: ../src/gui.c:361 ../src/gui.c:817 ../src/gui.c:982 ../src/pragha.h:100
 #: ../src/librarytree.c:1483 ../src/statusicon.c:201 ../src/tags.c:556
 #: ../src/tags.c:610
 msgid "Artist"
 msgstr "Καλλιτέχνης"
 
-#: ../src/gui.c:351 ../src/gui.c:806 ../src/gui.c:971 ../src/pragha.h:101
+#: ../src/gui.c:363 ../src/gui.c:818 ../src/gui.c:983 ../src/pragha.h:101
 #: ../src/librarytree.c:1487 ../src/statusicon.c:202 ../src/tags.c:559
 #: ../src/tags.c:611
 msgid "Album"
 msgstr "Άλμπουμ"
 
-#: ../src/gui.c:353 ../src/gui.c:807 ../src/gui.c:972 ../src/pragha.h:102
+#: ../src/gui.c:365 ../src/gui.c:819 ../src/gui.c:984 ../src/pragha.h:102
 #: ../src/librarytree.c:1494 ../src/tags.c:562 ../src/tags.c:612
 msgid "Genre"
 msgstr "Είδος"
 
-#: ../src/gui.c:355 ../src/librarytree.c:1498
+#: ../src/gui.c:367 ../src/librarytree.c:1498
 msgid "Artist / Album"
 msgstr "Καλλιτέχνης / Άλμπουμ"
 
-#: ../src/gui.c:357 ../src/librarytree.c:1509
+#: ../src/gui.c:369 ../src/librarytree.c:1509
 msgid "Genre / Album"
 msgstr "Είδος / Άλμπουμ"
 
-#: ../src/gui.c:359 ../src/librarytree.c:1505
+#: ../src/gui.c:371 ../src/librarytree.c:1505
 msgid "Genre / Artist"
 msgstr "Είδος / Καλλιτέχνης"
 
-#: ../src/gui.c:361 ../src/librarytree.c:1516
+#: ../src/gui.c:373 ../src/librarytree.c:1516
 msgid "Genre / Artist / Album"
 msgstr "Είδος / Καλλιτέχνης / Άλμπουμ"
 
-#: ../src/gui.c:372 ../src/statusicon.c:140
+#: ../src/gui.c:384 ../src/statusicon.c:140
 msgid "Prev Track"
 msgstr "Προηγούμενο"
 
-#: ../src/gui.c:378 ../src/gui.c:1712 ../src/statusicon.c:144
+#: ../src/gui.c:390 ../src/gui.c:1724 ../src/statusicon.c:144
 msgid "Next Track"
 msgstr "Επόμενο"
 
-#: ../src/gui.c:697
+#: ../src/gui.c:709
 msgid "Pragha Music Player"
 msgstr "Πρόγραμμα αναπαραγωγής μουσικής Pragha"
 
 #. Create the checkmenu items
-#: ../src/gui.c:803 ../src/gui.c:968 ../src/current_playlist.c:70
+#: ../src/gui.c:815 ../src/gui.c:980 ../src/current_playlist.c:70
 msgid "Track"
 msgstr "Κομμάτι"
 
 #. Create labels
-#: ../src/gui.c:804 ../src/gui.c:969 ../src/pragha.h:99
+#: ../src/gui.c:816 ../src/gui.c:981 ../src/pragha.h:99
 #: ../src/statusicon.c:200 ../src/tags.c:553 ../src/tags.c:609
 msgid "Title"
 msgstr "Τίτλος"
 
-#: ../src/gui.c:808 ../src/gui.c:973 ../src/pragha.h:103
+#: ../src/gui.c:820 ../src/gui.c:985 ../src/pragha.h:103
 #: ../src/current_playlist.c:1431
 msgid "Bitrate"
 msgstr "Bitrate"
 
-#: ../src/gui.c:809 ../src/gui.c:974 ../src/pragha.h:104 ../src/tags.c:614
+#: ../src/gui.c:821 ../src/gui.c:986 ../src/pragha.h:104 ../src/tags.c:614
 msgid "Year"
 msgstr "Έτος"
 
-#: ../src/gui.c:810 ../src/gui.c:975 ../src/pragha.h:105 ../src/tags.c:565
+#: ../src/gui.c:822 ../src/gui.c:987 ../src/pragha.h:105 ../src/tags.c:565
 #: ../src/tags.c:615
 msgid "Comment"
 msgstr "Σχόλιο"
 
 #. Create labels
-#: ../src/gui.c:811 ../src/gui.c:976 ../src/pragha.h:106
+#: ../src/gui.c:823 ../src/gui.c:988 ../src/pragha.h:106
 #: ../src/current_playlist.c:1430 ../src/statusicon.c:203
 msgid "Length"
 msgstr "Διάρκεια"
 
-#: ../src/gui.c:812 ../src/gui.c:977 ../src/pragha.h:107
+#: ../src/gui.c:824 ../src/gui.c:989 ../src/pragha.h:107
 #: ../src/current_playlist.c:1435
 msgid "Filename"
 msgstr "Όνομα αρχείου"
 
-#: ../src/gui.c:815
+#: ../src/gui.c:827
 msgid "Clear sort"
 msgstr "Εκκαθάριση τακτοποίησης"
 
 #. Tooltips
-#: ../src/gui.c:1710
+#: ../src/gui.c:1722
 msgid "Play / Pause Track"
 msgstr "Αναπαραγωγή / Παύση κομματιού"
 
-#: ../src/gui.c:1711
+#: ../src/gui.c:1723
 msgid "Previous Track"
 msgstr "Προηγούμενο κομμάτι"
 
-#: ../src/gui.c:1713
+#: ../src/gui.c:1725
 msgid "Stop playback"
 msgstr "Διακοπή αναπαραγωγής"
 
-#: ../src/gui.c:1715
+#: ../src/gui.c:1727
 msgid "Leave Fullscreen"
 msgstr "Έξοδος από την πλήρη οθόνη"
 
-#: ../src/gui.c:1716
+#: ../src/gui.c:1728
 msgid "Play songs in a random order"
 msgstr "Αναπαραγωγή αρχείων σε τυχαία σειρά"
 
-#: ../src/gui.c:1717
+#: ../src/gui.c:1729
 msgid "Repeat playback list at the end"
 msgstr "Επανάληψη λίστας μετά το τέλος"
 
-#: ../src/gui.c:1763 ../src/panel.c:263 ../src/statusicon.c:197
+#: ../src/gui.c:1775 ../src/panel.c:263 ../src/statusicon.c:197
 msgid "<b>Not playing</b>"
 msgstr "<b>Δεν παίζει τίποτα</b>"
 
-#: ../src/gui.c:1996
+#: ../src/gui.c:2008
 msgid "Options of the library"
 msgstr "Επιλογές της βιβλιοθήκης"
 
@@ -488,7 +483,7 @@ msgstr ""
 msgid ""
 "<b>Error playing current track.</b>\n"
 "(%s)\n"
-"<b>Reason: </b> %s"
+"<b>Reason:</b> %s"
 msgstr ""
 
 #: ../src/pragha.h:269
@@ -508,7 +503,7 @@ msgstr ""
 "%s <small><span weight=\"light\">Από</span></small> %s <small><span weight="
 "\"light\">στο</span></small> %s"
 
-#: ../src/panel.c:244 ../src/glyr-related.c:410
+#: ../src/panel.c:244 ../src/glyr-related.c:48
 #, c-format
 msgid "%s <small><span weight=\"light\">by</span></small> %s"
 msgstr "%s <small><span weight=\"light\">Από</span></small> %s"
@@ -851,15 +846,15 @@ msgstr "Στατιστικά"
 msgid "translator-credits"
 msgstr "μνεία μετάφρασης"
 
-#: ../src/utils.c:342
+#: ../src/utils.c:394
 msgid "days"
 msgstr "ημέρες"
 
-#: ../src/utils.c:342
+#: ../src/utils.c:394
 msgid "day"
 msgstr "ημέρα"
 
-#: ../src/utils.c:542
+#: ../src/utils.c:594
 msgid "Unable to open the browser"
 msgstr "Αδύνατο το άνοιγμα περιηγητή"
 
@@ -887,32 +882,37 @@ msgstr "Εξαγωγή λίστας σε αρχείο"
 msgid "Added %d songs from %d of the imported playlist."
 msgstr ""
 
-#: ../src/glyr-related.c:21
+#: ../src/glyr-related.c:20
 msgid "en"
 msgstr ""
 
-#: ../src/glyr-related.c:70 ../src/glyr-related.c:95
-#, fuzzy
-msgid "Album art not found."
-msgstr "Σχέδιο εξώφυλλων άλμπουμ"
-
-#: ../src/glyr-related.c:263
-msgid "Artist information not found."
+#: ../src/glyr-related.c:47
+#, c-format
+msgid "Lyrics thanks to %s"
 msgstr ""
 
-#: ../src/glyr-related.c:289
-#, fuzzy
+#: ../src/glyr-related.c:51
+#, fuzzy, c-format
 msgid "Artist info"
 msgstr "Καλλιτέχνης"
 
-#: ../src/glyr-related.c:296
+#: ../src/glyr-related.c:52
 #, fuzzy, c-format
 msgid "%s <small><span weight=\"light\">thanks to</span></small> %s"
 msgstr "%s <small><span weight=\"light\">στο</span></small> %s"
 
-#: ../src/glyr-related.c:372
-msgid "Error searching Lyric."
+#: ../src/glyr-related.c:125
+#, fuzzy
+msgid "Lyrics not found."
+msgstr "Σχέδιο εξώφυλλων άλμπουμ"
+
+#: ../src/glyr-related.c:125
+msgid "Artist information not found."
 msgstr ""
+
+#, fuzzy
+#~ msgid "Search album art"
+#~ msgstr "Μέγεθος εξώφυλλων"
 
 #~ msgid "Remove"
 #~ msgstr "Αφαίρεση"
