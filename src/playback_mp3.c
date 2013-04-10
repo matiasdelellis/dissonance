@@ -631,7 +631,7 @@ exit:
 		if (mdec.map) {
 			CDEBUG(DBG_INFO, "Freeing mmaped file: %s",
 			       cwin->cstate->curr_mobj->file);
-			g_mapped_file_free(mdec.map);
+			g_mapped_file_unref(mdec.map);
 		}
 	}
 exit1:
